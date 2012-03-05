@@ -1,12 +1,27 @@
-from mutagen.mp3 import MP3
-from mutagen.easyid3 import EasyID3
+import eyeD3, os
 
-import os
-dir = os.listdir("/Users/dimitrispapangelis/Music/My Music/Info/We_Choose_the_Moon/")
+dir = r'/Users/dimitrispapangelis/Music/My Music/Info/We_Choose_the_Moon/'
 
-for filename in dir:
-	print filename
-    audio = MP3(filename, ID3=EasyID3)
+
+files = []
+for file in os.listdir(dir):
+	if file[-4:] == ".mp3":
+		files.append(file)
+
+os.chdir(dir)
+for file in files:
+	tag = eyeD3.Tag()
+	tag.link(file)
+
+	artist = tag.getArtist()
+	album = tag.getAlbum()
+	title = tag.getTitle()
+	print "Title:",title
+
+
+
+
+# 	audio = MP3(dir, ID3=EasyID3)
 # 	title = audio.get("TIT2")
 # 	artist = audio.get("TPE1")
 # 	album = audio.get("TALB")

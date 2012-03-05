@@ -4,7 +4,7 @@ import urllib2
 import sys
 
 
-##searchTerm = raw_input("Type the movie you want to search: \n")
+#searchTerm = raw_input("Type the movie you want to search: \n")
 
 searchTerm = sys.argv[1];
 ## Split the given movie string
@@ -43,9 +43,7 @@ except IOError:
 
 ## Add the matched title to the base URL
 urlStrRes = "http://www.imdb.com%s" % (title)
-print '-'*50
-print "Movie URL is:",urlStrRes
-print '-'*50
+print urlStrRes
 
 ## Regex that matches the rating for the movie
 regexRating = re.compile(r'^[0-9]\.[0-9]$')
@@ -53,7 +51,7 @@ regexRating = re.compile(r'^[0-9]\.[0-9]$')
 ########## REGEX needs to be rebuild to handle titles #########
 ####### like WWE American Soldier (TV 2008) - IMDb ############
 #now it accepts titles like WWE American soldier (2008) - IMDb#
-regexTitle = re.compile(r'[a-zA-Z\s]+\(\d+\)\s[\-]\s[a-zA-Z]+')
+regexTitle = re.compile(r'[a-zA-Z\s0-9]+\([a-zA-Z0-9\s]+?\d+[a-z\&\;0-9]+?\)\s[\-]\s[a-zA-Z]+')
 ################################################################
 
 ## Go through the movie's fetched HTML source
@@ -76,12 +74,14 @@ try:
   			if (found):			
   				break
   		for rating in ratings:
-  			resultline = countline  		
+  			resultline = countline
   		curline = ""
   		
 except IOError:
   print 'Cannot open URL %s for reading' % urlStr
   str1 = 'error!'  
-  
+title = title.replace("&ndash;", "-")
+title = title.replace("&nbsp;", " ")
 ## Print results
-print "Title of the movie found is:", title, "with a rating of:", rating
+print title[:-7]
+print rating
