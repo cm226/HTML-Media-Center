@@ -12,9 +12,9 @@ class Movie extends Model {
 									
 	}
 	
-	function view($shearchCriteria)
+	function view($movieName)
 	{
-		$result = array("Batman", "Action",'10:27:49');
+		$result = 'D:\Videos\Personal\MOV00041.mp4';
 		return $result;
 	}
 	
