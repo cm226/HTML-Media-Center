@@ -1,17 +1,17 @@
 
 the movie: 
 <?php 
-echo $movieName;
+echo $rateing[1];
 ?>
 
-has an IMDB rateing of
+has an IMDB rating of
 <?php 
-echo $rateing[3];
+echo $rateing[2];
 ?>
 
 <br/>
 
 and the url is 
 <?php 
-echo $rateing[1];
+echo $rateing[0];
 ?>

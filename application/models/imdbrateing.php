@@ -6,7 +6,7 @@ class IMDBrateing extends Model {
 	{
 		unset($result); 
 		
-		$cmd = ROOT . DS . DS. 'scripts' . DS .DS . 'IMDBRateingGetterDev.py ' . $movieName;
+		$cmd = 'python '.ROOT . DS . DS. 'scripts' . DS .DS . 'IMDBRateingGetterDev.py ' . '\''.$movieName.'\'';
 		exec($cmd, $result); 
 		return $result;
 

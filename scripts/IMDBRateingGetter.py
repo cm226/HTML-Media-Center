@@ -67,6 +67,7 @@ try:
   		res.write(curline)
   		for title in titles:
   			resultline = countline
+        print title
   			found = True
   			if (found):			
   				break
