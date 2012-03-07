@@ -21,8 +21,8 @@ class Template {
     function render() {
 		extract($this->variables);
 			include (ROOT . DS . 'application' . DS . 'views' . DS . 'header.php');
-			if (file_exists(ROOT . DS . 'application' . DS . 'views' . DS . $this->_controller . DS . 'defineIncludes.php')) {
-				include (ROOT . DS . 'application' . DS . 'views' . DS . $this->_controller . DS . 'defineIncludes.php');
+			if (file_exists(ROOT . DS . 'application' . DS . 'views' . DS . $this->_controller . DS . $this->_action.'defineIncludes.php')) {
+				include (ROOT . DS . 'application' . DS . 'views' . DS . $this->_controller . DS . $this->_action.'defineIncludes.php');
 			}
 			include (ROOT . DS . 'application' . DS . 'views' . DS . 'headerEnd.php'); // give views the chance to include there own stlysheets / js etc
 			
