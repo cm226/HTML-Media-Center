@@ -12,5 +12,6 @@ class MusicController extends Controller {
 		$artistName = $_POST['artist'];
 		$this->set('artistsName',$artistName);
 		$this->set('songs',$this->Music->getArtistsSongs($artistName));
+		$this->set('albums',$this->Music->getArtistsAlbums($artistName));
 	}
 }

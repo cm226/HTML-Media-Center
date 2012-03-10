@@ -34,4 +34,13 @@ class Music extends Model {
 		return $songURLs ;
 	}
 	
+	function getArtistsAlbums($artistName)
+	{
+		$albumNames = array("Bat Country",
+							"another album",
+							"yet another album");
+							
+		return $albumNames;
+	}
+	
 }
