@@ -5,4 +5,4 @@
 <title>Is this thing on?</title>
 
 <script type="text/javascript" src="../public/js/helperFunctions.js"></script> 
-
+<link rel="stylesheet" type="text/css" href="../public/css/genericStyle.css">

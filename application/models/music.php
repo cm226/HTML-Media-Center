@@ -8,7 +8,16 @@ class Music extends Model {
 							array("Spineshank", "Metal", 3,1),
 							array("Spineshank", "Metal", 3,1),
 							array("Spineshank", "Metal", 3,1),
-							array("Spineshank", "Metal", 3,1)
+							array("Spineshank", "Metal", 3,1),
+							array("Avenged Sevenfold", "Awsome",5,1),
+							array("Spineshank", "Metal", 3,1),
+							array("Avenged Sevenfold", "Awsome",5,1),
+							array("Spineshank", "Metal", 3,1),
+							array("Avenged Sevenfold", "Awsome",5,1),
+							array("Spineshank", "Metal", 3,1),
+							array("Avenged Sevenfold", "Awsome",5,1),
+							array("Spineshank", "Metal", 3,1),
+							array("Avenged Sevenfold", "Awsome",5,1),
 						   );
 						   
 		return $allArtists;
