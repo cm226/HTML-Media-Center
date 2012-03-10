@@ -1,6 +1,21 @@
 
 <h3>Showing songs for : <?php echo $artistsName; ?> </h3>
 
+<div name="albumList">
+<h4> albums </h4>
+<?php 
+foreach ($albums as $album)
+{
+	echo '<div name="album"><a href="#" >' . $album . '</a></div>';
+
+}
+
+
+?>
+
+
+</div>
+
 <script>
 var myPlaylist = [
 
