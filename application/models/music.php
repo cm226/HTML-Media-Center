@@ -4,11 +4,14 @@ class Music extends Model {
 	
 	function viewAll()
 	{
-		$allMovies = array( array("Avenged Sevenfold", "Awsome",5),
-							array("Spineshank", "Metal", 3)
+		$allArtists = array( array("Avenged Sevenfold", "Awsome",5,1),
+							array("Spineshank", "Metal", 3,1),
+							array("Spineshank", "Metal", 3,1),
+							array("Spineshank", "Metal", 3,1),
+							array("Spineshank", "Metal", 3,1)
 						   );
 						   
-		return $allMovies;
+		return $allArtists;
 									
 	}
 	
