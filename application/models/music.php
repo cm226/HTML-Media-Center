@@ -21,13 +21,13 @@ class Music extends Model {
 	{
 		
 		$songURLs = array(array(
-									"Url"    => "../public/mix/2.mp3",
+									"Url"    => "../public/mix/04-info-recall.mp3",
 									"Name"   => "Bat Country",
 									"Album"  => "Bat country",
 									"Length" =>"3:15"),
 						  array(
-									"Url"    => "../public/mix/2.mp3",
-									"Name"   => "Bat Country",
+									"Url"    => "../public/mix/04-info-recall2.mp3",
+									"Name"   => "cafddds",
 									"Album"  => "Bat country",
 									"Length" =>"3:15")
 						);
