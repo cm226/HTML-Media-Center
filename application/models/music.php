@@ -43,4 +43,16 @@ class Music extends Model {
 		return $albumNames;
 	}
 	
+	function getPlayLists ()
+	{
+		$playlists = array (
+								"PlayList1",
+								"PlayList2",
+								"PlayList3"
+							);
+							
+		return $playlists;
+	
+	}
+	
 }

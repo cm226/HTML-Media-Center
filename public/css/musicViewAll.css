@@ -1,0 +1,42 @@
+h4
+{
+	padding: 0px;
+	margin-top:0px;
+	margin-bottom: 10px;
+
+}
+
+#leftContainer
+{
+	float:left;
+	width:200px;
+}
+
+#ArtistList
+{
+	float:left;
+	width:80%;
+	background-color:#EEE8CD;
+	padding:10px;
+	margin-left:20px;
+}
+
+#searchBox
+{
+	width:100%;
+	background-color:#B3B3B3;
+	padding:0px;
+	margin-right:10px;
+	margin-top:20px;
+}
+
+#playlists
+{
+	width:100%;
+	background-color:#B3B3B3;
+	padding:0px;
+	margin-right:10px;
+	margin-top:20px;
+
+
+}
