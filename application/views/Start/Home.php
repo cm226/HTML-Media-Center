@@ -1,9 +1,11 @@
 <h2> Start </h2>
-<div id="displaybox" style="display: none;"></div>
-<div id="displayboxTop" style="display: none;"></div>
+<div id="backgroundDisplay" style="display: none;"></div>
+<div id="MoviesTopBox" class="topBox" style="display: none;"></div>
+<div id="MusicTopBox" class="topBox" style="display: none;"></div>
+<div id="PicturesTopBox" class="topBox" style="display: none;"></div>
 <ul>
-<li><a href="#" onclick='return clicker();'>Movies</a></li>
-<li><a href="../Music/viewAll">Music</a></li>
+<li><a href="#" onclick='return movieSearch();'>Movies</a></li>
+<li><a href="#" onclick='return musicSearch();'>Music</a></li>
 <li><a href="../TV/viewAll">TV</a></li>
 <li><a href="../Pictures/viewAll">Pictures</a></li>
 </ul>

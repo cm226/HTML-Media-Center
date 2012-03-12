@@ -1,3 +1,5 @@
+AddType image/jpeg .jpeg .jpg .jpe .JPG
+
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f

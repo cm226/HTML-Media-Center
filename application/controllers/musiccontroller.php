@@ -5,6 +5,7 @@ class MusicController extends Controller {
 	function viewall()
 	{
 		$this->set('artists',$this->Music->viewAll());
+		$this->set('playlists', $this->Music->getPlayLists());
 	}
 	
 	function viewArtist()
@@ -13,5 +14,6 @@ class MusicController extends Controller {
 		$this->set('artistsName',$artistName);
 		$this->set('songs',$this->Music->getArtistsSongs($artistName));
 		$this->set('albums',$this->Music->getArtistsAlbums($artistName));
+		
 	}
 }

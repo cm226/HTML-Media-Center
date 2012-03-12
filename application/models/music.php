@@ -4,11 +4,23 @@ class Music extends Model {
 	
 	function viewAll()
 	{
-		$allMovies = array( array("Avenged Sevenfold", "Awsome",5),
-							array("Spineshank", "Metal", 3)
+		$allArtists = array( array("Avenged Sevenfold", "Awsome",5,1),
+							array("Spineshank", "Metal", 3,1),
+							array("Spineshank", "Metal", 3,1),
+							array("Spineshank", "Metal", 3,1),
+							array("Spineshank", "Metal", 3,1),
+							array("Avenged Sevenfold", "Awsome",5,1),
+							array("Spineshank", "Metal", 3,1),
+							array("Avenged Sevenfold", "Awsome",5,1),
+							array("Spineshank", "Metal", 3,1),
+							array("Avenged Sevenfold", "Awsome",5,1),
+							array("Spineshank", "Metal", 3,1),
+							array("Avenged Sevenfold", "Awsome",5,1),
+							array("Spineshank", "Metal", 3,1),
+							array("Avenged Sevenfold", "Awsome",5,1),
 						   );
 						   
-		return $allMovies;
+		return $allArtists;
 									
 	}
 	
@@ -41,6 +53,18 @@ class Music extends Model {
 							"yet another album");
 							
 		return $albumNames;
+	}
+	
+	function getPlayLists ()
+	{
+		$playlists = array (
+								"PlayList1",
+								"PlayList2",
+								"PlayList3"
+							);
+							
+		return $playlists;
+	
 	}
 	
 }

@@ -1,4 +1,4 @@
-#displaybox {
+#backgroundDisplay {
 	z-index: 10000;
 	filter: alpha(opacity=50); /*older IE*/
 	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50); /* IE */
