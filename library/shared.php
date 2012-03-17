@@ -44,7 +44,33 @@ function unregisterGlobals() {
     }
 }
 
+
+/** Secondary Call Function **/
+
+function performAction($controller,$action,$queryString = null,$render = 0) {
+	
+	$controllerName = ucfirst($controller).'Controller';
+	$dispatch = new $controllerName($controller,$action);
+	$dispatch->render = $render;
+	return call_user_func_array(array($dispatch,$action),$queryString);
+}
+
+/** Routing **/
+
+function routeURL($url) {
+	global $routing;
+
+	foreach ( $routing as $pattern => $result ) {
+            if ( preg_match( $pattern, $url ) ) {
+				return preg_replace( $pattern, $result, $url );
+			}
+	}
+
+	return ($url);
+}
+
 /** Main Call Function **/
+
 
 function callHook() {
 	global $url;
@@ -67,7 +93,6 @@ function callHook() {
 	if ((int)method_exists($controller, $action)) {
 		call_user_func_array(array($dispatch,$action),$queryString);
 	} else {
-		/* Error Generation Code Here */
 	}
 }
 

@@ -1,6 +1,6 @@
 
     <link rel="stylesheet" type="text/css" href="../public/swf/plugin/css/style.css">
-	
+	<link rel="stylesheet" type="text/css" href="../public/css/musicViewArtist.css">
 
 	<script type="text/javascript" src="../public/js/jquery-1.6.1.min.js"></script>
 	<script type="text/javascript" src="../public/swf/plugin/jquery-jplayer/jquery.jplayer.js"></script>

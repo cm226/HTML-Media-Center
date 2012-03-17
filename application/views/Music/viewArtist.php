@@ -1,15 +1,14 @@
 
-<h3>Showing songs for : <?php echo $artistsName; ?> </h3>
+<h3><?php echo $artistsName; ?> </h3>
 
 <div name="albumList">
 <h4> albums </h4>
 <?php 
 foreach ($albums as $album)
 {
-	echo '<div name="album"><a href="#" >' . $album . '</a></div>';
+	echo '<div id="album"><a href="#" >' . $album['Album']['albumName'] . '</a></div>';
 
 }
-
 
 ?>
 
@@ -22,13 +21,11 @@ var myPlaylist = [
 <?php foreach ($songs as &$song) { ?>
 
     {
-        mp3:<?php echo "'". $song["Url"] ."'";?>,
-        title:<?php echo "'". $song["Name"] ."'";?>,
+        mp3:<?php echo "'". $song["Song"]["songURL"] ."'";?>,
+        title:<?php echo "'". $song["Song"]["songName"] ."'";?>,
         artist:<?php echo "'".$artistsName."'" ;?>,
         rating:4,
-        buy:'#',
-        price:'0.99',
-        duration:<?php echo "'". $song["Length"] ."'";?>,
+        duration:<?php echo "'". $song["Song"]["songLength"] ."'";?>,
         cover:'../public/mix/1.png'
     },
 	

@@ -4,23 +4,10 @@ class Music extends Model {
 	
 	function viewAll()
 	{
-		$allArtists = array( array("Avenged Sevenfold", "Awsome",5,1),
-							array("Spineshank", "Metal", 3,1),
-							array("Spineshank", "Metal", 3,1),
-							array("Spineshank", "Metal", 3,1),
-							array("Spineshank", "Metal", 3,1),
-							array("Avenged Sevenfold", "Awsome",5,1),
-							array("Spineshank", "Metal", 3,1),
-							array("Avenged Sevenfold", "Awsome",5,1),
-							array("Spineshank", "Metal", 3,1),
-							array("Avenged Sevenfold", "Awsome",5,1),
-							array("Spineshank", "Metal", 3,1),
-							array("Avenged Sevenfold", "Awsome",5,1),
-							array("Spineshank", "Metal", 3,1),
-							array("Avenged Sevenfold", "Awsome",5,1),
-						   );
-						   
-		return $allArtists;
+	
+		$allArtistsq = 'SELECT artistName, artistRating, genre FROM Artist';
+		$allArtistsResult = $this->query($allArtistsq);
+		return $allArtistsResult;
 									
 	}
 	
@@ -32,27 +19,17 @@ class Music extends Model {
 	function getArtistsSongs($artistName)
 	{
 		
-		$songURLs = array(array(
-									"Url"    => "../public/mix/2.mp3",
-									"Name"   => "Bat Country",
-									"Album"  => "Bat country",
-									"Length" =>"3:15"),
-						  array(
-									"Url"    => "../public/mix/2.mp3",
-									"Name"   => "Bat Country",
-									"Album"  => "Bat country",
-									"Length" =>"3:15")
-						);
-		return $songURLs ;
+		$allArtistsSongq = 'SELECT songName, songURL, Album.albumName, songLength FROM Song, Album WHERE Album.albumName = Song.albumName AND Album.artistName = \''.$artistName.'\''; 
+		$allArtistsSongResult = $this->query($allArtistsSongq);
+		return $allArtistsSongResult;
 	}
 	
 	function getArtistsAlbums($artistName)
 	{
-		$albumNames = array("Bat Country",
-							"another album",
-							"yet another album");
+		$albumQueery = "SELECT albumName FROM Album WHERE artistName = '$artistName'";
+		$albumQueeryRes = $this->query($albumQueery);
 							
-		return $albumNames;
+		return $albumQueeryRes;
 	}
 	
 	function getPlayLists ()

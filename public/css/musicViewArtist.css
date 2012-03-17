@@ -1,0 +1,23 @@
+body
+{
+	background-image: url('../img/Music/Artists/NickleBackBG.png');
+	background-size: 90% auto;
+	background-position: 25% 0%;
+	background-repeat:no-repeat;
+	background-color:#000000;
+}
+
+h3
+{
+	color: WHITE;
+}
+
+h4
+{
+	color : WHITE;
+}
+
+#album
+{
+	color: WHITE;
+}
