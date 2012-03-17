@@ -90,7 +90,10 @@ insert into Artist values('breed 77',4,'Rock');
 insert into Artist values('Iron Maiden',8,'Metal');
 
 insert into Album values('All the Right Reasons','NickleBack',2007,10);
-insert into Album values('The State','NickleBack',1900,5);
+insert into Album values('Here And Now','NickleBack',2012,5);
+insert into Album values('The Long Road','NickleBack',2000,5);
+insert into Album values('The State','NickleBack',1985,5);
+insert into Album values('Silver Side Up','NickleBack',200,5);
 insert into Album values('Bat Country','Avenged Sevenfold',2007,10);
 insert into Album values('Edward The Great','Iron Maiden',2007,10);
 insert into Album values('The Trooper','Iron Maiden',2007,10);

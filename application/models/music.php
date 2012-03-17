@@ -26,9 +26,21 @@ class Music extends Model {
 	
 	function getArtistsAlbums($artistName)
 	{
-		$albumQueery = "SELECT albumName FROM Album WHERE artistName = '$artistName'";
+		$albumQueery = "SELECT  albumName,
+								year,
+								albumRating, 
+									(SELECT 
+										count(*) 
+									FROM 
+										Song
+									WHERE Album.albumName = Song.albumName) as trackCount
+						FROM 
+								Album
+						WHERE
+								artistName = '$artistName'";
 		$albumQueeryRes = $this->query($albumQueery);
-							
+		
+		
 		return $albumQueeryRes;
 	}
 	

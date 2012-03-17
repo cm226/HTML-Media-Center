@@ -1,11 +1,4 @@
-body
-{
-	background-image: url('../img/Music/Artists/NickleBackBG.png');
-	background-size: 90% auto;
-	background-position: 25% 0%;
-	background-repeat:no-repeat;
-	background-color:#000000;
-}
+
 
 h3
 {
@@ -15,9 +8,131 @@ h3
 h4
 {
 	color : WHITE;
+	background-color: #1A1A1A;
+	padding-left : 10px;
+	margin: 0px;
+	border-top-left-radius:25px;
+	border-top-right-radius:25px;
+	border-bottom-left-radius:0px;
+	border-bottom-right-radius:0px;
 }
 
-#album
+a:link {
+	color: white;
+	font-family: sans-serif;
+	font-style: normal;
+	font-variant: small-caps;
+	font-weight: normal;
+	font-size: medium;
+	line-height: 100%;
+	word-spacing: normal;
+	letter-spacing: normal;
+	text-decoration: none;
+	text-transform: none;
+	text-align: left;
+	text-indent: 0ex;}
+	/* unvisited link */
+	
+a:visited {
+color: white;
+font-family: sans-serif;
+	font-style: normal;
+	font-variant: small-caps;
+	font-weight: normal;
+	font-size: medium;
+	line-height: 100%;
+	word-spacing: normal;
+	letter-spacing: normal;
+	text-decoration: none;
+	text-transform: none;
+	text-align: left;
+	text-indent: 0ex;}  /* visited link */
+	
+a:hover {
+
+color: white;
+font-family: sans-serif;
+	font-style: normal;
+	font-variant: small-caps;
+	font-weight: normal;
+	font-size: medium;
+	line-height: 100%;
+	word-spacing: normal;
+	letter-spacing: normal;
+	text-decoration: none;
+	text-transform: none;
+	text-align: left;
+	text-indent: 0ex;}  /* mouse over link */
+
+a:active {
+color: white;
+font-family: sans-serif;
+	font-style: normal;
+	font-variant: small-caps;
+	font-weight: normal;
+	font-size: medium;
+	line-height: 100%;
+	word-spacing: normal;
+	letter-spacing: normal;
+	text-decoration: none;
+	text-transform: none;
+	text-align: left;
+	text-indent: 0ex;}  /* selected link */
+
+
+.album
 {
 	color: WHITE;
+	padding: 10px;
+	width: 100%;
+	height: 80px;
+}
+
+#albumList
+{
+	/* Fallback for web browsers that doesn't support RGBa */
+	background: rgb(0, 0, 0);
+	/* RGBa with 0.6 opacity */
+	background: rgba(0, 0, 0, 0.6);
+	width: 20%;
+	border:2px solid;
+	float: left;
+	border-radius:25px;
+}
+
+#player
+{
+	float: left;
+	width : 70%;
+	height : 1000px;
+	border: 0px;
+	
+	
+}
+
+.meta
+{
+	color: grey;
+	font-family: sans-serif;
+	font-style: normal;
+	font-variant: small-caps;
+	font-weight: normal;
+	font-size: small;
+	line-height: 0%;
+	word-spacing: normal;
+	letter-spacing: normal;
+	text-decoration: none;
+	text-transform: none;
+	text-align: left;
+	text-indent: 0ex;
+}
+
+.imgCont
+{
+	float : left;
+}
+
+.metaCont
+{
+	float: left;
 }
