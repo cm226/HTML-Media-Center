@@ -103,5 +103,10 @@ insert into Song values('animals','All the Right Reasons','00:03:10',9,0,'../pub
 insert into Song values('Run To the Hills','Edward The Great','00:03:10',9,0,'../public/mix/Music/breakingenjamin/06 - Breaking Benjamin - Until The End.mp3');
 insert into Song values('Run To the Hills','Edward The Great','00:03:10',9,0,'../public/mix/Music/breakingenjamin/06 - Breaking Benjamin - Until The End.mp3');
 
+insert into Song values('animals','All the Right Reasons','00:03:10',9,0,'../public/mix/Music/Nickelback/All the Right Reasons/animals.mp3');
+insert into Song values('far away','All the Right Reasons','00:03:10',9,0,'../public/mix/Music/Nickelback/All the Right Reasons/far away.mp3');
+insert into Song values('next contestant','All the Right Reasons','00:03:10',9,0,'../public/mix/Music/Nickelback/All the Right Reasons/next contestant.mp3');
+insert into Song values('satarday nights alright','The Long Road','00:03:10',9,0,'../public/mix/Music/Nickelback/The Long Road [Bonus Tracks]/satarday nights alright.mp3');
+
 
 

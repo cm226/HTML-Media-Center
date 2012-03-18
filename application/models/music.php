@@ -24,6 +24,26 @@ class Music extends Model {
 		return $allArtistsSongResult;
 	}
 	
+	function getArtistsAlbumSongs($artistName, $albumName)
+	{
+		$allArtistsSongq = 'SELECT 
+								songName,
+								songURL,
+								Album.albumName,
+								songLength
+								
+							FROM Song,
+								 Album
+
+							 WHERE Album.albumName = Song.albumName 
+								AND Album.artistName = \''.$artistName.'\'
+								AND Album.albumName = \''. $albumName . '\'';
+								
+		$albumQueeryRes = $this->query($allArtistsSongq);
+		
+		return $albumQueeryRes;
+	}
+	
 	function getArtistsAlbums($artistName)
 	{
 		$albumQueery = "SELECT  albumName,

@@ -1,4 +1,10 @@
 <script type="text/javascript">
+	function refreshIframe(artistName, albumName)
+	{
+		postwith('../Music/viewPlayer',{artist:artistName, album:albumName}, "player");
+	}
+	
+	
 	function populateIFrame () {
 	var frm = document.getElementById("ArtistPoster");
 	frm.submit();
@@ -20,13 +26,14 @@ body
 
 
 <h3><?php echo $artistsName; ?> </h3>
-
+<div id="songSelection">
+<img src="../public/img/Music/icons/shuffle.png" height="50" width="50" />
 <div id="albumList">
 <h4> Albums </h4>
 <?php 
 foreach ($albums as $album)
 {
-	echo '<div class="album">
+	echo '<div class="album" onClick="refreshIframe(\'' . $artistsName . '\', \''. $album['Album']['albumName'] .'\');">
 			<div class="imgCont">
 				<img ';
 if (file_exists('../public/img/Music/Albums/' . $album['Album']['albumName'] .'.png')) 
@@ -38,11 +45,9 @@ if (file_exists('../public/img/Music/Albums/' . $album['Album']['albumName'] .'.
 				
 	echo ' height="70" width="70"\>
 			</div>
-			<div class="metaCont">
-				<a href="#" >'
+			<div class="metaCont">'
 					. $album['Album']['albumName'] . 
-				'</a>
-				<p class="meta" >'. $album['Album']['year'] .'</p>
+				'<p class="meta" >'. $album['Album']['year'] .'</p>
 				<p class="meta" >Track Count: '. $album['']['trackCount'] .'</p>
 				<p class="meta" >Rateing:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'. $album['Album']['albumRating'] .'/10</p>
 			</div>
@@ -55,6 +60,7 @@ if (file_exists('../public/img/Music/Albums/' . $album['Album']['albumName'] .'.
 ?>
 
 
+</div>
 </div>
 
 <form id="ArtistPoster" hidden="true" action="../Music/viewPlayer" method="post" target="player">

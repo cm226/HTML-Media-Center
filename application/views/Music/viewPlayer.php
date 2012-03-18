@@ -12,7 +12,7 @@ var myPlaylist = [
         artist:<?php echo "'".$artistsName."'" ;?>,
         rating:4,
         duration:<?php echo "'". $song["Song"]["songLength"] ."'";?>,
-        cover:'../public/mix/1.png'
+        cover:'../public/img/Music/Albums/<?php echo $song["Album"]["albumName"]; ?>.png'
     },
 	
 <?php } ?>
