@@ -1,0 +1,28 @@
+#seriesSelection
+{
+	width: 250px;
+	float: left;
+}
+
+#seasonSelection
+{
+	float: left;
+	width: 80%;
+}
+
+#headerDiv
+{
+	width: 100%;
+	height: 200px;
+}
+
+#seriesImage
+{
+	float: left;
+	padding-right: 100px;
+}
+
+#seriesTitle
+{
+	float : left;
+}
