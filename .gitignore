@@ -1,4 +1,10 @@
 config/config.php
+
 public/img/Music/Albums/*
+
 public/img/Music/Artists/*
+
+public/img/TV/*
 public/mix/*
+
+.DS_Store

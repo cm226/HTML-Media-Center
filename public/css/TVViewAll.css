@@ -26,3 +26,14 @@
 {
 	float : left;
 }
+
+#seriesContainer
+{
+	padding: 10px;
+}
+
+.series
+{
+	background: grey;
+	padding:1px;
+}

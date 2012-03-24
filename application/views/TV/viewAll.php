@@ -6,12 +6,17 @@
 	<form>
 	Name: <input type="text" />
 	</form>
-		<ul>
-			<li>True Blood </li>
-			<li>Supernatural </li>
-			<li>The Walking dead </li>
-			<li>4400 </li>
-		</ul>
+	<div id="seriesContainer">
+		<?php
+			foreach ($seriesNames as $name)
+			{
+				echo '<div class="series" >
+						' . $name . '
+				
+				</div>';
+			}
+		?>
+	</div>
 	</div>
 	<div id="seasonSelection">
 		<div id="headerDiv" >
@@ -22,6 +27,7 @@
 		<div id="seasonsDiv">
 			<div class="season">
 				<h4> season 1 </h4>
+				<a href="../TV/viewEpisode"> ep1 </a>
 			</div>
 			<div class="season">
 				<h4> season 2 </h4>
