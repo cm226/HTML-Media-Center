@@ -10,8 +10,8 @@
 		<?php
 			foreach ($seriesNames as $name)
 			{
-				echo '<div class="series" >
-						' . $name . '
+				echo '<div class="series" ><a href="'. $publicFolder .'TV/viewAll/'. $name['Series']['seriesName'] .'">
+						' . $name['Series']['seriesName'] . ' </a>
 				
 				</div>';
 			}
@@ -20,21 +20,34 @@
 	</div>
 	<div id="seasonSelection">
 		<div id="headerDiv" >
-			<img id="seriesImage" src="../public/img/TV/seriesThumbs/TrueBlood.png" height="150" width="100"/>
-			<h3 id="seriesTitle" > True Blood </h3>
+			<?php if(isset($seriesName)) { ?>
+			<img id="seriesImage" src="<?php echo $publicFolder;?>/public/img/TV/seriesThumbs/<?php echo $seriesName;?>.png" height="150" width="100"/>
+			<h3 id="seriesTitle" > <?php echo $seriesName;?> </h3>
+			<?php }?>
 		</div>
 		
-		<div id="seasonsDiv">
-			<div class="season">
-				<h4> season 1 </h4>
-				<a href="../TV/viewEpisode"> ep1 </a>
-			</div>
-			<div class="season">
-				<h4> season 2 </h4>
-			</div>
-			<div class="season">
-				<h4> season 3 </h4>
-			</div>
+		<?php
+			if(isset($seasons))
+			{
+				foreach ( $seasons as $season)
+				{
+					echo '<div id="seasonsDiv">
+						<div class="season">
+							<h4> season ' . $season['Season']['seriesNumber'] . ' </h4>';
+							
+							foreach ($episodes[$season['Season']['seriesNumber']] as $episode)
+							{
+								echo '<a href="../../TV/viewEpisode/'.$episode['Episode']['episodeName'].'"> 
+										<div class="episode">'. $episode['Episode']['episodeName'] . '</div>
+									  </a>';
+							}
+							
+					echo '</div>';
+					
+				}
+			}
+		?>
+		
 		</div>
 	</div>
 

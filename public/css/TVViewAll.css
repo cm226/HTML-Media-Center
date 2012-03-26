@@ -1,6 +1,7 @@
 #seriesSelection
 {
-	width: 250px;
+	min-width:250px;
+	width: 20%;
 	float: left;
 }
 
@@ -36,4 +37,9 @@
 {
 	background: grey;
 	padding:1px;
+}
+
+.episode
+{
+	background: #6495ED;
 }
