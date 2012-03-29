@@ -1,5 +1,9 @@
-function postwith (to,p) {
+
+function postwith (to,p, target) {
+	if(!target)
+		target = "_self";
   var myForm = document.createElement("form");
+  myForm.target=target;
   myForm.method="post" ;
   myForm.action = to ;
   for (var k in p) {

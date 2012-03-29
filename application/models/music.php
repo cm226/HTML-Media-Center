@@ -4,23 +4,10 @@ class Music extends Model {
 	
 	function viewAll()
 	{
-		$allArtists = array( array("Avenged Sevenfold", "Awsome",5,1),
-							array("Spineshank", "Metal", 3,1),
-							array("Spineshank", "Metal", 3,1),
-							array("Spineshank", "Metal", 3,1),
-							array("Spineshank", "Metal", 3,1),
-							array("Avenged Sevenfold", "Awsome",5,1),
-							array("Spineshank", "Metal", 3,1),
-							array("Avenged Sevenfold", "Awsome",5,1),
-							array("Spineshank", "Metal", 3,1),
-							array("Avenged Sevenfold", "Awsome",5,1),
-							array("Spineshank", "Metal", 3,1),
-							array("Avenged Sevenfold", "Awsome",5,1),
-							array("Spineshank", "Metal", 3,1),
-							array("Avenged Sevenfold", "Awsome",5,1),
-						   );
-						   
-		return $allArtists;
+	
+		$allArtistsq = 'SELECT artistName, artistRating, genre FROM Artist';
+		$allArtistsResult = $this->query($allArtistsq);
+		return $allArtistsResult;
 									
 	}
 	
@@ -32,6 +19,7 @@ class Music extends Model {
 	function getArtistsSongs($artistName)
 	{
 		
+<<<<<<< HEAD
 		$songURLs = array(array(
 									"Url"    => "../public/mix/04-info-recall.mp3",
 									"Name"   => "Bat Country",
@@ -44,15 +32,51 @@ class Music extends Model {
 									"Length" =>"3:15")
 						);
 		return $songURLs ;
+=======
+		$allArtistsSongq = 'SELECT songName, songURL, Album.albumName, songLength FROM Song, Album WHERE Album.albumName = Song.albumName AND Album.artistName = \''.$artistName.'\''; 
+		$allArtistsSongResult = $this->query($allArtistsSongq);
+		return $allArtistsSongResult;
+	}
+	
+	function getArtistsAlbumSongs($artistName, $albumName)
+	{
+		$allArtistsSongq = 'SELECT 
+								songName,
+								songURL,
+								Album.albumName,
+								songLength
+								
+							FROM Song,
+								 Album
+
+							 WHERE Album.albumName = Song.albumName 
+								AND Album.artistName = \''.$artistName.'\'
+								AND Album.albumName = \''. $albumName . '\'';
+								
+		$albumQueeryRes = $this->query($allArtistsSongq);
+		
+		return $albumQueeryRes;
+>>>>>>> 8d3a9637a30c37e5f2341c02f83ac25642310f8b
 	}
 	
 	function getArtistsAlbums($artistName)
 	{
-		$albumNames = array("Bat Country",
-							"another album",
-							"yet another album");
-							
-		return $albumNames;
+		$albumQueery = "SELECT  albumName,
+								year,
+								albumRating, 
+									(SELECT 
+										count(*) 
+									FROM 
+										Song
+									WHERE Album.albumName = Song.albumName) as trackCount
+						FROM 
+								Album
+						WHERE
+								artistName = '$artistName'";
+		$albumQueeryRes = $this->query($albumQueery);
+		
+		
+		return $albumQueeryRes;
 	}
 	
 	function getPlayLists ()

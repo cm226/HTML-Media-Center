@@ -1,0 +1,45 @@
+#seriesSelection
+{
+	min-width:250px;
+	width: 20%;
+	float: left;
+}
+
+#seasonSelection
+{
+	float: left;
+	width: 80%;
+}
+
+#headerDiv
+{
+	width: 100%;
+	height: 200px;
+}
+
+#seriesImage
+{
+	float: left;
+	padding-right: 100px;
+}
+
+#seriesTitle
+{
+	float : left;
+}
+
+#seriesContainer
+{
+	padding: 10px;
+}
+
+.series
+{
+	background: grey;
+	padding:1px;
+}
+
+.episode
+{
+	background: #6495ED;
+}

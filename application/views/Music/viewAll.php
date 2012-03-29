@@ -36,11 +36,16 @@ echo '<div id="ArtistList">';
 echo '<h3> Artists Selection </h3>';
 foreach ($artists as &$artist)
 {
-	echo '<div class="artistElement" onclick="postwith(\'../Music/viewArtist\',{artist:\''.$artist[0].'\'})">';
-	echo '<img src="../Public/img/Music/Artists/' . $artist[0] . '.png" height="128" width="128">';
-	echo '<h4 class="ArtistName">' . $artist[0]. '</h4>';
-	echo '<p class="artistInfo"> Genra: ' .$artist[1] . '</p>';
-	echo '<p class="artistInfo">No. tracks: '. $artist[3] .' Rateing: ' .$artist[2] . '</p>';
+	echo '<div class="artistElement" onclick="postwith(\'../Music/viewArtist\',{artist:\''.$artist['Artist']['artistName'].'\'})">';
+	
+	if(file_exists('../Public/img/Music/Artists/' . $artist['Artist']['artistName'] . '.png'))
+		echo '<img src="../Public/img/Music/Artists/' . $artist['Artist']['artistName'] . '.png" height="128" width="128">';
+	else
+		echo '<img src="../Public/img/Music/Artists/default.png" height="128" width="128">';
+		
+	echo '<h4 class="ArtistName">' . $artist['Artist']['artistName']. '</h4>';
+	echo '<p class="artistInfo"> Genra: ' .$artist['Artist']['genre'] . '</p>';
+	echo '<p class="artistInfo">No. tracks: '. $artist['Artist']['artistRating'] .' Rateing: ' .$artist['Artist']['artistRating'] . '</p>';
 	echo '</div>';
 	
 }
