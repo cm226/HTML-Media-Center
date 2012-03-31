@@ -1,22 +1,44 @@
-import eyeD3, os
+import eyeD3, os, sys
 
-dir = r'/Users/dimitrispapangelis/Music/My Music/Info/We_Choose_the_Moon/'
+type = sys.argv[1];
+song = sys.argv[2];
+print type
+print song
 
-
-files = []
-for file in os.listdir(dir):
-	if file[-4:] == ".mp3":
-		files.append(file)
-
-os.chdir(dir)
-for file in files:
+if type == "-f":
+	print "Treating the argument as a file"
 	tag = eyeD3.Tag()
-	tag.link(file)
+	tag.link(song)
 
 	artist = tag.getArtist()
 	album = tag.getAlbum()
 	title = tag.getTitle()
 	print "Title:",title
+	print "Artist:",artist
+	print "album:",album
+
+
+elif type == "-d":
+	print "Treating the argument as a directory"
+	files = []
+	for file in os.listdir(song):
+		if file[-4:] == ".mp3":
+			files.append(file)
+
+	os.chdir(song)
+	for file in files:
+		tag = eyeD3.Tag()
+		tag.link(file)
+
+		artist = tag.getArtist()
+		album = tag.getAlbum()
+		title = tag.getTitle()
+		print "Title:",title
+		print "Artist:",artist
+		print "album:",album
+
+
+
 
 
 
