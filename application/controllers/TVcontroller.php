@@ -5,7 +5,7 @@ class TVController extends Controller
 	function viewall($seriesName = '')
 	{
 		if($seriesName == '')
-			$publicFolder = "../";
+			$publicFolder = "../../public";
 		else
 		{
 			$seasonArray = $this->TV->seasonNumbers($seriesName);

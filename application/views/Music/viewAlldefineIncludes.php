@@ -1,1 +1,1 @@
-<link rel="stylesheet" type="text/css" href="<?php echo $publicFolder;?>/css/musicViewAll.css">
+<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_FOLDER;?>/css/musicViewAll.css">
