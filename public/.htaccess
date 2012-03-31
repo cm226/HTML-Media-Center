@@ -1,4 +1,5 @@
 AddType image/jpeg .jpeg .jpg .jpe .JPG
+AddType video/mp4 .mp4 .avi .wmv
 
 <IfModule mod_rewrite.c>
 RewriteEngine On

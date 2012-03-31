@@ -8,4 +8,5 @@
 <li><a href="#" onclick='return musicSearch();'>Music</a></li>
 <li><a href="../TV/viewAll">TV</a></li>
 <li><a href="../Pictures/viewAll">Pictures</a></li>
+<li><a href="../Admin/Main">Admin</a></li>
 </ul>
