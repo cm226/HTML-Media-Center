@@ -83,6 +83,7 @@ episodeLength TIME NOT NULL,
 episodePlayCount INT(3) NOT NULL,
 seasonID INT NOT NULL,
 filePath VARCHAR(256) NOT NULL,
+episodeNumber INT NOT NULL,
 FOREIGN KEY (seasonID) REFERENCES Season (seasonID)
 );
 
@@ -137,12 +138,12 @@ insert into Season values('','Big Bang Theory',1);
 insert into Season values('','Big Bang Theory',2);
 insert into Season values('','Big Bang Theory',3);
 
-insert into Episode values ('sup Nat ep Name', '00:45:00', 0, 1,'../public/mix/shows/supernatural/Supernatural.S07E16.avi');
-insert into Episode values ('sup Nat ep2 Name', '00:45:00', 0, 1,'../public/mix/shows/supernatural/Supernatural.S07E16.avi');
-insert into Episode values ('sup Nat ep3 Name', '00:45:00', 0, 2,'../public/mix/shows/supernatural/Supernatural.S07E16.avi');
+insert into Episode values ('sup Nat ep Name', '00:45:00', 0, 1,'../public/mix/shows/supernatural/Supernatural.S07E16.avi',1);
+insert into Episode values ('sup Nat ep2 Name', '00:45:00', 0, 1,'../public/mix/shows/supernatural/Supernatural.S07E16.avi',2);
+insert into Episode values ('sup Nat ep3 Name', '00:45:00', 0, 2,'../public/mix/shows/supernatural/Supernatural.S07E16.avi',3);
 
-insert into Episode values ('big bob', '00:45:00', 3, 5,'../public/mix/shows/sgu/Stargate.Universe.S02E11.avi');
-insert into Episode values ('big bob2', '00:45:00', 3, 5,'../public/mix/shows/the event/the.event.103.avi');
+insert into Episode values ('big bob', '00:45:00', 3, 5,'../public/mix/shows/sgu/Stargate.Universe.S02E11.avi',1);
+insert into Episode values ('big bob2', '00:45:00', 3, 5,'../public/mix/shows/the event/the.event.103.avi',1);
 
 
 

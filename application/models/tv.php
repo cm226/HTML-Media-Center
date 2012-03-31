@@ -23,6 +23,7 @@ class Tv extends Model {
 	function seasonEpisodes ($series,$season)
 	{
 		$seasonEpisodesq = "SELECT
+								episodeNumber,
 								episodeName,
 								episodeLength,
 								episodePlayCount

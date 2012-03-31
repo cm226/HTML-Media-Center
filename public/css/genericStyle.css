@@ -1,8 +1,11 @@
-h1
+#header
 {
-	color:#5E5E5E;
+	background-color: black;
+	height:100px;
+	background-image:url('../../public/img/Header/Background.png');
+	background-size:contain;
+	background-repeat:no-repeat;
 }
-
 
 #pageContent
 {

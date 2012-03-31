@@ -2,7 +2,6 @@
 <div id="pagecontent">
 
 	<div id="seriesSelection">
-	<h4> filter series </h4>
 	<form>
 	Name: <input type="text" />
 	</form>
@@ -37,9 +36,11 @@
 							
 							foreach ($episodes[$season['Season']['seriesNumber']] as $episode)
 							{
-								echo '<a href="../../TV/viewEpisode/'.$episode['Episode']['episodeName'].'"> 
-										<div class="episode">'. $episode['Episode']['episodeName'] . '</div>
-									  </a>';
+								echo '<div class="episode" onclick="location.href=\'../../TV/viewEpisode/'. str_replace(' ','%20',$episode['Episode']['episodeName']) . '\';"> 
+										<div class="number"> 1 </div>
+										<div class="name">'. $episode['Episode']['episodeName'] . '</div>
+										<div class="length">00:45:00</div>
+									  </div>';
 							}
 							
 					echo '</div>';
