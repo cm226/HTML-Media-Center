@@ -97,4 +97,47 @@ class AdminController extends Controller
 		
 	}
 
+	function uploadMusic()
+	{
+		if ((($_FILES["file"]["type"] == "audio/mp3"))
+		)
+		  {
+		  if ($_FILES["file"]["error"] > 0)
+			{
+				$this->set("ReturnCode: ",$_FILES["file"]["error"]);
+			}
+		  else
+			{
+				$this->set("Upload", $_FILES["file"]["name"]);
+				$this->set("Type",$_FILES["file"]["type"]);
+				$this->set("Size", ($_FILES["file"]["size"] / 1024 / 1024));
+				$this->set("Temp file",$_FILES["file"]["tmp_name"]);
+				
+				$this->set("seriesList", $this->Admin->seriseList());
+				
+			if (file_exists(self::TEMP_FOLDER."Music/" . $_FILES["file"]["name"]))
+			  {
+				$this->set("exists",true);
+				echo "exists";
+			  }
+			else
+			  {
+				  move_uploaded_file($_FILES["file"]["tmp_name"],
+				  self::TEMP_FOLDER."Music/" . $_FILES["file"]["name"]);
+				  $this->set("Location",self::TEMP_FOLDER."Music/" . $_FILES["file"]["name"]);
+				  $ip=$_SERVER['REMOTE_ADDR'];
+				  $hostname = gethostname();
+				  $myFile = "../tempUploads/data.log";
+				  $fh = fopen($myFile, 'a') or die("can't open file");
+				  $stringData = "".date("d.m.y")." Name: ".$_FILES["file"]["name"].", Type: ".$_FILES["file"]["type"].", Size: ".($_FILES["file"]["size"] / 1024 / 1024).", Hostname: ".$hostname." ".$ip."\n\n";
+				  fwrite($fh, $stringData);
+			  }
+			}
+		  }
+		else
+		  {
+			$this->set("InvalidFileType",true);
+		  }
+	}
+
 }
