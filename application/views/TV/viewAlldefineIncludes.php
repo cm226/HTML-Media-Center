@@ -1,8 +1,8 @@
-<link rel="stylesheet" type="text/css" href="<?php echo $publicFolder;?>/public/css/TVViewAll.css">
+<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_FOLDER;?>/css/TVViewAll.css">
 
 <style> 
 body{
-		background-image:url('<?php echo $publicFolder;?>/public/img/TV/bgPic.jpg');
+		background-image:url('<?php echo PUBLIC_FOLDER;?>/img/TV/bgPic.jpg');
 		background-size:cover;
 		background-repeat:no-repeat;
 	}

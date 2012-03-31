@@ -74,7 +74,8 @@ function routeURL($url) {
 
 function callHook() {
 	global $url;
-
+	$publicURL = "../";
+	
 	$urlArray = array();
 	$urlArray = explode("/",$url);
 
@@ -84,6 +85,14 @@ function callHook() {
 	array_shift($urlArray);
 	$queryString = $urlArray;
 
+	for($i = 0; $i < count($queryString) ; $i++)
+	{
+		$publicURL = $publicURL.'../../';
+	}
+	
+	$publicURL = $publicURL . 'public';
+	define("PUBLIC_FOLDER",$publicURL);
+	
 	$controllerName = $controller;
 	$controller = ucwords($controller);
 	$model = rtrim($controller, 's');
@@ -112,6 +121,7 @@ function __autoload($className) {
 	}
 }
 
+set_time_limit(0);
 setReporting();
 removeMagicQuotes();
 unregisterGlobals();

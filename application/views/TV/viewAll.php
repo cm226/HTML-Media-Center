@@ -9,7 +9,7 @@
 		<?php
 			foreach ($seriesNames as $name)
 			{
-				echo '<div class="series" ><a href="'. $publicFolder .'TV/viewAll/'. $name['Series']['seriesName'] .'">
+				echo '<div class="series" ><a href="'. PUBLIC_FOLDER .'/TV/viewAll/'. $name['Series']['seriesName'] .'">
 						' . $name['Series']['seriesName'] . ' </a>
 				
 				</div>';
@@ -20,7 +20,7 @@
 	<div id="seasonSelection">
 		<div id="headerDiv" >
 			<?php if(isset($seriesName)) { ?>
-			<img id="seriesImage" src="<?php echo $publicFolder;?>/public/img/TV/seriesThumbs/<?php echo $seriesName;?>.png" height="150" width="100"/>
+			<img id="seriesImage" src="<?php echo PUBLIC_FOLDER;?>/img/TV/seriesThumbs/<?php echo $seriesName;?>.png" height="150" width="100"/>
 			<h3 id="seriesTitle" > <?php echo $seriesName;?> </h3>
 			<?php }?>
 		</div>
