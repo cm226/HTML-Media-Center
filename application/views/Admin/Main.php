@@ -1,4 +1,4 @@
 <ul>
 <li><a href="../Admin/Tv">Tv</a></li>
-<li>Music (this one is for dimetrius)</li>
+<li><a href="../Admin/Music">Music (Under Construction)</a></li>
 </ul>
