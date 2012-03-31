@@ -5,6 +5,6 @@ public/img/Music/Artists/*
 
 public/img/TV/*
 public/mix/*
-tempUploads/
+tempUploads/*
 
 .DS_Store
