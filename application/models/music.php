@@ -18,21 +18,6 @@ class Music extends Model {
 	
 	function getArtistsSongs($artistName)
 	{
-		
-<<<<<<< HEAD
-		$songURLs = array(array(
-									"Url"    => "../public/mix/04-info-recall.mp3",
-									"Name"   => "Bat Country",
-									"Album"  => "Bat country",
-									"Length" =>"3:15"),
-						  array(
-									"Url"    => "../public/mix/04-info-recall2.mp3",
-									"Name"   => "cafddds",
-									"Album"  => "Bat country",
-									"Length" =>"3:15")
-						);
-		return $songURLs ;
-=======
 		$allArtistsSongq = 'SELECT songName, songURL, Album.albumName, songLength FROM Song, Album WHERE Album.albumName = Song.albumName AND Album.artistName = \''.$artistName.'\''; 
 		$allArtistsSongResult = $this->query($allArtistsSongq);
 		return $allArtistsSongResult;

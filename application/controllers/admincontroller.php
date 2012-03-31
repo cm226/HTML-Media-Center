@@ -24,7 +24,9 @@ class AdminController extends Controller
 				$this->set("Type",$_FILES["file"]["type"]);
 				$this->set("Size", ($_FILES["file"]["size"] / 1024 / 1024));
 				$this->set("Temp file",$_FILES["file"]["tmp_name"]);
-
+				
+				$this->set("seriesList", $this->Admin->seriseList());
+				
 			if (file_exists("../../Public/mix/shows/tmp/TV/" . $_FILES["file"]["name"]))
 			  {
 				$this->set("exsists",true);
@@ -41,6 +43,19 @@ class AdminController extends Controller
 		  {
 			$this->set("InvalidFileType",true);
 		  }
-			}
+	}
+	
+	function submitTVData()
+	{
+		$series = $_POST['Series'];
+		$name  = $_POST['eName'];
+		$Season  = $_POST['Season']; 
+		$EpisodeNumber = $_POST['eNumber'];
+		
+		echo $series;
+		echo $name;
+		echo $Season;
+		echo $EpisodeNumber;
+	}
 
 }
