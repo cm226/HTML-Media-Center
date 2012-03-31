@@ -51,11 +51,9 @@ class AdminController extends Controller
 		$name  = $_POST['eName'];
 		$Season  = $_POST['Season']; 
 		$EpisodeNumber = $_POST['eNumber'];
+		$oldEpName = $_POST['oldName'];
 		
-		echo $series;
-		echo $name;
-		echo $Season;
-		echo $EpisodeNumber;
+		
 	}
 
 }

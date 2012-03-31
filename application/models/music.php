@@ -41,7 +41,6 @@ class Music extends Model {
 		$albumQueeryRes = $this->query($allArtistsSongq);
 		
 		return $albumQueeryRes;
->>>>>>> 8d3a9637a30c37e5f2341c02f83ac25642310f8b
 	}
 	
 	function getArtistsAlbums($artistName)
