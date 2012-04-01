@@ -1,3 +1,3 @@
 </head>
 <body>
-<a href="/HTML-Media-Center"><div id="header"></div></a>
+<a href="<?php echo PUBLIC_FOLDER.'/../'; ?>"><div id="header"></div></a>
