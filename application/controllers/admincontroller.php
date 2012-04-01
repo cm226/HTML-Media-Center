@@ -12,12 +12,14 @@ class AdminController extends Controller
 	{
 		if ((($_FILES["file"]["type"] == "video/avi")
 		|| ($_FILES["file"]["type"] == "video/mp4")
-		|| ($_FILES["file"]["type"] == "video/wmv"))
+		|| ($_FILES["file"]["type"] == "video/wmv")
+		|| ($_FILES["file"]["type"] == "video/x-msvideo")
+		|| ($_FILES["file"]["type"] == "image/jpeg"))
 		)
 		  {
 		  if ($_FILES["file"]["error"] > 0)
 			{
-				$this->set("ReturnCode: ",$_FILES["file"]["error"]);
+				$this->set("ReturnCode",$_FILES["file"]["error"]);
 			}
 		  else
 			{
