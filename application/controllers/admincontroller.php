@@ -50,12 +50,14 @@ class AdminController extends Controller
 	
 	function submitTVData()
 	{
+
 		$series = $_POST['Series'];
 		$name  = $_POST['eName'];
 		$Season  = $_POST['Season']; 
 		$EpisodeNumber = $_POST['eNumber'];
 		$oldEpName = $_POST['oldName'];
-		
+
+		echo $series;		
 		if (file_exists(self::TEMP_FOLDER."TV/".$oldEpName))
 		{
 			if(!file_exists("../public/mix/shows/".$series."/"))

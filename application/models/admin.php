@@ -18,6 +18,7 @@ class Admin extends Model
 	
 	function createSeriesIfNecessary($Series)
 	{	
+		echo "SELECT seriesName FROM Series WHERE seriesName = '" . $Series. "'";
 		if(count($this->query("SELECT seriesName FROM Series WHERE seriesName = '" . $Series. "'")) == 0)
 			{
 				$createq = "insert into Series values('". $Series ."', 10, '2010', '')";
@@ -27,7 +28,10 @@ class Admin extends Model
 	
 	function createSeasonIfNecessary($Series, $Season)
 	{
+		
 		$seasonq = "SELECT seasonID FROM Season WHERE seriesName = '$Series' AND seriesNumber = $Season";
+
+		echo $seasonq;
 		$seasonRes = $this->query($seasonq);
 		
 		if(count($seasonRes) > 0)
@@ -36,7 +40,8 @@ class Admin extends Model
 		else
 		{
 			$addSeasonq = "INSERT INTO Season values('','$Series',$Season)";
-			$addSeasonRes = $this->query($seasonq);
+			echo $addSeasonq;
+			$addSeasonRes = $this->query($addSeasonq);
 			
 			$seasonRes = $this->query($seasonq);
 			if(count($seasonRes) > 0)

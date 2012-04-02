@@ -13,6 +13,11 @@
 	{
 		echo 'the file type is invalid';
 	}
+	
+	if(isset($exsists) && $exsists == true)
+	{
+		echo 'the file apready exsists...';
+	}
 ?>
 
 FileName = <?php echo $Location; ?>
