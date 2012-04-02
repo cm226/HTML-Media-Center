@@ -70,4 +70,30 @@ class Admin extends Model
 		$this->query($epQueery);
 	
 	}
+
+
+	function albumList()
+	{
+		$albumListq = "SELECT albumName FROM PictureAlbum";
+		return $this->query($epQueery);
+	}
+
+	function createAlbumIfNecessary($album)
+	{
+		$albumExsistsq = "SELECT albumName FROM PictureAlbum WHERE albumName = '" . $album . "'";
+		if(count($this->query($albumExsistsq)) > 0)
+			return; 
+
+		$albumCreateq = "INSERT INTO PictureAlbum Values ('".$album."')";
+		$this->query($albumCreateq);
+	}
+
+	function createPicture($name,
+				$url,
+				$album)
+	{
+		$createPicq = "INSERT INTO Picture VALUES('" .$name . "','" .$url . "','" .$album . "')";
+		$this->query($createPicq);
+
+	}
 }

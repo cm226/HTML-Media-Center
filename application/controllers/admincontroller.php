@@ -129,7 +129,7 @@ class AdminController extends Controller
 			else
 			  {
 			  move_uploaded_file($_FILES["file"]["tmp_name"],
-			  self::TEMP_FOLDER."TV/" . $_FILES["file"]["name"]);
+			  self::TEMP_FOLDER."Pictures/" . $_FILES["file"]["name"]);
 			  $this->set("Location",self::TEMP_FOLDER."Pictures/" . $_FILES["file"]["name"]);
 			  }
 			}
@@ -140,6 +140,48 @@ class AdminController extends Controller
 		  }
 
 
+	}
+
+	function submitPictureData()
+	{
+		$PicName = $_POST['PicName'];
+		$Album  = $_POST['AlbumName'];
+		$oldEpName = $_POST['oldName'];
+
+		if (file_exists(self::TEMP_FOLDER."Pictures/".$oldEpName))
+		{
+			if(!file_exists("../public/mix/Pictures/".$Album."/"))
+				mkdir("../public/mix/Pictures/".$Album."/");
+				
+			if(!file_exists("../public/mix/Pictures/".$Album."/".$PicName))
+			{
+				$oldURL = self::TEMP_FOLDER."Pictures/".$oldEpName;
+				$newURL = "../public/mix/Pictures/".$Album."/".$PicName;
+				if(rename($oldURL,$newURL))
+				{
+					$this->Admin->createAlbumIfNecessary($Album); // can be optimised by checking is new album is checked (cba do later)
+					$this->Admin->createPicture($PicName,
+									$newURL,
+									$Album);
+				}
+				else
+				{
+					echo 'copy error';
+					return;
+				}
+				
+			}
+			else
+			{
+				echo 'That file already exsists';
+				return;
+			}
+		}
+		
+		
+		$this->set("Sucess", true);
+		$this->set("name", $PicName);
+		
 	}
 
 	function uploadMusic()
