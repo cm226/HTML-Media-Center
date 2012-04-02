@@ -7,6 +7,8 @@ drop table Movie;
 drop table Episode;
 drop table Season;
 drop table Series;
+drop table Picture;
+drop table PictureAlbum;
 
 drop procedure if exists OrganiseEpisodes;
 
@@ -28,12 +30,12 @@ FOREIGN KEY (artistName) REFERENCES Artist (artistName)
 
 CREATE TABLE Song
 (
-songName VARCHAR(40) PRIMARY KEY,
+songName VARCHAR(40),
 albumName VARCHAR(20) NOT NULL,
 songLength TIME NOT NULL,
 songRating INT(2) NOT NULL,
 playCount INT(3) NOT NULL,
-songURL VARCHAR(256),
+songURL VARCHAR(256) PRIMARY KEY,
 FOREIGN KEY (albumName) REFERENCES Album (albumName)
 );
 
@@ -85,6 +87,19 @@ seasonID INT NOT NULL,
 filePath VARCHAR(256) NOT NULL,
 episodeNumber INT NOT NULL,
 FOREIGN KEY (seasonID) REFERENCES Season (seasonID)
+);
+
+CREATE TABLE Picture
+(
+	picName VARCHAR(40) NOT NULL,
+	picURL VARCHAR(256) PRIMARY KEY,
+	albumName VARCHAR(40),
+	FOREIGN KEY (albumName) REFERENCES PictureAlbum (albumName)
+);
+
+CREATE TABLE PictureAlbum
+(
+	albumName VARCHAR(40) PRIMARY KEY	
 );
 
 /*

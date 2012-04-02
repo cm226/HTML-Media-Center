@@ -13,8 +13,7 @@ class AdminController extends Controller
 		if ((($_FILES["file"]["type"] == "video/avi")
 		|| ($_FILES["file"]["type"] == "video/mp4")
 		|| ($_FILES["file"]["type"] == "video/wmv")
-		|| ($_FILES["file"]["type"] == "video/x-msvideo")
-		|| ($_FILES["file"]["type"] == "image/jpeg"))
+		|| ($_FILES["file"]["type"] == "video/x-msvideo"))
 		)
 		  {
 		  if ($_FILES["file"]["error"] > 0)
@@ -99,6 +98,48 @@ class AdminController extends Controller
 		$this->set("Sucess", true);
 		$this->set("name", $name);
 		
+	}
+
+	function uploadPictures()
+	{
+		if ((($_FILES["file"]["type"] == "image/jpeg")
+		|| ($_FILES["file"]["type"] == "image/bmp")
+		|| ($_FILES["file"]["type"] == "image/png")
+		|| ($_FILES["file"]["type"] == "image/gif")
+		|| ($_FILES["file"]["type"] == "image/tif"))
+		)
+		  {
+		  if ($_FILES["file"]["error"] > 0)
+			{
+				$this->set("ReturnCode",$_FILES["file"]["error"]);
+			}
+		  else
+			{
+				$this->set("Upload", $_FILES["file"]["name"]);
+				$this->set("Type",$_FILES["file"]["type"]);
+				$this->set("Size", ($_FILES["file"]["size"] / 1024 / 1024));
+				$this->set("Temp file",$_FILES["file"]["tmp_name"]);
+				
+				$this->set("albumList", $this->Admin->albumList());
+				
+			if (file_exists(self::TEMP_FOLDER."Pictures/" . $_FILES["file"]["name"]))
+			  {
+				$this->set("exsists",true);
+			  }
+			else
+			  {
+			  move_uploaded_file($_FILES["file"]["tmp_name"],
+			  self::TEMP_FOLDER."TV/" . $_FILES["file"]["name"]);
+			  $this->set("Location",self::TEMP_FOLDER."Pictures/" . $_FILES["file"]["name"]);
+			  }
+			}
+		  }
+		else
+		  {
+			$this->set("InvalidFileType",true);
+		  }
+
+
 	}
 
 	function uploadMusic()
