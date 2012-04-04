@@ -89,6 +89,11 @@ episodeNumber INT NOT NULL,
 FOREIGN KEY (seasonID) REFERENCES Season (seasonID)
 );
 
+CREATE TABLE PictureAlbum
+(
+	albumName VARCHAR(40) PRIMARY KEY	
+);
+
 CREATE TABLE Picture
 (
 	picName VARCHAR(40) NOT NULL,
@@ -97,10 +102,6 @@ CREATE TABLE Picture
 	FOREIGN KEY (albumName) REFERENCES PictureAlbum (albumName)
 );
 
-CREATE TABLE PictureAlbum
-(
-	albumName VARCHAR(40) PRIMARY KEY	
-);
 
 /*
 DELIMITER $$ 
