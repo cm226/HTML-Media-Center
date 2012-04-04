@@ -10,6 +10,7 @@ class PicturesController extends Controller {
 	function viewAlbum($albumName)
 	{
 		$this->set('albumName',$albumName);
+		$this->set('pictureDetails', $this->Picture->getPicDetails($albumName));
 	}
 
 }

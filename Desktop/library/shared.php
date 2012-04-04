@@ -87,7 +87,7 @@ function callHook() {
 
 	for($i = 0; $i < count($queryString) ; $i++)
 	{
-		$publicURL = $publicURL.'../../';
+		$publicURL = $publicURL.'../';
 	}
 	
 	$publicURL = $publicURL . 'public';
