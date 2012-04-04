@@ -43,3 +43,5 @@ insert into Episode values ('sup Nat ep3 Name', '00:45:00', 0, 2,'../public/mix/
 
 insert into Episode values ('big bob', '00:45:00', 3, 5,'../public/mix/shows/sgu/Stargate.Universe.S02E11.avi',1);
 insert into Episode values ('big bob2', '00:45:00', 3, 5,'../public/mix/shows/the event/the.event.103.avi',1);
+
+

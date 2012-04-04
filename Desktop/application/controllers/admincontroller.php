@@ -100,7 +100,7 @@ class AdminController extends Controller
 		
 	}
 
-	function uploadPictures()
+	function uploadPicture()
 	{
 		if ((($_FILES["file"]["type"] == "image/jpeg")
 		|| ($_FILES["file"]["type"] == "image/bmp")
@@ -120,7 +120,7 @@ class AdminController extends Controller
 				$this->set("Size", ($_FILES["file"]["size"] / 1024 / 1024));
 				$this->set("Temp file",$_FILES["file"]["tmp_name"]);
 				
-				$this->set("albumList", $this->Admin->albumList());
+				$this->set("albums", $this->Admin->albumList());
 				
 			if (file_exists(self::TEMP_FOLDER."Pictures/" . $_FILES["file"]["name"]))
 			  {
@@ -145,7 +145,7 @@ class AdminController extends Controller
 	function submitPictureData()
 	{
 		$PicName = $_POST['PicName'];
-		$Album  = $_POST['AlbumName'];
+		$Album  = $_POST['Album'];
 		$oldEpName = $_POST['oldName'];
 
 		if (file_exists(self::TEMP_FOLDER."Pictures/".$oldEpName))

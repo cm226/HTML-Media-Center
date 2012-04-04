@@ -75,7 +75,7 @@ class Admin extends Model
 	function albumList()
 	{
 		$albumListq = "SELECT albumName FROM PictureAlbum";
-		return $this->query($epQueery);
+		return $this->query($albumListq);
 	}
 
 	function createAlbumIfNecessary($album)
