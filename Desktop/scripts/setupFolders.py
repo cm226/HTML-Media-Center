@@ -1,6 +1,26 @@
 #!/usr/bin/env python
 
 import os
+from xml.dom.minidom import parseString
+
+linksFile = open("symbolicLinks.xml")
+symLinks = linksFile.read()
+dom = parseString(symLinks)
+linksFile.close()
+
+def getLinks(linkTo):
+	symlinks = [];
+	for musicTag in dom.getElementsByTagName(linkTo):
+		for link in musicTag.getElementsByTagName("link"):
+			symlinks.append(link.firstChild.data)
+
+	return symlinks
+
+# this is how to get the link list change later to accualy crate the linke
+print getLinks("Music");
+print getLinks("Tv");
+print getLinks("Pictures");
+print getLinks("Movies");
 
 Desktop = "../"
 
@@ -33,3 +53,6 @@ configFile = ["<?php\n",
 
 config = open(Desktop + "config/config.php","w")
 config.writelines(configFile);
+
+
+
