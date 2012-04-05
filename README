@@ -4,3 +4,17 @@ the home page can be foing by going to HOST/HTML-Media-Center/
 
 
 the jqueery player used for music section was obtained from http://www.codebasehero.com
+
+some initial setup of directourys is required to run the project.
+in the directory HTML-Media-Center/Desktop/scripts there is a file named setupFolders.py and another named symbolicLinks.xml
+
+You should open the symbolicLinks file and fill it with the locations where you want each media type to be stored (replace defaults). 
+
+run the serupFolders Script after filling out the symbolic links
+
+create your mysql database with the script inside Desktop/db/Database.sql
+
+then inside Desktop/congig/config.php (only avalable after setupFolders.py has been run) and fill it out with your database information
+
+Then you should be good to go :)
+ 
