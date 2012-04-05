@@ -1,20 +1,7 @@
 <xml version="1.0">
-	<Music>
-		<link>C:/music</link>
-		<link>D:/mucic</link>
-		
-	</Music>
-	
-	<Pictures>
-		<link>/home/craig/Desktop/Pictures</link>
-	</Pictures>
-
-	<Tv>
-		<link>/home/craig/Desktop/TV</link>
-	</Tv>
-	
-	<Movies>
-		<link>D:/Movies</link>
-	</Movies>
+	<Music>/home/craig/Videos</Music>
+	<Pictures>/home/craig/Pictures</Pictures>
+	<Tv>/home/craig/Videos</Tv>
+	<Movies>/home/craig/Videos</Movies>
 </xml>
 

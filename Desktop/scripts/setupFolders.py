@@ -9,20 +9,27 @@ dom = parseString(symLinks)
 linksFile.close()
 
 def getLinks(linkTo):
-	symlinks = [];
-	for musicTag in dom.getElementsByTagName(linkTo):
-		for link in musicTag.getElementsByTagName("link"):
-			symlinks.append(link.firstChild.data)
+	symlink = None;
+	link = dom.getElementsByTagName(linkTo)
+	symlinks = link[0].firstChild.data
 
 	return symlinks
 
-# this is how to get the link list change later to accualy crate the linke
-print getLinks("Music");
-print getLinks("Tv");
-print getLinks("Pictures");
-print getLinks("Movies");
 
 Desktop = "../"
+Public = Desktop+"public/"
+
+if not os.path.exists(Public+"mix/Music"):
+	os.symlink(getLinks("Music"),Public+"mix/Music")
+if not os.path.exists(Public+"mix/Tv"):
+	os.symlink(getLinks("Tv"),Public+"mix/Tv")
+if not os.path.exists(Public+"mix/Pictures"):
+	os.symlink(getLinks("Pictures"),Public+"mix/Pictures")
+if not os.path.exists(Public+"mix/Movies"):
+	os.symlink(getLinks("Movies"),Public+"mix/Movies")
+	
+
+
 
 # create temp upload folders
 if not os.path.exists(Desktop + "tempUploads/"):
