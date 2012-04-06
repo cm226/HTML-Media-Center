@@ -1,6 +1,10 @@
 body
 {
-	background-color:#000000;
+	background-image:url('../../public/img/Admin/adminBackground.jpg');
+	background-repeat: no-repeat;
+	background-size: cover; 
+	text-align: center;
+	font-size: 40px;
 }
 
 
@@ -17,12 +21,26 @@ body
 }
 
 
-
-
-
-
-A:hover
+.link2
 {
-background-color: red;
-color: red;
+	opacity:0.4;
+	filter:alpha(opacity=40);
+   border: solid 2px #BCA9F5;
+   border-radius: 3x;
+   -moz-border-radius: 3px;
+   -webkit-border-radius: 3px;
+   width: 50%;
+   background-color: #000000;
+   color: #BCA9F5;
+   text-decoration: none;
+   margin: 10px 3px 10px 3px;
+   padding: 3px;
+   display: inline-block;
+
 }
+.link2:hover 
+{ 
+background-color: #D8CEF6; 
+color: #000000;
+}
+
