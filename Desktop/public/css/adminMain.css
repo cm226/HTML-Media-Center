@@ -23,15 +23,15 @@ body
 
 .link2
 {
-	opacity:0.4;
-	filter:alpha(opacity=40);
-   border: solid 2px #BCA9F5;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+   border: solid 2px #FFFFFF;
    border-radius: 3x;
    -moz-border-radius: 3px;
    -webkit-border-radius: 3px;
    width: 50%;
    background-color: #000000;
-   color: #BCA9F5;
+   color: #FFFFFF;
    text-decoration: none;
    margin: 10px 3px 10px 3px;
    padding: 3px;
@@ -40,7 +40,7 @@ body
 }
 .link2:hover 
 { 
-background-color: #D8CEF6; 
+background-color: #FFFFFF; 
 color: #000000;
 }
 
