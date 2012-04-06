@@ -35,5 +35,6 @@ class MusicController extends Controller {
 	function viewPlaylist($playlist)
 	{
 		$this->set("playlistName", $playlist);
+		$this->set("songs", $this->Music->getSongsFromPlayList($playlist));
 	}
 }
