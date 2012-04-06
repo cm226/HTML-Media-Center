@@ -21,8 +21,26 @@
 		<h4>add Songs</h4>
 	</div>
 
-	<form action="" method="post">
+	<form action="../../Music/viewPlaylist/<?php echo $playlistName; ?>" method="post">
 		Search: <input type="text" name="search"/>
 		<input type="submit" value="Search" />
 	</form>
+
+	<div>
+		<form>
+		<?php 
+			if(isset($searchResults))
+			{
+				foreach ($searchResults as $result)
+				{	
+					echo '<div class="song">';
+					echo '<input type="checkbox" name="'. $result['Song']['songName'].'"/>';
+					echo $result['Song']['songName'];
+					echo '</div>';
+				}
+			}
+		?>
+		<input type="submit" value="add"/>
+		</form>
+	</div>
 </div>

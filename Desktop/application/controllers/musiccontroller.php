@@ -34,6 +34,11 @@ class MusicController extends Controller {
 
 	function viewPlaylist($playlist)
 	{
+		if(isset($_POST['search']))
+		{	
+			$this->set("searchResults",$this->Music->filterSongs($_POST['search']));
+			unset($_POST['search']);
+		}
 		$this->set("playlistName", $playlist);
 		$this->set("songs", $this->Music->getSongsFromPlayList($playlist));
 	}
