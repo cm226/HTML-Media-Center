@@ -55,7 +55,7 @@ configFile = ["<?php\n",
 			"define('DB_USER', 'user');\n",
 			"define('DB_PASSWORD', 'pw');\n",
 			"define('DB_HOST', 'localhost');\n",
-			"$GLOBALS['ignoreHeader'] = array('viewPlayer'););\n"
+			"$GLOBALS['ignoreHeader'] = array('viewPlayer');\n"
 			];
 
 config = open(Desktop + "config/config.php","w")

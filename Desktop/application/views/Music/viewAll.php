@@ -17,12 +17,15 @@ Song Name: <input type="text" name="songName"/>
 
 foreach ($playlists as $playList)
 {
-	echo '<div class="playlistEl"><a href="#" >'. $playList.'</a></div>';
+	echo '<div class="playlistEl"><a href="../Music/viewPlaylist/'. $playList['Playlist']['playlistName']. '" >'. $playList['Playlist']['playlistName'].'</a></div>';
 
 }
-
-
 ?>
+
+<form action="../Music/viewAll" method="POST">
+	New Playlist: <input type="text" name="newPlaylist"/>
+	<input type="submit" value="Add"/>
+</form>
 
 </div>
 

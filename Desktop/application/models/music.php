@@ -65,14 +65,15 @@ class Music extends Model {
 	
 	function getPlayLists ()
 	{
-		$playlists = array (
-								"PlayList1",
-								"PlayList2",
-								"PlayList3"
-							);
-							
-		return $playlists;
+		$playlistq = "SELECT playlistName FROM Playlist";
+		return $this->query($playlistq);
 	
+	}
+
+	function cratePlaylist($playlistName)
+	{
+		$playlistq = "INSERT INTO Playlist VALUES('". $playlistName. "',0)";
+		$this->query($playlistq);
 	}
 	
 }
