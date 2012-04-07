@@ -1,10 +1,11 @@
 body
 {
-	background-image:url('../../public/img/Admin/adminBackground.jpg');
+	background-image:url('../../public/img/Admin/adminBackground1.jpg');
 	background-repeat: no-repeat;
 	background-size: cover; 
 	text-align: center;
 	font-size: 40px;
+	background-color: #3a3a3a;
 }
 
 
