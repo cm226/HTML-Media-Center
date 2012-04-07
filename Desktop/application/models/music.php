@@ -75,5 +75,38 @@ class Music extends Model {
 		$playlistq = "INSERT INTO Playlist VALUES('". $playlistName. "',0)";
 		$this->query($playlistq);
 	}
+
+	function getSongsFromPlayList($playlist)
+	{
+		$playlistSongsq = "SELECT 
+					songName,
+					songLength,
+					songURL
+				   FROM 
+					Song,
+					PlaylistSong
+				   WHERE 
+					    PlaylistSong.playlistName = '$playlist'
+					AND Song.songURL = PlaylistSong.songID";
+
+		return $this->query($playlistSongsq);
+	}
+
+	function filterSongs($searchData)
+	{
+		$filterSongsq = "SELECT 
+					Song.songName,
+					Song.songURL
+				 FROM
+					Song,
+					Artist,
+					Album
+				 WHERE
+					Artist.artistName = Album.artistName
+				    AND Song.albumName = Album.albumName
+				    AND Artist.artistName = 'Nickleback'"; // change this later its not finished
+
+		return $this->query($filterSongsq);
+	}
 	
 }

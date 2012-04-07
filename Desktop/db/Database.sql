@@ -49,9 +49,9 @@ CREATE TABLE PlaylistSong
 (
 playlistSongID INT PRIMARY KEY AUTO_INCREMENT,
 playlistName VARCHAR(40) NOT NULL,
-songName VARCHAR(40),
+songID VARCHAR(40),
 FOREIGN KEY (playlistName) REFERENCES Playlist (playlistName),
-FOREIGN KEY (songName) REFERENCES Song (songName)
+FOREIGN KEY (songID) REFERENCES Song (songURL)
 );
 
 CREATE TABLE Movie
