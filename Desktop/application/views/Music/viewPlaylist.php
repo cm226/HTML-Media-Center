@@ -27,15 +27,18 @@
 	</form>
 
 	<div>
-		<form>
+		<form action="../../Music/viewPlaylist/<?php echo $playlistName; ?>" method="post">
 		<?php 
-			if(isset($searchResults))
+			if(isset($searchResults)) // this can be made mutch better with AJAX later but cba.... just now
 			{
+				$count = 0;
 				foreach ($searchResults as $result)
 				{	
+					$count ++;
 					echo '<div class="song">';
-					echo '<input type="checkbox" name="'. $result['Song']['songName'].'"/>';
+					echo '<input type="checkbox" name="res'.$count.'"/>';
 					echo $result['Song']['songName'];
+					echo '<input type="hidden" name="resURL' . $count. '" value="' . $result['Song']['songURL']. '"/>'; // its a gd thing this isent public otherwise this woul be bad
 					echo '</div>';
 				}
 			}

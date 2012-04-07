@@ -108,5 +108,19 @@ class Music extends Model {
 
 		return $this->query($filterSongsq);
 	}
+
+	function addSongsToPlayList($playlistName, $URLlist)
+	{
+		echo $URLlist;
+		$insertValues = "";
+		foreach ($URLlist as $url)
+		{
+			$insertValues += "('$playlistName', '$url'),";
+		}
+
+		$AddToPlaylistsq = "INSERT INTO PlaylistSong VALUES ".$insertValues;
+		echo $AddToPlaylistsq;
+		$this->query($AddToPlaylistsq);
+	}
 	
 }

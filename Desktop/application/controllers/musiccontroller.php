@@ -39,6 +39,26 @@ class MusicController extends Controller {
 			$this->set("searchResults",$this->Music->filterSongs($_POST['search']));
 			unset($_POST['search']);
 		}
+		else if (isset($_POST['res1']))
+		{
+			$resName = "res";
+			$resURL = "resURL";
+			$count = 0;
+			$urlList = array();
+			while (!isset($_POST[$resName.$count]))
+			{
+				$count++;
+				echo $count;
+				echo $resName.$count;
+				if($_POST[$resName.$count] == 'yes')
+				{
+					echo "in here: ".$_POST[$resURL.$count];
+					$urlList.append($_POST[$resURL.$count]);
+				}
+			}
+
+			$this->Music->addSongsToPlayList($playlist,$urlList);
+		}
 		$this->set("playlistName", $playlist);
 		$this->set("songs", $this->Music->getSongsFromPlayList($playlist));
 	}

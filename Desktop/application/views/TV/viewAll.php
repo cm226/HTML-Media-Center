@@ -9,7 +9,7 @@
 		<?php
 			foreach ($seriesNames as $name)
 			{
-				echo '<div class="series" ><a href="'. PUBLIC_FOLDER .'/TV/viewAll/'. $name['Series']['seriesName'] .'">
+				echo '<div class="series" ><a href="'. PUBLIC_FOLDER .'/../TV/viewAll/'. $name['Series']['seriesName'] .'">
 						' . $name['Series']['seriesName'] . ' </a>
 				
 				</div>';
