@@ -111,15 +111,13 @@ class Music extends Model {
 
 	function addSongsToPlayList($playlistName, $URLlist)
 	{
-		echo $URLlist;
 		$insertValues = "";
 		foreach ($URLlist as $url)
 		{
-			$insertValues += "('$playlistName', '$url'),";
+			$insertValues .= "('','$playlistName', '$url'),";
 		}
 
-		$AddToPlaylistsq = "INSERT INTO PlaylistSong VALUES ".$insertValues;
-		echo $AddToPlaylistsq;
+		$AddToPlaylistsq = "INSERT INTO PlaylistSong VALUES ".substr($insertValues, 0, -1);
 		$this->query($AddToPlaylistsq);
 	}
 	

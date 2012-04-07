@@ -32,7 +32,7 @@ class MusicController extends Controller {
 			$this->set('songs',$this->Music->getArtistsAlbumSongs($artistName,$_POST['album']));
 	}
 
-	function viewPlaylist($playlist)
+	function viewPlaylist($playlist) //improve this whole thing by using AJAX and each result has a submit button
 	{
 		if(isset($_POST['search']))
 		{	
@@ -45,15 +45,14 @@ class MusicController extends Controller {
 			$resURL = "resURL";
 			$count = 0;
 			$urlList = array();
-			while (!isset($_POST[$resName.$count]))
+
+			for ($count=0 ; $count < 20; $count++) // limit search results to 20
 			{
-				$count++;
-				echo $count;
-				echo $resName.$count;
-				if($_POST[$resName.$count] == 'yes')
+				if(!isset($_POST[$resName.$count]))
+					continue;
+				if($_POST[$resName.$count] == 'on')
 				{
-					echo "in here: ".$_POST[$resURL.$count];
-					$urlList.append($_POST[$resURL.$count]);
+					array_push($urlList,$_POST[$resURL.$count]);
 				}
 			}
 

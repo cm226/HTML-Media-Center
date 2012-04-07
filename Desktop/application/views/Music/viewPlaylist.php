@@ -9,8 +9,9 @@
 			foreach ($songs as $song)
 			{
 				echo '<div class="song">';
-				echo '<h4>'.$song['Song']['songName'].'</h4>';
+				echo '<div class="songh"> <p>'.$song['Song']['songName'].'</p></div>';
 				echo '<div class="songLength">'.$song['Song']['songLength'].'</div>';
+				echo '</div>';
 			}
 		?>
 	</div>

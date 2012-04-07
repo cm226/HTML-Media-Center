@@ -49,7 +49,7 @@ CREATE TABLE PlaylistSong
 (
 playlistSongID INT PRIMARY KEY AUTO_INCREMENT,
 playlistName VARCHAR(40) NOT NULL,
-songID VARCHAR(40),
+songID VARCHAR(256),
 FOREIGN KEY (playlistName) REFERENCES Playlist (playlistName),
 FOREIGN KEY (songID) REFERENCES Song (songURL)
 );
