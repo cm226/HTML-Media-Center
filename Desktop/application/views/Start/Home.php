@@ -1,4 +1,6 @@
 <h2> Start </h2>
+<div> free disk Space : <?php echo $free . ' Gb /' . $total . ' Gb';?></div>
+
 <div id="backgroundDisplay" style="display: none;"></div>
 <div id="MoviesTopBox" class="topBox" style="display: none;"></div>
 <div id="MusicTopBox" class="topBox" style="display: none;"></div>

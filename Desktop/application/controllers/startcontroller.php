@@ -2,8 +2,10 @@
 
 class StartController extends Controller {
 	
-	function view()
+	function Home()
 	{
-		// posibly use this for user detting variaus user config options
+		list($totalSpace, $freeSpace) = $this->Start->getFreeSpace();
+		$this->set("total",$totalSpace);
+		$this->set("free",$freeSpace);
 	}
 }
