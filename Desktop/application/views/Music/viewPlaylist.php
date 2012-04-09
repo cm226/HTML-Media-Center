@@ -1,3 +1,17 @@
+<script type="text/javascript">
+	function refreshIframe(artistName, albumName)
+	{
+		postwith('../Music/viewPlayer',{artist:artistName, album:albumName}, "player");
+	}
+	
+	
+	function populateIFrame () {
+	var frm = document.getElementById("ArtistPoster");
+	frm.submit();
+	}
+	window.onload = populateIFrame;
+</script>
+
 <div id="currentInPlaylist">
 	<div>
 		<h2> <?php echo $playlistName; ?> </h2>
@@ -5,15 +19,22 @@
 	</div>
 
 	<div id="songs">
-		<?php 
-			foreach ($songs as $song)
+		<?php  
+			/*foreach ($songs as $song)
 			{
 				echo '<div class="song">';
 				echo '<div class="songh"> <p>'.$song['Song']['songName'].'</p></div>';
 				echo '<div class="songLength">'.$song['Song']['songLength'].'</div>';
 				echo '</div>';
-			}
+			}*/
 		?>
+
+		<form id="ArtistPoster" hidden="true" action="../../Music/viewPlayer" method="post" target="player">
+		  <input type="Hidden" name = "playlist" value="<?php echo $playlistName; ?>" />
+		  <input type="submit" value="Do Stuff!" />
+		</form>
+
+		<iframe id="player"></iframe>
 	</div>
 </div>
 

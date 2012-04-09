@@ -18,7 +18,7 @@ class Music extends Model {
 	
 	function getArtistsSongs($artistName)
 	{
-		$allArtistsSongq = 'SELECT songName, songURL, Album.albumName, songLength FROM Song, Album WHERE Album.albumName = Song.albumName AND Album.artistName = \''.$artistName.'\''; 
+		$allArtistsSongq = 'SELECT songName, songURL, Album.albumName,Album.artistName, songLength FROM Song, Album WHERE Album.albumName = Song.albumName AND Album.artistName = \''.$artistName.'\''; 
 		$allArtistsSongResult = $this->query($allArtistsSongq);
 		return $allArtistsSongResult;
 	}
@@ -29,6 +29,7 @@ class Music extends Model {
 								songName,
 								songURL,
 								Album.albumName,
+								Album.artistName,
 								songLength
 								
 							FROM Song,
@@ -79,15 +80,19 @@ class Music extends Model {
 	function getSongsFromPlayList($playlist)
 	{
 		$playlistSongsq = "SELECT 
-					songName,
-					songLength,
-					songURL
+					Song.songName,
+					Song.songLength,
+					Song.songURL,
+					Album.albumName,
+					Album.artistName
 				   FROM 
 					Song,
-					PlaylistSong
+					PlaylistSong,
+					Album
 				   WHERE 
 					    PlaylistSong.playlistName = '$playlist'
-					AND Song.songURL = PlaylistSong.songID";
+					AND Song.songURL = PlaylistSong.songID
+					AND Album.albumName = Song.albumName";
 
 		return $this->query($playlistSongsq);
 	}
@@ -109,16 +114,25 @@ class Music extends Model {
 		return $this->query($filterSongsq);
 	}
 
+
+	function isInPlayList($songURL, $playList)
+	{
+		$isInPlaylistq = "SELECT playlistSongID FROM PlaylistSong WHERE songID='$songURL' AND playlistName='$playList'";
+		return (count($this->query($isInPlaylistq))>0 ? true : false);
+	}
+
 	function addSongsToPlayList($playlistName, $URLlist)
 	{
 		$insertValues = "";
 		foreach ($URLlist as $url)
 		{
-			$insertValues .= "('','$playlistName', '$url'),";
+			if(!$this->isInPlayList($url,$playlistName))
+				$insertValues .= "('','$playlistName', '$url'),";
 		}
 
 		$AddToPlaylistsq = "INSERT INTO PlaylistSong VALUES ".substr($insertValues, 0, -1);
 		$this->query($AddToPlaylistsq);
 	}
+
 	
 }

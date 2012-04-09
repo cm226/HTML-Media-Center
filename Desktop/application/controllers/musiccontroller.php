@@ -24,8 +24,13 @@ class MusicController extends Controller {
 	
 	function viewPlayer()
 	{
+		if(isset($_POST['playlist'])) // viewing a playlist
+		{
+			$this->set('songs',$this->Music->getSongsFromPlayList($_POST['playlist']));	
+			return;
+		}
+		// viewing an artist
 		$artistName = $_POST['artist'];
-		$this->set('artistsName',$artistName);
 		if(!isset($_POST['album']))
 			$this->set('songs',$this->Music->getArtistsSongs($artistName));
 		else
@@ -59,6 +64,5 @@ class MusicController extends Controller {
 			$this->Music->addSongsToPlayList($playlist,$urlList);
 		}
 		$this->set("playlistName", $playlist);
-		$this->set("songs", $this->Music->getSongsFromPlayList($playlist));
 	}
 }

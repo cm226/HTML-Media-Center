@@ -9,7 +9,7 @@ var myPlaylist = [
     {
         mp3:<?php echo "'". $song["Song"]["songURL"] ."'";?>,
         title:<?php echo "'". $song["Song"]["songName"] ."'";?>,
-        artist:<?php echo "'".$artistsName."'" ;?>,
+        artist:<?php echo "'".$song['Album']['artistName']."'" ;?>,
         rating:4,
         duration:<?php echo "'". $song["Song"]["songLength"] ."'";?>,
         cover:'../public/img/Music/Albums/<?php echo $song["Album"]["albumName"]; ?>.png'
@@ -19,14 +19,14 @@ var myPlaylist = [
 ];
 
 </script>
-<script type="text/javascript" src="../public/js/helperFunctions.js"></script> 
+<script type="text/javascript" src="<?php echo PUBLIC_FOLDER; ?>/js/helperFunctions.js"></script> 
 
-    <link rel="stylesheet" type="text/css" href="../public/swf/plugin/css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_FOLDER; ?>/swf/plugin/css/style.css">
 
-	<script type="text/javascript" src="../public/js/jquery-1.6.1.min.js"></script>
-	<script type="text/javascript" src="../public/swf/plugin/jquery-jplayer/jquery.jplayer.js"></script>
+	<script type="text/javascript" src="<?php echo PUBLIC_FOLDER; ?>/js/jquery-1.6.1.min.js"></script>
+	<script type="text/javascript" src="<?php echo PUBLIC_FOLDER; ?>/swf/plugin/jquery-jplayer/jquery.jplayer.js"></script>
     
-    <script type="text/javascript" src="../public/swf/plugin/ttw-music-player-min.js"></script>
+    <script type="text/javascript" src="<?php echo PUBLIC_FOLDER; ?>/swf/plugin/ttw-music-player-min.js"></script>
     
 
     <script type="text/javascript">
