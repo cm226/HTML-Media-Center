@@ -1,3 +1,9 @@
+body
+{
+	background-color:#3a3a3a;
+
+}
+
 #backgroundDisplay {
 	z-index: 10000;
 	filter: alpha(opacity=50); /*older IE*/
@@ -15,6 +21,8 @@
 	vertical-align:middle;
 }
 
+
+
 #innerTable {
 	position:fixed;
 	z-index: 10001;
@@ -28,4 +36,10 @@
 {
     position:absolute;
     bottom:0;
+}
+
+#menuSelection
+{
+padding-top: 100px;
+
 }

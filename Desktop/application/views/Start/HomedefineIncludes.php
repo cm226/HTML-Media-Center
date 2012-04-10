@@ -41,3 +41,41 @@ function musicSearch ()
 	return false;
 }
 </script>
+
+<style type="text/css">
+
+#freeDiskSpace
+{
+	border: solid 2px #838383;
+    border-radius: 3x;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	height: 200px;
+	
+
+}
+
+#harddrive
+{
+	width: 50%;
+	margin-left: 25%;
+	background-color: yellow;
+	height: 40px;
+}
+
+#total
+{
+	width: <?php echo $usedPercentage; ?>%;
+	background-color: red;
+	float: left;
+}
+
+#free
+{
+width: <?php echo $percentage; ?>%;
+background-color: blue;
+float:right;
+}
+
+</style>
+
