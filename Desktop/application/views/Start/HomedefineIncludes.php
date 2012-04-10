@@ -46,22 +46,19 @@ function musicSearch ()
 
 #freeDiskSpace
 {
-	border: solid 2px #838383;
-    border-radius: 3x;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-
-	
-
+	width:70%;
+	margin-left:30%;
+		float:left;
+		
 }
 
 #harddrive
 {
 	border: solid 1px #000000;
 	width: 50%;
-	margin-left: 25%;
-	background-color: black;
-	height: 20px;
+	position:relative;
+	float:left;
+	margin-top:25px;
 }
 
 #total
