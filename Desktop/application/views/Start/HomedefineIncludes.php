@@ -50,30 +50,33 @@ function musicSearch ()
     border-radius: 3x;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	height: 200px;
+
 	
 
 }
 
 #harddrive
 {
+	border: solid 1px #000000;
 	width: 50%;
 	margin-left: 25%;
-	background-color: yellow;
-	height: 40px;
+	background-color: black;
+	height: 20px;
 }
 
 #total
 {
 	width: <?php echo $usedPercentage; ?>%;
-	background-color: red;
+	background-image:url('../public/img/Home/usedGrad.png');
+	background-repeat: repeat-x;
 	float: left;
 }
 
 #free
 {
 width: <?php echo $percentage; ?>%;
-background-color: blue;
+	background-image:url('../public/img/Home/greyGard.png');
+	background-repeat: repeat-x;
 float:right;
 }
 

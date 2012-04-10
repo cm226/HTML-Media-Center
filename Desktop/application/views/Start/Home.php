@@ -1,6 +1,6 @@
 <h2> Start </h2>
 <div id="freeDiskSpace"> 	
-<img src="../Public/img/Home/harddrive50.png"/>
+<img src="../Public/img/Home/harddrive100.png"/>
 
 	<div id="harddrive">
 		<div id="total"> <?php echo $total;?></div>
