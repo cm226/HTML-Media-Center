@@ -21,7 +21,11 @@ body
 	vertical-align:middle;
 }
 
-
+#imgCont
+{
+float:left;
+position:relative;
+}
 
 #innerTable {
 	position:fixed;
