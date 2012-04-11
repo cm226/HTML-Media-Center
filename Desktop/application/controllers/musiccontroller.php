@@ -39,10 +39,14 @@ class MusicController extends Controller {
 
 	function viewPlaylist($playlist) //improve this whole thing by using AJAX and each result has a submit button
 	{
-		if(isset($_POST['search']))
+		if(isset($_POST['Song']) || isset($_POST['Artist']))
 		{	
-			$this->set("searchResults",$this->Music->filterSongs($_POST['search']));
-			unset($_POST['search']);
+			$Song = isset($_POST['Song']) ? $_POST['Song'] : '';
+			$Artist = isset($_POST['Artist']) ? $_POST['Artist'] : '';
+
+			$this->set("searchResults",$this->Music->filterSongs($Artist,$Song));
+			unset($_POST['Song']);
+			unset($_POST['Artist']);
 		}
 		else if (isset($_POST['res1']))
 		{

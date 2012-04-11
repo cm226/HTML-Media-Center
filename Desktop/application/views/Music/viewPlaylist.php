@@ -19,15 +19,6 @@
 	</div>
 
 	<div id="songs">
-		<?php  
-			/*foreach ($songs as $song)
-			{
-				echo '<div class="song">';
-				echo '<div class="songh"> <p>'.$song['Song']['songName'].'</p></div>';
-				echo '<div class="songLength">'.$song['Song']['songLength'].'</div>';
-				echo '</div>';
-			}*/
-		?>
 
 		<form id="ArtistPoster" hidden="true" action="../../Music/viewPlayer" method="post" target="player">
 		  <input type="Hidden" name = "playlist" value="<?php echo $playlistName; ?>" />
@@ -44,7 +35,8 @@
 	</div>
 
 	<form action="../../Music/viewPlaylist/<?php echo $playlistName; ?>" method="post">
-		Search: <input type="text" name="search"/>
+		Artist: <input type="text" name="Artist"/> <br>
+		Song: <input type="text" name="Song" />
 		<input type="submit" value="Search" />
 	</form>
 

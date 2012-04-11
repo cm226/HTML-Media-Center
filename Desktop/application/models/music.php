@@ -97,7 +97,7 @@ class Music extends Model {
 		return $this->query($playlistSongsq);
 	}
 
-	function filterSongs($searchData)
+	function filterSongs($Artist, $Song)
 	{
 		$filterSongsq = "SELECT 
 					Song.songName,
@@ -108,9 +108,14 @@ class Music extends Model {
 					Album
 				 WHERE
 					Artist.artistName = Album.artistName
-				    AND Song.albumName = Album.albumName
-				    AND Artist.artistName = 'Nickleback'"; // change this later its not finished
+				    AND Song.albumName = Album.albumName";
+		if($Artist != '')
+			$filterSongsq .= " AND Artist.artistName = '$Artist'";
+		if($Song != '')
+			$filterSongsq .= " AND Song.songName = '$Song'"; // deff have to update this to use some heuristic like thing
 
+
+		echo $Artist;
 		return $this->query($filterSongsq);
 	}
 
