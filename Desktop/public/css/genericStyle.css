@@ -12,3 +12,13 @@
 	width:100%;
 	position:absolute;
 }
+
+
+#music
+{
+	background-color: red;
+	height: 50px;
+	width: 100px;
+	float:right;
+
+}
