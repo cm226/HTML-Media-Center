@@ -1,10 +1,15 @@
 #header
 {
+	width: 100%;
 	background-color: #0c0d0f;
 	height:100px;
 	background-image:url('../../public/img/Header/header.png');
 	background-size:contain;
 	background-repeat:no-repeat;
+	border-style: solid;
+	border-color: #696969;
+	border-width: 1px;
+	
 }
 
 #pageContent
@@ -14,11 +19,11 @@
 }
 
 
-#music
+#icons
 {
-	background-color: red;
-	height: 50px;
-	width: 100px;
+	opacity: 0.6;
+	padding-top: 20px;
+	padding-right: 5%;
 	float:right;
 
 }

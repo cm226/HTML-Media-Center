@@ -7,7 +7,3 @@
 <script type="text/javascript" src="<?php echo PUBLIC_FOLDER;?>/js/helperFunctions.js"></script> 
 <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_FOLDER;?>/css/genericStyle.css">
 
-<div id = "music">
-
-
-</div>
