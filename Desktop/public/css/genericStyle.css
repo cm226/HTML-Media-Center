@@ -9,6 +9,7 @@
 	border-style: solid;
 	border-color: #696969;
 	border-width: 1px;
+
 	
 }
 
@@ -16,6 +17,14 @@
 {
 	width:100%;
 	position:absolute;
+}
+
+#clickableLink
+{
+	float:left;
+	width: 70%;
+	height: 100px;
+
 }
 
 
@@ -26,4 +35,20 @@
 	padding-right: 5%;
 	float:right;
 
+}
+
+img
+{
+opacity:0.6;
+filter:alpha(opacity=40); /* For IE8 and earlier */
+}
+img:hover
+{
+opacity:1.0;
+filter:alpha(opacity=100); /* For IE8 and earlier */
+}
+
+a:link
+{
+text-decoration: none;
 }
