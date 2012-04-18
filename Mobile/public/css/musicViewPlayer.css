@@ -1,0 +1,23 @@
+#player
+{
+	width: 100%;
+}
+
+.song
+{
+	width: 100%;
+}
+
+.title
+{
+		
+	color: white;
+	width:50%;
+	float: left;
+}
+
+.player
+{
+	width: 50%;
+	float: left;
+}

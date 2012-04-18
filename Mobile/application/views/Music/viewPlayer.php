@@ -18,29 +18,28 @@ var myPlaylist = [
 <?php } ?>
 ];
 
-function setPlayer()
-{
-	var player = document.getElementById('player');
-	var playerHTML = "<div id=\"playList\">";
-	for(var songi in myPlaylist)
-	{
-		playerHTML+"<div class='song'>"+myPlaylist[songi].title+"</div>";
-	}
-	playerHTML + "</div>";
-	player.innerHTML = ;
-}
-
-setPlayer();
 </script>
+
+<link rel="stylesheet" type="text/css" href="../public/css/musicViewPlayer.css">
 </head>
 
 <body>
 
 	<div id="player" >
+	
+		<?php foreach ($songs as &$song) { ?>
+		<div class = "song">
+			<div class ="title">
+				<?php echo $song["Song"]["songName"];?>
+			</div>
+			<div class="player">
+			<audio controls="controls">
+				<source src="<?php echo str_replace(" ", "%20", $song["Song"]["songURL"]) ;?>" type="audio/mp3" />
+			</audio>
+			</div>
+		</div>
+		<?php } ?>
 	</div>
-	<audio controls="controls">
-		<source src="../public/mix/Music/Nickelback/animals.mp3" type="audio/mp3" />
-	</audio>
 </body>
 </html>
 
