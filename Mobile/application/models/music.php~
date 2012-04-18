@@ -114,6 +114,8 @@ class Music extends Model {
 		if($Song != '')
 			$filterSongsq .= " AND Song.songName = '$Song'"; // deff have to update this to use some heuristic like thing
 
+
+		echo $Artist;
 		return $this->query($filterSongsq);
 	}
 

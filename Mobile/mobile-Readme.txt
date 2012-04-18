@@ -1,1 +1,1 @@
-this folder contains the website for the mobile site
+hopefully this will be replaced by a jqueery mobile framework mvc website in the future

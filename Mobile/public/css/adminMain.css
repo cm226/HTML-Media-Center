@@ -1,0 +1,47 @@
+body
+{
+	background-image:url('../../public/img/Admin/adminBackground1.jpg');
+	background-repeat: no-repeat;
+	background-size: cover; 
+	text-align: center;
+	font-size: 40px;
+	background-color: #3a3a3a;
+}
+
+
+
+.menuButton
+{
+	background-image:url('../../public/images/border.png');
+	background-repeat: no-repeat;
+	margin-top: 5px;
+	padding-top: 10px;
+	padding-left: 20px;
+	height: 50px;
+	width: 70%;
+}
+
+
+.link2
+{
+	opacity:0.8;
+	filter:alpha(opacity=80);
+   border: solid 2px #FFFFFF;
+   border-radius: 3x;
+   -moz-border-radius: 3px;
+   -webkit-border-radius: 3px;
+   width: 50%;
+   background-color: #000000;
+   color: #FFFFFF;
+   text-decoration: none;
+   margin: 10px 3px 10px 3px;
+   padding: 3px;
+   display: inline-block;
+
+}
+.link2:hover 
+{ 
+background-color: #FFFFFF; 
+color: #000000;
+}
+

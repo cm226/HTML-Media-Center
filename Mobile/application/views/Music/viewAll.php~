@@ -26,9 +26,6 @@ foreach ($playlists as $playList)
 	New Playlist: <input type="text" name="newPlaylist"/>
 	<input type="submit" value="Add"/>
 </form>
-<form>
-	<input type="submit" value="upload Itunes playlist file" />
-</form>
 
 </div>
 

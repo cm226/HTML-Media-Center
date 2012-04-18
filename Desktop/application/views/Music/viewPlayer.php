@@ -7,7 +7,7 @@ var myPlaylist = [
 <?php foreach ($songs as &$song) { ?>
 
     {
-        mp3:<?php echo "'". $song["Song"]["songURL"] ."'";?>,
+        mp3:<?php echo "'". PUBLIC_FOLDER . $song["Song"]["songURL"] ."'";?>,
         title:<?php echo "'". $song["Song"]["songName"] ."'";?>,
         artist:<?php echo "'".$song['Album']['artistName']."'" ;?>,
         rating:4,
