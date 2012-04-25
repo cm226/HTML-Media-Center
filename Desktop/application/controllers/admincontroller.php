@@ -236,18 +236,22 @@ class AdminController extends Controller
 
 		if (file_exists(self::TEMP_FOLDER."Music/".$oldfileName))
 		{
-			if(!file_exists(PUBLIC_FOLDER."/mix/Music/".$artistName."/".$albumName"/"))
-				mkdir(PUBLIC_FOLDER."/mix/Music/".$artistName."/".$albumName"/");
+			if(!file_exists(PUBLIC_FOLDER."/mix/Music/".$artistName."/"))
+				mkdir(PUBLIC_FOLDER."/mix/Music/".$artistName."/");
+
+			if(!file_exists(PUBLIC_FOLDER."/mix/Music/".$artistName."/".$albumName."/"))
+				mkdir(PUBLIC_FOLDER."/mix/Music/".$artistName."/".$albumName."/");
 				
-			if(!file_exists("../public/mix/Music/".$artistName."/".$albumName"/".$songName))
+			if(!file_exists(PUBLIC_FOLDER."/mix/Music/".$artistName."/".$albumName."/".$songName))
 			{
-				$oldURL = self::TEMP_FOLDER."Music/".$oldEpName;
-				$newURL = "../public/mix/Music/".$artistName."/".$albumName"/".$songName;
-				if(rename($oldURL,$newURL))
+				$oldURL = self::TEMP_FOLDER."Music/".$oldfileName;
+				$newURL = "/mix/Music/".$artistName."/".$albumName."/".$songName;
+				if(rename($oldURL,PUBLIC_FOLDER.$newURL))
 				{
+					echo 'here';
 					$this->Admin->createArtistIfNecessary($artistName);
-					$this->Admin->createAtristAlbumIfNecassery($albumName);
-					$this->Admin->createSong($songName, $artistName, $albumName); 
+					$this->Admin->createAtristAlbumIfNecassery($artistName, $albumName);
+					$this->Admin->createSong($songName, $artistName, $albumName, $newURL); 
 
 				}
 				else

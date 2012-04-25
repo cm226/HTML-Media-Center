@@ -101,16 +101,39 @@ class Admin extends Model
 
 	// -----------------------Music functions -------------------------------
 
-	function createArtistIfNecessary()
+	function createArtistIfNecessary($ArtistName)
 	{
+		$artistExistsq = "SELECT artistName FROM Artist WHERE artistName = '$ArtistName'";
+		if(count($this->query($artistExistsq)) > 0)
+			return;
 
+		$addArtistq = "INSERT INTO Artist VALUES('$ArtistName', 10, 'unknown')";
+		echo $addArtistq;
+		$this->query($addArtistq);
+		
 	}
-	function createAtristAlbumIfNecassery()
+	function createAtristAlbumIfNecassery($ArtistName, $AlbumName)
 	{
-	
-	}
-	function createSong()
-	{
+		$albumExsistsq = "SELECT albumName FROM Album WHERE albumName='$AlbumName' AND artistName= 'ArtistName'";
+		if(count($this->query($albumExsistsq)) > 0)
+			return;
 
+		$addAlbumq = "INSERT INTO Album VALUES ('$AlbumName', '$ArtistName', '2010' , 10)";
+		echo $addAlbumq;
+		$this->query($addAlbumq);
+	}
+
+	function createSong($songName, $ArtistName, $AlbumName, $URL)
+	{
+		$songExsistsq = "SELECT songName FROM Song WHERE songName ='$songName' AND 
+									albumName = '$AlbumName'";
+
+		echo $songExsistsq;
+		if(count($this->query($songExsistsq)) > 0)
+			return;
+
+		$addSongq = "INSERT INTO Song VALUES ('$songName', '$AlbumName', '03:50:00', 10, 0, '$URL')";
+		echo $addSongq;
+		$this->query($addSongq);
 	}
 }
