@@ -227,4 +227,47 @@ class AdminController extends Controller
 		  }
 	}
 
+	function submitMusicData()
+	{
+		$songName = $_POST['songName'];
+		$artistName  = $_POST['artistName'];
+		$albumName = $_POST['albumName'];
+		$oldfileName = $_POST['oldName'];
+
+		if (file_exists(self::TEMP_FOLDER."Music/".$oldfileName))
+		{
+			if(!file_exists(PUBLIC_FOLDER."/mix/Music/".$artistName."/".$albumName"/"))
+				mkdir(PUBLIC_FOLDER."/mix/Music/".$artistName."/".$albumName"/");
+				
+			if(!file_exists("../public/mix/Music/".$artistName."/".$albumName"/".$songName))
+			{
+				$oldURL = self::TEMP_FOLDER."Music/".$oldEpName;
+				$newURL = "../public/mix/Music/".$artistName."/".$albumName"/".$songName;
+				if(rename($oldURL,$newURL))
+				{
+					$this->Admin->createArtistIfNecessary($artistName);
+					$this->Admin->createAtristAlbumIfNecassery($albumName);
+					$this->Admin->createSong($songName, $artistName, $albumName); 
+
+				}
+				else
+				{
+					echo 'copy error';
+					return;
+				}
+				
+			}
+			else
+			{
+				echo 'That file already exsists';
+				return;
+			}
+		}
+		
+		
+		$this->set("Sucess", true);
+		$this->set("name", $songName);
+
+	}
+
 }

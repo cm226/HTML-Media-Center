@@ -2,6 +2,8 @@
 
 class Admin extends Model
 {
+
+	// -----------------------TV functions -------------------------------
 	function seriseList()
 	{
 		$seriseListQ = "SELECT seriesName FROM Series";
@@ -71,7 +73,7 @@ class Admin extends Model
 	
 	}
 
-
+	// -----------------------Picture functions -------------------------------
 	function albumList()
 	{
 		$albumListq = "SELECT albumName FROM PictureAlbum";
@@ -94,6 +96,21 @@ class Admin extends Model
 	{
 		$createPicq = "INSERT INTO Picture VALUES('" .$name . "','" .$url . "','" .$album . "')";
 		$this->query($createPicq);
+
+	}
+
+	// -----------------------Music functions -------------------------------
+
+	function createArtistIfNecessary()
+	{
+
+	}
+	function createAtristAlbumIfNecassery()
+	{
+	
+	}
+	function createSong()
+	{
 
 	}
 }

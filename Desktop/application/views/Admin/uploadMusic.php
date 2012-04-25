@@ -10,6 +10,9 @@ FileType = <?php echo $Type;?>
 echo $cmd;
 ?>
  <br/>
-Name of Song: <input type="text" name="eName" value = "<?php echo $Upload;?>" /><br/>
+Name of Song: <input type="text" name="songName" value = "<?php echo $Upload;?>" /><br/>
+Artist: <input type="text" name="artistName" value = "NickleBack" /><br/>
+Album: <input type="text" name="albumName" value = "Here And Now" /><br/>
+<input type="hidden" name="oldName" value= "<?php echo $Upload;?>"/>
 <input type="submit" value="Submit" /><br/>
 </form>
