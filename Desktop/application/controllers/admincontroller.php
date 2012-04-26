@@ -200,7 +200,8 @@ class AdminController extends Controller
 				$this->set("Size", ($_FILES["file"]["size"] / 1024 / 1024));
 				$this->set("Temp file",$_FILES["file"]["tmp_name"]);
 				
-				$this->set("seriesList", $this->Admin->seriseList());
+				$this->set("ArtistList", $this->Admin->getArtistsList());
+				
 				
 			if (file_exists(self::TEMP_FOLDER."Music/" . $_FILES["file"]["name"]))
 			  {

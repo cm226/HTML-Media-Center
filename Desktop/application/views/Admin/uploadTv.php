@@ -25,7 +25,7 @@ FileSize = <?php echo $Size; ?>
 FileType = <?php echo $Type;?>
 
 <form name="input" action="../Admin/submitTVData" method="post">
-New Series: <input type="checkbox" name="option1" value="Milk" onClick=" switchToTextbox();">
+New Series: <input type="checkbox" name="option1" value="Milk" onClick=" switchToTextbox('seriesID','seriesSelect','Series');">
 Series: <div id ="seriesSelect">
 <select name="Series" id="seriesID">
 <?php

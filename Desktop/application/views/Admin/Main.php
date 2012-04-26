@@ -5,7 +5,7 @@
 <a href="../Admin/Pictures" class="link2">Pictures</a>
 <br><br>
 
-<a href="../Admin/Music" class="link2">Music (Under Construction)</a>
+<a href="../Admin/Music" class="link2">Music</a>
 
 <br><br>
 

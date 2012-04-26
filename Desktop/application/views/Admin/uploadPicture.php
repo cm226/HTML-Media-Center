@@ -16,7 +16,14 @@
 ?>
 
 <form name="input" action="../Admin/submitPictureData" method="post">
-New Album: <input type="checkbox" onClick=" switchToTextbox();">
+New Album: <input type="checkbox" onClick=" switchToTextbox('albumID','albumSelect','PicName',new Array(<?php
+	for($i = 0 ; $i < count($albums) - 1; $i++)
+	{
+		echo '\''.$albums[$i]['PictureAlbum']['albumName'] .'\',';
+	}
+	echo '\''.$albums[count($albums)-1]['PictureAlbum']['albumName'] .'\'))';
+?>
+"/>
 Series: <div id ="albumSelect">
 <select name="Album" id="albumID">
 <?php

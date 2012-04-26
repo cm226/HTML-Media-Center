@@ -136,4 +136,11 @@ class Admin extends Model
 		echo $addSongq;
 		$this->query($addSongq);
 	}
+
+	function getArtistsList()
+	{
+		$artistListq = "SELECT artistName FROM Artist";
+		return $this->query($artistListq);
+	
+	}
 }
