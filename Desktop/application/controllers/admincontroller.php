@@ -275,4 +275,9 @@ class AdminController extends Controller
 
 	}
 
+	function getArtistAlbums($artistName)
+	{
+		$this->set("Albums", $this->Admin->getAlbums($artistName));
+	}
+
 }

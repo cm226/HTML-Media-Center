@@ -141,6 +141,11 @@ class Admin extends Model
 	{
 		$artistListq = "SELECT artistName FROM Artist";
 		return $this->query($artistListq);
-	
+	}
+
+	function getAlbums($artist)
+	{
+		$getAlbumsq = "SELECT albumName FROM Album WHERE artistName = '$artist'";
+		return $this->query($getAlbumsq);
 	}
 }

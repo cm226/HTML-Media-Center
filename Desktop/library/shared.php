@@ -75,10 +75,9 @@ function routeURL($url) {
 function callHook() {
 	global $url;
 	$publicURL = "../";
-	
+
 	$urlArray = array();
 	$urlArray = explode("/",$url);
-
 	$controller = $urlArray[0];
 	array_shift($urlArray);
 	$action = $urlArray[0];
