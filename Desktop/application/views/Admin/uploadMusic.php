@@ -41,7 +41,7 @@ New Artist: <input type="checkbox" name="option1" value="Milk" onClick=" switchT
 "/>
 
 <div id ="artistSelect">
-<select name="artistName" id="artistID" onChange="updateAlbumList(this.value, 'testDiv');">
+<select name="artistName" id="artistID" onChange="updateAlbumList(this.value, 'albumID');">
 <?php
 	foreach( $ArtistList as $artist)
 	{
@@ -49,16 +49,13 @@ New Artist: <input type="checkbox" name="option1" value="Milk" onClick=" switchT
   } ?>
 </select> </div>
 
-New Album: <input type="checkbox" name="option1" onClick=" switchToTextbox('albumID', 'albumSelect', 'albumName', new Array())"/>
+New Album: <input type="checkbox" name="option1" onClick=" switchToTextbox('albumID', 'albumSelect', 'albumName', new Array(''))"/>
 <div id ="albumSelect">
 
-<div id="testDiv"/>
 <select name="albumName" id="albumID" >
-</select> </div>
+</select> 
+</div>
 
-
-
-Album: <input type="text" name="albumName" value = "Here And Now" /><br/>
 <input type="hidden" name="oldName" value= "<?php echo $Upload;?>"/>
 <input type="submit" value="Submit" /><br/>
 </form>
