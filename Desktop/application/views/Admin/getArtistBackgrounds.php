@@ -1,5 +1,6 @@
 <?php
 
-	echo '<img src="'.$images[0]->{"url"}.'" />'; 
+	foreach ($images as $result)
+		echo '<img src="'.$result->{"url"}.'" />'; 
 
 
