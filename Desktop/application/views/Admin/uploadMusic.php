@@ -30,15 +30,15 @@ FileType = <?php echo $Type;?>
 //echo $cmd;
 ?>
  <br/>
-Name of Song: <input type="text" name="songName" value = "<?php echo $Upload;?>" /><br/>
+Name of Song: <input type="text" name="songName" value = "<?php echo $Upload;?>"/>.mp3<br/>
 New Artist: <input type="checkbox" name="option1" value="Milk" onClick=" switchToTextbox('artistID', 'artistSelect', 'artistName', new Array(<?php
 	for($i = 0 ; $i < count($ArtistList) - 1; $i++)
 	{
 		echo '\''.$ArtistList[$i]['Artist']['artistName'] .'\',';
 	}
-	echo '\''.$ArtistList[count($ArtistList)-1]['Artist']['artistName'] .'\'))';
+	echo '\''.$ArtistList[count($ArtistList)-1]['Artist']['artistName'] .'\'));';
 ?>
-"/>
+displayPictureList('artistID','ArtistpictureList');"/>
 
 <div id ="artistSelect">
 <select name="artistName" id="artistID" onChange="updateAlbumList(this.value, 'albumID');">
@@ -48,6 +48,9 @@ New Artist: <input type="checkbox" name="option1" value="Milk" onClick=" switchT
 		echo '<option value="' . $artist['Artist']['artistName'] . '">' . $artist['Artist']['artistName'] . '</option>';
   } ?>
 </select> </div>
+
+<div id="ArtistpictureList">
+</div>
 
 New Album: <input type="checkbox" name="option1" onClick=" switchToTextbox('albumID', 'albumSelect', 'albumName', new Array(''))"/>
 <div id ="albumSelect">

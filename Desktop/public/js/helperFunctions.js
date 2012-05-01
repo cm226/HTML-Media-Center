@@ -39,7 +39,7 @@ function switchToTextbox(selectionID, selectDivID, inputName, selectItems)
 		}
 	}
 
-function updateAlbumList(ArtistName,AlbumListID)
+function sendAJAXRequest(target, arguments, fillID)
 {
 	var xmlhttp;
 	xmlhttp=new XMLHttpRequest();
@@ -48,11 +48,34 @@ function updateAlbumList(ArtistName,AlbumListID)
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
-		    document.getElementById(AlbumListID).innerHTML=xmlhttp.responseText;
+		    document.getElementById(fillID).innerHTML=xmlhttp.responseText;
 		}
 	}
 
-	xmlhttp.open("GET","../Admin/getArtistAlbums/"+ArtistName,true);
+	if(arguments != null){
+		xmlhttp.open("GET",target+'/'+(arguments.toString()).replace(",","/"),true);}
+	else{
+		xmlhttp.open("GET",target,true);}
 	xmlhttp.send();
+}
+
+function test(test, anothertest)
+{
 	
 }
+
+function updateAlbumList(ArtistName,AlbumListID)
+{
+	
+	sendAJAXRequest("../Admin/getArtistAlbums", new Array (ArtistName),AlbumListID);
+}
+
+
+
+function displayPictureList(ArtistSelectID, imageDivID)
+{
+	var artistName = document.getElementById(ArtistSelectID).value;
+	sendAJAXRequest("../Admin/getArtistBackgrounds", new Array ('Nickleback'),imageDivID);
+}
+
+

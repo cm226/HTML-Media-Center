@@ -280,4 +280,10 @@ class AdminController extends Controller
 		$this->set("Albums", $this->Admin->getAlbums($artistName));
 	}
 
+	function getArtistBackgrounds($artistName)
+	{
+		$results = $this->Admin->googleImageResults('nickleback');
+		$this->set("images", $results);
+	}
+
 }
