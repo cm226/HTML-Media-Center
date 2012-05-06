@@ -75,7 +75,7 @@ function updateAlbumList(ArtistName,AlbumListID)
 function displayPictureList(ArtistSelectID, imageDivID)
 {
 	var artistName = document.getElementById(ArtistSelectID).value;
-	sendAJAXRequest("../Admin/getArtistBackgrounds", new Array ('Nickleback'),imageDivID);
+	sendAJAXRequest("../Admin/getArtistBackgrounds", new Array (artistName),imageDivID);
 }
 
 

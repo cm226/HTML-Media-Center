@@ -37,8 +37,9 @@ New Artist: <input type="checkbox" name="option1" value="Milk" onClick=" switchT
 		echo '\''.$ArtistList[$i]['Artist']['artistName'] .'\',';
 	}
 	echo '\''.$ArtistList[count($ArtistList)-1]['Artist']['artistName'] .'\'));';
-?>
-displayPictureList('artistID','ArtistpictureList');"/>
+?>;"/>
+
+<div id="searchArtist" onClick="displayPictureList('artistID','ArtistpictureList');">search for artists</div>
 
 <div id ="artistSelect">
 <select name="artistName" id="artistID" onChange="updateAlbumList(this.value, 'albumID');">
