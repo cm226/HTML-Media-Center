@@ -59,6 +59,9 @@ New Album: <input type="checkbox" name="option1" onClick=" switchToTextbox('albu
 <select name="albumName" id="albumID" >
 </select> 
 </div>
+<div id="searchArtist" onClick="displayPictureList('albumID','AlbumPicList');">search for albums</div>
+<div id="AlbumPicList">
+</div>
 
 <input type="hidden" name="oldName" value= "<?php echo $Upload;?>"/>
 <input type="submit" value="Submit" /><br/>
