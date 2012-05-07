@@ -18,6 +18,27 @@ var myPlaylist = [
 <?php } ?>
 ];
 
+var shuffleOn = false;
+var numSongs = <?php echo count($songs); ?>
+
+function shuffle()
+{
+	if(shuffleOn)
+		shuffleOn = false;
+	else
+		shuffleOn = true;
+}
+
+function playNext(not)
+{
+	var randomnumber=Math.floor(Math.random()*numSongs)+1;
+
+	while(randomnumber == not)
+		randomnumber = Math.floor(Math.random()*numSongs)+1;
+
+	document.getElementById('song'+randomnumber).play();
+}
+
 </script>
 
 <link rel="stylesheet" type="text/css" href="../public/css/musicViewPlayer.css">
@@ -26,15 +47,18 @@ var myPlaylist = [
 <body>
 
 	<div id="player" >
-	
-		<?php foreach ($songs as &$song) { ?>
+		<div id="shuffleButton" onclick="shuffle(); playNext(-1);">
+			shuffle
+		</div>
+		<?php $soungCount = 0; ?>
+		<?php foreach ($songs as &$song) { $songCount++; ?>
 		<div class = "song">
 			<div class ="title">
 				<?php echo $song["Song"]["songName"];?>
 			</div>
 			<div class="player">
-			<audio controls="controls">
-				<source src="<?php echo str_replace(" ", "%20", $song["Song"]["songURL"]) ;?>" type="audio/mp3" />
+			<audio controls="controls" id="song<?php echo $songCount; ?>" preload="none" OnEnded="playNext('<?php echo $songCount; ?>')">
+				<source src="<?php echo PUBLIC_FOLDER; echo str_replace(" ", "%20", $song["Song"]["songURL"]) ;?>" type="audio/mp3" />
 			</audio>
 			</div>
 		</div>
