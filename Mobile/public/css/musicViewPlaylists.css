@@ -1,0 +1,45 @@
+
+
+
+#currentInPlaylist
+{
+	float: left;
+	width:70%;	
+}
+
+#add
+{
+	float:left;
+	width: 20%;
+}
+
+.song
+{
+	width: 80%;
+	float:left;
+	background-color: grey;
+	margin: 10px;
+}
+
+.songh
+{
+	width: 50%;
+	float:left;
+}
+.songLength
+{
+	width:30%;
+	float:left;
+}
+
+#player
+{
+	float: left;
+	width : 100%;
+	height : 1000px;
+	border: 0px;
+	
+	
+}
+
+
