@@ -63,6 +63,10 @@ New Album: <input type="checkbox" name="option1" onClick=" switchToTextbox('albu
 <div id="AlbumPicList">
 </div>
 
+
+<input type="hidden" id="artistImg" name="artistImage" value= ""/>
+<input type="hidden" id="albumImg" name="albumImage" value= ""/>
+
 <input type="hidden" name="oldName" value= "<?php echo $Upload;?>"/>
 <input type="submit" value="Submit" /><br/>
 </form>

@@ -235,6 +235,9 @@ class AdminController extends Controller
 		$albumName = $_POST['albumName'];
 		$oldfileName = $_POST['oldName'];
 
+		$artistImage = $_POST['artistImage'];
+		$albumImage = $_POST['albumImage'];
+
 		if (file_exists(self::TEMP_FOLDER."Music/".$oldfileName))
 		{
 			if(!file_exists(PUBLIC_FOLDER."/mix/Music/".$artistName."/"))
@@ -249,10 +252,23 @@ class AdminController extends Controller
 				$newURL = "/mix/Music/".$artistName."/".$albumName."/".$songName;
 				if(rename($oldURL,PUBLIC_FOLDER.$newURL))
 				{
-					echo 'here';
 					$this->Admin->createArtistIfNecessary($artistName);
 					$this->Admin->createAtristAlbumIfNecassery($artistName, $albumName);
-					$this->Admin->createSong($songName, $artistName, $albumName, $newURL); 
+					$this->Admin->createSong($songName, $artistName, $albumName, $newURL);
+
+					if($artistImage != '')
+					{
+						//$artistImageHandle = fopen($artistImage, "r");
+						$extention = substr($artistImage, -3);
+						//$downloadedFile = fopen(PUBLIC_FOLDER . DS .'img' . DS . 'Music' .DS . 'Artists' . DS .$artistName . 'BG.'. $extention, 'w');
+
+						copy($artistImage,PUBLIC_FOLDER . DS .'img' . DS . 'Music' .DS . 'Artists' . DS .$artistName . 'BG.'. $extention);
+					}
+
+					if($albumImage != '')
+					{
+						
+					}
 
 				}
 				else
