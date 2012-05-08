@@ -18,11 +18,26 @@
 <div id="MusicTopBox" class="topBox" style="display: none;"></div>
 <div id="PicturesTopBox" class="topBox" style="display: none;"></div>
 <div id="menuSelection">
-<ul>
-<li><a href="#" onclick='return movieSearch();'>Movies</a></li>
-<li><a href="#" onclick='return musicSearch();'>Music</a></li>
-<li><a href="../TV/viewAll">TV</a></li>
-<li><a href="../Pictures/albums">Pictures</a></li>
-<li><a href="../Admin/Main">Admin</a></li>
-</ul>
+
+
+<div class="tile" onclick='return movieSearch();'>
+Movie
+</div>
+
+<div class="tile" onclick='return musicSearch();'>
+Music
+</div>
+
+<div class="tile" onClick="window.location = ('../TV/viewAll')">
+TV
+</div>
+
+<div class="tile" onClick="window.location = ('../Pictures/albums')">
+Pictures
+</div>
+
+<div class="tile" onClick="window.location = ('../Admin/Main')">
+Admin
+</div>
+
 </div>
