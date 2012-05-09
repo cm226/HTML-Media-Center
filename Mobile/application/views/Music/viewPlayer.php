@@ -50,8 +50,8 @@ function playNext(not)
 		<div id="shuffleButton" onclick="shuffle(); playNext(-1);">
 			shuffle
 		</div>
-		<?php $soungCount = 0; ?>
-		<?php foreach ($songs as &$song) { $songCount++; ?>
+		<?php $songCount = 0;
+		foreach ($songs as $song) { $songCount++; ?>
 		<div class = "song">
 			<div class ="title">
 				<?php echo $song["Song"]["songName"];?>
