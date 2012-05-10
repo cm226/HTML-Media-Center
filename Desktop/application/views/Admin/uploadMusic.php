@@ -32,12 +32,17 @@ FileType = <?php echo $Type;?>
  <br/>
 Name of Song: <input type="text" name="songName" value = "<?php echo $Upload;?>"/>.mp3<br/>
 New Artist: <input type="checkbox" name="option1" value="Milk" onClick=" switchToTextbox('artistID', 'artistSelect', 'artistName', new Array(<?php
-	for($i = 0 ; $i < count($ArtistList) - 1; $i++)
+	if(count($ArtistList) > 0)
 	{
-		echo '\''.$ArtistList[$i]['Artist']['artistName'] .'\',';
+		for($i = 0 ; $i < count($ArtistList) - 1; $i++)
+		{
+			echo '\''.$ArtistList[$i]['Artist']['artistName'] .'\',';
+		}
+		echo '\''.$ArtistList[count($ArtistList)-1]['Artist']['artistName'] .'\')';
 	}
-	echo '\''.$ArtistList[count($ArtistList)-1]['Artist']['artistName'] .'\'));';
-?>;"/>
+	
+	echo '));';
+?>"/>
 
 <div id="searchArtist" onClick="displayPictureList('artistID','ArtistpictureList');">search for artists</div>
 

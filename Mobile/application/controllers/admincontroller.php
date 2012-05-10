@@ -112,6 +112,7 @@ class AdminController extends Controller
 		  if ($_FILES["file"]["error"] > 0)
 			{
 				$this->set("ReturnCode",$_FILES["file"]["error"]);
+				echo $_FILES["file"]["error"];
 			}
 		  else
 			{
@@ -128,9 +129,17 @@ class AdminController extends Controller
 			  }
 			else
 			  {
-			  move_uploaded_file($_FILES["file"]["tmp_name"],
-			  self::TEMP_FOLDER."Pictures/" . $_FILES["file"]["name"]);
-			  $this->set("Location",self::TEMP_FOLDER."Pictures/" . $_FILES["file"]["name"]);
+				$moved = move_uploaded_file($_FILES["file"]["tmp_name"],
+					self::TEMP_FOLDER."Pictures/" . $_FILES["file"]["name"]);
+			  
+				echo $moved;
+				if($moved)
+					$this->set("Location",self::TEMP_FOLDER."Pictures/" . $_FILES["file"]["name"]);
+				else
+					{
+						echo 'couldent move the uploaded file';
+						echo 'the file was uploaded sucessfully : ' .  is_uploaded_file($_FILES["file"]["tmp_name"]);
+					}
 			  }
 			}
 		  }
@@ -212,6 +221,7 @@ class AdminController extends Controller
 				  move_uploaded_file($_FILES["file"]["tmp_name"],
 				  self::TEMP_FOLDER."Music/" . $_FILES["file"]["name"]);
 				  $this->set("Location",self::TEMP_FOLDER."Music/" . $_FILES["file"]["name"]);
+				  
 				  $ip=$_SERVER['REMOTE_ADDR'];
 				  $hostname = gethostname();
 				  $myFile = "../tempUploads/data.log";
