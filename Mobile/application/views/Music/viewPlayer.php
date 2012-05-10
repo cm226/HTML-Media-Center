@@ -2,12 +2,13 @@
 <head>
 
 <script>
+
 var myPlaylist = [
 
 <?php foreach ($songs as &$song) { ?>
 
     {
-        mp3:<?php echo "'". $song["Song"]["songURL"] ."'";?>,
+        mp3:<?php echo "'".PUBLIC_FOLDER. str_replace(" ","%20",$song["Song"]["songURL"]) ."'";?>,
         title:<?php echo "'". $song["Song"]["songName"] ."'";?>,
         artist:<?php echo "'".$song['Album']['artistName']."'" ;?>,
         rating:4,
@@ -19,6 +20,7 @@ var myPlaylist = [
 ];
 
 var shuffleOn = false;
+var currentSong = 0;
 var numSongs = <?php echo count($songs); ?>
 
 function shuffle()
@@ -29,14 +31,51 @@ function shuffle()
 		shuffleOn = true;
 }
 
-function playNext(not)
+function fillAudio(src)
 {
-	var randomnumber=Math.floor(Math.random()*numSongs)+1;
+	var audioStr = "<audio controls=\"controls\" id=\"audioPlayer\">";
+	audioStr += "<source src=\""+ src+"\" type=\"audio/mp3\"/> </audio>";
+	
+	var audioDiv = document.getElementById('audioControls');
+	audioDiv.innerHTML = audioStr;
+}
 
-	while(randomnumber == not)
-		randomnumber = Math.floor(Math.random()*numSongs)+1;
+function fillAudioInfo(Name, Artist)
+{
+	var AudioInfoStr = "<h4 id=\"SongName\">"+Name+"</h4>";
+	AudioInfoStr+= "<h4 id=\"ArtistName\">"+Artist+"</h4>";
 
-	document.getElementById('song'+randomnumber).play();
+	var songInfo = document.getElementById('currentSongInfo');
+	songInfo.innerHTML = AudioInfoStr;
+}
+
+function fillAlbumImage(url)
+{
+	var albumImgStr = "<img src=\""+url+"\" height=\"100\" width=\"100\"/>";
+
+	var albumImg = document.getElementById('albumImage');
+	albumImg.innerHTML = albumImgStr;
+	
+}
+
+function playNext()
+{
+	if(shuffleOn)
+	{
+		var randomnumber=Math.floor(Math.random()*numSongs)+1;
+
+		while(randomnumber == currentSong)
+			randomnumber = Math.floor(Math.random()*numSongs)+1;
+	
+		currentSong = randomnumber;
+	}
+
+	
+	fillAudio(myPlaylist[currentSong].mp3);
+	fillAudioInfo(myPlaylist[currentSong].title, myPlaylist[currentSong].artist);
+	fillAlbumImage(myPlaylist[currentSong].cover);
+
+	document.getElementById('audioPlayer').play();
 }
 
 </script>
@@ -47,22 +86,15 @@ function playNext(not)
 <body>
 
 	<div id="player" >
-		<div id="shuffleButton" onclick="shuffle(); playNext(-1);">
-			shuffle
-		</div>
-		<?php $soungCount = 0; ?>
-		<?php foreach ($songs as &$song) { $songCount++; ?>
-		<div class = "song">
-			<div class ="title">
-				<?php echo $song["Song"]["songName"];?>
+		<div id="playerControls">
+			<div id="shuffleButton" onclick="shuffle(); playNext();">
+				shuffle
 			</div>
-			<div class="player">
-			<audio controls="controls" id="song<?php echo $songCount; ?>" preload="none" OnEnded="playNext('<?php echo $songCount; ?>')">
-				<source src="<?php echo PUBLIC_FOLDER; echo str_replace(" ", "%20", $song["Song"]["songURL"]) ;?>" type="audio/mp3" />
-			</audio>
-			</div>
+			<div id="nextBttn" onClick="currentSong++; playNext();">next</div>
 		</div>
-		<?php } ?>
+		<div id="currentSongInfo"></div>
+		<div id="albumImage"></div>
+		<div id="audioControls"></div>
 	</div>
 </body>
 </html>

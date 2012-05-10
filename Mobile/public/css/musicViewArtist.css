@@ -17,82 +17,7 @@ h4
 	border-bottom-right-radius:0px;
 }
 
-a:link {
-	color: white;
-	font-family: sans-serif;
-	font-style: normal;
-	font-variant: small-caps;
-	font-weight: normal;
-	font-size: medium;
-	line-height: 100%;
-	word-spacing: normal;
-	letter-spacing: normal;
-	text-decoration: none;
-	text-transform: none;
-	text-align: left;
-	text-indent: 0ex;}
-	/* unvisited link */
-	
-a:visited {
-color: white;
-font-family: sans-serif;
-	font-style: normal;
-	font-variant: small-caps;
-	font-weight: normal;
-	font-size: medium;
-	line-height: 100%;
-	word-spacing: normal;
-	letter-spacing: normal;
-	text-decoration: none;
-	text-transform: none;
-	text-align: left;
-	text-indent: 0ex;}  /* visited link */
-	
-a:hover {
 
-color: white;
-font-family: sans-serif;
-	font-style: normal;
-	font-variant: small-caps;
-	font-weight: normal;
-	font-size: medium;
-	line-height: 100%;
-	word-spacing: normal;
-	letter-spacing: normal;
-	text-decoration: none;
-	text-transform: none;
-	text-align: left;
-	text-indent: 0ex;
-	}  /* mouse over link */
-
-a:active {
-color: white;
-font-family: sans-serif;
-	font-style: normal;
-	font-variant: small-caps;
-	font-weight: normal;
-	font-size: medium;
-	line-height: 100%;
-	word-spacing: normal;
-	letter-spacing: normal;
-	text-decoration: none;
-	text-transform: none;
-	text-align: left;
-	text-indent: 0ex;}  /* selected link */
-
-
-.album
-{
-	color: WHITE;
-	padding: 10px;
-	width: 90%;
-	height: 80px;
-}
-
-.album:hover
-{
-	background: rgba(50, 50, 50, 0.6);
-}
 
 #songSelection
 {
@@ -100,22 +25,12 @@ font-family: sans-serif;
 	float: left;
 }
 
-#albumList
-{
-	/* Fallback for web browsers that doesn't support RGBa */
-	background: rgb(0, 0, 0);
-	/* RGBa with 0.6 opacity */
-	background: rgba(0, 0, 0, 0.6);
-	width: 300px;
-	border:2px solid;
-	float: left;
-	border-radius:25px;
-}
+
 
 #player
 {
 	float: left;
-	width : 70%;
+	width : 60%;
 	height : 1000px;
 	border: 0px;
 	

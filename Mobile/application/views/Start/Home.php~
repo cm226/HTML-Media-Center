@@ -2,7 +2,7 @@
 
 <div id="freeDiskSpace"> 	
 	<div  id="imgCont">
-		<img src="../Public/img/Home/harddrive100.png"/>
+		<img src="../public/img/Home/harddrive100.png"/>
 	</div>
 	<div id="harddrive">
 		
