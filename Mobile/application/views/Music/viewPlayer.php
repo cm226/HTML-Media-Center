@@ -20,7 +20,7 @@ var myPlaylist = [
 ];
 
 var shuffleOn = false;
-var currentSong = 0;
+var currentSong = -1;
 var numSongs = <?php echo count($songs); ?>
 
 function shuffle()
@@ -74,9 +74,10 @@ function playNext()
 	fillAudio(myPlaylist[currentSong].mp3);
 	fillAudioInfo(myPlaylist[currentSong].title, myPlaylist[currentSong].artist);
 	fillAlbumImage(myPlaylist[currentSong].cover);
-
+	
 	document.getElementById('audioPlayer').play();
 }
+
 
 </script>
 
@@ -86,18 +87,33 @@ function playNext()
 <body>
 
 	<div id="player" >
-		<div id="playerControls">
-			<div id="shuffleButton" onclick="shuffle(); playNext();">
-				shuffle
-			</div>
-			<div id="nextBttn" onClick="currentSong++; playNext();">next</div>
-		</div>
 		<div id="currentSongInfo"></div>
 		<div id="albumImage"></div>
+		<div id="currentlyPlaying"></div>
 		<div id="audioControls"></div>
+		<div id="playerControls">
+			<div id="prevBttn" onClick="currentSong--; playNext();">
+				<img src="<?php echo PUBLIC_FOLDER. "/img/Music/icons/prev.png"; ?>" height="50px" width="50px"></img>			
+			</div>
+			<div id="shuffleButton" onclick="shuffle(); playNext();">
+				<img src="<?php echo PUBLIC_FOLDER. "/img/Music/icons/shuffle.png"; ?>" height="50px" width="50px"></img>
+			</div>
+			<div id="nextBttn" onClick="currentSong++; playNext();">
+				<img src="<?php echo PUBLIC_FOLDER. "/img/Music/icons/next.png"; ?>" height="50px" width="50px"></img>			
+			</div>
+			
+
+		</div>
 	</div>
 
+<script>
+	var playingList = document.getElementById('currentlyPlaying');
 	
+	for(var i = 0; i < numSongs; i++)
+	{
+		playingList.innerHTML += myPlaylist[i].title+"<br/>";
+	}
+</script>
 </body>
 </html>
 
