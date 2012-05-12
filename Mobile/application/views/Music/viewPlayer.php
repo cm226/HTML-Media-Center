@@ -33,7 +33,7 @@ function shuffle()
 
 function fillAudio(src)
 {
-	var audioStr = "<audio controls=\"controls\" id=\"audioPlayer\">";
+	var audioStr = "<audio controls=\"controls\" id=\"audioPlayer\" onended=\"currentSong++; playNext();\">";
 	audioStr += "<source src=\""+ src+"\" type=\"audio/mp3\"/> </audio>";
 	
 	var audioDiv = document.getElementById('audioControls');
