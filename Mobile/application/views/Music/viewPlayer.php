@@ -51,7 +51,7 @@ function fillAudioInfo(Name, Artist)
 
 function fillAlbumImage(url)
 {
-	var albumImgStr = "<img src=\""+url+"\" height=\"100\" width=\"100\"/>";
+	var albumImgStr = "<img src=\""+url+"\" id=\"Albumimgtag\" height=\"50%\" width=\"auto\"/>";
 
 	var albumImg = document.getElementById('albumImage');
 	albumImg.innerHTML = albumImgStr;
@@ -96,6 +96,8 @@ function playNext()
 		<div id="albumImage"></div>
 		<div id="audioControls"></div>
 	</div>
+
+	
 </body>
 </html>
 
