@@ -167,9 +167,6 @@ class Admin extends Model
 
 		// now, process the JSON string
 		$json = json_decode($body);
-		// now have some fun with the results...
-
-		//print_r ($json->{"responseData"}->{"results"}[0]->{"url"}) ;
 
 		return $json->{"responseData"}->{"results"};
 	}
