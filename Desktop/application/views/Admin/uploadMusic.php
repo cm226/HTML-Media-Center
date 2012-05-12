@@ -38,7 +38,7 @@ New Artist: <input type="checkbox" name="option1" value="Milk" onClick=" switchT
 		{
 			echo '\''.$ArtistList[$i]['Artist']['artistName'] .'\',';
 		}
-		echo '\''.$ArtistList[count($ArtistList)-1]['Artist']['artistName'] .'\')';
+		echo '\''.$ArtistList[count($ArtistList)-1]['Artist']['artistName'] .'\'';
 	}
 	
 	echo '));';
