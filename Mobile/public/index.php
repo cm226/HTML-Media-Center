@@ -13,7 +13,7 @@ if(isset($_GET['url']))
 	$url = $_GET['url'];
 else
 {
-	header('Location: ../Desktop/Start/Home');
+	header('Location: ../Mobile/Start/Home');
 }
 
 require_once (ROOT . DS . 'library' . DS . 'bootstrap.php');
