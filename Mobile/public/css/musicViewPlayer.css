@@ -82,6 +82,8 @@ audio
 	top:10%;
 	width: 40%;
 	max-height:70%;
+	overflow:auto;
+	color:#8B8378;
 }
 
 #albumImage
