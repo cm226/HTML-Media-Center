@@ -24,7 +24,7 @@
 Movie
 </div>
 
-<div class="tile" onclick='return musicSearch();'>
+<div class="tile" onclick="window.location = ('../Music/viewAll')">
 Music
 </div>
 

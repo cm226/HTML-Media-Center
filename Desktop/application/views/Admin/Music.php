@@ -1,3 +1,5 @@
+
+<div id="addSingleSong">
 <div id="addSoungHeader" >
 	select the file:
 </div>
@@ -9,5 +11,8 @@ enctype="multipart/form-data">
 <br />
 <input type="submit" name="submit" value="Submit" />
 </form>
+
+</div>
+
 
 

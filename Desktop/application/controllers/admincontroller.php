@@ -59,15 +59,15 @@ class AdminController extends Controller
 		echo $series;		
 		if (file_exists(self::TEMP_FOLDER."TV/".$oldEpName))
 		{
-			if(!file_exists("../public/mix/shows/".$series."/"))
-				mkdir("../public/mix/shows/".$series."/");
+			if(!file_exists("../public/mix/Tv/".$series."/"))
+				mkdir("../public/mix/Tv/".$series."/");
 				
-			if(!file_exists("../public/mix/shows/".$series."/".$Season))
-				mkdir("../public/mix/shows/".$series."/".$Season);
-			if(!file_exists("../public/mix/shows/".$series."/".$Season."/".$name))
+			if(!file_exists("../public/mix/Tv/".$series."/".$Season))
+				mkdir("../public/mix/Tv/".$series."/".$Season);
+			if(!file_exists("../public/mix/Tv/".$series."/".$Season."/".$name))
 			{
 				$oldURL = self::TEMP_FOLDER."TV/".$oldEpName;
-				$newURL = "../public/mix/shows/".$series."/".$Season."/".$name;
+				$newURL = "../public/mix/Tv/".$series."/".$Season."/".$name;
 				if(rename($oldURL,$newURL))
 				{
 					$this->Admin->createSeriesIfNecessary($series);
