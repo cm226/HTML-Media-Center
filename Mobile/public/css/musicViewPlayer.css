@@ -92,3 +92,20 @@ audio
 	width:auto;
 	background-color:red;
 }
+
+.songItem
+{
+	background-color: #D6D6D6;
+	margin-top: 3px;
+	padding-top: 3px;
+	border-style: solid;
+	border-color: #5CACEE;
+	border-width: 3px;
+	border-radius:5px; 
+}
+
+.songItem:hover
+{
+	background-color: black;
+
+}

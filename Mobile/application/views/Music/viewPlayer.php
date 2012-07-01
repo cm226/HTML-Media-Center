@@ -73,6 +73,13 @@ function playPrev()
 	play();
 }
 
+function playSong(number)
+{
+	prevSong = currentSong 
+	currentSong = number;
+	play();
+}
+
 function play()
 {
 	if(shuffleOn)
@@ -97,13 +104,13 @@ function play()
 function updatePlayingList(from, to)
 {
 	var nowPlaying = document.getElementById("playlist"+to);
-	nowPlaying.style.color = "White";
+	nowPlaying.style.color = "Black";
 	nowPlaying.style.fontSize = "large";
 
 	if(from != -1)
 	{
 		var wasPlaying = document.getElementById("playlist"+from);
-		wasPlaying.style.color = "#8B8378";
+		wasPlaying.style.color = "Black";
 		wasPlaying.style.fontSize = "small";
 	}
 }
@@ -141,7 +148,7 @@ function updatePlayingList(from, to)
 	
 	for(var i = 0; i < numSongs; i++)
 	{
-		playingList.innerHTML += "<div id=\"playlist"+i+"\">"+myPlaylist[i].title+"<div/>";
+		playingList.innerHTML += "<div class=\"songItem\" id=\"playlist"+i+"\" onClick=\"playSong("+i+");\">"+myPlaylist[i].title+"<div/>";
 	}
 </script>
 </body>
