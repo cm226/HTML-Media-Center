@@ -83,7 +83,6 @@ audio
 	width: 40%;
 	max-height:70%;
 	overflow:auto;
-	color:#8B8378;
 }
 
 #albumImage
@@ -95,12 +94,12 @@ audio
 
 .songItem
 {
-	background-color: #D6D6D6;
-	margin-top: 3px;
+	background-color: #383838;
+	margin-top: 5px;
 	padding-top: 3px;
 	border-style: solid;
-	border-color: #5CACEE;
-	border-width: 3px;
+	border-color: white;
+	border-width: 1px;
 	border-radius:5px; 
 }
 

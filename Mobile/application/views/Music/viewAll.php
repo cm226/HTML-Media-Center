@@ -44,10 +44,10 @@ foreach ($artists as &$artist)
 {
 	echo '<div class="artistElement" onclick="postwith(\'../Music/viewArtist\',{artist:\''.$artist['Artist']['artistName'].'\'})">';
 	
-	if(file_exists('../Public/img/Music/Artists/' . $artist['Artist']['artistName'] . '.png'))
-		echo '<img src="../Public/img/Music/Artists/' . $artist['Artist']['artistName'] . '.png" height="128" width="128">';
+	if(file_exists('../public/img/Music/Artists/' . $artist['Artist']['artistName'] . '.png'))
+		echo '<img src="../public/img/Music/Artists/' . $artist['Artist']['artistName'] . '.png" height="128" width="128">';
 	else
-		echo '<img src="../Public/img/Music/Artists/default.png" height="128" width="128">';
+		echo '<img src="../public/img/Music/Artists/default.png" height="128" width="128">';
 		
 	echo '<h4 class="ArtistName">' . $artist['Artist']['artistName']. '</h4>';
 	echo '<p class="artistInfo"> Genra: ' .$artist['Artist']['genre'] . '</p>';

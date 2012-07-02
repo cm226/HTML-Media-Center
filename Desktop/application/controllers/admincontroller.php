@@ -298,6 +298,29 @@ class AdminController extends Controller
 		$this->set("name", $songName);
 
 	}
+	
+	function Music()
+	{
+		$this->set("ArtistList", $this->Admin->getArtistsList());
+	}
+	
+	function uploadArtistPic()
+	{
+		$artistName = $_POST['artistName'];
+		
+		if ($_FILES["image"]["type"] == "image/png")
+		{
+			if ($_FILES["image"]["error"] > 0)
+			{
+				$this->set("ReturnCode",$_FILES["image"]["error"]);
+			}
+			
+			 move_uploaded_file($_FILES["image"]["tmp_name"],
+				  PUBLIC_FOLDER."/img/Music/Artists/".$artistName.".png");
+		}
+		else
+			$this->set("invalidType", true);
+	}
 
 	function getArtistAlbums($artistName)
 	{
