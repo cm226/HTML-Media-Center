@@ -112,6 +112,11 @@ p.artistInfo
 	border-color:#CD853F;
 }
 
+#randomSongs
+{
+	float: right;
+}	
+
 div.artistElement
 {
 	width:129px;

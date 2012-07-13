@@ -1,43 +1,61 @@
-<h2> Start </h2>
+
+<div id="leftPanel" onclick="window.location = '<?php echo PUBLIC_FOLDER.'/../'; ?>';">
 
 <div id="freeDiskSpace"> 	
-	<div  id="imgCont">
-		<img src="../public/img/Home/harddrive100.png"/>
-	</div>
+	
 	<div id="harddrive">
 		
 		<div id="total"> <?php echo $total;?></div>
 		<div id="free">	<?php echo $free;?>	</div>
 
 	</div>
+	<div  id="imgCont">
+		<img src="../public/img/Home/harddrive100.png"/>
+	</div>
 
 </div>
+</div>
 
-<div id="backgroundDisplay" style="display: none;"></div>
-<div id="MoviesTopBox" class="topBox" style="display: none;"></div>
-<div id="MusicTopBox" class="topBox" style="display: none;"></div>
-<div id="PicturesTopBox" class="topBox" style="display: none;"></div>
-<div id="menuSelection">
+<div id="tilesWrapper">
+<div id="tiles" >
 
-
-<div class="tile" onclick='return movieSearch();'>
+<div id="moviesPerspective">
+<div id="moviesTile" class="tile" onclick="window.location = ('../Movies/viewAll')">
 Movie
 </div>
+</div>
 
-<div class="tile" onclick="window.location = ('../Music/viewAll')">
+<div class="centerTile">
+<div id="musicTile" class="tile" onclick="window.location = ('../Music/viewAll')">
 Music
 </div>
+</div>
 
-<div class="tile" onClick="window.location = ('../TV/viewAll')">
+<div id="TVPerspective">
+<div id="TVTile" class="tile" onClick="window.location = ('../TV/viewAll')">
 TV
 </div>
+</div>
 
-<div class="tile" onClick="window.location = ('../Pictures/albums')">
+<div id="moviesPerspective">
+<div id="moviesTile" class="tile" onClick="window.location = ('../Pictures/albums')">
 Pictures
 </div>
+</div>
 
-<div class="tile" onClick="window.location = ('../Admin/Main')">
+<div class="centerTile">
+<div id="musicTile" class="tile" onClick="window.location = ('../Admin/Main')">
 Admin
 </div>
+</div>
 
 </div>
+</div>
+
+<div id="spinningDisks">
+<div id="outerDisk">
+</div>
+<div id="innerDisk">
+</div>
+</div>
+

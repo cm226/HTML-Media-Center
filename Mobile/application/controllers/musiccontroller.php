@@ -69,4 +69,9 @@ class MusicController extends Controller {
 		}
 		$this->set("playlistName", $playlist);
 	}
+	
+	function viewShuffle()
+	{
+		$this->set("songs", $this->Music->get10RandomSongs());
+	}
 }

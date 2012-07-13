@@ -56,3 +56,11 @@ foreach ($artists as &$artist)
 	
 }
 echo '</div>';
+
+?>
+
+<div id="randomSongs">
+	<form action="../Music/viewShuffle">
+		<input type="Submit" value="Gimmy some random Songs" />
+	</form>
+</div>

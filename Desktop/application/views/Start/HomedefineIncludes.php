@@ -3,6 +3,19 @@
 <script type="text/javascript" src="../public/js/searchOvelayWindows.js"></script>
 <script>
 
+function slideIt()
+{
+	var slidingDiv = document.getElementById("d1");
+	var stopPosition = 50;
+	
+	if (parseInt(slidingDiv.style.left) < stopPosition )
+	{
+		slidingDiv.style.left = parseInt(slidingDiv.style.left) + 2 + "px";
+		setTimeout(slideIt, 1);
+	}
+}
+
+
 function movieSearch(){
 	var thediv=document.getElementById('backgroundDisplay');
 	var thedivTop=document.getElementById('MoviesTopBox');
@@ -46,35 +59,38 @@ function musicSearch ()
 
 #freeDiskSpace
 {
-	width:70%;
-	margin-left:30%;
-		float:left;
-		
+	position: absolute;
+	bottom: 0px;
+	top: 30%;
+	height:100%;
+	width:100px;
+	margin-left: 20px;
 }
 
 #harddrive
 {
 	border: solid 1px #000000;
-	width: 50%;
+	height: 50%;
 	position:relative;
 	float:left;
 	margin-top:25px;
+	width:30px;
 }
 
 #total
 {
-	width: <?php echo $usedPercentage; ?>%;
+	height: <?php echo $usedPercentage; ?>%;
 	background-image:url('../public/img/Home/usedGrad.png');
-	background-repeat: repeat-x;
+	background-repeat: repeat-Y;
 	float: left;
 }
 
 #free
 {
-width: <?php echo $percentage; ?>%;
+height: <?php echo $percentage; ?>%;
 	background-image:url('../public/img/Home/greyGard.png');
-	background-repeat: repeat-x;
-float:right;
+	background-repeat: repeat-y;
+float:left;
 }
 
 </style>

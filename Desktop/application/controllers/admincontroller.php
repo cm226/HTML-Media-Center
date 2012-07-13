@@ -194,8 +194,7 @@ class AdminController extends Controller
 
 	function uploadMusic()
 	{
-		if ((($_FILES["file"]["type"] == "audio/mp3"))
-		)
+		if ($_FILES["file"]["type"] == "audio/mp3")
 		  {
 		  if ($_FILES["file"]["error"] > 0)
 			{

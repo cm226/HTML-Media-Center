@@ -136,6 +136,26 @@ class Music extends Model {
 		$AddToPlaylistsq = "INSERT INTO PlaylistSong VALUES ".substr($insertValues, 0, -1);
 		$this->query($AddToPlaylistsq);
 	}
+	
+	function get10RandomSongs()
+	{
+		$select5RandomSongs = "SELECT 
+								songName,
+								songURL,
+								Album.albumName,
+								Album.artistName,
+								songLength
+								
+							FROM Song,
+								 Album
+							WHERE
+								Song.albumName = Album.albumName
+							ORDER BY RAND()
+							LIMIT 10";
+							
+		return $this->query($select5RandomSongs);
+		
+	}
 
 	
 }

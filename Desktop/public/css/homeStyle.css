@@ -1,24 +1,15 @@
-body
+
+#leftPanel
 {
-	background-color:#3a3a3a;
-
-}
-
-#backgroundDisplay {
-	z-index: 10000;
-	filter: alpha(opacity=50); /*older IE*/
-	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50); /* IE */
-	-moz-opacity: .50; /*older Mozilla*/
-	-khtml-opacity: 0.5;   /*older Safari*/
-	opacity: 0.5;   /*supported by current Mozilla, Safari, and Opera*/
-	background-color:#000000;
-	position:fixed;
-	top:0px;
+	background-image:url('../img/Home/right.png');
+	background-size:100% 100%;
+	height: 100%;
+	width: 20%;
+	position: fixed;
 	left:0px;
-	width:100%;
-	height:100%;
-	text-align:center;
-	vertical-align:middle;
+	top: 0px;
+	z-Index: -1;
+	opacity: .7;
 }
 
 #imgCont
@@ -27,40 +18,134 @@ float:left;
 position:relative;
 }
 
-#innerTable {
-	position:fixed;
-	z-index: 10001;
-	width: 70%;
-	height: 300px;
-	background-color:#C1C1C1;
-	margin: 100px 15%;
-}
 
-#backLink 
+#tilesWrapper
 {
-    position:absolute;
-    bottom:0;
+	width: 100%;
 }
 
-#menuSelection
+#tiles
 {
-padding-top: 100px;
-
+	padding-left: 25%;
 }
-
 
 .tile
 {
 	width: 300px;
-	height: 100px;
-	background-color:black;
-	color:white;
+	height: 120px;
+	background-image:url('../img/Home/Tile.png');
+	font-family:Arial Black, Gadget, sans-serif;
+	background-size:100% 100%;
+	color: rgba(255, 255, 255, 0.6);
 	float:left;
 	margin:10px;
 	text-align: center;
-	padding-top: 100px;
+	padding-top: 25px;
 
-	border-style:solid;
-	border-width: 1px;
-	border-color:white;
 }
+
+#spinningDisks
+{
+position: absolute;
+	height:70%;
+	width:70%;
+	margin-left: 30%;
+	opacity: 0.5;
+	z-index: -100;
+}
+#outerDisk
+{
+	position: absolute;
+	background-image: url('../img/Home/outerRing.png');
+	background-size:100% 100%;
+	height:640px;
+	width:640px;
+	z-index: -10000;
+	-webkit-animation-name:outerRing;
+	-webkit-animation-duration:5s;
+	-webkit-animation-timing-function:linear;
+	-webkit-animation-delay:0s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-direction:linear;
+	-webkit-animation-play-state:running;
+
+	
+}
+@-webkit-keyframes outerRing /* Safari and Chrome */
+	{
+	0%   { -webkit-transform: rotate(0deg);}
+	25%  { -webkit-transform: rotate(90deg);}
+	50%  { -webkit-transform: rotate(180deg);}
+	75%  { -webkit-transform: rotate(270deg);}
+	100% {-webkit-transform: rotate(360deg);}
+	}
+	
+#innerDisk
+{
+	position: absolute;
+	background-image: url('../img/Home/innerRing.png');
+	background-size:100% 100%;
+	height:440px;
+	width:440px;
+	z-index: -10000;
+	margin-left: 100px;
+	margin-top: 100px;
+	-webkit-animation-name:innerRing;
+	-webkit-animation-duration:5s;
+	-webkit-animation-timing-function:linear;
+	-webkit-animation-delay:0s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-direction:linear;
+	-webkit-animation-play-state:running;
+
+	
+}
+@-webkit-keyframes innerRing /* Safari and Chrome */
+	{
+	0%   { -webkit-transform: rotate(360deg);}
+	25%  { -webkit-transform: rotate(270deg);}
+	50%  { -webkit-transform: rotate(180deg);}
+	75%  { -webkit-transform: rotate(90deg);}
+	100% {-webkit-transform: rotate(0deg);}
+	}
+#tiles
+{
+	padding-top: 100px;
+	width: 1000px;
+	margin:auto;
+}
+
+#moviesPerspective
+{
+position: relative;
+perspective:500;
+-webkit-perspective:500; /* Safari and Chrome */
+}
+#moviesTile
+{
+	transform: rotateY(10deg);
+	-webkit-transform: rotateY(10deg); /* Safari and Chrome */
+}
+
+#TVPerspective
+{
+position: relative;
+perspective:500;
+-webkit-perspective:500; /* Safari and Chrome */
+}
+#TVTile
+{
+	transform: rotateY(-10deg);
+	-webkit-transform: rotateY(-10deg); /* Safari and Chrome */
+}
+
+#musicTile
+{
+	-webkit-transform:scale(1.10,0.95);
+}
+
+.centerTile
+{
+	-webkit-transform: translateY(-10px); /* Safari and Chrome */
+}
+
