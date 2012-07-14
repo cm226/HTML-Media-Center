@@ -21,7 +21,7 @@
 
 <div id="moviesPerspective">
 <div id="moviesTile" class="tile" onclick="window.location = ('../Movies/viewAll')">
-Movie
+Movies
 </div>
 </div>
 

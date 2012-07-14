@@ -22,7 +22,9 @@ var myPlaylist = [
 var shuffleOn = false;
 var currentSong = -1;
 var prevSong = -1;
-var numSongs = <?php echo count($songs); ?>
+var numSongs = <?php echo count($songs)."; \n"; ?>
+var allSongsPlayedEvnt = new Event();
+
 
 function shuffle()
 {
@@ -31,6 +33,32 @@ function shuffle()
 	else
 		shuffleOn = true;
 }
+
+// event functions
+function Event(){
+this.eventHandlers = new Array();
+}
+
+Event.prototype.addHandler = function(eventHandler){
+this.eventHandlers.push(eventHandler);
+}
+
+Event.prototype.execute = function(){
+
+for(var i = 0; i < this.eventHandlers.length; i++){
+this.eventHandlers[i]();
+}
+}
+
+function songsFinished()
+{
+	allSongsPlayedEvnt.execute();
+}
+
+
+
+// player functions
+
 
 function fillAudio(src)
 {
@@ -63,11 +91,15 @@ function playNext()
 {
 	prevSong = currentSong;
 	currentSong++;
-	play();
+	if(currentSong >= numSongs)
+		songsFinished();
+	else
+		play();
 }
 
 function playPrev()
 {
+	songsFinished();
 	prevSong = currentSong 
 	currentSong--;
 	play();
