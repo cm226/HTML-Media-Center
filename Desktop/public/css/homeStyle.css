@@ -44,6 +44,26 @@ position:relative;
 
 }
 
+.tile:hover
+{
+	color: rgba(255, 255, 255, 1);
+}
+
+.selectedTile
+{
+	width: 300px;
+	height: 120px;
+	background-image:url('../img/Home/Tile.png');
+	font-family:Arial Black, Gadget, sans-serif;
+	background-size:100% 100%;
+	color: rgba(255, 255, 255, 1);
+	float:left;
+	margin:10px;
+	text-align: center;
+	padding-top: 25px;
+	
+}
+
 #spinningDisks
 {
 position: absolute;
@@ -127,6 +147,12 @@ perspective:500;
 	-webkit-transform: rotateY(10deg); /* Safari and Chrome */
 }
 
+#picturesTile
+{
+	transform: rotateY(10deg);
+	-webkit-transform: rotateY(10deg); /* Safari and Chrome */
+}
+
 #TVPerspective
 {
 position: relative;
@@ -140,6 +166,11 @@ perspective:500;
 }
 
 #musicTile
+{
+	-webkit-transform:scale(1.10,0.95);
+}
+
+#adminTile
 {
 	-webkit-transform:scale(1.10,0.95);
 }

@@ -26,29 +26,6 @@ var numSongs = <?php echo count($songs)."; \n"; ?>
 var allSongsPlayedEvnt = new Event();
 
 
-function shuffle()
-{
-	if(shuffleOn)
-		shuffleOn = false;
-	else
-		shuffleOn = true;
-}
-
-// event functions
-function Event(){
-this.eventHandlers = new Array();
-}
-
-Event.prototype.addHandler = function(eventHandler){
-this.eventHandlers.push(eventHandler);
-}
-
-Event.prototype.execute = function(){
-
-for(var i = 0; i < this.eventHandlers.length; i++){
-this.eventHandlers[i]();
-}
-}
 
 function songsFinished()
 {

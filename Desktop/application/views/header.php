@@ -5,5 +5,6 @@
 <title>Is this thing on?</title>
 
 <script type="text/javascript" src="<?php echo PUBLIC_FOLDER;?>/js/helperFunctions.js"></script> 
+<script type="text/javascript" src="<?php echo PUBLIC_FOLDER;?>/js/buttonNavFunctions.js"></script> 
 <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_FOLDER;?>/css/genericStyle.css">
 

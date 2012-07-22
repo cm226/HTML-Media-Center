@@ -21,7 +21,8 @@ genre VARCHAR(20)
 
 CREATE TABLE Album
 (
-albumName VARCHAR(20) PRIMARY KEY,
+albumID INT PRIMARY KEY AUTO_INCREMENT,
+albumName VARCHAR(20),
 artistName VARCHAR(20) NOT NULL,
 year YEAR NOT NULL,
 albumRating INT(2) NOT NULL,
@@ -31,12 +32,12 @@ FOREIGN KEY (artistName) REFERENCES Artist (artistName)
 CREATE TABLE Song
 (
 songName VARCHAR(40),
-albumName VARCHAR(20) NOT NULL,
+albumID INT NOT NULL,
 songLength TIME NOT NULL,
 songRating INT(2) NOT NULL,
 playCount INT(3) NOT NULL,
 songURL VARCHAR(256) PRIMARY KEY,
-FOREIGN KEY (albumName) REFERENCES Album (albumName)
+FOREIGN KEY (albumID) REFERENCES Album (albumID)
 );
 
 CREATE TABLE Playlist

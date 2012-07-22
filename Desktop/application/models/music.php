@@ -18,7 +18,17 @@ class Music extends Model {
 	
 	function getArtistsSongs($artistName)
 	{
-		$allArtistsSongq = 'SELECT songName, songURL, Album.albumName,Album.artistName, songLength FROM Song, Album WHERE Album.albumName = Song.albumName AND Album.artistName = \''.$artistName.'\''; 
+		$allArtistsSongq = 'SELECT songName,
+									songURL,
+									Album.albumName,
+									Album.artistName,
+									songLength
+							FROM Song,
+								 Album
+    						 WHERE
+								Album.albumID = Song.albumID AND 
+								Album.artistName = \''.$artistName.'\''; 
+								
 		$allArtistsSongResult = $this->query($allArtistsSongq);
 		return $allArtistsSongResult;
 	}
@@ -35,7 +45,7 @@ class Music extends Model {
 							FROM Song,
 								 Album
 
-							 WHERE Album.albumName = Song.albumName 
+							 WHERE Album.albumID = Song.albumID 
 								AND Album.artistName = \''.$artistName.'\'
 								AND Album.albumName = \''. $albumName . '\'';
 								
@@ -53,7 +63,7 @@ class Music extends Model {
 										count(*) 
 									FROM 
 										Song
-									WHERE Album.albumName = Song.albumName) as trackCount
+									WHERE Album.albumID = Song.albumID) as trackCount
 						FROM 
 								Album
 						WHERE
@@ -92,7 +102,7 @@ class Music extends Model {
 				   WHERE 
 					    PlaylistSong.playlistName = '$playlist'
 					AND Song.songURL = PlaylistSong.songID
-					AND Album.albumName = Song.albumName";
+					AND Album.albumID = Song.albumID";
 
 		return $this->query($playlistSongsq);
 	}
@@ -108,7 +118,7 @@ class Music extends Model {
 					Album
 				 WHERE
 					Artist.artistName = Album.artistName
-				    AND Song.albumName = Album.albumName";
+				    AND Song.albumID = Album.albumID";
 		if($Artist != '')
 			$filterSongsq .= " AND Artist.artistName = '$Artist'";
 		if($Song != '')

@@ -38,13 +38,13 @@ TV
 </div>
 
 <div id="moviesPerspective">
-<div id="moviesTile" class="tile" onClick="window.location = ('../Pictures/albums')">
+<div id="picturesTile" class="tile" onClick="window.location = ('../Pictures/albums')">
 Pictures
 </div>
 </div>
 
 <div class="centerTile">
-<div id="musicTile" class="tile" onClick="window.location = ('../Admin/Main')">
+<div id="adminTile" class="tile" onClick="window.location = ('../Admin/Main')">
 Admin
 </div>
 </div>
