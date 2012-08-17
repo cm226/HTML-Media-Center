@@ -1,3 +1,4 @@
+<div id="error">
 <?php
 	if(!isset($Location))
 	{
@@ -19,6 +20,9 @@
 		echo 'the file apready exsists...';
 	}
 ?>
+</div>
+
+<div id="content">
 
 FileName = <?php echo $Location; ?>
 FileSize = <?php echo $Size; ?>
@@ -41,3 +45,5 @@ Episode number: <input type="text" name="eNumber" /><br/>
 <input type="hidden" name="oldName" value= "<?php echo $Upload;?>"/>
 <input type="submit" value="Submit" /><br/>
 </form>
+
+<div>

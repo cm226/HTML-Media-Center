@@ -1,0 +1,22 @@
+.elementContainer
+{
+	background-color : rgba(54,54,50,0.8);
+	border-style:solid;
+	border-width:2px;
+	border-color: black;
+	color: white;
+}
+
+#AddTVFileDiv
+{
+	width: 40%;
+	float:left;
+	margin: 20px;
+}
+
+#RemoveTVFileDiv
+{
+	width: 40%;
+	float:left;
+	margin: 20px;
+}

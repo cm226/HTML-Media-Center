@@ -9,8 +9,9 @@
 		<?php
 			foreach ($seriesNames as $name)
 			{
-				echo '<div class="series" ><a href="'. PUBLIC_FOLDER .'/../TV/viewAll/'. $name['Series']['seriesName'] .'">
-						' . $name['Series']['seriesName'] . ' </a>
+				echo '<div class="series" >
+				<a href="'. PUBLIC_FOLDER .'/../TV/viewAll/'. $name['Series']['seriesName'] .'" class="seriesLink", id="'.$name['Series']['seriesName'].'">' . $name['Series']['seriesName'] . '
+				</a>
 				
 				</div>';
 			}
@@ -36,7 +37,9 @@
 							
 							foreach ($episodes[$season['Season']['seriesNumber']] as $episode)
 							{
-								echo '<div class="episode" onclick="location.href=\'../../TV/viewEpisode/'. str_replace(' ','%20',$episode['Episode']['episodeName']) . '\';"> 
+								echo '<div class="episode" onclick="location.href=\'../../TV/viewEpisode/'.
+								str_replace(' ','%20',$episode['Episode']['episodeName']) .
+								'\';" id="'.str_replace(' ','%20',$episode['Episode']['episodeName']).'"> 
 										<div class="number"> 1 </div>
 										<div class="name">'. $episode['Episode']['episodeName'] . '</div>
 										<div class="length">00:45:00</div>

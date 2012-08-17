@@ -1,3 +1,5 @@
+
+<div class="elementContainer" id="AddTVFileDiv">
 Add A new file
 
 <form action="../Admin/uploadTv" method="post"
@@ -7,7 +9,9 @@ enctype="multipart/form-data">
 <br />
 <input type="submit" name="submit" value="Submit" />
 </form>
+</div>
 
-
+<div class="elementContainer" id="RemoveTVFileDiv">
 delete an old file
+</div>
 

@@ -5,7 +5,7 @@ body
 
 .elementContainer
 {
-	background-color : #0066CC;
+	background-color : rgba(54,54,50,0.8);
 	border-style:solid;
 	border-width:2px;
 	border-color: black;

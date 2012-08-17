@@ -7,12 +7,12 @@ var myPlaylist = [
 <?php foreach ($songs as &$song) { ?>
 
     {
-        mp3:<?php echo str_replace(" ", "%20", "'". PUBLIC_FOLDER . $song["Song"]["songURL"] ."'");?>,
-        title:<?php echo "'". $song["Song"]["songName"] ."'";?>,
-        artist:<?php echo "'".$song['Album']['artistName']."'" ;?>,
+        mp3:<?php echo "'".str_replace("'","\'",str_replace(" ", "%20",  PUBLIC_FOLDER . $song["Song"]["songURL"] ))."'";?>,
+        title:<?php echo "'".str_replace("'","\'", $song["Song"]["songName"]) ."'";?>,
+        artist:<?php echo "'".str_replace("'","\'",$song['Album']['artistName'])."'" ;?>,
         rating:4,
         duration:<?php echo "'". $song["Song"]["songLength"] ."'";?>,
-        cover:'../public/img/Music/Albums/<?php echo $song["Album"]["albumName"]; ?>.png'
+        cover:'../public/img/Music/Albums/<?php echo str_replace("'","\'",$song["Album"]["albumName"]); ?>.png'
     },
 	
 <?php } ?>

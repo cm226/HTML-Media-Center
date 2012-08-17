@@ -1,0 +1,44 @@
+inkeeping with the pythonyness of things all messages are strings and not bytes =0
+
+command is a csv string of structure
+COMMAND,DATA
+
+where command is one of the following strings
+
+from server:
+	REQ_LOCATION
+	REQ_CAPABILITYS
+	PLAY_VID_STREAM
+	PLAY_MUSIC_STREAM
+	AGIENT_HELLO_BROADCAST
+
+from agient:
+	AGIENT_HELLO_REPLY
+	REQ_LOCATION_REPLY
+	REQ_CAPABILITYS_REPLY
+
+
+AGIENT_HELLO_BROADCAST
+	(not done) broadcast over network asking for agients
+
+AGIENT_HELLO_REPLY
+	(not done) replay to agient hello broadcast from server data is client name
+
+REQ_LOCATION
+	(not done)
+
+REQ_CAPABILITYS
+	(not done)
+
+PLAY_VID_STREAM
+	data will be of structure PROTOCAL, URL. where PROTOCAL is the streaming protocal used	
+	and URL is the full url of the stream 
+
+PLAY_MUSIC_STREAM
+	(not done)
+
+REQ_LOCATION_REPLY
+	(not done)
+
+REQ_CAPABILITYS_REPLY
+	(not done)
