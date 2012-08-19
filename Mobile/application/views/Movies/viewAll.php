@@ -4,17 +4,20 @@ echo '<div name="movieList">';
 
 foreach ($movies as &$movie)
 {
-	echo '<div class="movieElement">';
-	echo '<h4>' . $movie[0]. '</h4>';
-	echo '<p>' .$movie[1] . '</p>';
-	echo '<p>' .$movie[2] . '</p>';
+	?>
+	<div class="movieElement" onClick="window.location = '../Movies/playMovie/<?php echo $movie['Movie']['movieID'] ?>';">
+		<img class="movieImg" src="<?php echo PUBLIC_FOLDER.$movie['Movie']['thumbnailURL']; ?>"/>
+		<div class="infoPanel">
+			<h4><?php echo $movie['Movie']['movieName'];?></h4>
+			<p><?php echo $movie['Movie']['movieLength']; ?> </p>
+			<p><?php echo $movie['Movie']['movieGenre']; ?></p>
+			<p><?php echo $movie['Movie']['movieIMDB']; ?></p>
+		</div>
+	</div>
 	
-	echo'<form class="movForm" action="../Movies/viewSingle" method="post">
-		<input type="hidden" value="'.$movie[0].'" name="movie" />
-		<input type="submit" value="play" />
-	</form>';
-	echo '</div>';
-	
-	echo '<br/>';
+	<br/>
+	<?php
 }
-echo '</div>';
+
+?>
+</div>

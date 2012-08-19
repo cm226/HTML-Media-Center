@@ -7,8 +7,15 @@ class MoviesController extends Controller {
 		$this->set('movies',$this->Movie->viewAll());
 	}
 	
-	function viewSingle()
+	function playMovie($MovieID)
 	{
-		$this->set('movieURL',$this->Movie->view($_POST['movie']));
+		$this->set('agents', $this->Movie->getVideoAgents());
+		$this->set('movie',$this->Movie->getMovieWithID($MovieID));
+	}
+	
+	function requestAgentPlayMovie($agentIP, $movieID)
+	{
+		$this->set('agentIP',$agentIP);
+		$this->set('movie',$this->Movie->getMovieWithID($movieID));
 	}
 }

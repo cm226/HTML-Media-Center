@@ -37,6 +37,9 @@ PLAY_VID_STREAM
 PLAY_MUSIC_STREAM
 	(not done)
 
+PLAY_STREAM_REPLY
+	data either OK, FAIL
+
 REQ_LOCATION_REPLY
 	(not done)
 

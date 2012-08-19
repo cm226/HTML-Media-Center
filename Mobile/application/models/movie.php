@@ -4,18 +4,44 @@ class Movie extends Model {
 	
 	function viewAll()
 	{
-		$allMovies = array( array("Batman", "Action",'10:27:49'),
-							array("AmericanPie", "Action", '6:74:20')
-						   );
-						   
-		return $allMovies;
-									
+		$allMoviesq = "SELECT 
+			movieID,
+			movieName,
+			movieIMDB,
+			movieLength,
+			movieGenre,
+			thumbnailURL
+			
+		FROM 
+			Movie";
+			
+		return $this->query($allMoviesq);
 	}
 	
-	function view($movieName)
+	function getVideoAgents()
 	{
-		$result = 'D:\Videos\Personal\MOV00041.mp4';
-		return $result;
+		//$Agents = array(array("IP"=>"192.168.0.198","Location"=>"LivingRoom","Name"=>"TV"));
+		$Agents = array(array("IP"=>"127.0.0.1","Location"=>"LivingRoom","Name"=>"TV"));
+		return $Agents;
+	}
+	
+	
+	function getMovieWithID($movieID)
+	{
+		$movieq = "SELECT 
+			movieID,
+			movieName,
+			movieIMDB,
+			movieLength,
+			movieGenre,
+			thumbnailURL
+			
+		FROM 
+			Movie
+		WHERE
+			movieID =".$movieID;
+			
+		return $this->query($movieq);
 	}
 	
 }

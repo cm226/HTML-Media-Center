@@ -59,7 +59,8 @@ CREATE TABLE Movie
 movieName VARCHAR(20) PRIMARY KEY,
 movieIMDB VARCHAR(40) NOT NULL,
 movieLength TIME NOT NULL,
-movieGenre VARCHAR(40)
+movieGenre VARCHAR(40),
+thumbnailURL VARCHAR(256)
 );
 
 CREATE TABLE Series

@@ -20,7 +20,7 @@
 <div id="menuSelection">
 
 
-<div class="tile" onclick='return movieSearch();'>
+<div class="tile" onclick="window.location = ('../Movies/viewAll')">
 Movie
 </div>
 
