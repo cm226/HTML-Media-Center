@@ -16,9 +16,9 @@ def waitForConnection() :
      
     return s.accept()
 
-def rendererFactory(command, data):
+def rendererFactory(command, data, socket):
     return {'PLAY_VID_STREAM':  MediaRendereVideo.render
-           }[command](data)
+           }[command](data,socket)
     
     
 
@@ -29,7 +29,7 @@ if data:
     splitData = data.split(',',1)
     print data
     print splitData
-    rendererFactory(splitData[0],splitData[1])
+    rendererFactory(splitData[0],splitData[1],conn)
                 
 conn.close()
 

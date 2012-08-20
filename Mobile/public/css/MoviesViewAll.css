@@ -1,0 +1,18 @@
+.movieElement
+{
+	width:100%;
+	border-style:solid;
+	background-color:grey;
+}
+
+.movieImg
+{
+	width:  10%;
+	height: auto;
+}
+
+.infoPanel
+{
+	float: right;
+
+}
