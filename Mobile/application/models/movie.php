@@ -4,7 +4,8 @@ class Movie extends Model {
 	
 	function viewAll()
 	{
-		$allMoviesq = "SELECT 
+		$allMoviesq = "SELECT
+			movieURL,		
 			movieID,
 			movieName,
 			movieIMDB,
@@ -29,6 +30,7 @@ class Movie extends Model {
 	function getMovieWithID($movieID)
 	{
 		$movieq = "SELECT 
+			movieURL,
 			movieID,
 			movieName,
 			movieIMDB,

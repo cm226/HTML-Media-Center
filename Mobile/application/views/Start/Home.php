@@ -1,5 +1,3 @@
-<h2> Start </h2>
-
 <div id="freeDiskSpace"> 	
 	<div  id="imgCont">
 		<img src="../public/img/Home/harddrive100.png"/>
@@ -12,15 +10,13 @@
 	</div>
 
 </div>
+<div id="metaPanel">
 
-<div id="backgroundDisplay" style="display: none;"></div>
-<div id="MoviesTopBox" class="topBox" style="display: none;"></div>
-<div id="MusicTopBox" class="topBox" style="display: none;"></div>
-<div id="PicturesTopBox" class="topBox" style="display: none;"></div>
+
+</div>
 <div id="menuSelection">
 
-
-<div class="tile" onclick="window.location = ('../Movies/viewAll')">
+<div class="topTile" onclick="window.location = ('../Movies/viewAll')">
 Movie
 </div>
 
@@ -36,7 +32,7 @@ TV
 Pictures
 </div>
 
-<div class="tile" onClick="window.location = ('../Admin/Main')">
+<div class="bottomTile" onClick="window.location = ('../Admin/Main')">
 Admin
 </div>
 </div>
