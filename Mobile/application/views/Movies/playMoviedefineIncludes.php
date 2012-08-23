@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_FOLDER;?>/css/MoviesplayMovie.css">
+
 <script type="text/javascript">
 
 	function playMovie(agentIP, movieID)

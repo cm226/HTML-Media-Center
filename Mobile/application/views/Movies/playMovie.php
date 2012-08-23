@@ -7,7 +7,7 @@
 	echo '<p>' .$movie[0]['Movie']['movieIMDB'] . '</p>';?>
 </div>
 
-<div =id="agents">
+<div id="agents">
 <h2> avalable Agents </h2>
 <?php 
 	foreach ($agents as $agent)
