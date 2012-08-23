@@ -11,7 +11,7 @@
 
 </div>
 <div id="metaPanel">
-<div class="clock">
+<div class="metaTile">
    <div id="Date"></div>
       <ul>
           <li id="hours"></li>
@@ -20,6 +20,14 @@
           <li id="point">:</li>
           <li id="sec"></li>
       </ul>
+</div>
+
+<div class="metaTile" id="recentlyAddedTile">
+	<h4> recently added </h4>
+</div>
+
+<div class="metaTile" id="recentlyAddedTile">
+	<h4> currently downloading </h4>
 </div>
 
 </div>

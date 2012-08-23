@@ -63,10 +63,10 @@ border-width: 1px;
 
 .topTile
 {
-	width: 90%;
+	width: 98%;
 	background-color:#1E1E1E;
 	color:white;
-	margin-left: 5%;
+	margin-left: 1%;
 	margin-top:1px;
 	text-align: center;
 	padding-top: 20px;
@@ -90,10 +90,10 @@ border-width: 1px;
 
 .bottomTile
 {
-	width: 90%;
+	width: 98%;
 	background-color:#1E1E1E;
 	color:white;
-	margin-left: 5%;
+	margin-left: 1%;
 	margin-top:1px;
 	text-align: center;
 	padding-top: 20px;
@@ -117,10 +117,10 @@ border-width: 1px;
 
 .tile
 {
-	width: 90%;
+	width: 98%;
 	background-color:#1E1E1E;
 	color:white;
-	margin-left: 5%;
+	margin-left: 1%;
 	margin-top:1px;
 	text-align: center;
 	padding-top: 20px;
@@ -151,17 +151,27 @@ border-width: 1px;
     font-style: normal;
 }
 
-.clock 
+.metaTile 
 {
 width:100%;
-color:#fff; 
+color:white;
+background-color: #1E1E1E;
+border-radius: 20px;
 float: left;
+padding: 10px;
+border-style: solid;
+border-width: 1px;
 }
 
-#Date { font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; font-size:16px; text-align:center; text-shadow:0 0 5px #00c6ff; }
+#recentlyAddedTile
+{
+	margin-top: 30px;
+}
+
+#Date { font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; font-size:16px; text-align:center; text-shadow:0 0 5px black; }
 
 ul { width:100%; margin:0 auto; padding:0px; list-style:none; text-align:center; }
-ul li { display:inline; font-size:2em; text-align:center; font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; text-shadow:0 0 5px #00c6ff; }
+ul li { display:inline; font-size:2em; text-align:center; font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; text-shadow:0 0 5px black; }
 
 #point { position:relative; -moz-animation:mymove 1s ease infinite; -webkit-animation:mymove 1s ease infinite; }
 
