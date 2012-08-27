@@ -5,6 +5,8 @@ require (ROOT . DS . 'scripts' . DS . 'AgentComms' . DS . 'AgientComFunctions.ph
 //exec("cvlc -vvv ".$movie[0]['Movie']['movieURL']." --sout'#standard{access=http,mux=ts,dest=".$_SERVER['SERVER_ADDR'].":8080/current}'");
 echo "cvlc -vvv ".$movie[0]['Movie']['movieURL']." --sout'#standard{access=http,mux=ts,dest=".$_SERVER['SERVER_ADDR'].":8080/current}'";
 
+exec('bash -c "exec nohup setsid cvlc -vvv '.$movie[0]['Movie']['movieURL'].' --sout \'#standard{access=http,mux=ts,dst='.$_SERVER['SERVER_ADDR'].':8080/current}\' > /dev/null 2>&1 &"');
+
 $return = playVideoStream($agentIP,"http://".$_SERVER['SERVER_ADDR'].":8080/current");
 if($return >0)
 {

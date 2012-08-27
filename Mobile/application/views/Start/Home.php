@@ -1,39 +1,30 @@
-<div id="freeDiskSpace"> 	
-	<div  id="imgCont">
-		<img src="../public/img/Home/harddrive100.png"/>
+<div id="topMetaHolder" >
+	<div class="clearfix">
+		<div id="dateHolder">
+		   <div id="Date"></div>
+			  <ul>
+				  <li id="hours"></li>
+				  <li id="point">:</li>
+				  <li id="min"></li>
+			  </ul>
+		</div>
+
+		<div id="recentlyAddedTile">
+			<div id="metaHeading"> Recently Added: </div>
+			<div id="metaValue"> Seether - Remedy</div>
+			<div id="metaValue"> Seether - Remedy</div>
+		</div>
+
+		<div id="CurrentlyDownloadingTile">
+			<div id="metaHeading">Currently Downloading: </div>
+			<div id="metaValue"> </div>
+		</div>
 	</div>
-	<div id="harddrive">
-		
-		<div id="total"> <?php echo $total;?></div>
-		<div id="free">	<?php echo $free;?>	</div>
-
-	</div>
-
-</div>
-<div id="metaPanel">
-<div class="metaTile">
-   <div id="Date"></div>
-      <ul>
-          <li id="hours"></li>
-          <li id="point">:</li>
-          <li id="min"></li>
-          <li id="point">:</li>
-          <li id="sec"></li>
-      </ul>
 </div>
 
-<div class="metaTile" id="recentlyAddedTile">
-	<h4> recently added </h4>
-</div>
-
-<div class="metaTile" id="recentlyAddedTile">
-	<h4> currently downloading </h4>
-</div>
-
-</div>
 <div id="menuSelection">
 
-<div class="topTile" onclick="window.location = ('../Movies/viewAll')">
+<div class="tile" onclick="window.location = ('../Movies/viewAll')">
 Movie
 </div>
 
@@ -49,7 +40,7 @@ TV
 Pictures
 </div>
 
-<div class="bottomTile" onClick="window.location = ('../Admin/Main')">
+<div class="tile" onClick="window.location = ('../Admin/Main')">
 Admin
 </div>
 </div>

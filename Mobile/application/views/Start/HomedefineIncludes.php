@@ -16,12 +16,6 @@ newDate.setDate(newDate.getDate());
 // Output the day, date, month and year   
 $('#Date').html(dayNames[newDate.getDay()] + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + ' ' + newDate.getFullYear());
 
-setInterval( function() {
-	// Create a newDate() object and extract the seconds of the current time on the visitor's
-	var seconds = new Date().getSeconds();
-	// Add a leading zero to seconds value
-	$("#sec").html(( seconds < 10 ? "0" : "" ) + seconds);
-	},1000);
 	
 setInterval( function() {
 	// Create a newDate() object and extract the minutes of the current time on the visitor's
@@ -84,7 +78,7 @@ function musicSearch ()
 {
 	width:70%;
 	margin-left:30%;
-		float:left;
+	float:left;
 		
 }
 
@@ -92,7 +86,6 @@ function musicSearch ()
 {
 	border: solid 1px #000000;
 	width: 50%;
-	position:relative;
 	float:left;
 	margin-top:25px;
 }

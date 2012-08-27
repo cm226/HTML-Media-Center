@@ -1,143 +1,79 @@
-body
+
+
+html
 {
-	background-color:#3a3a3a;
-
-}
-
-#backgroundDisplay {
-	z-index: 10000;
-	filter: alpha(opacity=50); /*older IE*/
-	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50); /* IE */
-	-moz-opacity: .50; /*older Mozilla*/
-	-khtml-opacity: 0.5;   /*older Safari*/
-	opacity: 0.5;   /*supported by current Mozilla, Safari, and Opera*/
+	background-image:url('../img/Home/Dark Wood HP9 (6).jpg');
+	background-repeat:repeat;
 	background-color:#000000;
-	position:fixed;
-	top:0px;
-	left:0px;
-	width:100%;
-	height:100%;
-	text-align:center;
-	vertical-align:middle;
 }
 
-#imgCont
+#topMetaHolder
 {
-float:left;
-position:relative;
+	width: 90%;
+	margin-left: 5%;
+	height: 30%;
+}
+.clearfix:after{
+  clear: both;
+  display: block;
+  height: 0;
+  font-size: 0;
 }
 
-#innerTable {
-	position:fixed;
-	z-index: 10001;
-	width: 70%;
-	height: 300px;
-	background-color:#C1C1C1;
-	margin: 100px 15%;
-}
-
-#backLink 
+#dateHolder
 {
-    position:absolute;
-    bottom:0;
+	float: left;
+	width: 20%;
+	color: white;
 }
 
-#metaPanel
+#recentlyAddedTile
 {
-	float :left;
-	width:20%;
+	color: white;
+	width:40%;
+	float: left;
+}
+
+#metaHeading
+{
+font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif;
+ font-size:16px;
+ text-align:left;
+}
+
+#metaValue
+{
+	padding-left: 5em;
+}
+
+#CurrentlyDownloadingTile
+{
+	color: white;
+	width:40%;
+	float: left;
 }
 
 #menuSelection
 {
-padding-top: 20px;
-padding-bottom: 20px;
-float: right;
-width: 70%;
-background-color:#EAEAEA;
-border-radius: 20px;
-border-style: solid;
-border-width: 1px;
-
-}
-
-.topTile
-{
-	width: 98%;
-	background-color:#1E1E1E;
-	color:white;
-	margin-left: 1%;
-	margin-top:1px;
-	text-align: center;
-	padding-top: 20px;
-	padding-bottom: 20px;
-
-	border-style:solid;
-	border-width: 1px;
-	border-color:white;
-	
-	border-top-left-radius:20px;
-	border-top-right-radius:20px;
-	
-	font-weight:normal;
-	color:#FFFFFF;
-	letter-spacing:1pt;
-	word-spacing:2pt;
-	font-size:17px;
-	font-family:arial black, sans-serif;
-	line-height:1;
-}
-
-.bottomTile
-{
-	width: 98%;
-	background-color:#1E1E1E;
-	color:white;
-	margin-left: 1%;
-	margin-top:1px;
-	text-align: center;
-	padding-top: 20px;
-	padding-bottom: 20px;
-
-	border-style:solid;
-	border-width: 1px;
-	border-color:white;
-	
-	border-bottom-left-radius:20px;
-	border-bottom-right-radius:20px;
-	
-	font-weight:normal;
-	color:#FFFFFF;
-	letter-spacing:1pt;
-	word-spacing:2pt;
-	font-size:17px;
-	font-family:arial black, sans-serif;
-	line-height:1;
+	width: 100%;
+	position: absolute;
+    bottom: 0px;
+	left: 0px;
+	height: 70%;
 }
 
 .tile
 {
-	width: 98%;
-	background-color:#1E1E1E;
+	width:100%;
+	background-image:url('../../public/img/Home/menuSelectionGradient.png');
+	background-repeat: repeat-x;
+	background-size:100% 100%;
 	color:white;
-	margin-left: 1%;
-	margin-top:1px;
 	text-align: center;
-	padding-top: 20px;
-	padding-bottom: 20px;
-
-	border-style:solid;
-	border-width: 1px;
-	border-color:white;
+	height: 20%;
 	
-	font-weight:normal;
-	color:#FFFFFF;
-	letter-spacing:1pt;
-	word-spacing:2pt;
-	font-size:17px;
-	font-family:arial black, sans-serif;
-	line-height:1;
 }
+
 
 /* If you want you can use font-face */
 @font-face {
@@ -151,27 +87,13 @@ border-width: 1px;
     font-style: normal;
 }
 
-.metaTile 
-{
-width:100%;
-color:white;
-background-color: #1E1E1E;
-border-radius: 20px;
-float: left;
-padding: 10px;
-border-style: solid;
-border-width: 1px;
-}
 
-#recentlyAddedTile
-{
-	margin-top: 30px;
-}
 
-#Date { font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; font-size:16px; text-align:center; text-shadow:0 0 5px black; }
 
-ul { width:100%; margin:0 auto; padding:0px; list-style:none; text-align:center; }
-ul li { display:inline; font-size:2em; text-align:center; font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; text-shadow:0 0 5px black; }
+#Date { font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; font-size:12px; text-align:left; text-shadow:0 0 5px black; }
+
+ul {width:100%; margin:0 auto; padding:0px; list-style:none; text-align:left; }
+ul li { display:inline; font-size:20px; text-align:left; font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; text-shadow:0 0 5px black; }
 
 #point { position:relative; -moz-animation:mymove 1s ease infinite; -webkit-animation:mymove 1s ease infinite; }
 
