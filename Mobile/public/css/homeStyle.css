@@ -1,12 +1,4 @@
 
-
-html
-{
-	background-image:url('../img/Home/Dark Wood HP9 (6).jpg');
-	background-repeat:repeat;
-	background-color:#000000;
-}
-
 #topMetaHolder
 {
 	width: 90%;
@@ -71,8 +63,18 @@ font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif;
 	color:white;
 	text-align: center;
 	height: 20%;
+	font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif;
+	font-size:20px;
 	
 }
+
+.tile p
+{
+padding: 0;
+margin: 0;
+vertical-align:middle;
+}
+
 
 
 /* If you want you can use font-face */

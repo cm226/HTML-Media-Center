@@ -1,7 +1,10 @@
-body
-{
-	background-color:#3a3a3a;
 
+
+html
+{
+	background-image:url('../img/Home/Dark Wood HP9 (6).jpg');
+	background-repeat:repeat;
+	background-color:#000000;
 }
 
 #header

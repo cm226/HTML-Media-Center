@@ -1,8 +1,4 @@
-body
-{
-	background-image: url('../img/Movie/my.jpg');
-	background-color: black;
-}
+
 
 .movieElement
 {
@@ -11,7 +7,7 @@ body
 	text-align: left;
 	font-size: 10px;
 	background-color: grey;
-	background: rgba(255, 255, 255, 0.5);
+	background: rgba(255, 255, 255, 0.2);
 }
 
 .movieImg
@@ -25,9 +21,6 @@ body
 	float: right;
 
 }
-
-
-
 .movieElement h4
 {
 	font-size: 12px;

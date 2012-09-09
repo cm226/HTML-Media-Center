@@ -29,18 +29,18 @@ Movie
 </div>
 
 <div class="tile" onclick="window.location = ('../Music/viewAll')">
-Music
+<p>Music</p>
 </div>
 
 <div class="tile" onClick="window.location = ('../TV/viewAll')">
-TV
+<p>TV</p>
 </div>
 
 <div class="tile" onClick="window.location = ('../Pictures/albums')">
-Pictures
+<p>Pictures</p>
 </div>
 
 <div class="tile" onClick="window.location = ('../Admin/Main')">
-Admin
+<p>Admin</p>
 </div>
 </div>

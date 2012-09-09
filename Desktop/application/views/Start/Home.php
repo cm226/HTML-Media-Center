@@ -1,6 +1,5 @@
 
 <div id="leftPanel" onclick="window.location = '<?php echo PUBLIC_FOLDER.'/../'; ?>';">
-
 <div id="freeDiskSpace"> 	
 	
 	<div id="harddrive">
