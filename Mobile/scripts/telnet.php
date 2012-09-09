@@ -17,6 +17,7 @@ function telnet_vlc_addmedia($videoName, $videoURL,$password, $hostIP)
 	for($i = 0; $i <=1; $i++)
 	{
 		  $line = fgets($socket, 1024);
+		  echo "socket Text: ".$line."\n";
 			// Code to deal with the output.
 			switch($line)
 			 {
@@ -32,10 +33,16 @@ function telnet_vlc_addmedia($videoName, $videoURL,$password, $hostIP)
 			  // do nothing
 		   }
 	   }
-	   
+	   echo "socket Text: ".$line."\n";
 	   fputs($socket,"new $videoName vod enabled \r\n");
+	   $line = fgets($socket, 1024);
+	   	   echo "socket Text: ".$line."\n";
 	   fputs($socket,"setup $videoName intput $videoURL");
+	   $line = fgets($socket, 1024);
+	   	   echo "socket Text: ".$line."\n";
 	   fputs($socket,"setup $videoName output  #standard{access=http,mux=ts,dst=$hostIP:8080/$videoName}");
+	   $line = fgets($socket, 1024);
+	   	   echo "socket Text: ".$line."\n";
 	   
 	   fclose ($socket);
 	 
