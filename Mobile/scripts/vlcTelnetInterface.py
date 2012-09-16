@@ -4,6 +4,7 @@ import sys
 #command args
 #-add <video name> <video url>
 
+#remeber and make this script NOT a total frig later craig.....
 def addVideo(name, url):
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)

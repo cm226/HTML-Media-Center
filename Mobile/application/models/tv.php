@@ -23,6 +23,7 @@ class Tv extends Model {
 	function seasonEpisodes ($series,$season)
 	{
 		$seasonEpisodesq = "SELECT
+								episodeID,
 								episodeNumber,
 								episodeName,
 								episodeLength,
@@ -40,11 +41,25 @@ class Tv extends Model {
 	function getEpisodeURL($episodeName)
 	{
 		
-		$urlQueery = 'SELECT filePath FROM Episode WHERE episodeName = "' . $episodeName. '"';
-		
-		echo $urlQueery;
+		$urlQueery = 'SELECT episodeNumber FROM Episode WHERE episodeName = "' . $episodeName. '"';
 		
 		$urlResult = $this->query($urlQueery);
 		return $urlResult;
+	}
+	
+	function getEpisodeWithID($episode)
+	{
+		$queery = "SELECT episodeID,
+							episodeName,
+							episodeLength,
+							episodePlayCount,
+							filePath
+					FROM 
+						Episode
+					WHERE
+						episodeNumber = ".$episode."";
+						
+		$result = $this->query($queery);
+		return $result;		
 	}
 }

@@ -1,0 +1,40 @@
+#remote
+{
+	position: fixed;
+	top:0px;
+	bottom:0px;
+	left:0px;
+	right:0px;	
+}
+
+#playbackControl
+{
+	width: 100%;
+	float: left;
+
+}
+
+#seek
+{
+	width: 100%;
+	float: left;
+}
+
+#Volume
+{
+	width: 100%;
+	float: left;
+}
+
+.threePartElement
+{
+	float: left;
+	width:33%;
+}
+
+.twoPartElement
+{
+	float: left;
+	width:50%;
+}
+

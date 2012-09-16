@@ -1,6 +1,33 @@
-<embed type="application/x-vlc-plugin" pluginspage="http://www.videolan.org" version="VideoLAN.VLCPlugin.2" name="VLC" autoplay="yes" loop="no" volume="100" width="640" height="480" target="../../<?php echo str_replace(" ", SPACE_CHAR, $URL[0]['Episode']['filePath']); ?>">
-<a href="javascript:;" onclick='document.video1.play()'>Play</a>
-<a href="javascript:;" onclick='document.video1.pause()'>Pause</a>
-<a href="javascript:;" onclick='document.video1.stop()'>Stop</a>
-<a href="javascript:;" onclick='document.video1.fullscreen()'>Fullscreen</a>
-</embed>
+<?php
+//require (ROOT . DS . 'application' . DS . 'views' . DS . 'Shared'.DS. 'RemoteControl.php');
+
+//../../<?php echo str_replace(" ", SPACE_CHAR, $URL[0]['Episode']['filePath']);
+?>
+
+<div id="episode">
+<div id="episodename"> <?php echo $URL[0]['Episode']['episodeName']?></div>
+<div id="episodeplayCount"> <?php echo $URL[0]['Episode']['episodePlayCount']?></div>
+<div id="episodeLength"> <?php echo $URL[0]['Episode']['episodeLength']?></div>
+</div>
+
+<div id="avalableAgents">
+	<div id="agentsHeader">
+		Avalable Agents
+	</div>
+	<?php 
+		foreach ($Agents as $agent)
+		{
+			?>
+			
+			<div id="agent" onclick="playMovie(<?php echo "'".$agent["IP"]."', '".$URL[0]['Episode']['episodeID']."'"?>);">
+				<?php echo $agent['Name'];?>
+				<?php echo $agent['Location'];?>
+			</div>
+			
+			<?php
+		}
+	?>
+</div>
+
+<div id="replyDiv">
+</div>

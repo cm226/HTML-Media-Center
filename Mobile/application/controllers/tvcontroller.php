@@ -28,8 +28,15 @@ class TVController extends Controller
 
 	}
 	
-	function viewEpisode($EpisodeName)
+	function viewEpisode($EpisodeID)
 	{
-		$this->set('URL',$this->TV->getEpisodeURL($EpisodeName));
+		$this->set('URL',$this->TV->getEpisodeWithID($EpisodeID));
+		$this->set('Agents',array(array("IP"=>"192.168.0.198","Location"=>"LivingRoom","Name"=>"TV")));
+	}
+	
+	function requestAgentPlayTV($agentIP, $movieID)
+	{
+		$this->set('agentIP',$agentIP);
+		$this->set('tv',$this->TV->getEpisodeWithID($movieID));
 	}
 }

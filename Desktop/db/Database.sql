@@ -68,7 +68,7 @@ thumbnailURL VARCHAR(256)
 CREATE TABLE Series
 (
 seriesName VARCHAR(40) PRIMARY KEY,
-seriesIMDB VARCHAR(40) NOT NULL,
+seriesIMDB INT NOT NULL,
 seriesDate YEAR NOT NULL,
 seriesGenre VARCHAR(40) NOT NULL
 );
@@ -83,12 +83,13 @@ FOREIGN KEY (seriesName) REFERENCES Series (seriesName)
 
 CREATE TABLE Episode
 (
-episodeName VARCHAR(40) PRIMARY KEY,
+episodeID INT PRIMARY KEY AUTO_INCREMENT,
+episodeNumber INT,
+episodeName VARCHAR(256) ,
 episodeLength TIME NOT NULL,
 episodePlayCount INT(3) NOT NULL,
 seasonID INT NOT NULL,
 filePath VARCHAR(256) NOT NULL,
-episodeNumber INT NOT NULL,
 FOREIGN KEY (seasonID) REFERENCES Season (seasonID)
 );
 
@@ -106,18 +107,6 @@ CREATE TABLE Picture
 );
 
 
-/*
-DELIMITER $$ 
-CREATE PROCEDURE OrganiseEpisodes(seriesName varchar(40))
-BEGIN
-	DECLARE numOfSeasons INT Default 0;
-	SET numOfSeasons = 
-END$$
-
-DELIMITER ;
-
---finish this later its a proceedure to organise the eppisedes into collumns for each season
-*/
 
 
 

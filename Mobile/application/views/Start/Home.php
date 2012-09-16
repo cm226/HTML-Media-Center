@@ -8,17 +8,6 @@
 				  <li id="min"></li>
 			  </ul>
 		</div>
-
-		<div id="recentlyAddedTile">
-			<div id="metaHeading"> Recently Added: </div>
-			<div id="metaValue"> Seether - Remedy</div>
-			<div id="metaValue"> Seether - Remedy</div>
-		</div>
-
-		<div id="CurrentlyDownloadingTile">
-			<div id="metaHeading">Currently Downloading: </div>
-			<div id="metaValue"> </div>
-		</div>
 	</div>
 </div>
 
