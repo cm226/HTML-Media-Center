@@ -1,0 +1,17 @@
+/*
+ * IContainer.cpp
+ *
+ *  Created on: Sep 18, 2012
+ *      Author: craig
+ */
+
+#include "IContainer.h"
+
+IContainer::IContainer() {
+	// TODO Auto-generated constructor stub
+
+}
+
+IContainer::~IContainer() {
+	// TODO Auto-generated destructor stub
+}
