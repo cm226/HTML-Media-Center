@@ -12,10 +12,13 @@
 
 class IElement {
 
-	std::string name;
 public:
 	IElement(std::string name);
+
+	virtual std::string getText() = 0;
 	virtual ~IElement();
+
+	std::string name;
 };
 
 #endif /* IELEMENT_H_ */

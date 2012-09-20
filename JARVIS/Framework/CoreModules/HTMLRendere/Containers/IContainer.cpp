@@ -7,7 +7,7 @@
 
 #include "IContainer.h"
 
-IContainer::IContainer() {
+IContainer::IContainer(std::string name) : IElement(name) {
 	// TODO Auto-generated constructor stub
 
 }

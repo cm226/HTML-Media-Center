@@ -8,11 +8,13 @@
 #ifndef TEXTBOX_H_
 #define TEXTBOX_H_
 
-#include "IElement.h"
+#include "../IElement.h"
 
 class TextBox: public IElement {
 public:
 	TextBox(std::string name);
+
+	std::string getText();
 	virtual ~TextBox();
 };
 

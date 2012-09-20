@@ -8,12 +8,17 @@
 #include "Lable.h"
 
 using namespace std;
-Lable::Lable(string name)
-	: base(name) {
+Lable::Lable(string name): IElement(name)
+{
 	// TODO Auto-generated constructor stub
 
 }
 
 Lable::~Lable() {
 	// TODO Auto-generated destructor stub
+}
+
+std::string Lable::getText()
+{
+	return std::string("<p name="+this->name+" />");
 }

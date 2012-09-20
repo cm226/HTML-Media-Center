@@ -7,9 +7,8 @@
 
 #include "Plugin.h"
 
-Plugin::Plugin() {
-	// TODO Auto-generated constructor stub
-
+Plugin::Plugin(JARVISFramework* framework) {
+	this->frameWork = framework;
 }
 
 Plugin::~Plugin() {

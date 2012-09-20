@@ -8,11 +8,13 @@
 #ifndef LABLE_H_
 #define LABLE_H_
 
-#include "IElement.h"
+#include "../IElement.h"
 
 class Lable: public IElement {
 public:
 	Lable(std::string name);
+
+	std::string getText();
 	virtual ~Lable();
 };
 

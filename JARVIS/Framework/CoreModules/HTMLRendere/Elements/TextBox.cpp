@@ -9,10 +9,15 @@
 
 using namespace std;
 
-TextBox::TextBox(string name) : base(name) {
+TextBox::TextBox(string name) : IElement(name) {
 
 }
 
 TextBox::~TextBox() {
 
+}
+
+std::string TextBox::getText()
+{
+	return std::string("<input name="+this->name+" />");
 }

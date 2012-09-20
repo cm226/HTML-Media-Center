@@ -11,8 +11,13 @@
 #include "../FrameWork.h"
 
 class Plugin {
+
+	JARVISFramework* frameWork;
+
 public:
 	Plugin(JARVISFramework* framework);
+
+	virtual bool whatDoYouLookLike(Page*) = 0;
 	virtual ~Plugin();
 
 };

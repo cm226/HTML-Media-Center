@@ -8,15 +8,18 @@
 #ifndef ICONTAINER_H_
 #define ICONTAINER_H_
 
-#include "../IElement.h";
+#include "../IElement.h"
 
-class IContainer : IElement{
+#include <vector>
+
+class IContainer : public IElement{
+
 public:
-	IContainer();
+	IContainer(std::string name);
 	virtual ~IContainer();
 
-	virtual void addElement(IElement element);
-	virtual void removeElement(IElement element);
+	virtual void addElement(IElement* element) = 0;
+	virtual void removeElement(IElement* element) =0;
 
 
 };
