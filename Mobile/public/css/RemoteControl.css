@@ -13,6 +13,10 @@
 	float: left;
 
 }
+#replyDiv
+{
+	float: right;
+}
 
 #seek
 {
@@ -29,12 +33,10 @@
 .threePartElement
 {
 	float: left;
-	width:33%;
 }
 
 .twoPartElement
 {
 	float: left;
-	width:50%;
 }
 

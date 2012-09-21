@@ -57,7 +57,7 @@ class Tv extends Model {
 					FROM 
 						Episode
 					WHERE
-						episodeNumber = ".$episode."";
+						episodeID = ".$episode."";
 						
 		$result = $this->query($queery);
 		return $result;		

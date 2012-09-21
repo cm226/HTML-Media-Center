@@ -7,7 +7,7 @@ if ($return == 1) {
 	
 }
 
-exec('python '.ROOT . DS . 'scripts' . DS .'vlcTelnetInterface.py -add current \''.$movie[0]['Movie']['movieURL'].'\'');
+exec('python '.ROOT . DS . 'scripts' . DS .'vlcTelnetInterface.py -add current \''.PUBLIC_FOLDER.$movie[0]['Movie']['movieURL'].'\'');
 $return = playVideoStream($agentIP,"http://".$_SERVER['SERVER_ADDR'].":8080/current");
 
 if($return >0)

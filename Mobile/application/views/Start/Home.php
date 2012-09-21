@@ -1,5 +1,8 @@
 <div id="topMetaHolder" >
 	<div class="clearfix">
+		<div id="remoteHolder" onclick="window.location = '../Shared/RemoteControl';">
+			<img src="<?php echo PUBLIC_FOLDER; ?>/img/Home/remote-Icon.png" />
+		</div>
 		<div id="dateHolder">
 		   <div id="Date"></div>
 			  <ul>

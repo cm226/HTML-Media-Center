@@ -15,8 +15,13 @@
 #dateHolder
 {
 	float: left;
-	width: 100%;
+	width: 90%;
 	color: white;
+}
+#remoteHolder
+{
+	float: right;
+	width:10%;
 }
 
 #recentlyAddedTile
