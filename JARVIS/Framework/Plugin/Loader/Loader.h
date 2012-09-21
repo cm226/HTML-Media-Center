@@ -9,15 +9,21 @@
 #define LOADER_H_
 
 #include <string>
+#include <vector>
+
+#include "../Plugin.h"
 
 class Loader {
+private:
+	std::string pluginDir;
+
+
 public:
 	Loader(std::string fileDir);
 
-	bool loadPlugin(std::string pluginName);
+	bool loadPlugin(std::string pluginName, Plugin* loadedPlugin);
 
-	void listPlugins(std::string* outBuffer, int outBufferSize);
-	int numOfPlugins();
+	void listPlugins(std::vector<std::string>* outBuffer);
 
 	virtual ~Loader();
 };
