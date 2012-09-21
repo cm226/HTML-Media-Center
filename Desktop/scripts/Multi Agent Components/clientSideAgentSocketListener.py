@@ -34,7 +34,7 @@ while(1):
 		if(canRanderFactory(splitData[0],splitData[1])):
 			socketConnection.send("PLAY_STREAM_REPLY,OK")
 			rendererFactory(splitData[0],splitData[1],conn)
-		else
+		else:
 			socketConnection.send("PLAY_STREAM_REPLY,FAIL")
 		
 					
