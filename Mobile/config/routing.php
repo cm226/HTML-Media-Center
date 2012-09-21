@@ -6,3 +6,4 @@ $routing = array(
 
 $default['controller'] = 'start';
 $default['action'] = 'home';
+$GLOBALS['ignoreHeader'] = array('viewPlayer','getArtistAlbums','getArtistBackgrounds','Play');
