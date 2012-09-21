@@ -75,7 +75,7 @@ def addVideo(name, url):
 	print s.recv(1024);
 
 
-	s.send("setup "+name+" output #standard{access=http,mux=ts,dst=192.168.0.199:8080/"+name+"}\r\n")
+	s.send("setup "+name+" output #standard{access=http,mux=ts,dst=192.168.0.104:8080/"+name+"}\r\n")
 	print s.recv(1024);
 	print s.recv(1024);
 
@@ -88,15 +88,15 @@ def addVideo(name, url):
 
 if sys.argv[1] == '-add': 
         addVideo(sys.argv[2],sys.argv[3])
-else if sys.argv[1] == '-pause':
+elif sys.argv[1] == '-pause':
         pauseVideo(sys.argv[2])
-else if sys.argv[1] == '-stop':
+elif sys.argv[1] == '-stop':
         stopVideo(sys.argv[2])
-else if sys.argv[1] == '-play':
+elif sys.argv[1] == '-play':
         playVideo(sys.argv[2])
-else if sys.argv[1] == '-remove':
+elif sys.argv[1] == '-remove':
         remove(sys.argv[2])
-else if sys.argv[1] == '-removeAll':
+elif sys.argv[1] == '-removeAll':
         removeAll()
 
         

@@ -21,7 +21,7 @@ class Movie extends Model {
 	
 	function getVideoAgents()
 	{
-		$Agents = array(array("IP"=>"192.168.0.198","Location"=>"LivingRoom","Name"=>"TV"));
+		$Agents = array(array("IP"=>"192.168.0.100","Location"=>"LivingRoom","Name"=>"TV"));
 		//$Agents = array(array("IP"=>"127.0.0.1","Location"=>"LivingRoom","Name"=>"TV"));
 		return $Agents;
 	}
