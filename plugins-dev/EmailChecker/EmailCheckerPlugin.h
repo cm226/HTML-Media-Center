@@ -8,11 +8,11 @@
 #ifndef EMAILCHECKERPLUGIN_H_
 #define EMAILCHECKERPLUGIN_H_
 
-#include "../../Framework/Plugin/Plugin.h"
+#include "../../JARVIS/Framework/Plugin/Plugin.h"
 
 class EmailCheckerPlugin : public Plugin{
 public:
-	EmailCheckerPlugin(JARVISFramework* framework);
+	EmailCheckerPlugin(CoreModules* framework);
 	virtual bool whatDoYouLookLike(Page*);
 	virtual ~EmailCheckerPlugin();
 };

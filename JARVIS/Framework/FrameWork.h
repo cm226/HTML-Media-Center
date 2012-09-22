@@ -8,13 +8,14 @@
 #ifndef FRAMEWORK_H_
 #define FRAMEWORK_H_
 
-#include "CoreModules/HTMLRendere/Page.h"
-
+#include "CoreModules/CoreModules.h"
+#include "Plugin/Loader/Loader.h"
 
 class JARVISFramework
-
 {
-
+public:
+	JARVISFramework();
+	virtual ~JARVISFramework(){}
 
 };
 

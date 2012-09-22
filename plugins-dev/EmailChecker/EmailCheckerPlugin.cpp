@@ -9,17 +9,20 @@
 
 #include <stdio.h>
 
-EmailCheckerPlugin::EmailCheckerPlugin(JARVISFramework* framework): Plugin(framework) {
+EmailCheckerPlugin::EmailCheckerPlugin(CoreModules* framework): Plugin(framework)
+{
 	// TODO Auto-generated constructor stub
 
 }
 
-EmailCheckerPlugin::~EmailCheckerPlugin() {
+EmailCheckerPlugin::~EmailCheckerPlugin()
+{
 	// TODO Auto-generated destructor stub
 }
 
 bool EmailCheckerPlugin::whatDoYouLookLike(Page* page)
 {
-	printf("IT WORKED");
+	//Lable lable("name");
+	//page->addElement(&lable);
 	return true;
 }

@@ -7,6 +7,7 @@
 
 #include "ErrorLogger.h"
 #include <stdio.h>
+#include <iostream>
 
 ErrorLogger::ErrorLogger() {
 	// TODO Auto-generated constructor stub
@@ -19,5 +20,6 @@ ErrorLogger::~ErrorLogger() {
 
 void ErrorLogger::logError(std::string message)
 {
-	printf(message.c_str());
+	std::cerr << message << std::endl;
+	//printf(message.c_str());
 }

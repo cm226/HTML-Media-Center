@@ -7,8 +7,8 @@
 
 #include "Plugin.h"
 
-Plugin::Plugin(JARVISFramework* framework) {
-	this->frameWork = framework;
+Plugin::Plugin(CoreModules* coreMod) {
+	this->coreMod = coreMod;
 }
 
 Plugin::~Plugin() {

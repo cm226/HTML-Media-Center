@@ -1,4 +1,7 @@
 #include "Plugin.h"
 
-Plugin* makePlugin(JARVISFramework* framework);
-bool releasePlugin(Plugin* plugin);
+extern"C"
+{
+	Plugin* makePlugin(CoreModules* framework);
+	bool releasePlugin(Plugin* plugin);
+}

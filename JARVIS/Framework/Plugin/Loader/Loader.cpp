@@ -7,30 +7,56 @@
 
 #include "Loader.h"
 
-#include "../../Errors/ErrorLogger.h"
+#include "../../CoreModules/Errors/ErrorLogger.h"
 #include <sys/types.h>
 #include <dirent.h>
+#include <dlfcn.h>
+#include <string>
 
-Loader::Loader(std::string pluginDir) {
+#include "../IPluginDLLFactory.h"
+
+typedef void* (*arbitrary)(CoreModules*); // need to read up on my c++ to get this to work proper
+typedef bool (*unload)(Plugin*);
+
+Loader::Loader(std::string pluginDir)
+{
 	this->pluginDir = pluginDir;
 }
 
-Loader::~Loader() {
-	// TODO Auto-generated destructor stub
+Loader::~Loader()
+{
 }
 
-bool Loader::loadPlugin(std::string pluginName, Plugin* loadedPlugin)
+bool Loader::loadPlugin(std::string pluginName, Plugin** loadedPlugin, CoreModules* context)
 {
-	/*void *hndl = dlopen("libnewshapes.so", RTLD_NOW);
+	const char* libfileName = this->pluginDir.append("/").append(pluginName).append(".so").c_str();
+
+	void *hndl = dlopen(libfileName, RTLD_NOW);
+	arbitrary factoryFunc;
 
 	if(hndl == NULL)
 	{
-		ErrorLogger::logError("Error Loading plugin: "+dlerror());
+		ErrorLogger::logError(std::string("Error Loading plugin: ").append(dlerror()));
+		return false;
 	}
-	void *mkr = dlsym(hndl, "maker");
-	loadedPlugin= static_cast<Plugin *()>(mkr)();*/
 
+	*(void**)(&factoryFunc) = dlsym(hndl,"makePlugin");
+
+	*loadedPlugin= static_cast<Plugin*>(factoryFunc(context));
+	this->dllHandlPluginMap[*loadedPlugin] = hndl;
 	return true;
+}
+
+bool Loader::unloadPlugin(Plugin* plugin)
+{
+	if(this->dllHandlPluginMap.find(plugin) == this->dllHandlPluginMap.end())
+		return false;
+
+	void* handl = this->dllHandlPluginMap[plugin];
+	unload unloadFunc;
+	*(void**)(&unloadFunc) = dlsym(handl,"releasePlugin");
+	return unloadFunc(plugin);
+
 }
 
 void Loader::listPlugins(std::vector<std::string>* outBuffer)

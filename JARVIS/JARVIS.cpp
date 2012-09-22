@@ -2,13 +2,10 @@
 #include <stdio.h>
 
 
-#include "Framework/Plugin/Loader/Loader.h"
+#include "Framework/FrameWork.h"
 int main()
 {
-	Loader pluginLoader("/home/craig/workspace/HTML-Media-Center/JARVIS/Plugins");
-
-	std::vector<std::string> files;
-	pluginLoader.listPlugins(&files);
+	JARVISFramework framework;
 
 
 	return 0;
