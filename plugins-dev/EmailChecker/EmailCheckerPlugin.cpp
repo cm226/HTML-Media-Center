@@ -22,7 +22,19 @@ EmailCheckerPlugin::~EmailCheckerPlugin()
 
 bool EmailCheckerPlugin::whatDoYouLookLike(Page* page)
 {
-	//Lable lable("name");
-	//page->addElement(&lable);
+	Form* form = new Form("Form");
+
+	Lable* lable = new Lable ("name");
+	lable->setText("Email Address:");
+
+	TextBox* emailAddres = new TextBox("email");
+	FormSubmit* submitBttn = new FormSubmit("Submit");
+
+	form->addElement(lable);
+	form->addElement(emailAddres);
+	form->addElement(submitBttn);
+
+	page->addElement(form);
+
 	return true;
 }
