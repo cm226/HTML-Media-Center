@@ -19,5 +19,5 @@ TextBox::~TextBox() {
 
 std::string TextBox::getText()
 {
-	return std::string("<input name="+this->name+" type=\"text\"" />");
+	return std::string("<input name="+this->name+" type=\"text\" />");
 }

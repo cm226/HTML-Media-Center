@@ -17,6 +17,15 @@ public:
 	JARVISFramework();
 	virtual ~JARVISFramework(){}
 
+	void testPlugins();
+	void testEvents();
+
+};
+
+class listenerClass
+{
+public:
+	bool testHandler(int i);
 };
 
 #endif /* FRAMEWORK_H_ */

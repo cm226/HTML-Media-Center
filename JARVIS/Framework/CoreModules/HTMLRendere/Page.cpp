@@ -22,10 +22,19 @@ void Page::addElement(IElement* element)
 
 void Page::freePage()
 {
+	int test = this->elements.size();
+
+	IElement* prev = NULL;
 	for(std::vector<IElement*>::iterator it =  this->elements.begin(); it != this->elements.end(); it++)
 	{
-		delete *it;
+		if(prev != NULL)
+			delete prev;
+
+		prev = *it;
 	}
+
+	if(prev != NULL)
+		delete prev;
 }
 
 void Page::buildPage(std::string* page)

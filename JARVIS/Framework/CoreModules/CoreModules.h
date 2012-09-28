@@ -9,6 +9,7 @@
 #define COREMODULES_H_
 
 #include "HTMLRendere/HTMLRendere.h"
+#include "EventModel/EventModel.h"
 
 class CoreModules {
 public:

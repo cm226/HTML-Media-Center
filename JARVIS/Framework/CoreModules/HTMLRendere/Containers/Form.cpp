@@ -13,7 +13,11 @@ Form::Form(std::string name) : IContainer(name) {
 }
 
 Form::~Form() {
-	// TODO Auto-generated destructor stub
+	for(std::vector<IElement*>::iterator it = elements.begin(); it != elements.end(); ++it)
+	{
+		delete *it;
+
+	}
 }
 
 void Form::addElement(IElement* element)

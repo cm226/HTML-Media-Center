@@ -6,7 +6,7 @@
 int main()
 {
 	JARVISFramework framework;
-
+	framework.testEvents();
 
 	return 0;
 }
