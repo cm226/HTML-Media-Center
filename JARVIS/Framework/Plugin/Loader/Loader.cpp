@@ -25,6 +25,11 @@ Loader::Loader(std::string pluginDir)
 
 Loader::~Loader()
 {
+	// cleanup loaded plugins
+	for(std::map<Plugin*,void *>::iterator it = this->dllHandlPluginMap.begin(); it != this->dllHandlPluginMap.end(); it++)
+	{
+		this->unloadPlugin(it->first);
+	}
 }
 
 bool Loader::loadPlugin(std::string pluginName, Plugin** loadedPlugin, CoreModules* context)
@@ -74,5 +79,12 @@ void Loader::listPlugins(std::vector<std::string>* outBuffer)
 	    }
 	    closedir(dp);
 	    return;
+}
 
+void Loader::listLoadedPlugins(std::vector<std::string>* outBuffer)
+{
+	for(std::map<Plugin*,void *>::iterator it = this->dllHandlPluginMap.begin(); it != this->dllHandlPluginMap.end(); it++)
+	{
+		outBuffer->push_back((*it).first->pluginName());
+	}
 }

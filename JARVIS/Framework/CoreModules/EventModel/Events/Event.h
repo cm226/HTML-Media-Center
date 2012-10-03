@@ -9,7 +9,9 @@
 #define EVENT_H_
 
 #include <map>
+#include <vector>
 #include "../EventHandler/EventHandler.h"
+
 
 	typedef int CppEventHandler;
 
@@ -47,15 +49,15 @@ public:
 		return true;
 	}
 
-	ReturnT notify(ParamT param)
+	void notify(ParamT param, std::vector<ReturnT>* retVals)
 	{
 		typename HandlersMap::iterator it = handlers.begin();
 		for(; it != handlers.end(); it++)
 		{
-			it->second->notify(param);
+			retVals->push_back(it->second->notify(param));
 		}
 
-		return true;
+		return;
 	}
 
 };

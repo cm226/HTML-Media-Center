@@ -9,17 +9,19 @@
 #define TCPTRANSEVER_H_
 
 #include "AbstractTransever.h"
+#include <boost/asio.hpp>
 
-class TCPTransever : AbstractTransever {
+class TCPTransever : public AbstractTransever {
 public:
 	static const int PORT = 46000;
+	boost::asio::io_service io_service;
 
-		int socketFd, newSocketFd, portNo;
 
 	TCPTransever();
 	virtual ~TCPTransever();
 
-	virtual bool startComms(int port);
+
+	virtual int listenForConnection(int timeout);
 };
 
 #endif /* TCPTRANSEVER_H_ */

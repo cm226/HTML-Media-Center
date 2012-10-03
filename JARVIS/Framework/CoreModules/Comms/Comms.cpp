@@ -7,28 +7,46 @@
 
 
 #include "Comms.h"
+#include "Transever/TCPTransever.h"
 
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <boost/thread.hpp>
 
 
 
 Comms::Comms() {
-
-
+	this->transever = new TCPTransever();
+	this->PORT = 40051;
+	this->listening = false;
 }
 
 Comms::~Comms() {
-	// TODO Auto-generated destructor stub
+	delete this->transever;
 }
 
 void Comms::startComms()
 {
+	this->listening = true;
 
+	boost::thread listenForConnectionThread(boost::bind(&Comms::connectionListener, this));
+
+}
+
+void Comms::stopComms()
+{
+	this->listening = false;
+}
+
+void Comms::connectionListener()
+{
+	while(this->listening)
+	{
+		int haveConnection = this->transever->listenForConnection(5);
+		if(haveConnection)
+		{
+
+		}
+
+	}
 }
 
 

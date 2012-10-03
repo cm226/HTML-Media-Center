@@ -11,14 +11,23 @@
 #include <string>
 #include "../Errors/ErrorLogger.h"
 
-class Comms {
+#include "Transever/AbstractTransever.h"
 
+
+class Comms {
+private:
+	AbstractTransever* transever;
+	bool listening;
+	void connectionListener();
 
 public:
+	int PORT;
+
 	Comms();
 	virtual ~Comms();
 
 	void startComms();
+	void stopComms();
 
 
 };

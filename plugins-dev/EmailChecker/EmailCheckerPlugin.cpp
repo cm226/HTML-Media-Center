@@ -11,7 +11,7 @@
 
 EmailCheckerPlugin::EmailCheckerPlugin(CoreModules* framework): Plugin(framework)
 {
-	// TODO Auto-generated constructor stub
+	this->name = "Email";
 
 }
 
@@ -37,4 +37,9 @@ bool EmailCheckerPlugin::whatDoYouLookLike(Page* page)
 	page->addElement(form);
 
 	return true;
+}
+
+const char* EmailCheckerPlugin::pluginName()
+{
+	return this->name.c_str();
 }
