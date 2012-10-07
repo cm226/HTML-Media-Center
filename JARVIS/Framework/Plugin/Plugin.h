@@ -8,16 +8,16 @@
 #ifndef PLUGIN_H_
 #define PLUGIN_H_
 
-#include "../FrameWork.h"
+#include "../CoreModules/CoreModules.h"
 
 class Plugin {
-
-	JARVISFramework* frameWork;
+	CoreModules* coreMod;
 
 public:
-	Plugin(JARVISFramework* framework);
+	Plugin(CoreModules* coreMod);
 
 	virtual bool whatDoYouLookLike(Page*) = 0;
+	virtual const char* pluginName() = 0;
 	virtual ~Plugin();
 
 };

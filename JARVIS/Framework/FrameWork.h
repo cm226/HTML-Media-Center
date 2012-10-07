@@ -8,14 +8,34 @@
 #ifndef FRAMEWORK_H_
 #define FRAMEWORK_H_
 
-#include "CoreModules/HTMLRendere/Page.h"
+#include <vector>
+#include <string>
 
+#include "CoreModules/CoreModules.h"
+#include "Plugin/Loader/Loader.h"
 
 class JARVISFramework
-
 {
+	Loader* pluginLoader;
+	CoreModules cModules;
 
+public:
+	JARVISFramework();
+	virtual ~JARVISFramework();
 
+	void testPlugins();
+	void testEvents();
+private:
+	std::vector<std::string> loadedPlugins(int i);
+
+	void loadStartupPlugins();
+
+};
+
+class listenerClass
+{
+public:
+	bool testHandler(int i);
 };
 
 #endif /* FRAMEWORK_H_ */

@@ -8,10 +8,39 @@
 #include "Page.h"
 
 Page::Page() {
-	// TODO Auto-generated constructor stub
+
 
 }
 
 Page::~Page() {
-	// TODO Auto-generated destructor stub
+}
+
+void Page::addElement(IElement* element)
+{
+	this->elements.push_back(element);
+}
+
+void Page::freePage()
+{
+	int test = this->elements.size();
+
+	IElement* prev = NULL;
+	for(std::vector<IElement*>::iterator it =  this->elements.begin(); it != this->elements.end(); it++)
+	{
+		if(prev != NULL)
+			delete prev;
+
+		prev = *it;
+	}
+
+	if(prev != NULL)
+		delete prev;
+}
+
+void Page::buildPage(std::string* page)
+{
+	for(std::vector<IElement*>::iterator it =  this->elements.begin(); it != this->elements.end(); it++)
+	{
+		page->append((*it)->getText());
+	}
 }

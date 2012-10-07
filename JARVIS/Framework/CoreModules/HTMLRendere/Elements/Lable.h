@@ -11,9 +11,13 @@
 #include "../IElement.h"
 
 class Lable: public IElement {
+private:
+	std::string text;
+
 public:
 	Lable(std::string name);
 
+	void setText(std::string text);
 	std::string getText();
 	virtual ~Lable();
 };
