@@ -75,7 +75,7 @@ def addVideo(name, url):
 	print s.recv(1024);
 
 
-	s.send("setup "+name+" output #standard{access=http,mux=ts,dst=192.168.0.104:8080/"+name+"}\r\n")
+	s.send("setup "+name+" output #standard{access=http,mux=ts,dst=192.168.0.199:8080/"+name+"}\r\n")
 	print s.recv(1024);
 	print s.recv(1024);
 
