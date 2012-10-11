@@ -25,6 +25,8 @@ public:
 
 	void testPlugins();
 	void testEvents();
+	void testComms();
+
 private:
 	std::vector<std::string> loadedPlugins(int i);
 

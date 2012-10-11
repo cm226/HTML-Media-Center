@@ -7,9 +7,10 @@
 
 #include "AbstractMessage.h"
 
-AbstractMessage::AbstractMessage() {
-	// TODO Auto-generated constructor stub
-
+AbstractMessage::AbstractMessage(const char* data, unsigned int length)
+{
+	this->message = data;
+	this->length = length;
 }
 
 AbstractMessage::~AbstractMessage() {

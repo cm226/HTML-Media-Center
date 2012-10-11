@@ -41,6 +41,14 @@ void JARVISFramework::testPlugins()
 
 }
 
+void JARVISFramework::testComms()
+{
+	Comms coms;
+	coms.startComms();
+	sleep(10); // give 10 seconds to establish and test comms
+	coms.stopComms();
+}
+
 void JARVISFramework::loadStartupPlugins()
 {
 	Plugin* emailChecker = NULL;

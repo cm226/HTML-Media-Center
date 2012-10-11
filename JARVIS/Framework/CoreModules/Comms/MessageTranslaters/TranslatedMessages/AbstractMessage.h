@@ -8,12 +8,18 @@
 #ifndef ABSTRACTMESSAGE_H_
 #define ABSTRACTMESSAGE_H_
 
+#include "../../../EventModel/EventModel.h"
+
 class AbstractMessage {
+
+protected:
+	const char* message;
+	unsigned int length;
 public:
-	AbstractMessage();
+	AbstractMessage(const char* message, unsigned int length);
 	virtual ~AbstractMessage();
 
-	virtual void actionMessage() = 0;
+	virtual void actionMessage(std::string* reply,EventManager* eventManager) = 0;
 };
 
 #endif /* ABSTRACTMESSAGE_H_ */

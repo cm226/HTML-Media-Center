@@ -12,10 +12,10 @@
 
 class ListPluginsMessage: public AbstractMessage {
 public:
-	ListPluginsMessage();
+	ListPluginsMessage(const char* data, unsigned int length);
 	virtual ~ListPluginsMessage();
 
-	void actionMessage();
+	void actionMessage(std::string* reply,EventManager* evntman);
 };
 
 #endif /* LISTPLUGINSMESSAGE_H_ */
