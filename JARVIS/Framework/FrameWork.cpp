@@ -44,8 +44,10 @@ void JARVISFramework::testPlugins()
 void JARVISFramework::testComms()
 {
 	Comms coms;
+	EventManager::pluginPoll.attach(this,&JARVISFramework::loadedPlugins);
+
 	coms.startComms();
-	sleep(10); // give 10 seconds to establish and test comms
+	sleep(100); // give 100 seconds to establish and test comms
 	coms.stopComms();
 }
 

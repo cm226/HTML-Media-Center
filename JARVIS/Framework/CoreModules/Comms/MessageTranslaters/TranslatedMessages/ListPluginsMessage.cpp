@@ -19,11 +19,11 @@ ListPluginsMessage::~ListPluginsMessage() {
 	// TODO Auto-generated destructor stub
 }
 
-void ListPluginsMessage::actionMessage(std::string* reply,EventManager* evntMan)
+void ListPluginsMessage::actionMessage(std::string* reply)
 {
 	vector<vector<string> > pluginReplys;
 
-	evntMan->pluginPoll.notify(100,&pluginReplys);
+	EventManager::pluginPoll.notify(100,&pluginReplys);
 
 	for(vector<vector<string> >::iterator it = pluginReplys.begin(); it != pluginReplys.end(); it++)
 	{

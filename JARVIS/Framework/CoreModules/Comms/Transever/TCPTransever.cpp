@@ -90,3 +90,12 @@ void TCPTransever::getMessage(std::string* message)
 	msg[bytes_readable] = '\0';
 	*message = std::string(msg);
 }
+
+void TCPTransever::sendMessage(std::string* data)
+{
+	if(this->curSocket->is_open())
+	{
+		this->curSocket->send(boost::asio::buffer(data->c_str(),data->length()));
+	}
+}
+

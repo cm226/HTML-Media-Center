@@ -50,7 +50,12 @@ void Comms::connectionListener()
 			unsigned int msgLen = (unsigned int)message.length();
 			AbstractMessage* msg = this->messageTranslater->translateMessage(message.c_str(),msgLen);
 
-
+			if(msg != NULL)
+			{
+				std::string messageReply;
+				msg->actionMessage(&messageReply);
+				this->transever->sendMessage(&messageReply);
+			}
 		}
 
 	}

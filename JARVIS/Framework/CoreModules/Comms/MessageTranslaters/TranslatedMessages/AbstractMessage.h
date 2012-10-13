@@ -19,7 +19,7 @@ public:
 	AbstractMessage(const char* message, unsigned int length);
 	virtual ~AbstractMessage();
 
-	virtual void actionMessage(std::string* reply,EventManager* eventManager) = 0;
+	virtual void actionMessage(std::string* reply) = 0;
 };
 
 #endif /* ABSTRACTMESSAGE_H_ */

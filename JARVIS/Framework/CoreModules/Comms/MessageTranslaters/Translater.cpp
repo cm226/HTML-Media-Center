@@ -11,7 +11,7 @@
 #include "TranslatedMessages/TranslatedMessages.h"
 
 Translater::Translater() {
-
+	this->buildTranslationFilterPipeline();
 }
 
 Translater::~Translater() {
@@ -20,7 +20,7 @@ Translater::~Translater() {
 AbstractMessage* Translater::translateMessage(const char* message, unsigned int messageLength)
 {
 	unsigned int offset = 0;
-	while(message[offset] != '\0' || offset >= messageLength)
+	while(message[offset] != '$' || offset >= messageLength)
 	{
 		offset++;
 	}

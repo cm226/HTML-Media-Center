@@ -15,7 +15,7 @@ public:
 	ListPluginsMessage(const char* data, unsigned int length);
 	virtual ~ListPluginsMessage();
 
-	void actionMessage(std::string* reply,EventManager* evntman);
+	void actionMessage(std::string* reply);
 };
 
 #endif /* LISTPLUGINSMESSAGE_H_ */
