@@ -15,11 +15,13 @@ class AbstractMessage {
 protected:
 	const char* message;
 	unsigned int length;
+	unsigned int offset;
 public:
 	AbstractMessage(const char* message, unsigned int length);
 	virtual ~AbstractMessage();
 
 	virtual void actionMessage(std::string* reply) = 0;
+	std::string stripNextValue();
 };
 
 #endif /* ABSTRACTMESSAGE_H_ */

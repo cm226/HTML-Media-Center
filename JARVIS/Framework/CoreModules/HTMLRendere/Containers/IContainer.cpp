@@ -8,10 +8,8 @@
 #include "IContainer.h"
 
 IContainer::IContainer(std::string name) : IElement(name) {
-	// TODO Auto-generated constructor stub
 
 }
 
 IContainer::~IContainer() {
-	// TODO Auto-generated destructor stub
 }

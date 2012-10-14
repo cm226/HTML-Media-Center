@@ -10,12 +10,10 @@
 namespace TranslationFilters {
 
 PluginPollTranslationFilter::PluginPollTranslationFilter() {
-	// TODO Auto-generated constructor stub
 
 }
 
 PluginPollTranslationFilter::~PluginPollTranslationFilter() {
-	// TODO Auto-generated destructor stub
 }
 
 AbstractMessage* PluginPollTranslationFilter::translateMessage(std::string header, const char* bytes, unsigned int bytesLength)

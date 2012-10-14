@@ -3,5 +3,6 @@
 
 #include "BaseTranslationFilter.h"
 #include "PluginPollTranslationFilter.h"
+#include "CommandAndcontrolTranslationFilter.h"
 
 #endif

@@ -4,12 +4,13 @@
 
 JARVISFramework::JARVISFramework()
 {
+	this->shuttingDown = false;
 
 	EventManager::pluginPoll.attach(this,&JARVISFramework::loadedPlugins);
+	EventManager::commandAndControlMessageReceved.attach(this,&JARVISFramework::commandAndControlMessageReceved);
 
 	this->pluginLoader = new Loader("/home/craig/workspace/HTML-Media-Center/JARVIS/Plugins");
 	this->loadStartupPlugins();
-
 }
 
 JARVISFramework::~JARVISFramework()
@@ -44,7 +45,6 @@ void JARVISFramework::testPlugins()
 void JARVISFramework::testComms()
 {
 	Comms coms;
-	EventManager::pluginPoll.attach(this,&JARVISFramework::loadedPlugins);
 
 	coms.startComms();
 	sleep(100); // give 100 seconds to establish and test comms
@@ -62,6 +62,28 @@ std::vector<std::string> JARVISFramework::loadedPlugins(int i)
 	std::vector<std::string> loadedPlugins;
 	this->pluginLoader->listLoadedPlugins(&loadedPlugins);
 	return loadedPlugins;
+}
+
+bool JARVISFramework::commandAndControlMessageReceved(int type)
+{
+	//TODO change type to an enum when i get the time
+
+	switch(type)
+	{
+		case 1: // shutdown command
+			this->shuttingDown = true;
+		break;
+		case 2: // havent deided yet
+		break;
+
+		default: // unknown command and control message
+			return false;
+		break;
+
+	}
+
+	return true;
+
 }
 
 bool listenerClass::testHandler(int t)

@@ -10,12 +10,10 @@
 using namespace std;
 Lable::Lable(string name): IElement(name)
 {
-	// TODO Auto-generated constructor stub
 
 }
 
 Lable::~Lable() {
-	// TODO Auto-generated destructor stub
 }
 
 std::string Lable::getText()

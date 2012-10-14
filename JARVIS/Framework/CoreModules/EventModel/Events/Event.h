@@ -49,12 +49,16 @@ public:
 		return true;
 	}
 
-	void notify(ParamT param, std::vector<ReturnT>* retVals)
+	void notify(ParamT param, std::vector<ReturnT>* retVals = NULL)
 	{
 		typename HandlersMap::iterator it = handlers.begin();
+		bool generateReturn = retVals == NULL;
 		for(; it != handlers.end(); it++)
 		{
-			retVals->push_back(it->second->notify(param));
+			if(generateReturn)
+				retVals->push_back(it->second->notify(param));
+			else
+				it->second->notify(param);
 		}
 
 		return;

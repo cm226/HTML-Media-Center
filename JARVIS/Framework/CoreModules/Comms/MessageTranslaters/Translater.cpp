@@ -35,12 +35,17 @@ AbstractMessage* Translater::translateMessage(const char* message, unsigned int 
 AbstractMessage* Translater::messageFactory(std::string msgHeader, const char* data, unsigned int messageLength)
 {
 	return this->translationFilter->translateMessage(msgHeader,data,messageLength);
-
 }
 
 void Translater::buildTranslationFilterPipeline()
 {
-	this->translationFilter = new TranslationFilters::PluginPollTranslationFilter();
+	TranslationFilters::PluginPollTranslationFilter* pluginPollFilter = new TranslationFilters::PluginPollTranslationFilter();
+	TranslationFilters::CommandAndcontrolTranslationFilter* commandAndcontrolFilter = new TranslationFilters::CommandAndcontrolTranslationFilter();
+
+	pluginPollFilter->setNextFilter(commandAndcontrolFilter);
+
+
+	this->translationFilter = pluginPollFilter;
 }
 
 

@@ -8,12 +8,10 @@
 #include "ElementList.h"
 
 ElementList::ElementList(std::string name): IContainer(name) {
-	// TODO Auto-generated constructor stub
 
 }
 
 ElementList::~ElementList() {
-	// TODO Auto-generated destructor stub
 }
 
 void ElementList::addElement(IElement* element)
