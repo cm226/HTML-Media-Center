@@ -46,6 +46,7 @@ def stopVideo(name):
 
 	s.close()
 
+
 def removeAll():
         s = openSocket()
         authenticate(s)

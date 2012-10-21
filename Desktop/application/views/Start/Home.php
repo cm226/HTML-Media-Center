@@ -51,10 +51,4 @@ Admin
 </div>
 </div>
 
-<div id="spinningDisks">
-<div id="outerDisk">
-</div>
-<div id="innerDisk">
-</div>
-</div>
 

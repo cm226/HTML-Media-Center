@@ -8,12 +8,12 @@ var myPlaylist = [
 <?php foreach ($songs as &$song) { ?>
 
     {
-        mp3:<?php echo "'".PUBLIC_FOLDER. str_replace(" ","%20",$song["Song"]["songURL"]) ."'";?>,
-        title:<?php echo "'". $song["Song"]["songName"] ."'";?>,
-        artist:<?php echo "'".$song['Album']['artistName']."'" ;?>,
+        mp3:<?php echo "'".PUBLIC_FOLDER. str_replace(" ","%20",str_replace("'","\'",$song["Song"]["songURL"])) ."'";?>,
+        title:<?php echo "'". str_replace("'","\'",$song["Song"]["songName"]) ."'";?>,
+        artist:<?php echo "'".str_replace("'","\'",$song['Album']['artistName'])."'" ;?>,
         rating:4,
         duration:<?php echo "'". $song["Song"]["songLength"] ."'";?>,
-        cover:'../public/img/Music/Albums/<?php echo $song["Album"]["albumName"]; ?>.png'
+        cover:'../public/img/Music/Albums/<?php echo str_replace("'","\'",$song["Album"]["albumName"]); ?>.png'
     },
 	
 <?php } ?>
@@ -137,9 +137,13 @@ function updatePlayingList(from, to)
 		<div id="albumImage"></div>
 		<div id="currentlyPlaying"></div>
 		<div id="audioControls"></div>
-		<div id="playerControls">
-			<div id="prevBttn" onClick="playPrev();">
+		
+		<div id="playerControls" style="background-image:url(<?php echo "'".PUBLIC_FOLDER. "/img/Music/icons/PlayerGradient.png"."'";?>);">
+			<div id="prevBttn" onClick="playPrev();" >
 				<img src="<?php echo PUBLIC_FOLDER. "/img/Music/icons/prev.png"; ?>" height="50px" width="50px"></img>			
+			</div>
+			<div id="playBttn" onClick="playNext();">
+				<img src="<?php echo PUBLIC_FOLDER. "/img/Music/icons/play.png"; ?>" height="100px" width="100px"></img>			
 			</div>
 			<div id="shuffleButton" onclick="shuffle(); play();">
 				<img src="<?php echo PUBLIC_FOLDER. "/img/Music/icons/shuffle.png"; ?>" height="50px" width="50px"></img>

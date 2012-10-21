@@ -14,6 +14,10 @@
 	float: left;
 }
 
+body {
+margin: 0px;
+}
+
 
 #shuffleButton
 {
@@ -33,7 +37,7 @@
 #audioControls
 {
 	position: absolute;
-	bottom: 50px;
+	bottom: 120px;
 	width:100%;
 	
 }
@@ -43,7 +47,7 @@
 	position: absolute;
 	bottom: 0;
 	width:100%;
-	height:50px;
+	height:100px;
 }
 
 #nextBttn
@@ -58,12 +62,17 @@
 {
 	float:left;
 	width:50px;
-	margin-left:40%;
 }
 #prevBttn
 {
 	float:left;
 	width:50px;
+}
+#playBttn
+{
+	width:100px;
+	float :left;
+	
 }
 
 audio 

@@ -19,7 +19,6 @@ body
 	background-size: 90% auto;
 	background-position: 25% 0%;
 	background-repeat:no-repeat;
-	background-color:#000000;
 }
 
 </style>

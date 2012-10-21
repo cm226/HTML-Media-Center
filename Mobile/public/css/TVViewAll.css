@@ -88,6 +88,9 @@ h4
 	
 	border:2px solid;
 	border-color: transparent;
+	
+	overflow:hidden;
+	height:1%;
 }
 .episode:hover
 {
