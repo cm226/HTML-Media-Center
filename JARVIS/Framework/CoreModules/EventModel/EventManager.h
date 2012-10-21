@@ -18,6 +18,8 @@ public:
 	static Event<std::vector<std::string>,int> pluginPoll;
 	static Event<std::string,int> onPluginViewRequest;
 
+	static Event<bool,int> commandAndControlMessageReceved;
+
 	EventManager();
 	virtual ~EventManager();
 };

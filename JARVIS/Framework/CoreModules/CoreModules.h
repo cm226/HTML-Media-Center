@@ -10,6 +10,7 @@
 
 #include "HTMLRendere/HTMLRendere.h"
 #include "EventModel/EventModel.h"
+#include "Comms/Comms.h"
 
 class CoreModules {
 public:

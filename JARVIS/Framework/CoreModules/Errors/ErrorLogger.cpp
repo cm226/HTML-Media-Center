@@ -10,12 +10,10 @@
 #include <iostream>
 
 ErrorLogger::ErrorLogger() {
-	// TODO Auto-generated constructor stub
 
 }
 
 ErrorLogger::~ErrorLogger() {
-	// TODO Auto-generated destructor stub
 }
 
 void ErrorLogger::logError(std::string message)

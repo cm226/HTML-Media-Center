@@ -12,11 +12,13 @@
 #include "../Errors/ErrorLogger.h"
 
 #include "Transever/AbstractTransever.h"
+#include "MessageTranslaters/Translater.h"
 
 
 class Comms {
 private:
 	AbstractTransever* transever;
+	Translater* messageTranslater;
 	bool listening;
 	void connectionListener();
 
@@ -28,7 +30,6 @@ public:
 
 	void startComms();
 	void stopComms();
-
 
 };
 

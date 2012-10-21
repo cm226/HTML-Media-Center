@@ -19,16 +19,21 @@ class JARVISFramework
 	Loader* pluginLoader;
 	CoreModules cModules;
 
+	bool shuttingDown;
+
 public:
 	JARVISFramework();
 	virtual ~JARVISFramework();
 
 	void testPlugins();
 	void testEvents();
+	void testComms();
+
 private:
 	std::vector<std::string> loadedPlugins(int i);
 
 	void loadStartupPlugins();
+	bool commandAndControlMessageReceved(int type);
 
 };
 

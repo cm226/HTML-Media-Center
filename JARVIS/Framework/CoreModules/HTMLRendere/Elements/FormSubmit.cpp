@@ -8,12 +8,10 @@
 #include "FormSubmit.h"
 
 FormSubmit::FormSubmit(std::string name): IElement(name) {
-	// TODO Auto-generated constructor stub
 
 }
 
 FormSubmit::~FormSubmit() {
-	// TODO Auto-generated destructor stub
 }
 
 std::string FormSubmit::getText()

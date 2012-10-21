@@ -11,10 +11,15 @@
 #include "AbstractTransever.h"
 #include <boost/asio.hpp>
 
-class TCPTransever : public AbstractTransever {
+class TCPTransever : public AbstractTransever{
+
+	bool stopped_;
+
 public:
 	static const int PORT = 46000;
 	boost::asio::io_service io_service;
+	boost::asio::ip::tcp::socket* curSocket;
+	boost::asio::deadline_timer* timer;
 
 
 	TCPTransever();
@@ -22,6 +27,11 @@ public:
 
 
 	virtual int listenForConnection(int timeout);
+	virtual void getMessage(std::string* data);
+	virtual void sendMessage(std::string* data);
+
+private:
+	void check_deadline();
 };
 
 #endif /* TCPTRANSEVER_H_ */

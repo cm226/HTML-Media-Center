@@ -7,12 +7,27 @@
 
 #include "AbstractMessage.h"
 
-AbstractMessage::AbstractMessage() {
-	// TODO Auto-generated constructor stub
-
+AbstractMessage::AbstractMessage(const char* data, unsigned int length)
+{
+	this->message = data;
+	this->length = length;
+	this->offset = 0;
 }
 
 AbstractMessage::~AbstractMessage() {
-	// TODO Auto-generated destructor stub
+
 }
 
+std::string AbstractMessage::stripNextValue()
+{
+	char curChar = this->message[this->offset];
+	std::string nextValue = "";
+
+	while(curChar != '$' || this->offset >= this->length)
+	{
+		nextValue.append(&curChar,1);
+		this->offset++;
+	}
+	this->offset++; // move index past current $
+	return nextValue;
+}
