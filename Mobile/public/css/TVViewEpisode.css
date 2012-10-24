@@ -21,7 +21,16 @@
 #agentsHeader
 {
 	color:white;
+}
+
+#EpisodeDetails
+{
 	
-	
+	background-color: rgba(0,0,0,0.2);
+	border-style: solid;
+	border-width:1px;
+	border-color:black;
+	float : left;
+	color:white;
 	
 }

@@ -26,7 +26,17 @@ margin: 0px;
 
 #currentSongInfo
 {
+	top: 0px;
+	width:100%;
+	height:60px;
 	color:white;
+}
+
+#center
+{
+	margin-left:auto;
+	margin-right:auto;
+	width:200px;
 }
 
 #nextBttn
@@ -52,7 +62,7 @@ margin: 0px;
 
 #nextBttn
 {
-	float:right;
+	float:left;
 	width:50px;
 }
 
@@ -60,7 +70,7 @@ margin: 0px;
 
 #shuffleButton
 {
-	float:left;
+	float:right;
 	width:50px;
 }
 #prevBttn
@@ -115,5 +125,30 @@ audio
 .songItem:hover
 {
 	background-color: black;
+
+}
+
+#songHeader
+{
+	margin-left:auto;
+	margin-right:auto;
+	width:400px;
+	
+}
+
+#SongName
+{
+	float : left;
+	
+	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+	font-weight: bold;
+}
+
+#ArtistName
+{
+	font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+	font-weight: lighter;
+	float : left;
+	
 
 }

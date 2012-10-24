@@ -48,8 +48,8 @@ function fillAudio(src)
 
 function fillAudioInfo(Name, Artist)
 {
-	var AudioInfoStr = "<h4 id=\"SongName\">"+Name+"</h4>";
-	AudioInfoStr+= "<h4 id=\"ArtistName\">"+Artist+"</h4>";
+	var AudioInfoStr = "<div id=\"songHeader\"><div id=\"SongName\">"+Name+" - </div>";
+	AudioInfoStr+= "<div id=\"ArtistName\"> "+Artist+"</div></div>";
 
 	var songInfo = document.getElementById('currentSongInfo');
 	songInfo.innerHTML = AudioInfoStr;
@@ -62,6 +62,13 @@ function fillAlbumImage(url)
 	var albumImg = document.getElementById('albumImage');
 	albumImg.innerHTML = albumImgStr;
 	
+}
+function shuffle()
+{
+	if(shuffleOn)
+		shuffleOn = false;
+	else
+		shuffleOn = true;
 }
 
 function playNext()
@@ -133,23 +140,26 @@ function updatePlayingList(from, to)
 <body>
 
 	<div id="player" >
-		<div id="currentSongInfo"></div>
+		<div id="currentSongInfo" style="background-image:url(<?php echo "'".PUBLIC_FOLDER. "/img/Music/icons/HeaderGradient.png"."'";?>);"></div>
 		<div id="albumImage"></div>
 		<div id="currentlyPlaying"></div>
 		<div id="audioControls"></div>
 		
 		<div id="playerControls" style="background-image:url(<?php echo "'".PUBLIC_FOLDER. "/img/Music/icons/PlayerGradient.png"."'";?>);">
+		<div id="center">
 			<div id="prevBttn" onClick="playPrev();" >
 				<img src="<?php echo PUBLIC_FOLDER. "/img/Music/icons/prev.png"; ?>" height="50px" width="50px"></img>			
 			</div>
 			<div id="playBttn" onClick="playNext();">
 				<img src="<?php echo PUBLIC_FOLDER. "/img/Music/icons/play.png"; ?>" height="100px" width="100px"></img>			
 			</div>
-			<div id="shuffleButton" onclick="shuffle(); play();">
-				<img src="<?php echo PUBLIC_FOLDER. "/img/Music/icons/shuffle.png"; ?>" height="50px" width="50px"></img>
-			</div>
 			<div id="nextBttn" onClick="playNext();">
 				<img src="<?php echo PUBLIC_FOLDER. "/img/Music/icons/next.png"; ?>" height="50px" width="50px"></img>			
+			</div>
+			
+		</div>
+		<div id="shuffleButton" onclick="shuffle(); play();">
+				<img src="<?php echo PUBLIC_FOLDER. "/img/Music/icons/shuffle.png"; ?>" height="50px" width="50px"></img>
 			</div>
 			
 
