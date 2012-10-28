@@ -192,61 +192,59 @@ class AdminController extends Controller
 		
 	}
 
-	function uploadMusic()
+	function tryAddMusicFile($file, $fileCount)
 	{
-		if ($_FILES["file"]["type"] == "audio/mp3")
-		  {
-		  if ($_FILES["file"]["error"] > 0)
-			{
-				$this->set("ReturnCode: ",$_FILES["file"]["error"]);
-			}
-		  else
-			{
-				$this->set("Upload", $_FILES["file"]["name"]);
-				$this->set("Type",$_FILES["file"]["type"]);
-				$this->set("Size", ($_FILES["file"]["size"] / 1024 / 1024));
-				$this->set("Temp file",$_FILES["file"]["tmp_name"]);
-				
-				$this->set("ArtistList", $this->Admin->getArtistsList());
-				
-				
-			if (file_exists(self::TEMP_FOLDER."Music/" . $_FILES["file"]["name"]))
+		if( $file["error"] > 0)
+		{
+			$this->set("ReturnCode: ",$file["error"]);
+		}
+		else
+		{
+			$songName = $_POST['songName'. $fileCount];
+			$artistName  = $_POST['artistName'];
+			$albumName = $_POST['filealbum'. $fileCount];
+
+			if (file_exists(PUBLIC_FOLDER."/mix/Music/".$artistName."/".$albumName."/".$songName))
 			  {
 				$this->set("exists",true);
 				echo "exists";
 			  }
 			else
 			  {
-				  move_uploaded_file($_FILES["file"]["tmp_name"],
-				  self::TEMP_FOLDER."Music/" . $_FILES["file"]["name"]);
-				  $this->set("Location",self::TEMP_FOLDER."Music/" . $_FILES["file"]["name"]);
-				  $ip=$_SERVER['REMOTE_ADDR'];
-				  $hostname = gethostname();
-				  $myFile = "../tempUploads/data.log";
-				  $fh = fopen($myFile, 'a') or die("can't open file");
-				  $stringData = "".date("d.m.y")." Name: ".$_FILES["file"]["name"].", Type: ".$_FILES["file"]["type"].", Size: ".($_FILES["file"]["size"] / 1024 / 1024).", Hostname: ".$hostname." ".$ip."\n\n";
-				  fwrite($fh, $stringData);
+				  $this->submitMusicData($songName, $artistName, $albumName, $file["tmp_name"]);
+				  
+				  $this->set("Location",self::TEMP_FOLDER."Music/" . $file["name"]);
+				  //$ip=$_SERVER['REMOTE_ADDR'];
+				  //$hostname = gethostname();
+				  //$myFile = "../tempUploads/data.log";
+				  //$fh = fopen($myFile, 'a') or die("can't open file");
+				  //$stringData = "".date("d.m.y")." Name: ".$file["name"].", Type: ".$file["type"].", Size: ".($_FILES["file"]["size"] / 1024 / 1024).", Hostname: ".$hostname." ".$ip."\n\n";
+				  //fwrite($fh, $stringData);
 			  }
-			}
-		  }
-		else
-		  {
-			$this->set("InvalidFileType",true);
-		  }
+		}
 	}
 
-	function submitMusicData()
+	function uploadMusic()
 	{
-		$songName = $_POST['songName'];
-		$artistName  = $_POST['artistName'];
-		$albumName = $_POST['albumName'];
-		$oldfileName = $_POST['oldName'];
-
-		$artistImage = $_POST['artistImage'];
-		$albumImage = $_POST['albumImage'];
-
-		if (file_exists(self::TEMP_FOLDER."Music/".$oldfileName))
+		$numOfFiles = count($_FILES);
+		$filecount = 0;
+		foreach($_FILES as $file)
 		{
+			if ($file["type"] == "audio/mp3" || $file["type"] == "audio/mpeg")
+			{	
+				$this->tryAddMusicFile($file, $filecount);
+			}
+			else
+				$this->set("InvalidFileType",true);
+
+			$filecount = $filecount+1;
+		} 
+	}
+
+
+
+	function submitMusicData($songName, $artistName, $albumName, $oldfileName)
+	{
 			if(!file_exists(PUBLIC_FOLDER."/mix/Music/".$artistName."/"))
 				mkdir(PUBLIC_FOLDER."/mix/Music/".$artistName."/");
 
@@ -255,9 +253,9 @@ class AdminController extends Controller
 				
 			if(!file_exists(PUBLIC_FOLDER."/mix/Music/".$artistName."/".$albumName."/".$songName))
 			{
-				$oldURL = self::TEMP_FOLDER."Music/".$oldfileName;
-				$newURL = "/mix/Music/".$artistName."/".$albumName."/".$songName;
-				if(rename($oldURL,PUBLIC_FOLDER.$newURL))
+				$newURL =  PUBLIC_FOLDER."/mix/Music/".$artistName."/".$albumName."/".$songName;
+				$moveWorked = move_uploaded_file($oldfileName,$newURL);
+				if($moveWorked)
 				{
 					$this->Admin->createArtistIfNecessary($artistName);
 					$this->Admin->createAtristAlbumIfNecassery($artistName, $albumName);
@@ -290,7 +288,6 @@ class AdminController extends Controller
 				echo 'That file already exsists';
 				return;
 			}
-		}
 		
 		
 		$this->set("Sucess", true);
@@ -299,6 +296,11 @@ class AdminController extends Controller
 	}
 	
 	function Music()
+	{
+		$this->set("ArtistList", $this->Admin->getArtistsList());
+	}
+
+	function MusicAddNewSongs()
 	{
 		$this->set("ArtistList", $this->Admin->getArtistsList());
 	}

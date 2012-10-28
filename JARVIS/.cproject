@@ -50,6 +50,7 @@
 								</option>
 								<option id="gnu.cpp.link.option.other.325154212" name="Other options (-Xlinker [option])" superClass="gnu.cpp.link.option.other" valueType="stringList">
 									<listOptionValue builtIn="false" value="-ldl"/>
+									<listOptionValue builtIn="false" value="-verbose"/>
 									<listOptionValue builtIn="false" value="--export-dynamic"/>
 								</option>
 								<option id="gnu.cpp.link.option.paths.421915942" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">

@@ -1,36 +1,10 @@
-body
-{
-	background-color:#3a3a3a;
-}
-
 .elementContainer
 {
 	background-color : rgba(54,54,50,0.8);
 	border-style:solid;
 	border-width:2px;
 	border-color: black;
-}
-
-#addSongs
-{
-	float:right;
-	color:white;
-	height: 300px;
-	width: 200px;
-}
-
-#uploadArtistPic
-{
-	width : 90%;
-	
-}
-
-#imageUploads
-{
-	min-height: 400px;
-	margin-top: 100px;
-	float: left;
-	width : 40%;
+	color: white;
 }
 
 .header
@@ -38,7 +12,6 @@ body
 	font-weight:bold;
 	font-style:italic;
 	font-variant:small-caps;
-	color: Black
 	
 	letter-spacing:4pt;
 	word-spacing:2pt;

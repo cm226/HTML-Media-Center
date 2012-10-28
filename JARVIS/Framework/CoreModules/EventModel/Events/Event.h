@@ -11,6 +11,7 @@
 #include <map>
 #include <vector>
 #include "../EventHandler/EventHandler.h"
+#include <cstddef>
 
 
 	typedef int CppEventHandler;

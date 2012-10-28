@@ -26,9 +26,6 @@ FileType = <?php echo $Type;?>
 
 
 <form name="input" action="../Admin/submitMusicData" method="post">
-<?php 
-//echo $cmd;
-?>
  <br/>
 Name of Song: <input type="text" name="songName" value = "<?php echo $Upload;?>"/>.mp3<br/>
 New Artist: <input type="checkbox" name="option1" value="Milk" onClick=" switchToTextbox('artistID', 'artistSelect', 'artistName', new Array(<?php

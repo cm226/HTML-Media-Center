@@ -122,12 +122,20 @@ function sendAJAXRequest(target, arguments, fillID)
 	xmlhttp.send();
 }
 
-function updateAlbumList(ArtistName,AlbumListID)
-{
-	
-	sendAJAXRequest("../Admin/getArtistAlbums", new Array (ArtistName),AlbumListID);
-}
 
+function getElementsByClass( searchClass, domNode, tagName) { 
+	if (domNode == null) domNode = document;
+	if (tagName == null) tagName = '*';
+	var el = new Array();
+	var tags = domNode.getElementsByTagName(tagName);
+	var tcl = " "+searchClass+" ";
+	for(i=0,j=0; i<tags.length; i++) { 
+		var test = " " + tags[i].className + " ";
+		if (test.indexOf(tcl) != -1) 
+			el[j++] = tags[i];
+	} 
+	return el;
+}
 
 
 function displayPictureList(ArtistSelectID, imageDivID)
