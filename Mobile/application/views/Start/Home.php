@@ -32,7 +32,14 @@ Movie
 <p>Pictures</p>
 </div>
 
-<div class="tile" onClick="window.location = ('../Admin/Main')">
+
+<div class="tile">
+<div class="sharedTitleLeft"  onClick="window.location = ('../Admin/Main')">
 <p>Admin</p>
 </div>
+<div class="sharedTitleRight"  onClick="window.location = ('../Plugin/Main')">
+<p>Plugins</p>
+</div>
+</div>
+
 </div>

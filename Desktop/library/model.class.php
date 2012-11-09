@@ -11,4 +11,11 @@ class Model extends SQLQuery {
 
 	function __destruct() {
 	}
+	
+	function getLastAutoIncrement()
+	{
+		$res = $this->query("SELECT LAST_INSERT_ID() as COUNT");
+		$val = $res[0]['noTable']['COUNT'];
+		return $val;
+	}
 }

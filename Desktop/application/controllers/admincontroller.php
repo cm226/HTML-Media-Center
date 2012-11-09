@@ -200,10 +200,11 @@ class AdminController extends Controller
 		}
 		else
 		{
-			$songName = $_POST['songName'. $fileCount];
-			$artistName  = $_POST['artistName'];
+			$songName = $_POST['songName'. $fileCount].".mp3";
+			$artistID  = $_POST['artistName'];
 			$albumName = $_POST['filealbum'. $fileCount];
-
+			$artistName = $this->Admin->getArtistForID($artistID);
+			
 			if (file_exists(PUBLIC_FOLDER."/mix/Music/".$artistName."/".$albumName."/".$songName))
 			  {
 				$this->set("exists",true);
@@ -211,7 +212,7 @@ class AdminController extends Controller
 			  }
 			else
 			  {
-				  $this->submitMusicData($songName, $artistName, $albumName, $file["tmp_name"]);
+				  $this->submitMusicData($songName,$artistName[0]["Artist"]["artistName"], $albumName, $file["tmp_name"]);
 				  
 				  $this->set("Location",self::TEMP_FOLDER."Music/" . $file["name"]);
 				  //$ip=$_SERVER['REMOTE_ADDR'];
@@ -243,8 +244,11 @@ class AdminController extends Controller
 
 
 
-	function submitMusicData($songName, $artistName, $albumName, $oldfileName)
+	function submitMusicData($songName,$artistName,$albumName, $oldfileName)
 	{
+		$artistImage = ''; // both not implemented yet
+		$albumImage = '';
+		
 			if(!file_exists(PUBLIC_FOLDER."/mix/Music/".$artistName."/"))
 				mkdir(PUBLIC_FOLDER."/mix/Music/".$artistName."/");
 
@@ -257,9 +261,9 @@ class AdminController extends Controller
 				$moveWorked = move_uploaded_file($oldfileName,$newURL);
 				if($moveWorked)
 				{
-					$this->Admin->createArtistIfNecessary($artistName);
-					$this->Admin->createAtristAlbumIfNecassery($artistName, $albumName);
-					$this->Admin->createSong($songName, $artistName, $albumName, $newURL);
+					$artistID = $this->Admin->createArtistIfNecessary($artistName);
+					$albumID = $this->Admin->createAtristAlbumIfNecassery($artistID, $albumName);
+					$this->Admin->createSong($songName, $artistName, $albumID, $newURL);
 
 					if($artistImage != '')
 					{
@@ -302,6 +306,7 @@ class AdminController extends Controller
 
 	function MusicAddNewSongs()
 	{
+		$this->set("test",$this->Admin->getLastAutoIncrement());
 		$this->set("ArtistList", $this->Admin->getArtistsList());
 	}
 	

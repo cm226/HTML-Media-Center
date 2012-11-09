@@ -5,7 +5,7 @@ class Music extends Model {
 	function viewAll()
 	{
 	
-		$allArtistsq = 'SELECT artistName, artistRating, genre FROM Artist';
+		$allArtistsq = 'SELECT artistName, artistID, artistRating, genre FROM Artist';
 		$allArtistsResult = $this->query($allArtistsq);
 		return $allArtistsResult;
 									
@@ -16,47 +16,51 @@ class Music extends Model {
 		
 	}
 	
-	function getArtistsSongs($artistName)
+	function getArtistsSongs($artistID)
 	{
-		$allArtistsSongq = 'SELECT songName,
+		$allArtistsSongq = "SELECT songName,
 									songURL,
 									Album.albumName,
-									Album.artistName,
+									Artist.artistName,
 									songLength
 							FROM Song,
-								 Album
+								 Album,
+								 Artist
     						 WHERE
 								Album.albumID = Song.albumID AND 
-								Album.artistName = \''.$artistName.'\''; 
-								
+								Album.artistID = $artistID AND
+								Artist.artistID = Album.artistID"; 
 		$allArtistsSongResult = $this->query($allArtistsSongq);
 		return $allArtistsSongResult;
 	}
 	
-	function getArtistsAlbumSongs($artistName, $albumName)
+	function getArtistsAlbumSongs($artistID, $albumID)
 	{
 		$allArtistsSongq = 'SELECT 
 								songName,
 								songURL,
 								Album.albumName,
-								Album.artistName,
+								Artist.artistName,
 								songLength
 								
 							FROM Song,
-								 Album
+								 Album,
+								 Artist
 
-							 WHERE Album.albumID = Song.albumID 
-								AND Album.artistName = \''.$artistName.'\'
-								AND Album.albumName = \''. $albumName . '\'';
-								
+							 WHERE Album.albumID = Song.albumID
+								AND Artist.artistID = Album.artistID
+								AND Album.albumID = '.$albumID.'
+								AND  Artist.artistID = '.$artistID;
+									
 		$albumQueeryRes = $this->query($allArtistsSongq);
 		
 		return $albumQueeryRes;
 	}
 	
-	function getArtistsAlbums($artistName)
+	function getArtistsAlbums($artistID)
 	{
-		$albumQueery = "SELECT  albumName,
+		$albumQueery = "SELECT  albumID,
+								albumName,
 								year,
 								albumRating, 
 									(SELECT 
@@ -67,7 +71,7 @@ class Music extends Model {
 						FROM 
 								Album
 						WHERE
-								artistName = '$artistName'";
+								artistID = $artistID";
 		$albumQueeryRes = $this->query($albumQueery);
 		
 		
@@ -145,6 +149,13 @@ class Music extends Model {
 
 		$AddToPlaylistsq = "INSERT INTO PlaylistSong VALUES ".substr($insertValues, 0, -1);
 		$this->query($AddToPlaylistsq);
+	}
+	
+	function getArtistForID($artistID)
+	{
+		$q = "SELECT artistName FROM Artist WHERE artistID = $artistID";
+		return $this->query($q);
+		
 	}
 
 	

@@ -25,7 +25,7 @@ body
 
 
 <form id="ArtistPoster" hidden="true" action="../Music/viewPlayer" method="post" target="player">
-  <input type="Hidden" name = "artist" value="<?php echo $artistsName; ?>" />
+  <input type="Hidden" name = "artist" value="<?php echo $artistID; ?>" />
   <input type="submit" value="Do Stuff!" />
 </form>
 

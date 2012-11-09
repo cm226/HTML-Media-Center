@@ -54,7 +54,10 @@ class SQLQuery {
 		$tempResults = array();
 		$numOfFields = mysql_num_fields($this->_result);
 		for ($i = 0; $i < $numOfFields; ++$i) {
-		    array_push($table,mysql_field_table($this->_result, $i));
+			if(mysql_field_table($this->_result, $i) != '')
+		    	array_push($table,mysql_field_table($this->_result, $i));
+			else
+				array_push($table,'noTable');
 		    array_push($field,mysql_field_name($this->_result, $i));
 		}
 

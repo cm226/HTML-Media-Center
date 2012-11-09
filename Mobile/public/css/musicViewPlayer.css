@@ -149,6 +149,13 @@ audio
 	font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
 	font-weight: lighter;
 	float : left;
+}
+
+#playlistsIcng
+{
+	position: absolute;
+	right: 10px;
+	width: 30px;
 	
 
 }

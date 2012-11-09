@@ -39,10 +39,9 @@ foreach ($playlists as $playList)
 <?php
 
 echo '<div id="ArtistList">';
-echo '<h3> Artists Selection </h3>';
 foreach ($artists as &$artist)
 {
-	echo '<div class="artistElement" onclick="postwith(\'../Music/viewArtist\',{artist:\''.$artist['Artist']['artistName'].'\'})">';
+	echo '<div class="artistElement" onclick="postwith(\'../Music/viewArtist\',{artist:\''.$artist['Artist']['artistID'].'\'})">';
 	
 	if(file_exists('../public/img/Music/Artists/' . $artist['Artist']['artistName'] . '.png'))
 		echo '<img src="../public/img/Music/Artists/' . $artist['Artist']['artistName'] . '.png" height="128" width="128">';

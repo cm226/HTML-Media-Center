@@ -33,7 +33,7 @@ body
 <?php 
 foreach ($albums as $album)
 {
-	echo '<div class="album" onClick="refreshIframe(\'' . $artistsName . '\', \''. $album['Album']['albumName'] .'\');">
+	echo '<div class="album" onClick="refreshIframe(\'' . $artistID . '\', \''. $album['Album']['albumID'] .'\');">
 			<div class="imgCont">
 				<img ';
 if (file_exists('../public/img/Music/Albums/' . $album['Album']['albumName'] .'.png')) 
@@ -48,7 +48,6 @@ if (file_exists('../public/img/Music/Albums/' . $album['Album']['albumName'] .'.
 			<div class="metaCont">'
 					. $album['Album']['albumName'] . 
 				'<p class="meta" >'. $album['Album']['year'] .'</p>
-				<p class="meta" >Track Count: '. $album['']['trackCount'] .'</p>
 				<p class="meta" >Rateing:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'. $album['Album']['albumRating'] .'/10</p>
 			</div>
 		 </div>';
@@ -64,7 +63,7 @@ if (file_exists('../public/img/Music/Albums/' . $album['Album']['albumName'] .'.
 </div>
 
 <form id="ArtistPoster" hidden="true" action="../Music/viewPlayer" method="post" target="player">
-  <input type="Hidden" name = "artist" value="<?php echo $artistsName; ?>" />
+  <input type="Hidden" name = "artist" value="<?php echo $artistID; ?>" />
   <input type="submit" value="Do Stuff!" />
 </form>
 
