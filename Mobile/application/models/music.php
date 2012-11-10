@@ -5,7 +5,7 @@ class Music extends Model {
 	function viewAll()
 	{
 	
-		$allArtistsq = 'SELECT artistName, artistRating, genre FROM Artist';
+		$allArtistsq = 'SELECT artistName, artistID, artistRating, genre FROM Artist';
 		$allArtistsResult = $this->query($allArtistsq);
 		return $allArtistsResult;
 									
@@ -16,9 +16,21 @@ class Music extends Model {
 		
 	}
 	
-	function getArtistsSongs($artistName)
+	function getArtistsSongs($artistID)
 	{
-		$allArtistsSongq = 'SELECT songName, songURL, Album.albumName,Album.artistName, songLength FROM Song, Album WHERE Album.albumID = Song.albumID AND Album.artistName = \''.$artistName.'\''; 
+		$allArtistsSongq = "SELECT songName,
+									songURL,
+									Album.albumName,
+									Artist.artistName,
+									songLength
+							FROM Song,
+								 Album,
+								 Artist
+    						 WHERE
+								Album.albumID = Song.albumID AND 
+								Album.artistID = $artistID AND
+								Artist.artistID = Album.artistID"; 
+								
 		$allArtistsSongResult = $this->query($allArtistsSongq);
 		return $allArtistsSongResult;
 	}
@@ -44,9 +56,10 @@ class Music extends Model {
 		return $albumQueeryRes;
 	}
 	
-	function getArtistsAlbums($artistName)
+	function getArtistsAlbums($artistID)
 	{
-		$albumQueery = "SELECT  albumName,
+		$albumQueery = "SELECT  albumID,
+								albumName,
 								year,
 								albumRating, 
 									(SELECT 
@@ -57,7 +70,7 @@ class Music extends Model {
 						FROM 
 								Album
 						WHERE
-								artistName = '$artistName'";
+								artistID = $artistID";
 		$albumQueeryRes = $this->query($albumQueery);
 		
 		
@@ -143,11 +156,12 @@ class Music extends Model {
 								songName,
 								songURL,
 								Album.albumName,
-								Album.artistName,
+								Artist.artistName,
 								songLength
 								
 							FROM Song,
-								 Album
+								 Album,
+								 Artist
 							WHERE
 								Song.albumID = Album.albumID
 							ORDER BY RAND()
@@ -157,5 +171,11 @@ class Music extends Model {
 		
 	}
 
+	function getArtistForID($artistID)
+	{
+		$q = "SELECT artistName FROM Artist WHERE artistID = $artistID";
+		return $this->query($q);
+		
+	}
 	
 }

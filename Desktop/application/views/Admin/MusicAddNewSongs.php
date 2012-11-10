@@ -1,6 +1,6 @@
 <div id="addSingleSong" class = "elementContainer">
 <div class="header" >
-	select the file:
+	select the file: 
 </div>
 
 <form action="../Admin/uploadMusic" method="post" enctype="multipart/form-data">
@@ -23,7 +23,7 @@
 		<?php
 			foreach( $ArtistList as $artist)
 			{
-				echo '<option value="' . $artist['Artist']['artistName'] . '">' . $artist['Artist']['artistName'] . '</option>';
+				echo '<option value="' . $artist['Artist']['artistID'] . '">' . $artist['Artist']['artistName'] . '</option>';
 		  } ?>
 		</select>
 		
@@ -35,3 +35,5 @@
 </form>
 
 </div>
+
+

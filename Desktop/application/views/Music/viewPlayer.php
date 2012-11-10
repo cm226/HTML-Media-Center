@@ -7,9 +7,9 @@ var myPlaylist = [
 <?php foreach ($songs as &$song) { ?>
 
     {
-        mp3:<?php echo "'".str_replace("'","\'",str_replace(" ", "%20",  PUBLIC_FOLDER . $song["Song"]["songURL"] ))."'";?>,
+        mp3:<?php echo "'".str_replace("'","\'",str_replace(" ", "%20", $song["Song"]["songURL"] ))."'";?>,
         title:<?php echo "'".str_replace("'","\'", $song["Song"]["songName"]) ."'";?>,
-        artist:<?php echo "'".str_replace("'","\'",$song['Album']['artistName'])."'" ;?>,
+        artist:<?php echo "'".str_replace("'","\'",$song['Artist']['artistName'])."'" ;?>,
         rating:4,
         duration:<?php echo "'". $song["Song"]["songLength"] ."'";?>,
         cover:'../public/img/Music/Albums/<?php echo str_replace("'","\'",$song["Album"]["albumName"]); ?>.png'

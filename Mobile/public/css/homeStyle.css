@@ -80,6 +80,27 @@ margin: 0;
 vertical-align:middle;
 }
 
+.sharedTitleLeft
+{
+	height:100%;
+	width:50%;	
+	float:left;
+	
+}
+
+.sharedTitleRight
+{
+	height: 100%;
+	width:50%;
+	margin-left:-1px;
+	
+	float:left;	
+	border-left-style: solid;
+	border-left-width:1px;
+	border-left-color:black;
+
+}
+
 
 
 /* If you want you can use font-face */

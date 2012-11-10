@@ -21,8 +21,9 @@ function addMp3Box()
 	mp3Input.setAttribute('name', 'file'+fileCounter);
 	mp3Input.setAttribute('class', 'file');
 
-	mp3NameTxt.setAttribute('type','songName'+fileCounter);
-	mp3AlbumSelect.setAttribute('name','filealbum');
+	mp3NameTxt.setAttribute('name','songName'+fileCounter);
+	mp3NameTxt.setAttribute('type','text');
+	mp3AlbumSelect.setAttribute('name','filealbum'+fileCounter);
 	mp3AlbumSelect.setAttribute('class','albumSelect');
 	mp3AlbumSelect.setAttribute('id','albumSelect'+fileCounter);
 
@@ -43,6 +44,7 @@ function updateAlbumList(ArtistName,AlbumListID)
 {
 	
 	sendAJAXRequest("../Admin/getArtistAlbums", new Array (ArtistName),AlbumListID);
+
 }
 
 function updateAllAlbumLists(ArtistName, className)

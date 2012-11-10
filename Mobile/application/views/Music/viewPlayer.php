@@ -8,9 +8,9 @@ var myPlaylist = [
 <?php foreach ($songs as &$song) { ?>
 
     {
-        mp3:<?php echo "'".PUBLIC_FOLDER. str_replace(" ","%20",str_replace("'","\'",$song["Song"]["songURL"])) ."'";?>,
+        mp3:<?php echo "'".str_replace(" ","%20",str_replace("'","\'",$song["Song"]["songURL"])) ."'";?>,
         title:<?php echo "'". str_replace("'","\'",$song["Song"]["songName"]) ."'";?>,
-        artist:<?php echo "'".str_replace("'","\'",$song['Album']['artistName'])."'" ;?>,
+        artist:<?php echo "'".str_replace("'","\'",$song['Artist']['artistName'])."'" ;?>,
         rating:4,
         duration:<?php echo "'". $song["Song"]["songLength"] ."'";?>,
         cover:'../public/img/Music/Albums/<?php echo str_replace("'","\'",$song["Album"]["albumName"]); ?>.png'
@@ -140,7 +140,9 @@ function updatePlayingList(from, to)
 <body>
 
 	<div id="player" >
-		<div id="currentSongInfo" style="background-image:url(<?php echo "'".PUBLIC_FOLDER. "/img/Music/icons/HeaderGradient.png"."'";?>);"></div>
+		<div id="currentSongInfo" style="background-image:url(<?php echo "'".PUBLIC_FOLDER. "/img/Music/icons/HeaderGradient.png"."'";?>);">
+		<div id= "playlistsIcng"><img src="<?php echo PUBLIC_FOLDER. "/img/Music/icons/playlistsIcon.png";?>" height="30px" width="30px"></div>
+		</div>
 		<div id="albumImage"></div>
 		<div id="currentlyPlaying"></div>
 		<div id="audioControls"></div>

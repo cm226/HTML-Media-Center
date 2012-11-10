@@ -16,9 +16,12 @@ class MusicController extends Controller {
 	
 	function viewArtist()
 	{
-		$artistName = $_POST['artist'];
+		$artistID = $_POST['artist'];
+		$artistName = $this->Music->getArtistForID($artistID);
+		$artistName = $artistName[0]['Artist']['artistName'];
 		$this->set('artistsName',$artistName);
-		$this->set('albums',$this->Music->getArtistsAlbums($artistName));
+		$this->set('artistID',$artistID);
+		$this->set('albums',$this->Music->getArtistsAlbums($artistID));
 		
 	}
 	
@@ -30,11 +33,11 @@ class MusicController extends Controller {
 			return;
 		}
 		// viewing an artist
-		$artistName = $_POST['artist'];
+		$artistID = $_POST['artist'];
 		if(!isset($_POST['album']))
-			$this->set('songs',$this->Music->getArtistsSongs($artistName));
+			$this->set('songs',$this->Music->getArtistsSongs($artistID));
 		else
-			$this->set('songs',$this->Music->getArtistsAlbumSongs($artistName,$_POST['album']));
+			$this->set('songs',$this->Music->getArtistsAlbumSongs($artistID,$_POST['album']));
 	}
 
 	function viewPlaylist($playlist) //improve this whole thing by using AJAX and each result has a submit button

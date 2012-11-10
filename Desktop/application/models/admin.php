@@ -103,50 +103,63 @@ class Admin extends Model
 
 	function createArtistIfNecessary($ArtistName)
 	{
-		$artistExistsq = "SELECT artistName FROM Artist WHERE artistName = '$ArtistName'";
-		if(count($this->query($artistExistsq)) > 0)
-			return;
+		$artistExistsq = "SELECT artistID FROM Artist WHERE artistName = '$ArtistName'";
+		$artist = $this->query($artistExistsq);
+		if(count($artist) > 0)
+			return $artist[0]['Artist']['artistID'];
 
-		$addArtistq = "INSERT INTO Artist VALUES('$ArtistName', 10, 'unknown')";
+		$addArtistq = "INSERT INTO Artist VALUES(NULL,'$ArtistName', 10, 'unknown')";
 		echo $addArtistq;
 		$this->query($addArtistq);
 		
+		return $this->getLastAutoIncrement();
+		
 	}
-	function createAtristAlbumIfNecassery($ArtistName, $AlbumName)
+	function createAtristAlbumIfNecassery($ArtistID, $AlbumName)
 	{
-		$albumExsistsq = "SELECT albumName FROM Album WHERE albumName='$AlbumName' AND artistName= 'ArtistName'";
-		if(count($this->query($albumExsistsq)) > 0)
-			return;
+		$albumExsistsq = "SELECT albumID FROM Album WHERE albumName='$AlbumName' AND artistID= $ArtistID";
+		$result = $this->query($albumExsistsq);
+		if(count($result) > 0)
+			return $result[0]['Album']['albumID'];
 
-		$addAlbumq = "INSERT INTO Album VALUES ('$AlbumName', '$ArtistName', '2010' , 10)";
+		$addAlbumq = "INSERT INTO Album VALUES (NULL,'$AlbumName', $ArtistID, '2010' , 10)";
 		echo $addAlbumq;
 		$this->query($addAlbumq);
+		
+		return $this->getLastAutoIncrement();
 	}
 
-	function createSong($songName, $ArtistName, $AlbumName, $URL)
+	function createSong($songName, $ArtistName, $AlbumID, $URL)
 	{
 		$songExsistsq = "SELECT songName FROM Song WHERE songName ='$songName' AND 
-									albumName = '$AlbumName'";
+									albumID = '$AlbumID'";
 
-		echo $songExsistsq;
 		if(count($this->query($songExsistsq)) > 0)
 			return;
 
-		$addSongq = "INSERT INTO Song VALUES ('$songName', '$AlbumName', '03:50:00', 10, 0, '$URL')";
+		$addSongq = "INSERT INTO Song VALUES (NULL,'$songName', '$AlbumID', '03:50:00', 10, 0, '$URL')";
 		echo $addSongq;
 		$this->query($addSongq);
 	}
 
 	function getArtistsList()
 	{
-		$artistListq = "SELECT artistName FROM Artist";
+		$artistListq = "SELECT artistName, artistID FROM Artist";
 		return $this->query($artistListq);
 	}
 
 	function getAlbums($artist)
 	{
-		$getAlbumsq = "SELECT albumName FROM Album WHERE artistName = '$artist'";
+		$getAlbumsq = "SELECT albumName FROM Album WHERE artistID = $artist";
+		echo $getAlbumsq;
 		return $this->query($getAlbumsq);
+	}
+	
+	function getArtistForID($artistID)
+	{
+		$q = "SELECT artistName FROM Artist WHERE artistID = $artistID";
+		return $this->query($q);
+		
 	}
 
 	//-----------------------------------GENERIC---------------------------------

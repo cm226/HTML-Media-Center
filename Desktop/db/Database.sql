@@ -14,31 +14,33 @@ drop procedure if exists OrganiseEpisodes;
 
 CREATE TABLE Artist
 (
-artistName VARCHAR(20) PRIMARY KEY,
+artistID INT PRIMARY KEY AUTO_INCREMENT,
+artistName VARCHAR(20),
 artistRating INT(2) NOT NULL,
 genre VARCHAR(20)
 );
 
 CREATE TABLE Album
 (
-albumName VARCHAR(20) PRIMARY KEY,
-artistName VARCHAR(20) NOT NULL,
+albumID INT PRIMARY KEY AUTO_INCREMENT,
+albumName VARCHAR(20),
+artistID INT NOT NULL,
 year YEAR NOT NULL,
 albumRating INT(2) NOT NULL,
-FOREIGN KEY (artistName) REFERENCES Artist (artistName)
+FOREIGN KEY (artistID) REFERENCES Artist (artistID)
 );
 
 CREATE TABLE Song
 (
+songID INT PRIMARY KEY AUTO_INCREMENT,
 songName VARCHAR(40),
-albumName VARCHAR(20) NOT NULL,
+albumID INT NOT NULL,
 songLength TIME NOT NULL,
 songRating INT(2) NOT NULL,
 playCount INT(3) NOT NULL,
-songURL VARCHAR(256) PRIMARY KEY,
-FOREIGN KEY (albumName) REFERENCES Album (albumName)
+songURL VARCHAR(256),
+FOREIGN KEY (albumID) REFERENCES Album (albumID)
 );
-
 CREATE TABLE Playlist
 (
 playlistName VARCHAR(40) PRIMARY KEY,
