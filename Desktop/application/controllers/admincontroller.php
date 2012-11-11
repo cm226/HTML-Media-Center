@@ -242,8 +242,6 @@ class AdminController extends Controller
 		} 
 	}
 
-
-
 	function submitMusicData($songName,$artistName,$albumName, $oldfileName)
 	{
 		$artistImage = ''; // both not implemented yet
@@ -339,4 +337,10 @@ class AdminController extends Controller
 		$this->set("images", $results);
 	}
 
+	function addNewArtistAlbum($artistID)
+	{
+		
+		
+		
+	}
 }
