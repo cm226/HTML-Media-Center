@@ -53,7 +53,7 @@ public:
 	void notify(ParamT param, std::vector<ReturnT>* retVals = NULL)
 	{
 		typename HandlersMap::iterator it = handlers.begin();
-		bool generateReturn = retVals == NULL;
+		bool generateReturn = retVals != NULL;
 		for(; it != handlers.end(); it++)
 		{
 			if(generateReturn)

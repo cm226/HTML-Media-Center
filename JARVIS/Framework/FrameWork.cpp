@@ -9,7 +9,7 @@ JARVISFramework::JARVISFramework()
 	EventManager::pluginPoll.attach(this,&JARVISFramework::loadedPlugins);
 	EventManager::commandAndControlMessageReceved.attach(this,&JARVISFramework::commandAndControlMessageReceved);
 
-	this->pluginLoader = new Loader("/home/craig/workspace/HTML-Media-Center/JARVIS/Plugins");
+	this->pluginLoader = new Loader("/var/www/HTML-Media-Center/JARVIS/Plugins");
 	this->loadStartupPlugins();
 }
 

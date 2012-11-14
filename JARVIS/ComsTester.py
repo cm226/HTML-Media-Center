@@ -2,8 +2,8 @@ import socket
 import readline
 import sys
 
-SERVER = '127.0.0.1'
-PORT = 45001
+SERVER = 'localhost'
+PORT = 46000
 
 
 def printhelp():
@@ -24,14 +24,13 @@ def sendString(s,string):
 
 def lsPlgin():
 	s = openSocket()
-	print sendString(s,"pp$")
+	print sendString(s,"ppoll$")
 def ccsd():
 	s = openSocket()
-	print sendString(s,"$")
+	print sendString(s,"c&c$")
 def rpp():
 	s = openSocket()
-	print sendString(s,"hello
-$")
+	print sendString(s,"hello$")
 
 def parseCmd(s):
 	if s=="help\n":
