@@ -90,3 +90,15 @@ void Loader::listLoadedPlugins(std::vector<std::string>* outBuffer)
 		outBuffer->push_back((*it).first->pluginName());
 	}
 }
+
+Plugin* Loader::getPluginByName(std::string pluginName)
+{
+	for(std::map<Plugin*,void *>::iterator it = this->dllHandlPluginMap.begin(); it != this->dllHandlPluginMap.end(); it++)
+		{
+			if(pluginName.compare((*it).first->pluginName()) ==0)
+				return ((*it).first);
+		}
+
+	return NULL;
+}
+

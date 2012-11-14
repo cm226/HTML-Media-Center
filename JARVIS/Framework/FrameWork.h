@@ -25,12 +25,11 @@ public:
 	JARVISFramework();
 	virtual ~JARVISFramework();
 
-	void testPlugins();
-	void testEvents();
 	void testComms();
 
 private:
 	std::vector<std::string> loadedPlugins(int i);
+	std::string getPluginPage(std::string pluginName);
 
 	void loadStartupPlugins();
 	bool commandAndControlMessageReceved(int type);

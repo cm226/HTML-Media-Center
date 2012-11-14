@@ -8,7 +8,7 @@
 #include "EventManager.h"
 
 Event<std::vector<std::string>,int> EventManager::pluginPoll;
-Event<std::string,int> EventManager::onPluginViewRequest;
+Event<std::string,std::string> EventManager::onPluginViewRequest;
 Event<bool,int> EventManager::commandAndControlMessageReceved;
 
 

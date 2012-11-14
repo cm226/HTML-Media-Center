@@ -29,6 +29,8 @@ public:
 	void listPlugins(std::vector<std::string>* outBuffer);
 	void listLoadedPlugins(std::vector<std::string>* outBuffer);
 
+	Plugin* getPluginByName(std::string pluginName);
+
 	virtual ~Loader();
 };
 

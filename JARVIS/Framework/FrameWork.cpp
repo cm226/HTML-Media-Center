@@ -8,6 +8,7 @@ JARVISFramework::JARVISFramework()
 
 	EventManager::pluginPoll.attach(this,&JARVISFramework::loadedPlugins);
 	EventManager::commandAndControlMessageReceved.attach(this,&JARVISFramework::commandAndControlMessageReceved);
+	EventManager::onPluginViewRequest.attach(this,&JARVISFramework::getPluginPage);
 
 	this->pluginLoader = new Loader("/var/www/HTML-Media-Center/JARVIS/Plugins");
 	this->loadStartupPlugins();
@@ -18,29 +19,7 @@ JARVISFramework::~JARVISFramework()
 	delete this->pluginLoader;
 }
 
-void JARVISFramework::testEvents()
-{
-	bool (listenerClass::*member)(int) = &listenerClass::testHandler;
-	Event<bool,int> testEvent;
-	listenerClass* testList = new listenerClass;
 
-
-	CppEventHandler h = testEvent.attach<listenerClass>(testList,member);
-
-	//testEvent.notify(100);
-
-	testEvent.detach(h);
-
-	delete testList;
-
-}
-
-void JARVISFramework::testPlugins()
-{
-
-
-
-}
 
 void JARVISFramework::testComms()
 {
@@ -86,10 +65,20 @@ bool JARVISFramework::commandAndControlMessageReceved(int type)
 
 }
 
-bool listenerClass::testHandler(int t)
+std::string JARVISFramework::getPluginPage(std::string pluginName)
 {
-	printf("hfdjks %i",t);
-	return false;
+	std::string page = "";
+	Plugin* plugin = this->pluginLoader->getPluginByName(pluginName);
+	if(plugin != NULL)
+	{
+		Page pluginPage;
+		plugin->whatDoYouLookLike(&pluginPage);
+
+		pluginPage.buildPage(&page);
+		pluginPage.freePage();
+	}
+	return page;
+
 }
 
 

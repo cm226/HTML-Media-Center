@@ -27,10 +27,10 @@ def lsPlgin():
 	print sendString(s,"ppoll$")
 def ccsd():
 	s = openSocket()
-	print sendString(s,"c&c$")
+	print sendString(s,"c&c$1") #1 is the shutdown
 def rpp():
 	s = openSocket()
-	print sendString(s,"hello$")
+	print sendString(s,"rpp$")
 
 def parseCmd(s):
 	if s=="help\n":
@@ -39,7 +39,7 @@ def parseCmd(s):
 		lsPlgin()
 	elif s=="c&c_sd\n":
 		ccsd()
-	elif s=="rpp":
+	elif s=="rpp\n":
 		rpp()
 
 nb = ""

@@ -15,7 +15,8 @@ BaseTranslationFilter::BaseTranslationFilter() {
 }
 
 BaseTranslationFilter::~BaseTranslationFilter() {
-	// TODO Auto-generated destructor stub
+	if(this->nextFilter != NULL)
+		delete this->nextFilter;
 }
 
 AbstractMessage* BaseTranslationFilter::forwardMessage(std::string header, const char* bytes, unsigned int bytesLength)
