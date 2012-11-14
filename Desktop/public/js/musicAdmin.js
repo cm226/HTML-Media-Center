@@ -38,7 +38,13 @@ function addMp3Box()
 	document.getElementById('mp3Files').appendChild(mp3FileDiv); 
 }
 
-
+function addNewAlbum()
+{
+	var e = document.getElementById("artistID");
+	var artistID = e.options[e.selectedIndex].value;
+	
+	sendAJAXRequest("../Admin/addNewArtistAlbum", new Array (artistID),null);
+}
 
 function updateAlbumList(ArtistName,AlbumListID)
 {
