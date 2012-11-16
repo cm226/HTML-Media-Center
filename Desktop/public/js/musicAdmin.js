@@ -42,8 +42,9 @@ function addNewAlbum()
 {
 	var e = document.getElementById("artistID");
 	var artistID = e.options[e.selectedIndex].value;
+	var albumName =  document.getElementById("AlbumName").value;
 	
-	sendAJAXRequest("../Admin/addNewArtistAlbum", new Array (artistID),null);
+	sendAJAXRequest("../Admin/addNewArtistAlbum", new Array (artistID, albumName),null);
 }
 
 function updateAlbumList(ArtistName,AlbumListID)

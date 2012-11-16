@@ -337,10 +337,8 @@ class AdminController extends Controller
 		$this->set("images", $results);
 	}
 
-	function addNewArtistAlbum($artistID)
+	function addNewArtistAlbum($artistID, $albumName)
 	{
-		
-		
-		
+		$this->Admin->createAtristAlbumIfNecassery($artistID, $albumName);
 	}
 }
