@@ -24,13 +24,11 @@ void PluginPageMessage::actionMessage(std::string* reply)
 {
 	this->stripNextValue(); // remove header from message
 	std::string pluginName = this->stripNextValue();
-	//int value = atoi(comAndContValue.c_str());
-	//if(value != 0)
 
 	std::vector<std::string> replys;
 	EventManager::onPluginViewRequest.notify(pluginName,&replys);
 
-	reply = NULL;
+	*reply = replys[0];
 }
 
 } /* namespace TranslatedMessages */

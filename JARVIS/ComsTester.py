@@ -30,7 +30,7 @@ def ccsd():
 	print sendString(s,"c&c$1") #1 is the shutdown
 def rpp():
 	s = openSocket()
-	print sendString(s,"rpp$")
+	print sendString(s,"rpp$Email")
 
 def parseCmd(s):
 	if s=="help\n":
