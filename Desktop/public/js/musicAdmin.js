@@ -47,6 +47,13 @@ function addNewAlbum()
 	sendAJAXRequest("../Admin/addNewArtistAlbum", new Array (artistID, albumName),null);
 }
 
+function addNewArtist()
+{
+	var newArtistName = document.getElementById("newArtist").value;
+	
+	sendAJAXRequest("../Admin/addNewArtist", new Array (newArtistName),null);
+}
+
 function updateAlbumList(ArtistName,AlbumListID)
 {
 	

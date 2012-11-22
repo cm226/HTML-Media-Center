@@ -341,4 +341,9 @@ class AdminController extends Controller
 	{
 		$this->Admin->createAtristAlbumIfNecassery($artistID, $albumName);
 	}
+	
+	function addNewArtist($Artist)
+	{
+		$this->Admin->createArtistIfNecessary($Artist);
+	}
 }

@@ -1,3 +1,14 @@
+html
+{
+	margin:0;
+	paddng:0;
+	background-image:url('../../public/img/TV/bgPic.jpg');
+	background-color:black;
+	
+	background-repeat:no-repeat;
+	
+}
+
 h4
 {
 	background-color:#000000;
