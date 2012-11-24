@@ -10,12 +10,14 @@
 namespace DatabaseTables {
 
 Song::Song() {
-	// TODO Auto-generated constructor stub
+	this->songname = new SongName();
+	this->songURL = new SongURL();
 
 }
 
 Song::~Song() {
-	// TODO Auto-generated destructor stub
+	delete this->songname;
+	delete this->songURL;
 }
 
 } /* namespace DatabaseTables */

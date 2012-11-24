@@ -10,12 +10,17 @@
 
 #include "DatabaseTable.h"
 
+#include "Fields/Name.h"
+
 namespace DatabaseTables {
 
 class Artist: public DatabaseTables::DatabaseTable {
 public:
 	Artist();
 	virtual ~Artist();
+
+	Name* name;
+
 };
 
 } /* namespace DatabaseTables */

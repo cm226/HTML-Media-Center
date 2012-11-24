@@ -8,12 +8,16 @@
 #ifndef DATABASETABLE_H_
 #define DATABASETABLE_H_
 
+#include <String>
+
 namespace DatabaseTables {
 
 class DatabaseTable {
 public:
 	DatabaseTable();
 	virtual ~DatabaseTable();
+
+	virtual std::string getInsertQuery() =0 ;
 };
 
 } /* namespace DatabaseTables */

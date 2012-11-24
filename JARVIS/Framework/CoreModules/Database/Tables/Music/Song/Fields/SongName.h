@@ -9,10 +9,11 @@
 #define SONGNAME_H_
 
 #include "DatabaseTableField.h"
+#include <string>
 
 namespace DatabaseTables {
 
-class SongName: public DatabaseTables::DatabaseTableField {
+class SongName: public DatabaseTables::DatabaseTableField<std::string> {
 public:
 	SongName();
 	virtual ~SongName();

@@ -9,10 +9,12 @@
 #define ALBUMNAME_H_
 
 #include "DatabaseTableField.h"
+#include <string>
 
 namespace DatabaseTables {
 
-class AlbumName: public DatabaseTables::DatabaseTableField {
+class AlbumName: public DatabaseTables::DatabaseTableField<std::string> {
+
 public:
 	AlbumName();
 	virtual ~AlbumName();

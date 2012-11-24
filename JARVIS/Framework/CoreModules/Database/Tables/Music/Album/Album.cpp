@@ -10,12 +10,14 @@
 namespace DatabaseTables {
 
 Album::Album() {
-	// TODO Auto-generated constructor stub
+	this->albumname = new AlbumName();
+	this->artist = new ArtistName();
 
 }
 
 Album::~Album() {
-	// TODO Auto-generated destructor stub
+	delete this->albumname;
+	delete this->artist;
 }
 
 } /* namespace DatabaseTables */

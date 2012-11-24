@@ -10,10 +10,19 @@
 
 namespace DatabaseTables {
 
-class DatabaseTableField {
+template <class Type> class DatabaseTableField {
+
+private:
+	Type value;
+
 public:
 	DatabaseTableField();
 	virtual ~DatabaseTableField();
+
+	void setValue(Type newValue)
+	{
+		this->value = value;
+	}
 };
 
 } /* namespace DatabaseTables */
