@@ -28,7 +28,9 @@
 		</select>
 		
 		<label>New Artist: </label>
-		<input type="test" name="newArtist"/>
+		<input type="test" name="newArtist" id="newArtist"/>
+		<button type="button" onclick="addNewArtist();">Add Artist</button> <br/>
+		<input type="text" name="AlbumName" id="AlbumName"/>
 		<button type="button" onclick="addNewAlbum();">Create New Album</button>
 	</div>
 
