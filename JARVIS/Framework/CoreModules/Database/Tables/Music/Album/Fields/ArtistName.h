@@ -8,7 +8,7 @@
 #ifndef ARTISTNAME_H_
 #define ARTISTNAME_H_
 
-#include "DatabaseTableField.h"
+#include "../../../DatabaseTableField.h"
 #include "string"
 
 namespace DatabaseTables {
@@ -17,6 +17,7 @@ class ArtistName: public DatabaseTables::DatabaseTableField<std::string> {
 public:
 	ArtistName();
 	virtual ~ArtistName();
+	virtual std::string getName();
 };
 
 } /* namespace DatabaseTables */

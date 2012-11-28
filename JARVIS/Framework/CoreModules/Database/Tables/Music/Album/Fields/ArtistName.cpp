@@ -18,4 +18,9 @@ ArtistName::~ArtistName() {
 	// TODO Auto-generated destructor stub
 }
 
+std::string ArtistName::getName()
+{
+	return "Artist.Name";
+}
+
 } /* namespace DatabaseTables */

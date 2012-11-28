@@ -18,4 +18,9 @@ SongURL::~SongURL() {
 	// TODO Auto-generated destructor stub
 }
 
+std::string SongURL::getName()
+{
+	return "Song.URL";
+}
+
 } /* namespace DatabaseTables */

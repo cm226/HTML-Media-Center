@@ -9,13 +9,18 @@
 
 namespace DatabaseTables {
 
-SongName::SongName() {
+SongName::SongName() : DatabaseTables::DatabaseTableField<std::string>()  {
 	// TODO Auto-generated constructor stub
 
 }
 
 SongName::~SongName() {
 	// TODO Auto-generated destructor stub
+}
+
+std::string SongName::getName()
+{
+	return "Song.Name";
 }
 
 } /* namespace DatabaseTables */
