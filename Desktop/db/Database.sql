@@ -39,6 +39,7 @@ songLength TIME NOT NULL,
 songRating INT(2) NOT NULL,
 playCount INT(3) NOT NULL,
 songURL VARCHAR(256),
+dateAdded DATE,
 FOREIGN KEY (albumID) REFERENCES Album (albumID)
 );
 CREATE TABLE Playlist

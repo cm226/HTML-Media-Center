@@ -1,4 +1,26 @@
+<div id="recentlyAdded">
+<div id="heading"> Recently Added</div>
+<div id="recentlyAddedSongs">
+<div id="recentlyAddedWrapper">
+	<?php foreach ($recentlyAddedSongs as $recentlyAdded){?>
+		<div class="recentlyAddedSong">
+			<?php
+			if(file_exists('../public/img/Music/Artists/' . $recentlyAdded['Artist']['artistName'] . '.png'))
+				echo '<img src="../public/img/Music/Artists/' . $recentlyAdded['Artist']['artistName'] . '.png" height="60" width="60">';
+			else
+				echo '<img src="../public/img/Music/Artists/default.png" height="60" width="60">';
+			?>
+			<h4 class="ArtistName"><?php echo $recentlyAdded['Song']['songName'];?></h4>
+			<p class="artistInfo"><?php echo $recentlyAdded['Artist']['artistName'];?></p>
+		</div>
+	<?php } ?>
+	</div>
+</div>
 
+<div id="playAll" onclick="postwith('../Music/viewRecentlyAdded',{added:''})">
+<div id="platAllText">Play All</div>
+</div>
+</div>
 
 <div id="leftContainer">
 
@@ -32,6 +54,11 @@ foreach ($playlists as $playList)
 
 </div>
 
+<div id="randomSongs">
+	<form action="../Music/viewShuffle">
+		<input type="Submit" value="Gimmy some random Songs" />
+	</form>
+</div>
 
 </div>
 
@@ -58,8 +85,3 @@ echo '</div>';
 
 ?>
 
-<div id="randomSongs">
-	<form action="../Music/viewShuffle">
-		<input type="Submit" value="Gimmy some random Songs" />
-	</form>
-</div>

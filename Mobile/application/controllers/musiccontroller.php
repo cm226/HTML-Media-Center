@@ -1,4 +1,5 @@
 <?php
+require_once (ROOT . DS . 'application' . DS . 'views' . DS . 'Shared'.DS.'download.php');
 
 class MusicController extends Controller {
 	
@@ -12,6 +13,7 @@ class MusicController extends Controller {
 			
 		$this->set('artists',$this->Music->viewAll());
 		$this->set('playlists', $this->Music->getPlayLists());
+		$this->set('recentlyAddedSongs', $this->Music->getRecentlyAdded());
 	}
 	
 	function viewArtist()
@@ -32,6 +34,13 @@ class MusicController extends Controller {
 			$this->set('songs',$this->Music->getSongsFromPlayList($_POST['playlist']));	
 			return;
 		}
+		
+		if(isset($_POST['recentlyAdded']))
+		{
+			$this->set('songs',$this->Music->getRecentlyAdded());	
+			return;
+		}
+		
 		// viewing an artist
 		$artistID = $_POST['artist'];
 		if(!isset($_POST['album']))
@@ -76,5 +85,13 @@ class MusicController extends Controller {
 	function viewShuffle()
 	{
 		$this->set("songs", $this->Music->get10RandomSongs());
+	}
+	
+	function downloadSong($songID)
+	{
+		$res = $this->Music->getSongForID($songID);
+		$fileURL = ROOT . DS . 'public'. str_replace("/","\\",str_replace("../public","", $res[0]['Song']['songURL']));
+		echo $fileURL;
+		$this->set("file",$fileURL);
 	}
 }
