@@ -15,3 +15,14 @@ CoreModules::CoreModules() {
 
 CoreModules::~CoreModules() {
 }
+
+DatabaseTables::Database* CoreModules::getDatabaseConnection()
+{
+	if(this->databasecon == NULL)
+	{
+		this->databasecon = new DatabaseTables::Database();
+		this->databasecon->Connect("root", "root","MediaServer");
+	}
+
+	return this->databasecon;
+}

@@ -21,7 +21,7 @@ Equals::~Equals() {
 
 void Equals::getQuerystring(std::string* query)
 {
-	*query = "";
+	*query = this->field->getName()+"="+this->value;
 }
 
 } /* namespace DatabaseTables */
