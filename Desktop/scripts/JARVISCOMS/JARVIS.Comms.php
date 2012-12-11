@@ -9,7 +9,7 @@ var $transever;
 
 function __construct()
 {
-       $this->$transever = new Transever();
+       $this->transever = new Transever();
 }
 
 function listLoadedPlugins()

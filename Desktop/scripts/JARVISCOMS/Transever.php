@@ -18,15 +18,15 @@ function __construct()
 	 * as it comes in. */
 	ob_implicit_flush();
 
-	if (($sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)) === false)
+	if (($this->sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)) === false)
 	{
 		echo "socket_create() failed: reason: " . socket_strerror(socket_last_error()) . "\n";
 		return false;
 	}
 	
-	if (socket_connect($sock, $address, $service_port) == false) 
+	if (socket_connect($this->sock, $this->address, $this->port) == false) 
 	{
-		echo "socket_listen() failed: reason: " . socket_strerror(socket_last_error($sock)) . "\n";
+		echo "socket_listen() failed: reason: " . socket_strerror(socket_last_error($this->sock)) . "\n";
 		return false;
 	}
 	return true;
@@ -34,21 +34,21 @@ function __construct()
 
 function __destruct()
 {
-	if($sock)
+	if($this->sock)
 	{
-		socket_close($socket);
+		socket_close($this->sock);
 	}
 }
 
 public function sendMessage($Message)
 {
 	$messageStr = $Message->getMessage();
-	socket_write($sock, $messageStr, strlen($messageStr));
+	socket_write($this->sock, $messageStr, strlen($messageStr));
 }
 
 public function readReply()
 {
-	$out = socket_read($socket, 2048);
+	$out = socket_read($this->sock, 2048);
 	return $out;
 }
 	
