@@ -7,13 +7,28 @@
 
 #ifndef CONSTRAINT_H_
 #define CONSTRAINT_H_
+#include "../../Tables/DatabaseTableField.h"
+#include <string>
 
 namespace DatabaseTables {
 
+
+
 class Constraint {
+private:
+	IDatabaseTableField* field;
+	std::string value;
+
 public:
-	Constraint();
-	virtual ~Constraint();
+	Constraint(IDatabaseTableField* field, std::string value)
+	{
+		this->field = field;
+		this->value = value;
+	};
+	virtual ~Constraint(){};
+
+	virtual void getQuerystring(std::string* query) = 0;
+
 };
 
 } /* namespace DatabaseTables */

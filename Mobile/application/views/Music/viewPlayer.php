@@ -1,7 +1,10 @@
 <html>
 <head>
 
+<script type="text/javascript" src="../public/js/helperFunctions.js"></script> 
+
 <script>
+
 
 var myPlaylist = [
 
@@ -13,7 +16,8 @@ var myPlaylist = [
         artist:<?php echo "'".str_replace("'","\'",$song['Artist']['artistName'])."'" ;?>,
         rating:4,
         duration:<?php echo "'". $song["Song"]["songLength"] ."'";?>,
-        cover:'../public/img/Music/Albums/<?php echo str_replace("'","\'",$song["Album"]["albumName"]); ?>.png'
+        cover:'../public/img/Music/Albums/<?php echo str_replace("'","\'",$song["Album"]["albumName"]); ?>.png',
+		id: <?php echo $song['Song']['songID']; ?>
     },
 	
 <?php } ?>
@@ -117,6 +121,15 @@ function play()
 	document.getElementById('audioPlayer').play();
 }
 
+function downloadSong(songNumber)
+{
+	var id = myPlaylist[songNumber].id;
+
+	//sendAJAXRequest("../Music/downloadSong", new Array (String(id)),"player");
+	
+	window.location = "../Music/downloadSong/String(id)";
+}
+
 function updatePlayingList(from, to)
 {
 	var nowPlaying = document.getElementById("playlist"+to);
@@ -173,7 +186,14 @@ function updatePlayingList(from, to)
 	
 	for(var i = 0; i < numSongs; i++)
 	{
-		playingList.innerHTML += "<div class=\"songItem\" id=\"playlist"+i+"\" onClick=\"playSong("+i+");\">"+myPlaylist[i].title+"<div/>";
+		var songItem = "<div class=\"songItem\" id=\"playlist"+i+"\" onClick=\"playSong("+i+");\">";
+		songItem += myPlaylist[i].title;
+		songItem += "<div id=\"downloadButton\" onClick=\"downloadSong("+i+")\"> <img src=";
+		songItem += <?php echo '"'.PUBLIC_FOLDER. '/img/Music/icons/downloadBttn.png'.'"';?>;
+		songItem += " height=\"30px\" width=\"30px\"> </div>";
+		songItem += "<div/>";
+		
+		playingList.innerHTML += songItem;
 	}
 </script>
 </body>

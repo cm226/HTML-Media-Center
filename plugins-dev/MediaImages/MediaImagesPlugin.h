@@ -11,7 +11,7 @@
 #include "../../JARVIS/Framework/Plugin/Plugin.h"
 #include <string>
 
-class MediaImagesPlugin {
+class MediaImagesPlugin: public Plugin {
 private :
 	std::string name;
 public:

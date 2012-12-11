@@ -23,15 +23,11 @@ void Query::addConstraint(Constraint* con)
 
 }
 
-void Query::addSelectItem(DatabaseTableField* field)
+void Query::addSelectItem(IDatabaseTableField* field)
 {
 
 }
 void Query::addSelectItem(DatabaseTable* table)
-{
-
-}
-void Query::addConstraint(Constraint* con)
 {
 
 }

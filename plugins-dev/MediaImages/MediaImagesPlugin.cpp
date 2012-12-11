@@ -7,7 +7,7 @@
 
 #include "MediaImagesPlugin.h"
 
-MediaImagesPlugin::MediaImagesPlugin(CoreModules* framework)
+MediaImagesPlugin::MediaImagesPlugin(CoreModules* framework) : Plugin(framework)
 {
 	this->name = "Media Images";
 }

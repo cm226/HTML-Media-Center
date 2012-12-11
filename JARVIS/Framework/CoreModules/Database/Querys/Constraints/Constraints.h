@@ -8,7 +8,7 @@
 #ifndef CONSTRAINTS_H_
 #define CONSTRAINTS_H_
 
-
+#include "Constraint.h"
 
 
 #endif /* CONSTRAINTS_H_ */

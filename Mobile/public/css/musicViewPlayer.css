@@ -119,7 +119,8 @@ audio
 	border-style: solid;
 	border-color: white;
 	border-width: 1px;
-	border-radius:5px; 
+	border-radius:5px;
+	height: 30px; 
 }
 
 .songItem:hover
@@ -156,6 +157,14 @@ audio
 	position: absolute;
 	right: 10px;
 	width: 30px;
-	
-
 }
+
+#downloadButton
+{
+	width: 30px;
+	height: 30px;
+	float: right;
+	padding-right: 10px;
+}
+
+

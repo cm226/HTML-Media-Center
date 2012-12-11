@@ -8,7 +8,7 @@
 #ifndef ALBUM_H_
 #define ALBUM_H_
 
-#include "DatabaseTable.h"
+#include "../../DatabaseTable.h"
 #include "Fields/AlbumName.h"
 #include "Fields/ArtistName.h"
 

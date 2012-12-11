@@ -24,8 +24,8 @@ namespace DatabaseTables {
 
 class Database {
 private:
-	  sql::Driver *driver = NULL;
-	  sql::Connection *con = NULL;
+	  sql::Driver *driver;
+	  sql::Connection *con;
 
 public:
 	Database();
@@ -34,7 +34,7 @@ public:
 	bool Connect(std::string userName, std::string password, std::string DatabaseName);
 
 	void insertRow(DatabaseTable* row);
-	std::vector<std::vector<DatabaseTable*>> runQuery(Query query);
+	std::vector< std::vector<DatabaseTable*> >* runQuery(Query query);
 
 };
 

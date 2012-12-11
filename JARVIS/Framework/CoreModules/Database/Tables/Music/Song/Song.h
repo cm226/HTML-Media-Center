@@ -8,7 +8,7 @@
 #ifndef SONG_H_
 #define SONG_H_
 
-#include "DatabaseTable.h"
+#include "../../DatabaseTable.h"
 #include "Fields/SongName.h"
 #include "Fields/SongURL.h"
 

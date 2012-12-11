@@ -8,22 +8,28 @@
 #ifndef DATABASETABLEFIELD_H_
 #define DATABASETABLEFIELD_H_
 
+#include "IDatabaseTableField.h"
+
 namespace DatabaseTables {
 
-template <class Type> class DatabaseTableField {
+template <class Type> class DatabaseTableField : public IDatabaseTableField{
 
 private:
 	Type value;
 
 public:
-	DatabaseTableField();
-	virtual ~DatabaseTableField();
+	DatabaseTableField(){};
+	virtual ~DatabaseTableField(){};
 
-	void setValue(Type newValue)
+	void setValue(IDatabaseFieldType* newValue)
 	{
-		this->value = value;
+		this->value = (Type)value;
 	}
+	virtual std::string getName()=0;
+
 };
 
 } /* namespace DatabaseTables */
 #endif /* DATABASETABLEFIELD_H_ */
+
+

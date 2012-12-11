@@ -13,7 +13,7 @@ namespace DatabaseTables {
 Database::Database() {
 
 	 this->driver = get_driver_instance();
-
+	 this->con = NULL;
 }
 
 Database::~Database() {
@@ -43,7 +43,7 @@ void Database::insertRow(DatabaseTable* row)
 	delete stmt;
 
 }
-std::vector<std::vector<DatabaseTable*>> Database::runQuery(Query query)
+std::vector< std::vector<DatabaseTable*> >* Database::runQuery(Query query)
 {
 
 	sql::PreparedStatement *pstmt = con->prepareStatement("select * from example");

@@ -5,7 +5,7 @@ class Music extends Model {
 	function viewAll()
 	{
 	
-		$allArtistsq = 'SELECT artistName, artistID, artistRating, genre FROM Artist';
+		$allArtistsq = 'SELECT artistName, artistID, artistRating, genre FROM Artist ORDER BY artistName';
 		$allArtistsResult = $this->query($allArtistsq);
 		return $allArtistsResult;
 									
@@ -18,7 +18,8 @@ class Music extends Model {
 	
 	function getArtistsSongs($artistID)
 	{
-		$allArtistsSongq = "SELECT songName,
+		$allArtistsSongq = "SELECT Song.songID,
+									songName,
 									songURL,
 									Album.albumName,
 									Artist.artistName,
@@ -37,6 +38,7 @@ class Music extends Model {
 	function getArtistsAlbumSongs($artistID, $albumID)
 	{
 		$allArtistsSongq = 'SELECT 
+								Song.songID,
 								songName,
 								songURL,
 								Album.albumName,
@@ -93,7 +95,8 @@ class Music extends Model {
 
 	function getSongsFromPlayList($playlist)
 	{
-		$playlistSongsq = "SELECT 
+		$playlistSongsq = "SELECT
+					Song.songID,
 					Song.songName,
 					Song.songLength,
 					Song.songURL,

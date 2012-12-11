@@ -8,7 +8,7 @@
 #ifndef ARTIST_H_
 #define ARTIST_H_
 
-#include "DatabaseTable.h"
+#include "../../DatabaseTable.h"
 
 #include "Fields/Name.h"
 

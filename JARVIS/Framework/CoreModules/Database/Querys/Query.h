@@ -19,7 +19,7 @@ public:
 	Query();
 	virtual ~Query();
 
-	void addSelectItem(DatabaseTableField* field);
+	void addSelectItem(IDatabaseTableField* field);
 	void addSelectItem(DatabaseTable* table);
 
 	void addConstraint(Constraint* con);

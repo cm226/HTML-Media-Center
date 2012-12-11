@@ -18,4 +18,10 @@ AlbumName::~AlbumName() {
 	// TODO Auto-generated destructor stub
 }
 
+std::string AlbumName::getName()
+{
+	return "Album.Name";
+
+}
+
 } /* namespace DatabaseTables */

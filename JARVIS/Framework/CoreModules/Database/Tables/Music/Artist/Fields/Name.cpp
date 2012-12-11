@@ -18,4 +18,10 @@ Name::~Name() {
 	// TODO Auto-generated destructor stub
 }
 
+std::string Name::getName()
+{
+	return "Artist.Name";
+
+}
+
 } /* namespace DatabaseTables */

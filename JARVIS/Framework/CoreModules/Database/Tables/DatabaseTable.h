@@ -8,7 +8,7 @@
 #ifndef DATABASETABLE_H_
 #define DATABASETABLE_H_
 
-#include <String>
+#include <string>
 
 namespace DatabaseTables {
 
