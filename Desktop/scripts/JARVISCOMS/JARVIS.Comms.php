@@ -10,6 +10,10 @@ var $transever;
 function __construct()
 {
        $this->transever = new Transever();
+	   if(!$this->transever->isConnected())
+	   {
+	   		echo "Error Connecting to JARVIS, he isent there";
+	   }
 }
 
 function listLoadedPlugins()

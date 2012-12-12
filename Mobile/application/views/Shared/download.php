@@ -1,8 +1,8 @@
 <?php
-/*
+
 function showDownload($file)
 {
-
+	echo $file;
 	if (file_exists($file))
 	{
 	    header('Content-Description: File Transfer');
@@ -24,4 +24,4 @@ function showDownload($file)
 		
 	}
 	
-}*/
+}
