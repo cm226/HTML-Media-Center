@@ -8,10 +8,12 @@
 #include "Loader.h"
 
 #include "../../CoreModules/Errors/ErrorLogger.h"
+#include <stdio.h>
 #include <sys/types.h>
 #include <dirent.h>
 #include <dlfcn.h>
 #include <string>
+#include <cstring>
 
 
 
@@ -95,10 +97,13 @@ Plugin* Loader::getPluginByName(std::string pluginName)
 {
 	for(std::map<Plugin*,void *>::iterator it = this->dllHandlPluginMap.begin(); it != this->dllHandlPluginMap.end(); it++)
 		{
-			if(pluginName.compare((*it).first->pluginName()) ==0)
+			std::string name = std::string((*it).first->pluginName());
+			int cmpVal = strcmp(name.c_str(), pluginName.c_str());
+			if(cmpVal==0)
 				return ((*it).first);
 		}
 
+	ErrorLogger::logError("Failed to get plugin by name: "+pluginName);
 	return NULL;
 }
 

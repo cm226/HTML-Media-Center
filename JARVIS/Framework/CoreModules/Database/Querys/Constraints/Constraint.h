@@ -16,10 +16,12 @@ namespace DatabaseTables {
 
 class Constraint {
 private:
+
+
+public:
 	IDatabaseTableField* field;
 	std::string value;
 
-public:
 	Constraint(IDatabaseTableField* field, std::string value)
 	{
 		this->field = field;

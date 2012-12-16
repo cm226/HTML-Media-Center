@@ -29,7 +29,12 @@ AbstractMessage* Translater::translateMessage(const char* message, unsigned int 
 
 	std::string header(message,offset);
 
-	return this->messageFactory(header,message,messageLength);
+	AbstractMessage* translatedMessage = this->messageFactory(header,message,messageLength);
+	if(translatedMessage == NULL)
+	{
+		ErrorLogger::logError("Unrecognized message Header:"+header);
+	}
+	return translatedMessage;
 }
 
 AbstractMessage* Translater::messageFactory(std::string msgHeader, const char* data, unsigned int messageLength)

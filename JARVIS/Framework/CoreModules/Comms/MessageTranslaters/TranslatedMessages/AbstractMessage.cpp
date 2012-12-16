@@ -10,7 +10,7 @@
 AbstractMessage::AbstractMessage(const char* data, unsigned int length)
 {
 	this->message = data;
-	this->length = length-3;
+	this->length = length;
 	this->offset = 0;
 }
 

@@ -23,7 +23,6 @@ private:
 	void connectionListener();
 
 public:
-	int PORT;
 
 	Comms();
 	virtual ~Comms();

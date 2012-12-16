@@ -14,8 +14,7 @@
 
 
 Comms::Comms() {
-	this->transever = new TCPTransever();
-	this->PORT = 40051;
+	this->transever = new TCPTransever(45001);
 	this->listening = false;
 
 	this->messageTranslater = new Translater();
