@@ -18,3 +18,11 @@ then inside Desktop/congig/config.php (only avalable after setupFolders.py has b
 
 Then you should be good to go :)
  
+ 
+ ToDo 
+ 
+1. Setup a Unit test framework (for php and c++)!! (project has gone on long enough withought automatic testing)
+2. update the mobile and desktop sites to use the same controllers and models (yes yes.. i know long past due)
+3. update the agent and serverside python scripts to allow for DHCP (its set on a static ip od 192.168.0.198 for debuging)
+4. finish off the database connection classes in c++
+
