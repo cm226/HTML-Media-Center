@@ -21,13 +21,11 @@ public:
 };
 
 
-
 class Constraint : public IConstraint {
 protected:
 	IDatabaseTableField* field;
 	IDatabaseTableField* field2;
 	std::string value;
-
 public:
 	Constraint(IDatabaseTableField* field, std::string value)
 	{

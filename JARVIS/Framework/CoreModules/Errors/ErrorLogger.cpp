@@ -19,5 +19,4 @@ ErrorLogger::~ErrorLogger() {
 void ErrorLogger::logError(std::string message)
 {
 	std::cerr << message << std::endl;
-	//printf(message.c_str());
 }

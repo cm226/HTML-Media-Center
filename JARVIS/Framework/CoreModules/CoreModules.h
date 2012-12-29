@@ -15,7 +15,7 @@
 
 class CoreModules {
 private:
-	DatabaseTables::Database* databasecon = NULL;
+	//DatabaseTables::Database* databasecon = NULL;
 
 public:
 	CoreModules();
