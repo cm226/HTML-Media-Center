@@ -11,7 +11,7 @@
 #include <string>
 #include <vector>
 
-#include "Tables/Tables.h"
+#include "Tables/DatabaseTable.h"
 #include "Querys/Querys.h"
 
 #include <cppconn/driver.h>
@@ -24,17 +24,22 @@ namespace DatabaseTables {
 
 class Database {
 private:
+	bool connected;
 	  sql::Driver *driver;
 	  sql::Connection *con;
+
+	  void fillField(IDatabaseTableField* field, sql::ResultSet* results);
 
 public:
 	Database();
 	virtual ~Database();
 
-	bool Connect(std::string userName, std::string password, std::string DatabaseName);
+	bool Connect(std::string userName, std::string password, std::string DatabaseName, std::string host);
 
 	void insertRow(DatabaseTable* row);
-	std::vector< std::vector<DatabaseTable*> >* runQuery(Query query);
+	bool runQuery(Query* query);
+	bool isConnected();
+	
 
 };
 

@@ -166,7 +166,8 @@ class Music extends Model {
 								 Album,
 								 Artist
 							WHERE
-								Song.albumID = Album.albumID
+								Song.albumID = Album.albumID AND
+								Album.artistID = Artist.artistID
 							ORDER BY RAND()
 							LIMIT 10";
 							
@@ -206,7 +207,7 @@ class Music extends Model {
 			  WHERE
 			  	Song.albumID = Album.albumID AND
 				Artist.artistID = Album.artistID
-			  ORDER BY dateAdded LIMIT 10";
+			  ORDER BY dateAdded DESC LIMIT 10";
 		return $this->query($q);
 	}
 	

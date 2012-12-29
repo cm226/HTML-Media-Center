@@ -2,6 +2,8 @@
 #define _IDATABASETABLEFIELD
 
 #include <string>
+#include "../ResultWrapper.h"
+
 namespace DatabaseTables {
 class IDatabaseFieldType
 {
@@ -16,10 +18,15 @@ class CDatabaseFieldType : public IDatabaseFieldType
 
 class IDatabaseTableField
 {
+protected:
+	   virtual std::string fieldName() = 0;
+
 public:
    virtual ~IDatabaseTableField();
-   virtual void setValue(IDatabaseFieldType* newValue) = 0;
+
+   virtual void takeValue(ResultWrapper* resRwapper) = 0;
    virtual std::string getName() = 0;
+   virtual std::string ownerName() = 0;
 };
 
 

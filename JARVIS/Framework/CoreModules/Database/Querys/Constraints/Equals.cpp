@@ -15,13 +15,21 @@ Equals::Equals(IDatabaseTableField* field, std::string value): DatabaseTables::C
 
 }
 
+Equals::Equals(IDatabaseTableField* field, IDatabaseTableField* field2) : DatabaseTables::Constraint(field, field2)
+{
+
+}
+
 Equals::~Equals() {
 	// TODO Auto-generated destructor stub
 }
 
-void Equals::getQuerystring(std::string* query)
+std::string Equals::getQuerystring()
 {
-	*query = this->field->getName()+"="+this->value;
+	if(this->field2 == NULL)
+		return this->field->getName()+"='"+this->value+"'";
+	else
+		return this->field->getName()+"="+this->field2->getName();
 }
 
 } /* namespace DatabaseTables */

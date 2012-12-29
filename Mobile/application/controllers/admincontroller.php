@@ -236,5 +236,15 @@ class AdminController extends Controller
 			$this->set("InvalidFileType",true);
 		  }
 	}
+	
+	function power()
+	{
+		
+	}
+	
+	function DoPowerOff()
+	{
+		echo exec("echo ".ROOT_PASSWORD." | sudo shutdown -P now");
+	}
 
 }

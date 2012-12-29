@@ -9,8 +9,8 @@
 
 namespace DatabaseTables {
 
-DatabaseTable::DatabaseTable() {
-	// TODO Auto-generated constructor stub
+DatabaseTable::DatabaseTable()
+{
 
 }
 

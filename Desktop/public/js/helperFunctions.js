@@ -111,8 +111,9 @@ function sendAJAXRequest(target, arguments, fillID)
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
+		
+			if(fillID != null)
 		    document.getElementById(fillID).innerHTML=xmlhttp.responseText;
-				console.log(xmlhttp.responseText);
 		}
 	}
 
@@ -143,6 +144,12 @@ function displayPictureList(ArtistSelectID, imageDivID)
 {
 	var artistName = document.getElementById(ArtistSelectID).value;
 	sendAJAXRequest("../Admin/getArtistBackgrounds", new Array (artistName),imageDivID);
+}
+
+function removeByID(id)
+{
+	var element = document.getElementById(id);
+	element.parentNode.removeChild(element);
 }
 
 

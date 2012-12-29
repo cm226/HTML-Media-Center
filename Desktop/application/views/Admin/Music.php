@@ -1,5 +1,6 @@
 <div class="elementContainer" id="addSongs">
-	<div class="header" onClick="window.location='../Admin/MusicAddNewSongs'; ">Add Songs</div>
+	<div class="header">Add Songs</div>
+	<a class="blackBttn" href="../Admin/MusicAddNewSongs">Add</a>
 </div>
 
 <div id="imageUploads">

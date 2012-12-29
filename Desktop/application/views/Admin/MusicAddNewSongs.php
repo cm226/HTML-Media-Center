@@ -13,6 +13,7 @@
 		<lable>album:</lable>
 		<select class="albumSelect" name="filealbum0" id="albumID">
 		</select>
+		
 		<br />
 	</div>
 </div>
@@ -33,6 +34,7 @@
 		<input type="text" name="AlbumName" id="AlbumName"/>
 		<button type="button" onclick="addNewAlbum();">Create New Album</button>
 	</div>
+	<input type="hidden" id="numberOfFiles" name="noOfFiles" />
 
 	<input type="submit" name="submit" value="Submit" />
 </form>

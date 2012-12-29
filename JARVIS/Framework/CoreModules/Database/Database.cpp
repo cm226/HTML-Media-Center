@@ -6,6 +6,8 @@
  */
 
 #include "Database.h"
+#include "ResultWrapper.h"
+#include <stdio.h>
 
 
 namespace DatabaseTables {
@@ -20,20 +22,23 @@ Database::~Database() {
 	delete con;
 }
 
-bool Database::Connect(std::string userName, std::string password, std::string DatabaseName)
+bool Database::Connect(std::string userName, std::string password, std::string DatabaseName, std::string hostName)
 {
 	if(con != NULL)
 		delete con;
 	try
 	{
-		con = driver->connect("tcp://127.0.0.1:3306", userName, password);
+		con = driver->connect(hostName, userName, password);
 		con->setSchema(DatabaseName);
 	}
 	catch(sql::SQLException &e)
 	{
+		this->connected = false;
 		return false;
 	}
+	this->connected = true;
 	return true;
+	
 }
 
 void Database::insertRow(DatabaseTable* row)
@@ -43,17 +48,35 @@ void Database::insertRow(DatabaseTable* row)
 	delete stmt;
 
 }
-std::vector< std::vector<DatabaseTable*> >* Database::runQuery(Query query)
+bool Database::runQuery(Query* query)
 {
+	if(this->connected)
+	{
+		try
+		{
+			std::string queryStr = query->buildQuery();
+			sql::PreparedStatement *pstmt = con->prepareStatement(queryStr);
+			sql::ResultSet *res = pstmt->executeQuery();
+			ResultWrapper* resWrapper = new ResultWrapper(res); 
+			query->setQueryResult(resWrapper);
+	
+			delete pstmt;
+			return true;
+		}
+		catch(sql::SQLException e)
+		{
+			std::string error = e.getSQLState();
+			std::cout << "Query error "<<error << std::endl;
+			return false;
+		}
+	}
+	else
+		return false;
+}
 
-	sql::PreparedStatement *pstmt = con->prepareStatement("select * from example");
-	sql::ResultSet *res = pstmt->executeQuery();
-		while (res->next());
-			//res->getInt("id") "  "<<res->getString("data");
-	delete res;
-	delete pstmt;
-
-	return NULL;
+bool Database::isConnected()
+{
+	return this->connected;
 }
 
 } /* namespace DatabaseTables */
