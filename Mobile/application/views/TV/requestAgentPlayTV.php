@@ -10,7 +10,7 @@ $safePath = str_replace(" ","\ ",$tv[0]['Episode']['filePath']);
 
 exec('python '.ROOT . DS . 'scripts' . DS .'vlcTelnetInterface.py -add current \''.ROOT . DS.'public' .$safePath .'\'');
 $return = playVideoStream($agentIP,"http://".$_SERVER['SERVER_ADDR'].":8080/current");
-#$return = 1;
+
 if($return >0)
 {
 	?>

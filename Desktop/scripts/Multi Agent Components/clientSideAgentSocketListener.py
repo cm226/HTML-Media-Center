@@ -2,9 +2,21 @@ import socket
 import sys
 import MediaRendereVideo
 
-SERVER = '192.168.0.199'
+#SERVER = '192.168.0.199'
 PORT = 45001
 
+
+def getServerIP():
+	s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+	s.bind(('', 0))
+	s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+	
+	msg, addr = s.recvfrom(1025)
+	if msg == "AGENT_HELLO_BROADCAST":
+		return addr
+
+	return ''
+	
 
 def waitForConnection() :
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -24,7 +36,10 @@ def canRanderFactory(command, data):
     return {'PLAY_VID_STREAM':  MediaRendereVideo.canRender
            }[command](data)
     
-    
+   
+addr = getServerIP()
+print "reply from server: "+ addr
+
 while(1):
 	conn, addr = waitForConnection()
 	data = conn.recv(1024)

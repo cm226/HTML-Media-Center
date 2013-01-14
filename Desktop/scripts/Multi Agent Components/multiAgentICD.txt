@@ -12,10 +12,10 @@ from server:
 	PAUSE_VID_STREAM
 	STOP_VID_STREAM
 	PLAY_MUSIC_STREAM
-	AGIENT_HELLO_BROADCAST
+	AGENT_HELLO_BROADCAST
 
 from agient:
-	AGIENT_HELLO_REPLY
+	AGENT_HELLO
 	REQ_LOCATION_REPLY
 	REQ_CAPABILITYS_REPLY
 	PLAY_STREAM_REPLY
@@ -25,10 +25,10 @@ from agient:
 
 
 AGIENT_HELLO_BROADCAST
-	(not done) broadcast over network asking for agients
+	broadcast over network asking for server
 
 AGIENT_HELLO_REPLY
-	(not done) replay to agient hello broadcast from server data is client name
+	 replay to agient hello broadcast from server data is server IP
 
 REQ_LOCATION
 	(not done)

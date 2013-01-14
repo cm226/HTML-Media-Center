@@ -16,6 +16,7 @@ CoreModules::CoreModules() {
 CoreModules::~CoreModules() {
 }
 
+/*
 DatabaseTables::Database* CoreModules::getDatabaseConnection()
 {
 	if(this->databasecon == NULL)
@@ -25,4 +26,4 @@ DatabaseTables::Database* CoreModules::getDatabaseConnection()
 	}
 
 	return this->databasecon;
-}
+}*/

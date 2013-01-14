@@ -16,7 +16,7 @@ class TCPTransever : public AbstractTransever{
 	bool stopped_;
 
 public:
-	static const int PORT = 46000;
+	static const int PORT = 45001;
 	boost::asio::io_service io_service;
 	boost::asio::ip::tcp::socket* curSocket;
 	boost::asio::deadline_timer* timer;

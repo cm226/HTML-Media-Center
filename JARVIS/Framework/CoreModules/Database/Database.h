@@ -14,18 +14,18 @@
 #include "Tables/Tables.h"
 #include "Querys/Querys.h"
 
-#include <cppconn/driver.h>
-#include <cppconn/exception.h>
-#include <cppconn/resultset.h>
-#include <cppconn/statement.h>
-#include <cppconn/prepared_statement.h>
+//#include <cppconn/driver.h>
+//#include <cppconn/exception.h>
+//#include <cppconn/resultset.h>
+//#include <cppconn/statement.h>
+//#include <cppconn/prepared_statement.h>
 
 namespace DatabaseTables {
 
 class Database {
 private:
-	  sql::Driver *driver;
-	  sql::Connection *con;
+	  //sql::Driver *driver;
+	  //sql::Connection *con;
 
 public:
 	Database();

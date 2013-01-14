@@ -12,17 +12,17 @@ namespace DatabaseTables {
 
 Database::Database() {
 
-	 this->driver = get_driver_instance();
-	 this->con = NULL;
+	 //this->driver = get_driver_instance();
+	 //this->con = NULL;
 }
 
 Database::~Database() {
-	delete con;
+	//delete con;
 }
 
 bool Database::Connect(std::string userName, std::string password, std::string DatabaseName)
 {
-	if(con != NULL)
+	/*if(con != NULL)
 		delete con;
 	try
 	{
@@ -33,19 +33,20 @@ bool Database::Connect(std::string userName, std::string password, std::string D
 	{
 		return false;
 	}
-	return true;
+	return true;*/
 }
 
 void Database::insertRow(DatabaseTable* row)
 {
+	/*
 	sql::Statement *stmt = con->createStatement();
 	stmt->execute(row->getInsertQuery());
-	delete stmt;
+	delete stmt;*/
 
 }
 std::vector< std::vector<DatabaseTable*> >* Database::runQuery(Query query)
 {
-
+	/*
 	sql::PreparedStatement *pstmt = con->prepareStatement("select * from example");
 	sql::ResultSet *res = pstmt->executeQuery();
 		while (res->next());
@@ -53,6 +54,7 @@ std::vector< std::vector<DatabaseTable*> >* Database::runQuery(Query query)
 	delete res;
 	delete pstmt;
 
+	return NULL;*/
 	return NULL;
 }
 
