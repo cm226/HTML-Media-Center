@@ -9,23 +9,52 @@
 #define DATABASETABLEFIELD_H_
 
 #include "IDatabaseTableField.h"
+#include "DatabaseTable.h"
 
 namespace DatabaseTables {
 
 template <class Type> class DatabaseTableField : public IDatabaseTableField{
 
 private:
+	
 	Type value;
 
+protected:
+	DatabaseTable* owner;
+	std::string ownerNameStr;
+	std::string getName() {return this->ownerName()+"."+this->fieldName(); };
+
 public:
-	DatabaseTableField(){};
+	DatabaseTableField(DatabaseTable* owner)
+	{
+		this->owner = owner;
+	};
+	DatabaseTableField(std::string OwnerName)
+	{
+		this->ownerNameStr = OwnerName;
+		this->owner = NULL;
+	};
+
 	virtual ~DatabaseTableField(){};
 
-	void setValue(IDatabaseFieldType* newValue)
+	void setValue(Type* newValue)
 	{
-		this->value = (Type)value;
+		this->value = *newValue;
 	}
-	virtual std::string getName()=0;
+	Type getValue()
+	{
+		return this->value;
+	}
+
+	std::string ownerName()	
+	{
+		if(this->owner != NULL)
+			return this->owner->tableName();
+		else
+			return this->ownerNameStr;
+	}
+
+	virtual void takeValue(ResultWrapper* resRwapper) = 0;
 
 };
 

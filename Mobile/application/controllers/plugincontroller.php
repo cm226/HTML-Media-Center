@@ -6,9 +6,9 @@ function Main()
 	$this->set('plugins',$this->Plugin->getPluginList());		
 }
 
-function pluginPage()
+function pluginPage($plugin)
 {
-	$this->set('page',$this->Plugin->getPluginList());		
+	$this->set('page',$this->Plugin->getPluginPage($plugin));		
 }
 
 

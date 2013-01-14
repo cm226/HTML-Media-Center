@@ -15,9 +15,10 @@ namespace DatabaseTables {
 class Equals: public DatabaseTables::Constraint {
 public:
 	Equals(IDatabaseTableField* field, std::string value);
+	Equals(IDatabaseTableField* field, IDatabaseTableField* field2);
 	virtual ~Equals();
 
-	virtual void getQuerystring(std::string* query);
+	virtual std::string getQuerystring();
 };
 
 } /* namespace DatabaseTables */

@@ -9,15 +9,22 @@
 #define DATABASETABLE_H_
 
 #include <string>
+#include <vector>
+#include "IDatabaseTableField.h"
 
 namespace DatabaseTables {
 
 class DatabaseTable {
+
 public:
 	DatabaseTable();
 	virtual ~DatabaseTable();
 
 	virtual std::string getInsertQuery() =0 ;
+	virtual void getFields(std::vector<IDatabaseTableField*>* fields) = 0;
+	virtual IDatabaseTableField* getPrimaryKey(){return NULL;};
+
+	virtual std::string tableName() = 0;
 };
 
 } /* namespace DatabaseTables */

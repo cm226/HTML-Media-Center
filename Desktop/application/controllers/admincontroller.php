@@ -227,16 +227,19 @@ class AdminController extends Controller
 
 	function uploadMusic()
 	{
-		$numOfFiles = count($_FILES);
+		$numOfFiles =  $_POST["noOfFiles"];
 		$filecount = 0;
 		foreach($_FILES as $file)
 		{
-			if ($file["type"] == "audio/mp3" || $file["type"] == "audio/mpeg")
-			{	
-				$this->tryAddMusicFile($file, $filecount);
+			if(isset($_POST['songName'. $filecount]))
+			{
+				if ($file["type"] == "audio/mp3" || $file["type"] == "audio/mpeg")
+				{	
+					$this->tryAddMusicFile($file, $filecount);
+				}
+				else
+					$this->set("InvalidFileType",true);
 			}
-			else
-				$this->set("InvalidFileType",true);
 
 			$filecount = $filecount+1;
 		} 

@@ -1,6 +1,5 @@
 <?php
 
-
 	if (file_exists($file))
 	{
 	    header('Content-Description: File Transfer');

@@ -8,13 +8,13 @@ class RequestPluginPageMessage extends AbstractMessage
 	function __construct($name)
 	{
 		
-		$this->$pluginName = $name;
+		$this->pluginName = $name;
 		
 	}
 
 	public function getMessage()
 	{
-		return "pPageReq$".$this->$pluginName;
+		return "rpp$".$this->pluginName;
 	}
 }
 

@@ -22,3 +22,33 @@ html
 	position:absolute;
 }
 
+.blackBttn {
+	-moz-box-shadow:inset 0px 1px 17px 0px #e6e6e6;
+	-webkit-box-shadow:inset 0px 1px 17px 0px #e6e6e6;
+	box-shadow:inset 0px 1px 17px 0px #e6e6e6;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #262326), color-stop(1, #000000) );
+	background:-moz-linear-gradient( center top, #262326 5%, #000000 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#262326', endColorstr='#000000');
+	background-color:#262326;
+	-moz-border-radius:21px;
+	-webkit-border-radius:21px;
+	border-radius:21px;
+	border:3px solid #3d3d3d;
+	display:inline-block;
+	color:#fffcff;
+	font-family:Arial Black;
+	font-size:10px;
+	font-weight:bold;
+	padding:5px 20px;
+	text-decoration:none;
+	text-shadow:1px -2px 0px #525152;
+}.blackBttn:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #000000), color-stop(1, #262326) );
+	background:-moz-linear-gradient( center top, #000000 5%, #262326 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#262326');
+	background-color:#000000;
+}.blackBttn:active {
+	position:relative;
+	top:1px;
+}
+

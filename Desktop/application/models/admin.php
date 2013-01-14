@@ -136,8 +136,11 @@ class Admin extends Model
 
 		if(count($this->query($songExsistsq)) > 0)
 			return;
-
-		$addSongq = "INSERT INTO Song VALUES (NULL,'$songName', '$AlbumID', '03:50:00', 10, 0, '$URL')";
+		
+		$today = getdate();
+		$todayString = $today['mday'].'-'.$today['mon'].'-'.$today['year'];
+		
+		$addSongq = "INSERT INTO Song VALUES (NULL,'$songName', '$AlbumID', '03:50:00', 10, 0, '$URL','$todayString')";
 		echo $addSongq;
 		$this->query($addSongq);
 	}

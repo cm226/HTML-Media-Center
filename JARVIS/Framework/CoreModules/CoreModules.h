@@ -15,13 +15,13 @@
 
 class CoreModules {
 private:
-	//DatabaseTables::Database* databasecon = NULL;
+	DatabaseTables::Database* databasecon = NULL;
 
 public:
 	CoreModules();
 	virtual ~CoreModules();
 
-	//DatabaseTables::Database* getDatabaseConnection();
+	DatabaseTables::Database* getDatabaseConnection();
 };
 
 #endif /* COREMODULES_H_ */

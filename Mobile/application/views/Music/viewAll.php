@@ -29,7 +29,7 @@
 <form>
 Artist Name: <input type="text" name="artistName"/> <BR/>
 Song Name: <input type="text" name="songName"/>
-<input type="submit" value="search" />
+<input class="blackBttn" type="submit" value="search" />
 </form>
 </div>
 
@@ -46,17 +46,17 @@ foreach ($playlists as $playList)
 
 <form action="../Music/viewAll" method="POST">
 	New Playlist: <input type="text" name="newPlaylist"/>
-	<input type="submit" value="Add"/>
+	<input class="blackBttn" type="submit" value="Add"/>
 </form>
 <form>
-	<input type="submit" value="upload Itunes playlist file" />
+	<input class="blackBttn" type="submit" value="upload Itunes playlist file" />
 </form>
 
 </div>
 
 <div id="randomSongs">
 	<form action="../Music/viewShuffle">
-		<input type="Submit" value="Gimmy some random Songs" />
+		<input class="blackBttn" type="Submit" value="Gimmy some random Songs" />
 	</form>
 </div>
 

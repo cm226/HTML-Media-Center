@@ -7,10 +7,13 @@
 #include "IDatabaseTableField.h"
 
 namespace DatabaseTables {
+
+
 IDatabaseTableField::~IDatabaseTableField()
 {
 
 }
+
 }
 
 

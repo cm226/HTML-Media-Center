@@ -124,10 +124,7 @@ function play()
 function downloadSong(songNumber)
 {
 	var id = myPlaylist[songNumber].id;
-
-	//sendAJAXRequest("../Music/downloadSong", new Array (String(id)),"player");
-	
-	window.location = "../Music/downloadSong/String(id)";
+	window.location = "../Music/downloadSong/"+String(id);
 }
 
 function updatePlayingList(from, to)

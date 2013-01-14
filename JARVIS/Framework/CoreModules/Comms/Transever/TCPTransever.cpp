@@ -12,10 +12,12 @@ using boost::asio::ip::tcp;
 
 
 
-TCPTransever::TCPTransever()
+TCPTransever::TCPTransever(int PORT)
 {
 	this->curSocket = NULL;
 	this->timer = new boost::asio::deadline_timer(io_service);
+
+	this->PORT = PORT;
 }
 
 TCPTransever::~TCPTransever()

@@ -6,56 +6,121 @@
  */
 
 #include "Database.h"
+#include "ResultWrapper.h"
+#include <stdio.h>
 
 
 namespace DatabaseTables {
 
 Database::Database() {
 
-	 //this->driver = get_driver_instance();
-	 //this->con = NULL;
+	 this->driver = get_driver_instance();
+	 this->con = NULL;
 }
 
 Database::~Database() {
-	//delete con;
+	delete con;
 }
 
-bool Database::Connect(std::string userName, std::string password, std::string DatabaseName)
+bool Database::Connect(std::string userName, std::string password, std::string DatabaseName, std::string hostName)
 {
-	/*if(con != NULL)
+	if(con != NULL)
 		delete con;
 	try
 	{
-		con = driver->connect("tcp://127.0.0.1:3306", userName, password);
+		con = driver->connect(hostName, userName, password);
 		con->setSchema(DatabaseName);
 	}
 	catch(sql::SQLException &e)
 	{
+		this->connected = false;
 		return false;
 	}
-	return true;*/
+	this->connected = true;
+	return true;
+	
 }
 
-void Database::insertRow(DatabaseTable* row)
+bool Database::insertRow(DatabaseTable* row)
 {
-	/*
-	sql::Statement *stmt = con->createStatement();
-	stmt->execute(row->getInsertQuery());
-	delete stmt;*/
+	try
+	{
+		sql::Statement *stmt = NULL;
+		sql::PreparedStatement* pStmt = NULL;
+
+		DatabaseTables::IDatabaseTableField* pk = row->getPrimaryKey();
+		
+			bool sucessfull = true;
+			std::string q = row->getInsertQuery();
+			stmt = con->createStatement();
+			stmt->execute(q);
+			delete stmt;
+			stmt = NULL;
+			
+			if(pk != NULL)
+			{
+
+				std::string getAutoIncRow = "SELECT MAX("+pk->getName()+") AS "+pk->fieldName()+" FROM "+pk->ownerName();
+				pStmt = con->prepareStatement(getAutoIncRow);
+				sql::ResultSet* res = pStmt->executeQuery();
+				ResultWrapper resWrapper(res);
+				if(resWrapper.next())
+					pk->takeValue(&resWrapper);
+				else
+					sucessfull = false;
+
+				delete pStmt;
+				pStmt = NULL;
+
+				return sucessfull;
+			}
+		else
+		{
+			if(stmt != NULL) delete stmt;
+			if(pStmt != NULL) delete pStmt;
+			return true;
+			#ifdef _DEBUG
+			std::cout << "Warning that table aint got a pk" << std::endl;
+			#endif
+		}
+	}
+	catch(sql::SQLException& e)
+	{
+		std::cout << "Query error "<< e.getSQLState() << std::endl;
+		return false;
+	}
+	
 
 }
-std::vector< std::vector<DatabaseTable*> >* Database::runQuery(Query query)
+bool Database::runQuery(Query* query)
 {
-	/*
-	sql::PreparedStatement *pstmt = con->prepareStatement("select * from example");
-	sql::ResultSet *res = pstmt->executeQuery();
-		while (res->next());
-			//res->getInt("id") "  "<<res->getString("data");
-	delete res;
-	delete pstmt;
+	if(this->connected)
+	{
+		try
+		{
+			std::string queryStr = query->buildQuery();
+			sql::PreparedStatement *pstmt = con->prepareStatement(queryStr);
+			sql::ResultSet *res = pstmt->executeQuery();
+			ResultWrapper* resWrapper = new ResultWrapper(res); 
+			query->setQueryResult(resWrapper);
+	
+			delete pstmt;
+			return true;
+		}
+		catch(sql::SQLException e)
+		{
+			std::string error = e.getSQLState();
+			std::cout << "Query error "<<error << std::endl;
+			return false;
+		}
+	}
+	else
+		return false;
+}
 
-	return NULL;*/
-	return NULL;
+bool Database::isConnected()
+{
+	return this->connected;
 }
 
 } /* namespace DatabaseTables */

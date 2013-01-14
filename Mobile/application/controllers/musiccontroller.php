@@ -91,7 +91,6 @@ class MusicController extends Controller {
 	{
 		$res = $this->Music->getSongForID($songID);
 		$fileURL = ROOT . DS . 'public'. str_replace("/","\\",str_replace("../public","", $res[0]['Song']['songURL']));
-		echo $fileURL;
 		$this->set("file",$fileURL);
 	}
 }

@@ -26,7 +26,11 @@ void JARVISFramework::testComms()
 	Comms coms;
 
 	coms.startComms();
+<<<<<<< HEAD
 	sleep(1000); // give 100 seconds to establish and test comms
+=======
+	sleep(1000); // give 1000 seconds to establish and test comms
+>>>>>>> ca06a02b059deda0b65a4fdef1d93f4f075b040d
 	coms.stopComms();
 }
 
