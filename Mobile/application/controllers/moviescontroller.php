@@ -9,7 +9,6 @@ class MoviesController extends Controller {
 	
 	function playMovie($MovieID)
 	{
-		$this->set('agents', $this->Movie->getVideoAgents());
 		$this->set('movie',$this->Movie->getMovieWithID($MovieID));
 	}
 	
@@ -17,5 +16,11 @@ class MoviesController extends Controller {
 	{
 		$this->set('agentIP',$agentIP);
 		$this->set('movie',$this->Movie->getMovieWithID($movieID));
+	}
+
+	function agentPoll($movieID)
+	{
+		$this->set('agents', $this->Movie->getVideoAgents());
+		$this->set('movieID',$movieID);
 	}
 }

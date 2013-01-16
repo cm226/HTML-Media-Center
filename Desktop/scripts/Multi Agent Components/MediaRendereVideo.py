@@ -2,7 +2,7 @@ import os
 from subprocess import Popen, PIPE
 
 def canRender(url):
-	return true;  # we can do better error checking later
+	return True;  # we can do better error checking later
 
 def render(url, socketConnection):
         os.system("omxplayer "+url)

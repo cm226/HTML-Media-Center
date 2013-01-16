@@ -21,8 +21,17 @@ class Movie extends Model {
 	
 	function getVideoAgents()
 	{
-		$Agents = array(array("IP"=>"192.168.1.198","Location"=>"LivingRoom","Name"=>"TV"));
-		//$Agents = array(array("IP"=>"127.0.0.1","Location"=>"LivingRoom","Name"=>"TV"));
+		
+		$Agents;
+		$sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+		$msg = "AGENT_HELLO_BROADCAST";
+    		$len = strlen($msg);
+		socket_sendto($sock, $msg, $len, 0, '0', 40002);
+
+		$recv = "";
+
+		$size=socket_recvfrom($sock,$recv,65535,0,$ipaddress,$port);
+		$Agents = array(array("IP"=>$ipaddress,"Location"=>"CraigsBedroom","Name"=>"TV"));
 		return $Agents;
 	}
 	

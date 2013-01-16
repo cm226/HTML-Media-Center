@@ -15,7 +15,7 @@ from server:
 	AGENT_HELLO_BROADCAST
 
 from agient:
-	AGENT_HELLO
+	AGENT_HELLO_REPLY
 	REQ_LOCATION_REPLY
 	REQ_CAPABILITYS_REPLY
 	PLAY_STREAM_REPLY
@@ -28,7 +28,7 @@ AGIENT_HELLO_BROADCAST
 	broadcast over network asking for server
 
 AGIENT_HELLO_REPLY
-	 replay to agient hello broadcast from server data is server IP
+	 replay from agient hello broadcast from server data is agent IP
 
 REQ_LOCATION
 	(not done)

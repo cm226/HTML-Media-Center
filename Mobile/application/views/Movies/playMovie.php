@@ -9,19 +9,8 @@
 
 <div id="agents">
 <h2> avalable Agents </h2>
-<?php 
-	foreach ($agents as $agent)
-	{
-		?>
-		<div class="agent" onClick="playMovie(<?php echo "'".$agent["IP"]."', '".$movie[0]['Movie']['movieID']."'"?>);" >
-			<p>location: <?php echo $agent["Location"];?></p>
-			<p>name: <?php echo $agent["Name"];?></p>
-		</div>
-		<?php
-		
-	}
-?>
-
+<button class="blackBttn" onClick="sendAJAXRequest('../../Movies/agentPoll',['<?php echo $movie[0]['Movie']["movieID"] ?>'],'agentsAJAXReply');"> poll Agents </button>
+<div id="agentsAJAXReply"></div>
 <div id="replyDiv">
 </div>
 
