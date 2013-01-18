@@ -1,28 +1,25 @@
-
+#movieList
+{
+	width:100%;
+	margin-left:auto;
+	margin-right: auto;	
+}
 
 .movieElement
 {
-	width:100%;
-	border-style:solid;
-	text-align: left;
+	width:50%;
 	font-size: 10px;
-	background-color: grey;
-	background: rgba(255, 255, 255, 0.2);
+	float: left
 }
 
 .movieImg
 {
-	width:  10%;
+	width:  90%;
 	height: auto;
 }
 
 .infoPanel
 {
-	float: right;
-
-}
-.movieElement h4
-{
-	font-size: 12px;
-
+	font-size:20px;
+	text-align: center;
 }

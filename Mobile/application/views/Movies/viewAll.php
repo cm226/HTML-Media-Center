@@ -1,6 +1,6 @@
 <?php
 
-echo '<div name="movieList">';
+echo '<div id="movieList">';
 
 foreach ($movies as &$movie)
 {
@@ -15,17 +15,9 @@ foreach ($movies as &$movie)
 		?>
 		"/>
 		<div class="infoPanel">
-			<table>
-			<tr><td>
-			<h4><?php echo $movie['Movie']['movieName'];?></h4></td>
-			<td><?php echo $movie['Movie']['movieLength']; ?> 
-			<?php echo $movie['Movie']['movieGenre']; ?>
-			<?php echo $movie['Movie']['movieIMDB']; ?></td></tr>
-			</table>
+			<div class="headline"><?php echo $movie['Movie']['movieName'];?></div>
 		</div>
 	</div>
-	
-	<br/>
 	<?php
 }
 

@@ -186,8 +186,6 @@ class Music extends Model {
 	{
 		$q = "SELECT * FROM Song WHERE songID = ".$ID;
 		return $this->query($q);
-		
-		
 	}
 	
 	function getRecentlyAdded()
