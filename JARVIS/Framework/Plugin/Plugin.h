@@ -11,6 +11,8 @@
 #include "../CoreModules/CoreModules.h"
 
 class Plugin {
+
+protected:
 	CoreModules* coreMod;
 
 public:

@@ -16,7 +16,7 @@ namespace CommsNS {
 	public:
 		IComms(){};
 		virtual ~IComms(){};
-		virtual void createJSONRequest(IJSONRequest &req) = 0;
+		virtual IJSONRequest* createJSONRequest() = 0;
 		virtual void stopComms() = 0;
 		virtual void startComms() = 0;
 	};

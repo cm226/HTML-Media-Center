@@ -38,7 +38,7 @@ Loader::~Loader()
 
 bool Loader::loadPlugin(std::string pluginName, Plugin** loadedPlugin, CoreModules* context)
 {
-	const char* libfileName = this->pluginDir.append("/").append(pluginName).append(".so").c_str();
+	const char* libfileName = (this->pluginDir + "/" + pluginName + ".so").c_str();
 
 	void *hndl = dlopen(libfileName, RTLD_NOW);
 	arbitrary factoryFunc;

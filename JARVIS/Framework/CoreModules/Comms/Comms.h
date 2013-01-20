@@ -34,7 +34,7 @@ public:
 	void startComms();
 	void stopComms();
 
-	void createJSONRequest(CommsNS::IJSONRequest &req);
+	CommsNS::IJSONRequest* createJSONRequest();
 
 
 };

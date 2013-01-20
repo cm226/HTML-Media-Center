@@ -8,20 +8,9 @@
 #include "Query.h"
 #include "../Exceptions/NoSelectedFieldsException.h"
 
-#include <hash_set>
+#include <set>
 #include <vector>
 
-/*
- * define hash set for std::string
- *
- */
-namespace __gnu_cxx {
-template<> struct hash< std::string > {
-size_t operator()( const std::string& x ) const {
-return hash< const char* >()( x.c_str() );
-}
-};
-}
 
 namespace DatabaseTables {
 
@@ -74,8 +63,8 @@ std::string Query::buildQuery()
 
 
 
-	 __gnu_cxx::hash_set<std::string> tables;
-	 __gnu_cxx::hash_set<std::string>::iterator tablesIt;
+	std::set<std::string> tables;
+	std::set<std::string>::iterator tablesIt;
 
 
 

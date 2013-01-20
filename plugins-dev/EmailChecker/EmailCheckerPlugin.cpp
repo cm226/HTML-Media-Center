@@ -22,7 +22,7 @@ EmailCheckerPlugin::~EmailCheckerPlugin()
 
 bool EmailCheckerPlugin::whatDoYouLookLike(Page* page)
 {
-	Form* form = new Form("Form");
+	/*Form* form = new Form("Form");
 
 	Lable* lable = new Lable ("name");
 	lable->setText("Email Address:");
@@ -34,7 +34,9 @@ bool EmailCheckerPlugin::whatDoYouLookLike(Page* page)
 	form->addElement(emailAddres);
 	form->addElement(submitBttn);
 
-	page->addElement(form);
+	page->addElement(form);*/
+
+	std::cout << "Email";
 
 	return true;
 }

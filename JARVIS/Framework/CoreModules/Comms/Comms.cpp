@@ -61,12 +61,11 @@ void Comms::connectionListener()
 	}
 }
 
-void Comms::createJSONRequest(CommsNS::IJSONRequest& req)
+CommsNS::IJSONRequest* Comms::createJSONRequest()
 {
 	CommsNS::CurlManager &manager = this->curlMan;
 
-	req = CommsNS::JSONCURLRequest(manager);
-			//(&this->curlMan);
+	return new CommsNS::JSONCURLRequest(manager);
 }
 
 

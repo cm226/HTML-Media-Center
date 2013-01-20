@@ -3,6 +3,8 @@
 	<name>JARVIS</name>
 	<comment></comment>
 	<projects>
+		<project>EmailChecker</project>
+		<project>MediaImages</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
