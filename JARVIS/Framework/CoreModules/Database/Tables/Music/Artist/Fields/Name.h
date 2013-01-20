@@ -18,6 +18,9 @@ public:
 	Name();
 	virtual ~Name();
 	virtual std::string getName();
+
+	void takeValue(ResultWrapper* resRwapper){};
+	std::string fieldName(){return "";};
 };
 
 } /* namespace DatabaseTables */

@@ -25,7 +25,7 @@ public:
 	JARVISFramework();
 	virtual ~JARVISFramework();
 
-	void testComms();
+	void process();
 
 private:
 	std::vector<std::string> loadedPlugins(int i);
@@ -34,12 +34,9 @@ private:
 	void loadStartupPlugins();
 	bool commandAndControlMessageReceved(int type);
 
+	void processCommandLoop();
+
 };
 
-class listenerClass
-{
-public:
-	bool testHandler(int i);
-};
 
 #endif /* FRAMEWORK_H_ */

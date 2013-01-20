@@ -9,7 +9,7 @@
 
 namespace DatabaseTables {
 
-SongURL::SongURL() {
+SongURL::SongURL() :  DatabaseTables::DatabaseTableField<std::string>("Song") {
 	// TODO Auto-generated constructor stub
 
 }

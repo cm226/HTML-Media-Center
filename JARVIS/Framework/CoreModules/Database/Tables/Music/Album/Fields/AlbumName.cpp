@@ -9,7 +9,7 @@
 
 namespace DatabaseTables {
 
-AlbumName::AlbumName() {
+AlbumName::AlbumName() :DatabaseTables::DatabaseTableField<std::string>("Album") {
 	// TODO Auto-generated constructor stub
 
 }

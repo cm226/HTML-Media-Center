@@ -16,7 +16,7 @@ namespace Constraints
 		OrConstraintGroup();
 		~OrConstraintGroup();
 
-		std::string OrConstraintGroup::getQuerystring();
+		std::string getQuerystring();
 
 	};
 }

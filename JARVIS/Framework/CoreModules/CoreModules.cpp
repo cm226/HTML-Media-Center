@@ -22,9 +22,14 @@ DatabaseTables::Database* CoreModules::getDatabaseConnection()
 	if(this->databasecon == NULL)
 	{
 		this->databasecon = new DatabaseTables::Database();
-		this->databasecon->Connect("root", "root","MediaServer");
+		this->databasecon->Connect("root", "root","MediaServer","localhost");
 	}
 
 	return this->databasecon;
+}
+
+CommsNS::IComms* CoreModules::getComms()
+{
+	return &this->comms;
 }
 

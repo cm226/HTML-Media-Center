@@ -18,6 +18,9 @@ public:
 	ArtistName();
 	virtual ~ArtistName();
 	virtual std::string getName();
+
+	void takeValue(ResultWrapper* resRwapper){};
+	std::string fieldName(){return "";};
 };
 
 } /* namespace DatabaseTables */

@@ -6,7 +6,7 @@
 int main()
 {
 	JARVISFramework framework;
-	framework.testComms();
+	framework.process();
 
 	return 0;
 }

@@ -13,12 +13,16 @@
 
 #include "Transever/AbstractTransever.h"
 #include "MessageTranslaters/Translater.h"
+#include "IComms.h"
+#include "CURL/CurlManager.h"
 
 
-class Comms {
+class Comms : public CommsNS::IComms{
 private:
 	AbstractTransever* transever;
 	Translater* messageTranslater;
+	CommsNS::CurlManager curlMan;
+
 	bool listening;
 	void connectionListener();
 
@@ -29,6 +33,9 @@ public:
 
 	void startComms();
 	void stopComms();
+
+	void createJSONRequest(CommsNS::IJSONRequest &req);
+
 
 };
 

@@ -1,6 +1,7 @@
 #include "FrameWork.h"
 
 #include <stdio.h>
+#include <boost/thread.hpp>
 
 JARVISFramework::JARVISFramework()
 {
@@ -21,17 +22,18 @@ JARVISFramework::~JARVISFramework()
 
 
 
-void JARVISFramework::testComms()
+void JARVISFramework::process()
 {
-	Comms coms;
+	this->cModules.getComms()->startComms();
+	boost::thread listenForConnectionThread(boost::bind(&JARVISFramework::processCommandLoop, this));
 
-	coms.startComms();
-<<<<<<< HEAD
-	sleep(1000); // give 100 seconds to establish and test comms
-=======
-	sleep(1000); // give 1000 seconds to establish and test comms
->>>>>>> ca06a02b059deda0b65a4fdef1d93f4f075b040d
-	coms.stopComms();
+	while(!this->shuttingDown)
+	{
+		sleep(1);
+	}
+
+	this->cModules.getComms()->stopComms();
+	ErrorLogger::logError("Shutting down");
 }
 
 void JARVISFramework::loadStartupPlugins()
@@ -45,6 +47,17 @@ std::vector<std::string> JARVISFramework::loadedPlugins(int i)
 	std::vector<std::string> loadedPlugins;
 	this->pluginLoader->listLoadedPlugins(&loadedPlugins);
 	return loadedPlugins;
+}
+
+void JARVISFramework::processCommandLoop()
+{
+	std::string command;
+	while(!this->shuttingDown)
+	{
+		std::cin >> command;
+			if(command == "shutdown")
+					this->shuttingDown = true;
+	}
 }
 
 bool JARVISFramework::commandAndControlMessageReceved(int type)

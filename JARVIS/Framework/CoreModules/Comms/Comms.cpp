@@ -8,12 +8,13 @@
 
 #include "Comms.h"
 #include "Transever/TCPTransever.h"
+#include "JSON/JSONCURLRequest.h"
 
 #include <boost/thread.hpp>
 
 
 
-Comms::Comms() {
+Comms::Comms(){
 	this->transever = new TCPTransever(45001);
 	this->listening = false;
 
@@ -58,6 +59,14 @@ void Comms::connectionListener()
 		}
 
 	}
+}
+
+void Comms::createJSONRequest(CommsNS::IJSONRequest& req)
+{
+	CommsNS::CurlManager &manager = this->curlMan;
+
+	req = CommsNS::JSONCURLRequest(manager);
+			//(&this->curlMan);
 }
 
 

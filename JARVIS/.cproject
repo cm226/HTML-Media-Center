@@ -32,6 +32,7 @@
 								<option id="gnu.cpp.compiler.option.other.verbose.449346262" name="Verbose (-v)" superClass="gnu.cpp.compiler.option.other.verbose" value="true" valueType="boolean"/>
 								<option id="gnu.cpp.compiler.option.include.paths.63574297" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0"/>
+									<listOptionValue builtIn="false" value="/home/craig/curl-7.28.1/include/curl"/>
 									<listOptionValue builtIn="false" value="/usr/include/"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1192249051" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
@@ -46,6 +47,8 @@
 							<tool commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.712215362" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.libs.1213998771" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="boost_system"/>
+									<listOptionValue builtIn="false" value="curl"/>
+									<listOptionValue builtIn="false" value="mysqlcppconn"/>
 									<listOptionValue builtIn="false" value="dl"/>
 									<listOptionValue builtIn="false" value="pthread"/>
 									<listOptionValue builtIn="false" value="boost_thread"/>
@@ -58,6 +61,7 @@
 									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0/bin.v2/libs/system/build/gcc-4.5.2/release/link-static/threading-multi"/>
 									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0/bin.v2/libs/thread/build/gcc-4.5.2/release/link-static/threading-multi"/>
 									<listOptionValue builtIn="false" value="/usr/lib"/>
+									<listOptionValue builtIn="false" value="/home/craig/curl-7.28.1/lib/.libs"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.414897229" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>

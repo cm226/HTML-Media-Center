@@ -90,6 +90,8 @@ bool Database::insertRow(DatabaseTable* row)
 		return false;
 	}
 	
+	return false;
+
 
 }
 bool Database::runQuery(Query* query)
@@ -107,7 +109,7 @@ bool Database::runQuery(Query* query)
 			delete pstmt;
 			return true;
 		}
-		catch(sql::SQLException e)
+		catch(sql::SQLException& e)
 		{
 			std::string error = e.getSQLState();
 			std::cout << "Query error "<<error << std::endl;

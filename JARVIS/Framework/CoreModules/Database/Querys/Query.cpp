@@ -6,10 +6,22 @@
  */
 
 #include "Query.h"
+#include "../Exceptions/NoSelectedFieldsException.h"
 
 #include <hash_set>
-#include <exception>
 #include <vector>
+
+/*
+ * define hash set for std::string
+ *
+ */
+namespace __gnu_cxx {
+template<> struct hash< std::string > {
+size_t operator()( const std::string& x ) const {
+return hash< const char* >()( x.c_str() );
+}
+};
+}
 
 namespace DatabaseTables {
 
@@ -51,7 +63,7 @@ void Query::addSelectItem(DatabaseTable* table)
 std::string Query::buildQuery()
 {
 	if(this->fields->size() == 0)
-		throw std::exception("building query with no selected fields is stupid!");
+		throw Exceptions::NoSelectedFieldsException("building query with no selected fields is stupid!");
 
 	std::string selectString = "SELECT DISTINCT ";
 	std::string whereString =  "";
@@ -60,8 +72,10 @@ std::string Query::buildQuery()
 	std::vector<IDatabaseTableField*>::iterator fieildIt;
 	std::vector<IConstraint*>::iterator constraintIter;
 
-	std::hash_set<std::string> tables;
-	std::hash_set<std::string>::iterator tablesIt;
+
+
+	 __gnu_cxx::hash_set<std::string> tables;
+	 __gnu_cxx::hash_set<std::string>::iterator tablesIt;
 
 
 
