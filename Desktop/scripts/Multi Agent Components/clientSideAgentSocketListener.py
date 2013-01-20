@@ -8,7 +8,7 @@ PORT = 45001
 
 def getServerIP():
 	s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-	s.bind(('0.0.0.0', 40002))
+	s.bind(('0', 40002))
 	s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 	
 	msg, addr = s.recvfrom(1025)
@@ -27,7 +27,7 @@ def waitForConnection() :
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) # force a socket bind even
                                                             #if OS still reservs socket to cleanup stray packets
 
-    s.bind(('127.0.0.1', PORT))
+    s.bind(('0', PORT))
     s.listen(1)
      
     return s.accept()
