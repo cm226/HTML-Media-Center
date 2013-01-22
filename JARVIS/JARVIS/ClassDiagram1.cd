@@ -1,0 +1,473 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Comms">
+    <Position X="22.5" Y="17" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAQEIAAAAAAAAAAABQEACAAAAIAAAAABAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Comms\Comms.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbstractMessage">
+    <Position X="22.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAgAAAAAAEAAAAAAAAAAAAAAAQDAAAAAACA=</HashCode>
+      <FileName>Framework\CoreModules\Comms\MessageTranslaters\TranslatedMessages\AbstractMessage.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ListPluginsMessage">
+    <Position X="22.25" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAACEAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Comms\MessageTranslaters\TranslatedMessages\ListPluginsMessage.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Translater">
+    <Position X="29.75" Y="11.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQEAIAACAAAIAAAAAAAAAAAgA=</HashCode>
+      <FileName>Framework\CoreModules\Comms\MessageTranslaters\Translater.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbstractTransever">
+    <Position X="22.5" Y="21.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAgAAAAAAAAAAQAAQAgAAg=</HashCode>
+      <FileName>Framework\CoreModules\Comms\Transever\AbstractTransever.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TCPTransever">
+    <Position X="22.5" Y="24.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AEQIAAAAAAABAAAAAAAAAAAgAAAAAAACAAAAAAAkACk=</HashCode>
+      <FileName>Framework\CoreModules\Comms\Transever\TCPTransever.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreModules">
+    <Position X="28" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAEAABAAAAAAABIAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\CoreModules.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ResultWrapper">
+    <Position X="28" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AKAAAAAAAAAACAAAAAAAAAAAAAQAAAAAAAAAAAoAACA=</HashCode>
+      <FileName>Framework\CoreModules\Database\ResultWrapper.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ErrorLogger">
+    <Position X="34.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAACAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Errors\ErrorLogger.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EventHandler&lt;ListenerT, ReturnT, ParamT&gt;">
+    <Position X="9.5" Y="10.75" Width="3.25" />
+    <NestedTypes>
+      <Typedef Name="EventHandler&lt;ListenerT, ReturnT, ParamT&gt;::PtrMember" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Framework\CoreModules\EventModel\EventHandler\EventHandler.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAgAAAAAAAAAAAAAAAIAAAAAgAAAAQAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\EventModel\EventHandler\EventHandler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvntHandlerBase&lt;ReturnT, ParamT&gt;">
+    <Position X="9.75" Y="8.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\EventModel\EventHandler\EvntHandlerBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EventManager">
+    <Position X="30.75" Y="4.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAQBAAAAAAACAAAAAAAIAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\EventModel\EventManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Event&lt;ReturnT, ParamT&gt;">
+    <Position X="28" Y="4.5" Width="2" />
+    <NestedTypes>
+      <Typedef Name="Event&lt;ReturnT, ParamT&gt;::HandlersMap" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Framework\CoreModules\EventModel\Events\Event.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAgAAAADAAAAAQAQAAAA=</HashCode>
+      <FileName>Framework\CoreModules\EventModel\Events\Event.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ElementList">
+    <Position X="14.75" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AggAAAEAAAAAABAAAAAECAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\HTMLRendere\Containers\ElementList.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Form">
+    <Position X="17" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAEAAAAAABAAAAAACAAAAgAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Framework\CoreModules\HTMLRendere\Containers\Form.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IContainer">
+    <Position X="16" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAEAAAAAAAAAACAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\HTMLRendere\Containers\IContainer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FormSubmit">
+    <Position X="19.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAACAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\HTMLRendere\Elements\FormSubmit.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lable">
+    <Position X="21.5" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAACACAQAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\HTMLRendere\Elements\Lable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TextBox">
+    <Position X="23.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAIAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\HTMLRendere\Elements\TextBox.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IElement">
+    <Position X="19.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAACAAAABAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\HTMLRendere\IElement.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Page">
+    <Position X="31.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABIAAAEAAAAQABAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\HTMLRendere\Page.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JARVISFramework">
+    <Position X="33.75" Y="4.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>MAAQCAAAEAAAACAQAAAAAAIAAAAAAAAAAAEAAAAACQA=</HashCode>
+      <FileName>Framework\FrameWork.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Loader">
+    <Position X="36.75" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAACEAAAAAAAAYAAAAIAAAAAAAAAAAAABCAAI=</HashCode>
+      <FileName>Framework\Plugin\Loader\Loader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Plugin">
+    <Position X="34.5" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAEAAAAAAAEAAAAAAAAAAAAAABIAAAAAAA=</HashCode>
+      <FileName>Framework\Plugin\Plugin.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommsNS::CurlManager">
+    <Position X="30.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAQAAAgAAQAA=</HashCode>
+      <FileName>Framework\CoreModules\Comms\CURL\CurlManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommsNS::ICURLRequest">
+    <Position X="0.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Comms\CURL\ICURLRequest.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommsNS::IComms">
+    <Position X="22.5" Y="14.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAEAAAAAAAAAAAABAAABEAA=</HashCode>
+      <FileName>Framework\CoreModules\Comms\IComms.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommsNS::IJSONRequest">
+    <Position X="19.5" Y="17.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAEAAAAAAAABAAAAABAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Comms\JSON\IJSONRequest.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommsNS::JSONCURLRequest">
+    <Position X="19.5" Y="20" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQgAAAAAAAAAAAAAEAAQIAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Comms\JSON\JSONCURLRequest.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommsNS::CurlReqImp">
+    <Position X="0.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAQAAAAAAIAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Comms\JSON\JSONCURLRequest.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TranslationFilters::ComandAndControlMessage">
+    <Position X="24.75" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Comms\MessageTranslaters\TranslatedMessages\ComandAndControlMessage.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TranslationFilters::BaseTranslationFilter">
+    <Position X="12.25" Y="17.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAACAAAAAAgJAIAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Comms\MessageTranslaters\TranslationFilters\BaseTranslationFilter.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TranslationFilters::CommandAndcontrolTranslationFilter">
+    <Position X="14.75" Y="20.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAIAAAAAAAABAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Comms\MessageTranslaters\TranslationFilters\CommandAndcontrolTranslationFilter.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TranslationFilters::PluginPageTranslationFilter">
+    <Position X="8.75" Y="20.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAoAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPageTranslationFilter.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TranslationFilters::PluginPollTranslationFilter">
+    <Position X="11.75" Y="20.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAICAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TranslatedMessages::PluginPageMessage">
+    <Position X="19.75" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAEAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Comms\MessageTranslaters\TranslatedMessages\PluginPageMessage.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::Database">
+    <Position X="32.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABACEAAAQAAAAAAQYGAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Database.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::IConstraint">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Querys\Constraints\Constraint.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::Constraint">
+    <Position X="9.75" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAEAAAAAgAAAACAAACAAAAAIAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Querys\Constraints\Constraint.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::Equals">
+    <Position X="11" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAEAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Querys\Constraints\Equals.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::GreaterThan">
+    <Position X="13.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Querys\Constraints\GreaterThan.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::GreatherThanEqualTo">
+    <Position X="15.75" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Querys\Constraints\GreatherThanEqualTo.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::LessThan">
+    <Position X="3.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Querys\Constraints\LessThan.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::LessThanEqualToo">
+    <Position X="6" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Querys\Constraints\LessThanEqualToo.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::Like">
+    <Position X="8.5" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Querys\Constraints\Like.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::Query">
+    <Position X="36.5" Y="8" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAKAAAAAAAAUCAAQBCAAAAAAAAAAAAgAAAAQAAEAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Querys\Query.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::DatabaseTable">
+    <Position X="3" Y="17.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CACAEAAAAAAAAgAAAAAAAAAAAAAAAgABAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Tables\DatabaseTable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::DatabaseTableField&lt;Type&gt;">
+    <Position X="5.5" Y="11" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAgCAEAAIAAAAAAAAAACIAAAAkAAACAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Tables\DatabaseTableField.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::IDatabaseFieldType">
+    <Position X="4.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Tables\IDatabaseTableField.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::CDatabaseFieldType&lt;T&gt;">
+    <Position X="4.5" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Tables\IDatabaseTableField.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::IDatabaseTableField">
+    <Position X="6" Y="8.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAIAAAAAAgAIAAAAEAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Tables\IDatabaseTableField.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::Album">
+    <Position X="0.75" Y="20.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAACAAAgAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Tables\Music\Album\Album.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::AlbumName">
+    <Position X="1" Y="15" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAIAAAAAAAAAIAAAAAAAAAAAAAEAAAAAEA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Tables\Music\Album\Fields\AlbumName.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::ArtistName">
+    <Position X="3.5" Y="15" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAIAAAAAAAACAAAAUAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Tables\Music\Album\Fields\ArtistName.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::Artist">
+    <Position X="3" Y="20.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAIAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Tables\Music\Artist\Artist.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::Name">
+    <Position X="6" Y="15" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAEIQAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Tables\Music\Artist\Fields\Name.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::SongName">
+    <Position X="8.5" Y="15" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAACEAAAAAAAAAAAAAAIAAAAAAAAAAAAAEgAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Tables\Music\Song\Fields\SongName.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::SongURL">
+    <Position X="11" Y="15" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAEAAAAAAAAAAIAAAAAAAAAAAAEEAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Tables\Music\Song\Fields\SongURL.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::Song">
+    <Position X="5.25" Y="20.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABQAAAAAAAAgAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Tables\Music\Song\Song.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Exceptions::NoSelectedFieldsException">
+    <Position X="28" Y="8" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Exceptions\NoSelectedFieldsException.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::Constraints::Groups::ConstraintGroup">
+    <Position X="1.25" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgEAAAABAIAAAAAAAAQAAAAIAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Querys\Constraints\ConstraintGroup\ConstraintGroup.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DatabaseTables::Constraints::Groups::OrConstraintGroup">
+    <Position X="1.25" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAEAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\Database\Querys\Constraints\ConstraintGroup\ORConstraintGroup.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Typedef Name="arbitrary" Collapsed="true">
+    <Position X="32.25" Y="14.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Plugin\Loader\Loader.cpp</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="unload" Collapsed="true">
+    <Position X="30" Y="14.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Plugin\Loader\Loader.cpp</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="CppEventHandler" Collapsed="true">
+    <Position X="28" Y="14.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\CoreModules\EventModel\Events\Event.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

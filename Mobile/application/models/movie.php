@@ -24,9 +24,11 @@ class Movie extends Model {
 		
 		$Agents;
 		$sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+		socket_set_option($sock, SOL_SOCKET, SO_BROADCAST, 1); 
+		
 		$msg = "AGENT_HELLO_BROADCAST";
-    		$len = strlen($msg);
-		socket_sendto($sock, $msg, $len, 0, '0', 40002);
+    	$len = strlen($msg);
+		socket_sendto($sock, $msg, $len, 0, '192.168.0.198', 40002);
 
 		$recv = "";
 

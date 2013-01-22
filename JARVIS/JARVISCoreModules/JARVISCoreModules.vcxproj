@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AFB997C0-FF5E-4894-84AF-C57003862646}</ProjectGuid>
+    <RootNamespace>JARVISCoreModules</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\include;D:\programming\boost_1_52_0;D:\programming\curl-7.28.1\include\curl;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\programming\curl-7.28.1\builds\libcurl-vc-x86-release-dll-ipv6-sspi-spnego-winssl\lib;D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\lib;D:\programming\boost_1_52_0\stage\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\include;D:\programming\boost_1_52_0;D:\programming\curl-7.28.1\include\curl;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_WINDOWS;DLLEXPORT_CORE_MODULES_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>mysqlcppconn.lib;libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="CoreModules\Comms\Comms.cpp" />
+    <ClCompile Include="CoreModules\Comms\CURL\CurlManager.cpp" />
+    <ClCompile Include="CoreModules\Comms\JSON\JSONCURLRequest.cpp" />
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AbstractMessage.cpp" />
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\ComandAndControlMessage.cpp" />
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\ListPluginsMessage.cpp" />
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\PluginPageMessage.cpp" />
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\Translater.cpp" />
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\BaseTranslationFilter.cpp" />
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\CommandAndcontrolTranslationFilter.cpp" />
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPageTranslationFilter.cpp" />
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.cpp" />
+    <ClCompile Include="CoreModules\Comms\Transever\AbstractTransever.cpp" />
+    <ClCompile Include="CoreModules\Comms\Transever\TCPTransever.cpp" />
+    <ClCompile Include="CoreModules\CoreModules.cpp" />
+    <ClCompile Include="CoreModules\Database\Database.cpp" />
+    <ClCompile Include="CoreModules\Database\Querys\Constraints\ConstraintGroup\ConstraintGroup.cpp" />
+    <ClCompile Include="CoreModules\Database\Querys\Constraints\ConstraintGroup\ORConstraintGroup.cpp" />
+    <ClCompile Include="CoreModules\Database\Querys\Constraints\Equals.cpp" />
+    <ClCompile Include="CoreModules\Database\Querys\Constraints\GreaterThan.cpp" />
+    <ClCompile Include="CoreModules\Database\Querys\Constraints\GreatherThanEqualTo.cpp" />
+    <ClCompile Include="CoreModules\Database\Querys\Constraints\LessThan.cpp" />
+    <ClCompile Include="CoreModules\Database\Querys\Constraints\LessThanEqualToo.cpp" />
+    <ClCompile Include="CoreModules\Database\Querys\Constraints\Like.cpp" />
+    <ClCompile Include="CoreModules\Database\Querys\Query.cpp" />
+    <ClCompile Include="CoreModules\Database\ResultWrapper.cpp" />
+    <ClCompile Include="CoreModules\Database\Tables\DatabaseTable.cpp" />
+    <ClCompile Include="CoreModules\Database\Tables\IDatabaseTableField.cpp" />
+    <ClCompile Include="CoreModules\Database\Tables\Music\Album\Album.cpp" />
+    <ClCompile Include="CoreModules\Database\Tables\Music\Album\Fields\AlbumName.cpp" />
+    <ClCompile Include="CoreModules\Database\Tables\Music\Album\Fields\ArtistName.cpp" />
+    <ClCompile Include="CoreModules\Database\Tables\Music\Artist\Artist.cpp" />
+    <ClCompile Include="CoreModules\Database\Tables\Music\Artist\Fields\Name.cpp" />
+    <ClCompile Include="CoreModules\Database\Tables\Music\Song\Fields\SongName.cpp" />
+    <ClCompile Include="CoreModules\Database\Tables\Music\Song\Fields\SongURL.cpp" />
+    <ClCompile Include="CoreModules\Database\Tables\Music\Song\Song.cpp" />
+    <ClCompile Include="CoreModules\Errors\ErrorLogger.cpp" />
+    <ClCompile Include="CoreModules\EventModel\EventHandler\EventHandler.cpp" />
+    <ClCompile Include="CoreModules\EventModel\EventHandler\EvntHandlerBase.cpp" />
+    <ClCompile Include="CoreModules\EventModel\EventManager.cpp" />
+    <ClCompile Include="CoreModules\EventModel\Events\Event.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\Containers\ElementList.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\Containers\Form.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\Containers\IContainer.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\FormSubmit.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\Lable.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\TextBox.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\IElement.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\Page.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CoreModules\Comms\Comms.h" />
+    <ClInclude Include="CoreModules\Comms\CURL\CurlManager.h" />
+    <ClInclude Include="CoreModules\Comms\CURL\ICURLRequest.h" />
+    <ClInclude Include="CoreModules\Comms\IComms.h" />
+    <ClInclude Include="CoreModules\Comms\JSON\IJSONRequest.h" />
+    <ClInclude Include="CoreModules\Comms\JSON\JSONCURLRequest.h" />
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AbstractMessage.h" />
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\ComandAndControlMessage.h" />
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\ListPluginsMessage.h" />
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\PluginPageMessage.h" />
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\TranslatedMessages.h" />
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\Translater.h" />
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\BaseTranslationFilter.h" />
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\CommandAndcontrolTranslationFilter.h" />
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\MessageTranslationFilters.h" />
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPageTranslationFilter.h" />
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.h" />
+    <ClInclude Include="CoreModules\Comms\Transever\AbstractTransever.h" />
+    <ClInclude Include="CoreModules\Comms\Transever\TCPTransever.h" />
+    <ClInclude Include="CoreModules\CoreModules.h" />
+    <ClInclude Include="CoreModules\Database\Database.h" />
+    <ClInclude Include="CoreModules\Database\Exceptions\NoSelectedFieldsException.h" />
+    <ClInclude Include="CoreModules\Database\Querys\Constraints\Constraint.h" />
+    <ClInclude Include="CoreModules\Database\Querys\Constraints\ConstraintGroup\ConstraintGroup.h" />
+    <ClInclude Include="CoreModules\Database\Querys\Constraints\ConstraintGroup\ORConstraintGroup.h" />
+    <ClInclude Include="CoreModules\Database\Querys\Constraints\Constraints.h" />
+    <ClInclude Include="CoreModules\Database\Querys\Constraints\Equals.h" />
+    <ClInclude Include="CoreModules\Database\Querys\Constraints\GreaterThan.h" />
+    <ClInclude Include="CoreModules\Database\Querys\Constraints\GreatherThanEqualTo.h" />
+    <ClInclude Include="CoreModules\Database\Querys\Constraints\LessThan.h" />
+    <ClInclude Include="CoreModules\Database\Querys\Constraints\LessThanEqualToo.h" />
+    <ClInclude Include="CoreModules\Database\Querys\Constraints\Like.h" />
+    <ClInclude Include="CoreModules\Database\Querys\Query.h" />
+    <ClInclude Include="CoreModules\Database\Querys\Querys.h" />
+    <ClInclude Include="CoreModules\Database\ResultWrapper.h" />
+    <ClInclude Include="CoreModules\Database\Tables\DatabaseTable.h" />
+    <ClInclude Include="CoreModules\Database\Tables\DatabaseTableField.h" />
+    <ClInclude Include="CoreModules\Database\Tables\IDatabaseTableField.h" />
+    <ClInclude Include="CoreModules\Database\Tables\Music\Album\Album.h" />
+    <ClInclude Include="CoreModules\Database\Tables\Music\Album\Fields\AlbumName.h" />
+    <ClInclude Include="CoreModules\Database\Tables\Music\Album\Fields\ArtistName.h" />
+    <ClInclude Include="CoreModules\Database\Tables\Music\Artist\Artist.h" />
+    <ClInclude Include="CoreModules\Database\Tables\Music\Artist\Fields\Name.h" />
+    <ClInclude Include="CoreModules\Database\Tables\Music\Song\Fields\SongName.h" />
+    <ClInclude Include="CoreModules\Database\Tables\Music\Song\Fields\SongURL.h" />
+    <ClInclude Include="CoreModules\Database\Tables\Music\Song\Song.h" />
+    <ClInclude Include="CoreModules\Database\Tables\Tables.h" />
+    <ClInclude Include="CoreModules\Errors\ErrorLogger.h" />
+    <ClInclude Include="CoreModules\EventModel\EventHandler\EventHandler.h" />
+    <ClInclude Include="CoreModules\EventModel\EventHandler\EvntHandlerBase.h" />
+    <ClInclude Include="CoreModules\EventModel\EventManager.h" />
+    <ClInclude Include="CoreModules\EventModel\EventModel.h" />
+    <ClInclude Include="CoreModules\EventModel\Events\Event.h" />
+    <ClInclude Include="CoreModules\exportMacros.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\Containers\ElementList.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\Containers\Form.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\Containers\IContainer.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\FormSubmit.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\Lable.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\TextBox.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\HTMLRendere.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\IElement.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\Page.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
