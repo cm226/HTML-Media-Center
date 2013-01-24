@@ -11,7 +11,9 @@
 #include "../IElement.h"
 #include <string>
 
-class FormSubmit : public IElement {
+#include "../../exportMacros.h"
+
+class DLLCORE_API FormSubmit : public IElement {
 public:
 	FormSubmit(std::string name);
 	virtual ~FormSubmit();

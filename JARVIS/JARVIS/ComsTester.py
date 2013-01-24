@@ -1,9 +1,9 @@
 import socket
-import readline
+#import readline
 import sys
 
 SERVER = 'localhost'
-PORT = 46000
+PORT = 45001
 
 
 def printhelp():
@@ -44,5 +44,5 @@ def parseCmd(s):
 
 nb = ""
 while nb != "kill\n":
-	nb = sys.stdin.readline()
-	parseCmd(nb)
+	#nb = sys.stdin.readline()
+	parseCmd("lsPlgin\n")

@@ -37,8 +37,9 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\include;D:\programming\boost_1_52_0;D:\programming\curl-7.28.1\include\curl;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\programming\curl-7.28.1\builds\libcurl-vc-x86-release-dll-ipv6-sspi-spnego-winssl\lib;D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\lib;D:\programming\boost_1_52_0\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\include;D:\programming\boost_1_52_0;D:\programming\curl MSVS\include\curl;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\programming\curl MSVS\lib\Release;D:\programming\curl2;D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\lib;D:\programming\boost_1_52_0\stage\lib;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>D:\programming\curl2;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\include;D:\programming\boost_1_52_0;D:\programming\curl-7.28.1\include\curl;$(IncludePath)</IncludePath>
@@ -51,7 +52,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>mysqlcppconn.lib;libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mysqlcppconn.lib;curllib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

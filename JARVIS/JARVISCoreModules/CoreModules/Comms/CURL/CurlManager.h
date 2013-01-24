@@ -15,8 +15,6 @@ namespace CommsNS {
 
 class CurlManager {
 private:
-	std::string DownloadedResponse;
-	int writer(char *data, size_t size, size_t nmemb, std::string *buffer_in);
 
 public:
 	CurlManager();

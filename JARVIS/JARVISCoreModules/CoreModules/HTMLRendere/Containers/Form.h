@@ -10,8 +10,9 @@
 
 #include <vector>
 #include "IContainer.h"
+#include "../../exportMacros.h"
 
-class Form : public IContainer
+class DLLCORE_API Form : public IContainer
 {
 private:
 	std::vector<IElement*> elements;

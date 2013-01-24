@@ -8,6 +8,7 @@
 #include "TCPTransever.h"
 #include <boost/bind.hpp>
 
+
 using boost::asio::ip::tcp;
 
 
@@ -18,6 +19,7 @@ TCPTransever::TCPTransever(int PORT)
 	this->timer = new boost::asio::deadline_timer(io_service);
 
 	this->PORT = PORT;
+	this->stopped_ = false;
 }
 
 TCPTransever::~TCPTransever()
@@ -39,15 +41,26 @@ TCPTransever::~TCPTransever()
 
 int TCPTransever::listenForConnection(int timeout)
 {
+
 	tcp::acceptor acceptor(io_service, tcp::endpoint(tcp::v4(), this->PORT));
 	curSocket = new boost::asio::ip::tcp::socket(io_service);
 
 	this->timer->expires_from_now(boost::posix_time::seconds(timeout));
 	this->timer->async_wait(boost::bind(&TCPTransever::check_deadline, this));
 
-	io_service.run();
+	io_service.poll();
 
-	acceptor.accept(*curSocket);
+	try
+	{
+		acceptor.accept(*curSocket);
+	}
+	catch(boost::system::system_error& e)
+	{
+		if(this->stopped_)
+			return false;
+
+		throw boost::system::system_error(e); // preserve stack
+	}
 
 	return this->curSocket->is_open();
 }

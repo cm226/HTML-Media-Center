@@ -9,8 +9,9 @@
 #define LABLE_H_
 
 #include "../IElement.h"
+#include "../../exportMacros.h"
 
-class Lable: public IElement {
+class DLLCORE_API Lable: public IElement {
 private:
 	std::string text;
 

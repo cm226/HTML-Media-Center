@@ -10,10 +10,14 @@
 
 #include "../../JARVIS/Framework/Plugin/Plugin.h"
 #include <string>
+#include <vector>
 
 class MediaImagesPlugin: public Plugin {
 private :
 	std::string name;
+	void doGoogleSearch(std::vector<std::string>& result, std::string const &query);
+
+
 public:
 	MediaImagesPlugin(CoreModules* framework);
 	virtual bool whatDoYouLookLike(Page*);

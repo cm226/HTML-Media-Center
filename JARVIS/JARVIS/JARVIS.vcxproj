@@ -37,9 +37,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\programming\curl-7.28.1\include\curl;D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\include;D:\programming\boost_1_52_0;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\programming\curl-7.28.1\builds\libcurl-vc-x86-release-dll-ipv6-sspi-spnego-winssl\lib;D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\lib;D:\programming\boost_1_52_0\stage\lib;$(LibraryPath)</LibraryPath>
-    <ReferencePath>D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\lib;$(ReferencePath)</ReferencePath>
+    <IncludePath>D:\programming\curl MSVS\include\curl;D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\include;D:\programming\boost_1_52_0;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\programming\curl MSVS\lib\Release;D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\lib;D:\programming\boost_1_52_0\stage\lib;$(LibraryPath)</LibraryPath>
+    <ReferencePath>D:\programming\curl2;D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\lib;$(ReferencePath)</ReferencePath>
+    <ExecutablePath>D:\programming\curl2;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>D:\programming\curl-7.28.1\include\curl;D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\include;D:\programming\boost_1_52_0;$(IncludePath)</IncludePath>
@@ -55,7 +56,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>mysqlcppconn.lib;libcurl.lib;boost_chrono-vc100-mt-gd-1_52.lib;boost_system-vc100-mt-gd-1_52.lib;boost_timer-vc100-mt-gd-1_52.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mysqlcppconn.lib;curllib.lib;boost_chrono-vc100-mt-gd-1_52.lib;boost_system-vc100-mt-gd-1_52.lib;boost_timer-vc100-mt-gd-1_52.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

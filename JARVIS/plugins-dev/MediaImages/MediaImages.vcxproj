@@ -37,8 +37,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\programming\boost_1_52_0;D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\include;D:\programming\curl-7.28.1\include\curl;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\wamp\www\HTML-Media-Center\JARVIS\JARVIS\Debug;D:\programming\curl-7.28.1\builds\libcurl-vc-x86-release-dll-ipv6-sspi-spnego-winssl\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\programming\boost_1_52_0;D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\include;D:\programming\curl MSVS\include\curl;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\wamp\www\HTML-Media-Center\JARVIS\JARVIS\Debug;D:\programming\curl MSVS\lib\Release;$(LibraryPath)</LibraryPath>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
