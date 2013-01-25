@@ -18,5 +18,7 @@ ErrorLogger::~ErrorLogger() {
 
 void ErrorLogger::logError(std::string message)
 {
+	// TODO add stacktrace to message 
+	// TODO add date and time
 	std::cerr << message << std::endl;
 }

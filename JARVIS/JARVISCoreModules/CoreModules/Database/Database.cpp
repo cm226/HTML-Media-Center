@@ -94,7 +94,7 @@ bool Database::insertRow(DatabaseTable* row)
 
 
 }
-bool Database::runQuery(Query* query)
+bool Database::runQuery(IQuery* query)
 {
 	if(this->connected)
 	{
@@ -113,7 +113,8 @@ bool Database::runQuery(Query* query)
 		{
 			std::string error = e.getSQLState();
 			std::cout << "Query error "<<error << std::endl;
-			return false;
+
+			throw sql::SQLException(e);
 		}
 	}
 	else

@@ -10,6 +10,7 @@
 
 #include <curl.h>
 #include "ICURLRequest.h"
+#include <string>
 
 namespace CommsNS {
 
@@ -21,6 +22,7 @@ public:
 	virtual ~CurlManager();
 
 	bool makeJASONRequest(ICURLRequest &, std::string & responce);
+	bool downloadItemToFile(std::string internetURL, std::string outputFile);
 
 
 };

@@ -18,12 +18,14 @@ Query::Query() {
 	this->result = NULL;
 	this->fields = new std::vector<IDatabaseTableField*>();
 	this->constraints = new std::vector<IConstraint*>();
+	this->descriptors = new std::vector<Descriptors::Descriptor*>();
 }
 
 Query::~Query() {
 	delete this->result;
 	delete this->fields;
 	delete this->constraints;
+	delete this->descriptors;
 
 }
 
@@ -36,6 +38,12 @@ void Query::addSelectItem(IDatabaseTableField* field)
 {
 	this->fields->push_back(field);
 }
+
+void Query::addDescriptor(Descriptors::Descriptor* desk)
+{
+	this->descriptors->push_back(desk);
+}
+
 void Query::addSelectItem(DatabaseTable* table)
 {
 	std::vector<IDatabaseTableField*> tableFields;
@@ -51,22 +59,21 @@ void Query::addSelectItem(DatabaseTable* table)
 
 std::string Query::buildQuery()
 {
-	if(this->fields->size() == 0)
+ 	if(this->fields->size() == 0)
 		throw Exceptions::NoSelectedFieldsException("building query with no selected fields is stupid!");
 
 	std::string selectString = "SELECT DISTINCT ";
 	std::string whereString =  "";
 	std::string fromString = " FROM";
+	std::string descriptorString = "";
 
 	std::vector<IDatabaseTableField*>::iterator fieildIt;
 	std::vector<IConstraint*>::iterator constraintIter;
-
-
+	std::vector<Descriptors::Descriptor*>::iterator deskIt;
 
 	std::set<std::string> tables;
 	std::set<std::string>::iterator tablesIt;
-
-
+	
 
 	for (fieildIt = this->fields->begin(); fieildIt != this->fields->end(); fieildIt++)
 	{
@@ -101,10 +108,15 @@ std::string Query::buildQuery()
 
 		fromString += " "+(*tablesIt);
 	}//FROM
+
+	//descriptors
+	for (deskIt = this->descriptors->begin(); deskIt != this->descriptors->end(); deskIt++)
+	{
+		descriptorString += " "+(*deskIt)->getString();
+	}
 	
 	
-	
-	return selectString+fromString+whereString;
+	return selectString+fromString+whereString+descriptorString;
 }
 
 void Query::listSelectedFields(IDatabaseTableField** fields, int* numOfFeilds)

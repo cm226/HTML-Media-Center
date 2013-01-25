@@ -36,6 +36,8 @@ void Comms::startComms()
 void Comms::stopComms()
 {
 	this->listening = false;
+	this->transever->shutdown();
+
 }
 
 void Comms::connectionListener()
@@ -66,6 +68,11 @@ CommsNS::IJSONRequest* Comms::createJSONRequest()
 	CommsNS::CurlManager &manager = this->curlMan;
 
 	return new CommsNS::JSONCURLRequest(manager);
+}
+
+bool Comms::downloadFile(std::string const& URL, std::string const& fileName)
+{
+	return this->curlMan.downloadItemToFile(URL,fileName);
 }
 
 

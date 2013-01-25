@@ -94,6 +94,7 @@
     <ClCompile Include="CoreModules\Database\Querys\Constraints\LessThanEqualToo.cpp" />
     <ClCompile Include="CoreModules\Database\Querys\Constraints\Like.cpp" />
     <ClCompile Include="CoreModules\Database\Querys\Query.cpp" />
+    <ClCompile Include="CoreModules\Database\Querys\UpdateQuery.cpp" />
     <ClCompile Include="CoreModules\Database\ResultWrapper.cpp" />
     <ClCompile Include="CoreModules\Database\Tables\DatabaseTable.cpp" />
     <ClCompile Include="CoreModules\Database\Tables\IDatabaseTableField.cpp" />
@@ -118,6 +119,15 @@
     <ClCompile Include="CoreModules\HTMLRendere\Elements\TextBox.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\IElement.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Page.cpp" />
+    <ClCompile Include="CoreModules\Database\Tables\Movie\Movie\Movie.cpp" />
+    <ClCompile Include="CoreModules\Database\Tables\Movie\Movie\Fields\MovieName.cpp" />
+    <ClCompile Include="CoreModules\Database\Tables\Movie\Movie\Fields\movieGenra.cpp" />
+    <ClCompile Include="CoreModules\Database\Tables\Movie\Movie\Fields\movieIMDB.cpp" />
+    <ClCompile Include="CoreModules\Database\Tables\Movie\Movie\Fields\movieLength.cpp" />
+    <ClCompile Include="CoreModules\Database\Tables\Movie\Movie\Fields\movieURL.cpp" />
+    <ClCompile Include="CoreModules\Database\Tables\Movie\Movie\Fields\thumbnailURL.cpp" />
+    <ClCompile Include="CoreModules\Database\Querys\Descriptor\Limit.cpp" />
+    <ClCompile Include="CoreModules\Database\Querys\Descriptor\Descriptor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreModules\Comms\Comms.h" />
@@ -139,6 +149,8 @@
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.h" />
     <ClInclude Include="CoreModules\Comms\Transever\AbstractTransever.h" />
     <ClInclude Include="CoreModules\Comms\Transever\TCPTransever.h" />
+    <ClInclude Include="CoreModules\config.h" />
+    <ClInclude Include="CoreModules\configSkeliton.h" />
     <ClInclude Include="CoreModules\CoreModules.h" />
     <ClInclude Include="CoreModules\Database\Database.h" />
     <ClInclude Include="CoreModules\Database\Exceptions\NoSelectedFieldsException.h" />
@@ -152,8 +164,10 @@
     <ClInclude Include="CoreModules\Database\Querys\Constraints\LessThan.h" />
     <ClInclude Include="CoreModules\Database\Querys\Constraints\LessThanEqualToo.h" />
     <ClInclude Include="CoreModules\Database\Querys\Constraints\Like.h" />
+    <ClInclude Include="CoreModules\Database\Querys\IQuery.h" />
     <ClInclude Include="CoreModules\Database\Querys\Query.h" />
     <ClInclude Include="CoreModules\Database\Querys\Querys.h" />
+    <ClInclude Include="CoreModules\Database\Querys\UpdateQuery.h" />
     <ClInclude Include="CoreModules\Database\ResultWrapper.h" />
     <ClInclude Include="CoreModules\Database\Tables\DatabaseTable.h" />
     <ClInclude Include="CoreModules\Database\Tables\DatabaseTableField.h" />
@@ -183,6 +197,15 @@
     <ClInclude Include="CoreModules\HTMLRendere\HTMLRendere.h" />
     <ClInclude Include="CoreModules\HTMLRendere\IElement.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Page.h" />
+    <ClInclude Include="CoreModules\Database\Tables\Movie\Movie\Movie.h" />
+    <ClInclude Include="CoreModules\Database\Tables\Movie\Movie\Fields\MovieName.h" />
+    <ClInclude Include="CoreModules\Database\Tables\Movie\Movie\Fields\movieGenra.h" />
+    <ClInclude Include="CoreModules\Database\Tables\Movie\Movie\Fields\movieIMDB.h" />
+    <ClInclude Include="CoreModules\Database\Tables\Movie\Movie\Fields\movieLength.h" />
+    <ClInclude Include="CoreModules\Database\Tables\Movie\Movie\Fields\movieURL.h" />
+    <ClInclude Include="CoreModules\Database\Tables\Movie\Movie\Fields\thumbnailURL.h" />
+    <ClInclude Include="CoreModules\Database\Querys\Descriptor\Limit.h" />
+    <ClInclude Include="CoreModules\Database\Querys\Descriptor\Descriptor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

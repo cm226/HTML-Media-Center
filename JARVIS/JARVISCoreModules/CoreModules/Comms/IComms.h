@@ -17,6 +17,8 @@ namespace CommsNS {
 		IComms(){};
 		virtual ~IComms(){};
 		virtual IJSONRequest* createJSONRequest() = 0;
+		virtual bool downloadFile(std::string const& URL, std::string const& fileName) = 0;
+
 		virtual void stopComms() = 0;
 		virtual void startComms() = 0;
 	};

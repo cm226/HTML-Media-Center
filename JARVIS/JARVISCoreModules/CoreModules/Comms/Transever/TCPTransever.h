@@ -31,6 +31,7 @@ public:
 	virtual int listenForConnection(int timeout);
 	virtual void getMessage(std::string* data);
 	virtual void sendMessage(std::string* data);
+	void shutdown();
 
 private:
 	void check_deadline();

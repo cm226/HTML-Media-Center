@@ -38,6 +38,11 @@ static int writer(char *data, size_t size, size_t nmemb, std::string *buffer_in)
     return 0;
 }
 
+static int fileWriter(char *data, size_t size, size_t nmemb, FILE *stream)
+{
+	return fwrite(data, size, nmemb, stream);
+}
+
 bool CurlManager::makeJASONRequest(ICURLRequest & req, std::string & responce)
 {
 	CURL* curl;
@@ -60,7 +65,6 @@ bool CurlManager::makeJASONRequest(ICURLRequest & req, std::string & responce)
 			curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 	        curl_easy_setopt(curl, CURLOPT_URL, URL.c_str() );
 	        curl_easy_setopt(curl, CURLOPT_HTTPGET,1);
-			curl_easy_setopt(curl, CURLOPT_VERBOSE,1);
 	        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 			curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, false);
 	        curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,&writer);
@@ -82,6 +86,29 @@ bool CurlManager::makeJASONRequest(ICURLRequest & req, std::string & responce)
 
 	curl_easy_cleanup(curl);
 	return worked;
+}
+
+
+bool CurlManager::downloadItemToFile(std::string internetURL, std::string outputFile)
+{
+	CURL *curl;
+    FILE *fp;
+    CURLcode res;
+	const char *url = internetURL.c_str();
+	const char* outfilename = outputFile.c_str();
+    curl = curl_easy_init();
+    if (curl) {
+        fp = fopen(outfilename,"wb");
+        curl_easy_setopt(curl, CURLOPT_URL, url);
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, fileWriter);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
+        res = curl_easy_perform(curl);
+        /* always cleanup */
+        curl_easy_cleanup(curl);
+        fclose(fp);
+    }
+
+    return true;
 }
 
 

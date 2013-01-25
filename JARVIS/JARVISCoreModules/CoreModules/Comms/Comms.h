@@ -35,6 +35,7 @@ public:
 	void stopComms();
 
 	CommsNS::IJSONRequest* createJSONRequest();
+	bool downloadFile(std::string const& URL, std::string const& fileName);
 
 
 };

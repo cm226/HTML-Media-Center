@@ -21,6 +21,7 @@ public:
 
 	void takeValue(ResultWrapper* resRwapper){};
 	std::string fieldName(){return "";};
+	std::string getStrValue() {return "";};
 };
 
 } /* namespace DatabaseTables */

@@ -8,9 +8,11 @@
 #include "CoreModules.h"
 
 #include <iostream>
+#include "config.h"
 
 CoreModules::CoreModules() {
 	std::cout << "cm Loaded" << std::endl;
+	this->databasecon = NULL;
 }
 
 CoreModules::~CoreModules() {
@@ -22,7 +24,7 @@ DatabaseTables::Database* CoreModules::getDatabaseConnection()
 	if(this->databasecon == NULL)
 	{
 		this->databasecon = new DatabaseTables::Database();
-		this->databasecon->Connect("root", "root","MediaServer","localhost");
+		this->databasecon->Connect(DATABSEUSER, DATABASEPASSWORD,DATABASENAME,"localhost");
 	}
 
 	return this->databasecon;

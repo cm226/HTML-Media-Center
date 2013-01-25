@@ -27,6 +27,8 @@ public:
    virtual std::string getName() = 0;
    virtual std::string ownerName() = 0;
    virtual std::string fieldName() = 0;
+
+   virtual std::string getStrValue() = 0;
 };
 
 

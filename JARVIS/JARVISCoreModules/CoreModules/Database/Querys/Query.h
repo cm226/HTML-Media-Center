@@ -10,18 +10,22 @@
 
 #include <vector>
 
+#include "IQuery.h"
 #include "Constraints/Constraints.h"
+#include "Descriptor/Limit.h"
 #include "../Tables/DatabaseTableField.h"
 #include "../Tables/DatabaseTable.h"
 #include "../ResultWrapper.h"
+#include "../../exportMacros.h"
 
 namespace DatabaseTables {
 
-class Query {
+class DLLCORE_API Query : IQuery {
 private:
 	ResultWrapper* result;
 	std::vector<IDatabaseTableField*>* fields;
 	std::vector<IConstraint*>* constraints;
+	std::vector<Descriptors::Descriptor*>* descriptors;
 
 
 public:
@@ -32,6 +36,7 @@ public:
 	void addSelectItem(DatabaseTable* table);
 
 	void addConstraint(IConstraint* con);
+	void addDescriptor(Descriptors::Descriptor* desk);
 
 
 	std::string buildQuery();

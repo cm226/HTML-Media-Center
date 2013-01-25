@@ -119,3 +119,8 @@ void TCPTransever::sendMessage(std::string* data)
 	}
 }
 
+void TCPTransever::shutdown()
+{
+	this->stopped_ = true;
+}
+

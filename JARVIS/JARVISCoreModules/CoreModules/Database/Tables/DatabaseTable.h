@@ -21,6 +21,8 @@ public:
 	virtual ~DatabaseTable();
 
 	virtual std::string getInsertQuery() =0 ;
+	virtual std::string getUpdateQuery() = 0;
+
 	virtual void getFields(std::vector<IDatabaseTableField*>* fields) = 0;
 	virtual IDatabaseTableField* getPrimaryKey(){return NULL;};
 

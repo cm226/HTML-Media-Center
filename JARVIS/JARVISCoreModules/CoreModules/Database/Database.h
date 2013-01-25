@@ -13,6 +13,7 @@
 
 #include "Tables/DatabaseTable.h"
 #include "Querys/Querys.h"
+#include "../exportMacros.h"
 
 #include <cppconn/driver.h>
 #include <cppconn/exception.h>
@@ -22,7 +23,7 @@
 
 namespace DatabaseTables {
 
-class Database {
+class DLLCORE_API Database {
 private:
 	bool connected;
 	  sql::Driver *driver;
@@ -37,7 +38,7 @@ public:
 	bool Connect(std::string userName, std::string password, std::string DatabaseName, std::string host);
 
 	bool insertRow(DatabaseTable* row);
-	bool runQuery(Query* query);
+	bool runQuery(IQuery* query);
 	bool isConnected();
 	
 

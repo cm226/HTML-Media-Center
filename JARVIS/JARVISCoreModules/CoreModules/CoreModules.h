@@ -27,6 +27,7 @@ public:
 	DatabaseTables::Database* getDatabaseConnection();
 	CommsNS::IComms* getComms();
 
+
 };
 
 #endif /* COREMODULES_H_ */

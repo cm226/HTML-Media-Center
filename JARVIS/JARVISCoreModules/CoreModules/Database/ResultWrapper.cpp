@@ -29,5 +29,8 @@ std::string ResultWrapper::getString(const char* columnName)
 
 bool ResultWrapper::next()
 {
+	if(this->resSet == NULL)
+		return false;
+
 	return this->resSet->next();
 }

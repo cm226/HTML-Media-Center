@@ -9,10 +9,11 @@
 #define EQUALS_H_
 
 #include "Constraint.h"
+#include "../../../exportMacros.h"
 
 namespace DatabaseTables {
 
-class Equals: public DatabaseTables::Constraint {
+class DLLCORE_API Equals: public DatabaseTables::Constraint {
 public:
 	Equals(IDatabaseTableField* field, std::string value);
 	Equals(IDatabaseTableField* field, IDatabaseTableField* field2);
