@@ -20,7 +20,7 @@
 
 namespace DatabaseTables {
 
-class DLLCORE_API Query : IQuery {
+class DLLCORE_API Query : public IQuery {
 private:
 	ResultWrapper* result;
 	std::vector<IDatabaseTableField*>* fields;

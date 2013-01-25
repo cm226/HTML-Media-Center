@@ -9,16 +9,24 @@
 #define IELEMENT_H_
 
 #include <string>
+#include <vector>
 
 class IElement {
+private:
+	std::vector<std::string> attributes;
+	std::string name;
+
+protected:
+	virtual std::string getTagText() = 0;
+	virtual std::string getTagContent() = 0;
 
 public:
 	IElement(std::string name);
-
-	virtual std::string getText() = 0;
 	virtual ~IElement();
 
-	std::string name;
+	void addAttribute(std::string att);
+	virtual std::string getText();
+
 };
 
 #endif /* IELEMENT_H_ */

@@ -6,6 +6,7 @@
  */
 
 #include "ElementList.h"
+#include <sstream>
 
 ElementList::ElementList(std::string name): IContainer(name) {
 
@@ -28,14 +29,15 @@ void ElementList::removeElement(IElement* element)
 	}
 }
 
-std::string ElementList::getText()
+std::string ElementList::getTagContent()
 {
-	std::string value = "<div id="+this->name+">";
+	std::stringstream ss;
+
 	for(std::vector<IElement*>::iterator it = elements.begin(); it != elements.end(); ++it)
-		{
-			value.append((*it)->getText());
-		}
-	value.append("</div>");
-	return value;
+	{
+		ss << (*it)->getText();
+	}
+
+	return ss.str();
 }
 

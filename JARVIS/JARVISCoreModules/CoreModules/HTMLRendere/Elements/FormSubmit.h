@@ -14,11 +14,15 @@
 #include "../../exportMacros.h"
 
 class DLLCORE_API FormSubmit : public IElement {
+protected:
+	virtual std::string getTagText();
+	virtual std::string getTagContent();
+
 public:
 	FormSubmit(std::string name);
 	virtual ~FormSubmit();
 
-	virtual std::string getText();
+
 };
 
 #endif /* FORMSUBMIT_H_ */

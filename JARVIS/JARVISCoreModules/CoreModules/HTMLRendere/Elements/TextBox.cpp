@@ -10,14 +10,9 @@
 using namespace std;
 
 TextBox::TextBox(string name) : IElement(name) {
-
+	this->addAttribute("type=\"text\"");
 }
 
 TextBox::~TextBox() {
 
-}
-
-std::string TextBox::getText()
-{
-	return std::string("<input name="+this->name+" type=\"text\" />");
 }

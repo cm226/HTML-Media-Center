@@ -16,6 +16,11 @@ class DLLCORE_API Form : public IContainer
 {
 private:
 	std::vector<IElement*> elements;
+
+protected:
+	std::string getTagText(){return "form";};
+	std::string getTagContent();
+
 public:
 	Form(std::string name);
 	virtual ~Form();
@@ -23,7 +28,6 @@ public:
 	virtual void addElement(IElement* element);
 	virtual void removeElement(IElement* element);
 
-	std::string getText();
 };
 
 #endif /* FORM_H_ */

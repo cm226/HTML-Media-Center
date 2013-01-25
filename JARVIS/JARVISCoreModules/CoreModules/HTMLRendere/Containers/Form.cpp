@@ -6,9 +6,10 @@
  */
 
 #include "Form.h"
+#include <sstream>
 
 Form::Form(std::string name) : IContainer(name) {
-	// TODO Auto-generated constructor stub
+	this->addAttribute("action=\"../Shared/genericPluginFormHandler\"");
 
 }
 
@@ -34,13 +35,15 @@ void Form::removeElement(IElement* element)
 	}
 }
 
-std::string Form::getText()
+
+std::string Form::getTagContent()
 {
-	std::string value = "<form id="+this->name+" action=\"../Shared/genericPluginFormHandler\">";
+	std::stringstream ss;
+
 	for(std::vector<IElement*>::iterator it = elements.begin(); it != elements.end(); ++it)
-		{
-			value.append((*it)->getText());
-		}
-	value.append("</form>");
-	return value;
+	{
+		ss << (*it)->getText();
+	}
+
+	return ss.str();
 }

@@ -7,14 +7,21 @@
 
 #include "FormSubmit.h"
 
-FormSubmit::FormSubmit(std::string name): IElement(name) {
-
+FormSubmit::FormSubmit(std::string name): IElement(name) 
+{
+	this->addAttribute("type=\"submit\"");
+	this->addAttribute("value=\"submit\"");
 }
 
 FormSubmit::~FormSubmit() {
 }
 
-std::string FormSubmit::getText()
+std::string FormSubmit::getTagText()
 {
-	return "<input type=\"submit\" value=\"submit\">";
+	return "input";
+}
+
+std::string FormSubmit::getTagContent()
+{
+	return "";
 }

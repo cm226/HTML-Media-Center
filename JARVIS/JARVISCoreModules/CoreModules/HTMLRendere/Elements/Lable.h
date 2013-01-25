@@ -15,12 +15,17 @@ class DLLCORE_API Lable: public IElement {
 private:
 	std::string text;
 
+protected:
+	virtual std::string getTagText() {return "p";};
+	virtual std::string getTagContent(){ return this->text; };
+
 public:
 	Lable(std::string name);
 
 	void setText(std::string text);
-	std::string getText();
 	virtual ~Lable();
+
+
 };
 
 #endif /* LABLE_H_ */

@@ -17,13 +17,17 @@ class ElementList: public IContainer {
 private :
 	std::vector<IElement*> elements;
 
+protected:
+	std::string getTagText(){return "div";};
+	std::string getTagContent();
+
 public:
 	ElementList(std::string name);
 	virtual ~ElementList();
 
 	void addElement(IElement* element);
 	void removeElement(IElement* element);
-	std::string getText();
+
 };
 
 #endif /* ELEMENTLIST_H_ */

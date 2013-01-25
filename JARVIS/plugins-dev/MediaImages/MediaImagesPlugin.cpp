@@ -7,6 +7,7 @@
 
 #include "MediaImagesPlugin.h"
 #include <iostream>
+#include <sstream>
 
 #include "../../JARVISCoreModules/CoreModules/Database/Database.h"
 #include "../../JARVISCoreModules/CoreModules/Database/Tables/Movie/Movie/Movie.h"
@@ -48,39 +49,78 @@ bool MediaImagesPlugin::getUnallocatedMovie(DatabaseTables::Movie& movie)
 
 bool MediaImagesPlugin::whatDoYouLookLike(Page* page)
 {
-	/*Form* chooseMediaForm = new Form("mediaForm");
-	FormSubmit* submitFormBtt = new FormSubmit("find");
-
-	for(int i = 0; i < 5; i++)
-	{
-		Lable* l = new Lable("Image"+i);
-		l->setText("Image"+i);
-
-		chooseMediaForm->addElement(l);
-	}
-	chooseMediaForm->addElement(submitFormBtt);
-	page->addElement(chooseMediaForm);*/
-
-	std::string imgURL = "http://www.scifispace.com/lotr_poster.jpg";
-	std::string ext = imgURL.substr(imgURL.rfind('.',imgURL.length()-1));
-
 	DatabaseTables::Movie movie;
-	DatabaseTables::UpdateQuery updateq(&movie);
+	Form* chooseMediaForm = new Form("mediaForm");
+	FormSubmit* submitFormBtt = new FormSubmit("find");
+	Lable* movieNameLable = new Lable("MovieName");
 
+	std::string imgURLs[4] = {"http://www.scifispace.com/lotr_poster.jpg","http://www.scifispace.com/lotr_poster.jpg","http://www.scifispace.com/lotr_poster.jpg","http://www.scifispace.com/lotr_poster.jpg"};
+	
 	this->getUnallocatedMovie(movie);
 
+	movieNameLable->setText("For Movie: "+movie.name->getStrValue());
+	page->addElement(movieNameLable);
+
+	for(int i = 0; i < 4; i++)
+	{
+		HTMLImage* image = new HTMLImage("img",imgURLs[i]);
+		image->addAttribute("onClick=\"window.location = '../../' \"");
+		chooseMediaForm->addElement(image);
+	}
+
+	chooseMediaForm->addElement(submitFormBtt);
+	page->addElement(chooseMediaForm);
+
+
+	return true;
+}
+
+bool MediaImagesPlugin::handleImageSelected(int movieID, std::string imgURL)
+{	
+	std::string::size_type pos = imgURL.rfind('.',imgURL.length()-1);
+	if(pos > imgURL.length() || pos == std::string::npos)
+	{
+		ErrorLogger::logError("Bad URL returned from image Search :" + imgURL);
+		return false;
+	}
+
+	std::string ext = imgURL.substr(pos);
 	std::string thumbName = "lotr"+ext;
 	bool downloaded = this->downloadAndCopyImage(imgURL,thumbName);
-	if(downloaded)
-	{
-		movie.thumb->setValue(&thumbName);
-		if(!this->coreMod->getDatabaseConnection()->runQuery(&updateq))
-		{
-			ErrorLogger::logError("updateing Movie: "+movie.name->getStrValue()+" Failed ");
-			return false;
-		}
 
+	if(downloaded)
+		return this->notifyDatabaseOfMovieUpdate(movieID,thumbName);
+	
+	return false;
+}
+
+bool MediaImagesPlugin::notifyDatabaseOfMovieUpdate(int movID, std::string thumbName)
+{
+	std::stringstream movieID;
+
+	DatabaseTables::Movie movie;
+	DatabaseTables::Query q;
+	DatabaseTables::UpdateQuery updateMovieq(&movie);
+	movieID << movieID;
+
+	DatabaseTables::Equals eq(movie.getPrimaryKey(),movieID.str());
+	q.addSelectItem(&movie);
+	q.addConstraint(&eq);
+	this->coreMod->getDatabaseConnection()->runQuery(&q);
+		
+	if(!q.nextLine())
+	{
+		ErrorLogger::logError("failed to reterve move with id: "+movieID.str()+" when updateing thumnail");
+		return false;
 	}
+
+	movie.thumb->setValue(&thumbName);
+	if(!this->coreMod->getDatabaseConnection()->runQuery(&updateMovieq))
+	{
+		ErrorLogger::logError("updateing Movie: "+movie.name->getStrValue()+" Failed ");
+		return false;
+	}
+
 	return true;
 }
 

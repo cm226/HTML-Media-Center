@@ -11,10 +11,13 @@
 #include "../IElement.h"
 
 class TextBox: public IElement {
+
+protected:
+	virtual std::string getTagText() {return "input";};
+	virtual std::string getTagContent(){ return ""; };
+
 public:
 	TextBox(std::string name);
-
-	std::string getText();
 	virtual ~TextBox();
 };
 
