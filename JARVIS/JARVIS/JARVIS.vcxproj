@@ -75,13 +75,16 @@
   <ItemGroup>
     <ClCompile Include="Framework\FrameWork.cpp" />
     <ClCompile Include="Framework\Plugin\Loader\Loader.cpp" />
+    <ClCompile Include="Framework\Plugin\PageCallbackContext.cpp" />
     <ClCompile Include="Framework\Plugin\Plugin.cpp" />
     <ClCompile Include="JARVIS.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\FrameWork.h" />
+    <ClInclude Include="Framework\Plugin\HTMLCALLBACKDef.h" />
     <ClInclude Include="Framework\Plugin\IPluginDLLFactory.h" />
     <ClInclude Include="Framework\Plugin\Loader\Loader.h" />
+    <ClInclude Include="Framework\Plugin\PageCallbackContext.h" />
     <ClInclude Include="Framework\Plugin\Plugin.h" />
   </ItemGroup>
   <ItemGroup>

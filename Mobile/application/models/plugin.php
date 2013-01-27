@@ -20,6 +20,14 @@ function getPluginPage($plugin)
 	return $reply;
 }
 
+function getPluginReply($pluginCallbackID, $contextArgs)
+{
+	$comms = new JARVISCommas();
+	$reply = $comms->requestPluginInteractionPage($pluginCallbackID, $contextArgs);
+	
+	return $reply;
+}
+
 
 }
 

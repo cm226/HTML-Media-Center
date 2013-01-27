@@ -15,7 +15,7 @@ class MoviesController extends Controller {
 	function requestAgentPlayMovie($agentIP, $movieID)
 	{
 		$this->set('agentIP',$agentIP);
-		$this->set('movie',$this->Movie->getMovieWithID($movieID));
+		$this->set('movie',str_replace(" ", "\\ ", $this->Movie->getMovieWithID($movieID)));
 	}
 
 	function agentPoll($movieID)

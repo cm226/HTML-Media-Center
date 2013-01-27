@@ -195,6 +195,12 @@
     <ClCompile Include="CoreModules\HTMLRendere\Elements\HTMLImage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\PluginInteractionRequestMessage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginInteractionFilter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreModules\Comms\Comms.h">
@@ -426,6 +432,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CoreModules\HTMLRendere\Elements\HTMLImage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\PluginInteractionRequestMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginInteractionFilter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

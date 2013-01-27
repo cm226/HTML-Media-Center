@@ -17,6 +17,7 @@
 #include "CURL/CurlManager.h"
 
 
+
 class Comms : public CommsNS::IComms{
 private:
 	AbstractTransever* transever;

@@ -2,3 +2,4 @@
 #include "ListPluginsMessage.h"
 #include "ComandAndControlMessage.h"
 #include "PluginPageMessage.h"
+#include "PluginInteractionRequestMessage.h"

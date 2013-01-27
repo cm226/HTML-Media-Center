@@ -8,6 +8,8 @@
 #include "MediaImagesPlugin.h"
 #include <iostream>
 #include <sstream>
+#include <functional>
+#include <boost\bind.hpp>
 
 #include "../../JARVISCoreModules/CoreModules/Database/Database.h"
 #include "../../JARVISCoreModules/CoreModules/Database/Tables/Movie/Movie/Movie.h"
@@ -17,6 +19,10 @@
 MediaImagesPlugin::MediaImagesPlugin(CoreModules* framework) : Plugin(framework)
 {
 	this->name = "Media Images";
+
+	boost::function2<bool ,Page*,PageCallbackContext* > f = boost::bind(&MediaImagesPlugin::handleMovieSelected,this, _1, _2);
+	this->subscribeHTMLCallback(f, this->movieImageSelected);
+	
 }
 
 MediaImagesPlugin::~MediaImagesPlugin()
@@ -61,10 +67,15 @@ bool MediaImagesPlugin::whatDoYouLookLike(Page* page)
 	movieNameLable->setText("For Movie: "+movie.name->getStrValue());
 	page->addElement(movieNameLable);
 
+	std::string onClickAttributeStart = "onClick=\"window.location = '../Plugin/pluginInteraction/";
+
 	for(int i = 0; i < 4; i++)
 	{
 		HTMLImage* image = new HTMLImage("img",imgURLs[i]);
-		image->addAttribute("onClick=\"window.location = '../../' \"");
+		std::stringstream attributeStream ;
+		attributeStream << onClickAttributeStart;
+		attributeStream << this->movieImageSelected << "/" << i;
+		image->addAttribute(attributeStream.str());
 		chooseMediaForm->addElement(image);
 	}
 
@@ -168,6 +179,11 @@ void MediaImagesPlugin::doGoogleSearch(std::vector<std::string>& result, std::st
 	}
 	delete req;
 
+}
+
+bool MediaImagesPlugin::handleMovieSelected(Page* page, PageCallbackContext* context)
+{
+	return false;
 }
 
 const char* MediaImagesPlugin::pluginName()

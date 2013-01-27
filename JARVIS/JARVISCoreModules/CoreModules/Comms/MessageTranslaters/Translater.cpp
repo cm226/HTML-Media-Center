@@ -47,9 +47,11 @@ void Translater::buildTranslationFilterPipeline()
 	TranslationFilters::PluginPollTranslationFilter* pluginPollFilter = new TranslationFilters::PluginPollTranslationFilter();
 	TranslationFilters::CommandAndcontrolTranslationFilter* commandAndcontrolFilter = new TranslationFilters::CommandAndcontrolTranslationFilter();
 	TranslationFilters::PluginPageTranslationFilter* pluginPageFilter = new TranslationFilters::PluginPageTranslationFilter();
+	TranslationFilters::PluginInteractionFilter* pluginInteractionFilter = new TranslationFilters::PluginInteractionFilter();
 
 	pluginPollFilter->setNextFilter(commandAndcontrolFilter);
 	commandAndcontrolFilter->setNextFilter(pluginPageFilter);
+	pluginPageFilter->setNextFilter(pluginInteractionFilter);
 
 
 	this->translationFilter = pluginPollFilter;

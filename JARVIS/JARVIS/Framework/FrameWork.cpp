@@ -11,6 +11,7 @@ JARVISFramework::JARVISFramework()
 	EventManager::commandAndControlMessageReceved.attach(this,&JARVISFramework::commandAndControlMessageReceved);
 	EventManager::onPluginViewRequest.attach(this,&JARVISFramework::getPluginPage);
 
+
 #ifdef _WINDOWS
 	this->pluginLoader = new Loader("C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\plugins");
 #else
@@ -49,7 +50,7 @@ void JARVISFramework::loadStartupPlugins()
 	Plugin* emailChecker = NULL;
 	Plugin* mediaImages = NULL;
 
-	pluginLoader->loadPlugin("libEmailChecker",&emailChecker, &this->cModules);
+	//pluginLoader->loadPlugin("libEmailChecker",&emailChecker, &this->cModules);
 	pluginLoader->loadPlugin("libMediaImages",&mediaImages, &this->cModules);
 
 	//mediaImages->whatDoYouLookLike(NULL);

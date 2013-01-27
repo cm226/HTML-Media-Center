@@ -15,12 +15,17 @@
 
 class MediaImagesPlugin: public Plugin {
 private :
+
+	static const CALLBACk_HANDLE movieImageSelected = 1;
+
 	std::string name;
 	void doGoogleSearch(std::vector<std::string>& result, std::string const &query);
 	bool getUnallocatedMovie(DatabaseTables::Movie& movie);
 	bool downloadAndCopyImage(std::string const& url,std::string const& movieName);
 	bool handleImageSelected(int movieID, std::string imageURL);
 	bool notifyDatabaseOfMovieUpdate(int movieID, std::string thumbName);
+
+	bool handleMovieSelected(Page* page, PageCallbackContext* context);
 
 public:
 	MediaImagesPlugin(CoreModules* framework);

@@ -2,6 +2,7 @@
 require_once('Transever.php');
 require_once('Messages/listPluginsMessage.php');
 require_once('Messages/RequestPluginPageMessage.php');
+require_once('Messages/PluginPageInteractionMessage.php');
 
 class JARVISCommas
 {
@@ -25,6 +26,12 @@ function listLoadedPlugins()
 function requestPluginPage($pluginName)
 {
 	$this->transever->sendMessage(new RequestPluginPageMessage($pluginName));
+	return $this->transever->readReply();
+}
+
+function requestPluginInteractionPage($pluginCallbackID, $pluginContextArgs)
+{
+	$this->transever->sendMessage(new PluginPageInteractionMessage($pluginCallbackID, $pluginContextArgs));
 	return $this->transever->readReply();
 }
 

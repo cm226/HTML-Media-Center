@@ -10,8 +10,9 @@
 
 #include <string>
 #include <vector>
+#include "../exportMacros.h"
 
-class IElement {
+class DLLCORE_API IElement {
 private:
 	std::vector<std::string> attributes;
 	std::string name;
