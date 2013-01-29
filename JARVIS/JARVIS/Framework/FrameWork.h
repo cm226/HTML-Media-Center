@@ -30,6 +30,7 @@ public:
 private:
 	std::vector<std::string> loadedPlugins(int i);
 	std::string getPluginPage(std::string pluginName);
+	std::string pluginInteractionRequest(std::vector<std::string> context);
 
 	void loadStartupPlugins();
 	bool commandAndControlMessageReceved(int type);

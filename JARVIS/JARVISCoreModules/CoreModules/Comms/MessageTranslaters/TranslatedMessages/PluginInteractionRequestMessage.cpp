@@ -27,6 +27,7 @@ void PluginInteractionRequestMessage::actionMessage(std::string* reply)
 
 	std::string callbackID = this->stripNextValue();
 	std::vector<std::string> contextValues;
+	contextValues.push_back(callbackID);
 	std::string nextConxtVal;
 	while((nextConxtVal = this->stripNextValue()) != "")
 		contextValues.push_back(nextConxtVal);

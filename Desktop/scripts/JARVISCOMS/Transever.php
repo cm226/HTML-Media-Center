@@ -3,8 +3,6 @@
 class Transever
 {
 
-
-
 var $address = '127.0.0.1';
 var $port = 45001;
 var $sock;
@@ -52,6 +50,7 @@ public function sendMessage($Message)
 	if($this->connected)
 	{
 		$messageStr = $Message->getMessage();
+		echo 'sending: '.$messageStr ;
 		socket_write($this->sock, $messageStr, strlen($messageStr));
 	}
 }

@@ -94,19 +94,32 @@ void TCPTransever::getMessage(std::string* message)
 	boost::asio::socket_base::bytes_readable command(true);
 	curSocket->io_control(command);
 
+	int wateCounter = 0;
 	std::size_t bytes_readable;
 	while((bytes_readable = command.get()) == 0)
 	{
+		if(wateCounter > 5)
+		{
+			*message = "";
+			ErrorLogger::logError("Connection Closed due to non responcive end point");
+			if(this->curSocket->is_open())
+				this->curSocket->shutdown(boost::asio::socket_base::shutdown_both);
+			delete this->curSocket;
+			return; // 
+		}
 #ifdef _WINDOWS
 		Sleep(1000); // sleep for a second
 #else
 		sleep(1);
 #endif
+
+		wateCounter++;
 	}
 
 	char* msg = new char[bytes_readable+1];
 	boost::system::error_code error;
 	boost::asio::read(*curSocket,boost::asio::buffer(msg,bytes_readable),error);
+	std::cout << error;
 	msg[bytes_readable] = '\0';
 	*message = std::string(msg);
 }

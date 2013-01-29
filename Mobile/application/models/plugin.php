@@ -23,6 +23,7 @@ function getPluginPage($plugin)
 function getPluginReply($pluginCallbackID, $contextArgs)
 {
 	$comms = new JARVISCommas();
+	echo "callback ID:".$pluginCallbackID;
 	$reply = $comms->requestPluginInteractionPage($pluginCallbackID, $contextArgs);
 	
 	return $reply;

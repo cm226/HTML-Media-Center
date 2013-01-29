@@ -10,7 +10,7 @@
 Event<std::vector<std::string>,int> EventManager::pluginPoll;
 Event<std::string,std::string> EventManager::onPluginViewRequest;
 Event<bool,int> EventManager::commandAndControlMessageReceved;
-Event<std::string, std::vector<std::string> > onPluginInteractionRequest;
+Event<std::string, std::vector<std::string> > EventManager::onPluginInteractionRequest;
 
 
 EventManager::EventManager() {

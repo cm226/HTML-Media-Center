@@ -2,23 +2,27 @@
 
 require_once('AbstractMessage.php');
 
+function reduceStrArr($v, $w)
+{
+	$v .= "$".$w;
+	return $v;
+}
+	
 class PluginPageInteractionMessage extends AbstractMessage
 {
 	var $contextInfo;
+	var $callbackID;
+	
+
 	
 	function __construct($callbackID ,$contextArr)
 	{
+		$this->callbackID = $callbackID;
 		$this->contextInfo = array_reduce($contextArr,"reduceStrArr");
 	}
-	
-	function reduceStrArr($v, $w)
-	{
-		$v .= "$".$w;
-		return $v;
-	}
-	
+
 	public function getMessage()
 	{
-		return "pcb$".$contextInfo;
+		return "pcb$".$this->callbackID.$this->contextInfo;
 	}
 }

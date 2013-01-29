@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <boost/thread.hpp>
+#include <sstream>
 
 JARVISFramework::JARVISFramework()
 {
@@ -10,6 +11,7 @@ JARVISFramework::JARVISFramework()
 	EventManager::pluginPoll.attach(this,&JARVISFramework::loadedPlugins);
 	EventManager::commandAndControlMessageReceved.attach(this,&JARVISFramework::commandAndControlMessageReceved);
 	EventManager::onPluginViewRequest.attach(this,&JARVISFramework::getPluginPage);
+	EventManager::onPluginInteractionRequest.attach(this,&JARVISFramework::pluginInteractionRequest);
 
 
 #ifdef _WINDOWS
@@ -52,8 +54,6 @@ void JARVISFramework::loadStartupPlugins()
 
 	//pluginLoader->loadPlugin("libEmailChecker",&emailChecker, &this->cModules);
 	pluginLoader->loadPlugin("libMediaImages",&mediaImages, &this->cModules);
-
-	//mediaImages->whatDoYouLookLike(NULL);
 
 }
 
@@ -111,6 +111,42 @@ std::string JARVISFramework::getPluginPage(std::string pluginName)
 	}
 	return page;
 
+}
+
+std::string JARVISFramework::pluginInteractionRequest(std::vector<std::string> context)
+{
+	if(context.size() < 2)
+	{
+		ErrorLogger::logError("plugin context dont contain enuf information to process them need callback ID and pluginName");
+		return "Plugin error not enough data see JARVIS log for more";
+	}
+
+	std::string callbackID = *context.begin();
+	context.erase(context.begin());
+	std::string pluginName = *context.begin();
+	context.erase(context.begin());
+
+	Plugin* p = this->pluginLoader->getPluginByName(pluginName);
+	Page page;
+	PageCallbackContext pcContext;
+	
+	std::istringstream buffer(callbackID);
+	CALLBACk_HANDLE callbackHandl;
+	buffer >> callbackHandl; 
+
+	pcContext.callbackHandle = callbackHandl;
+
+	if(!p->notifyPageCallback(&page,&pcContext))
+	{
+		ErrorLogger::logError("failed to call plugin callback");
+		return "Plugin error not enough data see JARVIS log for more";
+	}
+
+	std::string sPage;
+	page.buildPage(&sPage);
+	page.freePage();
+
+	return sPage;
 }
 
 

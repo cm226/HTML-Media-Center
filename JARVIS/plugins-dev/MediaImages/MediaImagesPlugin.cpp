@@ -67,14 +67,14 @@ bool MediaImagesPlugin::whatDoYouLookLike(Page* page)
 	movieNameLable->setText("For Movie: "+movie.name->getStrValue());
 	page->addElement(movieNameLable);
 
-	std::string onClickAttributeStart = "onClick=\"window.location = '../Plugin/pluginInteraction/";
+	std::string onClickAttributeStart = "onClick=\"window.location = '../pluginInteraction/";
 
 	for(int i = 0; i < 4; i++)
 	{
 		HTMLImage* image = new HTMLImage("img",imgURLs[i]);
 		std::stringstream attributeStream ;
 		attributeStream << onClickAttributeStart;
-		attributeStream << this->movieImageSelected << "/" << i;
+		attributeStream << this->movieImageSelected << "/" << this->name <<  "/" << i << "'\"";
 		image->addAttribute(attributeStream.str());
 		chooseMediaForm->addElement(image);
 	}

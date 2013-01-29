@@ -19,13 +19,17 @@ Translater::~Translater() {
 
 AbstractMessage* Translater::translateMessage(const char* message, unsigned int messageLength)
 {
+	
 	unsigned int offset = 0;
-	while(message[offset] != '$' || offset >= messageLength)
+	while(offset < messageLength && message[offset] != '$')
 	{
 		offset++;
 	}
 	if(offset >= messageLength)
+	{
 		ErrorLogger::logError("Header in message missing");
+		return NULL;
+	}
 
 	std::string header(message,offset);
 

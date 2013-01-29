@@ -11,7 +11,7 @@
 using namespace std;
 
 IElement::IElement(string name) {
-	this->addAttribute("name = "+name);
+	this->addAttribute("name = '"+name+"'");
 }
 
 IElement::~IElement() {
@@ -30,10 +30,10 @@ std::string IElement::getText()
 
 	std::vector<std::string>::iterator attributeIt;
 	for(attributeIt = this->attributes.begin(); attributeIt != this->attributes.end(); attributeIt++)
-		elementHTML << (*attributeIt) << " ";
+		elementHTML << " " << (*attributeIt) << " ";
 
-	elementHTML << getTagContent();
-	elementHTML << "<\\" << this->getTagText() << ">";
+	elementHTML << ">"<< getTagContent();
+	elementHTML << "</" << this->getTagText() << ">";
 
 	return elementHTML.str();
 }
