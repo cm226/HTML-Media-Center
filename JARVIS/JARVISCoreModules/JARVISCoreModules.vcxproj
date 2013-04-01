@@ -109,6 +109,7 @@
     <ClCompile Include="CoreModules\Database\Tables\Music\Song\Fields\SongURL.cpp" />
     <ClCompile Include="CoreModules\Database\Tables\Music\Song\Song.cpp" />
     <ClCompile Include="CoreModules\Errors\ErrorLogger.cpp" />
+    <ClCompile Include="CoreModules\Errors\StackWalker\StackWalker.cpp" />
     <ClCompile Include="CoreModules\EventModel\EventHandler\EventHandler.cpp" />
     <ClCompile Include="CoreModules\EventModel\EventHandler\EvntHandlerBase.cpp" />
     <ClCompile Include="CoreModules\EventModel\EventManager.cpp" />
@@ -131,6 +132,9 @@
     <ClCompile Include="CoreModules\Database\Tables\Movie\Movie\Fields\thumbnailURL.cpp" />
     <ClCompile Include="CoreModules\Database\Querys\Descriptor\Limit.cpp" />
     <ClCompile Include="CoreModules\Database\Querys\Descriptor\Descriptor.cpp" />
+    <ClCompile Include="CoreModules\Database\Tables\Movie\Movie\Fields\movieID.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\Hyperlink.cpp" />
+    <ClCompile Include="CoreModules\Errors\MyStackWalker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreModules\Comms\Comms.h" />
@@ -187,6 +191,7 @@
     <ClInclude Include="CoreModules\Database\Tables\Music\Song\Song.h" />
     <ClInclude Include="CoreModules\Database\Tables\Tables.h" />
     <ClInclude Include="CoreModules\Errors\ErrorLogger.h" />
+    <ClInclude Include="CoreModules\Errors\StackWalker\StackWalker.h" />
     <ClInclude Include="CoreModules\EventModel\EventHandler\EventHandler.h" />
     <ClInclude Include="CoreModules\EventModel\EventHandler\EvntHandlerBase.h" />
     <ClInclude Include="CoreModules\EventModel\EventManager.h" />
@@ -212,6 +217,9 @@
     <ClInclude Include="CoreModules\Database\Tables\Movie\Movie\Fields\thumbnailURL.h" />
     <ClInclude Include="CoreModules\Database\Querys\Descriptor\Limit.h" />
     <ClInclude Include="CoreModules\Database\Querys\Descriptor\Descriptor.h" />
+    <ClInclude Include="CoreModules\Database\Tables\Movie\Movie\Fields\movieID.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\Hyperlink.h" />
+    <ClInclude Include="CoreModules\Errors\MyStackWalker.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

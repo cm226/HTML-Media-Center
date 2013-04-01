@@ -7,6 +7,7 @@
 
 #include "Database.h"
 #include "ResultWrapper.h"
+#include "../Errors/ErrorLogger.h"
 #include <stdio.h>
 
 
@@ -101,11 +102,12 @@ bool Database::runQuery(IQuery* query)
 		try
 		{
 			std::string queryStr = query->buildQuery();
+			ErrorLogger::logInfo("Running Query on Database: "+queryStr);
 			sql::PreparedStatement *pstmt = con->prepareStatement(queryStr);
 			sql::ResultSet *res = pstmt->executeQuery();
 			ResultWrapper* resWrapper = new ResultWrapper(res); 
 			query->setQueryResult(resWrapper);
-	
+
 			delete pstmt;
 			return true;
 		}

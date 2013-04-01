@@ -2,8 +2,8 @@
 	
 	<img class="movieImg" src="
 		<?php
-			if(file_exists(PUBLIC_FOLDER.$movie[0]['Movie']['thumbnailURL']) &&$movie[0]['Movie']['thumbnailURL'] != '')
-				echo PUBLIC_FOLDER.$movie[0]['Movie']['thumbnailURL'];
+			if(file_exists("../public/img/Movie/Thumbs/".$movie[0]['Movie']['thumbnailURL']	) &&$movie[0]['Movie']['thumbnailURL'] != '')
+				echo "../../public/img/Movie/Thumbs/".$movie[0]['Movie']['thumbnailURL'];
 			else
 				echo PUBLIC_FOLDER."/img/Movie/Thumbs/default.png";
 		?>

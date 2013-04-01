@@ -8,6 +8,7 @@
 #include "Fields\movieLength.h"
 #include "Fields\MovieName.h"
 #include "Fields\movieURL.h"
+#include "Fields\movieID.h"
 #include "Fields\thumbnailURL.h"
 
 #include "../../../../exportMacros.h"
@@ -28,6 +29,7 @@ public:
 	MovieName* name;
 	movieURL* url;
 	thumbnailURL* thumb;
+	movieID* movieID;
 
 	Movie(void);
 	virtual ~Movie(void);
@@ -35,7 +37,7 @@ public:
 	std::string getUpdateQuery();
 	std::string getInsertQuery(){return NULL;};
 	void getFields(std::vector<IDatabaseTableField*>* fields);
-	IDatabaseTableField* getPrimaryKey(){return NULL;};
+	IDatabaseTableField* getPrimaryKey(){return this->movieID;};
 
 	std::string tableName(){return "Movie";};
 };

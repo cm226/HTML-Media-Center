@@ -201,6 +201,18 @@
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginInteractionFilter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CoreModules\Database\Tables\Movie\Movie\Fields\movieID.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\Hyperlink.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\Errors\StackWalker\StackWalker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\Errors\MyStackWalker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreModules\Comms\Comms.h">
@@ -438,6 +450,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginInteractionFilter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Database\Tables\Movie\Movie\Fields\movieID.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\Hyperlink.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Errors\StackWalker\StackWalker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Errors\MyStackWalker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -7,6 +7,7 @@ namespace DatabaseTables
 
 Movie::Movie(void)
 {
+	this->movieID = new  DatabaseTables::movieID();
 	this->genra = new movieGenra();
 	this->imdb = new movieIMDB();
 	//this->length = new movieLength(); not implemented time yet
@@ -18,6 +19,7 @@ Movie::Movie(void)
 
 Movie::~Movie(void)
 {
+	delete this->movieID;
 	delete this->genra;
 	delete this->imdb;
 	//delete this->length;
@@ -28,6 +30,7 @@ Movie::~Movie(void)
 
 void Movie::getFields(std::vector<IDatabaseTableField*>* fields)
 {
+	fields->push_back(this->movieID);
 	fields->push_back(this->genra);
 	fields->push_back(this->imdb);
 	fields->push_back(this->name);

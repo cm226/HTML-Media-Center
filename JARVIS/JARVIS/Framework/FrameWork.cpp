@@ -130,6 +130,7 @@ std::string JARVISFramework::pluginInteractionRequest(std::vector<std::string> c
 	Page page;
 	PageCallbackContext pcContext;
 	
+	pcContext.setAdditionalContext(&context);
 	std::istringstream buffer(callbackID);
 	CALLBACk_HANDLE callbackHandl;
 	buffer >> callbackHandl; 

@@ -1,20 +1,56 @@
 body
 {
-	background-image:url('../img/Home/background.jpg');
+	background-image:url('../img/Home/background.png');
+	background-repeat:no-repeat;
+	background-position:center;
+	background-size:100% 100%;
+	background-attachment:fixed;
 }
 
-#rightPanel
+#navBar
 {
-	background-image:url('../img/Home/left.png');
-	background-size:100% 100%;
-	height: 100%;
-	width: 20%;
-	position: fixed;
-	right:0px;
-	top: 0px;
-	z-Index: -1;
-	opacity: .7;
+	color:white;
+	float: right;
 }
+
+#navBar ul
+{
+ 	list-style-type: none;
+}
+
+#navBar ul li
+{
+  height: 25px;
+  float: left;
+  margin-right: 0px;
+
+
+  padding: 0 20px;
+}
+
+
+a {
+  text-decoration: none;
+  color: #ccc;
+  font: 25px/1 Helvetica, Verdana, sans-serif;
+  text-transform: uppercase;
+ 
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+ 
+a:hover {
+  color: #666;
+}
+
+a:active {
+  font-weight: bold;
+  color: #333;
+}
+ 
 
 
 #pageContent
@@ -29,45 +65,22 @@ body
 	float: Left;
 }
 
-#clickableLink
+.widgetHeader
 {
+	color:white;
+	text-decoration: none;
+	color: #ccc;
+	font: 15px/1 Helvetica, Verdana, sans-serif;
+	text-transform: uppercase;
+	
+}
+
+.widget
+{
+	paddin:30px;
+	width:300px;
 	float:left;
-	width: 70%;
-	height: 100px;
-
-}
-
-
-#icons
-{
-	opacity: 0.6;
-	padding-top: 20px;
-	padding-right: 20px;
-	width:50px;
-	float:right;
-	z-index: 1000;
-}
-
-.topLink
-{
-	padding-right: 20px;
-	float:left;
-}
-
-.topLink img
-{
-opacity:0.6;
-filter:alpha(opacity=40); /* For IE8 and earlier */
-}
-.topLink img:hover
-{
-opacity:1.0;
-filter:alpha(opacity=100); /* For IE8 and earlier */
-}
-
-a:link
-{
-text-decoration: none;
+	
 }
 
 

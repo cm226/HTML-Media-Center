@@ -29,15 +29,18 @@ std::string UpdateQuery::buildQuery()
 
 	this->row->getFields(&fields);
 	std::stringstream query;
-	query << "UPDATE " << this->row->tableName() << "SET ";
-
+	query << "UPDATE " << this->row->tableName() << " SET ";
+	bool writecomma = false;
 	for(fieldsIt = fields.begin(); fieldsIt != fields.end(); fieldsIt++)
 	{
+
 		if((*fieldsIt) == pk)
 			continue;
-		if(fieldsIt != fields.begin())
+
+		if(writecomma)
 			query << ',';
 
+		writecomma = true;
 		query << (*fieldsIt)->getName() << " = '" << (*fieldsIt)->getStrValue() <<"' ";
 	}
 

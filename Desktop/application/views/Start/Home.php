@@ -1,11 +1,11 @@
 
-<div id="leftPanel" onclick="window.location = '<?php echo PUBLIC_FOLDER.'/../'; ?>';">
 <div id="freeDiskSpace"> 	
 	
 	<div id="harddrive">
 		
-		<div id="total"> <?php echo $total;?></div>
+		<div id="total"> <?php echo $total;?>
 		<div id="free">	<?php echo $free;?>	</div>
+		</div>
 
 	</div>
 	<div  id="imgCont">
@@ -13,42 +13,27 @@
 	</div>
 
 </div>
+
+<div id="widgetContainer">
+<div id="recentMovieUpload" class="widget">
+	<div class="widgetHeader">Recently Uploaded</div>
+	<img src="http://www.wired.com/images_blogs/underwire/2010/03/iron_man_int_1200.jpg" width="200px" height="300px"/>
 </div>
 
-<div id="tilesWrapper">
-<div id="tiles" >
-
-<div id="moviesPerspective">
-<div id="moviesTile" class="tile" onclick="window.location = ('../Movies/viewAll')">
-Movies
-</div>
-</div>
-
-<div class="centerTile">
-<div id="musicTile" class="tile" onclick="window.location = ('../Music/viewAll')">
-Music
-</div>
-</div>
-
-<div id="TVPerspective">
-<div id="TVTile" class="tile" onClick="window.location = ('../TV/viewAll')">
-TV
-</div>
-</div>
-
-<div id="moviesPerspective">
-<div id="picturesTile" class="tile" onClick="window.location = ('../Pictures/albums')">
-Pictures
-</div>
-</div>
-
-<div class="centerTile">
-<div id="adminTile" class="tile" onClick="window.location = ('../Admin/Main')">
-Admin
-</div>
+<div id="lastWatched" class="widget">
+	<div class="widgetHeader">Last Watched</div>
+	<div id="epList">
+		<ul>
+			<li>Episode 1(0:40:00)</li>
+			<li>Episode 2(0:40:00)</li>
+			<li>Episode 3(0:40:00)</li>
+			<li>Episode 4(0:40:00)</li>
+		</ul>
+	</div>
+	<img src="http://www.scififx.com/wp-content/uploads/2012/09/supernatural_season_8_wallpaper.jpg" width="300px" height="200px"/>
 </div>
 
 </div>
-</div>
+
 
 

@@ -10,6 +10,7 @@
 #include <sstream>
 #include <functional>
 #include <boost\bind.hpp>
+#include <algorithm>
 
 #include "../../JARVISCoreModules/CoreModules/Database/Database.h"
 #include "../../JARVISCoreModules/CoreModules/Database/Tables/Movie/Movie/Movie.h"
@@ -59,24 +60,37 @@ bool MediaImagesPlugin::whatDoYouLookLike(Page* page)
 	Form* chooseMediaForm = new Form("mediaForm");
 	FormSubmit* submitFormBtt = new FormSubmit("find");
 	Lable* movieNameLable = new Lable("MovieName");
-
-	std::string imgURLs[4] = {"http://www.scifispace.com/lotr_poster.jpg","http://www.scifispace.com/lotr_poster.jpg","http://www.scifispace.com/lotr_poster.jpg","http://www.scifispace.com/lotr_poster.jpg"};
 	
-	this->getUnallocatedMovie(movie);
+	this->imgURLs.clear();
+	this->movieName = "";
 
+	bool anyMoviesLeft = this->getUnallocatedMovie(movie);
+	if(!anyMoviesLeft)
+	{
+		Lable* l = new Lable("resLable");
+		l->setText("No Unalocated Movies Left");
+		page->addElement(l);
+		return true;
+	}
+	this->doGoogleSearch(imgURLs,movie.name->getStrValue() +" Poster");
+
+	this->movieID = movie.movieID->getValue();
+	this->movieName = movie.name->getStrValue();
 	movieNameLable->setText("For Movie: "+movie.name->getStrValue());
 	page->addElement(movieNameLable);
 
 	std::string onClickAttributeStart = "onClick=\"window.location = '../pluginInteraction/";
-
-	for(int i = 0; i < 4; i++)
+	std::vector<std::string>::iterator resultIt = this->imgURLs.begin();
+	int i =0;
+	for(resultIt; resultIt!= this->imgURLs.end(); resultIt++)
 	{
-		HTMLImage* image = new HTMLImage("img",imgURLs[i]);
+		HTMLImage* image = new HTMLImage("img",*resultIt);
 		std::stringstream attributeStream ;
 		attributeStream << onClickAttributeStart;
 		attributeStream << this->movieImageSelected << "/" << this->name <<  "/" << i << "'\"";
 		image->addAttribute(attributeStream.str());
 		chooseMediaForm->addElement(image);
+		i++;
 	}
 
 	chooseMediaForm->addElement(submitFormBtt);
@@ -86,7 +100,7 @@ bool MediaImagesPlugin::whatDoYouLookLike(Page* page)
 	return true;
 }
 
-bool MediaImagesPlugin::handleImageSelected(int movieID, std::string imgURL)
+bool MediaImagesPlugin::handleImageSelected(int movieID,std::string tbhumbName, std::string imgURL)
 {	
 	std::string::size_type pos = imgURL.rfind('.',imgURL.length()-1);
 	if(pos > imgURL.length() || pos == std::string::npos)
@@ -96,7 +110,7 @@ bool MediaImagesPlugin::handleImageSelected(int movieID, std::string imgURL)
 	}
 
 	std::string ext = imgURL.substr(pos);
-	std::string thumbName = "lotr"+ext;
+	std::string thumbName = tbhumbName+ext;
 	bool downloaded = this->downloadAndCopyImage(imgURL,thumbName);
 
 	if(downloaded)
@@ -112,7 +126,7 @@ bool MediaImagesPlugin::notifyDatabaseOfMovieUpdate(int movID, std::string thumb
 	DatabaseTables::Movie movie;
 	DatabaseTables::Query q;
 	DatabaseTables::UpdateQuery updateMovieq(&movie);
-	movieID << movieID;
+	movieID << movID;
 
 	DatabaseTables::Equals eq(movie.getPrimaryKey(),movieID.str());
 	q.addSelectItem(&movie);
@@ -148,7 +162,16 @@ bool MediaImagesPlugin::downloadAndCopyImage(std::string const& url, std::string
 
 void MediaImagesPlugin::doGoogleSearch(std::vector<std::string>& result, std::string const &query)
 {
-	std::string googleImgURL = "http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="+query;
+	std::string queryStriped = query;
+	std::string::iterator queryStripedIt;
+	for(queryStripedIt = queryStriped.begin(); queryStripedIt != queryStriped.end(); queryStripedIt++)
+	{
+		char c = (*queryStripedIt);
+		if(c == ' ')
+			queryStriped.replace(queryStripedIt, queryStripedIt+1, "%20");
+	}
+
+	std::string googleImgURL = "http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="+queryStriped;
 	std::string jsonReply;
 
 
@@ -165,7 +188,6 @@ void MediaImagesPlugin::doGoogleSearch(std::vector<std::string>& result, std::st
 
 	while (true)
 	{
-		
 		startOfURL = jsonReply.find(urlMarker,startOfURL);
 		std::string::size_type markerURLLen = startOfURL+markerLength;
 
@@ -183,7 +205,44 @@ void MediaImagesPlugin::doGoogleSearch(std::vector<std::string>& result, std::st
 
 bool MediaImagesPlugin::handleMovieSelected(Page* page, PageCallbackContext* context)
 {
-	return false;
+	std::vector<std::string> contextAttributes = context->getAdditionalContext();
+	int numContextAttributes = contextAttributes.size();
+
+	if(numContextAttributes ==0)
+	{
+		ErrorLogger::logError("Media Images Plugin: not enough data in context array, missing the selected Image value");
+		std::cout << "Not Enough data see JARVIS log for more";
+		return false;
+	}
+
+	if(numContextAttributes > 1)
+	{
+		ErrorLogger::logWarn("Media Images Plugin: additional arguments in context string");
+	}
+
+	std::string imageIndex = *contextAttributes.begin();
+	std::stringstream ss;
+	ss << imageIndex;
+	int index;
+	ss >> index;
+
+	std::string imageURL = this->imgURLs[index];
+
+	bool worked = handleImageSelected(this->movieID, this->movieName,imageURL);
+	if(!worked)
+	{
+		ErrorLogger::logError("Unable to process selected Image");
+		return false;
+	}
+
+	Lable* allWentWell = new Lable("Image Set, all is well");
+	Hyperlink* hyperlink = new Hyperlink("nextLink", "localhost/blargh","Next Movie");
+
+	page->addElement(allWentWell);
+	page->addElement(hyperlink);
+
+
+	return true;
 }
 
 const char* MediaImagesPlugin::pluginName()
