@@ -19,15 +19,7 @@ h4.ArtistName
 	font-family:trebuchet MS, sans-serif;line-height:1;
 	margin:0px;
 }
-h3
-{
-	padding-bottom: 3px;
-	margin-top:0px;
-	margin-bottom: 10px;
-	background-color:#CD853F;
-	border-radius: 10px;
-	opacity:0.5;
-}
+
 
 p.artistInfo
 {
@@ -44,65 +36,58 @@ p.artistInfo
 
 }
 
-#leftContainer
+#leftGradient
 {
-	float:left;
-	width:200px;
+	z-index:1000;
+	position: absolute;
+	left:0px;
+	top:0px;
+	height:100%;
+	width:300px;
+	
+	
+	
+	
+	background: -moz-linear-gradient(left,  rgba(0,0,0,1) 0%, rgba(0,0,0,1) 14%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,1)), color-stop(14%,rgba(0,0,0,1)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 14%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 14%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 14%,rgba(0,0,0,0) 100%); /* IE10+ */
+background: linear-gradient(to right,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 14%,rgba(0,0,0,0) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
+
+	
+	
 }
+
+#rightGradient
+{
+	z-index:1000;
+	position: absolute;
+	right:0px;
+	top:0px;
+	height:100%;
+	width:300px;
+	
+	background: -moz-linear-gradient(left,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.97) 97%, rgba(0,0,0,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0)), color-stop(97%,rgba(0,0,0,0.97)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.97) 97%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.97) 97%,rgba(0,0,0,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.97) 97%,rgba(0,0,0,1) 100%); /* IE10+ */
+background: linear-gradient(to right,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.97) 97%,rgba(0,0,0,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=1 ); /* IE6-9 */
+
+}
+
 
 #ArtistList
 {
-	float:left;
-	width:60%;
-	padding:10px;
+	padding-left:100px;
+	height: auto;
+	max-height: 200px;
 	margin-left:20px;
 }
 
-#searchBox
-{
-	width:100%;
-	background-color:transparent;
-	padding-left:10px;
-	margin-right:10px;
-	margin-top:20px;
-	border-radius: 10px;
-	font-weight:bold;
-	font-style:italic;
-	font-variant:small-caps;
-	color:#575757;
-	letter-spacing:1pt;
-	word-spacing:2pt;
-	font-size:20px;
-	text-align:left;
-	font-family:trebuchet MS, sans-serif;line-height:1;
-	
-	border-style:solid;
-	border-width:2px;
-	border-color:#CD853F;
-}
-
-#playlists
-{
-	width:100%;
-	background-color:transparent;
-	padding-left:10px;
-	margin-right:10px;
-	margin-top:20px;
-	border-radius: 10px;
-	font-weight:bold;
-	font-style:italic;
-	font-variant:small-caps;
-	color:#575757;
-	letter-spacing:1pt;
-	word-spacing:2pt;
-	font-size:20px;
-	text-align:left;
-	font-family:trebuchet MS, sans-serif;line-height:1;
-	
-	border-style:solid;
-	border-width:2px;
-	border-color:#CD853F;
-}
 
 div.artistElement
 {

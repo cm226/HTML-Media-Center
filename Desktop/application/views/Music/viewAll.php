@@ -1,45 +1,10 @@
 
-
-<div id="leftContainer">
-
-<div id="searchBox">
-<h4> Search</h4>
-<form>
-Artist Name: <input type="text" name="artistName"/> <BR/>
-Song Name: <input type="text" name="songName"/>
-<input type="submit" value="search" />
-</form>
-</div>
-
-<div id="playlists">
-<h4> playlists</h4>
-<?php 
-
-foreach ($playlists as $playList)
-{
-	echo '<div class="playlistEl"><a href="../Music/viewPlaylist/'. $playList['Playlist']['playlistName']. '" >'. $playList['Playlist']['playlistName'].'</a></div>';
-
-}
-?>
-
-<form action="../Music/viewAll" method="POST">
-	New Playlist: <input type="text" name="newPlaylist"/>
-	<input type="submit" value="Add"/>
-</form>
-<form>
-	<input type="submit" value="upload Itunes playlist file" />
-</form>
-
-</div>
-
-
-</div>
-
+<div id="leftGradient"></div>
+<div id="rightGradient"></div>
 
 <?php
 
 echo '<div id="ArtistList">';
-echo '<h3> Artists Selection </h3>';
 foreach ($artists as &$artist)
 {
 	echo '<div class="artistElement" onclick="postwith(\'../Music/viewArtist\',{artist:\''.$artist['Artist']['artistID'].'\'})">';
