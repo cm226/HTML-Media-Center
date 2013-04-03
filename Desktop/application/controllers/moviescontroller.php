@@ -7,8 +7,8 @@ class MoviesController extends Controller {
 		$this->set('movies',$this->Movie->viewAll());
 	}
 	
-	function viewSingle()
+	function viewSingle($movieID)
 	{
-		$this->set('movieURL',$this->Movie->view($_POST['movie']));
+		$this->set('movieURL',$this->Movie->view($movieID));
 	}
 }

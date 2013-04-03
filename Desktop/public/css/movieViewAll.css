@@ -1,40 +1,14 @@
-h4
+.movieElement
 {
-	padding: 0px;
-	margin-top:0px;
-	margin-bottom: 10px;
-}
-
-h4.ArtistName
-{
-	font-weight:bold;
-	font-style:italic;
-	font-variant:small-caps;
-	color:#575757;
+	color:white;
+	float:left;
 	
-	letter-spacing:4pt;
-	word-spacing:2pt;
-	font-size:19px;
-	text-align:left;
-	font-family:trebuchet MS, sans-serif;line-height:1;
-	margin:0px;
+	width:200px;
+	height:300px;
+	padding-left:10px;
 }
 
 
-p.artistInfo
-{
-	font-weight:bold;
-	font-style:italic;
-	font-variant:small-caps;
-	color:#575757;
-	letter-spacing:1pt;
-	word-spacing:2pt;
-	font-size:8px;
-	text-align:left;
-	font-family:trebuchet MS, sans-serif;line-height:1;
-	margin: 0px;
-
-}
 
 #leftGradient
 {
@@ -77,28 +51,4 @@ background: -ms-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.97) 97%,rgb
 background: linear-gradient(to right,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.97) 97%,rgba(0,0,0,1) 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=1 ); /* IE6-9 */
 
-}
-
-
-#ArtistList
-{
-	padding-left:100px;
-	height: auto;
-	max-height: 200px;
-	margin-left:20px;
-}
-
-
-div.artistElement
-{
-	width:129px;
-	height:200px;
-	float:left;
-	margin:3px;
-	padding:5px;
-}
-div.artistElement:hover 
-{
-	background-color:#000000;
-	
 }

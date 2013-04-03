@@ -50,7 +50,7 @@ public function sendMessage($Message)
 	if($this->connected)
 	{
 		$messageStr = $Message->getMessage();
-		echo 'sending: '.$messageStr ;
+		//echo 'sending: '.$messageStr ;
 		socket_write($this->sock, $messageStr, strlen($messageStr));
 	}
 }

@@ -1,0 +1,20 @@
+.plugin
+{
+	
+	color: #D0D0D0 ;
+	height:50px;
+	width: 200px;
+	float:left;
+
+	text-align: center;
+	margin: 10px;
+	background-color:#202020;
+	
+	border-style: solid;
+	border-color:white;
+	border-width:1px;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}

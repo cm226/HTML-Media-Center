@@ -1,20 +1,28 @@
+
+<div id="leftGradient"></div>
+<div id="rightGradient"></div>
 <?php
 
-echo '<div name="movieList">';
+
+
+echo '<div id="movieList">';
 
 foreach ($movies as &$movie)
 {
-	echo '<div class="movieElement">';
-	echo '<h4>' . $movie[0]. '</h4>';
-	echo '<p>' .$movie[1] . '</p>';
-	echo '<p>' .$movie[2] . '</p>';
-	
-	echo'<form class="movForm" action="../Movies/viewSingle" method="post">
-		<input type="hidden" value="'.$movie[0].'" name="movie" />
-		<input type="submit" value="play" />
-	</form>';
-	echo '</div>';
-	
-	echo '<br/>';
+	?>
+	<div class="movieElement" onClick="window.location = '../Movies/viewSingle/<?php echo $movie['Movie']['movieID'] ?>';">
+	<img class="movieImg" src="
+		<?php
+			if(file_exists(PUBLIC_FOLDER."/img/Movie/Thumbs/".$movie['Movie']['thumbnailURL']) &&$movie['Movie']['thumbnailURL'] != '')
+				echo PUBLIC_FOLDER."/img/Movie/Thumbs/".$movie['Movie']['thumbnailURL'];
+			else
+				echo PUBLIC_FOLDER."/img/Movie/Thumbs/default.png";
+		?>
+		"/>
+		<div class="infoPanel">
+			<div class="headline"><?php echo $movie['Movie']['movieName'];?></div>
+		</div>
+	</div>
+	<?php
 }
 echo '</div>';
