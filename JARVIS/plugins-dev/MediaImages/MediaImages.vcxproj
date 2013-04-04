@@ -70,12 +70,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ImageGetter.cpp" />
     <ClCompile Include="MediaImages.cpp" />
     <ClCompile Include="MediaImagesPlugin.cpp" />
+    <ClCompile Include="MovieImageGetter.cpp" />
+    <ClCompile Include="MusicImageGetter.cpp" />
+    <ClCompile Include="TVImageGetter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ImageGetter.h" />
     <ClInclude Include="MediaImages.h" />
     <ClInclude Include="MediaImagesPlugin.h" />
+    <ClInclude Include="MovieImageGetter.h" />
+    <ClInclude Include="MusicImageGetter.h" />
+    <ClInclude Include="TVImageGetter.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />

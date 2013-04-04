@@ -60,9 +60,10 @@ public function readReply()
 	if($this->connected)
 	{
 		$out = socket_read($this->sock, 2048);
+		//echo "Receved from socket: ".$out;
 		return $out;
 	}
-	return "";
+	return "Error, connection closed";
 }
 	
 

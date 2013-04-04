@@ -10,29 +10,28 @@
 
 #include "../../JARVIS/Framework/Plugin/Plugin.h"
 #include "../../JARVISCoreModules/CoreModules/Database/Tables/Movie/Movie/Movie.h"
+#include "MovieImageGetter.h"
+
 #include <string>
 #include <vector>
 
 class MediaImagesPlugin: public Plugin {
 private :
 
-	static const CALLBACk_HANDLE movieImageSelected = 1;
-
-	/* THESE vars should be encoded in the context info, however, im lazy and ill add it to my todo...*/
-	std::vector<std::string> imgURLs;
-	std::string movieName;
-	int movieID;
-	/* END lazyness*/
-
+	static const CALLBACk_HANDLE musicISelected = 1;
+	static const CALLBACk_HANDLE tvSelected = 2;
+	static const CALLBACk_HANDLE movieImageSelected = 3;
 
 	std::string name;
-	void doGoogleSearch(std::vector<std::string>& result, std::string const &query);
-	bool getUnallocatedMovie(DatabaseTables::Movie& movie);
-	bool downloadAndCopyImage(std::string const& url,std::string const& movieName);
+	MovieImageGetter movieImageGetter;
+
+	
 	bool handleImageSelected(int movieID,std::string tbhumbName, std::string imageURL);
-	bool notifyDatabaseOfMovieUpdate(int movieID, std::string thumbName);
+
 
 	bool handleMovieSelected(Page* page, PageCallbackContext* context);
+	bool handleMusicSelected(Page* page, PageCallbackContext* context);
+	bool handleTvSelected(Page* page, PageCallbackContext* context);
 
 public:
 	MediaImagesPlugin(CoreModules* framework);

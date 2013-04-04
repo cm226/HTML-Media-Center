@@ -23,6 +23,32 @@ void IElement::addAttribute(std::string attribute)
 	this->attributes.push_back(attribute);
 }
 
+void IElement::addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName, std::string contextArgs)
+{
+	std::stringstream movieAttributeStream ;
+	movieAttributeStream << "onClick=\"window.location = '";
+	for(int i = 0; i < depth; i++)
+		movieAttributeStream << "../";
+	movieAttributeStream<<"pluginInteraction/";	
+	
+	movieAttributeStream << handl << "/" << pluginName << "/" << contextArgs <<"'\"";
+
+	this->addAttribute(movieAttributeStream.str());
+}
+
+void IElement::addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName)
+{
+std::stringstream movieAttributeStream ;
+	movieAttributeStream << "onClick=\"window.location = '";
+	for(int i = 0; i < depth; i++)
+		movieAttributeStream << "../";
+	movieAttributeStream<<"pluginInteraction/";	
+
+	movieAttributeStream << handl << "/" << pluginName  <<"'\"";
+
+	this->addAttribute(movieAttributeStream.str());
+}
+
 std::string IElement::getText()
 {
 	std::stringstream elementHTML;

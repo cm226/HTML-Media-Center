@@ -6,6 +6,7 @@
 
 JARVISFramework::JARVISFramework()
 {
+	ErrorLogger::logInfo("JARVIS initalising...");
 	this->shuttingDown = false;
 
 	EventManager::pluginPoll.attach(this,&JARVISFramework::loadedPlugins);
@@ -19,7 +20,10 @@ JARVISFramework::JARVISFramework()
 #else
 	this->pluginLoader = new Loader("/var/www/HTML-Media-Center/JARVIS/Plugins");
 #endif
+
+	ErrorLogger::logInfo("Loading Modules");
 	this->loadStartupPlugins();
+	ErrorLogger::logInfo("Modules Loaded");
 }
 
 JARVISFramework::~JARVISFramework()
@@ -44,7 +48,7 @@ void JARVISFramework::process()
 	}
 
 	this->cModules.getComms()->stopComms();
-	ErrorLogger::logError("Shutting down");
+	ErrorLogger::logInfo("Shutting down");
 }
 
 void JARVISFramework::loadStartupPlugins()

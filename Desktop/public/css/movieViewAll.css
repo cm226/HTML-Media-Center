@@ -8,6 +8,12 @@
 	padding-left:10px;
 }
 
+.movieElement img
+{
+	width:200px;
+	max-height:280px;
+}
+
 
 
 #leftGradient

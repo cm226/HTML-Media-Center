@@ -43,7 +43,7 @@ Loader::~Loader()
 bool Loader::loadPlugin(std::string pluginName, Plugin** loadedPlugin, CoreModules* context)
 {
 
-
+	ErrorLogger::logInfo("Loading plugin: "+pluginName);
 	
 
 #ifdef _WINDOWS

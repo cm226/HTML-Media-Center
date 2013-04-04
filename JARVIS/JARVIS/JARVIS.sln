@@ -7,6 +7,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JARVIS", "JARVIS.vcxproj", 
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MediaImages", "..\plugins-dev\MediaImages\MediaImages.vcxproj", "{A80FE131-BA4E-4427-9641-3C093CEB3772}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AFB997C0-FF5E-4894-84AF-C57003862646} = {AFB997C0-FF5E-4894-84AF-C57003862646}
+		{F69942F5-6D7F-4DC6-A604-C7AA83A3F9B0} = {F69942F5-6D7F-4DC6-A604-C7AA83A3F9B0}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JARVISCoreModules", "..\JARVISCoreModules\JARVISCoreModules.vcxproj", "{AFB997C0-FF5E-4894-84AF-C57003862646}"
 EndProject

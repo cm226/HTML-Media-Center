@@ -9,10 +9,13 @@
 
 #include <iostream>
 #include "config.h"
+#include "Errors\ErrorLogger.h"
 
 CoreModules::CoreModules() {
-	std::cout << "cm Loaded" << std::endl;
+	
 	this->databasecon = NULL;
+
+	ErrorLogger::logInfo("Core Modules Loaded");
 }
 
 CoreModules::~CoreModules() {

@@ -11,6 +11,7 @@
 #include <string>
 #include <vector>
 #include "../exportMacros.h"
+#include "../../../JARVIS/Framework/Plugin/HTMLCALLBACKDef.h"
 
 class DLLCORE_API IElement {
 private:
@@ -26,6 +27,8 @@ public:
 	virtual ~IElement();
 
 	void addAttribute(std::string att);
+	void addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName, std::string contextArgs);
+	void addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName);
 	virtual std::string getText();
 
 };

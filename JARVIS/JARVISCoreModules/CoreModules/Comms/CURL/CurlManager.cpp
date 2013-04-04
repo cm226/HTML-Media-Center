@@ -22,7 +22,6 @@ CurlManager::~CurlManager() {
 
 static int writer(char *data, size_t size, size_t nmemb, std::string *buffer_in)
 {
-
     // Is there anything in the buffer?
     if (buffer_in != NULL)
     {
@@ -30,7 +29,7 @@ static int writer(char *data, size_t size, size_t nmemb, std::string *buffer_in)
         buffer_in->append(data, size * nmemb);
 
         // How much did we write?
-        DownloadedResponse = *buffer_in;
+		DownloadedResponse.append(data, size * nmemb);
 
         return size * nmemb;
     }
@@ -56,7 +55,7 @@ bool CurlManager::makeJASONRequest(ICURLRequest & req, std::string & responce)
 	curl_slist_append( headers, "charsets: utf-8");
 	curl = curl_easy_init();
 	bool worked = false;
-
+	DownloadedResponse = "";
 	if (curl)
 	    {
 			std::string URL;

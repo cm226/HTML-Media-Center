@@ -27,10 +27,7 @@ private:
 protected:
 	CoreModules* coreMod;
 
-	void subscribeHTMLCallback(boost::function2<bool ,Page*,PageCallbackContext* > callbk, CALLBACk_HANDLE hndl)
-	{
-		this->pageCallbacks[hndl] = callbk;
-	}
+	
 
 public:
 	Plugin(CoreModules* coreMod) {this->coreMod = coreMod;};
@@ -48,7 +45,10 @@ public:
 
 		return false;
 	};
-
+	void subscribeHTMLCallback(boost::function2<bool ,Page*,PageCallbackContext* > callbk, CALLBACk_HANDLE hndl)
+	{
+		this->pageCallbacks[hndl] = callbk;
+	}
 
 	virtual bool whatDoYouLookLike(Page*) = 0;
 	virtual const char* pluginName() = 0;
