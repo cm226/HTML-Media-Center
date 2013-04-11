@@ -6,13 +6,3 @@
  */
 
 #include "PageCallbackContext.h"
-
-PageCallbackContext::PageCallbackContext()
-{
-
-}
-
-PageCallbackContext::~PageCallbackContext()
-{
-
-}

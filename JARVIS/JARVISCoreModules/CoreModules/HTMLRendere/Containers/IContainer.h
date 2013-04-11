@@ -11,8 +11,9 @@
 #include "../IElement.h"
 
 #include <vector>
+#include "../../exportMacros.h"
 
-class IContainer : public IElement{
+class DLLCORE_API IContainer : public IElement{
 
 public:
 	IContainer(std::string name);

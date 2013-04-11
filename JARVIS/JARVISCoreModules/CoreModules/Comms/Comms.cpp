@@ -23,6 +23,7 @@ Comms::Comms(){
 
 Comms::~Comms() {
 	delete this->transever;
+	delete this->messageTranslater;
 }
 
 void Comms::startComms()

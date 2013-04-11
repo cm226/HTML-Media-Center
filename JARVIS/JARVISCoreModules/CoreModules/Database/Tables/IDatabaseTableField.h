@@ -3,20 +3,21 @@
 
 #include <string>
 #include "../ResultWrapper.h"
+#include "../../exportMacros.h"
 
 namespace DatabaseTables {
-class IDatabaseFieldType
+class DLLCORE_API IDatabaseFieldType
 {
 };
 
 template <class T>
-class CDatabaseFieldType : public IDatabaseFieldType
+class DLLCORE_API CDatabaseFieldType : public IDatabaseFieldType
 {
     T type;
 };
 
 
-class IDatabaseTableField
+class DLLCORE_API IDatabaseTableField
 {
   
 

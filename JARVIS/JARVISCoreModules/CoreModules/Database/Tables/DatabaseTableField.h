@@ -10,18 +10,23 @@
 
 #include "IDatabaseTableField.h"
 #include "DatabaseTable.h"
+#include "../../exportMacros.h"
 
 namespace DatabaseTables {
 
-template <class Type> class DatabaseTableField : public IDatabaseTableField{
+template <class Type> class DLLCORE_API DatabaseTableField : public IDatabaseTableField{
 
 private:
-	
+	#pragma warning( disable : 4251)
 	Type value;
+	#pragma warning( default : 4251)
 
 protected:
 	DatabaseTable* owner;
+	#pragma warning( disable : 4251)
 	std::string ownerNameStr;
+	#pragma warning( default : 4251)
+
 	std::string getName() {return this->ownerName()+"."+this->fieldName(); };
 
 public:

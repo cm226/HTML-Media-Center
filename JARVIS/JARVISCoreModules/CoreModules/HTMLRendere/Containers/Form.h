@@ -15,7 +15,9 @@
 class DLLCORE_API Form : public IContainer
 {
 private:
+	#pragma warning( disable : 4251)
 	std::vector<IElement*> elements;
+	#pragma warning( default : 4251)
 
 protected:
 	std::string getTagText(){return "form";};

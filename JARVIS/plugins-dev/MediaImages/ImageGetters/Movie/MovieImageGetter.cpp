@@ -1,8 +1,8 @@
 #include "MovieImageGetter.h"
 
 
-#include "../../JARVISCoreModules/CoreModules/config.h"
-#include "../../JARVISCoreModules/CoreModules/Errors/ErrorLogger.h"
+#include "../../../../JARVISCoreModules/CoreModules/config.h"
+#include "../../../../JARVISCoreModules/CoreModules/Errors/ErrorLogger.h"
 #include <functional>
 #include <boost\bind.hpp>
 #include <sstream>
@@ -18,46 +18,65 @@ MovieImageGetter::~MovieImageGetter(void)
 
 void MovieImageGetter::registerFunctions(Plugin* registerer)
 {
-	boost::function2<bool ,Page*,PageCallbackContext* > f = boost::bind(&MovieImageGetter::imageSelected,this, _1, _2);
+	boost::function2<bool ,Page*,PageCallbackContext* > f = boost::bind(&MovieImageGetter::onImageSelected,this, _1, _2);
 	registerer->subscribeHTMLCallback(f, this->ImageSelected);
 	this->registereName = registerer->pluginName();
 
 }
 
-
-bool MovieImageGetter::imageSelected(Page* page, PageCallbackContext* context)
+bool MovieImageGetter::assertContextArguments(std::vector<std::string>& contextarguments)
 {
-	std::vector<std::string> contextInfo = context->getAdditionalContext();
-	int numContextAttributes = contextInfo.size();
+	int numContextAttributes = contextarguments.size();
 
-	if(numContextAttributes ==0)
+	if(numContextAttributes <2)
 	{
 		ErrorLogger::logError("Media Images Plugin: not enough data in context array, missing the selected Image value");
 		std::cout << "Not Enough data see JARVIS log for more";
 		return false;
 	}
 
-	if(numContextAttributes > 1)
+	if(numContextAttributes > 2)
 	{
 		ErrorLogger::logWarn("Media Images Plugin: additional arguments in context string");
 	}
 
-	
-	std::string imageIndex = *contextInfo.begin();
-	contextInfo.erase(contextInfo.begin());
-	std::string movieID = *contextInfo.begin();
+	return true;
+}
 
-	std::stringstream ss;
-	ss << imageIndex;
-	int index;
-	ss >> index;
+int MovieImageGetter::readImageIndex(std::vector<std::string>& contextarguments)
+{
+	return this->readInt(contextarguments,0);
+}
+int MovieImageGetter::readMovieID(std::vector<std::string>& contextarguments)
+{
+	return this->readInt(contextarguments,1);
+}
 
-	std::stringstream movieIDss;
-	movieIDss << movieID;
-	int movieIDint;
-	movieIDss >> movieIDint;
+void MovieImageGetter::generateOnImageSelectedReplay(Page* page)
+{
+	Lable* allWentWell = new Lable("Image Set, all is well");
+	Hyperlink* hyperlink = new Hyperlink("nextLink", "http://localhost/HTML-Media-Center/Desktop/Plugin/pluginInteraction/3/Media%20Images","Next Movie");
 
-	std::string imageURL = this->curImgSet[index];
+	page->addElement(allWentWell);
+	page->addElement(hyperlink);
+
+}
+
+bool MovieImageGetter::onImageSelected(Page* page, PageCallbackContext* context)
+{
+	std::vector<std::string> contextInfo = context->getAdditionalContext();
+	if(!assertContextArguments(contextInfo)) return false;
+
+	int index = this->readImageIndex(contextInfo);
+	int movieIDint = this->readMovieID(contextInfo);
+	if(index <= -1 || movieIDint <= -1) return false;
+	if((unsigned int)index > this->curImgSet.size())
+	{
+		ErrorLogger::logError("Image Set Value out of range");
+		return false;
+	}
+
+	std::string imageURL = this->curImgSet.at(index);
 
 	bool worked = handleImageSelected(movieIDint, this->getMovieNameFromID(movieIDint),imageURL);
 	if(!worked)
@@ -66,12 +85,7 @@ bool MovieImageGetter::imageSelected(Page* page, PageCallbackContext* context)
 		return false;
 	}
 
-	Lable* allWentWell = new Lable("Image Set, all is well");
-	Hyperlink* hyperlink = new Hyperlink("nextLink", "http://localhost/HTML-Media-Center/Desktop/Plugin/pluginInteraction/3/Media%20Images","Next Movie");
-
-	page->addElement(allWentWell);
-	page->addElement(hyperlink);
-
+	this->generateOnImageSelectedReplay(page);
 
 	return true;
 }
@@ -225,7 +239,7 @@ std::string MovieImageGetter::getMovieNameFromID(int movieID)
 		return "";
 	}
 
-	if(!movieNameQuery.nextLine()) // should be 1 result 
+	if(!movieNameQuery.nextLine())
 		return false;
 
 	std::string movieName = movieNameField.getValue();

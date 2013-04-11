@@ -1,7 +1,7 @@
 #include "ImageGetter.h"
 #include <sstream>
-#include "../../JARVISCoreModules/CoreModules/config.h"
-#include "../../JARVISCoreModules/CoreModules/Comms/Comms.h"
+#include "../../../JARVISCoreModules/CoreModules/config.h"
+#include "../../../JARVISCoreModules/CoreModules/Comms/Comms.h"
 
 ImageGetter::ImageGetter(CoreModules* cm)
 {
@@ -11,6 +11,31 @@ ImageGetter::ImageGetter(CoreModules* cm)
 
 ImageGetter::~ImageGetter(void)
 {
+}
+
+int ImageGetter::readInt(std::vector<std::string>& contextarguments, int index)
+{
+	if(index < 0)
+	{
+		ErrorLogger::logError("Invalid read index on context array");
+		return -1;
+	}
+
+	if(contextarguments.size() <= (unsigned int)index)
+	{
+		ErrorLogger::logError("Invalid read index on context array");
+		return -1;
+	}
+
+	std::string str = *(contextarguments.begin()+index);
+
+	std::stringstream strs;
+	strs << str;
+	int nextInt;
+	strs >> nextInt;
+
+	//contextarguments.erase(contextarguments.begin());
+	return nextInt;
 }
 
 bool ImageGetter::downloadAndCopyImage(std::string const& url, std::string const&  location, std::string const& name)

@@ -15,42 +15,42 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ImageGetters\ImageGetter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="MediaImages.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MediaImagesPlugin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MusicImageGetter.cpp">
+    <ClCompile Include="ImageGetters\Movie\MovieImageGetter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MovieImageGetter.cpp">
+    <ClCompile Include="ImageGetters\Music\MusicImageGetter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TVImageGetter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ImageGetter.cpp">
+    <ClCompile Include="ImageGetters\TV\TVImageGetter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MediaImagesPlugin.h">
+    <ClInclude Include="ImageGetters\ImageGetter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MediaImages.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MusicImageGetter.h">
+    <ClInclude Include="MediaImagesPlugin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MovieImageGetter.h">
+    <ClInclude Include="ImageGetters\Movie\MovieImageGetter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TVImageGetter.h">
+    <ClInclude Include="ImageGetters\Music\MusicImageGetter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ImageGetter.h">
+    <ClInclude Include="ImageGetters\TV\TVImageGetter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

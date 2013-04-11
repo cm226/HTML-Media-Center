@@ -11,10 +11,11 @@
 #include <string>
 #include <vector>
 #include "IDatabaseTableField.h"
+#include "../../exportMacros.h"
 
 namespace DatabaseTables {
 
-class DatabaseTable {
+class DLLCORE_API DatabaseTable {
 
 public:
 	DatabaseTable();

@@ -36,6 +36,7 @@ TCPTransever::~TCPTransever()
 
 
 	this->timer->cancel();
+	delete this->timer;
 }
 
 

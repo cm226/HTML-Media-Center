@@ -16,7 +16,9 @@
 
 class DLLCORE_API Page {
 private:
+	#pragma warning( disable : 4251)
 	std::vector<IElement*> elements;
+	#pragma warning( default : 4251)
 
 public:
 

@@ -9,6 +9,7 @@
 #include "ResultWrapper.h"
 #include "../Errors/ErrorLogger.h"
 #include <stdio.h>
+#include <sstream>
 
 
 namespace DatabaseTables {
@@ -34,6 +35,9 @@ bool Database::Connect(std::string userName, std::string password, std::string D
 	}
 	catch(sql::SQLException &e)
 	{
+		std::stringstream errorBuilder;
+		errorBuilder << "Database connection Error: " <<e.what();
+		ErrorLogger::logError(errorBuilder.str());
 		this->connected = false;
 		return false;
 	}

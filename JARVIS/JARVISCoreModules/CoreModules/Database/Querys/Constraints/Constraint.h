@@ -8,12 +8,13 @@
 #ifndef CONSTRAINT_H_
 #define CONSTRAINT_H_
 #include "../../Tables/DatabaseTableField.h"
+#include "../../../exportMacros.h"
 #include <string>
 #include <vector>
 
 namespace DatabaseTables {
 
-class IConstraint
+class DLLCORE_API IConstraint
 {
 public:
 	virtual std::string getQuerystring() = 0;
@@ -22,11 +23,14 @@ public:
 
 
 
-class Constraint : public IConstraint {
+class DLLCORE_API Constraint : public IConstraint {
 protected:
 	IDatabaseTableField* field;
 	IDatabaseTableField* field2;
+
+	#pragma warning( disable : 4251)
 	std::string value;
+	#pragma warning( default : 4251)
 
 public:
 	Constraint(IDatabaseTableField* field, std::string value)

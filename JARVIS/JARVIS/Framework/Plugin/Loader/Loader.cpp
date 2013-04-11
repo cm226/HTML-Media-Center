@@ -105,7 +105,7 @@ bool Loader::unloadPlugin(Plugin* plugin)
 #ifdef _WINDOWS
 
 	void* handl = this->dllHandlPluginMap[plugin];
-	return  FreeLibrary((HINSTANCE)handl); 
+	return  FreeLibrary((HINSTANCE)handl) == TRUE; 
 
 #else
 

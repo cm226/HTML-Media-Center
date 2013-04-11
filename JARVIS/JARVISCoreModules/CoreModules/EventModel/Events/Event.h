@@ -7,21 +7,20 @@
 
 #ifndef EVENT_H_
 #define EVENT_H_
+#pragma warning( disable : 4251)
 
 #include <map>
 #include <vector>
 #include <cstddef>
 #include "../EventHandler/EventHandler.h"
-
+#include "../../exportMacros.h"
 
 	typedef int CppEventHandler;
 
 template <typename ReturnT, typename ParamT>
-class Event {
+class DLLCORE_API Event {
 
 	typedef std::map<int,EvntHandlerBase<ReturnT,ParamT>* > HandlersMap;
-
-
 	HandlersMap handlers;
 	int m_count;
 
@@ -68,3 +67,4 @@ public:
 };
 
 #endif /* EVENT_H_ */
+#pragma warning( default : 4251)

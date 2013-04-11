@@ -14,7 +14,9 @@ Translater::Translater() {
 	this->buildTranslationFilterPipeline();
 }
 
-Translater::~Translater() {
+Translater::~Translater()
+{
+	delete this->translationFilter;
 }
 
 AbstractMessage* Translater::translateMessage(const char* message, unsigned int messageLength)

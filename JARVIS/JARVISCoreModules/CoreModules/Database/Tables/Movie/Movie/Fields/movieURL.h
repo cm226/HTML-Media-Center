@@ -12,7 +12,7 @@ public:
 	movieURL(void);
 	~movieURL(void);
 
-		std::string getName();
+	std::string getName();
 	void takeValue(ResultWrapper* resRwapper);
 	std::string fieldName();
 

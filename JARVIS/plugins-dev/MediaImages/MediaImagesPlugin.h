@@ -10,7 +10,7 @@
 
 #include "../../JARVIS/Framework/Plugin/Plugin.h"
 #include "../../JARVISCoreModules/CoreModules/Database/Tables/Movie/Movie/Movie.h"
-#include "MovieImageGetter.h"
+#include "ImageGetters\Movie\MovieImageGetter.h"
 
 #include <string>
 #include <vector>

@@ -7,7 +7,9 @@
 class DLLCORE_API HTMLImage : public IElement
 {
 private:
+	#pragma warning( disable : 4251)
 	std::string url;
+	#pragma warning( default : 4251)
 
 protected:
 	virtual std::string getTagText() {return "img";};

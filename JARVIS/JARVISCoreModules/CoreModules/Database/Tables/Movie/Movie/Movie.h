@@ -19,8 +19,6 @@ namespace DatabaseTables
 
 class DLLCORE_API Movie : public DatabaseTable
 {
-
-
 public:
 
 	movieGenra* genra;

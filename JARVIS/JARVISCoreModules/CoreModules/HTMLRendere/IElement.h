@@ -15,8 +15,10 @@
 
 class DLLCORE_API IElement {
 private:
+	#pragma warning( disable : 4251)
 	std::vector<std::string> attributes;
 	std::string name;
+	#pragma warning( default : 4251)
 
 protected:
 	virtual std::string getTagText() = 0;

@@ -1,10 +1,12 @@
 #ifndef MOVIE_IMAGE_GETTER_H
 #define MOVIE_IMAGE_GETTER_H
 
-#include "ImageGetter.h"
-#include "../../JARVIS/Framework/Plugin/Plugin.h"
-#include "../../JARVISCoreModules/CoreModules/Database/Database.h"
-#include "../../JARVISCoreModules/CoreModules/Database/Tables/Movie/Movie/Movie.h"
+
+
+#include "../ImageGetter.h"
+#include "../../../../JARVIS/Framework/Plugin/Plugin.h"
+#include "../../../../JARVISCoreModules/CoreModules/Database/Database.h"
+#include "../../../../JARVISCoreModules/CoreModules/Database/Tables/Movie/Movie/Movie.h"
 
 class MovieImageGetter : public ImageGetter
 {
@@ -21,11 +23,16 @@ private:
 	bool handleImageSelected(int movieID,std::string tbhumbName, std::string imgURL);
 	std::string getMovieNameFromID(int movieID);
 
+	bool assertContextArguments(std::vector<std::string>& contextarguments);
+	int readImageIndex(std::vector<std::string>& contextarguments);
+	int readMovieID(std::vector<std::string>& contextarguments);
+	void generateOnImageSelectedReplay(Page*);
+
 public:
 	MovieImageGetter(CoreModules* cm);
 	~MovieImageGetter(void);
 
-	bool imageSelected(Page* page, PageCallbackContext* context);
+	bool onImageSelected(Page* page, PageCallbackContext* context);
 
 	bool handleMovieSelected(Page* page, PageCallbackContext* context);
 	void registerFunctions(Plugin* registerer);

@@ -3,8 +3,8 @@
 
 #include <string>
 #include <vector>
-#include "../../JARVISCoreModules/CoreModules/CoreModules.h"
-#include "../../JARVIS/Framework/Plugin/Plugin.h"
+#include "../../../JARVISCoreModules/CoreModules/CoreModules.h"
+#include "../../../JARVIS/Framework/Plugin/Plugin.h"
 
 class ImageGetter
 {
@@ -14,6 +14,8 @@ protected:
 
 	void doGoogleSearch(std::vector<std::string>& result, std::string const &query);
 	bool downloadAndCopyImage(std::string const& url, std::string const&  location, std::string const& name);
+
+	int readInt(std::vector<std::string>& contextarguments, int index);
 
 public:
 	ImageGetter(CoreModules* cm);

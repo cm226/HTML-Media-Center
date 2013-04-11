@@ -142,6 +142,9 @@ void Query::setQueryResult(ResultWrapper* result)
 
 bool Query::nextLine()
 {
+	if(!this->result)
+		return false;
+
 	if (this->result->next())
 	{
 		std::vector<IDatabaseTableField*>::iterator fieildIt;

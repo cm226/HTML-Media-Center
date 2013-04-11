@@ -13,7 +13,9 @@
 
 class DLLCORE_API Lable: public IElement {
 private:
+	#pragma warning( disable : 4251)
 	std::string text;
+	#pragma warning( default : 4251)
 
 protected:
 	virtual std::string getTagText() {return "p";};

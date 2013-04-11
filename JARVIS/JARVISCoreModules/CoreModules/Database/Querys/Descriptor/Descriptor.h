@@ -2,13 +2,14 @@
 #define _DESCRIPTOR_H
 
 #include <string>
+#include "../../../exportMacros.h"
 
 namespace DatabaseTables
 {
 namespace Descriptors
 {
 
-class Descriptor
+class DLLCORE_API Descriptor
 {
 public:
 	Descriptor(void);

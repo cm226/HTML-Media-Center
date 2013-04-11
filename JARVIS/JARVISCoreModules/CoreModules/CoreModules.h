@@ -10,15 +10,15 @@
 
 #include "HTMLRendere/HTMLRendere.h"
 #include "EventModel/EventModel.h"
-#include "Comms/Comms.h"
 #include "Database/Database.h"
 #include "exportMacros.h"
+#include "Comms\IComms.h"
 
 
 class DLLCORE_API CoreModules {
 private:
-	DatabaseTables::Database* databasecon;
-	Comms comms;
+	struct privateMembers;
+	privateMembers* members;
 
 public:
 	CoreModules();
@@ -26,6 +26,8 @@ public:
 
 	DatabaseTables::Database* getDatabaseConnection();
 	CommsNS::IComms* getComms();
+
+	CoreModules& operator=(const CoreModules&);
 
 
 };

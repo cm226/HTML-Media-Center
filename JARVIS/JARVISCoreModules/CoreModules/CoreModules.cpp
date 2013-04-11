@@ -10,31 +10,47 @@
 #include <iostream>
 #include "config.h"
 #include "Errors\ErrorLogger.h"
+#include "Comms/Comms.h"
 
-CoreModules::CoreModules() {
+
+struct CoreModules::privateMembers
+{
+	DatabaseTables::Database* databasecon;
+	Comms comms;
+};
+
+CoreModules::CoreModules():members(new privateMembers())
+{
 	
-	this->databasecon = NULL;
+	this->members->databasecon = NULL;
 
 	ErrorLogger::logInfo("Core Modules Loaded");
 }
 
-CoreModules::~CoreModules() {
+CoreModules::~CoreModules()
+{
+	delete this->members;
 }
 
+CoreModules& CoreModules::operator=(const CoreModules &other)
+{
+	*this->members = *(other.members);
+	return *this;
+}
 
 DatabaseTables::Database* CoreModules::getDatabaseConnection()
 {
-	if(this->databasecon == NULL)
+	if(this->members->databasecon == NULL)
 	{
-		this->databasecon = new DatabaseTables::Database();
-		this->databasecon->Connect(DATABSEUSER, DATABASEPASSWORD,DATABASENAME,"localhost");
+		this->members->databasecon = new DatabaseTables::Database();
+		this->members->databasecon->Connect(DATABSEUSER, DATABASEPASSWORD,DATABASENAME,"localhost");
 	}
 
-	return this->databasecon;
+	return this->members->databasecon;
 }
 
 CommsNS::IComms* CoreModules::getComms()
 {
-	return &this->comms;
+	return &this->members->comms;
 }
 

@@ -19,8 +19,8 @@ private:
 protected:
 
 public:
-	PageCallbackContext();
-	~PageCallbackContext();
+	PageCallbackContext(){};
+	~PageCallbackContext(){};
 
 	void setAdditionalContext(std::vector<std::string>* context){this->aditionalContextInfo = * context;}
 	std::vector<std::string> getAdditionalContext(){return this->aditionalContextInfo;}
