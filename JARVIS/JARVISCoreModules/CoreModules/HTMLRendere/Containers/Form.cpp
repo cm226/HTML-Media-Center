@@ -27,12 +27,14 @@ void Form::addElement(IElement* element)
 }
 
 void Form::removeElement(IElement* element)
-{
-	for(std::vector<IElement*>::iterator it = elements.begin(); it != elements.end(); ++it)
+{	
+	std::vector<IElement*>::iterator it;
+	for(it = elements.begin(); it != elements.end(); ++it)
 	{
 		if(*it == element)
-			elements.erase(it);
+			break;
 	}
+	elements.erase(it);
 }
 
 

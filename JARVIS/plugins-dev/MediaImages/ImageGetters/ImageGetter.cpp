@@ -34,7 +34,6 @@ int ImageGetter::readInt(std::vector<std::string>& contextarguments, int index)
 	int nextInt;
 	strs >> nextInt;
 
-	//contextarguments.erase(contextarguments.begin());
 	return nextInt;
 }
 

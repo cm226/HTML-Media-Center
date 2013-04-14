@@ -3,7 +3,7 @@
 
 #include "../../ImageGetters/Movie/MovieImageGetter.h"
 
-BOOST_AUTO_TEST_CASE(constructor)
+BOOST_AUTO_TEST_CASE(MovieGetterconstructor)
 {
 	CoreModules cm;
 	CoreModules* cmref = &cm;
@@ -42,6 +42,7 @@ BOOST_AUTO_TEST_CASE(invalidContext)
 
 BOOST_AUTO_TEST_CASE(entryPoint)
 {
+
 	CoreModules cm;
 	CoreModules* cmref = &cm;
 	MovieImageGetter m(cmref);
@@ -51,5 +52,6 @@ BOOST_AUTO_TEST_CASE(entryPoint)
 	
 	BOOST_CHECK_EQUAL(p.elements.size(),1);
 	p.freePage();
+
 }
 

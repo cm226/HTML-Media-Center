@@ -29,7 +29,7 @@ public:
 	virtual ~IElement();
 
 	void addAttribute(std::string att);
-	void addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName, std::string contextArgs);
+	void addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName, std::vector<std::string> contextArgs);
 	void addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName);
 	virtual std::string getText();
 

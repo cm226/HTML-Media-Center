@@ -7,8 +7,9 @@
 #include <boost\bind.hpp>
 #include <sstream>
 
-MovieImageGetter::MovieImageGetter(CoreModules* cm) : ImageGetter(cm)
+MovieImageGetter::MovieImageGetter(CoreModules* cm) : imgGetter(cm)
 {
+	this->coreMod = cm;
 }
 
 
@@ -45,11 +46,11 @@ bool MovieImageGetter::assertContextArguments(std::vector<std::string>& contexta
 
 int MovieImageGetter::readImageIndex(std::vector<std::string>& contextarguments)
 {
-	return this->readInt(contextarguments,0);
+	return this->imgGetter.readInt(contextarguments,0);
 }
 int MovieImageGetter::readMovieID(std::vector<std::string>& contextarguments)
 {
-	return this->readInt(contextarguments,1);
+	return this->imgGetter.readInt(contextarguments,1);
 }
 
 void MovieImageGetter::generateOnImageSelectedReplay(Page* page)
@@ -93,9 +94,7 @@ bool MovieImageGetter::onImageSelected(Page* page, PageCallbackContext* context)
 bool MovieImageGetter::handleMovieSelected(Page* page, PageCallbackContext* context)
 {
 	DatabaseTables::Movie movie;
-	Form* chooseMediaForm = new Form("mediaForm");
-	FormSubmit* submitFormBtt = new FormSubmit("find");
-	Lable* movieNameLable = new Lable("MovieName");
+	
 	
 	curImgSet.erase(curImgSet.begin(), curImgSet.end());
 	curImgSet.clear();
@@ -108,8 +107,12 @@ bool MovieImageGetter::handleMovieSelected(Page* page, PageCallbackContext* cont
 		page->addElement(l);
 		return true;
 	}
-	this->doGoogleSearch(curImgSet,movie.name->getStrValue() +" Poster");
+	this->imgGetter.doGoogleSearch(curImgSet,movie.name->getStrValue() +" Poster");
 
+
+	Form* chooseMediaForm = new Form("mediaForm");
+	FormSubmit* submitFormBtt = new FormSubmit("find");
+	Lable* movieNameLable = new Lable("MovieName");
 	movieNameLable->setText("For Movie: "+movie.name->getStrValue());
 	page->addElement(movieNameLable);
 
@@ -121,7 +124,11 @@ bool MovieImageGetter::handleMovieSelected(Page* page, PageCallbackContext* cont
 		std::stringstream attributeStream;
 		attributeStream << i << "/" << movie.movieID->getValue();
 
-		image->addOnclickCallbackAttribute(2, this->ImageSelected,this->registereName,attributeStream.str());
+		std::vector<std::string> args;
+		args.push_back(attributeStream.str());
+		
+
+		image->addOnclickCallbackAttribute(2, this->ImageSelected,this->registereName,args);
 		chooseMediaForm->addElement(image);
 		i++;
 	}
@@ -210,7 +217,7 @@ bool MovieImageGetter::handleImageSelected(int movieID,std::string tbhumbName, s
 		thumbNameStriped << c;
 	}
 
-	bool downloaded = this->downloadAndCopyImage(imgURL,"\\img\\Movie\\Thumbs\\",thumbNameStriped.str());
+	bool downloaded = this->imgGetter.downloadAndCopyImage(imgURL,"\\img\\Movie\\Thumbs\\",thumbNameStriped.str());
 
 	if(downloaded)
 		return this->notifyDatabaseOfMovieUpdate(movieID,thumbNameStriped.str());

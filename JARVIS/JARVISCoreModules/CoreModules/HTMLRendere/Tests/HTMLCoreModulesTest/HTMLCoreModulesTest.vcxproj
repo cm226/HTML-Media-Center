@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{BE561911-C146-4AF1-A5A7-97C352C5FB49}</ProjectGuid>
+    <ProjectGuid>{7376E346-1624-4BA6-9799-AD1F54F7F177}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>MediaImagesTesting</RootNamespace>
+    <RootNamespace>HTMLCoreModulesTest</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -39,8 +39,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>D:\programming\boost_1_52_0;D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\include;D:\programming\curl MSVS\include\curl;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\programming\boost_1_52_0\stage\lib;D:\programming\curl MSVS\lib\Release;C:\wamp\www\HTML-Media-Center\JARVIS\JARVIS\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\programming\boost_1_52_0;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\programming\boost_1_52_0\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -55,13 +55,13 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>JARVISCoreModules.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -75,23 +75,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="ReadMe.txt" />
+    <ClCompile Include="..\..\Containers\ElementList.cpp" />
+    <ClCompile Include="..\..\Containers\Form.cpp" />
+    <ClCompile Include="..\..\Containers\IContainer.cpp" />
+    <ClCompile Include="..\..\Elements\FormSubmit.cpp" />
+    <ClCompile Include="..\..\Elements\HTMLImage.cpp" />
+    <ClCompile Include="..\..\Elements\Hyperlink.cpp" />
+    <ClCompile Include="..\..\Elements\Lable.cpp" />
+    <ClCompile Include="..\..\Elements\TextBox.cpp" />
+    <ClCompile Include="..\..\IElement.cpp" />
+    <ClCompile Include="..\..\Page.cpp" />
+    <ClCompile Include="ElementListTests.cpp" />
+    <ClCompile Include="ElementTests\FormSubmitTester.cpp" />
+    <ClCompile Include="FormTests.cpp" />
+    <ClCompile Include="HTMLCoreModulesTesting.cpp" />
+    <ClCompile Include="ElementTests\TextBoxTests.cpp" />
+    <ClCompile Include="HTMLImageTests.cpp" />
+    <ClCompile Include="HyperlinkTests.cpp" />
+    <ClCompile Include="LableTests.cpp" />
+    <ClCompile Include="PageTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\ImageGetters\IimageContentGetter.cpp" />
-    <ClCompile Include="..\..\ImageGetters\ImageGetter.cpp" />
-    <ClCompile Include="..\..\ImageGetters\Movie\MovieImageGetter.cpp" />
-    <ClCompile Include="ImageGetterTests.cpp" />
-    <ClCompile Include="MediaImagesTesting.cpp" />
-    <ClCompile Include="MovieImageGetterTester.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

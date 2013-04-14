@@ -1,3 +1,3 @@
 cd Debug
-MediaImagesTesting.exe
+MediaImagesTesting.exe --log_level=test_suite
 pause

@@ -12,7 +12,12 @@ ElementList::ElementList(std::string name): IContainer(name) {
 
 }
 
-ElementList::~ElementList() {
+ElementList::~ElementList()
+{
+	for(std::vector<IElement*>::iterator it = elements.begin(); it != elements.end(); ++it)
+	{
+		delete *it;
+	}
 }
 
 void ElementList::addElement(IElement* element)
@@ -22,11 +27,13 @@ void ElementList::addElement(IElement* element)
 
 void ElementList::removeElement(IElement* element)
 {
-	for(std::vector<IElement*>::iterator it = elements.begin(); it != elements.end(); ++it)
+	std::vector<IElement*>::iterator it;
+	for(it = elements.begin(); it != elements.end(); ++it)
 	{
 		if(*it == element)
-			elements.erase(it);
+			break;
 	}
+	elements.erase(it);
 }
 
 std::string ElementList::getTagContent()

@@ -44,5 +44,11 @@
     <ClCompile Include="MovieImageGetterTester.cpp">
       <Filter>Source Files\MovieImageGetter</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\ImageGetters\IimageContentGetter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageGetterTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

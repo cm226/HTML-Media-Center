@@ -3,16 +3,19 @@
 
 
 
+#include "../IimageContentGetter.h"
 #include "../ImageGetter.h"
 #include "../../../../JARVIS/Framework/Plugin/Plugin.h"
 #include "../../../../JARVISCoreModules/CoreModules/Database/Database.h"
 #include "../../../../JARVISCoreModules/CoreModules/Database/Tables/Movie/Movie/Movie.h"
 
-class MovieImageGetter : public ImageGetter
+class MovieImageGetter : public imagegetters::IimageContentGetter
 {
 
 private:
 	
+	CoreModules* coreMod;
+	ImageGetter imgGetter;
 	std::vector<std::string> curImgSet;
 	std::string registereName;
 	static const CALLBACk_HANDLE ImageSelected = 11;

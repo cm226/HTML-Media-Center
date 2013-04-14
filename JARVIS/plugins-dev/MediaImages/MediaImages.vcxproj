@@ -70,6 +70,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ImageGetters\IimageContentGetter.cpp" />
     <ClCompile Include="ImageGetters\ImageGetter.cpp" />
     <ClCompile Include="MediaImages.cpp" />
     <ClCompile Include="MediaImagesPlugin.cpp" />
@@ -78,6 +79,7 @@
     <ClCompile Include="ImageGetters\TV\TVImageGetter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ImageGetters\IimageContentGetter.h" />
     <ClInclude Include="ImageGetters\ImageGetter.h" />
     <ClInclude Include="MediaImages.h" />
     <ClInclude Include="MediaImagesPlugin.h" />
@@ -86,6 +88,7 @@
     <ClInclude Include="ImageGetters\TV\TVImageGetter.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\JARVIS\runTests.bat" />
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
