@@ -18,6 +18,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MediaImagesTesting", "..\pl
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HTMLCoreModulesTest", "..\JARVISCoreModules\CoreModules\HTMLRendere\Tests\HTMLCoreModulesTest\HTMLCoreModulesTest.vcxproj", "{7376E346-1624-4BA6-9799-AD1F54F7F177}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CommsCoreModulesTests", "..\JARVISCoreModules\CoreModules\Comms\Tests\CommsCoreModulesTests\CommsCoreModulesTests.vcxproj", "{F84C2633-0087-4D16-8848-36922481B458}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -44,6 +46,10 @@ Global
 		{7376E346-1624-4BA6-9799-AD1F54F7F177}.Debug|Win32.Build.0 = Debug|Win32
 		{7376E346-1624-4BA6-9799-AD1F54F7F177}.Release|Win32.ActiveCfg = Release|Win32
 		{7376E346-1624-4BA6-9799-AD1F54F7F177}.Release|Win32.Build.0 = Release|Win32
+		{F84C2633-0087-4D16-8848-36922481B458}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F84C2633-0087-4D16-8848-36922481B458}.Debug|Win32.Build.0 = Debug|Win32
+		{F84C2633-0087-4D16-8848-36922481B458}.Release|Win32.ActiveCfg = Release|Win32
+		{F84C2633-0087-4D16-8848-36922481B458}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

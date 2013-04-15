@@ -10,9 +10,10 @@
 
 namespace CommsNS {
 
-static std::string DownloadedResponse = "";
 
-CurlManager::CurlManager() {
+
+CurlManager::CurlManager() 
+{
 
 }
 
@@ -20,20 +21,14 @@ CurlManager::~CurlManager() {
 
 }
 
-static int writer(char *data, size_t size, size_t nmemb, std::string *buffer_in)
+static int writer(char *data, size_t size, size_t nmemb, void* curlManager)
 {
-    // Is there anything in the buffer?
-    if (buffer_in != NULL)
-    {
-        // Append the data to the buffer
-        buffer_in->append(data, size * nmemb);
-
-        // How much did we write?
-		DownloadedResponse.append(data, size * nmemb);
-
-        return size * nmemb;
-    }
-
+	CurlManager* curlMan = static_cast<CurlManager*>(curlManager);
+	if(curlMan!= NULL)
+	{
+		curlMan->appendResponce(data,size*nmemb);
+		 return size * nmemb;
+	}
     return 0;
 }
 
@@ -55,7 +50,9 @@ bool CurlManager::makeJASONRequest(ICURLRequest & req, std::string & responce)
 	curl_slist_append( headers, "charsets: utf-8");
 	curl = curl_easy_init();
 	bool worked = false;
+	
 	DownloadedResponse = "";
+
 	if (curl)
 	    {
 			std::string URL;
@@ -66,6 +63,7 @@ bool CurlManager::makeJASONRequest(ICURLRequest & req, std::string & responce)
 	        curl_easy_setopt(curl, CURLOPT_HTTPGET,1);
 	        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 			curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, false);
+			curl_easy_setopt(curl, CURLOPT_WRITEDATA, this);
 	        curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,&writer);
 
 	        res = curl_easy_perform(curl);
