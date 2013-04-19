@@ -11,20 +11,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{A80FE131-BA4E-4427-9641-3C093CEB3772}</ProjectGuid>
-    <RootNamespace>MediaImages</RootNamespace>
+    <ProjectGuid>{15420602-18D1-45ED-A955-126C313917FE}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>DatabaseCoreModulesTests</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -37,63 +38,65 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\programming\jpeg-8c;D:\programming\boost_1_52_0;D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\include;D:\programming\curl MSVS\include\curl;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\programming\boost_1_52_0\stage\lib;C:\wamp\www\HTML-Media-Center\JARVIS\JARVIS\Debug;D:\programming\curl MSVS\lib\Release;$(LibraryPath)</LibraryPath>
-    <TargetName>lib$(ProjectName)</TargetName>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>D:\programming\SQLConnector\include;D:\programming\boost_1_52_0;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\programming\SQLConnector\lib\debug;D:\programming\boost_1_52_0\stage\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>JARVISCoreModules.lib;jpeg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mysqlcppconn.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <PostBuildEvent>
-      <Command>COPY $(SolutionDir)Debug\libMediaImages.dll $(SolutionDir)plugins</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ImageGetters\IimageContentGetter.cpp" />
-    <ClCompile Include="ImageGetters\ImageGetter.cpp" />
-    <ClCompile Include="ImageGetters\Music\MusicMissingImageContentFinder.cpp" />
-    <ClCompile Include="MediaImages.cpp" />
-    <ClCompile Include="MediaImagesPlugin.cpp" />
-    <ClCompile Include="ImageGetters\Movie\MovieImageGetter.cpp" />
-    <ClCompile Include="ImageGetters\Music\MusicImageGetter.cpp" />
-    <ClCompile Include="ImageGetters\TV\TVImageGetter.cpp" />
-    <ClCompile Include="Testing\MediaImagesTesting\MusicMissingImageGetterTests.cpp" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ImageGetters\IimageContentGetter.h" />
-    <ClInclude Include="ImageGetters\ImageGetter.h" />
-    <ClInclude Include="ImageGetters\Music\MusicMissingImageContentFinder.h" />
-    <ClInclude Include="MediaImages.h" />
-    <ClInclude Include="MediaImagesPlugin.h" />
-    <ClInclude Include="ImageGetters\Movie\MovieImageGetter.h" />
-    <ClInclude Include="ImageGetters\Music\MusicImageGetter.h" />
-    <ClInclude Include="ImageGetters\TV\TVImageGetter.h" />
-    <ClInclude Include="Testing\MediaImagesTesting\MusicMissingImageGetterTests.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\JARVIS\runTests.bat" />
-    <None Include="ClassDiagram1.cd" />
+    <ClCompile Include="..\..\..\Errors\ErrorLogger.cpp" />
+    <ClCompile Include="..\..\Database.cpp" />
+    <ClCompile Include="..\..\Querys\Query.cpp" />
+    <ClCompile Include="..\..\ResultWrapper.cpp" />
+    <ClCompile Include="..\..\Tables\DatabaseTable.cpp" />
+    <ClCompile Include="..\..\Tables\IDatabaseTableField.cpp" />
+    <ClCompile Include="..\..\Tables\Movie\Movie\Fields\movieGenra.cpp" />
+    <ClCompile Include="..\..\Tables\Movie\Movie\Fields\movieID.cpp" />
+    <ClCompile Include="..\..\Tables\Movie\Movie\Fields\movieIMDB.cpp" />
+    <ClCompile Include="..\..\Tables\Movie\Movie\Fields\movieLength.cpp" />
+    <ClCompile Include="..\..\Tables\Movie\Movie\Fields\MovieName.cpp" />
+    <ClCompile Include="..\..\Tables\Movie\Movie\Fields\movieURL.cpp" />
+    <ClCompile Include="..\..\Tables\Movie\Movie\Fields\thumbnailURL.cpp" />
+    <ClCompile Include="..\..\Tables\Movie\Movie\Movie.cpp" />
+    <ClCompile Include="ConnectTests.cpp" />
+    <ClCompile Include="DatabaseCoreModulesTests.cpp" />
+    <ClCompile Include="SelectTests.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

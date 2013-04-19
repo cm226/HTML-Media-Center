@@ -29,6 +29,12 @@ CoreModules::CoreModules():members(new privateMembers())
 
 CoreModules::~CoreModules()
 {
+	if(this->members->databasecon != NULL)
+	{
+		delete this->members->databasecon;
+		this->members->databasecon = NULL;
+	}
+
 	delete this->members;
 }
 

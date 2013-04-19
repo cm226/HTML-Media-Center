@@ -20,6 +20,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HTMLCoreModulesTest", "..\J
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CommsCoreModulesTests", "..\JARVISCoreModules\CoreModules\Comms\Tests\CommsCoreModulesTests\CommsCoreModulesTests.vcxproj", "{F84C2633-0087-4D16-8848-36922481B458}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DatabaseCoreModulesTests", "..\JARVISCoreModules\CoreModules\Database\Testing\DatabaseCoreModulesTests\DatabaseCoreModulesTests.vcxproj", "{15420602-18D1-45ED-A955-126C313917FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -50,6 +52,10 @@ Global
 		{F84C2633-0087-4D16-8848-36922481B458}.Debug|Win32.Build.0 = Debug|Win32
 		{F84C2633-0087-4D16-8848-36922481B458}.Release|Win32.ActiveCfg = Release|Win32
 		{F84C2633-0087-4D16-8848-36922481B458}.Release|Win32.Build.0 = Release|Win32
+		{15420602-18D1-45ED-A955-126C313917FE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{15420602-18D1-45ED-A955-126C313917FE}.Debug|Win32.Build.0 = Debug|Win32
+		{15420602-18D1-45ED-A955-126C313917FE}.Release|Win32.ActiveCfg = Release|Win32
+		{15420602-18D1-45ED-A955-126C313917FE}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

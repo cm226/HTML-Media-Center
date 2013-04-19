@@ -1,6 +1,10 @@
-*/config.php
+*config.php
+*config.h
 
+Desktop/public/mix/*
+Desktop/config/*
 Mobile/config/*
+Mobile/public/js/ContentFlow/*
 
 public/img/Music/Albums/*
 public/img/Music/Artists/*
@@ -8,8 +12,19 @@ public/img/TV/SeriesImg/*
 
 public/img/TV/*
 public/mix/*
-tempUploads/*
+*tempUploads/
 
 /*~
 
+*.png
+*.jpg
+*.suo
+*.sdf
+*.opensdf
+*.filters
+*.user
+*ipch/
+
 .DS_Store
+
+JARVIS/JARVISCoreModules/CoreModules/Errors/StackWalker/*

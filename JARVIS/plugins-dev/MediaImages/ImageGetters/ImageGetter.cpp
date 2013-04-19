@@ -1,5 +1,17 @@
 #include "ImageGetter.h"
+
 #include <sstream>
+
+#include <boost/gil/gil_all.hpp>
+
+#include <boost/gil/image.hpp>
+#include <boost/gil/typedefs.hpp>
+#include <boost/gil/extension/io/jpeg_io.hpp>
+
+#include <boost/gil/extension/numeric/sampler.hpp>
+#include <boost/gil/extension/numeric/resample.hpp>
+
+
 #include "../../../JARVISCoreModules/CoreModules/config.h"
 #include "../../../JARVISCoreModules/CoreModules/Comms/Comms.h"
 
@@ -37,15 +49,30 @@ int ImageGetter::readInt(std::vector<std::string>& contextarguments, int index)
 	return nextInt;
 }
 
-bool ImageGetter::downloadAndCopyImage(std::string const& url, std::string const&  location, std::string const& name)
+bool ImageGetter::downloadAndCopyImage(std::string const& url, std::string const&  location, std::string const& name, int sizex, int sizey)
 {
 	std::string pubFolder = HTMLMEDIAPUBLIC;
-	if(!this->coreMod->getComms()->downloadFile(url,pubFolder+location+name))
+	std::string localFileName = pubFolder+location+name;
+	if(!this->coreMod->getComms()->downloadFile(url,localFileName))
 	{
 		ErrorLogger::logError("Failed to Download Movie Thumb");
 		return false;
 	}
+
+	this->resizeImage(localFileName,sizex, sizey);
 	return true;
+}
+
+void ImageGetter::resizeImage(std::string const& imageURL, int sixex, int sizey)
+{
+	boost::gil::rgb8_image_t img;
+	jpeg_read_image(imageURL,img);
+
+    boost::gil::rgb8_image_t targetImageSize(sixex,sizey);
+
+    resize_view(const_view(img), view(targetImageSize), boost::gil::bilinear_sampler());
+    jpeg_write_view(imageURL,const_view(targetImageSize));
+
 }
 
 void ImageGetter::doGoogleSearch(std::vector<std::string>& result, std::string const &query)

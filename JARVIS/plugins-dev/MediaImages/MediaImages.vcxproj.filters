@@ -36,6 +36,12 @@
     <ClCompile Include="ImageGetters\IimageContentGetter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ImageGetters\Music\MusicMissingImageContentFinder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Testing\MediaImagesTesting\MusicMissingImageGetterTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageGetters\ImageGetter.h">
@@ -57,6 +63,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ImageGetters\IimageContentGetter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageGetters\Music\MusicMissingImageContentFinder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Testing\MediaImagesTesting\MusicMissingImageGetterTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -11,6 +11,7 @@
 #include "../../JARVIS/Framework/Plugin/Plugin.h"
 #include "../../JARVISCoreModules/CoreModules/Database/Tables/Movie/Movie/Movie.h"
 #include "ImageGetters\Movie\MovieImageGetter.h"
+#include "ImageGetters\Music\MusicImageGetter.h"
 
 #include <string>
 #include <vector>
@@ -24,7 +25,7 @@ private :
 
 	std::string name;
 	MovieImageGetter movieImageGetter;
-
+	MusicImageGetter musicImageGetter;
 	
 	bool handleImageSelected(int movieID,std::string tbhumbName, std::string imageURL);
 

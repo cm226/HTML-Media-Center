@@ -9,13 +9,16 @@
 #define ELEMENTLIST_H_
 
 #include "IContainer.h"
+#include "../../exportMacros.h"
 
 #include <vector>
 
-class ElementList: public IContainer {
+class DLLCORE_API ElementList: public IContainer {
 
 private :
+	#pragma warning( disable : 4251)
 	std::vector<IElement*> elements;
+	#pragma warning( default : 4251)
 
 protected:
 	std::string getTagText(){return "div";};

@@ -16,6 +16,9 @@
     <Filter Include="Source Files\MovieImageGetter">
       <UniqueIdentifier>{6dbf28ea-559f-49c8-95dc-8385d5655116}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\MusicImageGetter">
+      <UniqueIdentifier>{7559c760-bfea-4902-927e-84496fc46453}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -35,9 +38,6 @@
     <ClCompile Include="..\..\ImageGetters\ImageGetter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MediaImagesTesting.cpp">
-      <Filter>Source Files\MovieImageGetter</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\ImageGetters\Movie\MovieImageGetter.cpp">
       <Filter>Source Files\MovieImageGetter</Filter>
     </ClCompile>
@@ -49,6 +49,15 @@
     </ClCompile>
     <ClCompile Include="ImageGetterTests.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MediaImagesTesting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MusicMissingImageGetterTests.cpp">
+      <Filter>Source Files\MusicImageGetter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ImageGetters\Music\MusicMissingImageContentFinder.cpp">
+      <Filter>Source Files\MusicImageGetter</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

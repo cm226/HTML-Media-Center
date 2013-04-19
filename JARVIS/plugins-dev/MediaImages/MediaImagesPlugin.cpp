@@ -14,7 +14,9 @@
 
 #include "../../JARVISCoreModules/CoreModules/Errors/ErrorLogger.h"
 
-MediaImagesPlugin::MediaImagesPlugin(CoreModules* framework) : Plugin(framework), movieImageGetter(framework)
+MediaImagesPlugin::MediaImagesPlugin(CoreModules* framework) : Plugin(framework), 
+																movieImageGetter(framework),
+																musicImageGetter(framework)
 {
 	this->name = "Media Images";
 
@@ -28,6 +30,7 @@ MediaImagesPlugin::MediaImagesPlugin(CoreModules* framework) : Plugin(framework)
 	this->subscribeHTMLCallback(f2, this->tvSelected);
 
 	this->movieImageGetter.registerFunctions(this);
+	this->musicImageGetter.registerFunctions(this);
 	
 }
 
@@ -63,8 +66,7 @@ bool MediaImagesPlugin::whatDoYouLookLike(Page* page)
 
 bool MediaImagesPlugin::handleMusicSelected(Page* page, PageCallbackContext* context)
 {
-	ErrorLogger::logInfo("in music");
-	return true;
+	return this->musicImageGetter.handleMusicSelected(page,context);
 }
 bool MediaImagesPlugin::handleTvSelected(Page* page, PageCallbackContext* context)
 {

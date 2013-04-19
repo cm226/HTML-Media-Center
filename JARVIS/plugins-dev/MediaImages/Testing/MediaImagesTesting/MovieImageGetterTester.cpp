@@ -9,7 +9,7 @@ BOOST_AUTO_TEST_CASE(MovieGetterconstructor)
 	CoreModules* cmref = &cm;
 	
 
-	BOOST_CHECK_NO_THROW(MovieImageGetter m(cmref))
+	BOOST_CHECK_NO_THROW(MovieImageGetter m(cmref));
 }
 
 BOOST_AUTO_TEST_CASE(invalidContext)
