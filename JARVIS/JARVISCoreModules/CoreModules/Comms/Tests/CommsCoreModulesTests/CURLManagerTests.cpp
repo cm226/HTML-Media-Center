@@ -43,13 +43,35 @@ BOOST_AUTO_TEST_CASE(downloadFileTest)
 
 }
 
+
+BOOST_AUTO_TEST_CASE(downloadToFileThatExsists)
+{
+	CommsNS::CurlManager curlMan;
+	
+	bool worked = curlMan.downloadItemToFile("http://g-ecx.images-amazon.com/images/G/02/gno/beacon/BeaconSprite-UK-02._V397961423_.png","C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\TestDataFolder\\ExistingImage\\test.png");
+	
+	BOOST_CHECK_EQUAL(true,worked);
+	BOOST_CHECK_EQUAL(true,boost::filesystem::exists( "C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\TestDataFolder\\ExistingImage\\test.png"));
+
+}
+
+BOOST_AUTO_TEST_CASE(downloadToBadPath)
+{
+	CommsNS::CurlManager curlMan;
+	
+	bool worked = curlMan.downloadItemToFile("http://g-ecx.images-amazon.com/images/G/02/gno/beacon/BeaconSprite-UK-02._V397961423_.png","C:\\C:\\");
+	
+	BOOST_CHECK_EQUAL(false,worked);
+
+}
+
 BOOST_AUTO_TEST_CASE(downloadFileTestInvalidFile)
 {
 	CommsNS::CurlManager curlMan;
 	
 	bool worked = curlMan.downloadItemToFile("invalidLink","C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\test.png");
 	
-	BOOST_CHECK_EQUAL(false,worked);
-	BOOST_CHECK_EQUAL(false,boost::filesystem::exists( "C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\test.png "));
+	BOOST_CHECK_EQUAL(true,worked);
+	BOOST_CHECK_EQUAL(true,boost::filesystem::exists( "C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\test.png "));
 
 }

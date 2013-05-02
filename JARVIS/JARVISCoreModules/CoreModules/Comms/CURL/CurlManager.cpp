@@ -95,7 +95,13 @@ bool CurlManager::downloadItemToFile(std::string internetURL, std::string output
 	const char* outfilename = outputFile.c_str();
     curl = curl_easy_init();
     if (curl) {
+
         fp = fopen(outfilename,"wb");
+		if(fp == NULL)
+		{
+			curl_easy_cleanup(curl);
+			return false;
+		}
         curl_easy_setopt(curl, CURLOPT_URL, url);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, fileWriter);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);

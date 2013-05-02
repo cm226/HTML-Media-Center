@@ -2,6 +2,8 @@
 #include "stdafx.h"
 
 #include "../../ImageGetters/Movie/MovieImageGetter.h"
+#include "../../../../JARVISCoreModules/CoreModules/Database/Database.h"
+#include "../../../../JARVISCoreModules/CoreModules/config.h"
 
 BOOST_AUTO_TEST_CASE(MovieGetterconstructor)
 {
@@ -42,8 +44,10 @@ BOOST_AUTO_TEST_CASE(invalidContext)
 
 BOOST_AUTO_TEST_CASE(entryPoint)
 {
+	DatabaseTables::Database* testDatabase = new DatabaseTables::Database() ;
+	BOOST_CHECK_EQUAL(testDatabase->Connect(DATABSEUSER,DATABASEPASSWORD,"mediaServerTests",""), true);
 
-	CoreModules cm;
+	CoreModules cm(testDatabase);
 	CoreModules* cmref = &cm;
 	MovieImageGetter m(cmref);
 

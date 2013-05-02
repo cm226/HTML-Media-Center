@@ -10,12 +10,31 @@
 
 #include <string>
 #include "../exportMacros.h"
+#include "../config.h"
+
+#define WRITE_TO_LOGFILE true
+#define WRITE_TO_CONSOL true
 
 #define LOG_STACK_TRACE_ERR false
 #define LOG_STACK_TRACE_WARN false
 #define LOG_STACK_TRACE_INFO false
 
+#define LOG_ERR true
+#define LOG_WARN true
+#define LOG_INFO true
+
+
 class DLLCORE_API ErrorLogger {
+
+private:
+	static void appendToLogFile(std::string message);
+
+	static std::string buildFormatedErrEntry(std::string message);
+	static std::string buildFormatedWarnEntry(std::string message);
+	static std::string buildFormatedInfoEntry(std::string message);
+	static std::string buildDateString();
+
+	static void writeLogEntry(std::string entry);
 
 
 public:

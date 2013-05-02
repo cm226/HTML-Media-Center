@@ -15,16 +15,19 @@ public/mix/*
 *tempUploads/
 
 /*~
+*.dll
 
 *.png
 *.jpg
 *.suo
 *.sdf
 *.opensdf
-*.filters
 *.user
 *ipch/
+
+*Debug/
 
 .DS_Store
 
 JARVIS/JARVISCoreModules/CoreModules/Errors/StackWalker/*
+JARVIS/logs/*

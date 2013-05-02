@@ -93,7 +93,7 @@ bool MovieImageGetter::onImageSelected(Page* page, PageCallbackContext* context)
 
 bool MovieImageGetter::handleMovieSelected(Page* page, PageCallbackContext* context)
 {
-	DatabaseTables::Movie movie;
+	DatabaseTables::Movie::Movie movie;
 	
 	
 	curImgSet.erase(curImgSet.begin(), curImgSet.end());
@@ -107,13 +107,13 @@ bool MovieImageGetter::handleMovieSelected(Page* page, PageCallbackContext* cont
 		page->addElement(l);
 		return true;
 	}
-	this->imgGetter.doGoogleSearch(curImgSet,movie.name->getStrValue() +" Poster");
+	this->imgGetter.doGoogleSearch(curImgSet,movie.movieName->getStrValue() +" Poster");
 
 
 	Form* chooseMediaForm = new Form("mediaForm");
 	FormSubmit* submitFormBtt = new FormSubmit("find");
 	Lable* movieNameLable = new Lable("MovieName");
-	movieNameLable->setText("For Movie: "+movie.name->getStrValue());
+	movieNameLable->setText("For Movie: "+movie.movieName->getStrValue());
 	page->addElement(movieNameLable);
 
 	std::vector<std::string>::iterator resultIt = curImgSet.begin();
@@ -145,7 +145,7 @@ bool MovieImageGetter::notifyDatabaseOfMovieUpdate(int movID, std::string thumbN
 	
 	std::stringstream movieID;
 
-	DatabaseTables::Movie movie;
+	DatabaseTables::Movie::Movie movie;
 	DatabaseTables::Query q;
 	DatabaseTables::UpdateQuery updateMovieq(&movie);
 	movieID << movID;
@@ -161,22 +161,22 @@ bool MovieImageGetter::notifyDatabaseOfMovieUpdate(int movID, std::string thumbN
 		return false;
 	}
 
-	movie.thumb->setValue(&thumbName);
+	movie.thumbnailURL->setValue(&thumbName);
 	if(!this->coreMod->getDatabaseConnection()->runQuery(&updateMovieq))
 	{
-		ErrorLogger::logError("updateing Movie: "+movie.name->getStrValue()+" Failed ");
+		ErrorLogger::logError("updateing Movie: "+movie.movieName->getStrValue()+" Failed ");
 		return false;
 	}
 	
 	return true;
 }
 
-bool MovieImageGetter::getUnallocatedMovie(DatabaseTables::Movie& movie)
+bool MovieImageGetter::getUnallocatedMovie(DatabaseTables::Movie::Movie& movie)
 {
 	
 	DatabaseTables::Query unallocatedMovie;
 
-	DatabaseTables::IDatabaseTableField* movieThumb = movie.thumb;
+	DatabaseTables::IDatabaseTableField* movieThumb = movie.thumbnailURL;
 	DatabaseTables::Equals urlThumConstrint(movieThumb,"");
 	DatabaseTables::Descriptors::Limit limit("1");
 
@@ -229,8 +229,8 @@ bool MovieImageGetter::handleImageSelected(int movieID,std::string tbhumbName, s
 std::string MovieImageGetter::getMovieNameFromID(int movieID)
 {
 	DatabaseTables::Query movieNameQuery;
-	DatabaseTables::MovieName movieNameField;
-	DatabaseTables::movieID movID;
+	DatabaseTables::Movie::Fields::movieName movieNameField;
+	DatabaseTables::Movie::Fields::movieID movID;
 	std::stringstream movieIDStr;
 	movieIDStr << movieID;
 	DatabaseTables::Equals idConstraint(&movID,movieIDStr.str());

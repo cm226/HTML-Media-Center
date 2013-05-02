@@ -9,7 +9,7 @@
 #define MEDIAIMAGESPLUGIN_H_
 
 #include "../../JARVIS/Framework/Plugin/Plugin.h"
-#include "../../JARVISCoreModules/CoreModules/Database/Tables/Movie/Movie/Movie.h"
+#include "../../JARVISCoreModules/CoreModules/Database/Tables/Movie/Movie.h"
 #include "ImageGetters\Movie\MovieImageGetter.h"
 #include "ImageGetters\Music\MusicImageGetter.h"
 

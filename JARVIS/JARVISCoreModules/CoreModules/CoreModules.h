@@ -22,6 +22,7 @@ private:
 
 public:
 	CoreModules();
+	CoreModules(DatabaseTables::Database* databaseOverride);
 	virtual ~CoreModules();
 
 	DatabaseTables::Database* getDatabaseConnection();

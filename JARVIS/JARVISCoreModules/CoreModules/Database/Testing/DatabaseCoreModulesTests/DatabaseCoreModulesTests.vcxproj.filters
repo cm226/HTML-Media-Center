@@ -41,34 +41,10 @@
     <ClCompile Include="..\..\Tables\IDatabaseTableField.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tables\Movie\Movie\Movie.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tables\Movie\Movie\Fields\movieGenra.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tables\Movie\Movie\Fields\movieID.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tables\Movie\Movie\Fields\movieIMDB.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tables\Movie\Movie\Fields\movieLength.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tables\Movie\Movie\Fields\MovieName.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tables\Movie\Movie\Fields\movieURL.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Querys\Query.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\ResultWrapper.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tables\Movie\Movie\Fields\thumbnailURL.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
     <ClCompile Include="SelectTests.cpp">
@@ -76,6 +52,27 @@
     </ClCompile>
     <ClCompile Include="ConnectTests.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tables\Movie\Movie.cpp">
+      <Filter>Source Files\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tables\Movie\Fields\movieGenre.cpp">
+      <Filter>Source Files\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tables\Movie\Fields\movieID.cpp">
+      <Filter>Source Files\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tables\Movie\Fields\movieIMDB.cpp">
+      <Filter>Source Files\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tables\Movie\Fields\movieName.cpp">
+      <Filter>Source Files\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tables\Movie\Fields\movieURL.cpp">
+      <Filter>Source Files\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tables\Movie\Fields\thumbnailURL.cpp">
+      <Filter>Source Files\Src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

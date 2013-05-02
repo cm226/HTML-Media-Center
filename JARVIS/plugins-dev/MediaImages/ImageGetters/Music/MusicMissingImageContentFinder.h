@@ -20,6 +20,8 @@ private:
 	std::string imageContentURL;
 	DatabaseTables::Database* databaseHandle;
 
+	bool checkArtistThumbnailImageExists(std::string artistName);
+
 public:
 	/**
 		ctor

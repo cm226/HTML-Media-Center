@@ -7,7 +7,7 @@
 #include "../ImageGetter.h"
 #include "../../../../JARVIS/Framework/Plugin/Plugin.h"
 #include "../../../../JARVISCoreModules/CoreModules/Database/Database.h"
-#include "../../../../JARVISCoreModules/CoreModules/Database/Tables/Movie/Movie/Movie.h"
+#include "../../../../JARVISCoreModules/CoreModules/Database/Tables/Movie/Movie.h"
 
 class MovieImageGetter : public imagegetters::IimageContentGetter
 {
@@ -21,7 +21,7 @@ private:
 	static const CALLBACk_HANDLE ImageSelected = 11;
 
 
-	bool getUnallocatedMovie(DatabaseTables::Movie& movie);
+	bool getUnallocatedMovie(DatabaseTables::Movie::Movie& movie);
 	bool notifyDatabaseOfMovieUpdate(int movID, std::string thumbName);
 	bool handleImageSelected(int movieID,std::string tbhumbName, std::string imgURL);
 	std::string getMovieNameFromID(int movieID);

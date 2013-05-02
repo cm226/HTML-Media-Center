@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "../../Database.h"
-#include "../../Tables/Movie/Movie/Movie.h"
+#include "../../Tables/Movie/Movie.h"
 #include "../../../config.h"
 
 
 BOOST_AUTO_TEST_CASE(DatabaseSelect)
 {
 	DatabaseTables::Database database;
-	DatabaseTables::Movie movie;
+	DatabaseTables::Movie::Movie movie;
 	DatabaseTables::Query query;
 
 	database.Connect(DATABSEUSER,DATABASEPASSWORD,DATABASENAME,"localhost");

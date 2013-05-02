@@ -59,6 +59,7 @@ void JARVISFramework::loadStartupPlugins()
 
 	//pluginLoader->loadPlugin("libEmailChecker",&emailChecker, &this->cModules);
 	pluginLoader->loadPlugin("libMediaImages",&mediaImages, &this->cModules);
+	pluginLoader->loadPlugin("LogViewer",&mediaImages, &this->cModules);
 
 }
 

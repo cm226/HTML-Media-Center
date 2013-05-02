@@ -21,9 +21,13 @@ struct CoreModules::privateMembers
 
 CoreModules::CoreModules():members(new privateMembers())
 {
-	
 	this->members->databasecon = NULL;
+	ErrorLogger::logInfo("Core Modules Loaded");
+}
 
+CoreModules::CoreModules(DatabaseTables::Database* databaseOverride):members(new privateMembers())
+{
+	this->members->databasecon = databaseOverride;
 	ErrorLogger::logInfo("Core Modules Loaded");
 }
 
