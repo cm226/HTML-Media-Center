@@ -49,7 +49,7 @@ void Comms::connectionListener()
 		if(haveConnection)
 		{
 			std::string message;
-			this->transever->getMessage(&message);
+			this->transever->getMessageOrTimeout(&message,5000);
 			unsigned int msgLen = (unsigned int)message.length();
 			AbstractMessage* msg = this->messageTranslater->translateMessage(message.c_str(),msgLen);
 

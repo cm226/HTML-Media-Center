@@ -10,7 +10,7 @@
 using namespace std;
 Lable::Lable(string name): IElement(name)
 {
-
+	this->addAttribute("style=\"color:white;\"");
 }
 
 Lable::~Lable() {

@@ -17,8 +17,8 @@ public:
 	virtual ~AbstractTransever();
 
 
-	virtual int listenForConnection(int timeout) = 0;
-	virtual void getMessage(std::string* message) = 0;
+	virtual bool listenForConnection(int timeout) = 0;
+	virtual void getMessageOrTimeout(std::string* data, unsigned timoutMiliseconds) = 0;
 	virtual void sendMessage(std::string* message) = 0;
 	virtual void shutdown() = 0;
 	void error(std::string msg);

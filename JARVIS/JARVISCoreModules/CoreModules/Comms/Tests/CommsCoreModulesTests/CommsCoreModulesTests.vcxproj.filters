@@ -16,6 +16,9 @@
     <Filter Include="Source Files\CURL">
       <UniqueIdentifier>{5008cab6-1515-4057-b01a-a5881ae4eea1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\TranseverTests">
+      <UniqueIdentifier>{4be08b59-90f4-4486-a3cd-02fed5f5388f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -34,6 +37,27 @@
     </ClCompile>
     <ClCompile Include="..\..\CURL\CurlManager.cpp">
       <Filter>Source Files\CURL</Filter>
+    </ClCompile>
+    <ClCompile Include="MessagechunkerTests.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Transever\MessageChunker.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
+    </ClCompile>
+    <ClCompile Include="TCPTranseverTests.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Transever\TCPTransever.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Transever\AbstractTransever.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Errors\ErrorLogger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Transever\Exceptions\TimeoutExpiredException.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

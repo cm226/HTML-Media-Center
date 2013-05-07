@@ -15,8 +15,11 @@ private:
 	std::string name;
 	LogEntryParser logParser;
 
-	void LogViewerPlugin::renderEntry(model::LogEntry& entry, ElementList* elementList);
+	void renderEntry(model::LogEntry& entry, ElementList* elementList);
 
+	void renderErrorEntry(model::LogEntry& entry, ElementList* elementList);
+	void renderWarnEntry(model::LogEntry& entry, ElementList* elementList);
+	void renderInfoEntry(model::LogEntry& entry, ElementList* elementList);
 
 public:
 	LogViewerPlugin(CoreModules* cm);

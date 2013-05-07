@@ -85,8 +85,11 @@
     <ClCompile Include="..\..\ImageGetters\IimageContentGetter.cpp" />
     <ClCompile Include="..\..\ImageGetters\ImageGetter.cpp" />
     <ClCompile Include="..\..\ImageGetters\Movie\MovieImageGetter.cpp" />
+    <ClCompile Include="..\..\ImageGetters\Music\MusicImageGetter.cpp" />
     <ClCompile Include="..\..\ImageGetters\Music\MusicMissingImageContentFinder.cpp" />
+    <ClCompile Include="..\..\MediaImagesPlugin.cpp" />
     <ClCompile Include="ImageGetterTests.cpp" />
+    <ClCompile Include="MediaImagesPluginTestser.cpp" />
     <ClCompile Include="MediaImagesTesting.cpp" />
     <ClCompile Include="MovieImageGetterTester.cpp" />
     <ClCompile Include="MusicMissingImageGetterTests.cpp" />

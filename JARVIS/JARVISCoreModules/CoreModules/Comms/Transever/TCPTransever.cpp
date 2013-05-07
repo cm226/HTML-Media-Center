@@ -7,6 +7,8 @@
 
 #include "TCPTransever.h"
 #include <boost/bind.hpp>
+#include "MessageChunker.h"
+#include <boost/thread/thread.hpp>
 
 
 using boost::asio::ip::tcp;
@@ -40,7 +42,7 @@ TCPTransever::~TCPTransever()
 }
 
 
-int TCPTransever::listenForConnection(int timeout)
+bool TCPTransever::listenForConnection(int timeout)
 {
 
 	tcp::acceptor acceptor(io_service, tcp::endpoint(tcp::v4(), this->PORT));
@@ -90,30 +92,25 @@ void TCPTransever::check_deadline()
    this->timer->async_wait(boost::bind(&TCPTransever::check_deadline, this));
  }
 
-void TCPTransever::getMessage(std::string* message)
+void TCPTransever::getMessageOrTimeout(std::string* message, unsigned timoutMiliseconds)
 {
 	boost::asio::socket_base::bytes_readable command(true);
 	curSocket->io_control(command);
 
 	int wateCounter = 0;
+	int maxWateTill = (timoutMiliseconds /1000)+1;
 	std::size_t bytes_readable;
 	while((bytes_readable = command.get()) == 0)
 	{
-		if(wateCounter > 5)
+		if(wateCounter > maxWateTill)
 		{
 			*message = "";
 			ErrorLogger::logError("Connection Closed due to non responcive end point");
-			if(this->curSocket->is_open())
-				this->curSocket->shutdown(boost::asio::socket_base::shutdown_both);
-			delete this->curSocket;
-			return; // 
+			throw coremodules::comms::transever::exceptions::TimeoutExpiredException("A responce never came from the endfpoint within the timeout time");
+			return; 
 		}
-#ifdef _WINDOWS
-		Sleep(1000); // sleep for a second
-#else
-		sleep(1);
-#endif
-
+		boost::this_thread::sleep( boost::posix_time::seconds(1) );
+		curSocket->io_control(command);
 		wateCounter++;
 	}
 
@@ -122,14 +119,47 @@ void TCPTransever::getMessage(std::string* message)
 	boost::asio::read(*curSocket,boost::asio::buffer(msg,bytes_readable),error);
 	std::cout << error;
 	msg[bytes_readable] = '\0';
-	*message = std::string(msg);
+	message->assign(msg);
+	delete msg;
 }
 
 void TCPTransever::sendMessage(std::string* data)
 {
 	if(this->curSocket->is_open())
 	{
-		this->curSocket->send(boost::asio::buffer(data->c_str(),data->length()));
+		std::list<std::string> messageChunks;
+		MessageChunker chunker(2048,*data);
+		chunker.chunkMessage(messageChunks);
+		messageChunks.push_back("MSG_END");
+		this->sendMessageChunks(messageChunks);
+	}
+}
+
+void TCPTransever::sendMessageChunks(std::list<std::string>& chunks)
+{
+	std::list<std::string>::iterator chunkIt;
+	std::stringstream infoMessageStream;
+	infoMessageStream << "TCP Trancever sending " << chunks.size() << " message chunks";
+	ErrorLogger::logInfo(infoMessageStream.str());
+
+	std::string reply;
+	for(chunkIt = chunks.begin(); chunkIt != chunks.end(); chunkIt++)
+	{
+		this->curSocket->send(boost::asio::buffer((*chunkIt).c_str(),(*chunkIt).length()));
+		try
+		{
+			this->getMessageOrTimeout(&reply,5000);
+		}
+		catch(coremodules::comms::transever::exceptions::TimeoutExpiredException& excpt)
+		{
+			ErrorLogger::logError("Send message Chunks Failed, Respoce Timed out with no request for more Data");
+			break;
+		}
+		if(reply.compare("RnextChunk$")!=0)
+		{
+			ErrorLogger::logError("Received Erronius value from socket when whending chunks: "+reply);
+			break;
+		}
 	}
 }
 

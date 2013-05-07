@@ -84,6 +84,7 @@
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPageTranslationFilter.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.cpp" />
     <ClCompile Include="CoreModules\Comms\Transever\AbstractTransever.cpp" />
+    <ClCompile Include="CoreModules\Comms\Transever\Exceptions\TimeoutExpiredException.cpp" />
     <ClCompile Include="CoreModules\Comms\Transever\TCPTransever.cpp" />
     <ClCompile Include="CoreModules\CoreModules.cpp" />
     <ClCompile Include="CoreModules\Database\Database.cpp" />
@@ -161,6 +162,8 @@
     <ClCompile Include="CoreModules\HTMLRendere\Containers\ElementList.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Containers\Form.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Containers\IContainer.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockedElements\BottomDockedElement.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockingLayout.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\FormSubmit.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\HTMLImage.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\Lable.cpp" />
@@ -171,6 +174,10 @@
     <ClCompile Include="CoreModules\Database\Querys\Descriptor\Descriptor.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\Hyperlink.cpp" />
     <ClCompile Include="CoreModules\Errors\MyStackWalker.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockedElements\LeftDockedElement.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockedElements\RightDockedElement.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockedElements\topDockedElement.cpp" />
+    <ClCompile Include="CoreModules\Comms\Transever\MessageChunker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreModules\Comms\Comms.h" />
@@ -193,6 +200,7 @@
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPageTranslationFilter.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.h" />
     <ClInclude Include="CoreModules\Comms\Transever\AbstractTransever.h" />
+    <ClInclude Include="CoreModules\Comms\Transever\Exceptions\TimeoutExpiredException.h" />
     <ClInclude Include="CoreModules\Comms\Transever\TCPTransever.h" />
     <ClInclude Include="CoreModules\config.h" />
     <ClInclude Include="CoreModules\configSkeliton.h" />
@@ -291,6 +299,8 @@
     <ClInclude Include="CoreModules\HTMLRendere\Containers\ElementList.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Containers\Form.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Containers\IContainer.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockedElements\BottomDockedElement.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockingLayout.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\FormSubmit.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\HTMLImage.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\Lable.h" />
@@ -310,6 +320,10 @@
     <ClInclude Include="CoreModules\Database\Tables\Movie\Movie\Fields\movieID.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\Hyperlink.h" />
     <ClInclude Include="CoreModules\Errors\MyStackWalker.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockedElements\LeftDockedElement.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockedElements\RightDockedElement.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockedElements\topDockedElement.h" />
+    <ClInclude Include="CoreModules\Comms\Transever\MessageChunker.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -76,11 +76,11 @@ void ImageGetter::resizeImage(std::string const& imageURL, int sixex, int sizey)
 	std::string extention;
 	extention = boost::filesystem::extension(imageURL);
 
-	if(extention.compare(".png"))
+	if(extention.compare(".png") ==0)
 		this->resizePNGImage(imageURL,sixex, sizey);
-	else if(extention.compare(".jpg"))
+	else if(extention.compare(".jpg") ==0)
 		this->resizeJPGImage(imageURL,sixex, sizey);
-	else if(extention.compare(".jpeg"))
+	else if(extention.compare(".jpeg") ==0)
 		this->resizeJPGImage(imageURL,sixex, sizey);
 	else
 		ErrorLogger::logError("Unexpected file extention in resize: "+extention+" for file "+imageURL);
