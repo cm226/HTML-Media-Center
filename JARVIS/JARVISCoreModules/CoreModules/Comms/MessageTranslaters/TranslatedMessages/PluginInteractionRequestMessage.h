@@ -14,10 +14,12 @@ namespace TranslationFilters {
 
 class PluginInteractionRequestMessage: public AbstractMessage {
 public:
-	PluginInteractionRequestMessage(const char* data, unsigned int length);
+	PluginInteractionRequestMessage(char* data, unsigned int length);
 	virtual ~PluginInteractionRequestMessage();
 
-	virtual void actionMessage(std::string* reply);
+	virtual AbstractMessage* actionMessage();
+	virtual void serialize(coremodules::comms::messagetranslaters::StringMessageSerializer& serialiser);
+	static std::string getHeader();
 };
 
 } /* namespace TranslationFilters */

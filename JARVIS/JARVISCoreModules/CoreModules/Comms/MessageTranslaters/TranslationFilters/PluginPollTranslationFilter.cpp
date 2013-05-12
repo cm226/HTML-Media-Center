@@ -16,9 +16,9 @@ PluginPollTranslationFilter::PluginPollTranslationFilter() {
 PluginPollTranslationFilter::~PluginPollTranslationFilter() {
 }
 
-AbstractMessage* PluginPollTranslationFilter::translateMessage(std::string header, const char* bytes, unsigned int bytesLength)
+AbstractMessage* PluginPollTranslationFilter::translateMessage(std::string header, char* bytes, unsigned int bytesLength)
 {
-	if(header.compare("ppoll") == 0)
+	if(header.compare(ListPluginsMessage::getHeader()) == 0)
 	{
 		return new ListPluginsMessage(bytes, bytesLength);
 	}

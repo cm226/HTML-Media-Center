@@ -17,9 +17,9 @@ PluginInteractionFilter::PluginInteractionFilter() {
 PluginInteractionFilter::~PluginInteractionFilter() {
 }
 
-AbstractMessage* PluginInteractionFilter::translateMessage(std::string header, const char* bytes, unsigned int bytesLength)
+AbstractMessage* PluginInteractionFilter::translateMessage(std::string header, char* bytes, unsigned int bytesLength)
 {
-	if(header.compare("pcb") == 0)
+	if(header.compare(PluginInteractionRequestMessage::getHeader()) == 0)
 	{
 		return new PluginInteractionRequestMessage(bytes, bytesLength);
 	}

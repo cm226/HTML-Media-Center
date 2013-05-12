@@ -17,7 +17,7 @@ public:
 	PluginPageTranslationFilter();
 	virtual ~PluginPageTranslationFilter();
 
-	virtual AbstractMessage* translateMessage(std::string header,const  char* bytes, unsigned int bytesLength);
+	virtual AbstractMessage* translateMessage(std::string header, char* bytes, unsigned int bytesLength);
 };
 
 } /* namespace TranslationFilters */

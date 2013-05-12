@@ -59,5 +59,50 @@
     <ClCompile Include="..\..\Transever\Exceptions\TimeoutExpiredException.cpp">
       <Filter>Source Files\TranseverTests</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\MessageTranslaters\Translater.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MessageTranslaters\StringMessageSerializer.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MessageTranslaters\TranslationFilters\BaseTranslationFilter.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MessageTranslaters\TranslationFilters\CommandAndcontrolTranslationFilter.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MessageTranslaters\TranslationFilters\PluginInteractionFilter.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MessageTranslaters\TranslationFilters\PluginPageTranslationFilter.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\AbstractMessage.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\ComandAndControlMessage.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\ListPluginsMessage.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\PluginInteractionRequestMessage.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\PluginPageMessage.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\ReplyMessage.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\RequestNextDataChunkMessage.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EventModel\EventManager.cpp">
+      <Filter>Source Files\TranseverTests</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -14,10 +14,12 @@ namespace TranslatedMessages {
 
 class PluginPageMessage: public AbstractMessage {
 public:
-	PluginPageMessage(const char* data, unsigned int length);
+	PluginPageMessage(char* data, unsigned int length);
 	virtual ~PluginPageMessage();
 
-	virtual void actionMessage(std::string* reply);
+	virtual AbstractMessage* actionMessage();
+	virtual void serialize(coremodules::comms::messagetranslaters::StringMessageSerializer& serialiser);
+	static std::string getHeader();
 };
 
 } /* namespace TranslatedMessages */

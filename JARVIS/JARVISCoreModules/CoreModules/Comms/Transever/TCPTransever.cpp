@@ -9,6 +9,8 @@
 #include <boost/bind.hpp>
 #include "MessageChunker.h"
 #include <boost/thread/thread.hpp>
+#include <sstream>
+#include "../MessageTranslaters/StringMessageSerializer.h"
 
 
 using boost::asio::ip::tcp;
@@ -92,7 +94,7 @@ void TCPTransever::check_deadline()
    this->timer->async_wait(boost::bind(&TCPTransever::check_deadline, this));
  }
 
-void TCPTransever::getMessageOrTimeout(std::string* message, unsigned timoutMiliseconds)
+ AbstractMessage* TCPTransever::getMessageOrTimeout(unsigned timoutMiliseconds)
 {
 	boost::asio::socket_base::bytes_readable command(true);
 	curSocket->io_control(command);
@@ -100,37 +102,65 @@ void TCPTransever::getMessageOrTimeout(std::string* message, unsigned timoutMili
 	int wateCounter = 0;
 	int maxWateTill = (timoutMiliseconds /1000)+1;
 	std::size_t bytes_readable;
-	while((bytes_readable = command.get()) == 0)
+	while((bytes_readable = command.get()) < 2)
 	{
 		if(wateCounter > maxWateTill)
 		{
-			*message = "";
 			ErrorLogger::logError("Connection Closed due to non responcive end point");
 			throw coremodules::comms::transever::exceptions::TimeoutExpiredException("A responce never came from the endfpoint within the timeout time");
-			return; 
+			return NULL; 
 		}
 		boost::this_thread::sleep( boost::posix_time::seconds(1) );
 		curSocket->io_control(command);
 		wateCounter++;
 	}
-
-	char* msg = new char[bytes_readable+1];
+	
+	unsigned char* msgSize = new unsigned char[2];
 	boost::system::error_code error;
-	boost::asio::read(*curSocket,boost::asio::buffer(msg,bytes_readable),error);
+	boost::asio::read(*curSocket,boost::asio::buffer(msgSize,2),error);
+
+	int messageSize = msgSize[0];
+	messageSize = messageSize << 8;
+	messageSize += msgSize[1];
+
 	std::cout << error;
-	msg[bytes_readable] = '\0';
-	message->assign(msg);
-	delete msg;
+	char* accualMessage = new char[messageSize+1];
+	boost::asio::read(*curSocket,boost::asio::buffer(accualMessage,messageSize),error);
+	accualMessage[messageSize] = '\0';
+
+	AbstractMessage* message =  this->messageTranslater.translateMessage(accualMessage,messageSize+1);
+	delete[] msgSize;
+	return message;
 }
 
-void TCPTransever::sendMessage(std::string* data)
+void TCPTransever::sendMessage( AbstractMessage* data)
 {
 	if(this->curSocket->is_open())
 	{
+		coremodules::comms::messagetranslaters::StringMessageSerializer serializer;
+		data->serialize(serializer);
 		std::list<std::string> messageChunks;
-		MessageChunker chunker(2048,*data);
+		std::string messageContent = serializer.serialize();
+		
+		
+		int messageLength = messageContent.size();
+		if(messageLength > 65535)
+			throw std::runtime_error("Message TOO big");
+
+		unsigned char msgSizeBits[2];
+		msgSizeBits[1] = (unsigned char)(messageLength); // lowbit
+		msgSizeBits[0] = (unsigned char)(messageLength >> 8); // highbit
+		std::stringstream messageStream;
+		std::string fullMessage;
+		fullMessage.reserve(messageContent.size() +2);
+
+		messageStream << msgSizeBits[0] <<msgSizeBits[1]<< messageContent;
+		fullMessage = messageStream.str();
+		
+		
+		MessageChunker chunker(2048,fullMessage);
 		chunker.chunkMessage(messageChunks);
-		messageChunks.push_back("MSG_END");
+
 		this->sendMessageChunks(messageChunks);
 	}
 }
@@ -142,25 +172,34 @@ void TCPTransever::sendMessageChunks(std::list<std::string>& chunks)
 	infoMessageStream << "TCP Trancever sending " << chunks.size() << " message chunks";
 	ErrorLogger::logInfo(infoMessageStream.str());
 
-	std::string reply;
+	AbstractMessage* replyMessage;
 	for(chunkIt = chunks.begin(); chunkIt != chunks.end(); chunkIt++)
 	{
-		this->curSocket->send(boost::asio::buffer((*chunkIt).c_str(),(*chunkIt).length()));
+		std::string message = *chunkIt;
+		this->curSocket->send(boost::asio::buffer(message.c_str(),message.length()));
+		/*
 		try
 		{
-			this->getMessageOrTimeout(&reply,5000);
+			replyMessage = this->getMessageOrTimeout(5000);
 		}
 		catch(coremodules::comms::transever::exceptions::TimeoutExpiredException& excpt)
 		{
 			ErrorLogger::logError("Send message Chunks Failed, Respoce Timed out with no request for more Data");
 			break;
 		}
-		if(reply.compare("RnextChunk$")!=0)
+
+		if(isRequestNextDataMessage(replyMessage))
 		{
-			ErrorLogger::logError("Received Erronius value from socket when whending chunks: "+reply);
+			ErrorLogger::logError("Received Erronius value from socket when whending chunks");
 			break;
-		}
+		}*/
 	}
+}
+
+bool TCPTransever::isRequestNextDataMessage(AbstractMessage* msg)
+{
+	TranslatedMessages::RequestNextDataChunkMessage * reqNextChunk = dynamic_cast<TranslatedMessages::RequestNextDataChunkMessage*>(msg);
+	return reqNextChunk != NULL;
 }
 
 void TCPTransever::shutdown()

@@ -21,9 +21,9 @@ public:
 	BaseTranslationFilter();
 	virtual ~BaseTranslationFilter();
 	void setNextFilter(BaseTranslationFilter* filter);
-	AbstractMessage* forwardMessage(std::string header, const char* bytes, unsigned int bytesLength);
+	AbstractMessage* forwardMessage(std::string header, char* bytes, unsigned int bytesLength);
 
-	virtual AbstractMessage* translateMessage(std::string header, const char* bytes, unsigned int bytesLength) = 0;
+	virtual AbstractMessage* translateMessage(std::string header, char* bytes, unsigned int bytesLength) = 0;
 };
 
 } /* namespace TranslationFilters */

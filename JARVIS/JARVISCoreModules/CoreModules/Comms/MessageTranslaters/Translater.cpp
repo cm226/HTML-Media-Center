@@ -19,7 +19,7 @@ Translater::~Translater()
 	delete this->translationFilter;
 }
 
-AbstractMessage* Translater::translateMessage(const char* message, unsigned int messageLength)
+AbstractMessage* Translater::translateMessage(char* message, unsigned int messageLength)
 {
 	
 	unsigned int offset = 0;
@@ -43,7 +43,7 @@ AbstractMessage* Translater::translateMessage(const char* message, unsigned int 
 	return translatedMessage;
 }
 
-AbstractMessage* Translater::messageFactory(std::string msgHeader, const char* data, unsigned int messageLength)
+AbstractMessage* Translater::messageFactory(std::string msgHeader, char* data, unsigned int messageLength)
 {
 	return this->translationFilter->translateMessage(msgHeader,data,messageLength);
 }

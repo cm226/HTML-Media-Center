@@ -56,7 +56,13 @@ public function sendMessage($Message)
 	if($this->connected)
 	{
 		$messageStr = $Message->getMessage();
-		echo 'sending: '.$messageStr ;
+		$msgLen = strlen($messageStr);
+		$lowBit = $msgLen & 255;
+		$hightBit = $msgLen >> 8;
+		
+		$msgHeaderStr = chr($hightBit). chr($lowBit);
+		$messageStr = $msgHeaderStr.$messageStr;
+		
 		socket_write($this->sock, $messageStr, strlen($messageStr));
 	}
 }
@@ -66,8 +72,17 @@ public function readReply()
 	if($this->connected)
 	{
 		$out = "";
-		$tempOut = socket_read($this->sock, 2048);
-		while($tempOut !== 'MSG_END')
+		$msgSizeBytes = socket_read($this->sock, 2);
+		
+		$messageSize = ord($msgSizeBytes[0]);
+		$messageSize = $messageSize << 8;
+		$messageSize += ord($msgSizeBytes[1]);
+		
+		$out = socket_read($this->sock, $messageSize);
+		$messageParts = explode("$",$out);
+		
+		
+		/*while($tempOut !== 'MSG_END')
 		{
 			$out.= $tempOut;
 			socket_write($this->sock, "RnextChunk$", strlen("RnextChunk$"));
@@ -77,8 +92,8 @@ public function readReply()
 				return "connection timed out";
 			$tempOut = substr($tempOut,0,7);
 			//echo $tempOut;
-		}
-		return $out;
+		}*/
+		return $messageParts[1];
 	}
 	return "Error, connection closed";
 }

@@ -12,7 +12,6 @@
 #include "../Errors/ErrorLogger.h"
 
 #include "Transever/AbstractTransever.h"
-#include "MessageTranslaters/Translater.h"
 #include "IComms.h"
 #include "CURL/CurlManager.h"
 
@@ -21,7 +20,6 @@
 class Comms : public CommsNS::IComms{
 private:
 	AbstractTransever* transever;
-	Translater* messageTranslater;
 	CommsNS::CurlManager curlMan;
 
 	bool listening;

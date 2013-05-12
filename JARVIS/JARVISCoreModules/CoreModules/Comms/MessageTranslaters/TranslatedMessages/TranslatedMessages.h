@@ -3,3 +3,5 @@
 #include "ComandAndControlMessage.h"
 #include "PluginPageMessage.h"
 #include "PluginInteractionRequestMessage.h"
+#include "RequestNextDataChunkMessage.h"
+#include "ReplyMessage.h"

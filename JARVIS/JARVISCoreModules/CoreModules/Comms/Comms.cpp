@@ -17,13 +17,10 @@
 Comms::Comms(){
 	this->transever = new TCPTransever(45001);
 	this->listening = false;
-
-	this->messageTranslater = new Translater();
 }
 
 Comms::~Comms() {
 	delete this->transever;
-	delete this->messageTranslater;
 }
 
 void Comms::startComms()
@@ -48,16 +45,12 @@ void Comms::connectionListener()
 		int haveConnection = this->transever->listenForConnection(5);
 		if(haveConnection)
 		{
-			std::string message;
-			this->transever->getMessageOrTimeout(&message,5000);
-			unsigned int msgLen = (unsigned int)message.length();
-			AbstractMessage* msg = this->messageTranslater->translateMessage(message.c_str(),msgLen);
-
-			if(msg != NULL)
+			AbstractMessage* recevedMessage = this->transever->getMessageOrTimeout(5000);
+			if(recevedMessage != NULL)
 			{
-				std::string messageReply;
-				msg->actionMessage(&messageReply);
-				this->transever->sendMessage(&messageReply);
+				AbstractMessage* reply =  recevedMessage->actionMessage();
+				this->transever->sendMessage(reply);
+				delete reply;
 			}
 		}
 

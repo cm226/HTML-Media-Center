@@ -18,9 +18,9 @@ PluginPageTranslationFilter::~PluginPageTranslationFilter() {
 	// TODO Auto-generated destructor stub
 }
 
-AbstractMessage* PluginPageTranslationFilter::translateMessage(std::string header, const char* bytes, unsigned int bytesLength)
+AbstractMessage* PluginPageTranslationFilter::translateMessage(std::string header, char* bytes, unsigned int bytesLength)
 {
-	if(header.compare("rpp") == 0)
+	if(header.compare(TranslatedMessages::PluginPageMessage::getHeader()) == 0)
 	{
 		return new TranslatedMessages::PluginPageMessage(bytes, bytesLength);
 	}
