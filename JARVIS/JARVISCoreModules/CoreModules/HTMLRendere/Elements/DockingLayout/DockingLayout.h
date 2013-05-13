@@ -7,10 +7,10 @@
 
 #include "../../IElement.h"
 #include "../../../exportMacros.h"
-#include "DockedElements\BottomDockedElement.h"
-#include "DockedElements\LeftDockedElement.h"
-#include "DockedElements\RightDockedElement.h"
-#include "DockedElements\TopDockedElement.h"
+#include "DockedElements/BottomDockedElement.h"
+#include "DockedElements/LeftDockedElement.h"
+#include "DockedElements/RightDockedElement.h"
+#include "DockedElements/TopDockedElement.h"
 #include <string>
 
 

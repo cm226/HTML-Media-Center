@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "../../../HTMLRendere/Elements/Lable.h"
+#include "../../JARVISCoreModules/CoreModules/HTMLRendere/Elements/Lable.h"
 
 BOOST_AUTO_TEST_CASE(LableConstructor)
 {

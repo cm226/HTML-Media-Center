@@ -11,7 +11,7 @@
 #include "AbstractTransever.h"
 #include <boost/asio.hpp>
 #include <list>
-#include "Exceptions\TimeoutExpiredException.h"
+#include "Exceptions/TimeoutExpiredException.h"
 #include "../MessageTranslaters/Translater.h"
 #include "../MessageTranslaters/TranslatedMessages/TranslatedMessages.h"
 

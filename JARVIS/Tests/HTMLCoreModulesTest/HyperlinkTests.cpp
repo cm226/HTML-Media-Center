@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "../../../HTMLRendere/Elements/Hyperlink.h"
+#include "../../JARVISCoreModules/CoreModules/HTMLRendere/Elements/Hyperlink.h"
 
 BOOST_AUTO_TEST_CASE(HyperlinkConstructor)
 {

@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "../../../HTMLRendere/Elements/Lable.h"
-#include "../../../HTMLRendere/Containers/Form.h"
+#include "../../JARVISCoreModules/CoreModules/HTMLRendere/Elements/Lable.h"
+#include "../../JARVISCoreModules/CoreModules/HTMLRendere/Containers/Form.h"
 
 BOOST_AUTO_TEST_CASE(formConstructor)
 {

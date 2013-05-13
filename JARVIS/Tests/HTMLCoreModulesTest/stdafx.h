@@ -3,6 +3,7 @@
 #define STDAFX_HTML_TEST
 #pragma once
 
+
 #include "targetver.h"
 
 #include <stdio.h>

@@ -28,7 +28,7 @@ public:
 	/**
 		dtor
 	*/
-	~TimeoutExpiredException();
+	virtual ~TimeoutExpiredException() throw();
 
 };
 

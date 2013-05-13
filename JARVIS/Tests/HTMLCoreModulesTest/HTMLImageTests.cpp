@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "../../../HTMLRendere/Elements/HTMLImage.h"
+#include "../../JARVISCoreModules/CoreModules/HTMLRendere/Elements/HTMLImage.h"
 
 BOOST_AUTO_TEST_CASE(HTMLImageConstructor)
 {

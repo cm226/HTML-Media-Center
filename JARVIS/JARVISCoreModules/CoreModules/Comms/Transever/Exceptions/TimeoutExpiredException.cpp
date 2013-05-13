@@ -19,7 +19,7 @@ TimeoutExpiredException::TimeoutExpiredException(const std::string& error_messag
 
 
 
-TimeoutExpiredException::~TimeoutExpiredException()
+TimeoutExpiredException::~TimeoutExpiredException() throw()
 {
 }
 

@@ -4,7 +4,7 @@
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
 #include <boost/bind.hpp>
-#include <boost\array.hpp>
+#include <boost/array.hpp>
 
 /*
 	IT LOOKS LIKE USING THE BOOST_CHECK FUNCTIONS CALSE AN ACES VIOLATION IF CALLED FROM ANOTHER THREAD

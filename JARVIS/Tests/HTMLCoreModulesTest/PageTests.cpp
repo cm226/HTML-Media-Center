@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "../../../HTMLRendere/Elements/Lable.h"
-#include "../../../HTMLRendere/Page.h"
+#include "../../JARVISCoreModules/CoreModules/HTMLRendere/Elements/Lable.h"
+#include "../../JARVISCoreModules/CoreModules/HTMLRendere/Page.h"
 
 BOOST_AUTO_TEST_CASE(pageConstructor)
 {
