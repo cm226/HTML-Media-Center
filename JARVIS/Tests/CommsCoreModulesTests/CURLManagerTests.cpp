@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include <boost/filesystem.hpp>
 
-#include "../../../Comms/CURL/CurlManager.h"
-#include "../../JSON/JSONCURLRequest.h"
+#include "../../JARVISCoreModules/CoreModules/Comms/CURL/CurlManager.h"
+#include "../../JARVISCoreModules/CoreModules/Comms/JSON/JSONCURLRequest.h"
 
 
 BOOST_AUTO_TEST_CASE(CURLManagerConstructorTests)

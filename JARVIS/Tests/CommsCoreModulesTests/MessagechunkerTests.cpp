@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "../../Transever/MessageChunker.h"
+#include "../../JARVISCoreModules/CoreModules/Comms/Transever/MessageChunker.h"
 
 
 BOOST_AUTO_TEST_CASE(MessageChunkerConstructorTests)

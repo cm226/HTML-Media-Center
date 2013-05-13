@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "../../Database.h"
-#include "../../../config.h"
+#include "../../JARVISCoreModules/CoreModules/Database/Database.h"
+#include "../../JARVISCoreModules/CoreModules/config.h"
 
 
 BOOST_AUTO_TEST_CASE(constructorTest)

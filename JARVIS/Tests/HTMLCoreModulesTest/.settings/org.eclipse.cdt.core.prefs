@@ -1,0 +1,17 @@
+eclipse.preferences.version=1
+environment/project/cdt.managedbuild.config.gnu.exe.debug.193554628/LD_LIBRARY_PATH/delimiter=\:
+environment/project/cdt.managedbuild.config.gnu.exe.debug.193554628/LD_LIBRARY_PATH/operation=append
+environment/project/cdt.managedbuild.config.gnu.exe.debug.193554628/LD_LIBRARY_PATH/value=/home/craig/boost/boost_1_51_0/stage/lib
+environment/project/cdt.managedbuild.config.gnu.exe.debug.193554628/PATH/delimiter=\:
+environment/project/cdt.managedbuild.config.gnu.exe.debug.193554628/PATH/operation=replace
+environment/project/cdt.managedbuild.config.gnu.exe.debug.193554628/PATH/value=/home/craig/bin\:/usr/lib/lightdm/lightdm\:/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/usr/games\:${PATH}
+environment/project/cdt.managedbuild.config.gnu.exe.debug.193554628/append=true
+environment/project/cdt.managedbuild.config.gnu.exe.debug.193554628/appendContributed=true
+environment/project/cdt.managedbuild.config.gnu.exe.release.286776357/LD_LIBRARY_PATH/delimiter=\:
+environment/project/cdt.managedbuild.config.gnu.exe.release.286776357/LD_LIBRARY_PATH/operation=append
+environment/project/cdt.managedbuild.config.gnu.exe.release.286776357/LD_LIBRARY_PATH/value=/home/craig/boost/boost_1_51_0/stage/lib
+environment/project/cdt.managedbuild.config.gnu.exe.release.286776357/PATH/delimiter=\:
+environment/project/cdt.managedbuild.config.gnu.exe.release.286776357/PATH/operation=replace
+environment/project/cdt.managedbuild.config.gnu.exe.release.286776357/PATH/value=/home/craig/bin\:/usr/lib/lightdm/lightdm\:/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/usr/games\:${PATH}
+environment/project/cdt.managedbuild.config.gnu.exe.release.286776357/append=true
+environment/project/cdt.managedbuild.config.gnu.exe.release.286776357/appendContributed=true

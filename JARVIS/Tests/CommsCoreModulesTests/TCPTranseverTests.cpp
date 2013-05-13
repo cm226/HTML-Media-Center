@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "../../Transever/TCPTransever.h"
-#include "../../MessageTranslaters/TranslatedMessages/ListPluginsMessage.h"
+#include "../../JARVISCoreModules/CoreModules/Comms/Transever/TCPTransever.h"
+#include "../../JARVISCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ListPluginsMessage.h"
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
 #include <boost/bind.hpp>
@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE(TCPTranseverSendTests)
 
 	boost::array<char, 2> buf;
 	buf.fill('\0');
-	boost::asio::read(socket, boost::asio::buffer(buf), ec);
+	boost::asio::read(socket, boost::asio::buffer(buf));
 	int messageSize = buf.at(0);
 	messageSize = messageSize << 8;
 	messageSize += buf.at(1);
@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE(TCPTranseverSendTests)
 	
 	boost::array<char, 2048> msgBuf;
 	msgBuf.fill('\0');
-	boost::asio::read(socket, boost::asio::buffer(msgBuf,messageSize), ec);
+	boost::asio::read(socket, boost::asio::buffer(msgBuf,messageSize));
 	std::string message = msgBuf.c_array();
 	BOOST_CHECK_EQUAL(message.compare("ppoll$"),0);
 
@@ -82,7 +82,7 @@ void sendMessage()
 	buf[5] = 'l';
 	buf[6] = 'l';
 	buf[7] = '$';
-	boost::asio::write(socket, boost::asio::buffer(buf), ec);
+	boost::asio::write(socket, boost::asio::buffer(buf));
 
 	socket.shutdown(boost::asio::socket_base::shutdown_both);
 }
@@ -136,7 +136,7 @@ BOOST_AUTO_TEST_CASE(TCPTranseverSendLargeString)
 
 	boost::array<unsigned char, 2> buf;
 	buf.fill('\0');
-	boost::asio::read(socket, boost::asio::buffer(buf,2), ec);
+	boost::asio::read(socket, boost::asio::buffer(buf,2));
 	int messageSize = buf.at(0);
 	messageSize = messageSize << 8;
 	messageSize += buf.at(1);
@@ -145,7 +145,7 @@ BOOST_AUTO_TEST_CASE(TCPTranseverSendLargeString)
 
 	boost::array<unsigned char, 65508> bufMsg;
 	buf.fill('\0');
-	boost::asio::read(socket, boost::asio::buffer(bufMsg,65508), ec);
+	boost::asio::read(socket, boost::asio::buffer(bufMsg,65508));
 
 	makeConnectionThread.join();
 	socket.shutdown(boost::asio::socket_base::shutdown_both);
