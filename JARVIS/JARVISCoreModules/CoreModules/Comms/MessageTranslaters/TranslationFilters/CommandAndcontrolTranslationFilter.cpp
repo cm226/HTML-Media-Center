@@ -18,9 +18,9 @@ CommandAndcontrolTranslationFilter::~CommandAndcontrolTranslationFilter() {
 	// TODO Auto-generated destructor stub
 }
 
-AbstractMessage* CommandAndcontrolTranslationFilter::translateMessage(std::string header, const char* bytes, unsigned int bytesLength)
+AbstractMessage* CommandAndcontrolTranslationFilter::translateMessage(std::string header, char* bytes, unsigned int bytesLength)
 {
-	if(header.compare("c&c") == 0)
+	if(header.compare(ComandAndControlMessage::getHeader()) == 0)
 		{
 			return new ComandAndControlMessage(bytes, bytesLength);
 		}

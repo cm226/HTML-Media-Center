@@ -41,8 +41,8 @@ void IElement::addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std
 }
 
 void IElement::addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName)
-{
-std::stringstream movieAttributeStream ;
+{	
+	std::stringstream movieAttributeStream ;
 	movieAttributeStream << "onClick=\"window.location='";
 	for(int i = 0; i < depth; i++)
 		movieAttributeStream << "../";
@@ -53,16 +53,43 @@ std::stringstream movieAttributeStream ;
 	this->addAttribute(movieAttributeStream.str());
 }
 
+std::string IElement::writeStyle()
+{
+	std::stringstream stylestream;
+	
+	stylestream << " style=\"";
+	std::list<std::string>::iterator stylesIt;
+	for(stylesIt = this->styles.begin(); stylesIt != this->styles.end(); stylesIt++)
+	{
+		stylestream << *stylesIt;
+	}
+	stylestream << "\"";
+	return stylestream.str();
+}
+
+std::string IElement::writeAttributes()
+{
+	std::stringstream stributeHTML;
+
+	std::vector<std::string>::iterator attributeIt;
+	for(attributeIt = this->attributes.begin(); attributeIt != this->attributes.end(); attributeIt++)
+		stributeHTML << " " << (*attributeIt);
+
+	stributeHTML << this->writeStyle();
+	return stributeHTML.str();
+}
+
+void IElement::addStyle(std::string name, std::string value)
+{
+	this->styles.push_back(name + ":" + value+";");
+}
+
 std::string IElement::getText()
 {
 	std::stringstream elementHTML;
 	elementHTML << "<" <<this->getTagText();
-
-	std::vector<std::string>::iterator attributeIt;
-	for(attributeIt = this->attributes.begin(); attributeIt != this->attributes.end(); attributeIt++)
-		elementHTML << " " << (*attributeIt);
-
-	elementHTML << ">"<< getTagContent();
+	elementHTML << writeAttributes() << ">";
+	elementHTML << getTagContent();
 	elementHTML << "</" << this->getTagText() << ">";
 
 	return elementHTML.str();

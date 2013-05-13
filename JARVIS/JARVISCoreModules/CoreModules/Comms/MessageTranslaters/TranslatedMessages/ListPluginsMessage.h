@@ -12,10 +12,13 @@
 
 class ListPluginsMessage: public AbstractMessage {
 public:
-	ListPluginsMessage(const char* data, unsigned int length);
+	ListPluginsMessage(char* data, unsigned int length);
+	ListPluginsMessage();
 	virtual ~ListPluginsMessage();
 
-	void actionMessage(std::string* reply);
+	AbstractMessage* actionMessage();
+	virtual void serialize(coremodules::comms::messagetranslaters::StringMessageSerializer& serialiser);
+	static std::string getHeader();
 };
 
 #endif /* LISTPLUGINSMESSAGE_H_ */

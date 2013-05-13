@@ -10,6 +10,11 @@
 
 #include "AbstractTransever.h"
 #include <boost/asio.hpp>
+#include <list>
+#include "Exceptions\TimeoutExpiredException.h"
+#include "../MessageTranslaters/Translater.h"
+#include "../MessageTranslaters/TranslatedMessages/TranslatedMessages.h"
+
 
 class TCPTransever : public AbstractTransever{
 
@@ -17,20 +22,24 @@ class TCPTransever : public AbstractTransever{
 
 private :
 	int PORT;
+	Translater messageTranslater;
+
+	void sendMessageChunks(std::list<std::string>& chunks);
+
+	bool isRequestNextDataMessage(AbstractMessage* msg);
 
 public:
 	boost::asio::io_service io_service;
 	boost::asio::ip::tcp::socket* curSocket;
 	boost::asio::deadline_timer* timer;
 
-
 	TCPTransever(int port);
 	virtual ~TCPTransever();
 
 
-	virtual int listenForConnection(int timeout);
-	virtual void getMessage(std::string* data);
-	virtual void sendMessage(std::string* data);
+	virtual bool listenForConnection(int timeout);
+	virtual AbstractMessage* getMessageOrTimeout(unsigned timoutMiliseconds);
+	virtual void sendMessage( AbstractMessage* message);
 	void shutdown();
 
 private:

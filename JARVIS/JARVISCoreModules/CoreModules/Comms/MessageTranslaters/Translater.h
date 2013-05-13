@@ -19,10 +19,10 @@ public:
 	Translater();
 	virtual ~Translater();
 
-	AbstractMessage* translateMessage(const char* message, unsigned int messagelength);
+	AbstractMessage* translateMessage(char* message, unsigned int messagelength);
 
 private:
-	AbstractMessage* messageFactory(std::string msgHeader,const char* data, unsigned int messageLength);
+	AbstractMessage* messageFactory(std::string msgHeader,char* data, unsigned int messageLength);
 
 	void buildTranslationFilterPipeline();
 };

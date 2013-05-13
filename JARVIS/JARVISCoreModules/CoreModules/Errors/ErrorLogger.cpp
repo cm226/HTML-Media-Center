@@ -9,10 +9,15 @@
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
+
 #include <boost/date_time/posix_time/posix_time.hpp>
+#include <boost/date_time/gregorian/gregorian.hpp>
+#include <locale>
 
 #ifdef _WINDOWS
+#ifndef _NOINCLUDESTACKWALKER
 #include "MyStackWalker.h"
+#endif
 #endif
 
 ErrorLogger::ErrorLogger() {
@@ -30,11 +35,13 @@ void ErrorLogger::logError(std::string message)
 	writeLogEntry(formatedLogentry);
 	
 	#ifdef _WINDOWS
+	#ifndef _NOINCLUDESTACKWALKER
 	if(LOG_STACK_TRACE_ERR)
 	{
 		MyStackWalker msw;
 		msw.ShowCallstack();
 	}
+	#endif
 	#endif
 }
 
@@ -45,11 +52,13 @@ void ErrorLogger::logWarn(std::string message)
 	writeLogEntry(formatedLogentry);
 
 	#ifdef _WINDOWS
+	#ifndef _NOINCLUDESTACKWALKER
 	if(LOG_STACK_TRACE_WARN)
 	{
 		MyStackWalker msw;
 		msw.ShowCallstack();
 	}
+	#endif
 	#endif
 }
 
@@ -61,11 +70,13 @@ void ErrorLogger::logInfo(std::string message)
 	writeLogEntry(formatedLogentry);
 
 	#ifdef _WINDOWS
+	#ifndef _NOINCLUDESTACKWALKER
 	if(LOG_STACK_TRACE_INFO)
 	{
 		MyStackWalker msw;
 		msw.ShowCallstack();
 	}
+	#endif
 	#endif
 }
 
@@ -92,32 +103,35 @@ void ErrorLogger::appendToLogFile(std::string message)
 std::string ErrorLogger::buildFormatedErrEntry(std::string message)
 {
 	std::stringstream formatedMessage;
-	formatedMessage << ErrorLogger::buildDateString() << ", "<<"ERR, "<<message << std::endl;
+	formatedMessage << ErrorLogger::buildDateString() << ", "<<"ERR, \""<<message<<"\""<< std::endl;
 	return formatedMessage.str();
 }
 
 std::string ErrorLogger::buildFormatedWarnEntry(std::string message)
 {
 	std::stringstream formatedMessage;
-	formatedMessage << ErrorLogger::buildDateString() << ", "<<"WARN, "<<message<< std::endl;
+	formatedMessage << ErrorLogger::buildDateString() << ", "<<"WARN, \""<<message<<"\""<< std::endl;
 	return formatedMessage.str();
 }
 
 std::string ErrorLogger::buildFormatedInfoEntry(std::string message)
 {
 	std::stringstream formatedMessage;
-	formatedMessage << ErrorLogger::buildDateString() << ", "<<"INFO, "<<message<< std::endl;
+	formatedMessage << ErrorLogger::buildDateString() << ", "<<"INFO, \""<<message<<"\""<< std::endl;
 	return formatedMessage.str();
 }
 
 std::string ErrorLogger::buildDateString()
 {
 	boost::posix_time::ptime now(boost::posix_time::second_clock::local_time());
+	std::locale loc(std::cout.getloc(),new boost::posix_time::time_facet("%Y-%m-%d %H:%M:%S"));
 
 	std::stringstream formatedDateString;
+	formatedDateString.imbue(loc);
+	formatedDateString << now;
 
-	formatedDateString << ((int)now.date().year())<<"-"<<now.date().month()<<"-"<<now.date().day()<<" "<<now.time_of_day().hours() << ":" << now.time_of_day().minutes()<<":"<<now.time_of_day().seconds();
-	return formatedDateString.str();
+	std::string dateString = formatedDateString.str();
+	return dateString;
 }
 
 

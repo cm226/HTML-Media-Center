@@ -6,10 +6,11 @@
  */
 
 #include "PluginPageMessage.h"
+#include "ReplyMessage.h"
 
 namespace TranslatedMessages {
 
-PluginPageMessage::PluginPageMessage(const char* data, unsigned int length)
+PluginPageMessage::PluginPageMessage(char* data, unsigned int length)
 		:AbstractMessage(data,length)
 {
 
@@ -20,7 +21,7 @@ PluginPageMessage::~PluginPageMessage() {
 
 }
 
-void PluginPageMessage::actionMessage(std::string* reply)
+AbstractMessage* PluginPageMessage::actionMessage()
 {
 	this->stripNextValue(); // remove header from message
 	std::string pluginName = this->stripNextValue();
@@ -28,7 +29,17 @@ void PluginPageMessage::actionMessage(std::string* reply)
 	std::vector<std::string> replys;
 	EventManager::onPluginViewRequest.notify(pluginName,&replys);
 
-	*reply = replys[0];
+	return new TranslatedMessages::ReplyMessage(replys[0]);
+}
+
+void PluginPageMessage::serialize(coremodules::comms::messagetranslaters::StringMessageSerializer& serialiser)
+{
+
+}
+
+std::string PluginPageMessage::getHeader()
+{
+	return "rpp";
 }
 
 } /* namespace TranslatedMessages */

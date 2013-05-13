@@ -73,7 +73,9 @@ model::LogEntry LogEntryParser::parseLogEntry(std::string message)
 {
 	using namespace boost;
 
-	tokenizer<escaped_list_separator<char>> tok(message);
+
+	escaped_list_separator<char> seps('%',',','\"');
+	tokenizer<escaped_list_separator<char> > tok(message,seps);
 	tokenizer<escaped_list_separator<char> >::iterator beg=tok.begin();
 	std::string timeStamp, txtMessage, severityStr;
 		

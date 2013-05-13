@@ -217,7 +217,7 @@ bool MovieImageGetter::handleImageSelected(int movieID,std::string tbhumbName, s
 		thumbNameStriped << c;
 	}
 
-	bool downloaded = this->imgGetter.downloadAndCopyImage(imgURL,"\\img\\Movie\\Thumbs\\",thumbNameStriped.str(),200,280);
+	bool downloaded = this->imgGetter.downloadAndCopyImageToPublicFolder(imgURL,"\\img\\Movie\\Thumbs\\",thumbNameStriped.str(),200,280);
 
 	if(downloaded)
 		return this->notifyDatabaseOfMovieUpdate(movieID,thumbNameStriped.str());

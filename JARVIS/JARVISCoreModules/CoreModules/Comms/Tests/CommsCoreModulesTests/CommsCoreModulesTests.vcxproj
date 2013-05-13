@@ -76,9 +76,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Errors\ErrorLogger.cpp" />
+    <ClCompile Include="..\..\..\EventModel\EventManager.cpp" />
     <ClCompile Include="..\..\CURL\CurlManager.cpp" />
+    <ClCompile Include="..\..\MessageTranslaters\StringMessageSerializer.cpp" />
+    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\AbstractMessage.cpp" />
+    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\ComandAndControlMessage.cpp" />
+    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\ListPluginsMessage.cpp" />
+    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\PluginInteractionRequestMessage.cpp" />
+    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\PluginPageMessage.cpp" />
+    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\ReplyMessage.cpp" />
+    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\RequestNextDataChunkMessage.cpp" />
+    <ClCompile Include="..\..\MessageTranslaters\Translater.cpp" />
+    <ClCompile Include="..\..\MessageTranslaters\TranslationFilters\BaseTranslationFilter.cpp" />
+    <ClCompile Include="..\..\MessageTranslaters\TranslationFilters\CommandAndcontrolTranslationFilter.cpp" />
+    <ClCompile Include="..\..\MessageTranslaters\TranslationFilters\PluginInteractionFilter.cpp" />
+    <ClCompile Include="..\..\MessageTranslaters\TranslationFilters\PluginPageTranslationFilter.cpp" />
+    <ClCompile Include="..\..\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.cpp" />
+    <ClCompile Include="..\..\Transever\AbstractTransever.cpp" />
+    <ClCompile Include="..\..\Transever\Exceptions\TimeoutExpiredException.cpp" />
+    <ClCompile Include="..\..\Transever\MessageChunker.cpp" />
+    <ClCompile Include="..\..\Transever\TCPTransever.cpp" />
     <ClCompile Include="CommsCoreModulesTests.cpp" />
     <ClCompile Include="CURLManagerTests.cpp" />
+    <ClCompile Include="MessagechunkerTests.cpp" />
+    <ClCompile Include="TCPTranseverTests.cpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>

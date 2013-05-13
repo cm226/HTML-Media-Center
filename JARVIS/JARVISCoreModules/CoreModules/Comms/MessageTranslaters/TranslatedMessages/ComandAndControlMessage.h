@@ -14,10 +14,12 @@ namespace TranslationFilters {
 
 class ComandAndControlMessage: public AbstractMessage {
 public:
-	ComandAndControlMessage(const char* data, unsigned int length);
+	ComandAndControlMessage(char* data, unsigned int length);
 	virtual ~ComandAndControlMessage();
 
-	virtual void actionMessage(std::string* reply);
+	virtual AbstractMessage* actionMessage();
+	virtual void serialize(coremodules::comms::messagetranslaters::StringMessageSerializer& serialiser);
+	static std::string getHeader();
 };
 
 } /* namespace TranslationFilters */

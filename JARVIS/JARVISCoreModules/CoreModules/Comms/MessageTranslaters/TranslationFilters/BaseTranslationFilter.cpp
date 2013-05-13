@@ -19,7 +19,7 @@ BaseTranslationFilter::~BaseTranslationFilter() {
 		delete this->nextFilter;
 }
 
-AbstractMessage* BaseTranslationFilter::forwardMessage(std::string header, const char* bytes, unsigned int bytesLength)
+AbstractMessage* BaseTranslationFilter::forwardMessage(std::string header, char* bytes, unsigned int bytesLength)
 {
 	if(this->nextFilter != NULL)
 		return this->nextFilter->translateMessage(header,bytes,bytesLength);

@@ -9,19 +9,22 @@
 #define ABSTRACTMESSAGE_H_
 
 #include "../../../EventModel/EventModel.h"
+#include "../StringMessageSerializer.h"
 
 class AbstractMessage {
 
 protected:
-	const char* message;
+	char* message;
 	unsigned int length;
 	unsigned int offset;
 public:
-	AbstractMessage(const char* message, unsigned int length);
+	AbstractMessage(char* message, unsigned int length);
+	AbstractMessage();
 	virtual ~AbstractMessage();
 
-	virtual void actionMessage(std::string* reply) = 0;
+	virtual AbstractMessage* actionMessage() = 0;
 	std::string stripNextValue();
+	virtual void serialize(coremodules::comms::messagetranslaters::StringMessageSerializer& serialiser) = 0;
 };
 
 #endif /* ABSTRACTMESSAGE_H_ */

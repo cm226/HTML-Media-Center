@@ -7,15 +7,22 @@
 
 #include "AbstractMessage.h"
 
-AbstractMessage::AbstractMessage(const char* data, unsigned int length)
+AbstractMessage::AbstractMessage(char* data, unsigned int length)
 {
 	this->message = data;
 	this->length = length;
 	this->offset = 0;
 }
 
-AbstractMessage::~AbstractMessage() {
+AbstractMessage::AbstractMessage()
+{
+	this->message = NULL;
+}
 
+AbstractMessage::~AbstractMessage()
+{
+	if(this->message)
+		delete[] this->message;
 }
 
 std::string AbstractMessage::stripNextValue()

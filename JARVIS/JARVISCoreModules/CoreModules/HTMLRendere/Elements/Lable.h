@@ -18,7 +18,7 @@ private:
 	#pragma warning( default : 4251)
 
 protected:
-	virtual std::string getTagText() {return "p";};
+	virtual std::string getTagText() {return "div";};
 	virtual std::string getTagContent(){ return this->text; };
 
 public:

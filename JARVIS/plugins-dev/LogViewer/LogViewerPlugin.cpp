@@ -35,8 +35,11 @@ const char* LogViewerPlugin::pluginName()
 	return this->name.c_str();
 }
 
-void LogViewerPlugin::renderEntry(model::LogEntry& entry, ElementList* elementList)
+void LogViewerPlugin::renderErrorEntry(model::LogEntry& entry, ElementList* elementList)
 {
+	htmlrendere::elements::DockingLayout* logEntry = new htmlrendere::elements::DockingLayout("entry");
+	logEntry->addStyle("background-color","rgba(255,0,0,0.5)");
+
 	Lable* entryTime = new Lable("entryTime");
 	Lable* entrySeverity = new Lable("entrySeverity");
 	Lable* entryMessage = new Lable("entryMessage");
@@ -47,7 +50,68 @@ void LogViewerPlugin::renderEntry(model::LogEntry& entry, ElementList* elementLi
 	entrySeverity->setText(entry.getSeverityStr());
 	entryMessage->setText(entry.getMessage());
 
-	elementList->addElement(entryTime);
-	elementList->addElement(entrySeverity);
-	elementList->addElement(entryMessage);
+	logEntry->dockRight(entryTime,30);
+	logEntry->dockTop(entrySeverity,40);
+	logEntry->dockBottom(entryMessage, 60);
+
+	elementList->addElement(logEntry);
+}
+void LogViewerPlugin::renderWarnEntry(model::LogEntry& entry, ElementList* elementList)
+{
+	htmlrendere::elements::DockingLayout* logEntry = new htmlrendere::elements::DockingLayout("entry");
+
+
+	Lable* entryTime = new Lable("entryTime");
+	Lable* entrySeverity = new Lable("entrySeverity");
+	Lable* entryMessage = new Lable("entryMessage");
+
+	std::stringstream timeStringStream;
+	timeStringStream << entry.logTimeStamp().date() << " " << entry.logTimeStamp().time_of_day();
+	entryTime->setText(timeStringStream.str());
+	entrySeverity->setText(entry.getSeverityStr());
+	entryMessage->setText(entry.getMessage());
+
+	logEntry->dockRight(entryTime,30);
+	logEntry->dockTop(entrySeverity,40);
+	logEntry->dockBottom(entryMessage, 60);
+
+	elementList->addElement(logEntry);
+}
+void LogViewerPlugin::renderInfoEntry(model::LogEntry& entry, ElementList* elementList)
+{
+	htmlrendere::elements::DockingLayout* logEntry = new htmlrendere::elements::DockingLayout("entry");
+
+
+	Lable* entryTime = new Lable("entryTime");
+	Lable* entrySeverity = new Lable("entrySeverity");
+	Lable* entryMessage = new Lable("entryMessage");
+
+	std::stringstream timeStringStream;
+	timeStringStream << entry.logTimeStamp().date() << " " << entry.logTimeStamp().time_of_day();
+	entryTime->setText(timeStringStream.str());
+	entrySeverity->setText(entry.getSeverityStr());
+	entryMessage->setText(entry.getMessage());
+
+	logEntry->dockRight(entryTime,30);
+	logEntry->dockTop(entrySeverity,40);
+	logEntry->dockBottom(entryMessage, 60);
+
+	elementList->addElement(logEntry);
+}
+
+void LogViewerPlugin::renderEntry(model::LogEntry& entry, ElementList* elementList)
+{
+	
+	switch(entry.getSeverity())
+	{
+		case(model::LogEntry::ERROR):
+			this->renderErrorEntry(entry,elementList);
+			break;
+		case(model::LogEntry::INFO):
+			this->renderInfoEntry(entry,elementList);
+			break;
+		case(model::LogEntry::WAR):
+			this->renderWarnEntry(entry,elementList);
+			break;
+	}
 }
