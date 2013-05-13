@@ -3,6 +3,7 @@
 #include <sstream>
 
 #include <exception>
+#include <stdexcept>
 
 namespace DatabaseTables {
 

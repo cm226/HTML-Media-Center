@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
-#include <boost\date_time\posix_time\posix_time.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
 
 #ifdef _WINDOWS
 #include "MyStackWalker.h"
@@ -79,7 +79,7 @@ void ErrorLogger::appendToLogFile(std::string message)
 {
 	using namespace std;
 	ofstream logFile;
-	logFile.open(LOG_LOCATION+std::string("\\log.log"), fstream::out | fstream::app);
+	logFile.open((LOG_LOCATION+std::string("\\log.log")).c_str(), fstream::out | fstream::app);
 	if(logFile.is_open())
 	{
 		logFile << message;

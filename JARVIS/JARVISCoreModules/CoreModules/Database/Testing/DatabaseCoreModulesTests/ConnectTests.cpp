@@ -11,7 +11,8 @@ BOOST_AUTO_TEST_CASE(constructorTest)
 BOOST_AUTO_TEST_CASE(DatabaseConnect)
 {
 	DatabaseTables::Database database;
-	BOOST_CHECK_EQUAL(database.Connect(DATABSEUSER,DATABASEPASSWORD,DATABASENAME,"localhost"),true);
+	bool connectionSucessful =database.Connect(DATABSEUSER,DATABASEPASSWORD,DATABASENAME,"localhost");
+	BOOST_CHECK_EQUAL(connectionSucessful,true);
 	BOOST_CHECK_EQUAL(database.isConnected(), true);
 
 	BOOST_CHECK_EQUAL(database.Connect(DATABSEUSER,DATABASEPASSWORD,DATABASENAME,""),true);

@@ -12,7 +12,7 @@
 #include "EventModel/EventModel.h"
 #include "Database/Database.h"
 #include "exportMacros.h"
-#include "Comms\IComms.h"
+#include "Comms/IComms.h"
 
 
 class DLLCORE_API CoreModules {
