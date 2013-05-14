@@ -3,7 +3,10 @@
 #include <stdio.h>
 #include <boost/thread.hpp>
 #include <sstream>
+
+#ifdef _WINDOWS
 #include <Windows.h>
+#endif
 
 JARVISFramework::JARVISFramework()
 {
