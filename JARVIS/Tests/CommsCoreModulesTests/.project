@@ -97,6 +97,16 @@
 			<locationURI>PARENT-2-PROJECT_LOC/JARVISCoreModules/CoreModules/Comms/Comms.h</locationURI>
 		</link>
 		<link>
+			<name>commsSrc/ErrorLogger.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/JARVISCoreModules/CoreModules/Errors/ErrorLogger.cpp</locationURI>
+		</link>
+		<link>
+			<name>commsSrc/EventModel</name>
+			<type>2</type>
+			<locationURI>PARENT-2-PROJECT_LOC/JARVISCoreModules/CoreModules/EventModel</locationURI>
+		</link>
+		<link>
 			<name>commsSrc/IComms.h</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/JARVISCoreModules/CoreModules/Comms/IComms.h</locationURI>

@@ -7,6 +7,7 @@
 
 BOOST_AUTO_TEST_CASE(CURLManagerConstructorTests)
 {
+
 	BOOST_CHECK_NO_THROW(CommsNS::CurlManager curlMan());
 }
 
