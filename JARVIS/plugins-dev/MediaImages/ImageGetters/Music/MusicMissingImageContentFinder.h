@@ -21,6 +21,10 @@ private:
 	DatabaseTables::Database* databaseHandle;
 
 	bool checkArtistThumbnailImageExists(std::string artistName);
+	bool checkArtistImageExists(std::string artistName);
+	bool checkAlbumImageExists(std::string albumName);
+
+	bool checkPNGorJPGImageExsists(std::string fileName);
 
 public:
 	/**

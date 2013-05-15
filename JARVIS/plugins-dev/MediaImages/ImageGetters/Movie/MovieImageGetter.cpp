@@ -118,9 +118,12 @@ bool MovieImageGetter::handleMovieSelected(Page* page, PageCallbackContext* cont
 
 	std::vector<std::string>::iterator resultIt = curImgSet.begin();
 	int i =0;
-	for(resultIt; resultIt!= curImgSet.end(); resultIt++)
+	for(; resultIt!= curImgSet.end(); resultIt++)
 	{
 		HTMLImage* image = new HTMLImage("img",*resultIt);
+		image->addStyle("height","280px");
+		image->addStyle("width","200px");
+
 		std::stringstream attributeStream;
 		attributeStream << i << "/" << movie.movieID->getValue();
 
