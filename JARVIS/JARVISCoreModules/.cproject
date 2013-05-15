@@ -35,7 +35,7 @@
 									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0"/>
 									<listOptionValue builtIn="false" value="/home/craig/curl-7.28.1/include/curl"/>
 								</option>
-								<option id="gnu.cpp.compiler.option.other.other.1651733787" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0 -std=c++0x" valueType="string"/>
+								<option id="gnu.cpp.compiler.option.other.other.1651733787" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0 -std=c++0x" valueType="string"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.300847323" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.so.debug.184361597" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.so.debug">

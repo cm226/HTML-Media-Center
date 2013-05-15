@@ -4,7 +4,7 @@
 #include "../../../../JARVISCoreModules/CoreModules/config.h"
 #include "../../../../JARVISCoreModules/CoreModules/Errors/ErrorLogger.h"
 #include <functional>
-#include <boost\bind.hpp>
+#include <boost/bind.hpp>
 #include <sstream>
 
 MovieImageGetter::MovieImageGetter(CoreModules* cm) : imgGetter(cm)

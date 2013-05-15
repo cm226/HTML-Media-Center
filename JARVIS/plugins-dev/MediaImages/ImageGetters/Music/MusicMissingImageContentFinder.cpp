@@ -1,7 +1,7 @@
 /*
 	Author : Craig Matear
 */
-#include<boost\filesystem.hpp>
+#include<boost/filesystem.hpp>
 #include "MusicMissingImageContentFinder.h"
 #include "../../../../JARVISCoreModules/CoreModules/config.h"
 

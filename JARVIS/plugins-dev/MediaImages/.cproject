@@ -36,6 +36,7 @@
 									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0"/>
 									<listOptionValue builtIn="false" value="/usr/include/"/>
 								</option>
+								<option id="gnu.cpp.compiler.option.other.other.1529980389" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0 -std=c++0x" valueType="string"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.59928196" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.so.debug.15062991" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.so.debug">
@@ -48,6 +49,12 @@
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.so.debug.124061584" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.so.debug">
 								<option defaultValue="true" id="gnu.cpp.link.so.debug.option.shared.2117218640" name="Shared (-shared)" superClass="gnu.cpp.link.so.debug.option.shared" valueType="boolean"/>
+								<option id="gnu.cpp.link.option.paths.1365606659" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
+									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0/stage/lib"/>
+								</option>
+								<option id="gnu.cpp.link.option.libs.1197533555" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" value="boost_bind"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.669523070" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -147,5 +154,7 @@
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
 		</scannerConfigBuildInfo>
 	</storageModule>
-	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="refreshScope" versionNumber="1">
+		<resource resourceType="PROJECT" workspacePath="/MediaImages"/>
+	</storageModule>
 </cproject>

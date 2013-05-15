@@ -23,7 +23,7 @@ BOOST_AUTO_TEST_CASE(pageElements)
 	p.addElement(l);
 	p.addElement(l2);
 	p.buildPage(&renderedPage);
-	BOOST_CHECK_EQUAL(renderedPage.compare("<p id=\"lable\">testText</p><p id=\"lable\">testText</p>"),0);
+	BOOST_CHECK_EQUAL(renderedPage.compare("<div id=\"lable\">testText</div><div id=\"lable\">testText</div>"),0);
 
 
 	p.freePage();

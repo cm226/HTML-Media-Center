@@ -1,6 +1,6 @@
 #include "MusicImageGetter.h"
 #include <sstream>
-#include <boost\bind.hpp>
+#include <boost/bind.hpp>
 
 MusicImageGetter::MusicImageGetter(CoreModules* cm) : imgGetter(cm), missingContentFinder(cm->getDatabaseConnection())
 {

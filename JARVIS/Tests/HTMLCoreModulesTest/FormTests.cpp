@@ -19,15 +19,15 @@ BOOST_AUTO_TEST_CASE(FormElementChecks)
 	form.addElement(l);
 
 	std::string formTxt = form.getText();
-	BOOST_CHECK_EQUAL(formTxt.compare("<form id=\"test\" action=\"../Shared/genericPluginFormHandler\"><p id=\"lable\">testText</p></form>") ,0);
+	BOOST_CHECK_EQUAL(formTxt.compare("<form id=\"test\" action=\"../Shared/genericPluginFormHandler\"><div id=\"lable\">testText</div></form>") ,0);
 
 	form.addElement(l);
 	formTxt = form.getText();
-	BOOST_CHECK_EQUAL(formTxt.compare("<form id=\"test\" action=\"../Shared/genericPluginFormHandler\"><p id=\"lable\">testText</p><p id=\"lable\">testText</p></form>") ,0);
+	BOOST_CHECK_EQUAL(formTxt.compare("<form id=\"test\" action=\"../Shared/genericPluginFormHandler\"><div id=\"lable\">testText</div><div id=\"lable\">testText</div></form>") ,0);
 
 	form.removeElement(l);
 	formTxt = form.getText();
-	BOOST_CHECK_EQUAL(formTxt.compare("<form id=\"test\" action=\"../Shared/genericPluginFormHandler\"><p id=\"lable\">testText</p></form>") ,0);
+	BOOST_CHECK_EQUAL(formTxt.compare("<form id=\"test\" action=\"../Shared/genericPluginFormHandler\"><div id=\"lable\">testText</div></form>") ,0);
 
 }
 

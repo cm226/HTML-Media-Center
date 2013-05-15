@@ -2,13 +2,12 @@
 
 #include <sstream>
 
-#include <boost\filesystem.hpp>
+#include <boost/filesystem.hpp>
 #include <boost/gil/gil_all.hpp>
 
 #include <boost/gil/image.hpp>
 #include <boost/gil/typedefs.hpp>
 #include <boost/gil/extension/io/jpeg_io.hpp>
-//#include <boost\gil\extension\io\png_io.hpp>
 
 #include <boost/gil/extension/numeric/sampler.hpp>
 #include <boost/gil/extension/numeric/resample.hpp>

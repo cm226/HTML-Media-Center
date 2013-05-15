@@ -55,6 +55,9 @@ void IElement::addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std
 
 std::string IElement::writeStyle()
 {
+	if(this->styles.size() == 0)
+		return "";
+
 	std::stringstream stylestream;
 	
 	stylestream << " style=\"";

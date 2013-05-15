@@ -19,15 +19,15 @@ BOOST_AUTO_TEST_CASE(ElementListElementChecks)
 	elList.addElement(l);
 
 	std::string elListTxt = elList.getText();
-	BOOST_CHECK_EQUAL(elListTxt.compare("<div id=\"test\"><p id=\"lable\">testText</p></div>") ,0);
+	BOOST_CHECK_EQUAL(elListTxt.compare("<div id=\"test\"><div id=\"lable\">testText</div></div>") ,0);
 
 	elList.addElement(l);
 	elListTxt = elList.getText();
-	BOOST_CHECK_EQUAL(elListTxt.compare("<div id=\"test\"><p id=\"lable\">testText</p><p id=\"lable\">testText</p></div>") ,0);
+	BOOST_CHECK_EQUAL(elListTxt.compare("<div id=\"test\"><div id=\"lable\">testText</div><div id=\"lable\">testText</div></div>") ,0);
 
 	elList.removeElement(l);
 	elListTxt = elList.getText();
-	BOOST_CHECK_EQUAL(elListTxt.compare("<div id=\"test\"><p id=\"lable\">testText</p></div>") ,0);
+	BOOST_CHECK_EQUAL(elListTxt.compare("<div id=\"test\"><div id=\"lable\">testText</div></div>") ,0);
 
 }
 
