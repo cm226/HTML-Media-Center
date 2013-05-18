@@ -7,7 +7,6 @@
 
 BOOST_AUTO_TEST_CASE(CURLManagerConstructorTests)
 {
-
 	BOOST_CHECK_NO_THROW(CommsNS::CurlManager curlMan());
 }
 
@@ -35,12 +34,19 @@ BOOST_AUTO_TEST_CASE(CURLManagerMakeRequestTests)
 BOOST_AUTO_TEST_CASE(downloadFileTest)
 {
 	CommsNS::CurlManager curlMan;
+	#ifdef _WINDOWS
+		std::string downloadLocation = "C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\test.png";
+	#else
+		std::string downloadLocation = "/var/www/HTML-Media-Center/JARVIS/JARVIS/test.png";
+	#endif
 	
-	bool worked = curlMan.downloadItemToFile("http://g-ecx.images-amazon.com/images/G/02/gno/beacon/BeaconSprite-UK-02._V397961423_.png","C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\test.png");
+	bool worked = curlMan.downloadItemToFile("http://g-ecx.images-amazon.com/images/G/02/gno/beacon/BeaconSprite-UK-02._V397961423_.png",downloadLocation);
 	
 	BOOST_CHECK_EQUAL(true,worked);
-	BOOST_CHECK_EQUAL(true,boost::filesystem::exists( "C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\test.png "));
-	BOOST_CHECK_EQUAL(true,boost::filesystem::remove("C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\test.png "));
+
+
+	BOOST_CHECK_EQUAL(true,boost::filesystem::exists(downloadLocation));
+	BOOST_CHECK_EQUAL(true,boost::filesystem::remove(downloadLocation));
 
 }
 
@@ -58,21 +64,26 @@ BOOST_AUTO_TEST_CASE(downloadToFileThatExsists)
 
 BOOST_AUTO_TEST_CASE(downloadToBadPath)
 {
+#ifdef _WINDOWS
 	CommsNS::CurlManager curlMan;
-	
 	bool worked = curlMan.downloadItemToFile("http://g-ecx.images-amazon.com/images/G/02/gno/beacon/BeaconSprite-UK-02._V397961423_.png","C:\\C:\\");
-	
 	BOOST_CHECK_EQUAL(false,worked);
-
+#endif
 }
 
 BOOST_AUTO_TEST_CASE(downloadFileTestInvalidFile)
 {
+#ifdef _WINDOWS
+		std::string downloadLocation = "C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\test.png";
+	#else
+		std::string downloadLocation = "/var/www/HTML-Media-Center/JARVIS/JARVIS/test.png";
+	#endif
+
 	CommsNS::CurlManager curlMan;
 	
-	bool worked = curlMan.downloadItemToFile("invalidLink","C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\test.png");
+	bool worked = curlMan.downloadItemToFile("invalidLink",downloadLocation);
 	
 	BOOST_CHECK_EQUAL(true,worked);
-	BOOST_CHECK_EQUAL(true,boost::filesystem::exists( "C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\test.png "));
+	BOOST_CHECK_EQUAL(true,boost::filesystem::exists( downloadLocation));
 
 }

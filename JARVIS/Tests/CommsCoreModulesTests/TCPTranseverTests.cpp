@@ -6,9 +6,11 @@
 #include <boost/thread.hpp>
 #include <boost/bind.hpp>
 #include <boost/array.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
+
 
 /*
-	IT LOOKS LIKE USING THE BOOST_CHECK FUNCTIONS CALSE AN ACES VIOLATION IF CALLED FROM ANOTHER THREAD
+	IT LOOKS LIKE USING THE BOOST_CHECK_X FUNCTIONS CALSE AN ACCESS VIOLATION IF CALLED FROM ANOTHER THREAD
 */
 
 BOOST_AUTO_TEST_CASE(TCPTranseverConstructorTests)
@@ -33,6 +35,8 @@ BOOST_AUTO_TEST_CASE(TCPTranseverSendTests)
 {
 	boost::thread makeConnectionThread(ListenForConnection);
 
+	boost::this_thread::sleep( boost::posix_time::seconds(1)); // allow the other thread time to setup the transever
+
 	boost::asio::io_service io_service;
 	boost::asio::ip::tcp::socket socket(io_service);
 	boost::asio::ip::tcp::endpoint endpoint(
@@ -41,6 +45,7 @@ BOOST_AUTO_TEST_CASE(TCPTranseverSendTests)
 	boost::system::error_code ec;
 	socket.connect(endpoint, ec);
 
+	BOOST_CHECK_EQUAL(ec.value(),0);
 	boost::array<char, 2> buf;
 	buf.fill('\0');
 	boost::asio::read(socket, boost::asio::buffer(buf));
@@ -119,13 +124,14 @@ void SendLargeString()
 	TranslatedMessages::ReplyMessage replyMessage(messageContent);
 	transever.sendMessage(&replyMessage);
 
+	boost::this_thread::sleep( boost::posix_time::seconds(1) );
 	transever.shutdown();
 }
 
 BOOST_AUTO_TEST_CASE(TCPTranseverSendLargeString)
 {
 	boost::thread makeConnectionThread(SendLargeString);
-
+	boost::this_thread::sleep( boost::posix_time::seconds(1)); // allow the other thread time to setup the transever
 	boost::asio::io_service io_service;
 	boost::asio::ip::tcp::socket socket(io_service);
 	boost::asio::ip::tcp::endpoint endpoint(
@@ -146,7 +152,7 @@ BOOST_AUTO_TEST_CASE(TCPTranseverSendLargeString)
 
 	boost::array<unsigned char, 65508> bufMsg;
 	buf.fill('\0');
-	boost::asio::read(socket, boost::asio::buffer(bufMsg,65508));
+	boost::asio::read(socket, boost::asio::buffer(bufMsg,65508),ec);
 
 	makeConnectionThread.join();
 	socket.shutdown(boost::asio::socket_base::shutdown_both);

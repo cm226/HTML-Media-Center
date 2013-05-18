@@ -19,6 +19,8 @@ private:
 	#pragma warning( disable : 4251)
 	std::vector<std::string> attributes;
 	std::list<std::string> styles;
+	std::list<std::string> cssFiles;
+	std::list<std::string> javascriptFiles;
 	std::string name;
 	#pragma warning( default : 4251)
 	std::string writeStyle();
@@ -35,10 +37,17 @@ public:
 
 	void addAttribute(std::string att);
 	void addStyle(std::string name, std::string value);
+	void includeCSS(std::string cssPath);
+	void includeJS(std::string jsPath);
+
 	void addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName, std::vector<std::string> contextArgs);
 	void addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName);
 	
-virtual std::string getText();
+	virtual std::string getText();
+
+	std::list<std::string>& getJSIncludes();
+	std::list<std::string>& getCSSIncludes();
+
 	
 
 };

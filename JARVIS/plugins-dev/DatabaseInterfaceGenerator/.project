@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>HTMLCoreModulesTest</name>
+	<name>DatabaseInterfaceGenerator</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -31,7 +31,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildLocation</key>
-					<value>${workspace_loc:/HTMLCoreModulesTest/Debug}</value>
+					<value>${workspace_loc:/DatabaseInterfaceGenerator/Debug}</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.cleanBuildTarget</key>
@@ -80,46 +80,4 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>Containers</name>
-			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/JARVISCoreModules/CoreModules/HTMLRendere/Containers</locationURI>
-		</link>
-		<link>
-			<name>Elements</name>
-			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/JARVISCoreModules/CoreModules/HTMLRendere/Elements</locationURI>
-		</link>
-		<link>
-			<name>HTMLRendere.h</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/JARVISCoreModules/CoreModules/HTMLRendere/HTMLRendere.h</locationURI>
-		</link>
-		<link>
-			<name>IElement.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/JARVISCoreModules/CoreModules/HTMLRendere/IElement.cpp</locationURI>
-		</link>
-		<link>
-			<name>IElement.h</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/JARVISCoreModules/CoreModules/HTMLRendere/IElement.h</locationURI>
-		</link>
-		<link>
-			<name>Page.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/JARVISCoreModules/CoreModules/HTMLRendere/Page.cpp</locationURI>
-		</link>
-		<link>
-			<name>Page.h</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/JARVISCoreModules/CoreModules/HTMLRendere/Page.h</locationURI>
-		</link>
-		<link>
-			<name>PageBuilder.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/JARVISCoreModules/CoreModules/HTMLRendere/PageBuilder.cpp</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>

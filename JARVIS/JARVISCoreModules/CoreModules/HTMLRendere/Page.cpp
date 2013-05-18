@@ -6,6 +6,7 @@
  */
 
 #include "Page.h"
+#include "PageBuilder.h"
 #include <sstream>
 
 Page::Page() {
@@ -35,11 +36,6 @@ void Page::freePage()
 
 void Page::buildPage(std::string* page)
 {
-	std::stringstream pageBuilder;
-	for(std::vector<IElement*>::iterator it =  this->elements.begin(); it != this->elements.end(); it++)
-	{
-		pageBuilder << ((*it)->getText());
-	}
-
-	*page = pageBuilder.str();
+	PageBuilder pageBuilder;
+	pageBuilder.buildPage(page, &this->elements);
 }

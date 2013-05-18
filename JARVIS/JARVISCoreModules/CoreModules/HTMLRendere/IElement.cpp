@@ -87,6 +87,16 @@ void IElement::addStyle(std::string name, std::string value)
 	this->styles.push_back(name + ":" + value+";");
 }
 
+void IElement::includeCSS(std::string cssPath)
+{
+	this->cssFiles.push_back(cssPath);
+}
+
+void IElement::includeJS(std::string jsPath)
+{
+	this->javascriptFiles.push_back(jsPath);
+}
+
 std::string IElement::getText()
 {
 	std::stringstream elementHTML;
@@ -96,4 +106,13 @@ std::string IElement::getText()
 	elementHTML << "</" << this->getTagText() << ">";
 
 	return elementHTML.str();
+}
+
+std::list<std::string>& IElement::getJSIncludes()
+{
+	return this->javascriptFiles;
+}
+std::list<std::string>& IElement::getCSSIncludes()
+{
+	return this->cssFiles;
 }
