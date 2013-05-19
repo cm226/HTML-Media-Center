@@ -6,6 +6,7 @@
  */
 
 #include "DatabaseInterfaceGeneratorPlugin.h"
+#include "../../JARVISCoreModules/CoreModules/HTMLRendere/Elements/FileUpload.h"
 
 DatabaseInterfaceGeneratorPlugin::DatabaseInterfaceGeneratorPlugin(CoreModules* cm) : Plugin(cm)
 {
@@ -16,12 +17,14 @@ DatabaseInterfaceGeneratorPlugin::~DatabaseInterfaceGeneratorPlugin()
 
 }
 
-bool whatDoYouLookLike(Page*)
+bool DatabaseInterfaceGeneratorPlugin::whatDoYouLookLike(Page* page)
 {
+	FileUpload* sqlFileUploader = new FileUpload("sqlFile");
+	page->addElement(sqlFileUploader);
 
 	return true;
 }
-const char* pluginName()
+const char* DatabaseInterfaceGeneratorPlugin::pluginName()
 {
 	return "Database Interface Generator";
 }

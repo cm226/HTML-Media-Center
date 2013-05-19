@@ -78,9 +78,8 @@ bool Loader::loadPlugin(std::string pluginName, Plugin** loadedPlugin, CoreModul
 
 
 #else
-	
-	const char* libfileName = (this->pluginDir + "/" + pluginName + ".so").c_str();
-	void *hndl = dlopen(libfileName, RTLD_NOW);
+	std::string fileNameStr = this->pluginDir + "/" + pluginName + ".so";
+	void *hndl = dlopen(fileNameStr.c_str(), RTLD_NOW);
 	arbitrary factoryFunc;
 
 	if(hndl == NULL)
@@ -91,6 +90,11 @@ bool Loader::loadPlugin(std::string pluginName, Plugin** loadedPlugin, CoreModul
 
 	*(void**)(&factoryFunc) = dlsym(hndl,"makePlugin");
 
+	if(factoryFunc == NULL)
+	{
+		ErrorLogger::logError("Error "+pluginName +" missing makePlugin function");
+		return false;
+	}
 	*loadedPlugin= static_cast<Plugin*>(factoryFunc(context));
 	this->dllHandlPluginMap[*loadedPlugin] = hndl;
 	return true;

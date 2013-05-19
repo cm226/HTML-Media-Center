@@ -9,8 +9,8 @@
 
 FileUpload::FileUpload(std::string name) : IElement(name)
 {
-	this->includeCSS("../public/css/HTMLRendereCSS/UploadElementStyle.css");
-	this->includeJS("../public/js/HTMLRendereJS/UploadElementJavascript.js");
+	this->includeCSS("../../public/css/HTMLRendereCSS/UploadElementStyle.css");
+	this->includeJS("../../public/js/HTMLRendereJS/UploadElementJavascript.js");
 }
 
 FileUpload::~FileUpload()

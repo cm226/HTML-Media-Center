@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "../../MediaImagesPlugin.h"
+#include "../MediaImages/MediaImagesPlugin.h"
 
 BOOST_AUTO_TEST_CASE(PluginEntryPoint)
 {

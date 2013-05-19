@@ -17,6 +17,7 @@ public/mix/*
 /*~
 *.dll
 
+*.mk
 *.png
 *.jpg
 *.suo

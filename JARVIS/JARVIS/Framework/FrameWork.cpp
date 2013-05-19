@@ -57,12 +57,11 @@ void JARVISFramework::process()
 
 void JARVISFramework::loadStartupPlugins()
 {
-	Plugin* emailChecker = NULL;
 	Plugin* mediaImages = NULL;
 
-	//pluginLoader->loadPlugin("libEmailChecker",&emailChecker, &this->cModules);
 	pluginLoader->loadPlugin("libMediaImages",&mediaImages, &this->cModules);
-	pluginLoader->loadPlugin("LogViewer",&mediaImages, &this->cModules);
+	pluginLoader->loadPlugin("libDatabaseInterfaceGenerator",&mediaImages, &this->cModules);
+	//pluginLoader->loadPlugin("LogViewer",&mediaImages, &this->cModules);
 
 }
 

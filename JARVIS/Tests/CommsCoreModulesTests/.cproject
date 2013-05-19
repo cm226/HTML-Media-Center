@@ -29,7 +29,7 @@
 									<listOptionValue builtIn="false" value="/home/craig/curl-7.28.1/include/curl"/>
 									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0"/>
 								</option>
-								<option id="gnu.cpp.compiler.option.other.other.1779730343" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0" valueType="string"/>
+								<option id="gnu.cpp.compiler.option.other.other.1779730343" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0 -Wno-unknown-pragmas" valueType="string"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.697446703" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.127533724" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.debug">

@@ -250,7 +250,7 @@ std::string MovieImageGetter::getMovieNameFromID(int movieID)
 	}
 
 	if(!movieNameQuery.nextLine())
-		return false;
+		return "";
 
 	std::string movieName = movieNameField.getValue();
 	return movieName;

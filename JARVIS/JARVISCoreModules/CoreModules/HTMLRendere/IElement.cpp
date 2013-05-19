@@ -52,7 +52,18 @@ void IElement::addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std
 
 	this->addAttribute(movieAttributeStream.str());
 }
+/*
 
+void addAsincOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName)
+{
+
+}
+
+void addAsincOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName, std::vector<std::string> contextArgs)
+{
+
+}
+*/
 std::string IElement::writeStyle()
 {
 	if(this->styles.size() == 0)

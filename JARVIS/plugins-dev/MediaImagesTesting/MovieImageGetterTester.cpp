@@ -1,9 +1,9 @@
 #define TESTING
 #include "stdafx.h"
 
-#include "../../ImageGetters/Movie/MovieImageGetter.h"
-#include "../../../../JARVISCoreModules/CoreModules/Database/Database.h"
-#include "../../../../JARVISCoreModules/CoreModules/config.h"
+#include "../MediaImages/ImageGetters/Movie/MovieImageGetter.h"
+#include "../../JARVISCoreModules/CoreModules/Database/Database.h"
+#include "../../JARVISCoreModules/CoreModules/config.h"
 
 BOOST_AUTO_TEST_CASE(MovieGetterconstructor)
 {

@@ -43,6 +43,10 @@ public:
 	void addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName, std::vector<std::string> contextArgs);
 	void addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName);
 	
+	//TODO implement asinc onclick finctions
+	//void addAsincOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName);
+	//void addAsincOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName, std::vector<std::string> contextArgs);
+
 	virtual std::string getText();
 
 	std::list<std::string>& getJSIncludes();

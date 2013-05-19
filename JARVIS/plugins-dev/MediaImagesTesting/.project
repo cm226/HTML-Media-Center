@@ -80,4 +80,31 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>MediaImageSrc/ImageGetters</name>
+			<type>2</type>
+			<locationURI>PARENT-1-PROJECT_LOC/MediaImages/ImageGetters</locationURI>
+		</link>
+		<link>
+			<name>MediaImageSrc/MediaImages.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/MediaImages/MediaImages.cpp</locationURI>
+		</link>
+		<link>
+			<name>MediaImageSrc/MediaImages.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/MediaImages/MediaImages.h</locationURI>
+		</link>
+		<link>
+			<name>MediaImageSrc/MediaImagesPlugin.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/MediaImages/MediaImagesPlugin.cpp</locationURI>
+		</link>
+		<link>
+			<name>MediaImageSrc/MediaImagesPlugin.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/MediaImages/MediaImagesPlugin.h</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

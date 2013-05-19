@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "../../ImageGetters/Music/MusicMissingImageContentFinder.h"
-#include "../../../../JARVISCoreModules/CoreModules/config.h"
-#include "../../../../JARVISCoreModules/CoreModules/Database/Database.h"
+#include "../MediaImages/ImageGetters/Music/MusicMissingImageContentFinder.h"
+#include "../../JARVISCoreModules/CoreModules/config.h"
+#include "../../JARVISCoreModules/CoreModules/Database/Database.h"
 
 BOOST_AUTO_TEST_CASE(MusicImagecontentGetterconstructor)
 {

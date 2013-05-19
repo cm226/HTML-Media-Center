@@ -1,9 +1,0 @@
-eclipse.preferences.version=1
-environment/project/cdt.managedbuild.config.gnu.exe.debug.920484410/LD_LIBRARY_PATH/delimiter=\:
-environment/project/cdt.managedbuild.config.gnu.exe.debug.920484410/LD_LIBRARY_PATH/operation=replace
-environment/project/cdt.managedbuild.config.gnu.exe.debug.920484410/LD_LIBRARY_PATH/value=/usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/client\:/usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386\:/home/craig/boost/boost_1_51_0/stage/lib
-environment/project/cdt.managedbuild.config.gnu.exe.debug.920484410/PATH/delimiter=\:
-environment/project/cdt.managedbuild.config.gnu.exe.debug.920484410/PATH/operation=replace
-environment/project/cdt.managedbuild.config.gnu.exe.debug.920484410/PATH/value=/home/craig/bin\:/usr/lib/lightdm/lightdm\:/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/usr/games\:${PATH}
-environment/project/cdt.managedbuild.config.gnu.exe.debug.920484410/append=true
-environment/project/cdt.managedbuild.config.gnu.exe.debug.920484410/appendContributed=true

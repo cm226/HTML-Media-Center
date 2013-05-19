@@ -19,7 +19,7 @@ private:
 
 public:
 	Limit(std::string limit);
-	~Limit(void);
+	virtual ~Limit(void);
 
 	std::string getString();
 };

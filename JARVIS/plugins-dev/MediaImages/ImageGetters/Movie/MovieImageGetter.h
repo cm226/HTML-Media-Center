@@ -33,7 +33,7 @@ private:
 
 public:
 	MovieImageGetter(CoreModules* cm);
-	~MovieImageGetter(void);
+	virtual ~MovieImageGetter(void);
 
 	bool onImageSelected(Page* page, PageCallbackContext* context);
 

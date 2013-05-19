@@ -139,7 +139,6 @@ BOOST_AUTO_TEST_CASE(TCPTranseverSendLargeString)
 	
 	boost::system::error_code ec;
 	socket.connect(endpoint, ec);
-	unsigned numOfChunks = 50;
 
 	boost::array<unsigned char, 2> buf;
 	buf.fill('\0');
@@ -158,3 +157,19 @@ BOOST_AUTO_TEST_CASE(TCPTranseverSendLargeString)
 	socket.shutdown(boost::asio::socket_base::shutdown_both);
 
 }
+
+BOOST_AUTO_TEST_CASE(BindToAddressAleadyInUse)
+{
+	TCPTransever transever(50000);
+
+	boost::asio::io_service io_service;
+	boost::asio::ip::tcp::socket socket(io_service);
+	boost::asio::ip::tcp::endpoint endpoint(
+	boost::asio::ip::address::from_string("127.0.0.1"), 50000);
+
+	socket.bind(endpoint);
+
+	transever.getMessageOrTimeout(100);
+
+}
+

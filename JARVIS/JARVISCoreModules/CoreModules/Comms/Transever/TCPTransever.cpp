@@ -172,27 +172,10 @@ void TCPTransever::sendMessageChunks(std::list<std::string>& chunks)
 	infoMessageStream << "TCP Trancever sending " << chunks.size() << " message chunks";
 	ErrorLogger::logInfo(infoMessageStream.str());
 
-	AbstractMessage* replyMessage;
 	for(chunkIt = chunks.begin(); chunkIt != chunks.end(); chunkIt++)
 	{
 		std::string message = *chunkIt;
 		this->curSocket->send(boost::asio::buffer(message.c_str(),message.length()));
-		/*
-		try
-		{
-			replyMessage = this->getMessageOrTimeout(5000);
-		}
-		catch(coremodules::comms::transever::exceptions::TimeoutExpiredException& excpt)
-		{
-			ErrorLogger::logError("Send message Chunks Failed, Respoce Timed out with no request for more Data");
-			break;
-		}
-
-		if(isRequestNextDataMessage(replyMessage))
-		{
-			ErrorLogger::logError("Received Erronius value from socket when whending chunks");
-			break;
-		}*/
 	}
 }
 

@@ -12,6 +12,9 @@
 
 class DatabaseInterfaceGeneratorPlugin : public Plugin
 {
+private:
+
+
 public:
 	DatabaseInterfaceGeneratorPlugin(CoreModules* cm);
 	virtual ~DatabaseInterfaceGeneratorPlugin();

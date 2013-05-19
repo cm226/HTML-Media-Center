@@ -35,7 +35,7 @@ private:
 
 public:
 	MusicImageGetter(CoreModules* cm);
-	~MusicImageGetter(void);
+	virtual ~MusicImageGetter(void);
 
 	void registerFunctions(Plugin* registerer);
 	bool handleMusicSelected(Page* page, PageCallbackContext* context);

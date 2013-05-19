@@ -23,7 +23,6 @@ void PageBuilder::buildHeader()
 }
 void PageBuilder::buildHTMLHeadElement()
 {
-	this->page << "<head>";
 	std::vector<IElement*>::iterator elementIt;
 	for(elementIt = this->elements->begin(); elementIt != this->elements->end(); elementIt++)
 	{
@@ -36,7 +35,6 @@ void PageBuilder::buildHTMLHeadElement()
 		for(std::list<std::string>::iterator cssFileIt = cssFile.begin(); cssFileIt != cssFile.end(); cssFileIt++)
 			buildCSSInclude(*cssFileIt);
 	}
-	this->page << "</head>";
 }
 
 void PageBuilder::buildCSSInclude(std::string path)

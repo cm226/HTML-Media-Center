@@ -22,6 +22,7 @@ extern "C"
 
 #else
 
+#define DLLHELL_API
 extern"C"
 {
 	Plugin* makePlugin(CoreModules* framework);
