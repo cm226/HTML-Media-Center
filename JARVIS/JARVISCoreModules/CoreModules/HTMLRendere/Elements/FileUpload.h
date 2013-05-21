@@ -9,8 +9,9 @@
 #define FILEUPLOAD_H_
 
 #include "../IElement.h"
+#include "../../exportMacros.h"
 
-class FileUpload : public IElement
+class DLLCORE_API FileUpload : public IElement
 {
 public:
 	FileUpload(std::string name);
@@ -18,9 +19,9 @@ public:
 	void setOnUploadCallback(int depth, CALLBACk_HANDLE handl, std::string pluginName);
 
 	/* IElement Overrides */
-
-	std::string getTagText();
-	std::string getTagContent();
+protected:
+	virtual std::string getTagText();
+	virtual std::string getTagContent();
 };
 
 #endif /* FILEUPLOAD_H_ */

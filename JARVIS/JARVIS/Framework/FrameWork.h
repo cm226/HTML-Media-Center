@@ -16,10 +16,15 @@
 
 class JARVISFramework
 {
+private:
 	Loader* pluginLoader;
 	CoreModules cModules;
 
 	bool shuttingDown;
+	CppEventHandler ppEventHandler;
+	CppEventHandler cAndcEventHandler;
+	CppEventHandler ViewReqEventHandler;
+	CppEventHandler interactionReqEventHandler;
 
 public:
 	JARVISFramework();

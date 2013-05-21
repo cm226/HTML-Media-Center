@@ -8,6 +8,7 @@
 #ifndef COREMODULES_H_
 #define COREMODULES_H_
 
+#include <boost/shared_ptr.hpp>
 #include "HTMLRendere/HTMLRendere.h"
 #include "EventModel/EventModel.h"
 #include "Database/Database.h"
@@ -18,8 +19,7 @@
 class DLLCORE_API CoreModules {
 private:
 	struct privateMembers;
-	privateMembers* members;
-
+	boost::shared_ptr<privateMembers> members;
 public:
 	CoreModules();
 	CoreModules(DatabaseTables::Database* databaseOverride);

@@ -30,12 +30,13 @@ std::string AbstractMessage::stripNextValue()
 	char curChar = this->message[this->offset];
 	std::string nextValue = "";
 
+	this->offset++;
 	while(curChar != '$' && this->offset <= this->length)
 	{
 		nextValue.append(&curChar,1);
-		this->offset++;
 		curChar = this->message[this->offset];
+		this->offset++;
 	}
-	this->offset++; // move index past current $
+	//this->offset++; // move index past current $
 	return nextValue;
 }

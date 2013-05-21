@@ -11,6 +11,7 @@
 #include "AbstractTransever.h"
 #include <boost/asio.hpp>
 #include <list>
+#include <boost/thread/mutex.hpp>
 #include "Exceptions/TimeoutExpiredException.h"
 #include "../MessageTranslaters/Translater.h"
 #include "../MessageTranslaters/TranslatedMessages/TranslatedMessages.h"
@@ -24,6 +25,8 @@ private :
 	int PORT;
 	Translater messageTranslater;
 
+	boost::timed_mutex  connectionMutex;
+
 	void sendMessageChunks(std::list<std::string>& chunks);
 
 	bool isRequestNextDataMessage(AbstractMessage* msg);
@@ -31,7 +34,6 @@ private :
 public:
 	boost::asio::io_service io_service;
 	boost::asio::ip::tcp::socket* curSocket;
-	boost::asio::deadline_timer* timer;
 
 	TCPTransever(int port);
 	virtual ~TCPTransever();
@@ -43,7 +45,7 @@ public:
 	void shutdown();
 
 private:
-	void check_deadline();
+	void acceptConnection();
 };
 
 #endif /* TCPTRANSEVER_H_ */

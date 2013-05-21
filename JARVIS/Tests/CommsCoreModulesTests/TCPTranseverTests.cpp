@@ -22,7 +22,7 @@ BOOST_AUTO_TEST_CASE(TCPTranseverConstructorTests)
 void ListenForConnection()
 {
 	TCPTransever transever(50000);
-	bool connected = transever.listenForConnection(1000);
+	bool connected = transever.listenForConnection(10);
 	BOOST_CHECK_EQUAL(true, connected);
 	
 	ListPluginsMessage lpMessage;
@@ -98,7 +98,7 @@ BOOST_AUTO_TEST_CASE(TCPTranseverReceiveTests)
 	boost::thread makeConnectionThread(sendMessage);
 
 	TCPTransever transever(50000);
-	bool connected = transever.listenForConnection(1000);
+	bool connected = transever.listenForConnection(10);
 	BOOST_CHECK_EQUAL(true, connected);
 	AbstractMessage* message;
 	message = transever.getMessageOrTimeout(5000);
@@ -117,7 +117,7 @@ BOOST_AUTO_TEST_CASE(TCPTranseverReceiveTests)
 void SendLargeString()
 {
 	TCPTransever transever(50000);
-	bool connected = transever.listenForConnection(1000);
+	bool connected = transever.listenForConnection(10);
 	BOOST_CHECK_EQUAL(true, connected);
 	std::string messageContent(65500,'a');
 

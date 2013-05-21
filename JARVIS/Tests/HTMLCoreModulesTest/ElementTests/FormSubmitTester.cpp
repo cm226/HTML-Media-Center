@@ -1,10 +1,6 @@
 #include "../stdafx.h"
 #include "../../../JARVISCoreModules/CoreModules/HTMLRendere/Elements/FormSubmit.h"
 
-BOOST_AUTO_TEST_CASE(FormSubmitConstructor)
-{
-	BOOST_CHECK_NO_THROW(FormSubmit submit("test"));
-}
 
 
 BOOST_AUTO_TEST_CASE(FormSubmitRender)

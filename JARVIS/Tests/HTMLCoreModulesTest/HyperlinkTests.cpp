@@ -27,20 +27,20 @@ BOOST_AUTO_TEST_CASE(HyperlinkCallbackTests)
 	BOOST_CHECK_EQUAL(textBoxStr.compare("<a id=\"link\" href=\"www.test.com\" onClick=\"window.location='../pluginInteraction/0/TESPLUGIN'\">test</a>"), 0);
 
 
-	hyperlink = Hyperlink("link","www.test.com","test");
+	Hyperlink hyperlink1("link","www.test.com","test");
 	std::vector<std::string> contextArgs;
 	contextArgs.push_back("contxAra1");
 	contextArgs.push_back("contxAra%202");
 
-	hyperlink.addOnclickCallbackAttribute(1,0,"TESPLUGIN",contextArgs);
-	textBoxStr = hyperlink.getText();
+	hyperlink1.addOnclickCallbackAttribute(1,0,"TESPLUGIN",contextArgs);
+	textBoxStr = hyperlink1.getText();
 	BOOST_CHECK_EQUAL(textBoxStr.compare("<a id=\"link\" href=\"www.test.com\" onClick=\"window.location='../pluginInteraction/0/TESPLUGIN/contxAra1/contxAra%202'\">test</a>"), 0);
 
-	hyperlink = Hyperlink("link","www.test.com","test");
+	Hyperlink hyperlink2("link","www.test.com","test");
 	contextArgs.clear();
 
-	hyperlink.addOnclickCallbackAttribute(1,0,"TESPLUGIN",contextArgs);
-	textBoxStr = hyperlink.getText();
+	hyperlink2.addOnclickCallbackAttribute(1,0,"TESPLUGIN",contextArgs);
+	textBoxStr = hyperlink2.getText();
 	BOOST_CHECK_EQUAL(textBoxStr.compare("<a id=\"link\" href=\"www.test.com\" onClick=\"window.location='../pluginInteraction/0/TESPLUGIN'\">test</a>"), 0);
 
 }

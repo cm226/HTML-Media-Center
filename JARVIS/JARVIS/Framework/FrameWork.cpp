@@ -13,10 +13,10 @@ JARVISFramework::JARVISFramework()
 	ErrorLogger::logInfo("JARVIS initalising...");
 	this->shuttingDown = false;
 
-	EventManager::pluginPoll.attach(this,&JARVISFramework::loadedPlugins);
-	EventManager::commandAndControlMessageReceved.attach(this,&JARVISFramework::commandAndControlMessageReceved);
-	EventManager::onPluginViewRequest.attach(this,&JARVISFramework::getPluginPage);
-	EventManager::onPluginInteractionRequest.attach(this,&JARVISFramework::pluginInteractionRequest);
+	ppEventHandler = EventManager::pluginPoll.attach(this,&JARVISFramework::loadedPlugins);
+	cAndcEventHandler = EventManager::commandAndControlMessageReceved.attach(this,&JARVISFramework::commandAndControlMessageReceved);
+	ViewReqEventHandler = EventManager::onPluginViewRequest.attach(this,&JARVISFramework::getPluginPage);
+	interactionReqEventHandler = EventManager::onPluginInteractionRequest.attach(this,&JARVISFramework::pluginInteractionRequest);
 
 
 #ifdef _WINDOWS
@@ -32,7 +32,13 @@ JARVISFramework::JARVISFramework()
 
 JARVISFramework::~JARVISFramework()
 {
+	EventManager::pluginPoll.detach(ppEventHandler);
+	EventManager::commandAndControlMessageReceved.detach(cAndcEventHandler);
+	EventManager::onPluginViewRequest.detach(ViewReqEventHandler);
+	EventManager::onPluginInteractionRequest.detach(interactionReqEventHandler);
+
 	delete this->pluginLoader;
+
 }
 
 
@@ -79,7 +85,10 @@ void JARVISFramework::processCommandLoop()
 	{
 		std::cin >> command;
 			if(command == "shutdown")
+			{
 					this->shuttingDown = true;
+					return;
+			}
 	}
 }
 
