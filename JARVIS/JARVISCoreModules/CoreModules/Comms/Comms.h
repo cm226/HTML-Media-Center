@@ -11,19 +11,26 @@
 #include <string>
 #include "../Errors/ErrorLogger.h"
 
-#include "Transever/AbstractTransever.h"
+#include "Transever/TCPAsyncTransever.h"
+#include "Transever/TranseverConnectionFactory.h"
+
 #include "IComms.h"
 #include "CURL/CurlManager.h"
-
+#include <boost/thread.hpp>
+#include <boost/asio.hpp>
 
 
 class Comms : public CommsNS::IComms{
 private:
-	AbstractTransever* transever;
+	boost::asio::io_service io_service;
+	TranseverConnectionFactory connecionFactory;
+
+	TCPAsyncTransever transever;
 	CommsNS::CurlManager curlMan;
 
-	bool listening;
-	void connectionListener();
+	boost::thread* commsThread;
+
+	void doComms();
 
 public:
 

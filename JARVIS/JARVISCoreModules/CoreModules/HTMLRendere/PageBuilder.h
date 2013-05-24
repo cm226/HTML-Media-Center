@@ -24,6 +24,7 @@ private:
 	void buildHTMLHeadElement();
 	void buildCSSInclude(std::string path);
 	void buildJSInclude(std::string path);
+	void buildEmbeddedJS(std::string jsCode);
 	void buildBody();
 	void buildFooter();
 

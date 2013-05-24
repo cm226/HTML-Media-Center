@@ -9,6 +9,7 @@
 #define IELEMENT_H_
 
 #include <string>
+#include <sstream>
 #include <vector>
 #include <list>
 #include "../exportMacros.h"
@@ -21,6 +22,7 @@ private:
 	std::list<std::string> styles;
 	std::list<std::string> cssFiles;
 	std::list<std::string> javascriptFiles;
+	std::stringstream embededJSCode;
 	std::string name;
 	#pragma warning( default : 4251)
 	std::string writeStyle();
@@ -39,6 +41,7 @@ public:
 	void addStyle(std::string name, std::string value);
 	void includeCSS(std::string cssPath);
 	void includeJS(std::string jsPath);
+	void appendEmbeddedJSCode(std::string code);
 
 	void addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName, std::vector<std::string> contextArgs);
 	void addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName);
@@ -51,7 +54,7 @@ public:
 
 	std::list<std::string>& getJSIncludes();
 	std::list<std::string>& getCSSIncludes();
-
+	std::string getEmbeddedJS();
 	
 
 };

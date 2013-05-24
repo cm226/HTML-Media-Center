@@ -1,0 +1,224 @@
+#drop-files {
+    width: 95%;
+    height: 125px;
+    background: rgba(0,0,0,0.1);
+    border-radius: 10px;
+    border: 4px dashed rgba(0,0,0,0.2);
+    padding: 75px 0 0 0;
+    text-align: center;
+    font-size: 2em;
+    float: left;
+    font-weight: bold;
+    margin-left: 2%;
+}
+ 
+#dropped-files {
+    float: left;
+    position: relative;
+    width: 560px;
+    height: 125px;
+}
+ 
+#upload-button {
+    position: absolute;
+    top: 87px;
+    z-index: 9999;
+    width: 210px;
+    display: none;
+}
+ 
+#dropped-files .image {
+    height: 200px;
+    width: 300px;
+    border: 4px solid #fff;
+    position: absolute;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+}
+ 
+#upload-button .ss-upload {
+    font-size: 0.7em;
+}
+ 
+#upload-button a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 0 1000px 62px rgba(255, 255, 255, 1), inset 0 -35px 40px -10px #0A9FCA;
+    font-size: 20px;
+    padding: 10px 20px;
+    background-color: #4bc1e3;
+    border-radius: 10px;
+}
+ 
+#upload-button span {
+    display: block;
+    width: 160px;
+    text-align: center;
+    margin: 20px 0 0 0;
+    background: white;
+    border-radius: 10px;
+    font-size: 1.1em;
+    padding: 4px 0;
+    position: relative;
+    left: -14px;
+}
+#upload-button a:hover {
+    box-shadow: 0 0 1000px 62px rgba(255, 255, 255, 1), inset 0 -5px 40px 0px #0A9FCA; 
+}
+ 
+#extra-files {
+    display: none;
+    float: left;
+    position: relative;
+}
+ 
+#extra-files .number {
+    background: rgba(0,0,0,0.6);
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    color: #fff;
+    padding: 20px 30px;
+    margin: 60px 0 0 0;
+    cursor: pointer;
+    font-size: 30px;
+}
+ 
+#dropped-files #upload-button .delete {
+    padding: 7px 6px 4px 6px;
+    border-radius: 100px;
+    background: rgba(0,0,0,0.6);
+    box-shadow: none;
+    font-size: 1em;
+    margin-left: 8px;
+}
+ 
+#dropped-files #upload-button .delete:hover {
+    background: rgba(0,0,0,0.8);
+}
+ 
+ 
+#extra-files .number:after {
+    position: absolute;
+    content: " ";
+    top: 18px;
+    left: -40px;
+    display: block;
+    border: 20px solid;
+    border-color: transparent rgba(0, 0, 0, 0.6) transparent transparent;
+}
+ 
+#extra-files #file-list {
+    display: none;
+    background: white;
+    padding: 20px 0;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    width: 250px;
+    top: 100px;
+    border: 1px solid #dadada;
+    left: -10px;
+    left: -16px;
+    max-height: 220px;
+    top: 150px;
+    position: absolute;
+    color: #545454;
+}
+ 
+#file-list ul {
+    overflow: scroll;
+    padding: 0;
+    border-top: 1px solid #dadada;
+    max-height: 200px;
+    width: 250px;
+    list-style: none;
+    border-bottom: 1px solid #dadada !important;
+}
+ 
+ 
+#file-list ul li:last-of-type {
+    border-bottom: 0 !important;
+}
+ 
+#uploaded-holder {
+    width: 700px;
+    height: 250px;
+    display: none;
+    float: left;
+}
+ 
+#extra-files #file-list:after, #extra-files #file-list:before {
+    position: absolute;
+    content: " ";
+    top: -40px;
+    left: 40px;
+    display: block;
+    border: 20px solid;
+    border-color: transparent transparent #ffffff transparent;
+}
+ 
+#extra-files #file-list:before {
+    border-color: transparent transparent #dadada transparent;
+    top: -41px;
+}
+ 
+#extra-files #file-list li {
+    border-bottom: 1px solid #eee;
+    font-weight: bold;
+    font-size: 1.5em;
+    padding: 10px;
+}
+ 
+#loading {
+    display: none;
+    float: left;
+    width: 100%;
+    position: relative;
+}
+ 
+#loading-bar {
+    width: 404px;
+    height: 40px;
+    background: #fff;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    padding: 2px;
+}
+ 
+.loading-color {
+    width: 0%;
+    height: 100%;
+    -webkit-transition: all 0.1s ease-in;
+    -moz-transition: all 0.1s ease-in;
+    -ms-transition: all 0.1s ease-in;
+    -o-transition: all 0.1s ease-in;
+    transition: all 0.1s ease-in;
+    border-radius: inherit;
+    background-color: #4edbf1;
+}
+ 
+#loading-content {
+    position: absolute;
+    top: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    width: 405px;
+}
+ 
+#file-name-holder {
+    width: 100%;
+    float: left;
+}
+ 
+#file-name-holder h1 {
+    text-align: center;
+    border-bottom: 1px solid #dadada;
+    padding: 20px 0;
+    font-size: 3em;
+    margin: 0;
+}

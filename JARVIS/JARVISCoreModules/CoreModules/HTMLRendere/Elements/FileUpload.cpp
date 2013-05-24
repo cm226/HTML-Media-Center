@@ -9,6 +9,7 @@
 
 FileUpload::FileUpload(std::string name) : IElement(name)
 {
+	this->appendEmbeddedJSCode("var uploadLocation = \"../Plugin/Upload\";");
 	this->includeCSS("../../public/css/HTMLRendereCSS/UploadElementStyle.css");
 	this->includeJS("../../public/js/HTMLRendereJS/UploadElementJavascript.js");
 }

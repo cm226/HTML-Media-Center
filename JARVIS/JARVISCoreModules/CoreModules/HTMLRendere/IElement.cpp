@@ -6,11 +6,10 @@
  */
 
 #include "IElement.h"
-#include <sstream>
 
-using namespace std;
 
-IElement::IElement(string name) {
+IElement::IElement(std::string name)
+{
 	this->addAttribute("id=\""+name+"\"");
 }
 
@@ -108,10 +107,16 @@ void IElement::includeJS(std::string jsPath)
 	this->javascriptFiles.push_back(jsPath);
 }
 
+void IElement::appendEmbeddedJSCode(std::string code)
+{
+	this->embededJSCode << code;
+}
+
 std::string IElement::getText()
 {
 	std::stringstream elementHTML;
-	elementHTML << "<" <<this->getTagText();
+	std::string tagTxt = this->getTagText();
+	elementHTML << "<" <<tagTxt;
 	elementHTML << writeAttributes() << ">";
 	elementHTML << getTagContent();
 	elementHTML << "</" << this->getTagText() << ">";
@@ -126,4 +131,9 @@ std::list<std::string>& IElement::getJSIncludes()
 std::list<std::string>& IElement::getCSSIncludes()
 {
 	return this->cssFiles;
+}
+
+std::string IElement::getEmbeddedJS()
+{
+	return this->embededJSCode.str();
 }

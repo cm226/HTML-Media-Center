@@ -9,53 +9,37 @@
 #include "Comms.h"
 #include "Transever/TCPTransever.h"
 #include "JSON/JSONCURLRequest.h"
-
-#include <boost/thread.hpp>
-
+#include <boost/bind.hpp>
 
 
-Comms::Comms(){
-	this->transever = new TCPTransever(45001);
-	this->listening = false;
+
+
+Comms::Comms(): transever(io_service,45001,connecionFactory)
+{
 }
 
 Comms::~Comms() {
-	delete this->transever;
 }
 
 void Comms::startComms()
 {
-	this->listening = true;
+	this->commsThread = new boost::thread(boost::bind(&Comms::doComms, this));
+}
 
-	boost::thread listenForConnectionThread(boost::bind(&Comms::connectionListener, this));
-
+void Comms::doComms()
+{
+	this->io_service.run();
 }
 
 void Comms::stopComms()
 {
-	this->listening = false;
-	this->transever->shutdown();
+	this->io_service.stop();
 
+	this->commsThread->join();
+	delete this->commsThread;
 }
 
-void Comms::connectionListener()
-{
-	while(this->listening)
-	{
-		int haveConnection = this->transever->listenForConnection(5);
-		if(haveConnection)
-		{
-			AbstractMessage* recevedMessage = this->transever->getMessageOrTimeout(5000);
-			if(recevedMessage != NULL)
-			{
-				AbstractMessage* reply =  recevedMessage->actionMessage();
-				this->transever->sendMessage(reply);
-				delete reply;
-			}
-		}
 
-	}
-}
 
 CommsNS::IJSONRequest* Comms::createJSONRequest()
 {

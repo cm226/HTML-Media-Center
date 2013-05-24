@@ -37,20 +37,20 @@ BOOST_AUTO_TEST_CASE(LableCallbackTests)
 	BOOST_CHECK_EQUAL(textBoxStr.compare("<div id=\"testLable\" onClick=\"window.location='../pluginInteraction/0/TESPLUGIN'\"></div>"), 0);
 
 
-	textBox = Lable("testLable");
+	Lable textBox1("testLable");
 	std::vector<std::string> contextArgs;
 	contextArgs.push_back("contxAra1");
 	contextArgs.push_back("contxAra%202");
 
-	textBox.addOnclickCallbackAttribute(1,0,"TESPLUGIN",contextArgs);
-	textBoxStr = textBox.getText();
+	textBox1.addOnclickCallbackAttribute(1,0,"TESPLUGIN",contextArgs);
+	textBoxStr = textBox1.getText();
 	BOOST_CHECK_EQUAL(textBoxStr.compare("<div id=\"testLable\" onClick=\"window.location='../pluginInteraction/0/TESPLUGIN/contxAra1/contxAra%202'\"></div>"), 0);
 
-	textBox = Lable("testLable");
+	Lable textBox2("testLable");
 	contextArgs.clear();
 
-	textBox.addOnclickCallbackAttribute(1,0,"TESPLUGIN",contextArgs);
-	textBoxStr = textBox.getText();
+	textBox2.addOnclickCallbackAttribute(1,0,"TESPLUGIN",contextArgs);
+	textBoxStr = textBox2.getText();
 	BOOST_CHECK_EQUAL(textBoxStr.compare("<div id=\"testLable\" onClick=\"window.location='../pluginInteraction/0/TESPLUGIN'\"></div>"), 0);
 
 }

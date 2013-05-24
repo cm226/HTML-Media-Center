@@ -28,20 +28,20 @@ BOOST_AUTO_TEST_CASE(HTMLImageCallbackTests)
 	BOOST_CHECK_EQUAL(typerLinkTxt.compare("<img id=\"imgName\" src=\"imageURL\" onClick=\"window.location='../pluginInteraction/0/TESPLUGIN'\"></img>"), 0);
 
 
-	image = HTMLImage("imgName","imageURL");
+	HTMLImage image1("imgName","imageURL");
 	std::vector<std::string> contextArgs;
 	contextArgs.push_back("contxAra1");
 	contextArgs.push_back("contxAra%202");
 
-	image.addOnclickCallbackAttribute(1,0,"TESPLUGIN",contextArgs);
-	typerLinkTxt = image.getText();
+	image1.addOnclickCallbackAttribute(1,0,"TESPLUGIN",contextArgs);
+	typerLinkTxt = image1.getText();
 	BOOST_CHECK_EQUAL(typerLinkTxt.compare("<img id=\"imgName\" src=\"imageURL\" onClick=\"window.location='../pluginInteraction/0/TESPLUGIN/contxAra1/contxAra%202'\"></img>"), 0);
 
-	image = HTMLImage("imgName","imageURL");
+	HTMLImage image2("imgName","imageURL");
 	contextArgs.clear();
 
-	image.addOnclickCallbackAttribute(1,0,"TESPLUGIN",contextArgs);
-	typerLinkTxt = image.getText();
+	image2.addOnclickCallbackAttribute(1,0,"TESPLUGIN",contextArgs);
+	typerLinkTxt = image2.getText();
 	BOOST_CHECK_EQUAL(typerLinkTxt.compare("<img id=\"imgName\" src=\"imageURL\" onClick=\"window.location='../pluginInteraction/0/TESPLUGIN'\"></img>"), 0);
 
 }

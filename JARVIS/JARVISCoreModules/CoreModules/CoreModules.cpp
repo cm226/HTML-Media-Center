@@ -38,15 +38,8 @@ CoreModules::~CoreModules()
 		delete this->members->databasecon;
 		this->members->databasecon = NULL;
 	}
-
-	delete this->members;
 }
 
-CoreModules& CoreModules::operator=(const CoreModules &other)
-{
-	*this->members = *(other.members);
-	return *this;
-}
 
 DatabaseTables::Database* CoreModules::getDatabaseConnection()
 {
