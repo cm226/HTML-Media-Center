@@ -181,6 +181,7 @@
     <ClCompile Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockedElements\RightDockedElement.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockedElements\topDockedElement.cpp" />
     <ClCompile Include="CoreModules\Comms\Transever\MessageChunker.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\PageBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreModules\Comms\Comms.h" />
@@ -330,6 +331,7 @@
     <ClInclude Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockedElements\RightDockedElement.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockedElements\topDockedElement.h" />
     <ClInclude Include="CoreModules\Comms\Transever\MessageChunker.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\PageBuilder.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

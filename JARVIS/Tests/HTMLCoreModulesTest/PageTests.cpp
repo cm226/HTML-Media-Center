@@ -4,7 +4,7 @@
 
 BOOST_AUTO_TEST_CASE(pageConstructor)
 {
-	BOOST_CHECK_NO_THROW(Page p());
+	BOOST_CHECK_NO_THROW(Page p);
 }
 
 

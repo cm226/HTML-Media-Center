@@ -351,6 +351,9 @@
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\ReplyMessage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CoreModules\HTMLRendere\PageBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreModules\Comms\Comms.h">
@@ -792,6 +795,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\ReplyMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\HTMLRendere\PageBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

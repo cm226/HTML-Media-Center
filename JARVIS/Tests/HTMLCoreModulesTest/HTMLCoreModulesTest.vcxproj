@@ -55,6 +55,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -75,24 +76,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Containers\ElementList.cpp" />
-    <ClCompile Include="..\..\Containers\Form.cpp" />
-    <ClCompile Include="..\..\Containers\IContainer.cpp" />
-    <ClCompile Include="..\..\Elements\FormSubmit.cpp" />
-    <ClCompile Include="..\..\Elements\HTMLImage.cpp" />
-    <ClCompile Include="..\..\Elements\Hyperlink.cpp" />
-    <ClCompile Include="..\..\Elements\Lable.cpp" />
-    <ClCompile Include="..\..\Elements\TextBox.cpp" />
-    <ClCompile Include="..\..\IElement.cpp" />
-    <ClCompile Include="..\..\Page.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Containers\ElementList.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Containers\Form.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Containers\IContainer.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Elements\FileUpload.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Elements\FormSubmit.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Elements\HTMLImage.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Elements\Hyperlink.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Elements\Lable.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Elements\TextBox.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\IElement.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Page.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\PageBuilder.cpp" />
     <ClCompile Include="ElementListTests.cpp" />
+    <ClCompile Include="ElementTests\FileUploadTester.cpp" />
     <ClCompile Include="ElementTests\FormSubmitTester.cpp" />
     <ClCompile Include="FormTests.cpp" />
-    <ClCompile Include="HTMLCoreModulesTesting.cpp" />
     <ClCompile Include="ElementTests\TextBoxTests.cpp" />
     <ClCompile Include="HTMLImageTests.cpp" />
     <ClCompile Include="HyperlinkTests.cpp" />
     <ClCompile Include="LableTests.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="PageTests.cpp" />
   </ItemGroup>
   <ItemGroup>
