@@ -26,53 +26,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DatabaseCoreModulesTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Database.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tables\DatabaseTable.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Errors\ErrorLogger.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tables\IDatabaseTableField.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Querys\Query.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ResultWrapper.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
     <ClCompile Include="SelectTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ConnectTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tables\Movie\Movie.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tables\Movie\Fields\movieGenre.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tables\Movie\Fields\movieID.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tables\Movie\Fields\movieIMDB.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tables\Movie\Fields\movieName.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tables\Movie\Fields\movieURL.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tables\Movie\Fields\thumbnailURL.cpp">
-      <Filter>Source Files\Src</Filter>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -78,7 +78,6 @@
     <ClCompile Include="ImageGetters\Movie\MovieImageGetter.cpp" />
     <ClCompile Include="ImageGetters\Music\MusicImageGetter.cpp" />
     <ClCompile Include="ImageGetters\TV\TVImageGetter.cpp" />
-    <ClCompile Include="Testing\MediaImagesTesting\MusicMissingImageGetterTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageGetters\IimageContentGetter.h" />

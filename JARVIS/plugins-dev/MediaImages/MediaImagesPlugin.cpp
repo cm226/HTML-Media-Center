@@ -39,26 +39,16 @@ MediaImagesPlugin::~MediaImagesPlugin()
 
 }
 
-
-
 bool MediaImagesPlugin::whatDoYouLookLike(Page* page)
 {
-	Lable* movies = new Lable("moviesLbl");
-	Lable* music = new Lable("musicLbl");
-	Lable* tv = new Lable("tvLbl");
-
-	movies->setText("Movie Images");
-	music->setText("Music Images");
-	tv->setText("TV Images");
-
-	movies->addOnclickCallbackAttribute(1,this->movieImageSelected,this->name);
-	music->addOnclickCallbackAttribute(1,this->musicISelected, this->name);
-	tv->addOnclickCallbackAttribute(1, this->tvSelected, this->name);
 	
-	page->addElement(movies);
-	page->addElement(music);
-	page->addElement(tv);
+	coremodules::htmlrendere::elements::menulist::MenuList* mainMenu = new coremodules::htmlrendere::elements::menulist::MenuList("MainMenu");
+	
+	mainMenu->addItem("Movie Images",1,this->movieImageSelected,this->name);
+	mainMenu->addItem("Music Images",1,this->musicISelected,this->name);
+	mainMenu->addItem("TV Images",1,this->tvSelected,this->name);
 
+	page->addElement(mainMenu);
 	return true;
 
 }
