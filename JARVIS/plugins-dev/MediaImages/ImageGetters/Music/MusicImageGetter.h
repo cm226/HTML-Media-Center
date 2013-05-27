@@ -13,9 +13,9 @@
 class MusicImageGetter : public imagegetters::IimageContentGetter
 {
 private:
-	static const CALLBACk_HANDLE ARTIST_THUMBNAIL_IMG = 21;
-	static const CALLBACk_HANDLE ARTIST_IMG = 22;
-	static const CALLBACk_HANDLE ALBUM_IMG = 23;
+	CALLBACk_HANDLE ARTIST_THUMBNAIL_IMG;
+	CALLBACk_HANDLE ARTIST_IMG;
+	CALLBACk_HANDLE ALBUM_IMG;
 
 	ImageGetter imgGetter;
 	imagegetters::music::MusicMissingImageContentFinder missingContentFinder;

@@ -18,7 +18,8 @@ private:
 	ImageGetter imgGetter;
 	std::vector<std::string> curImgSet;
 	std::string registereName;
-	static const CALLBACk_HANDLE ImageSelected = 11;
+	
+	CALLBACk_HANDLE ImageSelected;
 
 
 	bool getUnallocatedMovie(DatabaseTables::Movie::Movie& movie);

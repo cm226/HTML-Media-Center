@@ -19,9 +19,9 @@
 class MediaImagesPlugin: public Plugin {
 private :
 
-	static const CALLBACk_HANDLE musicISelected = 1;
-	static const CALLBACk_HANDLE tvSelected = 2;
-	static const CALLBACk_HANDLE movieImageSelected = 3;
+	CALLBACk_HANDLE musicISelected;
+	CALLBACk_HANDLE tvSelected;
+	CALLBACk_HANDLE movieImageSelected;
 
 	std::string name;
 	MovieImageGetter movieImageGetter;

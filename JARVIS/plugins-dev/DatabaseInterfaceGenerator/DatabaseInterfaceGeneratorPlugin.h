@@ -13,7 +13,8 @@
 class DatabaseInterfaceGeneratorPlugin : public Plugin
 {
 private:
-
+	CALLBACk_HANDLE fileUploadedHandle;
+	bool fileUploaded(Page* page, PageCallbackContext* context);
 
 public:
 	DatabaseInterfaceGeneratorPlugin(CoreModules* cm);

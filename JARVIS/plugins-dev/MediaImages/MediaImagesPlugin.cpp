@@ -21,13 +21,13 @@ MediaImagesPlugin::MediaImagesPlugin(CoreModules* framework) : Plugin(framework)
 	this->name = "Media Images";
 
 	boost::function2<bool ,Page*,PageCallbackContext* > f = boost::bind(&MediaImagesPlugin::handleMovieSelected,this, _1, _2);
-	this->subscribeHTMLCallback(f, this->movieImageSelected);
+	this->movieImageSelected = this->subscribeHTMLCallback(f);
 
 	boost::function2<bool ,Page*,PageCallbackContext* > f1 = boost::bind(&MediaImagesPlugin::handleMusicSelected,this, _1, _2);
-	this->subscribeHTMLCallback(f1, this->musicISelected);
+	 this->musicISelected = this->subscribeHTMLCallback(f1);
 
 	boost::function2<bool ,Page*,PageCallbackContext* > f2 = boost::bind(&MediaImagesPlugin::handleTvSelected,this, _1, _2);
-	this->subscribeHTMLCallback(f2, this->tvSelected);
+	this->tvSelected = this->subscribeHTMLCallback(f2);
 
 	this->movieImageGetter.registerFunctions(this);
 	this->musicImageGetter.registerFunctions(this);

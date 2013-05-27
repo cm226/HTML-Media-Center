@@ -33,6 +33,9 @@ protected:
 	virtual std::string getTagContent() = 0;
 	virtual std::string writeAttributes();
 
+	std::string buildCallbackLocationString(int depth, CALLBACk_HANDLE handl, std::string pluginName, std::vector<std::string> contextArgs,std::string location = "pluginInteraction");
+	std::string buildCallbackLocationString(int depth, CALLBACk_HANDLE handl, std::string pluginName,std::string location = "pluginInteraction");
+
 public:
 	IElement(std::string name);
 	virtual ~IElement();

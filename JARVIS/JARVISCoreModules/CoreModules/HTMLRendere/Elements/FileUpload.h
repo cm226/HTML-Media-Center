@@ -14,9 +14,8 @@
 class DLLCORE_API FileUpload : public IElement
 {
 public:
-	FileUpload(std::string name);
+	FileUpload(std::string name,int depth, CALLBACk_HANDLE handl, std::string pluginName);
 	virtual ~FileUpload();
-	void setOnUploadCallback(int depth, CALLBACk_HANDLE handl, std::string pluginName);
 
 	/* IElement Overrides */
 protected:

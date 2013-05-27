@@ -1,3 +1,12 @@
+window.addEventListener("dragover",function(e){
+  e = e || event;
+  e.preventDefault();
+},false);
+window.addEventListener("drop",function(e){
+  e = e || event;
+  e.preventDefault();
+},false);
+
 $(document).ready(function() {
      
     // Makes sure the dataTransfer information is sent when we
@@ -23,17 +32,6 @@ $(document).ready(function() {
 	   // For each file
 	    $.each(files, function(index, file)
 	    {
-
-		// Some error messaging
-		if (!files[index].type.match('text.*'))
-		{
-		     
-		    if(errMessage == 0) {
-			$('#drop-files').html('text files only');
-		    }
-		   
-		    return false;
-		}
 
 
 		if($('#dropped-files > .image').length < maxFiles)
@@ -132,7 +130,8 @@ $('#upload-button .upload').click(function() {
     // Upload each file separately
     $.each(dataArray, function(index, file) {  
 
-$.post(uploadLocation, dataArray[index], function(data) {
+$.post(uploadLocation, dataArray[index], function(data) 
+{
  
     // The name of the file
     var fileName = dataArray[index].name;
@@ -157,30 +156,10 @@ $.post(uploadLocation, dataArray[index], function(data) {
 
 // Show a message showing the file URL.
 var dataSplit = data.split(':');
-if(dataSplit[1] == 'uploaded successfully') 
-{
-    var realData = '<li><a href="images/'+dataSplit[0]+'">'+fileName+'</a> '+dataSplit[1]+'</li>';
-     
-    $('#uploaded-files').show();
-     
-    $('#uploaded-files').append('<li><a href="images/'+dataSplit[0]+'">'+fileName+'</a> '+dataSplit[1]+'</li>');
-
-
- // Add things to local storage
-                if(window.localStorage.length == 0) {
-                    y = 0;
-                } else {
-                    y = window.localStorage.length;
-                }
-                 
-                // We set this item in the local storage
-                window.localStorage.setItem(y, realData);
+$('.scroll-pane').append(data);
              
-            } else {
-                $('#uploaded-files').append('<li><a href="images/'+data+'. File Name: '+dataArray[index].name+'</li>');
-            }
-             
-        });
+        }
+		);
     });
      
     return false;
