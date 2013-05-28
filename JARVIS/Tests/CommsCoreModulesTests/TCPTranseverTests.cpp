@@ -48,6 +48,7 @@ BOOST_AUTO_TEST_CASE(TCPTranseverSendTests)
 	BOOST_CHECK_EQUAL(ec.value(),0);
 	boost::array<char, 2> buf;
 	buf.fill('\0');
+	boost::this_thread::sleep( boost::posix_time::seconds(2)); // wate for the other thread to write
 	boost::asio::read(socket, boost::asio::buffer(buf));
 	int messageSize = buf.at(0);
 	messageSize = messageSize << 8;

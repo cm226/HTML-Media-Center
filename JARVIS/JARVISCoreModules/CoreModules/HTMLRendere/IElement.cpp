@@ -13,8 +13,8 @@ IElement::IElement(std::string name)
 	this->addAttribute("id=\""+name+"\"");
 }
 
-IElement::~IElement() {
-	// TODO Auto-generated destructor stub
+IElement::~IElement() 
+{
 }
 
 void IElement::addAttribute(std::string attribute)
@@ -26,15 +26,7 @@ void IElement::addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std
 {
 	std::stringstream movieAttributeStream ;
 	movieAttributeStream << "onClick=\"window.location='";
-	for(int i = 0; i < depth; i++)
-		movieAttributeStream << "../";
-	movieAttributeStream<<"pluginInteraction/";	
-	
-	movieAttributeStream << handl << "/" << pluginName;
-	std::vector<std::string>::iterator contextArgsIt;
-	for(contextArgsIt = contextArgs.begin(); contextArgsIt != contextArgs.end(); contextArgsIt++)
-		movieAttributeStream << "/"<<*contextArgsIt;
-
+	movieAttributeStream << buildCallbackLocationString(depth, handl, pluginName, contextArgs);
 	movieAttributeStream << "'\"";
 	this->addAttribute(movieAttributeStream.str());
 }
@@ -43,14 +35,39 @@ void IElement::addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std
 {	
 	std::stringstream movieAttributeStream ;
 	movieAttributeStream << "onClick=\"window.location='";
-	for(int i = 0; i < depth; i++)
-		movieAttributeStream << "../";
-	movieAttributeStream<<"pluginInteraction/";	
-
-	movieAttributeStream << handl << "/" << pluginName  <<"'\"";
-
+	movieAttributeStream << buildCallbackLocationString(depth, handl, pluginName) <<"'\"";;
 	this->addAttribute(movieAttributeStream.str());
 }
+
+std::string IElement::buildCallbackLocationString(int depth, CALLBACk_HANDLE handl, std::string pluginName, std::vector<std::string> contextArgs,std::string location)
+{
+	std::stringstream locationStream ;
+
+	for(int i = 0; i < depth; i++)
+		locationStream << "../";
+	locationStream<<location<<"/";	
+	
+	locationStream << handl << "/" << pluginName;
+	std::vector<std::string>::iterator contextArgsIt;
+	for(contextArgsIt = contextArgs.begin(); contextArgsIt != contextArgs.end(); contextArgsIt++)
+		locationStream << "/"<<*contextArgsIt;
+
+	return locationStream.str();
+}
+
+std::string IElement::buildCallbackLocationString(int depth, CALLBACk_HANDLE handl, std::string pluginName,std::string location)
+{
+	std::stringstream locationStream ;
+	
+	for(int i = 0; i < depth; i++)
+		locationStream << "../";
+	locationStream<<location<<"/";		
+
+	locationStream << handl << "/" << pluginName;
+
+	return locationStream.str();
+}
+
 /*
 
 void addAsincOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName)

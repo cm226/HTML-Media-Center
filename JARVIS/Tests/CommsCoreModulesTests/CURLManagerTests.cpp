@@ -7,7 +7,7 @@
 
 BOOST_AUTO_TEST_CASE(CURLManagerConstructorTests)
 {
-	BOOST_CHECK_NO_THROW(CommsNS::CurlManager curlMan());
+	BOOST_CHECK_NO_THROW(CommsNS::CurlManager());
 }
 
 
@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE(CURLManagerMakeRequestTests)
 BOOST_AUTO_TEST_CASE(downloadFileTest)
 {
 	CommsNS::CurlManager curlMan;
-	#ifdef _WINDOWS
+	#ifdef WIN32
 		std::string downloadLocation = "C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\test.png";
 	#else
 		std::string downloadLocation = "/var/www/HTML-Media-Center/JARVIS/JARVIS/test.png";
@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE(downloadToFileThatExsists)
 
 BOOST_AUTO_TEST_CASE(downloadToBadPath)
 {
-#ifdef _WINDOWS
+#ifdef WIN32
 	CommsNS::CurlManager curlMan;
 	bool worked = curlMan.downloadItemToFile("http://g-ecx.images-amazon.com/images/G/02/gno/beacon/BeaconSprite-UK-02._V397961423_.png","C:\\C:\\");
 	BOOST_CHECK_EQUAL(false,worked);
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE(downloadToBadPath)
 
 BOOST_AUTO_TEST_CASE(downloadFileTestInvalidFile)
 {
-#ifdef _WINDOWS
+#ifdef WIN32
 		std::string downloadLocation = "C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\test.png";
 	#else
 		std::string downloadLocation = "/var/www/HTML-Media-Center/JARVIS/JARVIS/test.png";

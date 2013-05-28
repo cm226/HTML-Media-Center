@@ -7,9 +7,11 @@
 
 #include "FileUpload.h"
 
-FileUpload::FileUpload(std::string name) : IElement(name)
+FileUpload::FileUpload(std::string name,int depth, CALLBACk_HANDLE handl, std::string pluginName) : IElement(name)
 {
-	this->appendEmbeddedJSCode("var uploadLocation = \"../Plugin/Upload\";");
+	std::string uploadLocationString = buildCallbackLocationString(depth,handl,pluginName,"Upload");
+
+	this->appendEmbeddedJSCode("var uploadLocation = \""+uploadLocationString+"\";");
 	this->includeCSS("../../public/css/HTMLRendereCSS/UploadElementStyle.css");
 	this->includeJS("../../public/js/HTMLRendereJS/UploadElementJavascript.js");
 }
@@ -55,9 +57,5 @@ std::string FileUpload::getTagContent()
 			"</div>";
 }
 
-void FileUpload::setOnUploadCallback(int depth, CALLBACk_HANDLE handl, std::string pluginName)
-{
-	this->addOnclickCallbackAttribute(depth, handl, pluginName);
-}
 
 

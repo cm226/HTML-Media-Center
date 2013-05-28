@@ -39,9 +39,6 @@
     <ClCompile Include="ImageGetters\Music\MusicMissingImageContentFinder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Testing\MediaImagesTesting\MusicMissingImageGetterTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageGetters\ImageGetter.h">

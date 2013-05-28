@@ -19,6 +19,9 @@
     <Filter Include="Source Files\TranseverTests">
       <UniqueIdentifier>{4be08b59-90f4-4486-a3cd-02fed5f5388f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\SRC">
+      <UniqueIdentifier>{2f9e82e1-de43-4a51-afb3-8f981de23de1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -29,80 +32,104 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CommsCoreModulesTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CURLManagerTests.cpp">
-      <Filter>Source Files\CURL</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\CURL\CurlManager.cpp">
       <Filter>Source Files\CURL</Filter>
     </ClCompile>
     <ClCompile Include="MessagechunkerTests.cpp">
       <Filter>Source Files\TranseverTests</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Transever\MessageChunker.cpp">
-      <Filter>Source Files\TranseverTests</Filter>
-    </ClCompile>
-    <ClCompile Include="TCPTranseverTests.cpp">
-      <Filter>Source Files\TranseverTests</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Transever\TCPTransever.cpp">
-      <Filter>Source Files\TranseverTests</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Transever\AbstractTransever.cpp">
-      <Filter>Source Files\TranseverTests</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Errors\ErrorLogger.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Transever\Exceptions\TimeoutExpiredException.cpp">
-      <Filter>Source Files\TranseverTests</Filter>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\StringMessageSerializer.cpp">
+      <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MessageTranslaters\Translater.cpp">
-      <Filter>Source Files\TranseverTests</Filter>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\Translater.cpp">
+      <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MessageTranslaters\StringMessageSerializer.cpp">
-      <Filter>Source Files\TranseverTests</Filter>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\BaseTranslationFilter.cpp">
+      <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MessageTranslaters\TranslationFilters\BaseTranslationFilter.cpp">
-      <Filter>Source Files\TranseverTests</Filter>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\CommandAndcontrolTranslationFilter.cpp">
+      <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MessageTranslaters\TranslationFilters\CommandAndcontrolTranslationFilter.cpp">
-      <Filter>Source Files\TranseverTests</Filter>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginInteractionFilter.cpp">
+      <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MessageTranslaters\TranslationFilters\PluginInteractionFilter.cpp">
-      <Filter>Source Files\TranseverTests</Filter>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPageTranslationFilter.cpp">
+      <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MessageTranslaters\TranslationFilters\PluginPageTranslationFilter.cpp">
-      <Filter>Source Files\TranseverTests</Filter>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.cpp">
+      <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.cpp">
-      <Filter>Source Files\TranseverTests</Filter>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\AbstractMessage.cpp">
+      <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\AbstractMessage.cpp">
-      <Filter>Source Files\TranseverTests</Filter>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\ComandAndControlMessage.cpp">
+      <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\ComandAndControlMessage.cpp">
-      <Filter>Source Files\TranseverTests</Filter>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\ListPluginsMessage.cpp">
+      <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\ListPluginsMessage.cpp">
-      <Filter>Source Files\TranseverTests</Filter>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\PluginInteractionRequestMessage.cpp">
+      <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\PluginInteractionRequestMessage.cpp">
-      <Filter>Source Files\TranseverTests</Filter>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\PluginPageMessage.cpp">
+      <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\PluginPageMessage.cpp">
-      <Filter>Source Files\TranseverTests</Filter>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\ReplyMessage.cpp">
+      <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\ReplyMessage.cpp">
-      <Filter>Source Files\TranseverTests</Filter>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\RequestNextDataChunkMessage.cpp">
+      <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MessageTranslaters\TranslatedMessages\RequestNextDataChunkMessage.cpp">
-      <Filter>Source Files\TranseverTests</Filter>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Protocals\TwoByteMsgLen.cpp">
+      <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\EventModel\EventManager.cpp">
-      <Filter>Source Files\TranseverTests</Filter>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Transever\AbstractTransever.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Transever\ITranseverConnection.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Transever\JARVISTranseverConnection.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Transever\MessageChunker.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Transever\TCPAsyncTransever.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Transever\TCPTransever.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Transever\TranseverConnectionFactory.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Transever\Exceptions\TimeoutExpiredException.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Errors\ErrorLogger.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\CURL\CurlManager.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\JSON\JSONCURLRequest.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\EventModel\Events\Event.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\EventModel\EventHandler\EventHandler.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\EventModel\EventHandler\EvntHandlerBase.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\EventModel\EventManager.cpp">
+      <Filter>Source Files\SRC</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

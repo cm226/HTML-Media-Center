@@ -80,21 +80,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Errors\ErrorLogger.cpp" />
-    <ClCompile Include="..\..\Database.cpp" />
-    <ClCompile Include="..\..\Querys\Query.cpp" />
-    <ClCompile Include="..\..\ResultWrapper.cpp" />
-    <ClCompile Include="..\..\Tables\DatabaseTable.cpp" />
-    <ClCompile Include="..\..\Tables\IDatabaseTableField.cpp" />
-    <ClCompile Include="..\..\Tables\Movie\Fields\movieGenre.cpp" />
-    <ClCompile Include="..\..\Tables\Movie\Fields\movieID.cpp" />
-    <ClCompile Include="..\..\Tables\Movie\Fields\movieIMDB.cpp" />
-    <ClCompile Include="..\..\Tables\Movie\Fields\movieName.cpp" />
-    <ClCompile Include="..\..\Tables\Movie\Fields\movieURL.cpp" />
-    <ClCompile Include="..\..\Tables\Movie\Fields\thumbnailURL.cpp" />
-    <ClCompile Include="..\..\Tables\Movie\Movie.cpp" />
     <ClCompile Include="ConnectTests.cpp" />
-    <ClCompile Include="DatabaseCoreModulesTests.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="SelectTests.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

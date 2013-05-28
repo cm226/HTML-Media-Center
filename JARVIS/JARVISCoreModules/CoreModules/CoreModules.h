@@ -19,7 +19,10 @@
 class DLLCORE_API CoreModules {
 private:
 	struct privateMembers;
+	#pragma warning( disable : 4251)
 	boost::shared_ptr<privateMembers> members;
+	#pragma warning( default : 4251)
+
 public:
 	CoreModules();
 	CoreModules(DatabaseTables::Database* databaseOverride);

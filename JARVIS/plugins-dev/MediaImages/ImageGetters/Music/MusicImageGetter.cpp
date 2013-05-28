@@ -14,13 +14,13 @@ MusicImageGetter::~MusicImageGetter(void)
 void MusicImageGetter::registerFunctions(Plugin* registerer)
 {
 	boost::function2<bool ,Page*,PageCallbackContext* > artistThumbSelectedFunc = boost::bind(&MusicImageGetter::onArtistThumbSelected,this, _1, _2);
-	registerer->subscribeHTMLCallback(artistThumbSelectedFunc, this->ARTIST_THUMBNAIL_IMG);
+	this->ARTIST_THUMBNAIL_IMG = registerer->subscribeHTMLCallback(artistThumbSelectedFunc);
 
 	boost::function2<bool ,Page*,PageCallbackContext* > artistSelectedFunc = boost::bind(&MusicImageGetter::onArtistSelected,this, _1, _2);
-	registerer->subscribeHTMLCallback(artistSelectedFunc, this->ARTIST_IMG);
+	this->ARTIST_IMG = registerer->subscribeHTMLCallback(artistSelectedFunc);
 
 	boost::function2<bool ,Page*,PageCallbackContext* > albumSelectedFunc = boost::bind(&MusicImageGetter::onAlbumSelected,this, _1, _2);
-	registerer->subscribeHTMLCallback(albumSelectedFunc, this->ALBUM_IMG);
+	this->ALBUM_IMG = registerer->subscribeHTMLCallback(albumSelectedFunc);
 
 
 	this->registereName = registerer->pluginName();

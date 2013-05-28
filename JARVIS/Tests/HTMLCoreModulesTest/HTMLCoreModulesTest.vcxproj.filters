@@ -34,51 +34,24 @@
     <Filter Include="Source Files\ContainerTests">
       <UniqueIdentifier>{67294e3c-38ba-4d1e-8c1d-0df8d16a3cc6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ElementTests\FileUpload">
+      <UniqueIdentifier>{3994d8f5-75cc-42ea-8373-1f53b745d0cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="HTMLCoreModulesTesting.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\IElement.cpp">
-      <Filter>Source Files\ElementTests</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Elements\TextBox.cpp">
-      <Filter>Source Files\ElementTests\TextBox</Filter>
-    </ClCompile>
     <ClCompile Include="ElementTests\TextBoxTests.cpp">
       <Filter>Source Files\ElementTests\TextBox</Filter>
     </ClCompile>
     <ClCompile Include="LableTests.cpp">
       <Filter>Source Files\ElementTests\Lable</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Elements\Lable.cpp">
-      <Filter>Source Files\ElementTests\Lable</Filter>
-    </ClCompile>
     <ClCompile Include="HyperlinkTests.cpp">
-      <Filter>Source Files\ElementTests\Hyperlink</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Elements\Hyperlink.cpp">
       <Filter>Source Files\ElementTests\Hyperlink</Filter>
     </ClCompile>
     <ClCompile Include="HTMLImageTests.cpp">
       <Filter>Source Files\ElementTests\HTMLImage</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Elements\HTMLImage.cpp">
-      <Filter>Source Files\ElementTests\HTMLImage</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Elements\FormSubmit.cpp">
-      <Filter>Source Files\ElementTests\FormSubmit</Filter>
-    </ClCompile>
-    <ClCompile Include="ElementTests\FormSubmitTester.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FormTests.cpp">
-      <Filter>Source Files\ContainerTests</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Containers\Form.cpp">
-      <Filter>Source Files\ContainerTests</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Containers\IContainer.cpp">
       <Filter>Source Files\ContainerTests</Filter>
     </ClCompile>
     <ClCompile Include="PageTests.cpp">
@@ -87,11 +60,50 @@
     <ClCompile Include="ElementListTests.cpp">
       <Filter>Source Files\ContainerTests</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Containers\ElementList.cpp">
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Page.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementTests\FileUploadTester.cpp">
+      <Filter>Source Files\ElementTests\FileUpload</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Elements\FileUpload.cpp">
+      <Filter>Source Files\ElementTests\FileUpload</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Elements\FormSubmit.cpp">
+      <Filter>Source Files\ElementTests\FormSubmit</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementTests\FormSubmitTester.cpp">
+      <Filter>Source Files\ElementTests\FormSubmit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Elements\HTMLImage.cpp">
+      <Filter>Source Files\ElementTests\HTMLImage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Elements\Hyperlink.cpp">
+      <Filter>Source Files\ElementTests\Hyperlink</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Elements\Lable.cpp">
+      <Filter>Source Files\ElementTests\Lable</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\IElement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\PageBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Containers\ElementList.cpp">
       <Filter>Source Files\ContainerTests</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Page.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Containers\Form.cpp">
+      <Filter>Source Files\ContainerTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Containers\IContainer.cpp">
+      <Filter>Source Files\ContainerTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Elements\TextBox.cpp">
+      <Filter>Source Files\ElementTests\TextBox</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

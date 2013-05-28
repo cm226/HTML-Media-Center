@@ -20,7 +20,7 @@ MovieImageGetter::~MovieImageGetter(void)
 void MovieImageGetter::registerFunctions(Plugin* registerer)
 {
 	boost::function2<bool ,Page*,PageCallbackContext* > f = boost::bind(&MovieImageGetter::onImageSelected,this, _1, _2);
-	registerer->subscribeHTMLCallback(f, this->ImageSelected);
+	this->ImageSelected = registerer->subscribeHTMLCallback(f);
 	this->registereName = registerer->pluginName();
 
 }

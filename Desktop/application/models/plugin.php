@@ -28,6 +28,14 @@ function getPluginReply($pluginCallbackID, $contextArgs)
 	return $reply;
 }
 
+function notifyPluginOfUpload($pluginCallbackID,$contextArgs)
+{
+	$comms = new JARVISCommas();
+	$reply = $comms->requestPluginInteractionPage($pluginCallbackID, $contextArgs);
+	
+	return $reply;
+}
+
 
 }
 

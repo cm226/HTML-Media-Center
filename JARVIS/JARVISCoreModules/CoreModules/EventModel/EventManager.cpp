@@ -13,6 +13,7 @@ Event<bool,int> EventManager::commandAndControlMessageReceved;
 Event<std::string, std::vector<std::string> > EventManager::onPluginInteractionRequest;
 
 
+
 EventManager::EventManager() {
 	// TODO Auto-generated constructor stub
 

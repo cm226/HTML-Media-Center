@@ -22,6 +22,7 @@
 class Plugin {
 
 private:
+	CALLBACk_HANDLE nextFreeCallbackHandle;
 	std::map<CALLBACk_HANDLE, boost::function2<bool ,Page*,PageCallbackContext* > > pageCallbacks;
 
 protected:
@@ -30,7 +31,11 @@ protected:
 	
 
 public:
-	Plugin(CoreModules* coreMod) {this->coreMod = coreMod;};
+	Plugin(CoreModules* coreMod) 
+	{
+		nextFreeCallbackHandle = 0;
+		this->coreMod = coreMod;
+	};
 
 	bool notifyPageCallback(Page* page, PageCallbackContext* context)
 	{
@@ -45,9 +50,13 @@ public:
 
 		return false;
 	};
-	void subscribeHTMLCallback(boost::function2<bool ,Page*,PageCallbackContext* > callbk, CALLBACk_HANDLE hndl)
+	CALLBACk_HANDLE subscribeHTMLCallback(boost::function2<bool ,Page*,PageCallbackContext* > callbk)
 	{
+		CALLBACk_HANDLE hndl = nextFreeCallbackHandle;
+		nextFreeCallbackHandle++;
+
 		this->pageCallbacks[hndl] = callbk;
+		return hndl;
 	}
 
 	virtual bool whatDoYouLookLike(Page*) = 0;

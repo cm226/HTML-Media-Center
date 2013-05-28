@@ -32,10 +32,11 @@ JARVISFramework::JARVISFramework()
 
 JARVISFramework::~JARVISFramework()
 {
-	EventManager::pluginPoll.detach(ppEventHandler);
+	// TODO this is fucked up on windows, change to boost signals lib
+	/*EventManager::pluginPoll.detach(ppEventHandler);
 	EventManager::commandAndControlMessageReceved.detach(cAndcEventHandler);
 	EventManager::onPluginViewRequest.detach(ViewReqEventHandler);
-	EventManager::onPluginInteractionRequest.detach(interactionReqEventHandler);
+	EventManager::onPluginInteractionRequest.detach(interactionReqEventHandler);*/
 
 	delete this->pluginLoader;
 

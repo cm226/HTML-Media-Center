@@ -15,7 +15,7 @@
 #include "../EventHandler/EventHandler.h"
 #include "../../exportMacros.h"
 
-	typedef int CppEventHandler;
+typedef int CppEventHandler;
 
 template <typename ReturnT, typename ParamT>
 class DLLCORE_API Event {
@@ -35,7 +35,7 @@ public:
 								ReturnT,ParamT>(object,member));
 		m_count++;
 		return m_count-1;
-	}
+	};
 
 	bool detach(CppEventHandler id)
 	{
@@ -47,7 +47,7 @@ public:
 		delete it->second;
 		handlers.erase(it);
 		return true;
-	}
+	};
 
 	void notify(ParamT param, std::vector<ReturnT>* retVals = NULL)
 	{
@@ -62,7 +62,7 @@ public:
 		}
 
 		return;
-	}
+	};
 
 };
 
