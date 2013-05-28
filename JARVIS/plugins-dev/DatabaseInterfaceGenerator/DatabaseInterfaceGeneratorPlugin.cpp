@@ -7,7 +7,7 @@
 
 #include "DatabaseInterfaceGeneratorPlugin.h"
 #include "../../JARVISCoreModules/CoreModules/HTMLRendere/Elements/FileUpload.h"
-#include <boost\bind.hpp>
+#include <boost/bind.hpp>
 
 DatabaseInterfaceGeneratorPlugin::DatabaseInterfaceGeneratorPlugin(CoreModules* cm) : Plugin(cm)
 {
@@ -31,6 +31,7 @@ bool DatabaseInterfaceGeneratorPlugin::whatDoYouLookLike(Page* page)
 
 bool DatabaseInterfaceGeneratorPlugin::fileUploaded(Page* page, PageCallbackContext* context)
 {
+
 	return true;
 }
 

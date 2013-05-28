@@ -1,0 +1,22 @@
+CREATE TABLE Album
+(
+albumID INT PRIMARY KEY AUTO_INCREMENT,
+albumName VARCHAR(20),
+artistID INT NOT NULL,
+year YEAR NOT NULL,
+albumRating INT(2) NOT NULL,
+FOREIGN KEY (artistID) REFERENCES Artist (artistID)
+);
+
+CREATE TABLE Song
+(
+songID INT PRIMARY KEY AUTO_INCREMENT,
+songName VARCHAR(40),
+albumID INT NOT NULL,
+songLength TIME NOT NULL,
+songRating INT(2) NOT NULL,
+playCount INT(3) NOT NULL,
+songURL VARCHAR(256),
+dateAdded DATE,
+FOREIGN KEY (albumID) REFERENCES Album (albumID)
+);
