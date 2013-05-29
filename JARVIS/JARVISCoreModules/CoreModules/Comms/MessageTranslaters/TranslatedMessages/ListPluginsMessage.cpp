@@ -30,10 +30,13 @@ AbstractMessage* ListPluginsMessage::actionMessage()
 
 	EventManager::pluginPoll.notify(100,&pluginReplys);
 	std::string reply;
+	reply = "%Miscellaneous";
 	for(vector<vector<string> >::iterator it = pluginReplys.begin(); it != pluginReplys.end(); it++)
 	{
 		for(vector<string>::iterator it2 = it->begin(); it2 != it->end(); it2++)
-			reply.append(*it2).append(",");
+		{
+			reply.append(",").append(*it2).append(",%Miscellaneous");
+		}
 	}
 
 	return new TranslatedMessages::ReplyMessage(reply);

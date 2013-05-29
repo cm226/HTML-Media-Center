@@ -15,20 +15,24 @@ public/mix/*
 *tempUploads/
 
 /*~
+*~
 *.dll
 
 *.mk
 *.png
 *.jpg
+*.bmp
 *.suo
 *.sdf
 *.opensdf
 *.user
 *ipch/
-
+*.settings/
 *Debug/
+*Release/
 
 .DS_Store
 
 JARVIS/JARVISCoreModules/CoreModules/Errors/StackWalker/*
 JARVIS/logs/*
+JARVIS/Plugins/*

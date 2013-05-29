@@ -1,20 +1,86 @@
-.plugin
+.collapableFolder
+{
+	width: 50px;
+	height: 80%;
+	float:left;
+
+}
+
+.collapsableFolderHeader
+{
+	width: 50px;
+	height: 100%;
+	float:left;
+	background-color:#333333;
+
+	-moz-box-shadow: inset -11px 0 30px -12px #000;
+	-webkit-box-shadow: inset -11px 0 30px -12px #000;
+	box-shadow: inset -11px 0 30px -12px #000;
+
+	-webkit-border-top-right-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	-moz-border-radius-topright: 10px;
+	-moz-border-radius-bottomright: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+
+}
+
+.collapsableFolderHeader h4
+{
+	color:#D0D0D0 ;
+	padding-left: 10px;
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	writing-mode: lr-tb;
+}
+
+.collapsableFolderHeader:hover
 {
 	
-	color: #D0D0D0 ;
-	height:50px;
+	text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
+}
+
+.pluginHolder
+{
+	margin-right: 10px;
+	margin-top: 5%;
+	margin-bottom: 20px;
+	visibility: collapse;
+	width:250px;
+	height:90%;
+
+}
+
+.plugin
+{
+	background: #CACACA;
+	height:auto;
 	width: 200px;
 	float:left;
 
 	text-align: center;
-	margin: 10px;
-	background-color:#202020;
+	overflow:hidden;
 	
-	border-style: solid;
-	border-color:white;
-	border-width:1px;
+	border-bottom: 1px solid black;  
+	border-top: 1px solid #3c3c3c; 
 	
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+	-webkit-border-top-right-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	-moz-border-radius-topright: 10px;
+	-moz-border-radius-bottomright: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px; 
+	
+}
+
+.plugin h2
+{
+	color: black;
+}
+
+.plugin:hover
+{
+	background:#8D8D8D;
 }

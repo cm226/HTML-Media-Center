@@ -4,7 +4,29 @@ class PluginController extends Controller
 
 function Main()
 {
-	$this->set('plugins',$this->Plugin->getPluginList());		
+	$groupedPluginList = $this->Plugin->getPluginList();
+	$plugins= array();
+	$curNestedGroup = array();
+	var_dump($groupedPluginList);
+	foreach($groupedPluginList as $pluginName)
+	{
+		if($pluginName[0] == '%')
+		{
+			
+			if(count($curNestedGroup) > 0)
+			{
+				$curNestedGroupClone = $curNestedGroup;
+				unset($curNestedGroup);
+				$curNestedGroup = array();
+				array_push($plugins,$curNestedGroupClone);
+			}
+			$pluginName = substr($pluginName,1);
+		}
+		array_push($curNestedGroup,$pluginName);
+	}
+	$curNestedGroupClone = $curNestedGroup;
+	array_push($plugins,$curNestedGroupClone);
+	$this->set('plugins',$plugins);		
 }
 
 function pluginPage($plugin)
@@ -76,7 +98,7 @@ $tempFileName = $uploaddir.$randomName;
 if(file_put_contents($tempFileName, $decodedData))
 {
 	$contextElements[2] = $tempFileName;
-	 $this->set('page',$this->Plugin->getPluginReply($callbackID,$contextElements));	
+	$this->set('page',$this->Plugin->getPluginReply($callbackID,$contextElements));	
 }
 else
 {
