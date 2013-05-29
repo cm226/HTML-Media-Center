@@ -28,3 +28,6 @@ convert mobile views to use jQuery Mobile
 update the mobile and desktop sites to use the same controllers and models (yes yes.. i know long past due)
 update the agent and serverside python scripts to allow for DHCP (its set on a static ip od 192.168.0.198 for debuging)
 
+music player "channels with plugins?"
+organisation on plugins
+

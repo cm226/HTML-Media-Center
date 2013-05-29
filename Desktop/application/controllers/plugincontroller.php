@@ -75,9 +75,8 @@ $tempFileName = $uploaddir.$randomName;
  
 if(file_put_contents($tempFileName, $decodedData))
 {
-    $this->set('page',"upload Sucessfull");
 	$contextElements[2] = $tempFileName;
-	$this->Plugin->getPluginReply($callbackID,$contextElements);	
+	 $this->set('page',$this->Plugin->getPluginReply($callbackID,$contextElements));	
 }
 else
 {

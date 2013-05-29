@@ -4,12 +4,12 @@
 
 BOOST_AUTO_TEST_CASE(FileUploadConstructorTests)
 {
-	BOOST_CHECK_NO_THROW(FileUpload fileUploadElement("fileUpload"));
+	BOOST_CHECK_NO_THROW(FileUpload fileUploadElement("fileUpload",1,0,"test"));
 }
 
 BOOST_AUTO_TEST_CASE(FileUploadgetTextTest)
 {
-	FileUpload fileUploadElement("fileUpload");
+	FileUpload fileUploadElement("fileUpload",1,0,"test");
 	std::string html = fileUploadElement.getText();
 	std::string teargetHTML ="<div class=\"fileUpload\"><div id=\"drop-files\" ondragover=\"return false\"> <!-- ondragover for firefox -->"
 				"Drop Files Here"

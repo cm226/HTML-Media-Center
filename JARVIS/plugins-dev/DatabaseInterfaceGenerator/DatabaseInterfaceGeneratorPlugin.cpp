@@ -31,6 +31,11 @@ bool DatabaseInterfaceGeneratorPlugin::whatDoYouLookLike(Page* page)
 
 bool DatabaseInterfaceGeneratorPlugin::fileUploaded(Page* page, PageCallbackContext* context)
 {
+	Lable* lable = new Lable("replay");
+	lable->setText("Input has been parsed, and code Generated");
+
+	page->addElement(lable);
+
 	return true;
 }
 
