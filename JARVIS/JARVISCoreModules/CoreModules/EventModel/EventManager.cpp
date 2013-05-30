@@ -7,10 +7,10 @@
 
 #include "EventManager.h"
 
-Event<std::vector<std::string>,int> EventManager::pluginPoll;
-Event<std::string,std::string> EventManager::onPluginViewRequest;
-Event<bool,int> EventManager::commandAndControlMessageReceved;
-Event<std::string, std::vector<std::string> > EventManager::onPluginInteractionRequest;
+coremodules::eventmodel::events::EventSig<std::vector<std::string>,int> EventManager::pluginPoll;
+coremodules::eventmodel::events::EventSig<std::string,std::string> EventManager::onPluginViewRequest;
+coremodules::eventmodel::events::EventSig<bool,int> EventManager::commandAndControlMessageReceved;
+coremodules::eventmodel::events::EventSig<std::string, std::vector<std::string> > EventManager::onPluginInteractionRequest;
 
 
 

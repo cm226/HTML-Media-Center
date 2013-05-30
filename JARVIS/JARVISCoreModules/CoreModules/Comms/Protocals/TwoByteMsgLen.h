@@ -11,10 +11,10 @@
 #include <boost/asio.hpp>
 #include <list>
 #include "../MessageTranslaters/Translater.h"
+#include "IProtocal.h"
 
 
-
-class TwoByteMsgLen
+class TwoByteMsgLen : public coremodules::comms::protocals::IProtocal
 {
 private:
 	boost::asio::ip::tcp::socket& socket;

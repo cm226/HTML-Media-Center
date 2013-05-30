@@ -5,9 +5,12 @@ class PluginController extends Controller
 function Main()
 {
 	$groupedPluginList = $this->Plugin->getPluginList();
-	$plugins= array();
+	$this->set('plugins',$groupedPluginList);
+	
+	
+	
+	/*$plugins= array();
 	$curNestedGroup = array();
-	var_dump($groupedPluginList);
 	foreach($groupedPluginList as $pluginName)
 	{
 		if($pluginName[0] == '%')
@@ -26,7 +29,7 @@ function Main()
 	}
 	$curNestedGroupClone = $curNestedGroup;
 	array_push($plugins,$curNestedGroupClone);
-	$this->set('plugins',$plugins);		
+	$this->set('plugins',$plugins);	*/	
 }
 
 function pluginPage($plugin)

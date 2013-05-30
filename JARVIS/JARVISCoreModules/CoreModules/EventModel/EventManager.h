@@ -9,18 +9,27 @@
 #define EVENTMANAGER_H_
 
 #include "Events/Event.h"
+#include "Events/EventSig.h"
 #include <string>
 #include <vector>
 #include "../exportMacros.h"
 
+#include <boost/signal.hpp>
+#include <boost/bind.hpp>
+
+
 class DLLCORE_API EventManager {
+private:
+
 public:
 
-	static Event<std::vector<std::string>,int> pluginPoll;
-	static Event<std::string,std::string> onPluginViewRequest;
-	static Event<std::string, std::vector<std::string> > onPluginInteractionRequest;
+	static coremodules::eventmodel::events::EventSig <std::vector<std::string>,int> pluginPoll;
+	//static Event<std::vector<std::string>,int> pluginPoll;
+	static coremodules::eventmodel::events::EventSig <std::string,std::string> onPluginViewRequest;
+	static coremodules::eventmodel::events::EventSig<std::string, std::vector<std::string> > onPluginInteractionRequest;
 
-	static Event<bool,int> commandAndControlMessageReceved;
+	static coremodules::eventmodel::events::EventSig<bool,int> commandAndControlMessageReceved;
+
 
 	EventManager();
 	virtual ~EventManager();

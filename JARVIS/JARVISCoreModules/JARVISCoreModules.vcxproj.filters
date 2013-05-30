@@ -375,6 +375,18 @@
     <ClCompile Include="CoreModules\HTMLRendere\Elements\MenuList\MenuList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CoreModules\EventModel\Events\EventSig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\Comms\Protocals\IProtocal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubjectEvent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreModules\Comms\Comms.h">
@@ -840,6 +852,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CoreModules\HTMLRendere\Elements\MenuList\MenuList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\EventModel\Events\EventSig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Comms\Protocals\IProtocal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubjectEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

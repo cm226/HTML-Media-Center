@@ -50,7 +50,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WIN32_WINDOWS;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -76,8 +76,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Comms.cpp" />
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\CURL\CurlManager.cpp" />
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\JSON\JSONCURLRequest.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubject.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubjectEvent.cpp" />
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\StringMessageSerializer.cpp" />
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\AbstractMessage.cpp" />
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\ComandAndControlMessage.cpp" />
@@ -92,6 +95,7 @@
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginInteractionFilter.cpp" />
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPageTranslationFilter.cpp" />
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Protocals\IProtocal.cpp" />
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Protocals\TwoByteMsgLen.cpp" />
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Transever\AbstractTransever.cpp" />
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Transever\Exceptions\TimeoutExpiredException.cpp" />

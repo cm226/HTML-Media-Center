@@ -9,8 +9,9 @@
 #define LISTPLUGINSMESSAGE_H_
 
 #include "AbstractMessage.h"
+#include "../../../exportMacros.h"
 
-class ListPluginsMessage: public AbstractMessage {
+class DLLCORE_API ListPluginsMessage: public AbstractMessage {
 public:
 	ListPluginsMessage(char* data, unsigned int length);
 	ListPluginsMessage();

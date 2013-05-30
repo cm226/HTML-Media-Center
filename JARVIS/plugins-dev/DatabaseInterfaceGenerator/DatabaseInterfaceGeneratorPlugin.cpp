@@ -13,6 +13,7 @@ DatabaseInterfaceGeneratorPlugin::DatabaseInterfaceGeneratorPlugin(CoreModules* 
 {
 	boost::function2<bool ,Page*,PageCallbackContext* > f = boost::bind(&DatabaseInterfaceGeneratorPlugin::fileUploaded,this, _1, _2);
 	this->fileUploadedHandle = this->subscribeHTMLCallback(f);
+	this->myGroup = PROG;
 
 }
 

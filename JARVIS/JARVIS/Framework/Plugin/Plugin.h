@@ -20,23 +20,26 @@
 #include "HTMLCALLBACKDef.h"
 
 class Plugin {
+public:
+	enum pluginGroup{MISC, MUSIC, MOVIE, TV, CONTENT_GEN, PROG};
 
 private:
 	CALLBACk_HANDLE nextFreeCallbackHandle;
 	std::map<CALLBACk_HANDLE, boost::function2<bool ,Page*,PageCallbackContext* > > pageCallbacks;
+	
 
 protected:
 	CoreModules* coreMod;
-
-	
+	pluginGroup myGroup;
 
 public:
-	Plugin(CoreModules* coreMod) 
+	Plugin(CoreModules* coreMod) : myGroup(MISC)
 	{
 		nextFreeCallbackHandle = 0;
 		this->coreMod = coreMod;
 	};
 
+	pluginGroup pluginGroup(){return this->myGroup;};
 	bool notifyPageCallback(Page* page, PageCallbackContext* context)
 	{
 		if(this->pageCallbacks.find(context->callbackHandle) != this->pageCallbacks.end())
