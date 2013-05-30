@@ -23,8 +23,6 @@ private:
 
 public:
 
-	static coremodules::eventmodel::events::EventSig <std::vector<std::string>,int> pluginPoll;
-	//static Event<std::vector<std::string>,int> pluginPoll;
 	static coremodules::eventmodel::events::EventSig <std::string,std::string> onPluginViewRequest;
 	static coremodules::eventmodel::events::EventSig<std::string, std::vector<std::string> > onPluginInteractionRequest;
 
