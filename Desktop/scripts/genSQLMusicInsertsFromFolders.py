@@ -27,7 +27,7 @@ def genInsertsForAlbum(artistCounter,albumCounter,rootDir, albumdir,artist, file
                    dirPostFix.replace("'","\\'")+
                    artist.replace("'","\\'")+"/"+
                    albumdir.replace("'","\\'")+"/"+
-                   song.replace("'","\\'")+"'); \n")
+                   song.replace("'","\\'")+"', ''); \n")
 
 if not os.path.exists(musicDir):
     print "Error music directory not found"

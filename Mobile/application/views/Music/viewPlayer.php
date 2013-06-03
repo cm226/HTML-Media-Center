@@ -33,7 +33,7 @@ var myPlaylist = [
 <?php foreach ($songs as &$song) { ?>
 
     {
-        mp3:<?php echo "'../../public/mix/Music/".str_replace(" ","%20",str_replace("'","\'",$song["Song"]["songURL"])) .".mp3'";?>,
+        mp3:<?php echo "'../../public/mix/Music/".str_replace(" ","%20",str_replace("'","\'",$song["Song"]["songURL"])) ."'";?>,
         title:<?php echo "'". str_replace("'","\'",$song["Song"]["songName"]) ."'";?>,
         artist:<?php echo "'".str_replace("'","\'",$song['Artist']['artistName'])."'" ;?>,
         rating:4,
