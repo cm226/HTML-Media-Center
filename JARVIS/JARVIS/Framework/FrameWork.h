@@ -14,6 +14,9 @@
 #include "../../JARVISCoreModules/CoreModules/CoreModules.h"
 #include "Plugin/Loader/Loader.h"
 
+#include "../../JARVISCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ListPluginsMessage.h"
+#include "../../JARVISCoreModules/CoreModules/Comms/Protocals/IProtocal.h"
+
 class JARVISFramework
 {
 private:
@@ -33,7 +36,8 @@ public:
 	void process();
 
 private:
-	std::vector<std::string> loadedPlugins(int i);
+	void loadedPlugins(ListPluginsMessage*, coremodules::comms::protocals::IProtocal*);
+
 	std::string getPluginPage(std::string pluginName);
 	std::string pluginInteractionRequest(std::vector<std::string> context);
 

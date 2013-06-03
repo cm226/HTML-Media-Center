@@ -48,7 +48,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_WINDOWS;DLLEXPORT_CORE_MODULES_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;_WIN32_WINDOWS;DLLEXPORT_CORE_MODULES_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -72,6 +72,8 @@
     <ClCompile Include="CoreModules\Comms\Comms.cpp" />
     <ClCompile Include="CoreModules\Comms\CURL\CurlManager.cpp" />
     <ClCompile Include="CoreModules\Comms\JSON\JSONCURLRequest.cpp" />
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubject.cpp" />
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubjectEvent.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\StringMessageSerializer.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AbstractMessage.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\ComandAndControlMessage.cpp" />
@@ -86,6 +88,7 @@
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginInteractionFilter.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPageTranslationFilter.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.cpp" />
+    <ClCompile Include="CoreModules\Comms\Protocals\IProtocal.cpp" />
     <ClCompile Include="CoreModules\Comms\Protocals\TwoByteMsgLen.cpp" />
     <ClCompile Include="CoreModules\Comms\Transever\AbstractTransever.cpp" />
     <ClCompile Include="CoreModules\Comms\Transever\Exceptions\TimeoutExpiredException.cpp" />
@@ -167,6 +170,7 @@
     <ClCompile Include="CoreModules\EventModel\EventHandler\EvntHandlerBase.cpp" />
     <ClCompile Include="CoreModules\EventModel\EventManager.cpp" />
     <ClCompile Include="CoreModules\EventModel\Events\Event.cpp" />
+    <ClCompile Include="CoreModules\EventModel\Events\EventSig.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Containers\ElementList.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Containers\Form.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Containers\IContainer.cpp" />
@@ -197,6 +201,8 @@
     <ClInclude Include="CoreModules\Comms\IComms.h" />
     <ClInclude Include="CoreModules\Comms\JSON\IJSONRequest.h" />
     <ClInclude Include="CoreModules\Comms\JSON\JSONCURLRequest.h" />
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubject.h" />
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubjectEvent.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\StringMessageSerializer.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AbstractMessage.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\ComandAndControlMessage.h" />
@@ -213,6 +219,7 @@
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginInteractionFilter.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPageTranslationFilter.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.h" />
+    <ClInclude Include="CoreModules\Comms\Protocals\IProtocal.h" />
     <ClInclude Include="CoreModules\Comms\Protocals\TwoByteMsgLen.h" />
     <ClInclude Include="CoreModules\Comms\Transever\AbstractTransever.h" />
     <ClInclude Include="CoreModules\Comms\Transever\Exceptions\TimeoutExpiredException.h" />
@@ -314,6 +321,7 @@
     <ClInclude Include="CoreModules\EventModel\EventManager.h" />
     <ClInclude Include="CoreModules\EventModel\EventModel.h" />
     <ClInclude Include="CoreModules\EventModel\Events\Event.h" />
+    <ClInclude Include="CoreModules\EventModel\Events\EventSig.h" />
     <ClInclude Include="CoreModules\exportMacros.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Containers\ElementList.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Containers\Form.h" />

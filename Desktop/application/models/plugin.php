@@ -9,7 +9,17 @@ function getPluginList()
 	$comms = new JARVISCommas();
 	$reply = $comms->listLoadedPlugins();
 	
-	return explode(",",$reply);
+	$pluginCatagories = explode('%',$reply);
+	array_shift($pluginCatagories); // remove the empty value
+	$plugins = array();
+	
+	foreach($pluginCatagories as $pluginCat)
+	{
+		$pluginCatagorieList = explode(',',$pluginCat);
+		array_push($plugins,$pluginCatagorieList);
+	}
+	
+	return $plugins;
 }
 
 function getPluginPage($plugin)

@@ -28,6 +28,8 @@ private:
 	TCPAsyncTransever transever;
 	CommsNS::CurlManager curlMan;
 
+	
+
 	boost::thread* commsThread;
 
 	void doComms();
@@ -39,6 +41,9 @@ public:
 
 	void startComms();
 	void stopComms();
+
+	coremodules::comms::messagetranslaters::messagesubject::MessageSubject* messagesubject();
+	static coremodules::comms::messagetranslaters::messagesubject::MessageSubject _messageSubject;
 
 	CommsNS::IJSONRequest* createJSONRequest();
 	bool downloadFile(std::string const& URL, std::string const& fileName);

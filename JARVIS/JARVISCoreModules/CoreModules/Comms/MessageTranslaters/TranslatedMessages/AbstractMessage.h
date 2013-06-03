@@ -10,8 +10,9 @@
 
 #include "../../../EventModel/EventModel.h"
 #include "../StringMessageSerializer.h"
+#include "../../../exportMacros.h"
 
-class AbstractMessage {
+class DLLCORE_API AbstractMessage {
 
 protected:
 	char* message;

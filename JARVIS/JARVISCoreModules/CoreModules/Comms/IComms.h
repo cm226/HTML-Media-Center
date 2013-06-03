@@ -9,13 +9,17 @@
 #define ICOMMS_H_
 
 #include "JSON/IJSONRequest.h"
+#include "MessageTranslaters/MessageSubject/MessageSubject.h"
 
 namespace CommsNS {
 	class IComms
 	{
+
 	public:
 		IComms(){};
 		virtual ~IComms(){};
+		virtual coremodules::comms::messagetranslaters::messagesubject::MessageSubject* messagesubject() =0 ;
+
 		virtual IJSONRequest* createJSONRequest() = 0;
 		virtual bool downloadFile(std::string const& URL, std::string const& fileName) = 0;
 

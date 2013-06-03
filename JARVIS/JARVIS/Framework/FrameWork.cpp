@@ -2,7 +2,10 @@
 
 #include <stdio.h>
 #include <boost/thread.hpp>
+#include <boost/bind.hpp>
 #include <sstream>
+#include "../../JARVISCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ReplyMessage.h"
+#include <list>
 
 #ifdef _WINDOWS
 #include <Windows.h>
@@ -13,10 +16,11 @@ JARVISFramework::JARVISFramework()
 	ErrorLogger::logInfo("JARVIS initalising...");
 	this->shuttingDown = false;
 
-	ppEventHandler = EventManager::pluginPoll.attach(this,&JARVISFramework::loadedPlugins);
-	cAndcEventHandler = EventManager::commandAndControlMessageReceved.attach(this,&JARVISFramework::commandAndControlMessageReceved);
-	ViewReqEventHandler = EventManager::onPluginViewRequest.attach(this,&JARVISFramework::getPluginPage);
-	interactionReqEventHandler = EventManager::onPluginInteractionRequest.attach(this,&JARVISFramework::pluginInteractionRequest);
+	this->cModules.getComms()->messagesubject()->onListPluginsMessageReceved.connect(this, &JARVISFramework::loadedPlugins);
+
+	EventManager::commandAndControlMessageReceved.attach(this,&JARVISFramework::commandAndControlMessageReceved);
+	EventManager::onPluginViewRequest.attach(this,&JARVISFramework::getPluginPage);
+	EventManager::onPluginInteractionRequest.attach(this,&JARVISFramework::pluginInteractionRequest);
 
 
 #ifdef _WINDOWS
@@ -68,15 +72,100 @@ void JARVISFramework::loadStartupPlugins()
 
 	pluginLoader->loadPlugin("libMediaImages",&mediaImages, &this->cModules);
 	pluginLoader->loadPlugin("libDatabaseInterfaceGenerator",&mediaImages, &this->cModules);
-	//pluginLoader->loadPlugin("LogViewer",&mediaImages, &this->cModules);
+	pluginLoader->loadPlugin("LogViewer",&mediaImages, &this->cModules);
 
 }
 
-std::vector<std::string> JARVISFramework::loadedPlugins(int i)
+
+void JARVISFramework::loadedPlugins(ListPluginsMessage*, coremodules::comms::protocals::IProtocal* protocal)
 {
-	std::vector<std::string> loadedPlugins;
+	using namespace std;
+	std::stringstream reply;
+	std::vector<Plugin*> loadedPlugins;
 	this->pluginLoader->listLoadedPlugins(&loadedPlugins);
-	return loadedPlugins;
+
+	std::list<std::string> misc, music, movie, tv, content, prog;
+	// TODO tidy this crap
+	for(vector<Plugin*>::iterator it2 = loadedPlugins.begin(); it2 != loadedPlugins.end(); it2++)
+	{
+		switch((*it2)->pluginGroup())
+		{
+			case(Plugin::CONTENT_GEN):
+				content.push_back((*it2)->pluginName());
+			break;
+			case(Plugin::MISC):
+				misc.push_back((*it2)->pluginName());
+			break;
+			case(Plugin::MOVIE):
+				movie.push_back((*it2)->pluginName());
+			break;
+			case(Plugin::MUSIC):
+				music.push_back((*it2)->pluginName());
+			break;
+			case(Plugin::TV):
+				tv.push_back((*it2)->pluginName());
+			break;
+			case(Plugin::PROG):
+				prog.push_back((*it2)->pluginName());
+			break;
+		}
+	}
+
+	if(content.size() > 0)
+	{
+		reply << "%Content Creation";
+		for(std::list<std::string>::iterator it = content.begin(); it != content.end(); it++)
+		{
+			reply << "," << *it;
+		}
+	}
+
+	if(music.size() > 0)
+	{
+	reply << "%Music";
+	for(std::list<std::string>::iterator it = music.begin(); it != music.end(); it++)
+	{
+		reply << "," << *it;
+	}
+	}
+
+	if(movie.size() > 0)
+	{
+		reply << "%Movie";
+	for(std::list<std::string>::iterator it = movie.begin(); it != movie.end(); it++)
+	{
+		reply << "," << *it;
+	}
+	}
+
+	if(tv.size() > 0)
+	{
+		reply << "%Tv";
+	for(std::list<std::string>::iterator it = tv.begin(); it != tv.end(); it++)
+	{
+		reply << "," << *it;
+	}
+	}
+
+	if(prog.size() > 0)
+	{
+		reply << "%Programming";
+	for(std::list<std::string>::iterator it = prog.begin(); it != prog.end(); it++)
+	{
+		reply << "," << *it;
+	}
+	}
+
+	if(misc.size() > 0)
+	{
+	reply << "%miscellaneous";
+	for(std::list<std::string>::iterator it = misc.begin(); it != misc.end(); it++)
+	{
+		reply << "," << *it;
+	}
+	}
+
+	protocal->sendMessage(new TranslatedMessages::ReplyMessage(reply.str()));
 }
 
 void JARVISFramework::processCommandLoop()

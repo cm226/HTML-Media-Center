@@ -13,6 +13,7 @@
 
 
 
+coremodules::comms::messagetranslaters::messagesubject::MessageSubject Comms::_messageSubject;
 
 Comms::Comms(): transever(io_service,45001,connecionFactory)
 {
@@ -39,6 +40,11 @@ void Comms::stopComms()
 	delete this->commsThread;
 }
 
+
+coremodules::comms::messagetranslaters::messagesubject::MessageSubject* Comms::messagesubject()
+{
+	return &_messageSubject;
+}
 
 
 CommsNS::IJSONRequest* Comms::createJSONRequest()

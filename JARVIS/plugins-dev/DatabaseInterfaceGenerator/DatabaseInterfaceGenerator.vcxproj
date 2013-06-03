@@ -39,7 +39,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\include;D:\programming\boost_1_52_0;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\wamp\www\HTML-Media-Center\JARVIS\JARVIS\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\wamp\www\HTML-Media-Center\JARVIS\JARVIS\Debug;D:\programming\boost_1_52_0\stage\lib;$(LibraryPath)</LibraryPath>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

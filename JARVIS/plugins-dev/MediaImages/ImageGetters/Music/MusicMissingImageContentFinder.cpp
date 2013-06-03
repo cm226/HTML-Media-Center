@@ -2,6 +2,7 @@
 	Author : Craig Matear
 */
 #include<boost/filesystem.hpp>
+#include <boost/algorithm/string.hpp>
 #include "MusicMissingImageContentFinder.h"
 #include "../../../../JARVISCoreModules/CoreModules/config.h"
 #include "../../../../JARVISCoreModules/CoreModules/Errors/ErrorLogger.h"
@@ -127,14 +128,21 @@ bool MusicMissingImageContentFinder::checkAlbumImageExists(std::string albumName
 
 bool MusicMissingImageContentFinder::checkPNGorJPGImageExsists(std::string fileName)
 {
+	boost::system::error_code ec;
+
 	std::string thumbImageNamePNG;
 	std::string thumbImageNameJPG;
-	thumbImageNamePNG = fileName + ".png";
-	thumbImageNameJPG = fileName + ".jpg";
+	thumbImageNameJPG = thumbImageNameJPG.append(fileName).append(".jpg");
+	thumbImageNamePNG = thumbImageNamePNG.append(fileName).append(".png");
 
-	if(boost::filesystem::exists(thumbImageNamePNG))
+	boost::filesystem::path p = boost::filesystem::current_path();
+	boost::filesystem::path pngPath(thumbImageNamePNG);
+	boost::filesystem::path jpgPath(thumbImageNameJPG);
+
+	bool test1 = boost::filesystem::exists(pngPath,ec);
+	if(test1)
 		return true;
-	if(boost::filesystem::exists(thumbImageNameJPG))
+	if(boost::filesystem::exists(jpgPath,ec))
 		return true;
 
 	return false;

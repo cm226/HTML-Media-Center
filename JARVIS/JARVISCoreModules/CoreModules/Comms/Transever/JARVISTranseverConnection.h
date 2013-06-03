@@ -10,9 +10,10 @@
 
 #include "ITranseverConnection.h"
 
-
 class JARVISTranseverConnection: public ITranseverConnection
 {
+
+
 public:
 	JARVISTranseverConnection(boost::asio::io_service& service);
 	virtual ~JARVISTranseverConnection();

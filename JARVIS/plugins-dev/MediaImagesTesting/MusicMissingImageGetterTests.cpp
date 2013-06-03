@@ -19,7 +19,7 @@ BOOST_AUTO_TEST_CASE(ArtistThumbnailTests)
 	int artistID;
 	bool someLeft = false;
 
-	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\JARVIS\\TestDataFolder\\ImageContentTests\\Music\\Artists"));
+	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\JARVIS\\TDF\\ICT\\Music\\Artists"));
 	someLeft = contentFinder.searchDBforMissingArtistThumbImage(artistName,artistID);
 
 	bool isCorrect = false;
@@ -29,14 +29,14 @@ BOOST_AUTO_TEST_CASE(ArtistThumbnailTests)
 	BOOST_CHECK_EQUAL(isCorrect, true);
 	BOOST_CHECK_EQUAL(someLeft,true);
 
-	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\JARVIS\\TestDataFolder\\ImageContentTests1\\Music\\Artists"));
+	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\JARVIS\\TDF\\ICT1\\Music\\Artists"));
 	someLeft = contentFinder.searchDBforMissingArtistThumbImage(artistName,artistID);
 
 	BOOST_CHECK_EQUAL(artistName.compare("testArtist2"), 0);
 	BOOST_CHECK_EQUAL(artistID, 2);
 	BOOST_CHECK_EQUAL(someLeft,true);
 
-	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\JARVIS\\TestDataFolder\\ImageContentTests2\\Music\\Artists"));
+	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\JARVIS\\TDF\\ICT2\\Music\\Artists"));
 	someLeft = contentFinder.searchDBforMissingArtistThumbImage(artistName,artistID);
 
 	BOOST_CHECK_EQUAL(someLeft,false);

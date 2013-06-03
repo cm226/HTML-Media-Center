@@ -7,20 +7,20 @@ foreach ($plugins as $plugin)
 	<div class="collapsableFolderHeader">
 		<h4 class="widgetHeader"><?php echo $plugin[0]; ?></h4>
 	</div>
-	
+	<div class="pluginHolder">
 	<?php
 		for($i =1; $i < count($plugin); $i++)
 		{
 			?>
-			<div class="pluginHolder">
+			
 				<div class="plugin" onclick="window.location=' ../Plugin/pluginPage/<?php echo $plugin[$i];?>';">
 					<h2 class="widgetHeader" ><?php echo $plugin[$i];?></h2>
 				</div>
-			</div>
+			
 			<?php
 		}
 	?>
-
+	</div>
 	</div>
 <?php
 }

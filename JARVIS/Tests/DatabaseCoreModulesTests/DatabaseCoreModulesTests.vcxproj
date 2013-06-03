@@ -80,6 +80,35 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Database.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Querys\Constraints\ConstraintGroup\ConstraintGroup.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Querys\Constraints\ConstraintGroup\ORConstraintGroup.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Querys\Constraints\Equals.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Querys\Constraints\GreaterThan.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Querys\Constraints\GreatherThanEqualTo.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Querys\Constraints\LessThan.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Querys\Constraints\LessThanEqualToo.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Querys\Constraints\Like.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Querys\Descriptor\Descriptor.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Querys\Descriptor\Limit.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Querys\Query.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Querys\UpdateQuery.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\ResultWrapper.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Tables\Album\Album.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Tables\Album\Fields\albumID.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Tables\Album\Fields\albumName.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Tables\Album\Fields\albumRating.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Tables\Album\Fields\artistID1.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Tables\DatabaseTable.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Tables\IDatabaseTableField.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Tables\Movie\Fields\movieGenre.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Tables\Movie\Fields\movieID.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Tables\Movie\Fields\movieIMDB.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Tables\Movie\Fields\movieName.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Tables\Movie\Fields\movieURL.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Tables\Movie\Fields\thumbnailURL.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Tables\Movie\Movie.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Errors\ErrorLogger.cpp" />
     <ClCompile Include="ConnectTests.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SelectTests.cpp" />

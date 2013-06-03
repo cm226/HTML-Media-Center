@@ -82,15 +82,15 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\ImageGetters\IimageContentGetter.cpp" />
-    <ClCompile Include="..\..\ImageGetters\ImageGetter.cpp" />
-    <ClCompile Include="..\..\ImageGetters\Movie\MovieImageGetter.cpp" />
-    <ClCompile Include="..\..\ImageGetters\Music\MusicImageGetter.cpp" />
-    <ClCompile Include="..\..\ImageGetters\Music\MusicMissingImageContentFinder.cpp" />
-    <ClCompile Include="..\..\MediaImagesPlugin.cpp" />
+    <ClCompile Include="..\MediaImages\ImageGetters\IimageContentGetter.cpp" />
+    <ClCompile Include="..\MediaImages\ImageGetters\ImageGetter.cpp" />
+    <ClCompile Include="..\MediaImages\ImageGetters\Movie\MovieImageGetter.cpp" />
+    <ClCompile Include="..\MediaImages\ImageGetters\Music\MusicImageGetter.cpp" />
+    <ClCompile Include="..\MediaImages\ImageGetters\Music\MusicMissingImageContentFinder.cpp" />
+    <ClCompile Include="..\MediaImages\MediaImagesPlugin.cpp" />
     <ClCompile Include="ImageGetterTests.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="MediaImagesPluginTestser.cpp" />
-    <ClCompile Include="MediaImagesTesting.cpp" />
     <ClCompile Include="MovieImageGetterTester.cpp" />
     <ClCompile Include="MusicMissingImageGetterTests.cpp" />
     <ClCompile Include="stdafx.cpp">

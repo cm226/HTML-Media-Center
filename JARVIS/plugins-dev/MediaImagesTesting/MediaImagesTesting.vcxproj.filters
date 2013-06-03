@@ -35,38 +35,38 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\ImageGetters\ImageGetter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ImageGetters\Movie\MovieImageGetter.cpp">
-      <Filter>Source Files\MovieImageGetter</Filter>
-    </ClCompile>
     <ClCompile Include="MovieImageGetterTester.cpp">
       <Filter>Source Files\MovieImageGetter</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\ImageGetters\IimageContentGetter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ImageGetterTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MediaImagesTesting.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MusicMissingImageGetterTests.cpp">
       <Filter>Source Files\MusicImageGetter</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\ImageGetters\Music\MusicMissingImageContentFinder.cpp">
-      <Filter>Source Files\MusicImageGetter</Filter>
-    </ClCompile>
     <ClCompile Include="MediaImagesPluginTestser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MediaImagesPlugin.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\ImageGetters\Music\MusicImageGetter.cpp">
+    <ClCompile Include="..\MediaImages\ImageGetters\Movie\MovieImageGetter.cpp">
+      <Filter>Source Files\MovieImageGetter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MediaImages\ImageGetters\Music\MusicMissingImageContentFinder.cpp">
+      <Filter>Source Files\MusicImageGetter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MediaImages\ImageGetters\IimageContentGetter.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MediaImages\ImageGetters\ImageGetter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MediaImages\MediaImagesPlugin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MediaImages\ImageGetters\Music\MusicImageGetter.cpp">
+      <Filter>Source Files\MusicImageGetter</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

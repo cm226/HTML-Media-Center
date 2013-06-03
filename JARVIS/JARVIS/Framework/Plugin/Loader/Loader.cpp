@@ -149,6 +149,14 @@ void Loader::listLoadedPlugins(std::vector<std::string>* outBuffer)
 	}
 }
 
+void Loader::listLoadedPlugins(std::vector<Plugin*>* outBuffer)
+{
+	for(std::map<Plugin*,void *>::iterator it = this->dllHandlPluginMap.begin(); it != this->dllHandlPluginMap.end(); it++)
+	{
+		outBuffer->push_back((*it).first);
+	}
+}
+
 Plugin* Loader::getPluginByName(std::string pluginName)
 {
 	for(std::map<Plugin*,void *>::iterator it = this->dllHandlPluginMap.begin(); it != this->dllHandlPluginMap.end(); it++)

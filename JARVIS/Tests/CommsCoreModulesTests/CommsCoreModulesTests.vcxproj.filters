@@ -131,5 +131,17 @@
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\EventModel\EventManager.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Protocals\IProtocal.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Comms.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubject.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubjectEvent.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

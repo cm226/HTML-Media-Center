@@ -19,6 +19,7 @@ MediaImagesPlugin::MediaImagesPlugin(CoreModules* framework) : Plugin(framework)
 																musicImageGetter(framework)
 {
 	this->name = "Media Images";
+	this->myGroup = CONTENT_GEN;
 
 	boost::function2<bool ,Page*,PageCallbackContext* > f = boost::bind(&MediaImagesPlugin::handleMovieSelected,this, _1, _2);
 	this->movieImageSelected = this->subscribeHTMLCallback(f);
