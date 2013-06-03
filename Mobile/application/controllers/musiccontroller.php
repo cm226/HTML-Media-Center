@@ -16,9 +16,8 @@ class MusicController extends Controller {
 		$this->set('recentlyAddedSongs', $this->Music->getRecentlyAdded());
 	}
 	
-	function viewArtist()
+	function viewArtist($artistID)
 	{
-		$artistID = $_POST['artist'];
 		$artistName = $this->Music->getArtistForID($artistID);
 		$artistName = $artistName[0]['Artist']['artistName'];
 		$this->set('artistsName',$artistName);
@@ -27,7 +26,7 @@ class MusicController extends Controller {
 		
 	}
 	
-	function viewPlayer()
+	function viewPlayer($artistID)
 	{
 		if(isset($_POST['playlist'])) // viewing a playlist
 		{
@@ -42,7 +41,6 @@ class MusicController extends Controller {
 		}
 		
 		// viewing an artist
-		$artistID = $_POST['artist'];
 		if(!isset($_POST['album']))
 			$this->set('songs',$this->Music->getArtistsSongs($artistID));
 		else

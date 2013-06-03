@@ -7,6 +7,7 @@ class Music extends Model {
 	
 		$allArtistsq = 'SELECT artistName, artistID, artistRating, genre FROM Artist ORDER BY artistName';
 		$allArtistsResult = $this->query($allArtistsq);
+		var_dump($allArtistsResult);
 		return $allArtistsResult;
 									
 	}

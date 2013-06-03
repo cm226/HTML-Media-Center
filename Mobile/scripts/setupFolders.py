@@ -68,6 +68,9 @@ if not os.path.exists(Desktop + "tempUploads/Pictures"):
 if not os.path.exists(Desktop + "tempUploads/Movies"):
     os.makedirs(Desktop + "tempUploads/Movies")
 
+if not os.path.exists(Desktop + "tempUploads/Plugin"):
+    os.makedirs(Desktop + "tempUploads/Plugin")
+
 if not os.path.exists(Desktop + "config/config.php","w"):
 	configFile = ["<?php\n",
 				"/** Configuration Variables **/\n",
