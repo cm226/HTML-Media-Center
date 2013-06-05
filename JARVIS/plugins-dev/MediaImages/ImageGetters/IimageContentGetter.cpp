@@ -5,26 +5,4 @@
 
 
 
-namespace imagegetters {
-
-
-
-IimageContentGetter::IimageContentGetter()
-{
-}
-
-
-
-IimageContentGetter::~IimageContentGetter()
-{
-}
-
-
-
-
-
-
-}
-
-
 

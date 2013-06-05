@@ -8,6 +8,7 @@
 #include "PluginInteractionFilter.h"
 #include "../TranslatedMessages/PluginInteractionRequestMessage.h"
 #include "../../Comms.h"
+#include "../../../Errors/ErrorLogger.h"
 
 namespace TranslationFilters {
 
@@ -22,6 +23,7 @@ AbstractMessage* PluginInteractionFilter::translateMessage(std::string header, c
 {
 	if(header.compare(TranslatedMessages::PluginInteractionRequestMessage::getHeader()) == 0)
 	{
+		ErrorLogger::logInfo("Plugin Interaction Message Receved");
 		TranslatedMessages::PluginInteractionRequestMessage* msg = new TranslatedMessages::PluginInteractionRequestMessage(bytes, bytesLength);
 		Comms::_messageSubject.onPluginInteractionMessageReceved.signal(msg,protocal);
 

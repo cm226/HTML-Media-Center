@@ -10,36 +10,36 @@ BOOST_AUTO_TEST_CASE(MusicImagecontentGetterconstructor)
 
 BOOST_AUTO_TEST_CASE(ArtistThumbnailTests)
 {
-
+	
 	DatabaseTables::Database dbConn;
 	BOOST_CHECK_EQUAL(dbConn.Connect(DATABSEUSER,DATABASEPASSWORD,"mediaServerTests",""),true);
 
 	imagegetters::music::MusicMissingImageContentFinder contentFinder(&dbConn);
 	std::string artistName; 
 	int artistID;
-	bool someLeft = false;
+	bool isMissingContent = false;
 
-	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\JARVIS\\TDF\\ICT\\Music\\Artists"));
-	someLeft = contentFinder.searchDBforMissingArtistThumbImage(artistName,artistID);
+	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\JARVIS\\TestDF\\ICT\\Music\\Artists"));
+	isMissingContent = contentFinder.searchDBforMissingArtistThumbImage(artistName,artistID);
 
 	bool isCorrect = false;
 	if(artistName.compare("testArtist2") == 0 && artistID==2) isCorrect = true;
 	else if (artistName.compare("testArtist1") == 0 && artistID==1) isCorrect = true;
 
 	BOOST_CHECK_EQUAL(isCorrect, true);
-	BOOST_CHECK_EQUAL(someLeft,true);
+	BOOST_CHECK_EQUAL(isMissingContent,true);
 
-	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\JARVIS\\TDF\\ICT1\\Music\\Artists"));
-	someLeft = contentFinder.searchDBforMissingArtistThumbImage(artistName,artistID);
+	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\JARVIS\\TestDF\\ICT2\\Music\\Artists"));
+	isMissingContent = contentFinder.searchDBforMissingArtistThumbImage(artistName,artistID);
 
 	BOOST_CHECK_EQUAL(artistName.compare("testArtist2"), 0);
 	BOOST_CHECK_EQUAL(artistID, 2);
-	BOOST_CHECK_EQUAL(someLeft,true);
+	BOOST_CHECK_EQUAL(isMissingContent,true);
 
-	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\JARVIS\\TDF\\ICT2\\Music\\Artists"));
-	someLeft = contentFinder.searchDBforMissingArtistThumbImage(artistName,artistID);
+	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\JARVIS\\TestDF\\ICT3\\Music\\Artists"));
+	isMissingContent = contentFinder.searchDBforMissingArtistThumbImage(artistName,artistID);
 
-	BOOST_CHECK_EQUAL(someLeft,false);
+	BOOST_CHECK_EQUAL(isMissingContent,false);
 
 }
 
@@ -53,6 +53,7 @@ BOOST_AUTO_TEST_CASE(AlbumTests)
 {
 
 }
+
 
 
 

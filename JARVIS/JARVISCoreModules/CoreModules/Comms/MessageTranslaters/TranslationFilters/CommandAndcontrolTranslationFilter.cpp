@@ -6,6 +6,7 @@
  */
 
 #include "CommandAndcontrolTranslationFilter.h"
+#include "../../../Errors/ErrorLogger.h"
 
 namespace TranslationFilters {
 
@@ -22,6 +23,7 @@ AbstractMessage* CommandAndcontrolTranslationFilter::translateMessage(std::strin
 {
 	if(header.compare(ComandAndControlMessage::getHeader()) == 0)
 		{
+			ErrorLogger::logInfo("Command And Control Message Receved");
 			return new ComandAndControlMessage(bytes, bytesLength);
 		}
 

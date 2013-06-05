@@ -7,6 +7,7 @@
 
 #include "PluginPollTranslationFilter.h"
 #include "../../Comms.h"
+#include "../../../Errors/ErrorLogger.h"
 
 namespace TranslationFilters {
 
@@ -22,6 +23,7 @@ AbstractMessage* PluginPollTranslationFilter::translateMessage(std::string heade
 {
 	if(header.compare(ListPluginsMessage::getHeader()) == 0)
 	{
+		ErrorLogger::logInfo("Plugin Poll Message Receved");
 		ListPluginsMessage* msg = new ListPluginsMessage(bytes, bytesLength);
 		Comms::_messageSubject.onListPluginsMessageReceved.signal(msg,protocal);
 		return msg;

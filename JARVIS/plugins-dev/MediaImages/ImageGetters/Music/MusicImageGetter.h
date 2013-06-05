@@ -17,9 +17,11 @@ private:
 	CALLBACk_HANDLE ARTIST_IMG;
 	CALLBACk_HANDLE ALBUM_IMG;
 
+	CoreModules* cm;
 	ImageGetter imgGetter;
 	imagegetters::music::MusicMissingImageContentFinder missingContentFinder;
 	std::string registereName;
+	std::vector<std::string> googleImageResults;
 
 	void loadArtistThumbImagePage(Page* p, std::string artistName, int artistID);
 	void loadArtistImagePage(Page* p, std::string artistName, int artistID);
@@ -27,6 +29,14 @@ private:
 	void loadNoMissingContentPage(Page* p);
 
 	HTMLImage* createHTMLImageElement(CALLBACk_HANDLE handel, int imageIndex, int artistID, std::string imageURL);
+
+	bool assertContextArguments(std::vector<std::string>& contextarguments);
+	int MusicImageGetter::readImageIndex(std::vector<std::string>& contextarguments);
+	int MusicImageGetter::readArtistID(std::vector<std::string>& contextarguments);
+
+
+	bool handleArtistThumbImageSelected(int artistID,std::string tbhumbName, std::string imgURL);
+	std::string getArtistNameFromID(int movieID);
 
 		// callback functions
 	bool onArtistThumbSelected(Page* page, PageCallbackContext* context);

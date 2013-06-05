@@ -7,6 +7,7 @@
 
 #include "PluginPageTranslationFilter.h"
 #include "../../Comms.h"
+#include "../../../Errors/ErrorLogger.h"
 
 namespace TranslationFilters {
 
@@ -23,6 +24,7 @@ AbstractMessage* PluginPageTranslationFilter::translateMessage(std::string heade
 {
 	if(header.compare(TranslatedMessages::PluginPageMessage::getHeader()) == 0)
 	{
+		ErrorLogger::logInfo("Plugin Page Message Receved");
 		TranslatedMessages::PluginPageMessage* msg = new TranslatedMessages::PluginPageMessage(bytes, bytesLength);
 		Comms::_messageSubject.onPluginPageMessageReceved.signal(msg,protocal);
 		return msg;

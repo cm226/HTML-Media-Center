@@ -55,10 +55,10 @@ BOOST_AUTO_TEST_CASE(downloadToFileThatExsists)
 {
 	CommsNS::CurlManager curlMan;
 	
-	bool worked = curlMan.downloadItemToFile("http://g-ecx.images-amazon.com/images/G/02/gno/beacon/BeaconSprite-UK-02._V397961423_.png","C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\TestDataFolder\\ExistingImage\\test.png");
+	bool worked = curlMan.downloadItemToFile("http://g-ecx.images-amazon.com/images/G/02/gno/beacon/BeaconSprite-UK-02._V397961423_.png","C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\TestDF\\ExistingImage\\test.png");
 	
 	BOOST_CHECK_EQUAL(true,worked);
-	BOOST_CHECK_EQUAL(true,boost::filesystem::exists( "C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\TestDataFolder\\ExistingImage\\test.png"));
+	BOOST_CHECK_EQUAL(true,boost::filesystem::exists( "C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\TestDF\\ExistingImage\\test.png"));
 
 }
 

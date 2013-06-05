@@ -37,7 +37,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files %28x86%29\GnuWin32\include\libpng12;D:\programming\jpeg-8c;D:\programming\boost_1_52_0;D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\include;D:\programming\curl MSVS\include\curl;$(IncludePath)</IncludePath>
+    <IncludePath>D:\programming\zlib-1.2.8;C:\Program Files %28x86%29\GnuWin32\include\libpng12;D:\programming\jpeg-8c;D:\programming\boost_1_52_0;D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\include;D:\programming\curl MSVS\include\curl;$(IncludePath)</IncludePath>
     <LibraryPath>D:\programming\boost_1_52_0\stage\lib;C:\wamp\www\HTML-Media-Center\JARVIS\JARVIS\Debug;D:\programming\curl MSVS\lib\Release;$(LibraryPath)</LibraryPath>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
@@ -45,12 +45,12 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>JARVISCoreModules.lib;jpeg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>JARVISCoreModules.lib;jpeg.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>COPY $(SolutionDir)Debug\libMediaImages.dll $(SolutionDir)plugins</Command>

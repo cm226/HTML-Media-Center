@@ -19,7 +19,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -39,7 +39,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>D:\programming\jpeg-8c;D:\programming\boost_1_52_0;D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\include;D:\programming\curl MSVS\include\curl;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files %28x86%29\GnuWin32\include\libpng12;D:\programming\zlib-1.2.8;D:\programming\jpeg-8c;D:\programming\boost_1_52_0;D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\include;D:\programming\curl MSVS\include\curl;$(IncludePath)</IncludePath>
     <LibraryPath>D:\programming\boost_1_52_0\stage\lib;D:\programming\curl MSVS\lib\Release;C:\wamp\www\HTML-Media-Center\JARVIS\JARVIS\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -55,7 +55,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>JARVISCoreModules.lib;jpeg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>JARVISCoreModules.lib;jpeg.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -82,12 +82,10 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\MediaImages\ImageGetters\IimageContentGetter.cpp" />
     <ClCompile Include="..\MediaImages\ImageGetters\ImageGetter.cpp" />
     <ClCompile Include="..\MediaImages\ImageGetters\Movie\MovieImageGetter.cpp" />
     <ClCompile Include="..\MediaImages\ImageGetters\Music\MusicImageGetter.cpp" />
     <ClCompile Include="..\MediaImages\ImageGetters\Music\MusicMissingImageContentFinder.cpp" />
-    <ClCompile Include="..\MediaImages\MediaImagesPlugin.cpp" />
     <ClCompile Include="ImageGetterTests.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MediaImagesPluginTestser.cpp" />
