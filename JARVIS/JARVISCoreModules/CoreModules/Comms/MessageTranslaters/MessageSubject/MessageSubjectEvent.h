@@ -37,6 +37,7 @@ public:
 
 	void signal(Message* m, coremodules::comms::protocals::IProtocal* p)
 	{
+		if(!onListPluginsMessageReceved.empty())
 		onListPluginsMessageReceved(m ,p);
 	}
 
