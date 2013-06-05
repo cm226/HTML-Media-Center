@@ -9,12 +9,13 @@
 #define PLUGINPAGETRANSLATIONFILTER_H_
 
 #include "BaseTranslationFilter.h"
+#include "../../Protocals/IProtocal.h"
 
 namespace TranslationFilters {
 
 class PluginPageTranslationFilter: public TranslationFilters::BaseTranslationFilter {
 public:
-	PluginPageTranslationFilter();
+	PluginPageTranslationFilter(coremodules::comms::protocals::IProtocal* protocal);
 	virtual ~PluginPageTranslationFilter();
 
 	virtual AbstractMessage* translateMessage(std::string header, char* bytes, unsigned int bytesLength);

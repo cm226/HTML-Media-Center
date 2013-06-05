@@ -9,15 +9,24 @@
 #define PLAUGINPAGEMESSAGE_H_
 
 #include "AbstractMessage.h"
+#include "../../../exportMacros.h"
+#include <string>
 
 namespace TranslatedMessages {
 
-class PluginPageMessage: public AbstractMessage {
+class DLLCORE_API PluginPageMessage: public AbstractMessage
+{
+private:
+	#pragma warning( disable : 4251)
+	std::string _pluginName;
+	#pragma warning( default : 4251)
+
 public:
+	const char* pluginName();
+
 	PluginPageMessage(char* data, unsigned int length);
 	virtual ~PluginPageMessage();
 
-	virtual AbstractMessage* actionMessage();
 	virtual void serialize(coremodules::comms::messagetranslaters::StringMessageSerializer& serialiser);
 	static std::string getHeader();
 };

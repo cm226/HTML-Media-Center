@@ -8,7 +8,6 @@
 #ifndef ABSTRACTMESSAGE_H_
 #define ABSTRACTMESSAGE_H_
 
-#include "../../../EventModel/EventModel.h"
 #include "../StringMessageSerializer.h"
 #include "../../../exportMacros.h"
 
@@ -23,7 +22,6 @@ public:
 	AbstractMessage();
 	virtual ~AbstractMessage();
 
-	virtual AbstractMessage* actionMessage() = 0;
 	std::string stripNextValue();
 	virtual void serialize(coremodules::comms::messagetranslaters::StringMessageSerializer& serialiser) = 0;
 };

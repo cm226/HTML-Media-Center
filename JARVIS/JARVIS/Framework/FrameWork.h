@@ -15,6 +15,9 @@
 #include "Plugin/Loader/Loader.h"
 
 #include "../../JARVISCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ListPluginsMessage.h"
+#include "../../JARVISCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/PluginPageMessage.h"
+#include "../../JARVISCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/PluginInteractionRequestMessage.h"
+
 #include "../../JARVISCoreModules/CoreModules/Comms/Protocals/IProtocal.h"
 
 class JARVISFramework
@@ -37,9 +40,9 @@ public:
 
 private:
 	void loadedPlugins(ListPluginsMessage*, coremodules::comms::protocals::IProtocal*);
+	void pluginPageRequestHandler(TranslatedMessages::PluginPageMessage*, coremodules::comms::protocals::IProtocal*);
 
-	std::string getPluginPage(std::string pluginName);
-	std::string pluginInteractionRequest(std::vector<std::string> context);
+	void pluginInteractionRequestHandler(TranslatedMessages::PluginInteractionRequestMessage* msg, coremodules::comms::protocals::IProtocal* p);
 
 	void loadStartupPlugins();
 	bool commandAndControlMessageReceved(int type);

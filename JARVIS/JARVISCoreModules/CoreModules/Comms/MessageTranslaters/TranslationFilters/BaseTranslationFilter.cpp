@@ -9,7 +9,8 @@
 
 namespace TranslationFilters {
 
-BaseTranslationFilter::BaseTranslationFilter() {
+BaseTranslationFilter::BaseTranslationFilter(coremodules::comms::protocals::IProtocal* protocal) : protocal(protocal)
+{
 	this->nextFilter = NULL;
 
 }

@@ -9,7 +9,7 @@
 
 namespace TranslationFilters {
 
-CommandAndcontrolTranslationFilter::CommandAndcontrolTranslationFilter() {
+CommandAndcontrolTranslationFilter::CommandAndcontrolTranslationFilter(coremodules::comms::protocals::IProtocal* protocal): BaseTranslationFilter(protocal) {
 	// TODO Auto-generated constructor stub
 
 }

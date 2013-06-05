@@ -9,15 +9,25 @@
 #define PLUGININTERACTIONREQUESTMESSAGE_H_
 
 #include "AbstractMessage.h"
+#include "../../../exportMacros.h"
+#include <string>
+#include <list>
 
-namespace TranslationFilters {
+namespace TranslatedMessages {
 
-class PluginInteractionRequestMessage: public AbstractMessage {
+class DLLCORE_API PluginInteractionRequestMessage: public AbstractMessage 
+{
 public:
+
+	#pragma warning( disable : 4251)
+	std::string callbackID;
+	std::string pluginName;
+	std::list<std::string> contextValues;
+	#pragma warning( default : 4251)
+
 	PluginInteractionRequestMessage(char* data, unsigned int length);
 	virtual ~PluginInteractionRequestMessage();
 
-	virtual AbstractMessage* actionMessage();
 	virtual void serialize(coremodules::comms::messagetranslaters::StringMessageSerializer& serialiser);
 	static std::string getHeader();
 };

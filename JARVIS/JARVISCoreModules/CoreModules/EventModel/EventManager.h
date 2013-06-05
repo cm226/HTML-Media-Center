@@ -23,9 +23,7 @@ private:
 
 public:
 
-	static coremodules::eventmodel::events::EventSig <std::string,std::string> onPluginViewRequest;
 	static coremodules::eventmodel::events::EventSig<std::string, std::vector<std::string> > onPluginInteractionRequest;
-
 	static coremodules::eventmodel::events::EventSig<bool,int> commandAndControlMessageReceved;
 
 

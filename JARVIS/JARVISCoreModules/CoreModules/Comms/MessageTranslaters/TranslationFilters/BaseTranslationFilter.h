@@ -10,15 +10,18 @@
 
 #include <string>
 #include "../TranslatedMessages/TranslatedMessages.h"
-
+#include "../../Protocals/IProtocal.h"
 
 namespace TranslationFilters {
 
 class BaseTranslationFilter {
 
 	BaseTranslationFilter* nextFilter;
+protected:
+	coremodules::comms::protocals::IProtocal* protocal;
+
 public:
-	BaseTranslationFilter();
+	BaseTranslationFilter(coremodules::comms::protocals::IProtocal* protocal);
 	virtual ~BaseTranslationFilter();
 	void setNextFilter(BaseTranslationFilter* filter);
 	AbstractMessage* forwardMessage(std::string header, char* bytes, unsigned int bytesLength);
