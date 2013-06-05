@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.8, for Win64 (x86)
+-- MySQL dump 10.13  Distrib 5.5.31, for debian-linux-gnu (i686)
 --
--- Host: localhost    Database: mediaservertests
+-- Host: localhost    Database: mediaserver
 -- ------------------------------------------------------
--- Server version	5.1.53-community-log
+-- Server version	5.5.31-0ubuntu0.12.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `album`
+-- Table structure for table `Album`
 --
 
-DROP TABLE IF EXISTS `album`;
+DROP TABLE IF EXISTS `Album`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `album` (
+CREATE TABLE `Album` (
   `albumID` int(11) NOT NULL AUTO_INCREMENT,
   `albumName` varchar(20) DEFAULT NULL,
   `artistID` int(11) NOT NULL,
@@ -30,26 +30,27 @@ CREATE TABLE `album` (
   `albumRating` int(2) NOT NULL,
   PRIMARY KEY (`albumID`),
   KEY `artistID` (`artistID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `album`
+-- Dumping data for table `Album`
 --
 
-LOCK TABLES `album` WRITE;
-/*!40000 ALTER TABLE `album` DISABLE KEYS */;
-/*!40000 ALTER TABLE `album` ENABLE KEYS */;
+LOCK TABLES `Album` WRITE;
+/*!40000 ALTER TABLE `Album` DISABLE KEYS */;
+INSERT INTO `Album` VALUES (1,'testAlbum',1,2010,1),(2,'testAlbum',1,2010,1);
+/*!40000 ALTER TABLE `Album` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `artist`
+-- Table structure for table `Artist`
 --
 
-DROP TABLE IF EXISTS `artist`;
+DROP TABLE IF EXISTS `Artist`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `artist` (
+CREATE TABLE `Artist` (
   `artistID` int(11) NOT NULL AUTO_INCREMENT,
   `artistName` varchar(20) DEFAULT NULL,
   `artistRating` int(2) NOT NULL,
@@ -59,23 +60,23 @@ CREATE TABLE `artist` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `artist`
+-- Dumping data for table `Artist`
 --
 
-LOCK TABLES `artist` WRITE;
-/*!40000 ALTER TABLE `artist` DISABLE KEYS */;
-INSERT INTO `artist` VALUES (1,'testArtist1',1,'duno'),(2,'testArtist2',1,'duno');
-/*!40000 ALTER TABLE `artist` ENABLE KEYS */;
+LOCK TABLES `Artist` WRITE;
+/*!40000 ALTER TABLE `Artist` DISABLE KEYS */;
+INSERT INTO `Artist` VALUES (1,'testArtist1',1,'duno'),(2,'testArtist2',1,'duno');
+/*!40000 ALTER TABLE `Artist` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `episode`
+-- Table structure for table `Episode`
 --
 
-DROP TABLE IF EXISTS `episode`;
+DROP TABLE IF EXISTS `Episode`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `episode` (
+CREATE TABLE `Episode` (
   `episodeID` int(11) NOT NULL AUTO_INCREMENT,
   `episodeNumber` int(11) DEFAULT NULL,
   `episodeName` varchar(256) DEFAULT NULL,
@@ -89,22 +90,22 @@ CREATE TABLE `episode` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `episode`
+-- Dumping data for table `Episode`
 --
 
-LOCK TABLES `episode` WRITE;
-/*!40000 ALTER TABLE `episode` DISABLE KEYS */;
-/*!40000 ALTER TABLE `episode` ENABLE KEYS */;
+LOCK TABLES `Episode` WRITE;
+/*!40000 ALTER TABLE `Episode` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Episode` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `movie`
+-- Table structure for table `Movie`
 --
 
-DROP TABLE IF EXISTS `movie`;
+DROP TABLE IF EXISTS `Movie`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `movie` (
+CREATE TABLE `Movie` (
   `movieID` int(11) NOT NULL AUTO_INCREMENT,
   `movieName` varchar(20) DEFAULT NULL,
   `movieURL` varchar(256) DEFAULT NULL,
@@ -117,22 +118,22 @@ CREATE TABLE `movie` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `movie`
+-- Dumping data for table `Movie`
 --
 
-LOCK TABLES `movie` WRITE;
-/*!40000 ALTER TABLE `movie` DISABLE KEYS */;
-/*!40000 ALTER TABLE `movie` ENABLE KEYS */;
+LOCK TABLES `Movie` WRITE;
+/*!40000 ALTER TABLE `Movie` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Movie` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `picture`
+-- Table structure for table `Picture`
 --
 
-DROP TABLE IF EXISTS `picture`;
+DROP TABLE IF EXISTS `Picture`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `picture` (
+CREATE TABLE `Picture` (
   `picName` varchar(40) NOT NULL,
   `picURL` varchar(256) NOT NULL,
   `albumName` varchar(40) DEFAULT NULL,
@@ -142,44 +143,44 @@ CREATE TABLE `picture` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `picture`
+-- Dumping data for table `Picture`
 --
 
-LOCK TABLES `picture` WRITE;
-/*!40000 ALTER TABLE `picture` DISABLE KEYS */;
-/*!40000 ALTER TABLE `picture` ENABLE KEYS */;
+LOCK TABLES `Picture` WRITE;
+/*!40000 ALTER TABLE `Picture` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Picture` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `picturealbum`
+-- Table structure for table `Picturealbum`
 --
 
-DROP TABLE IF EXISTS `picturealbum`;
+DROP TABLE IF EXISTS `Picturealbum`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `picturealbum` (
+CREATE TABLE `Picturealbum` (
   `albumName` varchar(40) NOT NULL,
   PRIMARY KEY (`albumName`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `picturealbum`
+-- Dumping data for table `Picturealbum`
 --
 
-LOCK TABLES `picturealbum` WRITE;
-/*!40000 ALTER TABLE `picturealbum` DISABLE KEYS */;
-/*!40000 ALTER TABLE `picturealbum` ENABLE KEYS */;
+LOCK TABLES `Picturealbum` WRITE;
+/*!40000 ALTER TABLE `Picturealbum` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Picturealbum` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `playlist`
+-- Table structure for table `Playlist`
 --
 
-DROP TABLE IF EXISTS `playlist`;
+DROP TABLE IF EXISTS `Playlist`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `playlist` (
+CREATE TABLE `Playlist` (
   `playlistName` varchar(40) NOT NULL,
   `playlistPlayCount` int(3) NOT NULL,
   PRIMARY KEY (`playlistName`)
@@ -187,22 +188,22 @@ CREATE TABLE `playlist` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `playlist`
+-- Dumping data for table `Playlist`
 --
 
-LOCK TABLES `playlist` WRITE;
-/*!40000 ALTER TABLE `playlist` DISABLE KEYS */;
-/*!40000 ALTER TABLE `playlist` ENABLE KEYS */;
+LOCK TABLES `Playlist` WRITE;
+/*!40000 ALTER TABLE `Playlist` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Playlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `playlistsong`
+-- Table structure for table `Playlistsong`
 --
 
-DROP TABLE IF EXISTS `playlistsong`;
+DROP TABLE IF EXISTS `Playlistsong`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `playlistsong` (
+CREATE TABLE `Playlistsong` (
   `playlistSongID` int(11) NOT NULL AUTO_INCREMENT,
   `playlistName` varchar(40) NOT NULL,
   `songID` varchar(256) DEFAULT NULL,
@@ -213,22 +214,22 @@ CREATE TABLE `playlistsong` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `playlistsong`
+-- Dumping data for table `Playlistsong`
 --
 
-LOCK TABLES `playlistsong` WRITE;
-/*!40000 ALTER TABLE `playlistsong` DISABLE KEYS */;
-/*!40000 ALTER TABLE `playlistsong` ENABLE KEYS */;
+LOCK TABLES `Playlistsong` WRITE;
+/*!40000 ALTER TABLE `Playlistsong` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Playlistsong` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `season`
+-- Table structure for table `Season`
 --
 
-DROP TABLE IF EXISTS `season`;
+DROP TABLE IF EXISTS `Season`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `season` (
+CREATE TABLE `Season` (
   `seasonID` int(11) NOT NULL AUTO_INCREMENT,
   `seriesName` varchar(40) DEFAULT NULL,
   `seriesNumber` int(11) DEFAULT NULL,
@@ -238,22 +239,22 @@ CREATE TABLE `season` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `season`
+-- Dumping data for table `Season`
 --
 
-LOCK TABLES `season` WRITE;
-/*!40000 ALTER TABLE `season` DISABLE KEYS */;
-/*!40000 ALTER TABLE `season` ENABLE KEYS */;
+LOCK TABLES `Season` WRITE;
+/*!40000 ALTER TABLE `Season` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Season` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `series`
+-- Table structure for table `Series`
 --
 
-DROP TABLE IF EXISTS `series`;
+DROP TABLE IF EXISTS `Series`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `series` (
+CREATE TABLE `Series` (
   `seriesName` varchar(40) NOT NULL,
   `seriesIMDB` int(11) NOT NULL,
   `seriesDate` year(4) NOT NULL,
@@ -263,22 +264,22 @@ CREATE TABLE `series` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `series`
+-- Dumping data for table `Series`
 --
 
-LOCK TABLES `series` WRITE;
-/*!40000 ALTER TABLE `series` DISABLE KEYS */;
-/*!40000 ALTER TABLE `series` ENABLE KEYS */;
+LOCK TABLES `Series` WRITE;
+/*!40000 ALTER TABLE `Series` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Series` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `song`
+-- Table structure for table `Song`
 --
 
-DROP TABLE IF EXISTS `song`;
+DROP TABLE IF EXISTS `Song`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `song` (
+CREATE TABLE `Song` (
   `songID` int(11) NOT NULL AUTO_INCREMENT,
   `songName` varchar(40) DEFAULT NULL,
   `albumID` int(11) NOT NULL,
@@ -289,16 +290,17 @@ CREATE TABLE `song` (
   `dateAdded` date DEFAULT NULL,
   PRIMARY KEY (`songID`),
   KEY `albumID` (`albumID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `song`
+-- Dumping data for table `Song`
 --
 
-LOCK TABLES `song` WRITE;
-/*!40000 ALTER TABLE `song` DISABLE KEYS */;
-/*!40000 ALTER TABLE `song` ENABLE KEYS */;
+LOCK TABLES `Song` WRITE;
+/*!40000 ALTER TABLE `Song` DISABLE KEYS */;
+INSERT INTO `Song` VALUES (1,'testSong',1,'00:03:00',1,1,'test','0000-00-00'),(2,'testSong',1,'00:03:00',1,1,'test','0000-00-00');
+/*!40000 ALTER TABLE `Song` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -310,4 +312,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-05-24 15:05:51
+-- Dump completed on 2013-06-03 18:11:26

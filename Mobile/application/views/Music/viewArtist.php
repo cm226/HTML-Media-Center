@@ -1,7 +1,7 @@
 <script type="text/javascript">
 	function refreshIframe(artistName, albumName)
 	{
-		postwith('../Music/viewPlayer',{artist:artistName, album:albumName}, "player");
+		postwith('../../Music/viewPlayer',{artist:artistName, album:albumName}, "player");
 	}
 	
 	
@@ -24,8 +24,7 @@ body
 </style>
 
 
-<form id="ArtistPoster" hidden="true" action="../Music/viewPlayer" method="post" target="player">
-  <input type="Hidden" name = "artist" value="<?php echo $artistID; ?>" />
+<form id="ArtistPoster" hidden="true" action="../../Music/viewPlayer/<?php echo $artistID; ?>" method="post" target="player">
   <input type="submit" value="Do Stuff!" />
 </form>
 

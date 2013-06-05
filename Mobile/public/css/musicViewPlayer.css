@@ -1,170 +1,40 @@
-#player
-{
-	width: 100%;
-	height: 100%;
-	position: relative;
+.ui-page { 
+background: #eee;
 }
 
 
-.title
+.ui-panel-inner
 {
-		
-	color: white;
-	width:50%;
-	float: left;
-}
-
-body {
-margin: 0px;
+	padding:0px;
+	margin: 0px;
 }
 
 
-#shuffleButton
+#songPanel
 {
-	color:white;
-}
-
-#currentSongInfo
-{
-	top: 0px;
-	width:100%;
-	height:60px;
-	color:white;
-}
-
-#center
-{
-	margin-left:auto;
-	margin-right:auto;
-	width:200px;
-}
-
-#nextBttn
-{
-	color:white;
-}
-
-#audioControls
-{
-	position: absolute;
-	bottom: 120px;
-	width:100%;
 	
 }
 
-#playerControls
+#songContainer
 {
-	position: absolute;
-	bottom: 0;
-	width:100%;
-	height:100px;
-}
-
-#nextBttn
-{
-	float:left;
-	width:50px;
+	background-color: argb(0,0,0,0);
+	height:600px;
+	overflow: scroll;
 }
 
 
-
-#shuffleButton
+#songInfo
 {
-	float:right;
-	width:50px;
-}
-#prevBttn
-{
-	float:left;
-	width:50px;
-}
-#playBttn
-{
-	width:100px;
-	float :left;
-	
-}
-
-audio 
-{
-	width: 80%;
-	display: block;
-	margin-left:10%; 
-	margin-right:10%;
-}
-
-#currentlyPlaying
-{
-	position: absolute;
-	color: white;
-	right:0;
-	top:10%;
-	width: 40%;
-	max-height:70%;
-	overflow:auto;
+	height: 200px;
 }
 
 #albumImage
 {
 	float:left;
-	width:auto;
-	background-color:red;
 }
 
-.songItem
+#currentSongInfo
 {
-	background-color: #383838;
-	margin-top: 5px;
-	padding-top: 3px;
-	border-style: solid;
-	border-color: white;
-	border-width: 1px;
-	border-radius:5px;
-	height: 30px; 
+    float:left;
+  
 }
-
-.songItem:hover
-{
-	background-color: black;
-
-}
-
-#songHeader
-{
-	margin-left:auto;
-	margin-right:auto;
-	width:400px;
-	
-}
-
-#SongName
-{
-	float : left;
-	
-	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-	font-weight: bold;
-}
-
-#ArtistName
-{
-	font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
-	font-weight: lighter;
-	float : left;
-}
-
-#playlistsIcng
-{
-	position: absolute;
-	right: 10px;
-	width: 30px;
-}
-
-#downloadButton
-{
-	width: 30px;
-	height: 30px;
-	float: right;
-	padding-right: 10px;
-}
-
-

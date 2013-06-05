@@ -1,9 +1,31 @@
+<!DOCTYPE html>
 <html>
 <head>
 
-<script type="text/javascript" src="../public/js/helperFunctions.js"></script> 
+
+<link rel="stylesheet" href="../../public/css/jquery.mobile-1.3.1.min.css"/>
+<link rel="stylesheet" href="../../public/css/musicViewPlayer.css"/>
+
+<script type="text/javascript" src="../../public/js/helperFunctions.js"></script> 
+
+<script src="../../public/js/jquery-1.10.1.min.js"></script>
+<script src="../../public/js/jquery.mobile-1.3.1.min.js"></script>
 
 <script>
+
+$( document ).on( "pageinit", "#musicPlayer", function() {
+    $( document ).on( "swipeleft swiperight", "#musicPlayer", function( e ) {
+        // We check if there is no open panel on the page because otherwise
+        // a swipe to close the left panel would also open the right panel (and v.v.).
+        // We do this by checking the data that the framework stores on the page element (panel: open).
+        if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
+            if ( e.type === "swipeleft"  ) {
+                $( "#songPanel" ).panel( "open" );
+            }
+        }
+    });
+});
+
 
 
 var myPlaylist = [
@@ -11,188 +33,116 @@ var myPlaylist = [
 <?php foreach ($songs as &$song) { ?>
 
     {
-        mp3:<?php echo "'".str_replace(" ","%20",str_replace("'","\'",$song["Song"]["songURL"])) ."'";?>,
+        mp3:<?php echo "'../../public/mix/Music/".str_replace(" ","%20",str_replace("'","\'",$song["Song"]["songURL"])) ."'";?>,
         title:<?php echo "'". str_replace("'","\'",$song["Song"]["songName"]) ."'";?>,
         artist:<?php echo "'".str_replace("'","\'",$song['Artist']['artistName'])."'" ;?>,
         rating:4,
         duration:<?php echo "'". $song["Song"]["songLength"] ."'";?>,
-        cover:'../public/img/Music/Albums/<?php echo str_replace("'","\'",$song["Album"]["albumName"]); ?>.png',
-		id: <?php echo $song['Song']['songID']; ?>
+	<?php 
+		if(file_exists('../../public/img/Music/Albums/'.str_replace("'","\'",$song["Album"]["albumName"]).'.png'))
+		echo 'cover: \'../../public/img/Music/Albums/'. str_replace("'","\'",$song["Album"]["albumName"]).'.png \'';
+
+		else
+			echo 'cover: \'../../public/img/Music/Albums/default.jpg\'';
+
+	?>
     },
 	
 <?php } ?>
 ];
 
-var shuffleOn = false;
-var currentSong = -1;
-var prevSong = -1;
 var numSongs = <?php echo count($songs)."; \n"; ?>
-var allSongsPlayedEvnt = new Event();
 
+$( document ).ready(function() {
+    		$("#playBttn").click(function(){playOrPause();});
+		$("#playPrev").click(function(){playPrev();});
+		$("#playNext").click(function(){playNext();});
 
+		$("#songContainer ul li a").click(function(event) {
+ 			 event.preventDefault();
+			 playSong($(this).attr("href"));
+			});
+		
+		$("#volumeSlider").change(function() {
+		  changeVolume($("#slider-2").val());
+		});
 
-function songsFinished()
-{
-	allSongsPlayedEvnt.execute();
-}
-
-
-
-// player functions
-
-
-function fillAudio(src)
-{
-	var audioStr = "<audio controls=\"controls\" id=\"audioPlayer\" onended=\"playNext();\">";
-	audioStr += "<source src=\""+ src+"\" type=\"audio/mp3\"/> </audio>";
-	
-	var audioDiv = document.getElementById('audioControls');
-	audioDiv.innerHTML = audioStr;
-}
-
-function fillAudioInfo(Name, Artist)
-{
-	var AudioInfoStr = "<div id=\"songHeader\"><div id=\"SongName\">"+Name+" - </div>";
-	AudioInfoStr+= "<div id=\"ArtistName\"> "+Artist+"</div></div>";
-
-	var songInfo = document.getElementById('currentSongInfo');
-	songInfo.innerHTML = AudioInfoStr;
-}
-
-function fillAlbumImage(url)
-{
-	var albumImgStr = "<img src=\""+url+"\" id=\"Albumimgtag\" height=\"50%\" width=\"auto\"/>";
-
-	var albumImg = document.getElementById('albumImage');
-	albumImg.innerHTML = albumImgStr;
-	
-}
-function shuffle()
-{
-	if(shuffleOn)
-		shuffleOn = false;
-	else
-		shuffleOn = true;
-}
-
-function playNext()
-{
-	prevSong = currentSong;
-	currentSong++;
-	if(currentSong >= numSongs)
-		songsFinished();
-	else
-		play();
-}
-
-function playPrev()
-{
-	songsFinished();
-	prevSong = currentSong 
-	currentSong--;
-	play();
-}
-
-function playSong(number)
-{
-	prevSong = currentSong 
-	currentSong = number;
-	play();
-}
-
-function play()
-{
-	if(shuffleOn)
-	{
-		var randomnumber=Math.floor(Math.random()*numSongs)+1;
-
-		while(randomnumber == currentSong)
-			randomnumber = Math.floor(Math.random()*numSongs)+1;
-	
-		currentSong = randomnumber;
-	}
-
-	
-	fillAudio(myPlaylist[currentSong].mp3);
-	fillAudioInfo(myPlaylist[currentSong].title, myPlaylist[currentSong].artist);
-	fillAlbumImage(myPlaylist[currentSong].cover);
-	updatePlayingList(prevSong,currentSong);
-	
-	document.getElementById('audioPlayer').play();
-}
-
-function downloadSong(songNumber)
-{
-	var id = myPlaylist[songNumber].id;
-	window.location = "../Music/downloadSong/"+String(id);
-}
-
-function updatePlayingList(from, to)
-{
-	var nowPlaying = document.getElementById("playlist"+to);
-	nowPlaying.style.color = "Black";
-	nowPlaying.style.fontSize = "large";
-
-	if(from != -1)
-	{
-		var wasPlaying = document.getElementById("playlist"+from);
-		wasPlaying.style.color = "Black";
-		wasPlaying.style.fontSize = "small";
-	}
-}
+	});
 
 
 </script>
+<script src="../../public/js/player.js"></script>
 
-<link rel="stylesheet" type="text/css" href="../public/css/musicViewPlayer.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
 </head>
 
 <body>
 
-	<div id="player" >
-		<div id="currentSongInfo" style="background-image:url(<?php echo "'".PUBLIC_FOLDER. "/img/Music/icons/HeaderGradient.png"."'";?>);">
-		<div id= "playlistsIcng"><img src="<?php echo PUBLIC_FOLDER. "/img/Music/icons/playlistsIcon.png";?>" height="30px" width="30px"></div>
-		</div>
-		<div id="albumImage"></div>
-		<div id="currentlyPlaying"></div>
-		<div id="audioControls"></div>
-		
-		<div id="playerControls" style="background-image:url(<?php echo "'".PUBLIC_FOLDER. "/img/Music/icons/PlayerGradient.png"."'";?>);">
-		<div id="center">
-			<div id="prevBttn" onClick="playPrev();" >
-				<img src="<?php echo PUBLIC_FOLDER. "/img/Music/icons/prev.png"; ?>" height="50px" width="50px"></img>			
-			</div>
-			<div id="playBttn" onClick="playNext();">
-				<img src="<?php echo PUBLIC_FOLDER. "/img/Music/icons/play.png"; ?>" height="100px" width="100px"></img>			
-			</div>
-			<div id="nextBttn" onClick="playNext();">
-				<img src="<?php echo PUBLIC_FOLDER. "/img/Music/icons/next.png"; ?>" height="50px" width="50px"></img>			
-			</div>
-			
-		</div>
-		<div id="shuffleButton" onclick="shuffle(); play();">
-				<img src="<?php echo PUBLIC_FOLDER. "/img/Music/icons/shuffle.png"; ?>" height="50px" width="50px"></img>
-			</div>
-			
 
+
+<div data-role="page" data-theme="a" id="musicPlayer">
+
+<div data-role="header">
+        <h1>Music Player</h1>
+	<a href="#" data-icon="gear" class="ui-btn-right">Options</a>
+
+	
+	<div data-display="overlay" data-position="right" data-theme="a" data-role="panel" id="songPanel">
+		<div id="songContainer">	
+		<ul data-role="listview" data-icon="false" data-inset="true" data-filter="false" data-theme="a">
+
+		<?php
+		$counter = 0;		
+		 foreach ($songs as &$song) 
+		{
+			echo '<li><a href="'.$counter.'">'.$song["Song"]["songName"].'</a></li>';
+			$counter++;
+		}?>
+		   
+		</ul>
+		</div>
+	</div><!-- /panel -->
+</div> <!-- /header -->
+
+
+<div data-role="content">
+
+
+
+<div data-role="controlgroup" data-type="horizontal" class="localnav">
+            <a href="#" data-role="button" data-transition="fade" id="playPrev">Previus</a>
+            <a href="#" data-role="button" data-transition="fade" id="playBttn">Play/Pause</a>
+            <a href="#" data-role="button" data-transition="fade" id="playNext">Next</a>
+</div>
+
+<div id="currentSong">
+	
+	
+	<div id="songInfo">
+		<div id="albumImage">
+		</div>
+
+		<div id="currentSongInfo">
+			<h5>Album</h5>
+			<h3>Song</h3>
 		</div>
 	</div>
+</div>
 
-<script>
-	var playingList = document.getElementById('currentlyPlaying');
-	
-	for(var i = 0; i < numSongs; i++)
-	{
-		var songItem = "<div class=\"songItem\" id=\"playlist"+i+"\" onClick=\"playSong("+i+");\">";
-		songItem += myPlaylist[i].title;
-		songItem += "<div id=\"downloadButton\" onClick=\"downloadSong("+i+")\"> <img src=";
-		songItem += <?php echo '"'.PUBLIC_FOLDER. '/img/Music/icons/downloadBttn.png'.'"';?>;
-		songItem += " height=\"30px\" width=\"30px\"> </div>";
-		songItem += "<div/>";
-		
-		playingList.innerHTML += songItem;
-	}
-</script>
+<div id="audioControls">
+</div> 
+
+<div id="volumeSlider">
+  <input type="range" name="slider-2" id="slider-2" data-highlight="true" min="0" max="100" value="50">
+</div>
+
+</div>
+
+
+</div>
+
+
 </body>
 </html>
 
