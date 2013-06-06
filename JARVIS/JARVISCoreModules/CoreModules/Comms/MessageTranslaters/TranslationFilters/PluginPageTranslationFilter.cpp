@@ -6,10 +6,12 @@
  */
 
 #include "PluginPageTranslationFilter.h"
+#include "../../Comms.h"
+#include "../../../Errors/ErrorLogger.h"
 
 namespace TranslationFilters {
 
-PluginPageTranslationFilter::PluginPageTranslationFilter() {
+PluginPageTranslationFilter::PluginPageTranslationFilter(coremodules::comms::protocals::IProtocal* protocal): BaseTranslationFilter(protocal) {
 	// TODO Auto-generated constructor stub
 
 }
@@ -22,7 +24,10 @@ AbstractMessage* PluginPageTranslationFilter::translateMessage(std::string heade
 {
 	if(header.compare(TranslatedMessages::PluginPageMessage::getHeader()) == 0)
 	{
-		return new TranslatedMessages::PluginPageMessage(bytes, bytesLength);
+		ErrorLogger::logInfo("Plugin Page Message Receved");
+		TranslatedMessages::PluginPageMessage* msg = new TranslatedMessages::PluginPageMessage(bytes, bytesLength);
+		Comms::_messageSubject.onPluginPageMessageReceved.signal(msg,protocal);
+		return msg;
 	}
 
 	return this->forwardMessage(header,bytes,bytesLength);

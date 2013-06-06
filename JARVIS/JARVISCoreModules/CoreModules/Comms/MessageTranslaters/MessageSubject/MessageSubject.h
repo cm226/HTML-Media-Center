@@ -6,6 +6,9 @@
 #define COREMODULES_COMMS_MESSAGETRANSLATERS_MESSAGESUBJECT_MESSAGESUBJECT_H
 
 #include "../TranslatedMessages/ListPluginsMessage.h"
+#include "../TranslatedMessages/PluginPageMessage.h"
+#include "../TranslatedMessages/PluginInteractionRequestMessage.h"
+
 #include "MessageSubjectEvent.h"
 
 namespace coremodules {
@@ -22,9 +25,9 @@ class DLLCORE_API MessageSubject
 public:
 
 	MessageSubjectEvent<ListPluginsMessage> onListPluginsMessageReceved;
-	/**
-		ctor
-	*/
+	MessageSubjectEvent<TranslatedMessages::PluginPageMessage> onPluginPageMessageReceved;
+	MessageSubjectEvent<TranslatedMessages::PluginInteractionRequestMessage> onPluginInteractionMessageReceved;
+
 	MessageSubject();
 
 	/**

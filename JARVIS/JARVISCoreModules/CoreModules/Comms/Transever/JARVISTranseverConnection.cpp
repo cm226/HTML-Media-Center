@@ -32,7 +32,7 @@ void JARVISTranseverConnection::processConnection()
 		return;
 	}
 
-
+	/*
 	ListPluginsMessage* lpmsg = dynamic_cast<ListPluginsMessage*>(msg);
 	if(lpmsg != NULL)
 	{
@@ -49,6 +49,7 @@ void JARVISTranseverConnection::processConnection()
 		msgProtocal.sendMessage(reply);
 		delete reply;
 	}
+	*/
 	delete msg;
 }
 

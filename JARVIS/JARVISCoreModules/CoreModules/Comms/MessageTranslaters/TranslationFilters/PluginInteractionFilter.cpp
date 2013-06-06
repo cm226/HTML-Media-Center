@@ -7,10 +7,12 @@
 
 #include "PluginInteractionFilter.h"
 #include "../TranslatedMessages/PluginInteractionRequestMessage.h"
+#include "../../Comms.h"
+#include "../../../Errors/ErrorLogger.h"
 
 namespace TranslationFilters {
 
-PluginInteractionFilter::PluginInteractionFilter() {
+PluginInteractionFilter::PluginInteractionFilter(coremodules::comms::protocals::IProtocal* protocal) : BaseTranslationFilter(protocal){
 
 }
 
@@ -19,9 +21,13 @@ PluginInteractionFilter::~PluginInteractionFilter() {
 
 AbstractMessage* PluginInteractionFilter::translateMessage(std::string header, char* bytes, unsigned int bytesLength)
 {
-	if(header.compare(PluginInteractionRequestMessage::getHeader()) == 0)
+	if(header.compare(TranslatedMessages::PluginInteractionRequestMessage::getHeader()) == 0)
 	{
-		return new PluginInteractionRequestMessage(bytes, bytesLength);
+		ErrorLogger::logInfo("Plugin Interaction Message Receved");
+		TranslatedMessages::PluginInteractionRequestMessage* msg = new TranslatedMessages::PluginInteractionRequestMessage(bytes, bytesLength);
+		Comms::_messageSubject.onPluginInteractionMessageReceved.signal(msg,protocal);
+
+		return msg;
 	}
 
 	return this->forwardMessage(header,bytes,bytesLength);

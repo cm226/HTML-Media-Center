@@ -10,16 +10,20 @@
 
 #include "TranslatedMessages/AbstractMessage.h"
 #include "TranslationFilters/MessageTranslationFilters.h"
+#include "../Protocals/IProtocal.h"
 
-class Translater {
+class Translater
+{
 
 	TranslationFilters::BaseTranslationFilter* translationFilter;
+	coremodules::comms::protocals::IProtocal* protocal;
 
 public:
 	Translater();
 	virtual ~Translater();
 
 	AbstractMessage* translateMessage(char* message, unsigned int messagelength);
+	void setProtocal(coremodules::comms::protocals::IProtocal* protocal);
 
 private:
 	AbstractMessage* messageFactory(std::string msgHeader,char* data, unsigned int messageLength);

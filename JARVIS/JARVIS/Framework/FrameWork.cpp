@@ -17,10 +17,10 @@ JARVISFramework::JARVISFramework()
 	this->shuttingDown = false;
 
 	this->cModules.getComms()->messagesubject()->onListPluginsMessageReceved.connect(this, &JARVISFramework::loadedPlugins);
+	this->cModules.getComms()->messagesubject()->onPluginPageMessageReceved.connect(this, &JARVISFramework::pluginPageRequestHandler);
+	this->cModules.getComms()->messagesubject()->onPluginInteractionMessageReceved.connect(this,&JARVISFramework::pluginInteractionRequestHandler);
 
 	EventManager::commandAndControlMessageReceved.attach(this,&JARVISFramework::commandAndControlMessageReceved);
-	EventManager::onPluginViewRequest.attach(this,&JARVISFramework::getPluginPage);
-	EventManager::onPluginInteractionRequest.attach(this,&JARVISFramework::pluginInteractionRequest);
 
 
 #ifdef _WINDOWS
@@ -36,11 +36,6 @@ JARVISFramework::JARVISFramework()
 
 JARVISFramework::~JARVISFramework()
 {
-	// TODO this is fucked up on windows, change to boost signals lib
-	/*EventManager::pluginPoll.detach(ppEventHandler);
-	EventManager::commandAndControlMessageReceved.detach(cAndcEventHandler);
-	EventManager::onPluginViewRequest.detach(ViewReqEventHandler);
-	EventManager::onPluginInteractionRequest.detach(interactionReqEventHandler);*/
 
 	delete this->pluginLoader;
 
@@ -204,9 +199,12 @@ bool JARVISFramework::commandAndControlMessageReceved(int type)
 
 }
 
-std::string JARVISFramework::getPluginPage(std::string pluginName)
+void JARVISFramework::pluginPageRequestHandler(TranslatedMessages::PluginPageMessage* msg, coremodules::comms::protocals::IProtocal* protocal)
 {
+	
 	std::string page = "";
+	std::string pluginName(msg->pluginName());
+
 	Plugin* plugin = this->pluginLoader->getPluginByName(pluginName);
 	if(plugin != NULL)
 	{
@@ -216,45 +214,37 @@ std::string JARVISFramework::getPluginPage(std::string pluginName)
 		pluginPage.buildPage(&page);
 		pluginPage.freePage();
 	}
-	return page;
 
+	protocal->sendMessage(new TranslatedMessages::ReplyMessage(page));
 }
 
-std::string JARVISFramework::pluginInteractionRequest(std::vector<std::string> context)
+void JARVISFramework::pluginInteractionRequestHandler(TranslatedMessages::PluginInteractionRequestMessage* msg, coremodules::comms::protocals::IProtocal* protocal)
 {
-	if(context.size() < 2)
-	{
-		ErrorLogger::logError("plugin context dont contain enuf information to process them need callback ID and pluginName");
-		return "Plugin error not enough data see JARVIS log for more";
-	}
-
-	std::string callbackID = *context.begin();
-	context.erase(context.begin());
-	std::string pluginName = *context.begin();
-	context.erase(context.begin());
-
-	Plugin* p = this->pluginLoader->getPluginByName(pluginName);
+	Plugin* p = this->pluginLoader->getPluginByName(msg->pluginName);
 	Page page;
 	PageCallbackContext pcContext;
 	
-	pcContext.setAdditionalContext(&context);
-	std::istringstream buffer(callbackID);
+	std::vector<std::string> contextVals(msg->contextValues.begin(), msg->contextValues.end());
+	pcContext.setAdditionalContext(&contextVals);
+	std::istringstream buffer(msg->callbackID);
+
 	CALLBACk_HANDLE callbackHandl;
 	buffer >> callbackHandl; 
 
 	pcContext.callbackHandle = callbackHandl;
-
+	std::string sPage;
 	if(!p->notifyPageCallback(&page,&pcContext))
 	{
 		ErrorLogger::logError("failed to call plugin callback");
-		return "Plugin error not enough data see JARVIS log for more";
+		sPage = "Plugin error not enough data see JARVIS log for more";
 	}
 
-	std::string sPage;
+	
 	page.buildPage(&sPage);
 	page.freePage();
 
-	return sPage;
+
+	protocal->sendMessage(new TranslatedMessages::ReplyMessage(sPage));
 }
 
 

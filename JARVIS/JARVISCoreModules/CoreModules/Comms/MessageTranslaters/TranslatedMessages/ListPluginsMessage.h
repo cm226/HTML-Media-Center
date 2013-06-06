@@ -17,7 +17,6 @@ public:
 	ListPluginsMessage();
 	virtual ~ListPluginsMessage();
 
-	AbstractMessage* actionMessage();
 	virtual void serialize(coremodules::comms::messagetranslaters::StringMessageSerializer& serialiser);
 	static std::string getHeader();
 };

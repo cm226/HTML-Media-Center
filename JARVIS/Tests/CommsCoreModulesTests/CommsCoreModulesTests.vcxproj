@@ -113,6 +113,7 @@
     <ClCompile Include="CURLManagerTests.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MessagechunkerTests.cpp" />
+    <ClCompile Include="TwoByteMsgLenTests.cpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>

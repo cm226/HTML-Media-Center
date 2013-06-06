@@ -43,7 +43,11 @@ public:
 	bool notifyPageCallback(Page* page, PageCallbackContext* context)
 	{
 		if(this->pageCallbacks.find(context->callbackHandle) != this->pageCallbacks.end())
-			return this->pageCallbacks[context->callbackHandle](page, context);
+		{
+			boost::function2<bool ,Page*,PageCallbackContext* > callbackFunc = this->pageCallbacks[context->callbackHandle];
+			bool retVal = callbackFunc(page, context);
+			return retVal;
+		}
 
 		ErrorLogger::logError("page callback just called for unregistered handle");
 

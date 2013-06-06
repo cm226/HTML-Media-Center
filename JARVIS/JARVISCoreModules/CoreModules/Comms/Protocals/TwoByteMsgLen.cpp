@@ -14,7 +14,7 @@
 
 TwoByteMsgLen::TwoByteMsgLen(boost::asio::ip::tcp::socket& socket) : socket(socket)
 {
-
+	messageTranslater.setProtocal(this);
 }
 
 TwoByteMsgLen::~TwoByteMsgLen()

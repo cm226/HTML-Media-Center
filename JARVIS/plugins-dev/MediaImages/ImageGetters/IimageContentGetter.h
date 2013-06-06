@@ -18,12 +18,12 @@ public:
 	/**
 		ctor
 	*/
-	IimageContentGetter();
+	IimageContentGetter(){};
 
 	/**
 		dtor
 	*/
-	~IimageContentGetter();
+	~IimageContentGetter(){};
 	virtual void registerFunctions(Plugin* registerer){};
 
 };

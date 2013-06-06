@@ -9,12 +9,13 @@
 #define PLUGININTERACTIONFILTER_H_
 
 #include "BaseTranslationFilter.h"
+#include "../../Protocals/IProtocal.h"
 
 namespace TranslationFilters {
 
 class PluginInteractionFilter: public TranslationFilters::BaseTranslationFilter {
 public:
-	PluginInteractionFilter();
+	PluginInteractionFilter(coremodules::comms::protocals::IProtocal* protocal);
 	virtual ~PluginInteractionFilter();
 
 	virtual AbstractMessage* translateMessage(std::string header, char* bytes, unsigned int bytesLength);

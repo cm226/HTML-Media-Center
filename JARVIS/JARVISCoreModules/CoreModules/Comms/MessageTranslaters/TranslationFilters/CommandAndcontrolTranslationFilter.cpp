@@ -6,10 +6,11 @@
  */
 
 #include "CommandAndcontrolTranslationFilter.h"
+#include "../../../Errors/ErrorLogger.h"
 
 namespace TranslationFilters {
 
-CommandAndcontrolTranslationFilter::CommandAndcontrolTranslationFilter() {
+CommandAndcontrolTranslationFilter::CommandAndcontrolTranslationFilter(coremodules::comms::protocals::IProtocal* protocal): BaseTranslationFilter(protocal) {
 	// TODO Auto-generated constructor stub
 
 }
@@ -22,6 +23,7 @@ AbstractMessage* CommandAndcontrolTranslationFilter::translateMessage(std::strin
 {
 	if(header.compare(ComandAndControlMessage::getHeader()) == 0)
 		{
+			ErrorLogger::logInfo("Command And Control Message Receved");
 			return new ComandAndControlMessage(bytes, bytesLength);
 		}
 

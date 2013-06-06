@@ -12,9 +12,5 @@
 #include <boost/test/unit_test.hpp>
 
 
-#ifdef TESTING
-	#define private public
-#endif
-
 
 // TODO: reference additional headers your program requires here

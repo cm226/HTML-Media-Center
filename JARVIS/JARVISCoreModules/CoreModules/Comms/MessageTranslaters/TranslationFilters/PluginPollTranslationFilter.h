@@ -9,12 +9,13 @@
 #define PLUGINPOLLTRANSLATIONFILTER_H_
 
 #include "BaseTranslationFilter.h"
+#include "../../Protocals/IProtocal.h"
 
 namespace TranslationFilters {
 
 class PluginPollTranslationFilter: public TranslationFilters::BaseTranslationFilter {
 public:
-	PluginPollTranslationFilter();
+	PluginPollTranslationFilter(coremodules::comms::protocals::IProtocal* protocal);
 	virtual ~PluginPollTranslationFilter();
 
 	virtual AbstractMessage* translateMessage(std::string header, char* bytes, unsigned int bytesLength);

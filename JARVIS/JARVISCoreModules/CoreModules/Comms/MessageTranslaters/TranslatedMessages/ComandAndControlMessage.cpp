@@ -25,7 +25,7 @@ AbstractMessage* ComandAndControlMessage::actionMessage()
 	std::string comAndContValue = this->stripNextValue();
 	int value = atoi(comAndContValue.c_str());
 	if(value != 0)
-		EventManager::commandAndControlMessageReceved.notify(value, NULL);
+		//EventManager::commandAndControlMessageReceved.notify(value, NULL);
 
 	 return NULL;
 }

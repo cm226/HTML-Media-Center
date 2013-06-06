@@ -125,28 +125,34 @@ bool MusicMissingImageContentFinder::checkAlbumImageExists(std::string albumName
 	return checkPNGorJPGImageExsists(albumImageFilename);
 }
 
+#ifdef WIN32
+#include <Windows.h>
+
+
+BOOL FileExists(std::string path)
+{
+
+	//std::wstring szPath(path.begin(), path.end());
+	DWORD dwAttrib = GetFileAttributes(path.c_str());
+
+  return (dwAttrib != INVALID_FILE_ATTRIBUTES && 
+         !(dwAttrib & FILE_ATTRIBUTE_DIRECTORY));
+}
+
+
+#endif
 
 bool MusicMissingImageContentFinder::checkPNGorJPGImageExsists(std::string fileName)
 {
-	boost::system::error_code ec;
+	// boost filesystem seems to crash when we use large file dirs, so we wil just do it nativly
 
-	std::string thumbImageNamePNG;
-	std::string thumbImageNameJPG;
-	thumbImageNameJPG = thumbImageNameJPG.append(fileName).append(".jpg");
-	thumbImageNamePNG = thumbImageNamePNG.append(fileName).append(".png");
+	std::string pngFileName = fileName+".png";
+	std::string jpegFileName = fileName+".jpg";
 
-	boost::filesystem::path p = boost::filesystem::current_path();
-	boost::filesystem::path pngPath(thumbImageNamePNG);
-	boost::filesystem::path jpgPath(thumbImageNameJPG);
-
-	bool test1 = boost::filesystem::exists(pngPath,ec);
-	if(test1)
-		return true;
-	if(boost::filesystem::exists(jpgPath,ec))
+	if(FileExists(pngFileName) || FileExists(jpegFileName))
 		return true;
 
 	return false;
-
 }
 
 

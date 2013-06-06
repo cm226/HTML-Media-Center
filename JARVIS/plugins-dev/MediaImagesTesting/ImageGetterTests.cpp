@@ -9,16 +9,21 @@
 #include <boost/gil/typedefs.hpp>
 #include <boost/gil/extension/io/jpeg_io.hpp>
 
+
 BOOST_AUTO_TEST_CASE(ImageGetterconstructor)
 {
+	
 	CoreModules cm;
 	CoreModules* cmref = &cm;
 
 	ImageGetter imGetter(cmref);
 }
 
+
+
 BOOST_AUTO_TEST_CASE(googleSearch)
 {
+
 	CoreModules cm;
 	CoreModules* cmref = &cm;
 	std::vector<std::string> results;
@@ -52,10 +57,9 @@ BOOST_AUTO_TEST_CASE(downloadImage)
 	ImageGetter imgGetter(cmref);
 
 
-	std::string downloadedFileName = "test.png";
+	std::string downloadedFileName = "test.jpg";
 	std::string downloadedDirectory = "C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\";
 	std::string downloadedLocation = downloadedDirectory + downloadedFileName;
-	//boost::filesystem3::path downloadedLocation("C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\test.png");
 	BOOST_CHECK_EQUAL(imgGetter.downloadAndCopyImage("http://g-ecx.images-amazon.com/images/G/02/kindle/merch/gw/Device_acc-GW-D-03-uk-600x180._V394748754_.jpg",
 													 downloadedDirectory,downloadedFileName,200,250), true);
 

@@ -8,6 +8,7 @@
 #include <boost/gil/image.hpp>
 #include <boost/gil/typedefs.hpp>
 #include <boost/gil/extension/io/jpeg_io.hpp>
+#include <boost/gil/extension/io/png_io.hpp>
 
 #include <boost/gil/extension/numeric/sampler.hpp>
 #include <boost/gil/extension/numeric/resample.hpp>
@@ -88,7 +89,7 @@ void ImageGetter::resizeImage(std::string const& imageURL, int sixex, int sizey)
 
 void ImageGetter::resizePNGImage(std::string const& imageURL, int sixex, int sizey)
 {
-	/*
+	
 	boost::gil::rgb8_image_t img;
 	png_read_image(imageURL,img);
 	
@@ -96,9 +97,8 @@ void ImageGetter::resizePNGImage(std::string const& imageURL, int sixex, int siz
     boost::gil::rgb8_image_t targetImageSize(sixex,sizey);
 
     resize_view(const_view(img), view(targetImageSize), boost::gil::bilinear_sampler());
-    png_write_view(imageURL,const_view(targetImageSize));*/
+    png_write_view(imageURL,const_view(targetImageSize));
 
-	ErrorLogger::logError("GET PNG SORTED another trying to use it: " + imageURL);
 }
 void ImageGetter::resizeJPGImage(std::string const& imageURL, int sixex, int sizey)
 {

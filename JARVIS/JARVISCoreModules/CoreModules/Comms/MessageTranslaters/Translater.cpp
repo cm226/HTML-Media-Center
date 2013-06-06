@@ -9,9 +9,12 @@
 
 #include "../../Errors/ErrorLogger.h"
 #include "TranslatedMessages/TranslatedMessages.h"
+#include <excpt.h>
 
-Translater::Translater() {
-	this->buildTranslationFilterPipeline();
+Translater::Translater()
+{
+	this->protocal = NULL;
+	this->translationFilter = NULL;
 }
 
 Translater::~Translater()
@@ -19,9 +22,22 @@ Translater::~Translater()
 	delete this->translationFilter;
 }
 
+void Translater::setProtocal(coremodules::comms::protocals::IProtocal* protocal)
+{
+	this->protocal = protocal;
+	if(this->translationFilter != NULL)
+		delete this->translationFilter;
+
+	this->buildTranslationFilterPipeline();
+}
+
 AbstractMessage* Translater::translateMessage(char* message, unsigned int messageLength)
 {
-	
+	if(this->protocal == NULL)
+	{
+		throw std::runtime_error("Message Protocall not set before message translation attrempt");
+	}
+
 	unsigned int offset = 0;
 	while(offset < messageLength && message[offset] != '$')
 	{
@@ -50,10 +66,10 @@ AbstractMessage* Translater::messageFactory(std::string msgHeader, char* data, u
 
 void Translater::buildTranslationFilterPipeline()
 {
-	TranslationFilters::PluginPollTranslationFilter* pluginPollFilter = new TranslationFilters::PluginPollTranslationFilter();
-	TranslationFilters::CommandAndcontrolTranslationFilter* commandAndcontrolFilter = new TranslationFilters::CommandAndcontrolTranslationFilter();
-	TranslationFilters::PluginPageTranslationFilter* pluginPageFilter = new TranslationFilters::PluginPageTranslationFilter();
-	TranslationFilters::PluginInteractionFilter* pluginInteractionFilter = new TranslationFilters::PluginInteractionFilter();
+	TranslationFilters::PluginPollTranslationFilter* pluginPollFilter = new TranslationFilters::PluginPollTranslationFilter(this->protocal);
+	TranslationFilters::CommandAndcontrolTranslationFilter* commandAndcontrolFilter = new TranslationFilters::CommandAndcontrolTranslationFilter(this->protocal);
+	TranslationFilters::PluginPageTranslationFilter* pluginPageFilter = new TranslationFilters::PluginPageTranslationFilter(this->protocal);
+	TranslationFilters::PluginInteractionFilter* pluginInteractionFilter = new TranslationFilters::PluginInteractionFilter(this->protocal);
 
 	pluginPollFilter->setNextFilter(commandAndcontrolFilter);
 	commandAndcontrolFilter->setNextFilter(pluginPageFilter);
