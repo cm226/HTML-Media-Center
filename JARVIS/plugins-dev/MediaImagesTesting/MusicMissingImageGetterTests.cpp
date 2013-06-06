@@ -12,7 +12,7 @@ BOOST_AUTO_TEST_CASE(ArtistThumbnailTests)
 {
 
 	DatabaseTables::Database dbConn;
-	BOOST_CHECK_EQUAL(dbConn.Connect(DATABSEUSER,DATABASEPASSWORD,"mediaServerTests",""),true);
+	BOOST_CHECK_EQUAL(dbConn.Connect(DATABSEUSER,DATABASEPASSWORD,"mediaServerTests","localhost"),true);
 
 	imagegetters::music::MusicMissingImageContentFinder contentFinder(&dbConn);
 	std::string artistName; 
