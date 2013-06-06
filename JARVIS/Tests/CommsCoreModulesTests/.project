@@ -122,6 +122,11 @@
 			<locationURI>PARENT-2-PROJECT_LOC/JARVISCoreModules/CoreModules/Comms/MessageTranslaters</locationURI>
 		</link>
 		<link>
+			<name>commsSrc/Protocals</name>
+			<type>2</type>
+			<locationURI>PARENT-2-PROJECT_LOC/JARVISCoreModules/CoreModules/Comms/Protocals</locationURI>
+		</link>
+		<link>
 			<name>commsSrc/Transever</name>
 			<type>2</type>
 			<locationURI>PARENT-2-PROJECT_LOC/JARVISCoreModules/CoreModules/Comms/Transever</locationURI>

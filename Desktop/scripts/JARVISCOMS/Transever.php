@@ -80,7 +80,7 @@ public function readReply()
 		
 		$out = socket_read($this->sock, $messageSize);
 		$messageParts = explode("$",$out);
-		
+
 		/*while($tempOut !== 'MSG_END')
 		{
 			$out.= $tempOut;

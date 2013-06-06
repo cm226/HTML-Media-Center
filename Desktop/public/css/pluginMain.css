@@ -47,14 +47,14 @@
 	margin-right: 10px;
 	margin-top: 5%;
 	margin-bottom: 20px;
-	visibility: collapse;
 	width:250px;
 	height:90%;
-
 }
 
 .plugin
 {
+	display:none;
+	/*visibility: hidden;*/
 	background: #CACACA;
 	height:auto;
 	width: 200px;
@@ -83,4 +83,44 @@
 .plugin:hover
 {
 	background:#8D8D8D;
+}
+
+#newFolderName
+{
+	display: none;
+	color:#D0D0D0;
+	background: #e9eaee;	
+	
+	margin-top: 100px;	
+	padding: 15px;
+	padding-top: 2px;
+
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px
+
+}
+
+#addNewFolder
+{
+	color:#D0D0D0 ;
+	float: right;
+	margin-right: 30px;
+}
+
+
+#addNewFolder h4
+{
+	font-size: 30px;
+	float:right;
+}
+
+#addNewFolder h4:hover
+{
+	text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
+}
+
+#addNewFolder h3
+{
+	color: black;
 }

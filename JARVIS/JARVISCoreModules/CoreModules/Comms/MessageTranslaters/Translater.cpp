@@ -9,7 +9,7 @@
 
 #include "../../Errors/ErrorLogger.h"
 #include "TranslatedMessages/TranslatedMessages.h"
-#include <excpt.h>
+#include <stdexcept>
 
 Translater::Translater()
 {

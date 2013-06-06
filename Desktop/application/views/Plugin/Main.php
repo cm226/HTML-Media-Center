@@ -26,4 +26,14 @@ foreach ($plugins as $plugin)
 }
 
 ?>
+<div id="addNewFolder">
+	<h4 id="newFolderAddBttn">+</h4>
+
+	<div id="newFolderName"> 
+		<h3 class="widgetHeader">New Folder</h3>
+		<input type="text" id="newFolderNameVal"> </input>
+		<button id="newFolderAddBttnComplete"> OK </button>
+	</div>
+
+</div
 

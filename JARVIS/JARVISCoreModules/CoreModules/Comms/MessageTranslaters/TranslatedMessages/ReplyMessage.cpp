@@ -19,10 +19,6 @@ ReplyMessage::~ReplyMessage()
 }
 
 
-AbstractMessage* ReplyMessage::actionMessage()
-{
-	return NULL;
-}
 
 void ReplyMessage::serialize(coremodules::comms::messagetranslaters::StringMessageSerializer& serialiser)
 {

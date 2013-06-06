@@ -47,6 +47,7 @@
 							<tool commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.712215362" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.libs.1213998771" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="boost_system"/>
+									<listOptionValue builtIn="false" value="boost_signals"/>
 									<listOptionValue builtIn="false" value="boost_filesystem"/>
 									<listOptionValue builtIn="false" value="JARVISCoreModules"/>
 									<listOptionValue builtIn="false" value="curl"/>
@@ -57,10 +58,10 @@
 								</option>
 								<option id="gnu.cpp.link.option.other.325154212" name="Other options (-Xlinker [option])" superClass="gnu.cpp.link.option.other" valueType="stringList">
 									<listOptionValue builtIn="false" value="--export-dynamic"/>
-									<listOptionValue builtIn="false" value="--verbose"/>
 								</option>
 								<option id="gnu.cpp.link.option.paths.421915942" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="/var/www/HTML-Media-Center/JARVIS/JARVISCoreModules/Debug"/>
+									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0/stage/lib"/>
 									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0/bin.v2/libs/system/build/gcc-4.5.2/release/link-static/threading-multi"/>
 									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0/bin.v2/libs/thread/build/gcc-4.5.2/release/link-static/threading-multi"/>
 									<listOptionValue builtIn="false" value="/usr/lib"/>

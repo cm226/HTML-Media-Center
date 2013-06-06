@@ -4,6 +4,7 @@
 
 #include "../../JARVISCoreModules/CoreModules/Comms/Protocals/TwoByteMsgLen.h"
 #include "../../JARVISCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ListPluginsMessage.h"
+#include "../../JARVISCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ReplyMessage.h"
 
 void sendMessage()
 {
@@ -49,4 +50,51 @@ BOOST_AUTO_TEST_CASE(recv2ByeMsgTest)
 	makeConnectionThread.join();
 
 	delete lpm;
+}
+
+
+
+void sendReplyMsg()
+{
+
+	boost::asio::io_service io_service;
+	boost::asio::ip::tcp::socket socket(io_service);
+	boost::asio::ip::tcp::acceptor acceptor(io_service, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), 50000));
+	acceptor.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
+
+
+	acceptor.accept(socket);
+
+	TwoByteMsgLen msgProtocal(socket);
+	msgProtocal.sendMessage(new TranslatedMessages::ReplyMessage("%Misc,test"));
+
+}
+
+
+BOOST_AUTO_TEST_CASE(send2ByeMsgTest)
+{
+	boost::asio::io_service io_service;
+	boost::asio::ip::tcp::socket socket(io_service);
+	boost::asio::ip::tcp::endpoint endpoint(
+	boost::asio::ip::address::from_string("127.0.0.1"), 50000);
+
+	boost::system::error_code ec;
+
+	boost::thread makeConnectionThread(sendReplyMsg);
+	boost::this_thread::sleep(boost::posix_time::seconds(1)); // allow the acceptor to be created
+	socket.connect(endpoint, ec);
+
+	boost::array<char, 20> buf;
+	socket.read_some(boost::asio::buffer(buf));
+
+	int msgLen = buf[0];
+	msgLen = msgLen << 8;
+	msgLen += buf[1];
+	BOOST_CHECK_EQUAL(msgLen, 18);
+
+	std::string msg(buf.begin()+2, buf.end());
+	BOOST_CHECK_EQUAL(msg.compare("msgRpy$%Misc,test$"), 0);
+
+	socket.shutdown(boost::asio::socket_base::shutdown_both);
+	makeConnectionThread.join();
 }
