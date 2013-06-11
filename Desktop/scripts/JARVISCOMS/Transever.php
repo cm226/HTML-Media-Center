@@ -6,11 +6,10 @@ class Transever
 {
 
 var $address = '127.0.0.1';
-var $port = 45001;
 var $sock;
 var $connected = false;
 
-function __construct() 
+function __construct($port = 45001) 
 {
 	error_reporting(E_ALL);
 	/* Allow the script to hang around waiting for connections. */
@@ -25,7 +24,7 @@ function __construct()
 		return false;
 	}
 	
-	if (socket_connect($this->sock, $this->address, $this->port) == false) 
+	if (socket_connect($this->sock, $this->address, $port) == false) 
 	{
 		//echo "socket_listen() failed: reason: " . socket_strerror(socket_last_error($this->sock)) . "\n";
 		return false;
@@ -78,20 +77,20 @@ public function readReply()
 		$messageSize = $messageSize << 8;
 		$messageSize += ord($msgSizeBytes[1]);
 		
-		$out = socket_read($this->sock, $messageSize);
-		$messageParts = explode("$",$out);
+		$bytesLeft = $messageSize;
 
-		/*while($tempOut !== 'MSG_END')
+		while($bytesLeft > 0)
 		{
-			$out.= $tempOut;
-			socket_write($this->sock, "RnextChunk$", strlen("RnextChunk$"));
-			$tempOut = socket_read($this->sock, 2048);
-			
-			if(!$tempOut)
-				return "connection timed out";
-			$tempOut = substr($tempOut,0,7);
-			//echo $tempOut;
-		}*/
+			if($bytesLeft > 2048)
+				$out .= socket_read($this->sock, 2048);
+			else
+				$out .= socket_read($this->sock, $bytesLeft);
+				
+			$bytesLeft -= 2048;
+		}
+		
+		
+		$messageParts = explode("$",$out);
 		return $messageParts[1];
 	}
 	return "Error, connection closed";
