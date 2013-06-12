@@ -28,7 +28,7 @@ body
   <input type="submit" value="Do Stuff!" />
 </form>
 
-<iframe id="player" />
+<iframe id="player" name="player" />
 
 
 

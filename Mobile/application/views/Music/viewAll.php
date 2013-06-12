@@ -1,75 +1,12 @@
-<div id="recentlyAdded">
-<div id="heading"> Recently Added</div>
-<div id="recentlyAddedSongs">
-<div id="recentlyAddedWrapper">
-	<?php foreach ($recentlyAddedSongs as $recentlyAdded){?>
-		<div class="recentlyAddedSong">
-			<?php
-			if(file_exists('../public/img/Music/Artists/' . $recentlyAdded['Artist']['artistName'] . '.png'))
-				echo '<img src="../public/img/Music/Artists/' . $recentlyAdded['Artist']['artistName'] . '.png" height="60" width="60">';
-			else
-				echo '<img src="../public/img/Music/Artists/default.png" height="60" width="60">';
-			?>
-			<h4 class="ArtistName"><?php echo $recentlyAdded['Song']['songName'];?></h4>
-			<p class="artistInfo"><?php echo $recentlyAdded['Artist']['artistName'];?></p>
-		</div>
-	<?php } ?>
-	</div>
-</div>
-
-<div id="playAll" onclick="postwith('../Music/viewRecentlyAdded',{added:''})">
-<div id="platAllText">Play All</div>
-</div>
-</div>
-
-<div id="leftContainer">
-
-<div id="searchBox">
-<h4> Search</h4>
-<form>
-Artist Name: <input type="text" name="artistName"/> <BR/>
-Song Name: <input type="text" name="songName"/>
-<input class="blackBttn" type="submit" value="search" />
-</form>
-</div>
-
-<div id="playlists">
-<h4> playlists</h4>
-<?php 
-
-foreach ($playlists as $playList)
-{
-	echo '<div class="playlistEl"><a href="../Music/viewPlaylist/'. $playList['Playlist']['playlistName']. '" >'. $playList['Playlist']['playlistName'].'</a></div>';
-
-}
-?>
-
-<form action="../Music/viewAll" method="POST">
-	New Playlist: <input type="text" name="newPlaylist"/>
-	<input class="blackBttn" type="submit" value="Add"/>
-</form>
-<form>
-	<input class="blackBttn" type="submit" value="upload Itunes playlist file" />
-</form>
-
-</div>
-
-<div id="randomSongs">
-	<form action="../Music/viewShuffle">
-		<input class="blackBttn" type="Submit" value="Gimmy some random Songs" />
-	</form>
-</div>
-
-</div>
-
 
 <?php
 
-echo '<div id="ArtistList">';
+echo '<ul id="ArtistList" data-role="listview" >';
 foreach ($artists as &$artist)
 {
-	echo '<div class="artistElement" onclick="window.location=\'../Music/viewArtist/'.$artist['Artist']['artistID'].'\'">';
-	
+
+	echo ' <li>';
+	echo '<a rel="external" href="../Music/viewArtist/'.$artist['Artist']['artistID'].'"> ';
 	if(file_exists('../public/img/Music/Artists/' . $artist['Artist']['artistName'] . '.png'))
 		echo '<img src="../public/img/Music/Artists/' . $artist['Artist']['artistName'] . '.png" height="128" width="128">';
 	else
@@ -78,10 +15,11 @@ foreach ($artists as &$artist)
 	echo '<h4 class="ArtistName">' . $artist['Artist']['artistName']. '</h4>';
 	echo '<p class="artistInfo"> Genra: ' .$artist['Artist']['genre'] . '</p>';
 	echo '<p class="artistInfo">No. tracks: '. $artist['Artist']['artistRating'] .' Rateing: ' .$artist['Artist']['artistRating'] . '</p>';
-	echo '</div>';
+	echo '</a>';
+	echo '</li>';
 	
 }
-echo '</div>';
+echo '</ul>';
 
 ?>
 
