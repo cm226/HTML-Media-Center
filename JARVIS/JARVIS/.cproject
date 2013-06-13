@@ -62,8 +62,6 @@
 								<option id="gnu.cpp.link.option.paths.421915942" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="/var/www/HTML-Media-Center/JARVIS/JARVISCoreModules/Debug"/>
 									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0/stage/lib"/>
-									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0/bin.v2/libs/system/build/gcc-4.5.2/release/link-static/threading-multi"/>
-									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0/bin.v2/libs/thread/build/gcc-4.5.2/release/link-static/threading-multi"/>
 									<listOptionValue builtIn="false" value="/usr/lib"/>
 									<listOptionValue builtIn="false" value="/home/craig/curl-7.28.1/lib/.libs"/>
 								</option>

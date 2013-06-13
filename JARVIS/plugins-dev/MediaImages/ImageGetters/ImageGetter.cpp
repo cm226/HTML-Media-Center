@@ -2,6 +2,10 @@
 
 #include <sstream>
 
+// boost has some problems with png these fix it
+#define png_infopp_NULL (png_infopp)NULL
+#define int_p_NULL (int*)NULL
+
 #include <boost/filesystem.hpp>
 #include <boost/gil/gil_all.hpp>
 

@@ -22,7 +22,8 @@ body
 }
 
 </style>
-
+<div id="page">
+	<div id="player">
 
 <form id="ArtistPoster" hidden="true" action="../../Music/viewPlayer/<?php echo $artistID; ?>" method="post" target="player">
   <input type="submit" value="Do Stuff!" />
@@ -30,5 +31,6 @@ body
 
 <iframe id="player" name="player" />
 
-
+</div>
+</div>
 

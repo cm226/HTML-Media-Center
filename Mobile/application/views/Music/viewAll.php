@@ -1,7 +1,7 @@
 
 <?php
 
-echo '<ul id="ArtistList" data-role="listview" >';
+echo '<ul id="ArtistList" data-role="listview" data-filter="true" >';
 foreach ($artists as &$artist)
 {
 

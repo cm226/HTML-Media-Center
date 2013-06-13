@@ -26,6 +26,8 @@
 								<option id="gnu.cpp.compiler.exe.debug.option.optimization.level.1285039514" name="Optimization Level" superClass="gnu.cpp.compiler.exe.debug.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.debug.option.debugging.level.1415235326" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1610968797" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="/usr/include"/>
+									<listOptionValue builtIn="false" value="/home/craig/libpng-1.6.2"/>
 									<listOptionValue builtIn="false" value="/home/craig/libjpeg/libjpeg"/>
 									<listOptionValue builtIn="false" value="/home/craig/curl-7.28.1/include/curl"/>
 									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0"/>
@@ -42,6 +44,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.280315826" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.paths.1224544733" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="/home/craig/libjpeg/libjpeg/.libs"/>
+									<listOptionValue builtIn="false" value="/home/craig/libpng-1.6.2/.libs"/>
 									<listOptionValue builtIn="false" value="/home/craig/mysql-connector-c++-1.1.1-linux-glibc2.3-x86-32bit/lib"/>
 									<listOptionValue builtIn="false" value="/home/craig/curl-7.28.1/lib/.libs"/>
 									<listOptionValue builtIn="false" value="/var/www/HTML-Media-Center/JARVIS/JARVISCoreModules/Debug"/>
@@ -52,6 +55,8 @@
 									<listOptionValue builtIn="false" value="mysqlcppconn"/>
 									<listOptionValue builtIn="false" value="boost_thread"/>
 									<listOptionValue builtIn="false" value="jpeg"/>
+									<listOptionValue builtIn="false" value="png16"/>
+									<listOptionValue builtIn="false" value="boost_signals"/>
 									<listOptionValue builtIn="false" value="boost_filesystem"/>
 									<listOptionValue builtIn="false" value="boost_system"/>
 									<listOptionValue builtIn="false" value="JARVISCoreModules"/>
