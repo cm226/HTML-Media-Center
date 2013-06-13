@@ -72,10 +72,45 @@
   <ItemGroup>
     <ClCompile Include="DatabaseInterfaceGenerator.cpp" />
     <ClCompile Include="DatabaseInterfaceGeneratorPlugin.cpp" />
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\Dependancy.cpp" />
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\ICodeGenerator.cpp" />
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\ITypeToString.cpp" />
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\OOGenerators\AbstractClass.cpp" />
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\OOGenerators\AbstractOOCodeGenerator.cpp" />
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\OOGenerators\C++\CppClass.cpp" />
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\OOGenerators\C++\CppCodeGenerator.cpp" />
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\OOGenerators\C++\CppHeader.cpp" />
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\OOGenerators\C++\CppTypeToString.cpp" />
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\OOGenerators\GenericClass.cpp" />
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\OOGenerators\IClassWriter.cpp" />
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\OOGenerators\Member.cpp" />
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\OOGenerators\Method.cpp" />
+    <ClCompile Include="InterfaceGenerator\Field.cpp" />
+    <ClCompile Include="InterfaceGenerator\SQLParser.cpp" />
+    <ClCompile Include="InterfaceGenerator\SQLWriter.cpp" />
+    <ClCompile Include="InterfaceGenerator\Table.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DatabaseInterfaceGenerator.h" />
     <ClInclude Include="DatabaseInterfaceGeneratorPlugin.h" />
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\Dependancy.h" />
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\ICodeGenerator.h" />
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\ITypeToString.h" />
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\AbstractClass.h" />
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\AbstractOOCodeGenerator.h" />
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\C++\CppClass.h" />
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\C++\CppCodeGenerator.h" />
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\C++\CppHeader.h" />
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\C++\CppTypeToString.h" />
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\Exceptions\InvalidArgumanentException.h" />
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\GenericClass.h" />
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\IClassWritter.h" />
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\Member.h" />
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\Method.h" />
+    <ClInclude Include="InterfaceGenerator\Field.h" />
+    <ClInclude Include="InterfaceGenerator\SQLParser.h" />
+    <ClInclude Include="InterfaceGenerator\SQLWriter.h" />
+    <ClInclude Include="InterfaceGenerator\Table.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -10,11 +10,19 @@
 
 #include "../../JARVIS/Framework/Plugin/Plugin.h"
 
+
 class DatabaseInterfaceGeneratorPlugin : public Plugin
 {
 private:
 	CALLBACk_HANDLE fileUploadedHandle;
 	bool fileUploaded(Page* page, PageCallbackContext* context);
+
+	std::string getFilenameFromContext(std::vector<std::string>& context);
+
+	std::string clearTempLocation();
+	std::string getTempLocation();
+
+	void buildDownloadPage(Page* p);
 
 public:
 	DatabaseInterfaceGeneratorPlugin(CoreModules* cm);

@@ -22,8 +22,9 @@ Then you should be good to go :)
  ToDo 
  
 fix the problem with the protocal only receving message that are less than the highest value storeable in 2 bytes (2^16)
+extract each core module into seperate dlls
 
-update the mobile and desktop sites to use the same controllers and models (yes yes.. i know long past due)
+update the mobile and desktop sites to use the same controllers and models 
 update the agent and serverside python scripts to allow for DHCP (its set on a static ip od 192.168.0.198 for debuging)
 
 music player "channels with plugins?"

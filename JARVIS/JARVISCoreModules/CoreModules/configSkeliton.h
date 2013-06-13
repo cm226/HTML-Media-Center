@@ -1,7 +1,9 @@
-#define HTML-MEDIA-PUBLIC "<route to pub url>"
-#define LOG_LOCATION "logLocation"
+#define HTMLMEDIAPUBLIC "<route to pub url>"
 #define HTMLMEDIAROOT "<root HTMLMediaCente folder>"
 
+#define LOG_LOCATION "logLocation"
+#define TEMPLOC "jarvisTemp"
+
 #define DATABASENAME "<dbname>"
-#define DATABSE-USER "<dbuser"
-#define DATABASE-PASSWORD "<dbpw>"
+#define DATABSEUSER "<dbuser"
+#define DATABASEPASSWORD "<dbpw>"
