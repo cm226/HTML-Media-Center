@@ -28,6 +28,13 @@ class MusicController extends Controller {
 	
 	function viewPlayer($artistID)
 	{
+		
+		if($artistID == "") // hack for view shuffle
+		{
+			$this->set("songs", $this->Music->get10RandomSongs());
+			return;
+		}
+	
 		if(isset($_POST['playlist'])) // viewing a playlist
 		{
 			$this->set('songs',$this->Music->getSongsFromPlayList($_POST['playlist']));	
@@ -82,7 +89,7 @@ class MusicController extends Controller {
 	
 	function viewShuffle()
 	{
-		$this->set("songs", $this->Music->get10RandomSongs());
+		
 	}
 	
 	function downloadSong($songID)

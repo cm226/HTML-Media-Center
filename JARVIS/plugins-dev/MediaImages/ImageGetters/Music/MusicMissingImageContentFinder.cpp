@@ -10,6 +10,9 @@
 #include "../../../../JARVISCoreModules/CoreModules/Database/Tables/Artist/Artist.h"
 #include "../../../../JARVISCoreModules/CoreModules/Database/Tables/Album/Album.h"
 
+#include <iostream>
+#include <fstream>
+
 namespace imagegetters {
 namespace music {
 
@@ -128,17 +131,30 @@ bool MusicMissingImageContentFinder::checkAlbumImageExists(std::string albumName
 #ifdef WIN32
 #include <Windows.h>
 
-
 BOOL FileExists(std::string path)
 {
 
-	//std::wstring szPath(path.begin(), path.end());
+
 	DWORD dwAttrib = GetFileAttributes(path.c_str());
 
   return (dwAttrib != INVALID_FILE_ATTRIBUTES && 
          !(dwAttrib & FILE_ATTRIBUTE_DIRECTORY));
 }
 
+
+#else
+
+
+bool  FileExists(std::string path)
+{
+	std::ifstream my_file(path);
+	if (my_file.good())
+	{
+	  my_file.close();
+	  return true;
+	}
+	return false;
+}
 
 #endif
 

@@ -1,12 +1,10 @@
 <script type="text/javascript">
 
-window.onload = eventHook;
+
 
 function eventHook()
 {
 	allSongsPlayedEvnt.addHandler(refreshSongs);
-	currentSong=-1;
-	playNext();
 }
 
 function refreshSongs()
@@ -14,10 +12,30 @@ function refreshSongs()
 	window.location.reload();
 }
 
+function refreshIframe(artistName, albumName)
+	{
+		postwith('../Music/viewPlayer',{artist:artistName, album:albumName}, "player");
+	}
+	
+	
+	function populateIFrame () {
+	var frm = document.getElementById("ArtistPoster");
+	frm.submit();
+	}
+
+window.onload = function(){
+//			eventHook();
+			populateIFrame();
+			}
+	
 </script>
 
 <div id="page">
 	<div id="player">
-	<?php include 'viewPlayer.php'; ?>
+	<form id="ArtistPoster" hidden="true" action="../Music/viewPlayer/" method="post" target="player">
+  <input type="submit" value="Do Stuff!" />
+</form>
+
+<iframe id="player" name="player"/>
 	</div>
 </div>

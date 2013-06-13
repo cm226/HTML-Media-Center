@@ -1,17 +1,4 @@
-body
-{
-	background-image: url('../img/Music/background.jpg');
-	background-size:cover;
-	background-repeat:no-repeat;
-	background-color:#000000;
-}
-
-h4
-{
-	padding: 0px;
-	margin-top:0px;
-	margin-bottom: 10px;
-}
+/*
 
 h4.ArtistName
 {
@@ -50,81 +37,10 @@ p.artistInfo
 
 }
 
-#leftContainer
-{
-	float:left;
-	width:200px;
-}
-
+*/
 #ArtistList
 {
-	float:left;
-	width:60%;
-	padding:10px;
-	margin-left:20px;
-}
-
-#searchBox
-{
 	width:100%;
-	background-color:transparent;
-	padding-left:10px;
-	margin-right:10px;
-	margin-top:20px;
-	border-radius: 10px;
-	font-weight:bold;
-	font-style:italic;
-	font-variant:small-caps;
-	color:white;
-	letter-spacing:1pt;
-	word-spacing:2pt;
-	font-size:20px;
-	text-align:left;
-	font-family:trebuchet MS, sans-serif;line-height:1;
-	background-color: rgba(0,0,0,0.4);
-	border-style:solid;
-	border-width:2px;
-	border-color:black;
 }
 
-#playlists
-{
-	width:100%;
-	background-color:transparent;
-	padding-left:10px;
-	margin-right:10px;
-	margin-top:20px;
-	border-radius: 10px;
-	font-weight:bold;
-	font-style:italic;
-	font-variant:small-caps;
-	color:white;
-	letter-spacing:1pt;
-	word-spacing:2pt;
-	font-size:20px;
-	text-align:left;
-	font-family:trebuchet MS, sans-serif;line-height:1;
-	background-color: rgba(0,0,0,0.4);
-	border-style:solid;
-	border-width:2px;
-	border-color:black;
-}
 
-#randomSongs
-{
-	float: right;
-}	
-
-div.artistElement
-{
-	width:129px;
-	height:200px;
-	float:left;
-	margin:3px;
-	padding:5px;
-}
-div.artistElement:hover 
-{
-	background-color:#000000;
-	
-}
