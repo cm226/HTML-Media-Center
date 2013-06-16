@@ -62,5 +62,11 @@
     <ClCompile Include="..\MediaImages\ImageGetters\Music\MusicMissingImageContentFinder.cpp">
       <Filter>Source Files\MusicImageGetter</Filter>
     </ClCompile>
+    <ClCompile Include="MusicImageGetterTests.cpp">
+      <Filter>Source Files\MusicImageGetter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MediaImages\MediaImagesPlugin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

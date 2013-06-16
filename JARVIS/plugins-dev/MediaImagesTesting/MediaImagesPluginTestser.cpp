@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "../MediaImages/MediaImagesPlugin.h"
 
-/*
+
 BOOST_AUTO_TEST_CASE(PluginEntryPoint)
 {
 	
@@ -19,4 +19,3 @@ BOOST_AUTO_TEST_CASE(PluginEntryPoint)
 	page.freePage();
 
 }
-*/

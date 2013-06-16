@@ -86,10 +86,12 @@
     <ClCompile Include="..\MediaImages\ImageGetters\Movie\MovieImageGetter.cpp" />
     <ClCompile Include="..\MediaImages\ImageGetters\Music\MusicImageGetter.cpp" />
     <ClCompile Include="..\MediaImages\ImageGetters\Music\MusicMissingImageContentFinder.cpp" />
+    <ClCompile Include="..\MediaImages\MediaImagesPlugin.cpp" />
     <ClCompile Include="ImageGetterTests.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MediaImagesPluginTestser.cpp" />
     <ClCompile Include="MovieImageGetterTester.cpp" />
+    <ClCompile Include="MusicImageGetterTests.cpp" />
     <ClCompile Include="MusicMissingImageGetterTests.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

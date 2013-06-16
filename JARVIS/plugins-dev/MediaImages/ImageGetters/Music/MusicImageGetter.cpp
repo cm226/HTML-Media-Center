@@ -5,6 +5,10 @@
 
 MusicImageGetter::MusicImageGetter(CoreModules* cm) : imgGetter(cm), missingContentFinder(cm->getDatabaseConnection())
 {
+	this->ARTIST_THUMBNAIL_IMG = -1;
+	this->ARTIST_IMG = -1;
+	this->ALBUM_IMG = -1;
+
 	this->cm = cm;
 }
 
@@ -28,6 +32,10 @@ void MusicImageGetter::registerFunctions(Plugin* registerer)
 	this->registereName = registerer->pluginName();
 }
 
+bool MusicImageGetter::callbackHandlsAreValid()
+{
+	return (this->ALBUM_IMG != -1 && this->ARTIST_IMG != -1 && this->ARTIST_THUMBNAIL_IMG != -1);
+}
 
 bool MusicImageGetter::handleMusicSelected(Page* page, PageCallbackContext* context)
 {
@@ -35,6 +43,12 @@ bool MusicImageGetter::handleMusicSelected(Page* page, PageCallbackContext* cont
 	std::string albumName;
 	int artistID;
 	int albumID;
+
+	if(!callbackHandlsAreValid())
+	{
+		ErrorLogger::logError("Music image getter calling interaction with unregistered callbacks");
+		return false;
+	}
 
 	if(this->missingContentFinder.searchDBforMissingArtistThumbImage(artistName,artistID))
 		this->loadArtistThumbImagePage(page,artistName, artistID);
@@ -71,6 +85,8 @@ void MusicImageGetter::loadArtistThumbImagePage(Page* p, std::string aritstName,
 
 	p->addElement(images);
 }
+
+
 void MusicImageGetter::loadArtistImagePage(Page* p, std::string aritstName, int artistID)
 {
 	googleImageResults.clear();
@@ -139,7 +155,9 @@ HTMLImage* MusicImageGetter::createHTMLImageElement(CALLBACk_HANDLE handel, int 
 	args.push_back(ss.str());
 
 	HTMLImage* htmlImg = new HTMLImage("img",imageURL);
-	htmlImg->addOnclickCallbackAttribute(1,handel,this->registereName,args);
+	htmlImg->addOnclickCallbackAttribute(2,handel,this->registereName,args);
+	htmlImg->addStyle("height","100px");
+	htmlImg->addStyle("width","100px");
 
 	return htmlImg;
 }
@@ -197,11 +215,11 @@ std::string MusicImageGetter::getArtistNameFromID(int artistID)
 
 int MusicImageGetter::readImageIndex(std::vector<std::string>& contextarguments)
 {
-	return this->imgGetter.readInt(contextarguments,0);
+	return this->imgGetter.readInt(contextarguments,1);
 }
 int MusicImageGetter::readArtistID(std::vector<std::string>& contextarguments)
 {
-	return this->imgGetter.readInt(contextarguments,1);
+	return this->imgGetter.readInt(contextarguments,2);
 }
 
 
@@ -261,9 +279,9 @@ bool MusicImageGetter::handleArtistThumbImageSelected(int artistID,std::string t
 		thumbNameStriped << c;
 	}
 
-	bool downloaded = this->imgGetter.downloadAndCopyImageToPublicFolder(imgURL,"\\img\\Movie\\Thumbs\\",thumbNameStriped.str(),200,280);
+	bool downloaded = this->imgGetter.downloadAndCopyImageToPublicFolder(imgURL,"\\img\\Music\\Artists\\",thumbNameStriped.str(),256,256);
 	
-	return false;
+	return downloaded;
 
 }
 

@@ -38,6 +38,7 @@ private:
 	bool handleArtistThumbImageSelected(int artistID,std::string tbhumbName, std::string imgURL);
 	std::string getArtistNameFromID(int movieID);
 
+	bool callbackHandlsAreValid();
 		// callback functions
 	bool onArtistThumbSelected(Page* page, PageCallbackContext* context);
 	bool onArtistSelected(Page* page, PageCallbackContext* context);
