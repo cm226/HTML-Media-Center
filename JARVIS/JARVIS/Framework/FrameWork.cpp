@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <boost/thread.hpp>
 #include <boost/bind.hpp>
+#include <boost/filesystem.hpp>
 #include <sstream>
 #include "../../JARVISCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ReplyMessage.h"
 #include <list>
@@ -36,9 +37,7 @@ JARVISFramework::JARVISFramework()
 
 JARVISFramework::~JARVISFramework()
 {
-
 	delete this->pluginLoader;
-
 }
 
 
@@ -63,12 +62,22 @@ void JARVISFramework::process()
 
 void JARVISFramework::loadStartupPlugins()
 {
+	namespace fs = boost::filesystem;
+	fs::path pluginDirectory(this->pluginLoader->PluginDir());
+	fs::directory_iterator end_iter;
+
 	Plugin* mediaImages = NULL;
 
-	pluginLoader->loadPlugin("libMediaImages",&mediaImages, &this->cModules);
-	pluginLoader->loadPlugin("libDatabaseInterfaceGenerator",&mediaImages, &this->cModules);
-	pluginLoader->loadPlugin("LogViewer",&mediaImages, &this->cModules);
+	for( fs::directory_iterator dir_iter(pluginDirectory) ; dir_iter != end_iter ; ++dir_iter)
+	  {
+	    if ( !fs::is_directory( *dir_iter ))
+	    {
+	    	fs::path path = dir_iter->path();
+	    	std::string filenameStr = path.filename().string();
+	    	pluginLoader->loadPlugin(filenameStr,&mediaImages, &this->cModules);
 
+	    }
+	  }
 }
 
 
