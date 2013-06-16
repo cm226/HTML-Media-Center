@@ -48,7 +48,7 @@ bool Loader::loadPlugin(std::string pluginName, Plugin** loadedPlugin, CoreModul
 
 #ifdef _WINDOWS
 
-	std::string libfileNamestr = (this->pluginDir + "\\" + pluginName + ".dll").c_str();
+	std::string libfileNamestr = (this->pluginDir + "\\" + pluginName).c_str();
 	const char* libfileName = libfileNamestr.c_str();
 	typedef Plugin* (__cdecl *MYPROC)(CoreModules*); 
 	HINSTANCE hinstLib;
@@ -78,7 +78,7 @@ bool Loader::loadPlugin(std::string pluginName, Plugin** loadedPlugin, CoreModul
 
 
 #else
-	std::string fileNameStr = this->pluginDir + "/" + pluginName + ".so";
+	std::string fileNameStr = this->pluginDir + "/" + pluginName;
 	void *hndl = dlopen(fileNameStr.c_str(), RTLD_NOW);
 	arbitrary factoryFunc;
 

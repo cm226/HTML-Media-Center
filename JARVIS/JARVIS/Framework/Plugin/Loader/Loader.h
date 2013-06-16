@@ -34,6 +34,7 @@ public:
 
 	Plugin* getPluginByName(std::string pluginName);
 
+	std::string PluginDir() {return pluginDir;}
 	virtual ~Loader();
 };
 
