@@ -1,43 +1,8 @@
-/*
-
-h4.ArtistName
+.ui-bar-c
 {
-	font-weight:bold;
-	font-style:italic;
-	font-variant:small-caps;
-	color:white;
-	
-	letter-spacing:4pt;
-	word-spacing:2pt;
-	font-size:19px;
-	text-align:left;
-	font-family:trebuchet MS, sans-serif;line-height:1;
-	margin:0px;
-}
-h3
-{
-	padding-bottom: 3px;
-	margin-top:0px;
-	margin-bottom: 10px;
-	color: white;
+	padding-top:10px;
 }
 
-p.artistInfo
-{
-	font-weight:bold;
-	font-style:italic;
-	font-variant:small-caps;
-	color:white;
-	letter-spacing:1pt;
-	word-spacing:2pt;
-	font-size:8px;
-	text-align:left;
-	font-family:trebuchet MS, sans-serif;line-height:1;
-	margin: 0px;
-
-}
-
-*/
 #ArtistList
 {
 	width:100%;
