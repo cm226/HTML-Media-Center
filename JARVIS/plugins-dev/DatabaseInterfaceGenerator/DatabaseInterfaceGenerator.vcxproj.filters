@@ -21,12 +21,117 @@
     <ClCompile Include="DatabaseInterfaceGeneratorPlugin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\OOGenerators\C++\CppClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\OOGenerators\C++\CppCodeGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\OOGenerators\C++\CppHeader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\OOGenerators\C++\CppTypeToString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\OOGenerators\AbstractClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\OOGenerators\AbstractOOCodeGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\OOGenerators\GenericClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\OOGenerators\IClassWriter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\OOGenerators\Member.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\OOGenerators\Method.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\Dependancy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\ICodeGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InterfaceGenerator\CodeGenerators\ITypeToString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InterfaceGenerator\Field.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InterfaceGenerator\SQLParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InterfaceGenerator\SQLWriter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InterfaceGenerator\Table.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DatabaseInterfaceGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DatabaseInterfaceGeneratorPlugin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\C++\CppClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\C++\CppCodeGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\C++\CppHeader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\C++\CppTypeToString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\Exceptions\InvalidArgumanentException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\AbstractClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\AbstractOOCodeGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\GenericClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\IClassWritter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\Member.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\OOGenerators\Method.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\Dependancy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\ICodeGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceGenerator\CodeGenerators\ITypeToString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceGenerator\Field.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceGenerator\SQLParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceGenerator\SQLWriter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceGenerator\Table.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

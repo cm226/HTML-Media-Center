@@ -26,6 +26,7 @@ public:
 	*/
 	LogEntry(std::string timestamp, std::string logMessage, SEVERITY severity);
 	LogEntry(std::string timestamp, std::string timeFormat, std::string logMessage, SEVERITY severity);
+	LogEntry();
 	/**
 		dtor
 	*/

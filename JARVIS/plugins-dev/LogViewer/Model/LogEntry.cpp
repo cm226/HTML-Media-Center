@@ -30,6 +30,12 @@ LogEntry::LogEntry(std::string logTime, std::string logMessage, SEVERITY severit
 	
 }
 
+LogEntry::LogEntry():  timestampFormat(std::locale(std::locale::classic(),new boost::posix_time::time_input_facet("%Y-%m-%d %H:%M:%S")))
+{
+	parseTimeString("0-0-0 0:0:0");
+	this->initalise("Empty Entry",model::LogEntry::ERROR);
+}
+
 LogEntry::~LogEntry()
 {
 }

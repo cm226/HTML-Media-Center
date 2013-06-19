@@ -20,10 +20,10 @@ class Movie extends Model {
 									
 	}
 	
-	function view($movieName)
+	function view($movieid)
 	{
-		$result = 'D:\Videos\Personal\MOV00041.mp4';
-		return $result;
+		$movieQ = "SELECT movieURL FROM Movie WHERE Movie.movieID = ".$movieid;
+		return $this->query($movieQ);
 	}
 	
 }

@@ -20,12 +20,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -86,10 +88,12 @@
     <ClCompile Include="..\MediaImages\ImageGetters\Movie\MovieImageGetter.cpp" />
     <ClCompile Include="..\MediaImages\ImageGetters\Music\MusicImageGetter.cpp" />
     <ClCompile Include="..\MediaImages\ImageGetters\Music\MusicMissingImageContentFinder.cpp" />
+    <ClCompile Include="..\MediaImages\MediaImagesPlugin.cpp" />
     <ClCompile Include="ImageGetterTests.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MediaImagesPluginTestser.cpp" />
     <ClCompile Include="MovieImageGetterTester.cpp" />
+    <ClCompile Include="MusicImageGetterTests.cpp" />
     <ClCompile Include="MusicMissingImageGetterTests.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

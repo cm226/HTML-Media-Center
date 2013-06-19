@@ -215,8 +215,6 @@ void SQLWriter::writeTable(Table* t, std::string location)
 
 	table.setPostClassModifierString("DLLCORE_API");
 
-
-
 	CodeGenerators::Method getFields("getFields");
 	getFields.addArgs(CodeGenerators::Types("std::vector<IDatabaseTableField*>*"),"fields");
 	getFields.setReturnType(CodeGenerators::Types(CodeGenerators::Types::VOID));

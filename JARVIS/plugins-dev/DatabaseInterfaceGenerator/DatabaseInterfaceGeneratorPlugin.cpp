@@ -7,7 +7,13 @@
 
 #include "DatabaseInterfaceGeneratorPlugin.h"
 #include "../../JARVISCoreModules/CoreModules/HTMLRendere/Elements/FileUpload.h"
+#include "../../JARVISCoreModules/CoreModules/config.h"
+
+#include "InterfaceGenerator/SQLWriter.h"
+#include "InterfaceGenerator/SQLParser.h"
+
 #include <boost/bind.hpp>
+#include <boost/filesystem.hpp>
 
 DatabaseInterfaceGeneratorPlugin::DatabaseInterfaceGeneratorPlugin(CoreModules* cm) : Plugin(cm)
 {
@@ -30,15 +36,60 @@ bool DatabaseInterfaceGeneratorPlugin::whatDoYouLookLike(Page* page)
 	return true;
 }
 
+
+std::string DatabaseInterfaceGeneratorPlugin::getTempLocation()
+{
+	std::string tempLocation(TEMPLOC);
+	return tempLocation.append("\\DatabaseInterfaceGen");
+}
+
+std::string DatabaseInterfaceGeneratorPlugin::clearTempLocation()
+{
+	std::string tempLocation = this->getTempLocation();
+
+	if(!boost::filesystem::exists(tempLocation))
+		boost::filesystem::create_directory(tempLocation);
+
+	boost::filesystem::remove_all(tempLocation);
+
+	return tempLocation;
+}
+
 bool DatabaseInterfaceGeneratorPlugin::fileUploaded(Page* page, PageCallbackContext* context)
 {
-	Lable* lable = new Lable("replay");
-	lable->setText("Input has been parsed, and code Generated");
+	std::string fileName = getFilenameFromContext(context->getAdditionalContext());
+	std::list<Table> parsedTables;
 
-	page->addElement(lable);
+	SQLParser parser(fileName);
+	SQLWriter writer;
+	
+	parser.getTables(parsedTables);
+
+	this->clearTempLocation();
+
+	for(std::list<Table>::iterator tableIt = parsedTables.begin(); tableIt != parsedTables.end(); tableIt ++)
+		writer.writeTable(&(*tableIt), this->getTempLocation());
+
 
 	return true;
 }
+
+std::string DatabaseInterfaceGeneratorPlugin::getFilenameFromContext(std::vector<std::string>& context)
+{
+	if(context.size() < 1)
+	{
+		ErrorLogger::logError("Database interface gen: Fileupload dosent contain the file location");
+		return "";
+	}
+
+	return context[0];
+}
+
+void DatabaseInterfaceGeneratorPlugin::buildDownloadPage(Page* p)
+{
+
+}
+
 
 const char* DatabaseInterfaceGeneratorPlugin::pluginName()
 {
