@@ -78,14 +78,13 @@ bool LogEntryParser::readLast10Entrys(std::vector<std::string>& logEntrys)
 		char* last10Entrys = new char[offsetFromEnd];
 
 		this->logFile.clear();
-		this->logFile.seekg(-(offsetFromEnd-2), this->logFile.end);
-		this->logFile.read(last10Entrys,offsetFromEnd-2);
+		this->logFile.seekg(-(offsetFromEnd-1), this->logFile.end);
+		this->logFile.read(last10Entrys,offsetFromEnd-1);
 
 		// my patients ran out w/e
 		last10Entrys[offsetFromEnd-1] = '\0';
 		last10Entrys[offsetFromEnd-2] = '\0';
 		last10Entrys[offsetFromEnd-3] = '\0';
-		last10Entrys[offsetFromEnd-4] = '\0';
 
 		std::string tmp10Entrys(last10Entrys);
 		boost::split( logEntrys, tmp10Entrys, boost::is_any_of("\n"), boost::token_compress_off );
@@ -107,15 +106,27 @@ model::LogEntry LogEntryParser::parseLogEntry(std::string message)
 	tokenizer<escaped_list_separator<char> >::iterator beg=tok.begin();
 	std::string timeStamp, txtMessage, severityStr;
 		
-	if(beg == tok.end()) std::cerr <<"missing element 1 from Log file"; //ErrorLogger::logError("missing element 1 from Log file");
+	if(beg == tok.end())
+	{
+			std::cerr <<"missing element 1 from Log file"; //ErrorLogger::logError("missing element 1 from Log file");
+			return model::LogEntry();
+	}
 	timeStamp = *beg;
 	beg++;
 
-	if(beg == tok.end()) std::cerr <<"missing element 2 from Log file";//ErrorLogger::logError("missing element 2 from Log file");
+	if(beg == tok.end())
+	{
+		std::cerr <<"missing element 2 from Log file";//ErrorLogger::logError("missing element 2 from Log file");
+		return model::LogEntry();
+	}
 	severityStr = *beg;
 	beg++;
 
-	if(beg == tok.end())std::cerr <<"missing element 3 from Log file"; //ErrorLogger::logError("missing element 3 from Log file");
+	if(beg == tok.end())
+	{
+		std::cerr <<"missing element 3 from Log file"; //ErrorLogger::logError("missing element 3 from Log file");
+		return model::LogEntry();
+	}
 	txtMessage = *beg;
 	
 	boost::algorithm::trim(timeStamp);
