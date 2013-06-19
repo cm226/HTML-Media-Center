@@ -2,7 +2,7 @@ import sys, os
 
 movieDir = sys.argv[1]
 sqlInserts = open('MovieInserts.sql', 'w')
-dirPostFix = "/mix/Movie/";
+dirPostFix = "/mix/Movies";
 
 def genInsertsForMovie(fileName):
         movieName = fileName.replace("'","\\'");

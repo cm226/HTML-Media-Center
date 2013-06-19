@@ -45,26 +45,54 @@ bool LogEntryParser::getAllEntrys(std::priority_queue<model::LogEntry>& list)
 {
 	openLogFile();
 
-	std::string nextLogEntry;
-	while(getNextLine(nextLogEntry))
-		list.push(parseLogEntry(nextLogEntry));
+	std::vector<std::string> last10LogEntrys;
+	readLast10Entrys(last10LogEntrys);
+
+	for(std::vector<std::string>::iterator entryIt = last10LogEntrys.begin(); entryIt != last10LogEntrys.end(); entryIt++)
+		list.push(parseLogEntry(*entryIt));
 
 	closeLogFileIfOpen();
 	return true;
 }
 
 
-bool LogEntryParser::getNextLine(std::string& logEntry)
+bool LogEntryParser::readLast10Entrys(std::vector<std::string>& logEntrys)
 {
+	int offsetFromEnd = 0;
+	char c;
+
 	if(this->logFile.is_open() && this->logFile.good())
 	{
-		char line[2048];
-		this->logFile.getline(line,2048);
-		
-		logEntry.clear();
-		logEntry += line;
-		if(logEntry.size() == 0) return false;
+		this->logFile.seekg(-1,this->logFile.end);
+		this->logFile.read(&c,1);
+		for(int numEntrys = 0; numEntrys < 10; numEntrys ++)
+		{
+			while(c != '\n' && (int)this->logFile.tellg() > 0)
+			{
+				offsetFromEnd++;
+				this->logFile.seekg(-offsetFromEnd,this->logFile.end);
+				this->logFile.read(&c,1);
+			}
+			c = 0;
+		}
+		char* last10Entrys = new char[offsetFromEnd];
+
+		this->logFile.clear();
+		this->logFile.seekg(-(offsetFromEnd-2), this->logFile.end);
+		this->logFile.read(last10Entrys,offsetFromEnd-2);
+
+		// my patients ran out w/e
+		last10Entrys[offsetFromEnd-1] = '\0';
+		last10Entrys[offsetFromEnd-2] = '\0';
+		last10Entrys[offsetFromEnd-3] = '\0';
+		last10Entrys[offsetFromEnd-4] = '\0';
+
+		std::string tmp10Entrys(last10Entrys);
+		boost::split( logEntrys, tmp10Entrys, boost::is_any_of("\n"), boost::token_compress_off );
+
+		delete[] last10Entrys;
 		return true;
+		
 	}
 	return false;
 }
