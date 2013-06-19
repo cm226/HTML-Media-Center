@@ -89,8 +89,10 @@ function callHook() {
 		$publicURL = $publicURL.'../';
 	}
 	
+	$baseMediaCenterURL = $publicURL;
 	$publicURL = $publicURL . 'public';
 	define("PUBLIC_FOLDER",$publicURL);
+	define("WEB_ROOT",$baseMediaCenterURL);
 	
 	$controllerName = $controller;
 	$controller = ucwords($controller);
