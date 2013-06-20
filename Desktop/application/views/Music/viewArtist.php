@@ -13,14 +13,6 @@
 </script>
 
 <style>
-body
-{
-	background-image: url('../img/Music/Artists/<?php echo $artistsName;?>BG.png');
-	background-size: 90% auto;
-	background-position: 25% 0%;
-	background-repeat:no-repeat;
-	background-color:#000000;
-}
 
 </style>
 
@@ -67,7 +59,7 @@ if (file_exists('../public/img/Music/Albums/' . $album['Album']['albumName'] .'.
   <input type="submit" value="Do Stuff!" />
 </form>
 
-<iframe id="player" />
+<iframe id="player" name="player" />
 
 
 

@@ -17,70 +17,6 @@ h4
 	border-bottom-right-radius:0px;
 }
 
-a:link {
-	color: white;
-	font-family: sans-serif;
-	font-style: normal;
-	font-variant: small-caps;
-	font-weight: normal;
-	font-size: medium;
-	line-height: 100%;
-	word-spacing: normal;
-	letter-spacing: normal;
-	text-decoration: none;
-	text-transform: none;
-	text-align: left;
-	text-indent: 0ex;}
-	/* unvisited link */
-	
-a:visited {
-color: white;
-font-family: sans-serif;
-	font-style: normal;
-	font-variant: small-caps;
-	font-weight: normal;
-	font-size: medium;
-	line-height: 100%;
-	word-spacing: normal;
-	letter-spacing: normal;
-	text-decoration: none;
-	text-transform: none;
-	text-align: left;
-	text-indent: 0ex;}  /* visited link */
-	
-a:hover {
-
-color: white;
-font-family: sans-serif;
-	font-style: normal;
-	font-variant: small-caps;
-	font-weight: normal;
-	font-size: medium;
-	line-height: 100%;
-	word-spacing: normal;
-	letter-spacing: normal;
-	text-decoration: none;
-	text-transform: none;
-	text-align: left;
-	text-indent: 0ex;
-	}  /* mouse over link */
-
-a:active {
-color: white;
-font-family: sans-serif;
-	font-style: normal;
-	font-variant: small-caps;
-	font-weight: normal;
-	font-size: medium;
-	line-height: 100%;
-	word-spacing: normal;
-	letter-spacing: normal;
-	text-decoration: none;
-	text-transform: none;
-	text-align: left;
-	text-indent: 0ex;}  /* selected link */
-
-
 .album
 {
 	color: WHITE;
@@ -96,7 +32,7 @@ font-family: sans-serif;
 
 #songSelection
 {
-	width: 350px;
+	width: 20%;
 	float: left;
 }
 
