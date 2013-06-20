@@ -62,3 +62,11 @@ BOOST_AUTO_TEST_CASE(MusicImageGetterArtistThumbnailNoCallbacksRegistered)
 
 
 }
+
+
+
+BOOST_AUTO_TEST_CASE(MusicImageGetterArtistImageTest)
+{
+	
+
+}

@@ -22,7 +22,7 @@ private:
 
 	bool checkArtistThumbnailImageExists(std::string artistName);
 	bool checkArtistImageExists(std::string artistName);
-	bool checkAlbumImageExists(std::string albumName);
+	bool checkAlbumImageExists(int albumID);
 
 	bool checkPNGorJPGImageExsists(std::string fileName);
 

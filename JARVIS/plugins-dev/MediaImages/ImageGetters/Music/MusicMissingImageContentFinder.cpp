@@ -54,7 +54,7 @@ bool MusicMissingImageContentFinder::searchDBforMissingArtistThumbImage(std::str
 }
 bool MusicMissingImageContentFinder::checkArtistThumbnailImageExists(std::string artistName)
 {
-	std::string thumbImageName = this->imageContentURL +"\\"+ artistName;
+	std::string thumbImageName = this->imageContentURL +"Artists\\"+ artistName;
 	return checkPNGorJPGImageExsists(thumbImageName);
 }
 
@@ -82,7 +82,7 @@ bool MusicMissingImageContentFinder::searchDBforMissingArtistImage(std::string& 
 
 bool MusicMissingImageContentFinder::checkArtistImageExists(std::string artistName)
 {
-	std::string artistImageURL = this->imageContentURL +"\\Artists"+ artistName;
+	std::string artistImageURL = this->imageContentURL +"ArtistsBG\\"+ artistName;
 	return checkPNGorJPGImageExsists(artistImageURL);
 }
 
@@ -98,7 +98,7 @@ bool MusicMissingImageContentFinder::searchDBforMissingAlbumImage(std::string& a
 
 	while(albumQuery.nextLine())
 	{
-		if(!this->checkAlbumImageExists(album.albumName->getValue()))
+		if(!this->checkAlbumImageExists(album.albumID->getValue()))
 		{
 			albumName = album.albumName->getValue();
 			albumID = album.albumID->getValue();
@@ -122,9 +122,14 @@ bool MusicMissingImageContentFinder::searchDBforMissingAlbumImage(std::string& a
 	return false;
 }
 
-bool MusicMissingImageContentFinder::checkAlbumImageExists(std::string albumName)
+bool MusicMissingImageContentFinder::checkAlbumImageExists(int albumID)
 {
-	std::string albumImageFilename =  this->imageContentURL +"\\Album"+ albumName;
+	std::stringstream ss;
+	std::string albumIDStr;
+
+	ss << albumID;
+	albumIDStr = ss.str();
+	std::string albumImageFilename =  this->imageContentURL +"Album\\"+ albumIDStr;
 	return checkPNGorJPGImageExsists(albumImageFilename);
 }
 
@@ -133,7 +138,6 @@ bool MusicMissingImageContentFinder::checkAlbumImageExists(std::string albumName
 
 BOOL FileExists(std::string path)
 {
-
 
 	DWORD dwAttrib = GetFileAttributes(path.c_str());
 

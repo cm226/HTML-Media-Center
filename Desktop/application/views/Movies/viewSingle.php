@@ -8,7 +8,7 @@
 <embed type="application/x-vlc-plugin"
          name="video1"
          autoplay="no" loop="yes" width="400" height="300"
-		 target="http://localhost/HTML-Media-Center/Desktop/public<?php echo $movieURL; ?>"
+		 target="http://localhost:8080/HTML-Media-Center/Desktop/public<?php echo $movieURL; ?>"
          />
 		 <!--target="http://localhost/HTML-Media-Center/Desktop/public/mix/Movies/28.Weeks.Later.avi"-->
 		 
