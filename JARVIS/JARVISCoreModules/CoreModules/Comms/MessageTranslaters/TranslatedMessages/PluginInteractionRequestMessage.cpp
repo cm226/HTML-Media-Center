@@ -24,7 +24,7 @@ PluginInteractionRequestMessage::PluginInteractionRequestMessage(char* data, uns
 	if(callbackID.compare("") == 0 || pluginName.compare("") == 0)
 		ErrorLogger::logError("Plugin interaction message error missing callbackID or plugin Name");
 
-	contextValues.push_back(callbackID);
+	//contextValues.push_back(callbackID);
 	std::string nextConxtVal;
 	while((nextConxtVal = this->stripNextValue()) != "")
 		contextValues.push_back(nextConxtVal);

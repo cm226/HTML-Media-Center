@@ -56,7 +56,7 @@ int MovieImageGetter::readMovieID(std::vector<std::string>& contextarguments)
 void MovieImageGetter::generateOnImageSelectedReplay(Page* page)
 {
 	Lable* allWentWell = new Lable("Image Set, all is well");
-	Hyperlink* hyperlink = new Hyperlink("nextLink", "http://localhost/HTML-Media-Center/Desktop/Plugin/pluginInteraction/3/Media%20Images","Next Movie");
+	Hyperlink* hyperlink = new Hyperlink("nextLink", "../../../0/Media%20Images","Next Movie");
 
 	page->addElement(allWentWell);
 	page->addElement(hyperlink);

@@ -54,7 +54,7 @@ bool MusicMissingImageContentFinder::searchDBforMissingArtistThumbImage(std::str
 }
 bool MusicMissingImageContentFinder::checkArtistThumbnailImageExists(std::string artistName)
 {
-	std::string thumbImageName = this->imageContentURL +"Artists\\"+ artistName;
+	std::string thumbImageName = this->imageContentURL +"\\Artists\\"+ this->makeSafe(artistName);
 	return checkPNGorJPGImageExsists(thumbImageName);
 }
 
@@ -82,7 +82,7 @@ bool MusicMissingImageContentFinder::searchDBforMissingArtistImage(std::string& 
 
 bool MusicMissingImageContentFinder::checkArtistImageExists(std::string artistName)
 {
-	std::string artistImageURL = this->imageContentURL +"ArtistsBG\\"+ artistName;
+	std::string artistImageURL = this->imageContentURL +"\\ArtistsBG\\"+ this->makeSafe(artistName);
 	return checkPNGorJPGImageExsists(artistImageURL);
 }
 
@@ -129,8 +129,14 @@ bool MusicMissingImageContentFinder::checkAlbumImageExists(int albumID)
 
 	ss << albumID;
 	albumIDStr = ss.str();
-	std::string albumImageFilename =  this->imageContentURL +"Album\\"+ albumIDStr;
+	std::string albumImageFilename =  this->imageContentURL +"\\Album\\"+ this->makeSafe(albumIDStr);
 	return checkPNGorJPGImageExsists(albumImageFilename);
+}
+
+std::string MusicMissingImageContentFinder::makeSafe(std::string& name)
+{
+	boost::replace_all(name," ",".");
+	return name;
 }
 
 #ifdef WIN32

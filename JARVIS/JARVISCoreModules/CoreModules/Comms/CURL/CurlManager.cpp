@@ -7,6 +7,7 @@
 
 #include "CurlManager.h"
 #include <sstream>
+#include <stdio.h>
 
 namespace CommsNS {
 
@@ -32,8 +33,10 @@ static int writer(char *data, size_t size, size_t nmemb, void* curlManager)
     return 0;
 }
 
+static bool filewriterFlag = false;
 static int fileWriter(char *data, size_t size, size_t nmemb, FILE *stream)
 {
+	filewriterFlag = true;
 	return fwrite(data, size, nmemb, stream);
 }
 
@@ -96,6 +99,7 @@ bool CurlManager::downloadItemToFile(std::string internetURL, std::string output
     curl = curl_easy_init();
     if (curl) {
 
+		filewriterFlag = false;
         fp = fopen(outfilename,"wb");
 		if(fp == NULL)
 		{
@@ -111,7 +115,10 @@ bool CurlManager::downloadItemToFile(std::string internetURL, std::string output
         fclose(fp);
     }
 
-    return true;
+	if(!filewriterFlag)
+		remove(outfilename);
+
+	return filewriterFlag;
 }
 
 

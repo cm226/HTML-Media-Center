@@ -215,11 +215,11 @@ std::string MusicImageGetter::getArtistNameFromID(int artistID)
 
 int MusicImageGetter::readImageIndex(std::vector<std::string>& contextarguments)
 {
-	return this->imgGetter.readInt(contextarguments,1);
+	return this->imgGetter.readInt(contextarguments,0);
 }
 int MusicImageGetter::readArtistID(std::vector<std::string>& contextarguments)
 {
-	return this->imgGetter.readInt(contextarguments,2);
+	return this->imgGetter.readInt(contextarguments,1);
 }
 
 

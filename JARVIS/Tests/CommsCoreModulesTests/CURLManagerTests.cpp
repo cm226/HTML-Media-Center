@@ -83,7 +83,7 @@ BOOST_AUTO_TEST_CASE(downloadFileTestInvalidFile)
 	
 	bool worked = curlMan.downloadItemToFile("invalidLink",downloadLocation);
 	
-	BOOST_CHECK_EQUAL(true,worked);
-	BOOST_CHECK_EQUAL(true,boost::filesystem::exists( downloadLocation));
+	BOOST_CHECK_EQUAL(false,worked);
+	BOOST_CHECK_EQUAL(false,boost::filesystem::exists( downloadLocation));
 
 }

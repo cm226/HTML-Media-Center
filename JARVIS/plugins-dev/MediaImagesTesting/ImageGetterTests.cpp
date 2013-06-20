@@ -74,3 +74,27 @@ BOOST_AUTO_TEST_CASE(downloadImage)
 	BOOST_CHECK_EQUAL(true,fileRemoved);
 
 }
+
+
+BOOST_AUTO_TEST_CASE(downloadImageBADURL)
+{
+	CoreModules cm;
+	CoreModules* cmref = &cm;
+	ImageGetter imgGetter(cmref);
+
+
+	std::string downloadedFileName = "test.jpg";
+	std::string downloadedDirectory = "C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\";
+	std::string downloadedLocation = downloadedDirectory + downloadedFileName;
+	BOOST_CHECK_EQUAL(imgGetter.downloadAndCopyImage("http://google/blarghy.jpg",
+													 downloadedDirectory,downloadedFileName,200,250), false);
+
+	bool fileExists = (bool)boost::filesystem::exists(downloadedLocation);
+	BOOST_CHECK_EQUAL(false,fileExists );
+	if(fileExists)
+	{
+		bool fileRemoved = boost::filesystem::remove(downloadedLocation);
+		BOOST_CHECK_EQUAL(true,fileRemoved);
+	}
+
+}

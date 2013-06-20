@@ -24,6 +24,7 @@ private:
 	bool checkArtistImageExists(std::string artistName);
 	bool checkAlbumImageExists(int albumID);
 
+	std::string makeSafe(std::string& name);
 	bool checkPNGorJPGImageExsists(std::string fileName);
 
 public:
