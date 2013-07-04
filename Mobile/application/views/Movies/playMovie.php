@@ -20,11 +20,10 @@
 	</div>
 </div>
 
-<div id="agents" class="darkGradient">
-<h2 class="headline"> Avalable Agents </h2>
-<button class="blackBttn" id="agentPollBttn" onClick="sendAJAXRequest('../../Movies/agentPoll',['<?php echo $movie[0]['Movie']["movieID"] ?>'],'agentsAJAXReply');"> poll Agents </button>
+<div id="agents">
+<button id="agentPollBttn" onClick="sendAJAXRequest('../../Movies/agentPoll', new Array('<?php echo $movie[0]['Movie']["movieID"] ?>'),'agentsAJAXReply');"> poll Agents </button>
 <div id="agentsAJAXReply"></div>
 <div id="replyDiv">
 </div>
-
 </div>
+

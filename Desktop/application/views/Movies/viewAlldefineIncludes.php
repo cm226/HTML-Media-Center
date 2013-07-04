@@ -6,7 +6,7 @@
 $(document).ready(function()
 {
 	var count = $("#movieList").children().length;
-	var artistListLen = (count/2) * 220;
+	var artistListLen = (count/2) * 200;
 	
 	$("#movieList").css("width",artistListLen+"px")
     

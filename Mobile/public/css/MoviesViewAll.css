@@ -4,22 +4,3 @@
 	margin-left:auto;
 	margin-right: auto;	
 }
-
-.movieElement
-{
-	width:50%;
-	font-size: 10px;
-	float: left
-}
-
-.movieImg
-{
-	width:  90%;
-	height: auto;
-}
-
-.infoPanel
-{
-	font-size:20px;
-	text-align: center;
-}
