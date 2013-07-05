@@ -1,7 +1,9 @@
 #include "SelectorsRunner.h"
 
 
-SelectorsRunner::SelectorsRunner(Selector& rootSelectorm, InputWrapper input) : selector(rootSelectorm), input(input)
+SelectorsRunner::SelectorsRunner(Selector& rootSelectorm, InputWrapper input) :
+	input(input),
+	selector(rootSelectorm)
 {
 }
 
@@ -14,7 +16,10 @@ SelectorsRunner::~SelectorsRunner(void)
 std::queue<Selection>& SelectorsRunner::run(std::queue<Selection>& selections)
 {
 	while(!input.isAtEnd())
-		selector.select(selections, InputCharWrapper(input.nextChar(), input.getRawInput().tellg()));
+	{
+		InputCharWrapper nextChar = InputCharWrapper(input.nextChar(), input.getRawInput().tellg());
+		selector.select(selections, nextChar);
+	}
 
 	return selections;
 

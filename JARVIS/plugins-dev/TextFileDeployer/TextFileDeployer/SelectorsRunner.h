@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Selectors\Selector.h"
+#include "Selectors/Selector.h"
 #include "InputWrapper.h"
 
 class SelectorsRunner

@@ -16,7 +16,7 @@ public:
 	Selector(void);
 	Selector(Selector* decorator);
 
-	~Selector(void);
+	virtual ~Selector(void);
 
 	std::queue<Selection>& select(std::queue<Selection>& selections, InputCharWrapper& input);
 };

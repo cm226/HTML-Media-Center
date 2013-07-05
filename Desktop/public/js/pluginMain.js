@@ -28,6 +28,8 @@ $(document).ready(function()
 function collapsFolder(folder)
 {
 	var pluginHolder = folder.find(".pluginHolder");
+	folder.removeClass("unCollapsedFlder");
+
 	pluginHolder.find('.plugin').fadeOut();
 	folder.animate({
 		width: '50px'
@@ -37,6 +39,13 @@ function collapsFolder(folder)
 function uncollapsFolder(folder)
 {
 	var pluginHolder = folder.find(".pluginHolder");
+	var oldOpenFolder = $(".unCollapsedFlder");
+	
+	if(oldOpenFolder)
+		collapsFolder(oldOpenFolder);
+
+	folder.addClass("unCollapsedFlder");
+
 	folder.animate({
 		width: '250px'
 		},500); 
