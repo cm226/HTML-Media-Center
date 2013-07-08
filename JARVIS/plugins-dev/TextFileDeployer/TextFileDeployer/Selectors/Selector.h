@@ -1,7 +1,7 @@
 #pragma once
 
 #include <queue>
-#include "../Selection.h"
+#include "../Selections/Selection.h"
 #include "../InputWrapper.h"
 #include "../InputCharWrapper.h"
 
@@ -12,12 +12,16 @@ private:
 
 protected:
 	virtual std::queue<Selection>& nextChar(std::queue<Selection>& selections, InputCharWrapper c) = 0;
+	virtual std::queue<Selection>& inputFinished(std::queue<Selection>& selections, std::streampos end) = 0;
+
 public:
 	Selector(void);
-	Selector(Selector* decorator);
 
 	virtual ~Selector(void);
 
 	std::queue<Selection>& select(std::queue<Selection>& selections, InputCharWrapper& input);
+	std::queue<Selection>& endInput(std::queue<Selection>& selections, std::streampos at);
+
+	void decorate(Selector* selector);
 };
 

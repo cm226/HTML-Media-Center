@@ -3,9 +3,9 @@
 
 InputWrapper::InputWrapper(std::istream& input) : input(input)
 {
-	input.seekg(std::ios_base::end);
+	input.seekg(0,std::ios_base::end);
 	this->eof = input.tellg();
-	input.seekg(std::ios_base::beg);
+	input.seekg(0,std::ios_base::beg);
 }
 
 

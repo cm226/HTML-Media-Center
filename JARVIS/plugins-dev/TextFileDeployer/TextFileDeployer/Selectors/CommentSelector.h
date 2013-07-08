@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Selector.h"
+#include "Commen\TokenFinder.h"
 #include <string>
 
 class CommentSelector : public Selector
@@ -9,17 +10,15 @@ private:
 	enum State{IN_COMMENT,NOT_IN_COMMENT};
 	State curState;
 
-	std::streampos commentStart;
+	TokenFinder startMarkerMoniter;
+	TokenFinder endMarkerMoniter;
 
-	std::string commentMarkerStart;
-	std::string commentMarkerEnd;
-
-	void gotCommentEnd(std::queue<Selection>& selections, InputCharWrapper c);
 	void checkCommentStartMarker(InputCharWrapper c);
 	void checkCommentEndMarker(std::queue<Selection>&,InputCharWrapper c);
 
 protected:
 	std::queue<Selection>& nextChar(std::queue<Selection>& selections, InputCharWrapper c);
+	std::queue<Selection>& inputFinished(std::queue<Selection>& selections, std::streampos end);
 
 public:
 	CommentSelector(std::string commentStart, std::string commentEnd);

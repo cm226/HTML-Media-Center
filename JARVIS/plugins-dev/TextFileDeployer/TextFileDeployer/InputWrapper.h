@@ -22,5 +22,6 @@ public:
 
 	std::istream& getRawInput(){return input;}
 	char nextChar();
+	std::streampos fileLen() {return eof;}
 };
 

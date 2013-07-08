@@ -21,19 +21,7 @@
     <ClCompile Include="TextFileDeployerPlugin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Selectors\BlockCommentStripper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Selectors\LinecommentStripper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Selectors\NewlineStripper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Selectors\Selector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Selection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InputWrapper.cpp">
@@ -52,6 +40,33 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SelectorsRunner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Selectors\CommentSelector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Selectors\NewlineSelector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Selectors\Commen\TokenFinder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Languages\Javascript.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Languages\Css.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Languages\Xml.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Languages\Language.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Selections\Selection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Selections\Selections.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,9 +89,6 @@
     <ClInclude Include="Selectors\Selector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Selection.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="InputWrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -93,6 +105,33 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SelectorsRunner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Selectors\CommentSelector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Selectors\NewlineSelector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Selectors\Commen\TokenFinder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Languages\Javascript.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Languages\Css.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Languages\Xml.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Languages\Language.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Selections\Selection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Selections\Selections.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
