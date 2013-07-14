@@ -15,7 +15,12 @@ std::queue<Selection>& NewlineSelector::nextChar(std::queue<Selection>& selectio
 		, InputCharWrapper c)
 {
 	if(c.getChar() == '\n')
-		selections.push((Selection(c.getPos(), c.getPos()+1)));
+		selections.push((Selection(c.getPos(), (int)c.getPos()+1)));
 
+	return selections;
+}
+
+std::queue<Selection>& NewlineSelector::inputFinished(std::queue<Selection>& selections, std::streampos end)
+{
 	return selections;
 }

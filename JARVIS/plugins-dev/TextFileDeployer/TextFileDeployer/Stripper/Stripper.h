@@ -3,7 +3,7 @@
 #include <sstream>
 #include <queue>
 
-#include "../Selection.h"
+#include "../Selections/Selection.h"
 #include "../InputWrapper.h"
 
 
@@ -13,12 +13,13 @@ private:
 	InputWrapper& input;
 	std::ostringstream output;
 
+	void copyUntill(std::streampos end);
 public:
 	Stripper(InputWrapper& input);
 	virtual ~Stripper(void);
 	std::ostringstream& getOutput();
 
 	void strip(std::queue<Selection>& selections);
-	void copyUntill(std::streampos end);
+
 };
 

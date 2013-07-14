@@ -20,6 +20,7 @@ std::queue<Selection>& SelectorsRunner::run(std::queue<Selection>& selections)
 		InputCharWrapper nextChar = InputCharWrapper(input.nextChar(), input.getRawInput().tellg());
 		selector.select(selections, nextChar);
 	}
+	selector.endInput(selections, input.getRawInput().tellg());
 
 	return selections;
 

@@ -13,5 +13,102 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\SelectorTests">
+      <UniqueIdentifier>{2766b5c2-dcdb-4d7b-b6cf-c6b985010e07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SRC">
+      <UniqueIdentifier>{6f201930-31a5-4c94-ab2e-13d2c1be06d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\LanguageTests">
+      <UniqueIdentifier>{22b1abd0-d0d8-40a8-8dba-05cc8d4b2f9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\StriperTests">
+      <UniqueIdentifier>{9d7ec37a-4bef-4d2d-b1e5-25de0a22ed72}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetVer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectorTests\WhitespaceSelectorTests.cpp">
+      <Filter>Source Files\SelectorTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Selectors\SpaceSelector\ConsecutiveSpaceSelectionCreator.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Selectors\SpaceSelector\SpaceSelector.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Selectors\Selector.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Selectors\CommentSelector.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Selectors\NewlineSelector.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\InputCharWrapper.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\InputWrapper.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\SelectorsRunner.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\TextFileDeployer.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Stripper\Stripper.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\TextFileDeployerPlugin.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="NewlineSelectorTests.cpp">
+      <Filter>Source Files\SelectorTests</Filter>
+    </ClCompile>
+    <ClCompile Include="CommentSelectorTests.cpp">
+      <Filter>Source Files\SelectorTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Selectors\Commen\TokenFinder.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="JavascriptTests.cpp">
+      <Filter>Source Files\LanguageTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Languages\Css.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Languages\Javascript.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Languages\Language.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Languages\Xml.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="StripperTests.cpp">
+      <Filter>Source Files\StriperTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Selections\Selection.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Selections\Selections.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

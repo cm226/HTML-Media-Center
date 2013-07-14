@@ -68,11 +68,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Languages\Language.h" />
+    <ClInclude Include="Languages\Css.h" />
     <ClInclude Include="InputCharWrapper.h" />
+    <ClInclude Include="Languages\Javascript.h" />
+    <ClInclude Include="Selections\Selections.h" />
     <ClInclude Include="SelectorsRunner.h" />
+    <ClInclude Include="Selectors\CommentSelector.h" />
+    <ClInclude Include="Selectors\NewlineSelector.h" />
     <ClInclude Include="Selectors\SpaceSelector\ConsecutiveSpaceSelectionCreator.h" />
     <ClInclude Include="InputWrapper.h" />
-    <ClInclude Include="Selection.h" />
+    <ClInclude Include="Selections\Selection.h" />
     <ClInclude Include="Selectors\Selector.h" />
     <ClInclude Include="Stripper\Stripper.h" />
     <ClInclude Include="Selectors\LinecommentStripper.h" />
@@ -81,21 +87,28 @@
     <ClInclude Include="Selectors\NewlineStripper.h" />
     <ClInclude Include="TextFileDeployer.h" />
     <ClInclude Include="TextFileDeployerPlugin.h" />
+    <ClInclude Include="Selectors\Commen\TokenFinder.h" />
+    <ClInclude Include="Languages\Xml.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Languages\Language.cpp" />
+    <ClCompile Include="Languages\Css.cpp" />
     <ClCompile Include="InputCharWrapper.cpp" />
+    <ClCompile Include="Languages\Javascript.cpp" />
+    <ClCompile Include="Selections\Selections.cpp" />
     <ClCompile Include="SelectorsRunner.cpp" />
+    <ClCompile Include="Selectors\CommentSelector.cpp" />
+    <ClCompile Include="Selectors\NewlineSelector.cpp" />
     <ClCompile Include="Selectors\SpaceSelector\ConsecutiveSpaceSelectionCreator.cpp" />
     <ClCompile Include="InputWrapper.cpp" />
-    <ClCompile Include="Selection.cpp" />
+    <ClCompile Include="Selections\Selection.cpp" />
     <ClCompile Include="Selectors\Selector.cpp" />
     <ClCompile Include="Stripper\Stripper.cpp" />
-    <ClCompile Include="Selectors\LinecommentStripper.cpp" />
-    <ClCompile Include="Selectors\BlockCommentStripper.cpp" />
     <ClCompile Include="Selectors\SpaceSelector\SpaceSelector.cpp" />
-    <ClCompile Include="Selectors\NewlineStripper.cpp" />
     <ClCompile Include="TextFileDeployer.cpp" />
     <ClCompile Include="TextFileDeployerPlugin.cpp" />
+    <ClCompile Include="Selectors\Commen\TokenFinder.cpp" />
+    <ClCompile Include="Languages\Xml.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

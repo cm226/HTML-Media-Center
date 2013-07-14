@@ -28,5 +28,6 @@ update the mobile and desktop sites to use the same controllers and models
 update the agent and serverside python scripts to allow for DHCP (its set on a static ip od 192.168.0.198 for debuging)
 
 music player "channels with plugins?"
+	custom critera creattion api
 
 
