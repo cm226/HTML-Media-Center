@@ -14,6 +14,7 @@
 #include "Serialisers/Serializer.h"
 #include "../../../../JARVISCoreModules/CoreModules/Errors/ErrorLogger.h"
 #include "FieldReader.h"
+#include "FieldWriter.h"
 
 namespace ExtendedDatabase {
 
@@ -23,15 +24,17 @@ class Field {
 private:
 	std::string filename;
 
+	// flags
+	bool dataAquired;
+	bool serialisersSet;
+
 	Serializer<T> _KeySerialiser;
 	Serializer<V> _ValSerialiser;
 	boost::shared_ptr<FieldReader> _FieldReader;
 
 	std::map<T,V> fields;
 
-	// flags
-	bool dataAquired;
-	bool serialisersSet;
+
 
 
 
@@ -47,18 +50,26 @@ private:
 		{
 			T key;
 			V value;
-			_FieldReader->nextField(_KeySerialiser, _ValSerialiser, key, value);
-			fields[key] = value;
+			if(_FieldReader->nextField(_KeySerialiser, _ValSerialiser, key, value))
+				fields[key] = value;
 		}
 		_FieldReader->closeFile();
-	}
+	};
+
+	bool checkDataIsAquired()
+	{
+		if(!dataAquired)
+			ErrorLogger::logError("getting data before data is Acquired");
+
+		return dataAquired;
+	};
 
 public:
 	Field(std::string filename)
 	:filename(filename),
+	 _FieldReader(new FieldReader()),
 	 dataAquired(false),
-	 serialisersSet(false),
-	 _FieldReader(new FieldReader())
+	 serialisersSet(false)
 	{};
 	virtual ~Field(){};
 
@@ -81,12 +92,9 @@ public:
 		return fields[key];
 	};
 
-	bool checkDataIsAquired()
+	void writeData(T key, V value)
 	{
-		if(!dataAquired)
-			ErrorLogger::logError("getting data before data is Aquired");
-
-		return dataAquired;
+			fields[key] = value;
 	}
 
 	void aquireData()
@@ -103,6 +111,12 @@ public:
 	{
 		fields.clear();
 	};
+
+	void save()
+	{
+		FieldWriter fw(filename);
+		fw.writeFields(_KeySerialiser, _ValSerialiser, fields);
+	}
 };
 
 } /* namespace ExtendedDatabase */

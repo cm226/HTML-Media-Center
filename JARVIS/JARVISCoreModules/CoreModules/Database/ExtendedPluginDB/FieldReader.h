@@ -28,7 +28,7 @@ public:
 	bool hasMoreFields();
 
 	template<class K, class V>
-	void nextField(Serializer<K> keyDeserialiser, Serializer<V> valDeserialiser, K& key, V& val)
+	bool nextField(Serializer<K> keyDeserialiser, Serializer<V> valDeserialiser, K& key, V& val)
 	{
 		int bufferSize =1024;
 		char* buffer = new char[bufferSize];
@@ -37,11 +37,15 @@ public:
 		std::string line(buffer);
 		delete[] buffer;
 		int index = line.find(',');
-		std::string value = line.substr(index);
+		if(index == -1)
+			return false;
+
+		std::string value = line.substr(index+1);
 		std::string keyStr = line.substr(0, index);
 
-		key = keyDeserialiser.deSerialise(keyStr.c_str());
-		val = valDeserialiser.deSerialise(value.c_str());
+		key = keyDeserialiser.deSerialise(keyStr.c_str(), keyStr.length());
+		val = valDeserialiser.deSerialise(value.c_str(), value.length());
+		return true;
 
 	}
 };

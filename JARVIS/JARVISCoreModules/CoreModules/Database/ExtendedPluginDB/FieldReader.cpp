@@ -20,7 +20,6 @@ FieldReader::~FieldReader() {
 
 bool FieldReader::openFile(std::string filename)
 {
-	//std::ios_base::openmode::_S_bin
 	fileStream.open(filename.c_str(), std::ios_base::binary);
 	return fileStream.good();
 }
@@ -32,7 +31,8 @@ void FieldReader::closeFile()
 
 bool FieldReader::hasMoreFields()
 {
-	return fileStream.eof();
+	int peekVal = fileStream.peek();
+	return !fileStream.eof() || peekVal != -1;
 }
 
 } /* namespace ExtendedDatabase */

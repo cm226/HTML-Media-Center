@@ -33,13 +33,13 @@ public:
 
 	bool fieldExsits(std::string fieldName)
 	{
-		return boost::filesystem::exists(_Subcatagoryolder+fieldName+".dbe");
+		return boost::filesystem::exists(_Subcatagoryolder+fieldName+".edb");
 	};
 
 	template<class K, class V>
 	Field<K,V> getField(std::string name)
 	{
-		return Field<K,V>(_Subcatagoryolder+name+".dbe");
+		return Field<K,V>(_Subcatagoryolder+name+".edb");
 	};
 
 };
