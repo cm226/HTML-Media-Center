@@ -1,6 +1,4 @@
 
-<div id="leftGradient"></div>
-<div id="rightGradient"></div>
 
 <?php
 

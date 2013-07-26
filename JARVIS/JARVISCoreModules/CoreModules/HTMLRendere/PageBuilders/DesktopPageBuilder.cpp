@@ -5,23 +5,23 @@
  *      Author: craig
  */
 
-#include "PageBuilder.h"
+#include "DesktopPageBuilder.h"
 
-PageBuilder::PageBuilder() {
+DesktopPageBuilder::DesktopPageBuilder() {
 	// TODO Auto-generated constructor stub
 
 }
 
-PageBuilder::~PageBuilder() {
+DesktopPageBuilder::~DesktopPageBuilder() {
 	// TODO Auto-generated destructor stub
 }
 
 
-void PageBuilder::buildHeader()
+void DesktopPageBuilder::buildHeader()
 {
 	// we dont have a header yet?
 }
-void PageBuilder::buildHTMLHeadElement()
+void DesktopPageBuilder::buildHTMLHeadElement()
 {
 	std::vector<IElement*>::iterator elementIt;
 	for(elementIt = this->elements->begin(); elementIt != this->elements->end(); elementIt++)
@@ -41,35 +41,36 @@ void PageBuilder::buildHTMLHeadElement()
 	}
 }
 
-void PageBuilder::buildCSSInclude(std::string path)
+void DesktopPageBuilder::buildCSSInclude(std::string path)
 {
 	this->page << "<LINK href=\" " << path<< "\" rel=\"stylesheet\" type=\"text/css\">";
 }
 
-void PageBuilder::buildJSInclude(std::string path)
+void DesktopPageBuilder::buildJSInclude(std::string path)
 {
 	this->page << "<script type=\"text/JavaScript\" src=\" " << path << "\"></script>";
 }
 
-void PageBuilder::buildEmbeddedJS(std::string jsCode)
+void DesktopPageBuilder::buildEmbeddedJS(std::string jsCode)
 {
 	this->page << "<script type=\"text/JavaScript\"> " << jsCode << "</script>";
 }
 
-void PageBuilder::buildBody()
+void DesktopPageBuilder::buildBody()
 {
 	for(std::vector<IElement*>::iterator it =  this->elements->begin(); it != this->elements->end(); it++)
 	{
-		this->page << ((*it)->getText());
+		std::string elementBody =(*it)->getText();
+		this->page << elementBody;
 	}
 
 }
-void PageBuilder::buildFooter()
+void DesktopPageBuilder::buildFooter()
 {
 
 }
 
-void PageBuilder::buildPage(std::string* page, std::vector<IElement*>* elements)
+void DesktopPageBuilder::buildPage(std::string* page, std::vector<IElement*>* elements)
 {
 	this->elements = elements;
 

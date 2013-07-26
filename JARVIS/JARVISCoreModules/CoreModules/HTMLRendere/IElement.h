@@ -23,6 +23,7 @@ private:
 	std::list<std::string> cssFiles;
 	std::list<std::string> javascriptFiles;
 	std::stringstream embededJSCode;
+	std::stringstream jQueryMobileHeaderContent;
 	std::string name;
 	#pragma warning( default : 4251)
 	std::string writeStyle();
@@ -31,6 +32,7 @@ private:
 protected:
 	virtual std::string getTagText() = 0;
 	virtual std::string getTagContent() = 0;
+	virtual std::string getMobileTagContent(){return getTagContent();};
 	virtual std::string writeAttributes();
 
 	std::string buildCallbackLocationString(int depth, CALLBACk_HANDLE handl, std::string pluginName, std::vector<std::string> contextArgs,std::string location = "pluginInteraction");
@@ -45,6 +47,7 @@ public:
 	void includeCSS(std::string cssPath);
 	void includeJS(std::string jsPath);
 	void appendEmbeddedJSCode(std::string code);
+	void appendJQueryMobileHeaderContent(std::string html);
 
 	void addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName, std::vector<std::string> contextArgs);
 	void addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName);

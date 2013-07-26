@@ -7,7 +7,7 @@ html
 
 body
 {
-	background-image:url('../img/Home/background.png');
+	background-image:url('../../img/Home/background.png');
 	background-repeat:no-repeat;
 	background-position:center;
 	background-size:100% 100%;

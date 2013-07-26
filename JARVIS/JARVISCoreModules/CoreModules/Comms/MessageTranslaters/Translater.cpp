@@ -70,10 +70,12 @@ void Translater::buildTranslationFilterPipeline()
 	TranslationFilters::CommandAndcontrolTranslationFilter* commandAndcontrolFilter = new TranslationFilters::CommandAndcontrolTranslationFilter(this->protocal);
 	TranslationFilters::PluginPageTranslationFilter* pluginPageFilter = new TranslationFilters::PluginPageTranslationFilter(this->protocal);
 	TranslationFilters::PluginInteractionFilter* pluginInteractionFilter = new TranslationFilters::PluginInteractionFilter(this->protocal);
+	TranslationFilters::MobilePluginPageTranslationFilter* mobilePluginPageFilter = new TranslationFilters::MobilePluginPageTranslationFilter(this->protocal);
 
 	pluginPollFilter->setNextFilter(commandAndcontrolFilter);
 	commandAndcontrolFilter->setNextFilter(pluginPageFilter);
 	pluginPageFilter->setNextFilter(pluginInteractionFilter);
+	pluginInteractionFilter->setNextFilter(mobilePluginPageFilter);
 
 
 	this->translationFilter = pluginPollFilter;

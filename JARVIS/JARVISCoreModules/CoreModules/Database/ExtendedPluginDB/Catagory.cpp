@@ -39,7 +39,7 @@ void Catagory::addSubCatagory(std::string catagoryName)
 {
 	if(!boost::filesystem::exists(catagoryName))
 	{
-		std::string catagoryFolder =_CatagorysFolder+"\\"+catagoryName;
+		std::string catagoryFolder =_CatagorysFolder+catagoryName;
 		boost::filesystem::create_directory(catagoryFolder);
 		_SubCatagories.push_back(SubCatagory(catagoryFolder, catagoryName));
 	}

@@ -9,13 +9,26 @@ function getPluginList()
 	$comms = new JARVISCommas();
 	$reply = $comms->listLoadedPlugins();
 	
-	return explode(",",$reply);
+	$pluginCatagories = explode('%',$reply);
+	array_shift($pluginCatagories); // remove the empty value
+	$plugins = array();
+	
+	foreach($pluginCatagories as $pluginCat)
+	{
+		$pluginCatagorieList = explode(',',$pluginCat);
+		array_push($plugins,$pluginCatagorieList);
+	}
+	
+	return $plugins;
 }
 
-function getPluginPage($plugin)
+function getPluginPage($plugin, $getmobileVersion = false)
 {
 	$comms = new JARVISCommas();
-	$reply = $comms->requestPluginPage($plugin);
+	if($getmobileVersion)
+		$reply = $comms->requestMobilePluginPage($plugin);
+	else
+		$reply = $comms->requestPluginPage($plugin);
 	
 	return $reply;
 }

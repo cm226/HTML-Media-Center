@@ -8,13 +8,14 @@
 #ifndef PAGEBUILDER_H_
 #define PAGEBUILDER_H_
 
-#include <vector>
-#include <string>
+
 #include <sstream>
+
+#include "IPageBuilder.h"
 #include "IElement.h"
 
 
-class PageBuilder
+class DesktopPageBuilder : public IPageBuilder
 {
 private:
 	std::stringstream page;
@@ -25,12 +26,13 @@ private:
 	void buildCSSInclude(std::string path);
 	void buildJSInclude(std::string path);
 	void buildEmbeddedJS(std::string jsCode);
+
 	void buildBody();
 	void buildFooter();
 
 public:
-	PageBuilder();
-	virtual ~PageBuilder();
+	DesktopPageBuilder();
+	virtual ~DesktopPageBuilder();
 
 	void buildPage(std::string* page, std::vector<IElement*>* elements);
 };

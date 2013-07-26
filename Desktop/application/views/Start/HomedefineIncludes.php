@@ -1,7 +1,5 @@
 
-<link rel="stylesheet" type="text/css" href="../public/css/homeStyle.css">
-<script type="text/javascript" src="../public/js/searchOvelayWindows.js"></script>
-<script type="text/javascript" src="../public/js/Home.js"></script>
+<link rel="stylesheet" type="text/css" href="../public/css/Desktop/homeStyle.css">
 
 <style type="text/css">
 

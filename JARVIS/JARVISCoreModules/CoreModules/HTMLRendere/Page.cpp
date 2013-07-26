@@ -6,7 +6,8 @@
  */
 
 #include "Page.h"
-#include "PageBuilder.h"
+#include "PageBuilders/DesktopPageBuilder.h"
+#include "PageBuilders/MobilePageBuilder.h"
 #include <sstream>
 
 Page::Page() {
@@ -36,6 +37,12 @@ void Page::freePage()
 
 void Page::buildPage(std::string* page)
 {
-	PageBuilder pageBuilder;
+	DesktopPageBuilder pageBuilder;
 	pageBuilder.buildPage(page, &this->elements);
+}
+
+void Page::buildMobilePage(std::string* page)
+{
+	MobilePageBuilder mobilePageBuilder;
+	mobilePageBuilder.buildPage(page, &this->elements);
 }

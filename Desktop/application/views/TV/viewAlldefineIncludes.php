@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_FOLDER;?>/css/TVViewAll.css">
+<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_FOLDER;?>/css/Desktop/TVViewAll.css">
 <script type="text/javascript">
 var selectionMatrix = <?php
 /*

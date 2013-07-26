@@ -4,6 +4,7 @@
 echo '<div id="movieList">';
 $i = 0;
 $numOfMovies = count($movies)-1;
+if($numOfMovies > 0)
 while(true)
 {
 	if($i %2 == 0 and $i > $numOfMovies)

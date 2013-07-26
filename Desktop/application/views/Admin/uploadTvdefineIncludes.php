@@ -1,1 +1,1 @@
-<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_FOLDER;?>/css/adminUploadTv.css">
+<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_FOLDER;?>/css/Desktop/adminUploadTv.css">

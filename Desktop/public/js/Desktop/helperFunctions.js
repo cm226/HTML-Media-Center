@@ -1,10 +1,4 @@
-document.onkeypress = returnKey;
 
-var leftButtonHit = new Event();
-var rightButtonHit = new Event();
-var upButtonHit = new Event();
-var downButtonHit = new Event();
-var selectButtonHit = new Event();
 
 function shuffle()
 {
@@ -12,54 +6,6 @@ function shuffle()
 		shuffleOn = false;
 	else
 		shuffleOn = true;
-}
-
-// event functions
-function Event(){
-this.eventHandlers = new Array();
-}
-
-Event.prototype.addHandler = function(eventHandler){
-this.eventHandlers.push(eventHandler);
-}
-
-Event.prototype.execute = function(){
-
-for(var i = 0; i < this.eventHandlers.length; i++){
-this.eventHandlers[i]();
-}
-}
-
-
-
-function returnKey(evt)
-{
-	var evt  = (evt) ? evt : ((event) ? event : null);
- 
-//a	 97
-//w	 119
-//d	 100
-//s	 115
- 
-	switch (evt.keyCode)
-	{
-		case 97:
-			leftButtonHit.execute();
-			break;
-		case 119:
-			upButtonHit.execute();
-			break;
-		case 100:
-			rightButtonHit.execute();
-			break;
-		case 115:
-			downButtonHit.execute();
-			break;
-		case 13:
-			selectButtonHit.execute();
-			break;
-			
-	}
 }
 
 function postwith (to,p, target) {

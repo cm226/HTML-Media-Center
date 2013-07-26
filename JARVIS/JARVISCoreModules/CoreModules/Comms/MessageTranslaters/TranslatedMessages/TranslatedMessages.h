@@ -5,3 +5,4 @@
 #include "PluginInteractionRequestMessage.h"
 #include "RequestNextDataChunkMessage.h"
 #include "ReplyMessage.h"
+#include "MobilePluginPageMessage.h"

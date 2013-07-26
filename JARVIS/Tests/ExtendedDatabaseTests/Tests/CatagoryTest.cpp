@@ -41,3 +41,23 @@ BOOST_AUTO_TEST_CASE(CatagoryNonExsitantLookupSubCat)
 	BOOST_CHECK_EQUAL(foindit, false);
 
 }
+
+
+BOOST_AUTO_TEST_CASE(CatagoryCreateSubCat)
+{
+	std::string subCatName = "createdSubCat";
+	std::string subCatToCreateDir = "/var/www/HTML-Media-Center/JARVIS/Tests/ExtendedDatabaseTests/TestData/"+subCatName;
+
+	if(boost::filesystem::exists(subCatToCreateDir))
+		boost::filesystem::remove(subCatToCreateDir);
+
+	ExtendedDatabase::Catagory catagory("/var/www/HTML-Media-Center/JARVIS/Tests/ExtendedDatabaseTests/TestData/");
+
+	catagory.addSubCatagory(subCatName);
+
+	ExtendedDatabase::SubCatagory subcat("","");
+    BOOST_CHECK_EQUAL(catagory.tryLookupSubcatagoryFromName(subCatName,subcat),true);
+    BOOST_CHECK_EQUAL(subcat.getName().compare(subCatName), 0);
+
+    BOOST_CHECK_EQUAL(boost::filesystem::exists(subCatToCreateDir), true);
+}

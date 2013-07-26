@@ -6,9 +6,10 @@ function Main()
 	$this->set('plugins',$this->Plugin->getPluginList());		
 }
 
-function pluginPage($plugin)
+// can handle this wen mergin controllers by haveing 2 different methods in here pluginPage and mobilePluginPage
+function mobilePluginPage($plugin)
 {
-	$this->set('page',$this->Plugin->getPluginPage($plugin));		
+	$this->set('page',$this->Plugin->getPluginPage($plugin, true));		
 }
 
 function pluginInteraction()

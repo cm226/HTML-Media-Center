@@ -8,6 +8,7 @@
 #include "../TranslatedMessages/ListPluginsMessage.h"
 #include "../TranslatedMessages/PluginPageMessage.h"
 #include "../TranslatedMessages/PluginInteractionRequestMessage.h"
+#include "../TranslatedMessages/MobilePluginPageMessage.h"
 
 #include "MessageSubjectEvent.h"
 
@@ -27,6 +28,7 @@ public:
 	MessageSubjectEvent<ListPluginsMessage> onListPluginsMessageReceved;
 	MessageSubjectEvent<TranslatedMessages::PluginPageMessage> onPluginPageMessageReceved;
 	MessageSubjectEvent<TranslatedMessages::PluginInteractionRequestMessage> onPluginInteractionMessageReceved;
+	MessageSubjectEvent<TranslatedMessages::MobilePluginPageMessage> onMobilePluginPageMessageReceved;
 
 	MessageSubject();
 

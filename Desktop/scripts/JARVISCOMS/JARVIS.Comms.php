@@ -3,6 +3,7 @@ require_once('Transever.php');
 require_once('Messages/listPluginsMessage.php');
 require_once('Messages/RequestPluginPageMessage.php');
 require_once('Messages/PluginPageInteractionMessage.php');
+require_once('Messages/RequestMobilePluginPageMessage.php');
 
 class JARVISCommas
 {
@@ -23,11 +24,19 @@ function listLoadedPlugins()
 	return $this->transever->readReply();
 }
 
+
 function requestPluginPage($pluginName)
 {
 	$this->transever->sendMessage(new RequestPluginPageMessage($pluginName));
 	return $this->transever->readReply();
 }
+
+function requestMobilePluginPage($pluginName)
+{
+	$this->transever->sendMessage(new RequestMobilePluginPageMessage($pluginName));
+	return $this->transever->readReply();
+}
+
 
 function requestPluginInteractionPage($pluginCallbackID, $pluginContextArgs)
 {

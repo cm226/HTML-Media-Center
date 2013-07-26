@@ -1,2 +1,2 @@
-<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_FOLDER;?>/css/adminMusic.css">
+<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_FOLDER;?>/css/Desktop/adminMusic.css">
 

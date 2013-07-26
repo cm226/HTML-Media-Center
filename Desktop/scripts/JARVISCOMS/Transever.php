@@ -89,9 +89,9 @@ public function readReply()
 			$bytesLeft -= 2048;
 		}
 		
-		
 		$messageParts = explode("$",$out);
-		return $messageParts[1];
+		$out = substr($out, strlen($messageParts[0])+1);
+		return $out;
 	}
 	return "Error, connection closed";
 }

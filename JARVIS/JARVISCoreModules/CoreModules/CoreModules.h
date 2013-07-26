@@ -31,7 +31,6 @@ public:
 	DatabaseTables::Database* getDatabaseConnection();
 	CommsNS::IComms* getComms();
 
-	CoreModules& operator=(const CoreModules&);
 
 
 };

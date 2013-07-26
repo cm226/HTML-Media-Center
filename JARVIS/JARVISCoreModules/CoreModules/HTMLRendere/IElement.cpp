@@ -129,6 +129,11 @@ void IElement::appendEmbeddedJSCode(std::string code)
 	this->embededJSCode << code;
 }
 
+void IElement::appendJQueryMobileHeaderContent(std::string html)
+{
+	this->jQueryMobileHeaderContent << html;
+}
+
 std::string IElement::getText()
 {
 	std::stringstream elementHTML;

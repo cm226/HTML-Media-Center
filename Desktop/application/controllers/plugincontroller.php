@@ -5,31 +5,7 @@ class PluginController extends Controller
 function Main()
 {
 	$groupedPluginList = $this->Plugin->getPluginList();
-	$this->set('plugins',$groupedPluginList);
-	
-	
-	
-	/*$plugins= array();
-	$curNestedGroup = array();
-	foreach($groupedPluginList as $pluginName)
-	{
-		if($pluginName[0] == '%')
-		{
-			
-			if(count($curNestedGroup) > 0)
-			{
-				$curNestedGroupClone = $curNestedGroup;
-				unset($curNestedGroup);
-				$curNestedGroup = array();
-				array_push($plugins,$curNestedGroupClone);
-			}
-			$pluginName = substr($pluginName,1);
-		}
-		array_push($curNestedGroup,$pluginName);
-	}
-	$curNestedGroupClone = $curNestedGroup;
-	array_push($plugins,$curNestedGroupClone);
-	$this->set('plugins',$plugins);	*/	
+	$this->set('plugins',$groupedPluginList);	
 }
 
 function pluginPage($plugin)

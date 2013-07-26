@@ -10,7 +10,9 @@ if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
 }
 
 if(isset($_GET['url']))
+{
 	$url = $_GET['url'];
+}
 else
 {
 	header('Location: ../Mobile/Start/Home');

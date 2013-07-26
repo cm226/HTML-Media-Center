@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_FOLDER;?>/css/movieViewAll.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_FOLDER;?>/css/Desktop/movieViewAll.css" />
 
 <script type="text/javascript">
 

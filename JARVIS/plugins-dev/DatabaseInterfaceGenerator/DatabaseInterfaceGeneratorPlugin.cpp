@@ -57,7 +57,8 @@ std::string DatabaseInterfaceGeneratorPlugin::clearTempLocation()
 
 bool DatabaseInterfaceGeneratorPlugin::fileUploaded(Page* page, PageCallbackContext* context)
 {
-	std::string fileName = getFilenameFromContext(context->getAdditionalContext());
+	std::vector<std::string> aditionalContext = context->getAdditionalContext();
+	std::string fileName = getFilenameFromContext(aditionalContext);
 	std::list<Table> parsedTables;
 
 	SQLParser parser(fileName);

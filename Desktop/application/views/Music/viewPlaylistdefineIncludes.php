@@ -1,1 +1,1 @@
-<link rel="stylesheet" type="text/css" href="../../public/css/musicViewPlaylists.css">
+<link rel="stylesheet" type="text/css" href="../../public/css/Desktop/musicViewPlaylists.css">

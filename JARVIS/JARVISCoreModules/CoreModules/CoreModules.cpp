@@ -38,6 +38,7 @@ CoreModules::~CoreModules()
 		delete this->members->databasecon;
 		this->members->databasecon = NULL;
 	}
+
 }
 
 
