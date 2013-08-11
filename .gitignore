@@ -1,10 +1,9 @@
 *config.php
 *config.h
 
-Desktop/public/mix/*
-Desktop/config/*
-Mobile/config/*
-Mobile/public/js/ContentFlow/*
+public/mix/*
+config/*
+public/js/ContentFlow/*
 
 public/img/Music/Albums/*
 public/img/Music/Artists/*

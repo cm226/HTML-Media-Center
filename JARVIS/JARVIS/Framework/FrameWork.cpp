@@ -18,8 +18,6 @@ JARVISFramework::JARVISFramework()
 	this->shuttingDown = false;
 
 	this->cModules.getComms()->messagesubject()->onListPluginsMessageReceved.connect(this, &JARVISFramework::loadedPlugins);
-	this->cModules.getComms()->messagesubject()->onPluginPageMessageReceved.connect(this, &JARVISFramework::pluginPageRequestHandler);
-	this->cModules.getComms()->messagesubject()->onPluginInteractionMessageReceved.connect(this,&JARVISFramework::pluginInteractionRequestHandler);
 
 	EventManager::commandAndControlMessageReceved.attach(this,&JARVISFramework::commandAndControlMessageReceved);
 
@@ -29,6 +27,8 @@ JARVISFramework::JARVISFramework()
 #else
 	this->pluginLoader = new Loader("/var/www/HTML-Media-Center/JARVIS/Plugins");
 #endif
+
+	this->pluginPageResponder.reset(new PluginPageResponder(this->pluginLoader, this->cModules.getComms()));
 
 	ErrorLogger::logInfo("Loading Modules");
 	this->loadStartupPlugins();
@@ -206,54 +206,6 @@ bool JARVISFramework::commandAndControlMessageReceved(int type)
 
 	return true;
 
-}
-
-void JARVISFramework::pluginPageRequestHandler(TranslatedMessages::PluginPageMessage* msg, coremodules::comms::protocals::IProtocal* protocal)
-{
-	
-	std::string page = "";
-	std::string pluginName(msg->pluginName());
-
-	Plugin* plugin = this->pluginLoader->getPluginByName(pluginName);
-	if(plugin != NULL)
-	{
-		Page pluginPage;
-		plugin->whatDoYouLookLike(&pluginPage);
-
-		pluginPage.buildPage(&page);
-		pluginPage.freePage();
-	}
-
-	protocal->sendMessage(new TranslatedMessages::ReplyMessage(page));
-}
-
-void JARVISFramework::pluginInteractionRequestHandler(TranslatedMessages::PluginInteractionRequestMessage* msg, coremodules::comms::protocals::IProtocal* protocal)
-{
-	Plugin* p = this->pluginLoader->getPluginByName(msg->pluginName);
-	Page page;
-	PageCallbackContext pcContext;
-	
-	std::vector<std::string> contextVals(msg->contextValues.begin(), msg->contextValues.end());
-	pcContext.setAdditionalContext(&contextVals);
-	std::istringstream buffer(msg->callbackID);
-
-	CALLBACk_HANDLE callbackHandl;
-	buffer >> callbackHandl; 
-
-	pcContext.callbackHandle = callbackHandl;
-	std::string sPage;
-	if(!p->notifyPageCallback(&page,&pcContext))
-	{
-		ErrorLogger::logError("failed to call plugin callback");
-		sPage = "Plugin error not enough data see JARVIS log for more";
-	}
-
-	
-	page.buildPage(&sPage);
-	page.freePage();
-
-
-	protocal->sendMessage(new TranslatedMessages::ReplyMessage(sPage));
 }
 
 

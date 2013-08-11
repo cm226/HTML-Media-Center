@@ -20,9 +20,10 @@ private:
 	std::vector<IElement*>* elements;
 
 	void buildHeader();
-	void buildCSSIncludes();
-	void buildJSIncludes();
-	void buildEmbeddedJS();
+
+	void buildCSSIncludes(std::list<std::string> cssIncludes);
+	void buildJSIncludes(std::list<std::string> jsIncludes);
+	void buildEmbeddedJS(std::string code);
 
 	void buildJqueryHeader();
 	void buildBody();

@@ -93,6 +93,7 @@ void TwoByteMsgLen::sendMessage( AbstractMessage* data)
 
 		this->sendMessageChunks(messageChunks);
 	}
+	delete data;
 }
 
 void TwoByteMsgLen::sendMessageChunks(std::list<std::string>& chunks)

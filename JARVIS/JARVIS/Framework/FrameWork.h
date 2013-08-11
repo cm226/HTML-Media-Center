@@ -13,18 +13,18 @@
 
 #include "../../JARVISCoreModules/CoreModules/CoreModules.h"
 #include "Plugin/Loader/Loader.h"
-
-#include "../../JARVISCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ListPluginsMessage.h"
-#include "../../JARVISCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/PluginPageMessage.h"
-#include "../../JARVISCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/PluginInteractionRequestMessage.h"
+#include "PluginPageResponder.h"
 
 #include "../../JARVISCoreModules/CoreModules/Comms/Protocals/IProtocal.h"
+#include <boost/scoped_ptr.hpp>
 
 class JARVISFramework
 {
 private:
 	Loader* pluginLoader;
+	boost::scoped_ptr<PluginPageResponder> pluginPageResponder;
 	CoreModules cModules;
+
 
 	bool shuttingDown;
 	CppEventHandler ppEventHandler;
@@ -40,9 +40,6 @@ public:
 
 private:
 	void loadedPlugins(ListPluginsMessage*, coremodules::comms::protocals::IProtocal*);
-	void pluginPageRequestHandler(TranslatedMessages::PluginPageMessage*, coremodules::comms::protocals::IProtocal*);
-
-	void pluginInteractionRequestHandler(TranslatedMessages::PluginInteractionRequestMessage* msg, coremodules::comms::protocals::IProtocal* p);
 
 	void loadStartupPlugins();
 	bool commandAndControlMessageReceved(int type);

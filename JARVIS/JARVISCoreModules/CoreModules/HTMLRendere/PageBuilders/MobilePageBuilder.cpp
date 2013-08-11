@@ -6,6 +6,7 @@
  */
 
 #include "MobilePageBuilder.h"
+#include "../../config.h"
 
 MobilePageBuilder::MobilePageBuilder() {
 	// TODO Auto-generated constructor stub
@@ -19,26 +20,44 @@ MobilePageBuilder::~MobilePageBuilder() {
 
 void MobilePageBuilder::buildHeader()
 {
-	buildCSSIncludes();
-	buildJSIncludes();
-	buildEmbeddedJS();
+	page << "<!DOCTYPE html>\
+<html>\
+<head>\
+<title>Is this thing on?</title>\
+\<script type=\"text/javascript\" src='" << HTMLMEDIAPUBLIC << "/js/helperFunctions.js'></script>\
+<script type=\"text/javascript\" src='" << HTMLMEDIAPUBLIC << "/js/jquery-1.10.1.min.js'></script>\
+<script type=\"text/javascript\" src='" << HTMLMEDIAPUBLIC << "/js/jquery.mobile-1.3.1.min.js'></script>\
+<link rel=\"stylesheet\" href='" << HTMLMEDIAPUBLIC << "/css/Mobile/jquery.mobile-1.3.1.min.css'/>\
+<link rel=\"stylesheet\" type=\"text/css\" href='" << HTMLMEDIAPUBLIC << "/css/Mobile/genericStyle.css'>\
+<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1\">";
+
+	for(std::vector<IElement*>::iterator it =  this->elements->begin(); it != this->elements->end(); it++)
+	{
+		buildCSSIncludes((*it)->getCSSIncludes());
+		buildEmbeddedJS((*it)->getEmbeddedJS());
+		buildJSIncludes((*it)->getJSIncludes());
+	}
 	page << "</head>";
-	page << "<body><div data-role=\"page\" data-theme=\"a\">";
-}
-
-void MobilePageBuilder::buildCSSIncludes()
-{
 
 }
 
-void MobilePageBuilder::buildJSIncludes()
+void MobilePageBuilder::buildCSSIncludes(std::list<std::string> cssIncludes)
 {
-
+		for(std::list<std::string>::iterator includeIt = cssIncludes.begin();
+			includeIt != cssIncludes.end(); includeIt++)
+				page << "<LINK href=\" " << (*includeIt)<< "\" rel=\"stylesheet\" type=\"text/css\">";
 }
 
-void MobilePageBuilder::buildEmbeddedJS()
+void MobilePageBuilder::buildJSIncludes(std::list<std::string> jsIncludes)
 {
+	for(std::list<std::string>::iterator includeIt = jsIncludes.begin();
+		includeIt != jsIncludes.end(); includeIt++)
+		this->page << "<script type=\"text/JavaScript\" src=\" " << *includeIt<< "\"></script>";
+}
 
+void MobilePageBuilder::buildEmbeddedJS(std::string code)
+{
+	this->page << "<script type=\"text/JavaScript\"> " << code << "</script>";
 }
 
 void MobilePageBuilder::buildJqueryHeader()
@@ -52,6 +71,11 @@ void MobilePageBuilder::buildJqueryHeader()
 		 <<"</ul>"
 		 <<"</div>";
 
+	for(std::vector<IElement*>::iterator it =  this->elements->begin(); it != this->elements->end(); it++)
+	{
+		page << (*it)->getJQueryMobileHeaderContent();
+	}
+
 	page << "</div>";
 
 
@@ -59,12 +83,19 @@ void MobilePageBuilder::buildJqueryHeader()
 
 void MobilePageBuilder::buildBody()
 {
+	page << "<div data-role=\"content\">";
 
+	for(std::vector<IElement*>::iterator it =  this->elements->begin(); it != this->elements->end(); it++)
+	{
+		std::string elementBody =(*it)->getMobileText();
+		this->page << elementBody;
+	}
+	page << "</div>";
 }
 
 void MobilePageBuilder::buildFooter()
 {
-	page << "</div></body>";
+
 }
 
 void MobilePageBuilder::buildPage(std::string* page, std::vector<IElement*>* elements)
@@ -72,8 +103,12 @@ void MobilePageBuilder::buildPage(std::string* page, std::vector<IElement*>* ele
 	this->elements = elements;
 
 	buildHeader();
+	this->page << "<body><div data-role=\"page\" data-theme=\"a\">";
+
 	buildJqueryHeader();
 	buildBody();
+
+	this->page << "</div></body>";
 	buildFooter();
 
 	*page = this->page.str();

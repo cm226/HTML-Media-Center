@@ -22,12 +22,18 @@ MusicPlayer::MusicPlayer(CALLBACk_HANDLE onPlaylistfinished, MusicPlaylist& play
 	std::string playlistText = _playlist.getText();
 	buildPlaylistHTML(playlist);
 
+	this->appendJQueryMobileHeaderContent("	<div data-display=\"overlay\" data-position=\"right\" data-theme=\"a\" data-role=\"panel\" id=\"songPanel\">\
+			<div id=\"songContainer\">\
+			<ul data-role=\"listview\" data-icon=\"false\" data-inset=\"true\" data-filter=\"false\" data-theme=\"a\">"
+			+ playlistHTML + "</ul>\
+			</div>\
+		</div><!-- /panel -->");
 
 	includeJS(HTMLMEDIAPUBLIC + std::string("/js/jquery-1.10.1.min.js"));
 	includeJS(HTMLMEDIAPUBLIC + std::string("/js/jquery.mobile-1.3.1.min.js"));
 
-	includeCSS(HTMLMEDIAPUBLIC + std::string("css/jquery.mobile-1.3.1.min.css"));
-	includeCSS(HTMLMEDIAPUBLIC + std::string("/css/musicViewPlayer.css"));
+	includeCSS(HTMLMEDIAPUBLIC + std::string("/css/Mobile/jquery.mobile-1.3.1.min.css"));
+	includeCSS(HTMLMEDIAPUBLIC + std::string("/css/Mobile/musicViewPlayer.css"));
 
 	appendEmbeddedJSCode("var playlist = [" + playlistText + "];");
 	appendEmbeddedJSCode("$( document ).on( \"pageinit\", \"#musicPlayer\", function() {\
@@ -78,22 +84,14 @@ void MusicPlayer::buildPlaylistHTML(MusicPlaylist& playlist)
 
 std::string MusicPlayer::getTagText()
 {
-	return "div";
+	return "";
 }
 
 std::string MusicPlayer::getTagContent()
 {
 	std::stringstream player;
-	player << "<div data-role=\"header\">\
-	<div data-display=\"overlay\" data-position=\"right\" data-theme=\"a\" data-role=\"panel\" id=\"songPanel\">\
-		<div id=\"songContainer\">\
-		<ul data-role=\"listview\" data-icon=\"false\" data-inset=\"true\" data-filter=\"false\" data-theme=\"a\">"
-		<< playlistHTML << "</ul>\
-		</div>\
-	</div><!-- /panel -->\
-</div> <!-- /header -->\
-<div data-role=\"content\">\
-<div data-role=\"controlgroup\" data-type=\"horizontal\" class=\"localnav\">\
+
+	player <<" <div data-role=\"controlgroup\" data-type=\"horizontal\" class=\"localnav\">\
             <a href=\"#\" data-role=\"button\" data-transition=\"fade\" id=\"playPrev\">Previus</a>\
             <a href=\"#\" data-role=\"button\" data-transition=\"fade\" id=\"playBttn\">Play/Pause</a>\
             <a href=\"#\" data-role=\"button\" data-transition=\"fade\" id=\"playNext\">Next</a>\
@@ -112,7 +110,6 @@ std::string MusicPlayer::getTagContent()
 </div>\
 <div id=\"volumeSlider\">\
   <input type=\"range\" name=\"slider-2\" id=\"slider-2\" data-highlight=\"true\" min=\"0\" max=\"100\" value=\"50\">\
-</div>\
 </div>";
 
 	return player.str();

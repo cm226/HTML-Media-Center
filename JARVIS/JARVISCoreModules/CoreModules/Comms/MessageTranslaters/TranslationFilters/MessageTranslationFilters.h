@@ -5,6 +5,7 @@
 #include "PluginPollTranslationFilter.h"
 #include "CommandAndcontrolTranslationFilter.h"
 #include "PluginPageTranslationFilter.h"
+#include "MobilePluginPageTranslationFilter.h"
 #include "PluginInteractionFilter.h"
 
 #endif

@@ -12,7 +12,7 @@
 #include <sstream>
 
 #include "IPageBuilder.h"
-#include "IElement.h"
+#include "../IElement.h"
 
 
 class DesktopPageBuilder : public IPageBuilder

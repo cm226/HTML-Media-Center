@@ -28,6 +28,7 @@ public:
 	void addElement(IElement* element);
 	void freePage();
 	void buildPage(std::string* page);
+	void buildMobilePage(std::string* page);
 };
 
 

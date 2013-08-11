@@ -146,6 +146,24 @@ std::string IElement::getText()
 	return elementHTML.str();
 }
 
+std::string IElement::getMobileText()
+{
+	std::stringstream elementHTML;
+	std::string tagTxt = this->getTagMobileText();
+	if(tagTxt.length() != 0)
+		elementHTML << "<" <<tagTxt;
+
+	elementHTML << writeAttributes() << ">";
+	elementHTML << getMobileTagContent();
+
+	if(tagTxt.length() != 0)
+		elementHTML << "</" << this->getTagText() << ">";
+
+	return elementHTML.str();
+
+}
+
+
 std::list<std::string>& IElement::getJSIncludes()
 {
 	return this->javascriptFiles;
@@ -158,4 +176,9 @@ std::list<std::string>& IElement::getCSSIncludes()
 std::string IElement::getEmbeddedJS()
 {
 	return this->embededJSCode.str();
+}
+
+std::string IElement::getJQueryMobileHeaderContent()
+{
+	return this->jQueryMobileHeaderContent.str();
 }

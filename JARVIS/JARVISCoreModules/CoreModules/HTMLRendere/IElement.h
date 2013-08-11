@@ -31,6 +31,7 @@ private:
 
 protected:
 	virtual std::string getTagText() = 0;
+	virtual std::string getTagMobileText(){return getTagText();};
 	virtual std::string getTagContent() = 0;
 	virtual std::string getMobileTagContent(){return getTagContent();};
 	virtual std::string writeAttributes();
@@ -57,10 +58,12 @@ public:
 	//void addAsincOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName, std::vector<std::string> contextArgs);
 
 	virtual std::string getText();
+	virtual std::string getMobileText();
 
 	std::list<std::string>& getJSIncludes();
 	std::list<std::string>& getCSSIncludes();
 	std::string getEmbeddedJS();
+	std::string getJQueryMobileHeaderContent();
 	
 
 };
