@@ -90,9 +90,6 @@
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\IElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\PageBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Containers\ElementList.cpp">
       <Filter>Source Files\ContainerTests</Filter>
     </ClCompile>
@@ -104,6 +101,12 @@
     </ClCompile>
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Elements\TextBox.cpp">
       <Filter>Source Files\ElementTests\TextBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\PageBuilders\DesktopPageBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\PageBuilders\MobilePageBuilder.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

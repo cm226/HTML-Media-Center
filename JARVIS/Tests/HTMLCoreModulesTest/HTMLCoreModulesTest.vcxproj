@@ -89,7 +89,8 @@
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Elements\TextBox.cpp" />
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\IElement.cpp" />
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\Page.cpp" />
-    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\PageBuilder.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\PageBuilders\DesktopPageBuilder.cpp" />
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\PageBuilders\MobilePageBuilder.cpp" />
     <ClCompile Include="ElementListTests.cpp" />
     <ClCompile Include="ElementTests\FileUploadTester.cpp" />
     <ClCompile Include="ElementTests\FormSubmitTester.cpp" />

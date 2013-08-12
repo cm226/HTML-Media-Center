@@ -24,7 +24,7 @@ void MobilePageBuilder::buildHeader()
 <html>\
 <head>\
 <title>Is this thing on?</title>\
-\<script type=\"text/javascript\" src='" << HTMLMEDIAPUBLIC << "/js/helperFunctions.js'></script>\
+<script type=\"text/javascript\" src='" << HTMLMEDIAPUBLIC << "/js/helperFunctions.js'></script>\
 <script type=\"text/javascript\" src='" << HTMLMEDIAPUBLIC << "/js/jquery-1.10.1.min.js'></script>\
 <script type=\"text/javascript\" src='" << HTMLMEDIAPUBLIC << "/js/jquery.mobile-1.3.1.min.js'></script>\
 <link rel=\"stylesheet\" href='" << HTMLMEDIAPUBLIC << "/css/Mobile/jquery.mobile-1.3.1.min.css'/>\
