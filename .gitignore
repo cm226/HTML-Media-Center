@@ -1,8 +1,9 @@
-*config.php
+config/config.php
 *config.h
 
+.metadata/*
+
 public/mix/*
-config/*
 public/js/ContentFlow/*
 
 public/img/Music/Albums/*
@@ -34,4 +35,5 @@ public/mix/*
 
 JARVIS/JARVISCoreModules/CoreModules/Errors/StackWalker/*
 JARVIS/logs/*
+JARVIS/log/*
 JARVIS/Plugins/*
