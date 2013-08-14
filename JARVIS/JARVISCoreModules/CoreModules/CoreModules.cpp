@@ -9,7 +9,7 @@
 
 #include <iostream>
 #include "config.h"
-#include "Errors/ErrorLogger.h"
+#include "../../ErrorLogger/Errors/ErrorLogger.h"
 #include "Comms/Comms.h"
 
 

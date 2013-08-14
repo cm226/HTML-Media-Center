@@ -109,7 +109,6 @@
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Transever\TCPAsyncTransever.cpp" />
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Transever\TCPTransever.cpp" />
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Transever\TranseverConnectionFactory.cpp" />
-    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Errors\ErrorLogger.cpp" />
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\EventModel\EventHandler\EventHandler.cpp" />
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\EventModel\EventHandler\EvntHandlerBase.cpp" />
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\EventModel\EventManager.cpp" />
@@ -120,6 +119,11 @@
     <ClCompile Include="TwoByteMsgLenTests.cpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ErrorLogger\ErrorLogger.vcxproj">
+      <Project>{b3c985d0-399f-44ab-914a-b69d3a92c846}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

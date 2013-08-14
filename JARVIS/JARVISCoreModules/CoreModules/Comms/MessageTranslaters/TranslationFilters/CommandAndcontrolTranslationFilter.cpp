@@ -6,7 +6,7 @@
  */
 
 #include "CommandAndcontrolTranslationFilter.h"
-#include "../../../Errors/ErrorLogger.h"
+#include "../../../../../ErrorLogger/Errors/ErrorLogger.h"
 
 namespace TranslationFilters {
 

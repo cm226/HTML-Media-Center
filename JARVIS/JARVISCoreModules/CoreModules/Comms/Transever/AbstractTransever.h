@@ -9,7 +9,7 @@
 #define ABSTRACTTRANSEVER_H_
 
 #include <string>
-#include "../../Errors/ErrorLogger.h"
+#include "../../../../ErrorLogger/Errors/ErrorLogger.h"
 #include "../MessageTranslaters/TranslatedMessages/AbstractMessage.h"
 
 class AbstractTransever {

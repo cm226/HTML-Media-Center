@@ -29,10 +29,6 @@ MusicPlayer::MusicPlayer(CALLBACk_HANDLE onPlaylistfinished, MusicPlaylist& play
 			</div>\
 		</div><!-- /panel -->");
 
-	includeJS(HTMLMEDIAPUBLIC + std::string("/js/jquery-1.10.1.min.js"));
-	includeJS(HTMLMEDIAPUBLIC + std::string("/js/jquery.mobile-1.3.1.min.js"));
-
-	includeCSS(HTMLMEDIAPUBLIC + std::string("/css/Mobile/jquery.mobile-1.3.1.min.css"));
 	includeCSS(HTMLMEDIAPUBLIC + std::string("/css/Mobile/musicViewPlayer.css"));
 
 	appendEmbeddedJSCode("var playlist = [" + playlistText + "];");

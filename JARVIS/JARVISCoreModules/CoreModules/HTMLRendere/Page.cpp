@@ -12,7 +12,7 @@
 
 Page::Page() {
 
-
+	_aditionalContextLenth = 0;
 }
 
 Page::~Page() {
@@ -43,6 +43,6 @@ void Page::buildPage(std::string* page)
 
 void Page::buildMobilePage(std::string* page)
 {
-	MobilePageBuilder mobilePageBuilder;
+	MobilePageBuilder mobilePageBuilder(_aditionalContextLenth);
 	mobilePageBuilder.buildPage(page, &this->elements);
 }

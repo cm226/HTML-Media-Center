@@ -5,8 +5,7 @@
  *      Author: craig
  */
 
-#ifndef SONG_H_
-#define SONG_H_
+#pragma once
 
 #include <string>
 #include "../../../exportMacros.h"
@@ -16,19 +15,20 @@ namespace coremodules {
 namespace htmlrendere {
 namespace elements {
 
-class Song {
+class DLLCORE_API Song {
 
 private:
+	#pragma warning( disable : 4251)
 	std::string _name;
 	std::string _artits;
-
 	std::string _url;
+	#pragma warning( default : 4251)
 
 	int _len_hour, _len_min, _len_sec;
 
 public:
 	Song(std::string name,std::string url, std::string artist);
-	virtual ~Song();
+	virtual ~Song(){};
 
 	void setLength(int hours, int mins, int sec);
 
@@ -48,4 +48,3 @@ public:
 } /* namespace elements */
 } /* namespace htmlrendere */
 } /* namespace coremodules */
-#endif /* SONG_H_ */

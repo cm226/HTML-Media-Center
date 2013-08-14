@@ -168,8 +168,6 @@
     <ClCompile Include="CoreModules\Database\Tables\Song\Fields\songRating.cpp" />
     <ClCompile Include="CoreModules\Database\Tables\Song\Fields\songURL.cpp" />
     <ClCompile Include="CoreModules\Database\Tables\Song\Song.cpp" />
-    <ClCompile Include="CoreModules\Errors\ErrorLogger.cpp" />
-    <ClCompile Include="CoreModules\Errors\StackWalker\StackWalker.cpp" />
     <ClCompile Include="CoreModules\EventModel\EventHandler\EventHandler.cpp" />
     <ClCompile Include="CoreModules\EventModel\EventHandler\EvntHandlerBase.cpp" />
     <ClCompile Include="CoreModules\EventModel\EventManager.cpp" />
@@ -185,13 +183,15 @@
     <ClCompile Include="CoreModules\HTMLRendere\Elements\HTMLImage.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\Lable.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\MenuList\MenuList.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\MusicPlayer\MusicPlayer.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\MusicPlayer\MusicPlaylist.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\MusicPlayer\Song.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\TextBox.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\IElement.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Page.cpp" />
     <ClCompile Include="CoreModules\Database\Querys\Descriptor\Limit.cpp" />
     <ClCompile Include="CoreModules\Database\Querys\Descriptor\Descriptor.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\Hyperlink.cpp" />
-    <ClCompile Include="CoreModules\Errors\MyStackWalker.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockedElements\LeftDockedElement.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockedElements\RightDockedElement.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockedElements\topDockedElement.cpp" />
@@ -321,8 +321,6 @@
     <ClInclude Include="CoreModules\Database\Tables\Song\Fields\songURL.h" />
     <ClInclude Include="CoreModules\Database\Tables\Song\Song.h" />
     <ClInclude Include="CoreModules\Database\Tables\Tables.h" />
-    <ClInclude Include="CoreModules\Errors\ErrorLogger.h" />
-    <ClInclude Include="CoreModules\Errors\StackWalker\StackWalker.h" />
     <ClInclude Include="CoreModules\EventModel\EventHandler\EventHandler.h" />
     <ClInclude Include="CoreModules\EventModel\EventHandler\EvntHandlerBase.h" />
     <ClInclude Include="CoreModules\EventModel\EventManager.h" />
@@ -340,6 +338,9 @@
     <ClInclude Include="CoreModules\HTMLRendere\Elements\HTMLImage.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\Lable.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\MenuList\MenuList.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\MusicPlayer\MusicPlayer.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\MusicPlayer\MusicPlaylist.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\MusicPlayer\Song.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\TextBox.h" />
     <ClInclude Include="CoreModules\HTMLRendere\HTMLRendere.h" />
     <ClInclude Include="CoreModules\HTMLRendere\IElement.h" />
@@ -355,7 +356,6 @@
     <ClInclude Include="CoreModules\Database\Querys\Descriptor\Descriptor.h" />
     <ClInclude Include="CoreModules\Database\Tables\Movie\Movie\Fields\movieID.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\Hyperlink.h" />
-    <ClInclude Include="CoreModules\Errors\MyStackWalker.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockedElements\LeftDockedElement.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockedElements\RightDockedElement.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockedElements\topDockedElement.h" />
@@ -363,6 +363,11 @@
     <ClInclude Include="CoreModules\HTMLRendere\PageBuilders\DesktopPageBuilder.h" />
     <ClInclude Include="CoreModules\HTMLRendere\PageBuilders\IPageBuilder.h" />
     <ClInclude Include="CoreModules\HTMLRendere\PageBuilders\MobilePageBuilder.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ErrorLogger\ErrorLogger.vcxproj">
+      <Project>{b3c985d0-399f-44ab-914a-b69d3a92c846}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

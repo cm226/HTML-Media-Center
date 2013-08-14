@@ -2,7 +2,7 @@
 
 
 #include "../../../../JARVISCoreModules/CoreModules/config.h"
-#include "../../../../JARVISCoreModules/CoreModules/Errors/ErrorLogger.h"
+#include "../../../../ErrorLogger/Errors/ErrorLogger.h"
 #include <functional>
 #include <boost/bind.hpp>
 #include <sstream>

@@ -15,7 +15,7 @@
 #include <map>
 #include <array>
 #include "../../../JARVISCoreModules/CoreModules/HTMLRendere/Page.h"
-#include "../../../JARVISCoreModules/CoreModules/Errors/ErrorLogger.h"
+#include "../../../ErrorLogger/Errors/ErrorLogger.h"
 #include <exception>
 #include "HTMLCALLBACKDef.h"
 

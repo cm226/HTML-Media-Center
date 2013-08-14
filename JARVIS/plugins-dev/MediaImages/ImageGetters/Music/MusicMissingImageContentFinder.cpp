@@ -5,7 +5,7 @@
 #include <boost/algorithm/string.hpp>
 #include "MusicMissingImageContentFinder.h"
 #include "../../../../JARVISCoreModules/CoreModules/config.h"
-#include "../../../../JARVISCoreModules/CoreModules/Errors/ErrorLogger.h"
+#include "../../../../ErrorLogger/Errors/ErrorLogger.h"
 
 #include "../../../../JARVISCoreModules/CoreModules/Database/Tables/Artist/Artist.h"
 #include "../../../../JARVISCoreModules/CoreModules/Database/Tables/Album/Album.h"

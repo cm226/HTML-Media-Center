@@ -22,7 +22,7 @@ void MessageChunker::chunkMessage(std::list<std::string>& chunks)
 		unsigned nextChunkEnd = nextChunkStart+this->chunkSize;
 		unsigned chunkSize = this->chunkSize;
 		if(nextChunkEnd > messageLength)
-			chunkSize = nextChunkEnd - messageLength;
+			chunkSize =  messageLength - nextChunkStart;
 
 		std::string nextChunk = this->message.substr(nextChunkStart,chunkSize);
 		chunks.push_back(nextChunk);

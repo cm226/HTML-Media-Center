@@ -16,8 +16,11 @@
 class MobilePageBuilder : public IPageBuilder
 {
 private:
+	std::string publicURL;
 	std::stringstream page;
 	std::vector<IElement*>* elements;
+
+	inline void calcPublicURL(int aditionalContextLength);
 
 	void buildHeader();
 
@@ -30,7 +33,7 @@ private:
 	void buildFooter();
 
 public:
-	MobilePageBuilder();
+	MobilePageBuilder(int aditionalContextLength);
 	virtual ~MobilePageBuilder();
 
 	void buildPage(std::string* page, std::vector<IElement*>* elements);

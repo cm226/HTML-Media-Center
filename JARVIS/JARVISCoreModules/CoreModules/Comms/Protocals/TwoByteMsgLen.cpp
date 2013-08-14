@@ -6,7 +6,7 @@
  */
 
 #include "TwoByteMsgLen.h"
-#include "../../Errors/ErrorLogger.h"
+#include "../../../../ErrorLogger/Errors/ErrorLogger.h"
 #include "../Transever/Exceptions/TimeoutExpiredException.h"
 #include "../Transever/MessageChunker.h"
 

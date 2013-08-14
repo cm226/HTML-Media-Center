@@ -6,7 +6,7 @@
  */
 
 #include "PluginInteractionRequestMessage.h"
-#include "../../../Errors/ErrorLogger.h"
+#include "../../../../../ErrorLogger/Errors/ErrorLogger.h"
 #include "ReplyMessage.h"
 
 

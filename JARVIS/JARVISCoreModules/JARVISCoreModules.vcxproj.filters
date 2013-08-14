@@ -99,9 +99,6 @@
     <ClCompile Include="CoreModules\Database\Tables\IDatabaseTableField.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CoreModules\Errors\ErrorLogger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CoreModules\EventModel\EventHandler\EventHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -157,12 +154,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CoreModules\HTMLRendere\Elements\Hyperlink.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CoreModules\Errors\StackWalker\StackWalker.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CoreModules\Errors\MyStackWalker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CoreModules\Database\Tables\Album\Fields\albumID.cpp">
@@ -396,6 +387,15 @@
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\MobilePluginPageTranslationFilter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\MusicPlayer\MusicPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\MusicPlayer\MusicPlaylist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\MusicPlayer\Song.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreModules\Comms\Comms.h">
@@ -527,9 +527,6 @@
     <ClInclude Include="CoreModules\Database\Tables\Tables.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CoreModules\Errors\ErrorLogger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CoreModules\EventModel\EventHandler\EventHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -627,12 +624,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CoreModules\HTMLRendere\Elements\Hyperlink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CoreModules\Errors\StackWalker\StackWalker.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CoreModules\Errors\MyStackWalker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CoreModules\Database\Tables\Album\Fields\year.h">
@@ -885,6 +876,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\MobilePluginPageTranslationFilter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\MusicPlayer\MusicPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\MusicPlayer\MusicPlaylist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\MusicPlayer\Song.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

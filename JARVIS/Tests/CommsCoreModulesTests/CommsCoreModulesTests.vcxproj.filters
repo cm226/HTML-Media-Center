@@ -116,9 +116,6 @@
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Transever\Exceptions\TimeoutExpiredException.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Errors\ErrorLogger.cpp">
-      <Filter>Source Files\SRC</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\CURL\CurlManager.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>

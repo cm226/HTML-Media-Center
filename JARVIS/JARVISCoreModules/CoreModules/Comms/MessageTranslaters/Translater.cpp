@@ -7,7 +7,7 @@
 
 #include "Translater.h"
 
-#include "../../Errors/ErrorLogger.h"
+#include "../../../../ErrorLogger/Errors/ErrorLogger.h"
 #include "TranslatedMessages/TranslatedMessages.h"
 #include <stdexcept>
 
