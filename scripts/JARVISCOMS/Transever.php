@@ -69,28 +69,35 @@ public function sendMessage($Message)
 public function readReply()
 {
 	if($this->connected)
-	{
-		$out = "";
+	{		
+
 		$msgSizeBytes = socket_read($this->sock, 2);
 		$messageSize = ord($msgSizeBytes[0]);
 		$messageSize = $messageSize << 8;
 		$messageSize += ord($msgSizeBytes[1]);
 
+		$read_chunk_size = 2048;
 		$bytesLeft = $messageSize;
-
+		
+		$out_chunks = array((int)ceil($messageSize/$read_chunk_size));
+		var_dump($messageSize);
+		$read_chunk_counter = 0;
 		while($bytesLeft > 0)
 		{
-			if($bytesLeft > 2048)
-				$out .= socket_read($this->sock, 2048);
+			if($bytesLeft > $read_chunk_size)
+				$out_chunks[$read_chunk_counter] = socket_read($this->sock, $read_chunk_size);
 			else
-				$out .= socket_read($this->sock, $bytesLeft);
+				$out_chunks[$read_chunk_counter] = socket_read($this->sock, $bytesLeft);
 				
-			$bytesLeft -= 2048;
+			$bytesLeft -= $read_chunk_size;
+			$read_chunk_counter++;
 		}
 		
+		var_dump($out_chunks);
+		$out = implode($out_chunks);
 		$messageParts = explode("$",$out);
 		$out = substr($out, strlen($messageParts[0])+1);
-		return $out;
+		return "";//$out;
 	}
 	return "Error, connection closed";
 }
