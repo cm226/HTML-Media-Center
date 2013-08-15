@@ -80,7 +80,7 @@ public function readReply()
 		$bytesLeft = $messageSize;
 		
 		$out_chunks = array((int)ceil($messageSize/$read_chunk_size));
-		var_dump($messageSize);
+
 		$read_chunk_counter = 0;
 		while($bytesLeft > 0)
 		{
@@ -93,11 +93,12 @@ public function readReply()
 			$read_chunk_counter++;
 		}
 		
-		var_dump($out_chunks);
 		$out = implode($out_chunks);
 		$messageParts = explode("$",$out);
-		$out = substr($out, strlen($messageParts[0])+1);
-		return "";//$out;
+
+		
+		$out = substr($out, strlen($messageParts[0])+1,-1);
+		return $out;
 	}
 	return "Error, connection closed";
 }
