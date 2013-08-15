@@ -116,9 +116,6 @@
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Transever\Exceptions\TimeoutExpiredException.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Errors\ErrorLogger.cpp">
-      <Filter>Source Files\SRC</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\CURL\CurlManager.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
@@ -151,6 +148,12 @@
     </ClCompile>
     <ClCompile Include="TwoByteMsgLenTests.cpp">
       <Filter>Source Files\ProtocalTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\MobilePluginPageTranslationFilter.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\MobilePluginPageMessage.cpp">
+      <Filter>Source Files\SRC</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

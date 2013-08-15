@@ -10,7 +10,7 @@
 
 #include <string>
 #include "../exportMacros.h"
-#include "../config.h"
+#include "../../JARVISCoreModules/CoreModules/config.h"
 
 #define WRITE_TO_LOGFILE true
 #define WRITE_TO_CONSOL true
@@ -24,7 +24,7 @@
 #define LOG_INFO true
 
 
-class DLLCORE_API ErrorLogger {
+class ERROR_API ErrorLogger {
 
 private:
 	static void appendToLogFile(std::string message);

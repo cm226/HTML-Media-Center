@@ -9,7 +9,7 @@
 #define COMMS_H_
 
 #include <string>
-#include "../Errors/ErrorLogger.h"
+#include "../../../ErrorLogger/Errors/ErrorLogger.h"
 
 #include "Transever/TCPAsyncTransever.h"
 #include "Transever/TranseverConnectionFactory.h"

@@ -8,7 +8,7 @@
 #include "PluginInteractionFilter.h"
 #include "../TranslatedMessages/PluginInteractionRequestMessage.h"
 #include "../../Comms.h"
-#include "../../../Errors/ErrorLogger.h"
+#include "../../../../../ErrorLogger/Errors/ErrorLogger.h"
 
 namespace TranslationFilters {
 

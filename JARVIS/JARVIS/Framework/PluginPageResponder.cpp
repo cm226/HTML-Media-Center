@@ -42,7 +42,7 @@ void PluginPageResponder::mobilePluginPageRequestHandler(TranslatedMessages::Mob
 {
 	std::string page = "";
 	std::string pluginName(msg->pluginName());
-
+	
 	Plugin* plugin = this->pluginLoader->getPluginByName(pluginName);
 	if(plugin != NULL)
 	{
@@ -64,6 +64,7 @@ void PluginPageResponder::pluginInteractionRequestHandler(TranslatedMessages::Pl
 	PageCallbackContext pcContext;
 
 	std::vector<std::string> contextVals(msg->contextValues.begin(), msg->contextValues.end());
+	page.setAditionalContextLength(contextVals.size());
 	pcContext.setAdditionalContext(&contextVals);
 	std::istringstream buffer(msg->callbackID);
 

@@ -23,9 +23,6 @@ Song::Song(std::string name, std::string url, std::string artist):
 
 }
 
-Song::~Song() {
-	// TODO Auto-generated destructor stub
-}
 
 } /* namespace elements */
 } /* namespace htmlrendere */

@@ -7,7 +7,7 @@
 
 #include "JARVISTranseverConnection.h"
 #include "../Protocals/TwoByteMsgLen.h"
-#include "../../Errors/ErrorLogger.h"
+#include "../../../../ErrorLogger/Errors/ErrorLogger.h"
 #include "../Comms.h"
 
 JARVISTranseverConnection::JARVISTranseverConnection(boost::asio::io_service& service)

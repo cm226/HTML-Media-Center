@@ -52,5 +52,23 @@ BOOST_AUTO_TEST_CASE(MessageChunkerChunkTestsEmptyString)
 	BOOST_CHECK_EQUAL(0, output.size());
 }
 
+BOOST_AUTO_TEST_CASE(MessageChunkerChunkTestsMediumSize)
+{
+	std::list<std::string> output;
+
+	std::string aMessage(3700, 'a');
+	MessageChunker chuker(2048,aMessage);
+
+	chuker.chunkMessage(output);
+	BOOST_CHECK_EQUAL(2, output.size());
+
+	std::list<std::string>::iterator output_chunks = output.begin();
+	std::string first_chunk = *output_chunks;
+	std::string second_chunk = *(++output_chunks);
+	BOOST_CHECK_EQUAL(2048, first_chunk.size());
+	BOOST_CHECK_EQUAL(1652, second_chunk.size());
+
+}
+
 
 

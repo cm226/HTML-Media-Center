@@ -12,7 +12,7 @@
 #include <boost/bind.hpp>
 #include <algorithm>
 
-#include "../../JARVISCoreModules/CoreModules/Errors/ErrorLogger.h"
+#include "../../ErrorLogger/Errors/ErrorLogger.h"
 
 MediaImagesPlugin::MediaImagesPlugin(CoreModules* framework) : Plugin(framework), 
 																movieImageGetter(framework),

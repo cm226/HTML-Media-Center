@@ -19,10 +19,12 @@ namespace coremodules {
 namespace htmlrendere {
 namespace elements {
 
-class MusicPlaylist : public IElement
+class DLLCORE_API MusicPlaylist : public IElement
 {
 private:
+	#pragma warning( disable : 4251)
 	std::list<Song> _songs;
+	#pragma warning( default : 4251)
 
 	void writeSongLength(Song& song, std::stringstream& ss);
 protected:

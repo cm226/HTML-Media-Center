@@ -7,7 +7,7 @@
 
 #include "Database.h"
 #include "ResultWrapper.h"
-#include "../Errors/ErrorLogger.h"
+#include "../../../ErrorLogger/Errors/ErrorLogger.h"
 #include <stdio.h>
 #include <sstream>
 

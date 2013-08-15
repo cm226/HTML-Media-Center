@@ -16,6 +16,7 @@
 
 class DLLCORE_API Page {
 private:
+	int _aditionalContextLenth;
 	#pragma warning( disable : 4251)
 	std::vector<IElement*> elements;
 	#pragma warning( default : 4251)
@@ -29,6 +30,8 @@ public:
 	void freePage();
 	void buildPage(std::string* page);
 	void buildMobilePage(std::string* page);
+
+	void setAditionalContextLength(int length){_aditionalContextLenth = length;};
 };
 
 

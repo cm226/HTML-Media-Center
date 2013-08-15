@@ -21,7 +21,10 @@ class DLLCORE_API MusicPlayer : public IElement
 private:
 	MusicPlaylist& _playlist;
 	CALLBACk_HANDLE _onPlaylistfinished;
+
+	#pragma warning( disable : 4251)
 	std::string playlistHTML;
+	#pragma warning( default : 4251)
 
 	void buildPlaylistHTML(MusicPlaylist& playlist);
 

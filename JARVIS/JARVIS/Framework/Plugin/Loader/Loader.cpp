@@ -7,7 +7,7 @@
 
 #include "Loader.h"
 
-#include "../../../../JARVISCoreModules/CoreModules/Errors/ErrorLogger.h"
+#include "../../../../ErrorLogger/Errors/ErrorLogger.h"
 #include <stdio.h>
 #include <sys/types.h>
 

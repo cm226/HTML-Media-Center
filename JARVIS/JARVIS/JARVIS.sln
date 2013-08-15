@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JARVIS", "JARVIS.vcxproj", "{F69942F5-6D7F-4DC6-A604-C7AA83A3F9B0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{AFB997C0-FF5E-4894-84AF-C57003862646} = {AFB997C0-FF5E-4894-84AF-C57003862646}
@@ -21,6 +21,12 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HTMLCoreModulesTest", "..\Tests\HTMLCoreModulesTest\HTMLCoreModulesTest.vcxproj", "{7376E346-1624-4BA6-9799-AD1F54F7F177}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MediaImagesTesting", "..\plugins-dev\MediaImagesTesting\MediaImagesTesting.vcxproj", "{BE561911-C146-4AF1-A5A7-97C352C5FB49}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MediaStreaming", "..\MediaStreaming\MediaStreaming\MediaStreaming.vcxproj", "{285CA905-AC26-412C-A358-A49D570286AE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MediaStreamingUnitTests", "..\MediaStreaming\MediaStreamingUnitTests\MediaStreamingUnitTests.vcxproj", "{6DD20CED-7E11-4A3A-BC00-BA2E1B950AC4}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ErrorLogger", "..\ErrorLogger\ErrorLogger.vcxproj", "{B3C985D0-399F-44AB-914A-B69D3A92C846}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +62,18 @@ Global
 		{BE561911-C146-4AF1-A5A7-97C352C5FB49}.Debug|Win32.Build.0 = Debug|Win32
 		{BE561911-C146-4AF1-A5A7-97C352C5FB49}.Release|Win32.ActiveCfg = Release|Win32
 		{BE561911-C146-4AF1-A5A7-97C352C5FB49}.Release|Win32.Build.0 = Release|Win32
+		{285CA905-AC26-412C-A358-A49D570286AE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{285CA905-AC26-412C-A358-A49D570286AE}.Debug|Win32.Build.0 = Debug|Win32
+		{285CA905-AC26-412C-A358-A49D570286AE}.Release|Win32.ActiveCfg = Release|Win32
+		{285CA905-AC26-412C-A358-A49D570286AE}.Release|Win32.Build.0 = Release|Win32
+		{6DD20CED-7E11-4A3A-BC00-BA2E1B950AC4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6DD20CED-7E11-4A3A-BC00-BA2E1B950AC4}.Debug|Win32.Build.0 = Debug|Win32
+		{6DD20CED-7E11-4A3A-BC00-BA2E1B950AC4}.Release|Win32.ActiveCfg = Release|Win32
+		{6DD20CED-7E11-4A3A-BC00-BA2E1B950AC4}.Release|Win32.Build.0 = Release|Win32
+		{B3C985D0-399F-44AB-914A-B69D3A92C846}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B3C985D0-399F-44AB-914A-B69D3A92C846}.Debug|Win32.Build.0 = Debug|Win32
+		{B3C985D0-399F-44AB-914A-B69D3A92C846}.Release|Win32.ActiveCfg = Release|Win32
+		{B3C985D0-399F-44AB-914A-B69D3A92C846}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

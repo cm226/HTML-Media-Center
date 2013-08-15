@@ -7,7 +7,7 @@
 
 #include "PluginPollTranslationFilter.h"
 #include "../../Comms.h"
-#include "../../../Errors/ErrorLogger.h"
+#include "../../../../../ErrorLogger/Errors/ErrorLogger.h"
 
 namespace TranslationFilters {
 

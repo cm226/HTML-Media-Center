@@ -7,7 +7,7 @@
 
 #include "MobilePluginPageTranslationFilter.h"
 #include "../TranslatedMessages/MobilePluginPageMessage.h"
-#include "../../../Errors/ErrorLogger.h"
+#include "../../../../../ErrorLogger/Errors/ErrorLogger.h"
 #include "../../Comms.h"
 
 namespace TranslationFilters {
