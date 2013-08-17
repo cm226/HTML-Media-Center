@@ -396,6 +396,15 @@
     <ClCompile Include="CoreModules\HTMLRendere\Elements\MusicPlayer\Song.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CoreModules\HTMLRendere\URL\URLBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\HTMLRendere\URL\IURLBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\HTMLRendere\URL\URLBuilderFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreModules\Comms\Comms.h">
@@ -885,6 +894,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CoreModules\HTMLRendere\Elements\MusicPlayer\Song.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\HTMLRendere\URL\URLBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\HTMLRendere\URL\IURLBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\HTMLRendere\URL\URLBuilderFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

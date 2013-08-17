@@ -198,6 +198,9 @@
     <ClCompile Include="CoreModules\Comms\Transever\MessageChunker.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\PageBuilders\DesktopPageBuilder.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\PageBuilders\MobilePageBuilder.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\URL\URLBuilder.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\URL\IURLBuilder.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\URL\URLBuilderFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreModules\Comms\Comms.h" />
@@ -363,6 +366,9 @@
     <ClInclude Include="CoreModules\HTMLRendere\PageBuilders\DesktopPageBuilder.h" />
     <ClInclude Include="CoreModules\HTMLRendere\PageBuilders\IPageBuilder.h" />
     <ClInclude Include="CoreModules\HTMLRendere\PageBuilders\MobilePageBuilder.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\URL\URLBuilder.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\URL\IURLBuilder.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\URL\URLBuilderFactory.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ErrorLogger\ErrorLogger.vcxproj">

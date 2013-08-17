@@ -11,8 +11,6 @@
 #include <sstream>
 
 Page::Page() {
-
-	_aditionalContextLenth = 0;
 }
 
 Page::~Page() {
@@ -43,6 +41,6 @@ void Page::buildPage(std::string* page)
 
 void Page::buildMobilePage(std::string* page)
 {
-	MobilePageBuilder mobilePageBuilder(_aditionalContextLenth);
+	MobilePageBuilder mobilePageBuilder;
 	mobilePageBuilder.buildPage(page, &this->elements);
 }

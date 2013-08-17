@@ -97,7 +97,7 @@ public function readReply()
 		$messageParts = explode("$",$out);
 
 		
-		$out = substr($out, strlen($messageParts[0])+1,-1);
+		$out = substr($out, strlen($messageParts[0])+1);
 		return $out;
 	}
 	return "Error, connection closed";

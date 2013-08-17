@@ -1,6 +1,6 @@
 <?php
 
-require '../../../Desktop/scripts/JARVISCOMS/Transever.php';
+require '../../scripts/JARVISCOMS/Transever.php';
 
 class teanseverTests extends PHPUnit_Framework_TestCase
 {

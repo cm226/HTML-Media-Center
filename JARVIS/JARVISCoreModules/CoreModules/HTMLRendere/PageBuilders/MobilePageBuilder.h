@@ -20,7 +20,7 @@ private:
 	std::stringstream page;
 	std::vector<IElement*>* elements;
 
-	inline void calcPublicURL(int aditionalContextLength);
+
 
 	void buildHeader();
 
@@ -33,7 +33,7 @@ private:
 	void buildFooter();
 
 public:
-	MobilePageBuilder(int aditionalContextLength);
+	MobilePageBuilder();
 	virtual ~MobilePageBuilder();
 
 	void buildPage(std::string* page, std::vector<IElement*>* elements);

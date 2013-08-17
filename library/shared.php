@@ -79,8 +79,12 @@ function callHook() {
 	$urlArray = array();
 	$urlArray = explode("/",$url);
 
+	if(count($urlArray) < 1)
+		header('Location: /HTML-Media-Center');
+	else if(count($urlArray) < 3)
+		header('Location: /HTML-Media-Center/'.$urlArray[0].'/Start/Home');
 	
-
+	
 	$viewVersion = $urlArray[0];
 	array_shift($urlArray);	
 	$controller = $urlArray[0];

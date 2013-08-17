@@ -7,6 +7,7 @@
 
 #include "MusicPlayer.h"
 #include "../../../config.h"
+#include "../../URL/URLBuilderFactory.h"
 
 #include <sstream>
 
@@ -20,6 +21,9 @@ MusicPlayer::MusicPlayer(CALLBACk_HANDLE onPlaylistfinished, MusicPlaylist& play
 	_onPlaylistfinished = onPlaylistfinished;
 
 	std::string playlistText = _playlist.getText();
+	URL::IURLBuilder* builder  = URL::URLBuilderFactory::Create_URL_Builder();
+	URL::IURLBuilder* publicURL =  builder->Web_Public();
+
 	buildPlaylistHTML(playlist);
 
 	this->appendJQueryMobileHeaderContent("	<div data-display=\"overlay\" data-position=\"right\" data-theme=\"a\" data-role=\"panel\" id=\"songPanel\">\
@@ -29,9 +33,12 @@ MusicPlayer::MusicPlayer(CALLBACk_HANDLE onPlaylistfinished, MusicPlaylist& play
 			</div>\
 		</div><!-- /panel -->");
 
-	includeCSS(HTMLMEDIAPUBLIC + std::string("/css/Mobile/musicViewPlayer.css"));
+	includeCSS(publicURL->Get_URL() + std::string("css/Mobile/musicViewPlayer.css"));
+	std::stringstream numSongs;
+	numSongs << "var numSongs = " << playlist.getSongs().size() << ";"<<std::endl;
+	appendEmbeddedJSCode(numSongs.str());
 
-	appendEmbeddedJSCode("var playlist = [" + playlistText + "];");
+	appendEmbeddedJSCode("var myPlaylist = [" + playlistText + "];");
 	appendEmbeddedJSCode("$( document ).on( \"pageinit\", \"#musicPlayer\", function() {\
     $( document ).on( \"swipeleft swiperight\", \"#musicPlayer\", function( e ) {\
         if ( $.mobile.activePage.jqmData( \"panel\" ) !== \"open\" ) {\
@@ -41,7 +48,7 @@ MusicPlayer::MusicPlayer(CALLBACk_HANDLE onPlaylistfinished, MusicPlaylist& play
         }\
        });\
     });");
-	includeJS(HTMLMEDIAPUBLIC + std::string("/js/player.js"));
+	includeJS(publicURL->Get_URL() + std::string("js/Mobile/player.js"));
 
 	appendEmbeddedJSCode("$( document ).ready(function() { \n \
 							$(\"#playBttn\").click(function(){playOrPause();}); \n \
@@ -56,7 +63,9 @@ MusicPlayer::MusicPlayer(CALLBACk_HANDLE onPlaylistfinished, MusicPlaylist& play
 			});\n \
 		});");
 
-	//<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	URL::URLBuilderFactory::delete_URL_builder(builder);
+	URL::URLBuilderFactory::delete_URL_builder(publicURL);
+
 }
 
 MusicPlayer::~MusicPlayer()
@@ -80,7 +89,7 @@ void MusicPlayer::buildPlaylistHTML(MusicPlaylist& playlist)
 
 std::string MusicPlayer::getTagText()
 {
-	return "";
+	return "div";
 }
 
 std::string MusicPlayer::getTagContent()
