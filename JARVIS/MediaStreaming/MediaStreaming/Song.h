@@ -7,13 +7,15 @@
 
 #pragma once
 #include <string>
+#include "exportMacros.h"
 
-
-class Song {
+class DLLMEDIA_STREAM_API Song {
 
 private:
+	#pragma warning( disable : 4251)
 	std::string _name;
 	std::string _url;
+	#pragma warning( default : 4251)
 
 public:
 	Song(std::string name,std::string url);

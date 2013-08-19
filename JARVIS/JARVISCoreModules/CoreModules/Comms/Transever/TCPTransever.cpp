@@ -140,7 +140,7 @@ void TCPTransever::sendMessage( AbstractMessage* data)
 		
 		
 		MessageChunker chunker(2048,fullMessage);
-		chunker.chunkMessage(messageChunks);
+		chunker.Chunk_Message(messageChunks);
 
 		this->sendMessageChunks(messageChunks);
 	}

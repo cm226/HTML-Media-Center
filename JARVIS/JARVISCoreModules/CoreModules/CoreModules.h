@@ -14,6 +14,7 @@
 #include "Database/Database.h"
 #include "exportMacros.h"
 #include "Comms/IComms.h"
+#include "../../MediaStreaming/MediaStreaming/MediaStreamer.h"
 
 
 class DLLCORE_API CoreModules {
@@ -30,6 +31,7 @@ public:
 
 	DatabaseTables::Database* getDatabaseConnection();
 	CommsNS::IComms* getComms();
+	MediaStreamer& getMediaStreamer();
 
 
 

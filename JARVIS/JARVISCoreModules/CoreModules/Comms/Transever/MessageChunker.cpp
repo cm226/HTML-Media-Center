@@ -1,10 +1,11 @@
 #include "MessageChunker.h"
 
 
-MessageChunker::MessageChunker(int chunksize, std::string& message): message(message)
+MessageChunker::MessageChunker(int chunksize, std::string& message)
+	: _message(message),
+	_chunkSize(chunksize)
 {
-	this->chunkSize = chunksize;
-	this->messageLength = this->message.size();
+	_messageLength = _message.size();
 }
 
 
@@ -13,20 +14,31 @@ MessageChunker::~MessageChunker(void)
 
 }
 
-void MessageChunker::chunkMessage(std::list<std::string>& chunks)
+void MessageChunker::Chunk_Message(std::list<std::string>& chunks)
 {
-	unsigned messageLength = this->message.size();
-	unsigned nextChunkStart = 0;
-	while(nextChunkStart < messageLength)
+	_messageLength = _message.size();
+	_current_chunk_begin_char = 0;
+	_current_chunk_end_char = _chunkSize;
+
+	while(_current_chunk_begin_char < _messageLength)
 	{
-		unsigned nextChunkEnd = nextChunkStart+this->chunkSize;
-		unsigned chunkSize = this->chunkSize;
-		if(nextChunkEnd > messageLength)
-			chunkSize =  messageLength - nextChunkStart;
-
-		std::string nextChunk = this->message.substr(nextChunkStart,chunkSize);
-		chunks.push_back(nextChunk);
-
-		nextChunkStart = nextChunkEnd;
+		chunks.push_back(take_chunk());
+		increment_chunk();
 	}
 }
+
+void MessageChunker::increment_chunk()
+{
+	_current_chunk_begin_char += _chunkSize;
+	_current_chunk_end_char += _chunkSize;
+
+	if(_current_chunk_end_char > _messageLength)
+		_current_chunk_end_char = _messageLength;
+}
+
+
+std::string MessageChunker::take_chunk()
+{
+	return _message.substr(_current_chunk_begin_char, _current_chunk_end_char - _current_chunk_begin_char);
+}
+

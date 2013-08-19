@@ -21,7 +21,7 @@ BOOST_AUTO_TEST_CASE(MessageChunkerChunkTestsNormal)
 	std::string message("a testMessage");
 	MessageChunker chuker(1,message);
 
-	chuker.chunkMessage(output);
+	chuker.Chunk_Message(output);
 	BOOST_CHECK_EQUAL(13, output.size());
 
 
@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE(MessageChunkerChunkTestsLargeString)
 	std::string aLongMessage(100000,'a');
 	MessageChunker chuker(10,aLongMessage);
 
-	chuker.chunkMessage(output);
+	chuker.Chunk_Message(output);
 	BOOST_CHECK_EQUAL(10000, output.size());
 
 }
@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(MessageChunkerChunkTestsEmptyString)
 	std::string aShortMessage;
 	MessageChunker chuker(10,aShortMessage);
 
-	chuker.chunkMessage(output);
+	chuker.Chunk_Message(output);
 	BOOST_CHECK_EQUAL(0, output.size());
 }
 
@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE(MessageChunkerChunkTestsMediumSize)
 	std::string aMessage(3700, 'a');
 	MessageChunker chuker(2048,aMessage);
 
-	chuker.chunkMessage(output);
+	chuker.Chunk_Message(output);
 	BOOST_CHECK_EQUAL(2, output.size());
 
 	std::list<std::string>::iterator output_chunks = output.begin();

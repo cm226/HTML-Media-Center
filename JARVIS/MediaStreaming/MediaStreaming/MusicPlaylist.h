@@ -9,13 +9,16 @@
 
 #include <list>
 
+#include "exportMacros.h"
 #include "Song.h"
 
 
-class MusicPlaylist
+class DLLMEDIA_STREAM_API MusicPlaylist
 {
 private:
+	#pragma warning( disable : 4251)
 	std::list<Song> _songs;
+	#pragma warning( default : 4251)
 
 public:
 	MusicPlaylist();

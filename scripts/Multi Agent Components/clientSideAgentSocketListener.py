@@ -1,6 +1,7 @@
 import socket
 import sys
 import MediaRendereVideo
+import MediaRendereAudio
 
 #SERVER = '192.168.0.199'
 PORT = 45001
@@ -33,11 +34,13 @@ def waitForConnection() :
     return s.accept()
 
 def rendererFactory(command, data, socket):
-    return {'PLAY_VID_STREAM':  MediaRendereVideo.render
+    return {'PLAY_VID_STREAM':  MediaRendereVideo.render,
+            'PLAY_MUSIC_STREAM' MediaRendereAudio.render
            }[command](data,socket)
 		   
 def canRanderFactory(command, data):
-    return {'PLAY_VID_STREAM':  MediaRendereVideo.canRender
+    return {'PLAY_VID_STREAM':  MediaRendereVideo.canRender,
+            'PLAY_MUSIC_STREAM' MediaRendereAudio.canRender
            }[command](data)
     
    

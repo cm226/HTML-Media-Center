@@ -33,11 +33,32 @@ void VLCTelnetInterface::Play_Playlist(std::string ip, std::string deviceName,  
 	
 	telnet_client c(io_service, iterator);
 
-	io_service.run();
-	
-	writeString("mediaPWLOL", c);
-	writeString("new "+deviceName+" broadcast enabled", c);
+	boost::thread t(boost::bind(&boost::asio::io_service::run, &io_service));
+	io_service.poll();
 
+	writeString("mediaPWLOL", c);
+	io_service.poll();
+	io_service.poll();
+	writeString("new "+deviceName+" broadcast enabled", c);
+	io_service.poll();
+	io_service.poll();
+	writeString(create_inputString(playlist, deviceName),c);
+	io_service.poll();
+	io_service.poll();
+	writeString("setup "+deviceName+" output #transcode{vcodec=none,acodec=mp3,ab=128,channels=2,samplerate=44100}:http{mux=raw,dst=:8080/"+deviceName+"}",c);
+	io_service.poll();
+	io_service.poll();
+	writeString("control "+deviceName+" play",c);
+	io_service.poll();
+	io_service.poll();
+	c.close();
+	t.join();
+
+	// vlc http://localhost:8080/current
+}
+
+std::string VLCTelnetInterface::create_inputString(MusicPlaylist& playlist, std::string& deviceName)
+{
 	std::stringstream inputString;
 
 	inputString << "setup "<< deviceName<< " ";
@@ -45,12 +66,8 @@ void VLCTelnetInterface::Play_Playlist(std::string ip, std::string deviceName,  
 	{
 		inputString << "input "<< song.getURL()<< " ";
 	}
-	writeString(inputString.str(),c);
-	writeString("setup "+deviceName+" output #standard{access=http,mux=ts,dst=192.168.1.199:8080/"+deviceName+"}",c);
-	writeString("control "+deviceName+" play\r\n",c);
 
-	c.close();
-	io_service.stop();
+	return inputString.str();
 }
 
 void VLCTelnetInterface::writeString(std::string msg, telnet_client& client)

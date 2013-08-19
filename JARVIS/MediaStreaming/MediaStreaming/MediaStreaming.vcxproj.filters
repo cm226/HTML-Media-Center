@@ -33,6 +33,9 @@
     <ClInclude Include="telnet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="exportMacros.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MediaStreamer.cpp">

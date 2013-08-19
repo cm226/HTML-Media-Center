@@ -2,13 +2,16 @@
 
 #include "AudioDevice.h"
 #include "MusicPlaylist.h"
+#include "exportMacros.h"
 
 #include <unordered_map>
 
-class MediaStreamer
+class DLLMEDIA_STREAM_API MediaStreamer
 {
 private:
+	#pragma warning( disable : 4251)
 	std::unordered_map<int,AudioDevice> audioDevices;
+	#pragma warning( default : 4251)
 
 public:
 	MediaStreamer(void);

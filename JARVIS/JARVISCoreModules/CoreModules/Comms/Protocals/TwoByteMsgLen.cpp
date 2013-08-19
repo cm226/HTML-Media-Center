@@ -89,7 +89,7 @@ void TwoByteMsgLen::sendMessage( AbstractMessage* data)
 
 		int msgLenfull = fullMessage.length();
 		MessageChunker chunker(2048,fullMessage);
-		chunker.chunkMessage(messageChunks);
+		chunker.Chunk_Message(messageChunks);
 
 		this->sendMessageChunks(messageChunks);
 	}

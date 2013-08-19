@@ -8,15 +8,22 @@
 class MessageChunker
 {
 private:
-	std::string& message;
-	int chunkSize;
-	unsigned messageLength;
+	std::string& _message;
+	int _chunkSize;
+	unsigned _messageLength;
+
+	unsigned _current_chunk_begin_char;
+	unsigned _current_chunk_end_char;
+
+	void increment_chunk();
+	std::string take_chunk();
 
 public:
 	MessageChunker(int chunksize, std::string& message);
 	~MessageChunker(void);
 
-	void chunkMessage(std::list<std::string>& chunks);
+	void Chunk_Message(std::list<std::string>& chunks);
+	
 };
 
 #endif

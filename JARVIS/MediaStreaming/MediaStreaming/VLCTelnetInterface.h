@@ -7,6 +7,8 @@
 class VLCTelnetInterface
 {
 private:
+	std::string create_inputString(MusicPlaylist& playlist, std::string& deviceName);
+
 	void writeString(std::string msg, telnet_client& client);
 	void startup_VLC();
 

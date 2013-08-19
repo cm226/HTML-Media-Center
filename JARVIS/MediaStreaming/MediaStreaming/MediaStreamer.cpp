@@ -6,7 +6,12 @@
 MediaStreamer::MediaStreamer(void)
 {
 	ErrorLogger::logInfo("Initalising Audio Devices....");
-	//TODO initalise audio list
+	
+	ErrorLogger::logWarn("initalising dummy audio device: 192.168.0.198");
+	AudioDevice dummy;
+	dummy.Set_IP("192.168.0.198");
+	this->audioDevices[dummy.getID()] = dummy;
+
 }
 
 
