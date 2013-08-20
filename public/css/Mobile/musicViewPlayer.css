@@ -38,3 +38,8 @@ background: #eee;
     float:left;
   
 }
+
+#actionsPopup
+{
+	float:right;
+}

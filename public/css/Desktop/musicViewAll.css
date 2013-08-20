@@ -41,8 +41,7 @@ p.artistInfo
 #ArtistList
 {
 	padding-left:100px;
-	height: auto;
-	max-height: 200px;
+	height:auto;
 	margin-left:20px;
 }
 

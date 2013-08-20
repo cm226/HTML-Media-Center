@@ -111,7 +111,6 @@ function sendAJAXRequest(target, arguments, fillID)
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
-			console.log("got a reply");
 		    document.getElementById(fillID).innerHTML=xmlhttp.responseText;
 		}
 	}
@@ -121,7 +120,6 @@ function sendAJAXRequest(target, arguments, fillID)
 	else{
 		xmlhttp.open("GET",target,true);}
 	xmlhttp.send();
-	console.log("sending a request: "+target+'/'+(arguments.toString()).replace(",","/"));
 }
 
 function updateAlbumList(ArtistName,AlbumListID)

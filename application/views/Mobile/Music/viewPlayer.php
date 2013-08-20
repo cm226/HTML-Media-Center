@@ -70,6 +70,17 @@ $( document ).ready(function() {
 
 	});
 
+function sendPlaylist($destination)
+{
+
+	var songs = [];
+	for (var i = 0; i < numSongs; i++)
+	 {
+		  songs.push(myPlaylist[i]);
+	 }
+	
+}
+
 
 </script>
 <script src="<?php echo PUBLIC_FOLDER;?>/js/Mobile/player.js"></script>
@@ -110,6 +121,16 @@ $( document ).ready(function() {
             <a href="#" data-role="button" data-transition="fade" id="playPrev">Previus</a>
             <a href="#" data-role="button" data-transition="fade" id="playBttn">Play/Pause</a>
             <a href="#" data-role="button" data-transition="fade" id="playNext">Next</a>
+</div>
+
+<div id="actionsPopup">
+<a href="#popupMenu" data-rel="popup" data-role="button" data-inline="true" data-transition="slideup" data-icon="gear" data-theme="a" data-iconpos="notext"></a>
+<div data-role="popup" id="popupMenu" data-theme="a">
+        <ul data-role="listview" data-inset="true" style="min-width:210px;" data-theme="d">
+            <li data-role="divider" data-theme="b">Choose an action</li>
+            <li><a href="#" onClick="">Stream Playlist</a></li>
+        </ul>
+</div>
 </div>
 
 <div id="currentSong">
