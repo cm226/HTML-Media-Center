@@ -6,7 +6,16 @@
 $(document).ready(function()
 {
 	var count = $("#ArtistList").children().length;
-	var artistListLen = (count/3) * 149;
+	var artistElementWidth = parseInt($("#ArtistList").children().first().css("width")) + 4; // + 4 is for the padding
+	
+	var numRows = 1;
+	if(window.matchMedia( "(min-height: 700px)").matches)
+		numRows = 3;
+	else if(window.matchMedia( "(min-height: 500px)").matches)
+		numRows = 2;
+	
+	console.log(numRows);
+	var artistListLen = (count/numRows) * artistElementWidth;
 	
 	$("#ArtistList").css("width",artistListLen+"px")
     

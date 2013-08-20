@@ -66,16 +66,18 @@ AbstractMessage* Translater::messageFactory(std::string msgHeader, char* data, u
 
 void Translater::buildTranslationFilterPipeline()
 {
-	TranslationFilters::PluginPollTranslationFilter* pluginPollFilter = new TranslationFilters::PluginPollTranslationFilter(this->protocal);
+	TranslationFilters::PluginPollTranslationFilter* pluginPollFilter				= new TranslationFilters::PluginPollTranslationFilter(this->protocal);
 	TranslationFilters::CommandAndcontrolTranslationFilter* commandAndcontrolFilter = new TranslationFilters::CommandAndcontrolTranslationFilter(this->protocal);
-	TranslationFilters::PluginPageTranslationFilter* pluginPageFilter = new TranslationFilters::PluginPageTranslationFilter(this->protocal);
-	TranslationFilters::PluginInteractionFilter* pluginInteractionFilter = new TranslationFilters::PluginInteractionFilter(this->protocal);
-	TranslationFilters::MobilePluginPageTranslationFilter* mobilePluginPageFilter = new TranslationFilters::MobilePluginPageTranslationFilter(this->protocal);
+	TranslationFilters::PluginPageTranslationFilter* pluginPageFilter				= new TranslationFilters::PluginPageTranslationFilter(this->protocal);
+	TranslationFilters::PluginInteractionFilter* pluginInteractionFilter			= new TranslationFilters::PluginInteractionFilter(this->protocal);
+	TranslationFilters::MobilePluginPageTranslationFilter* mobilePluginPageFilter	= new TranslationFilters::MobilePluginPageTranslationFilter(this->protocal);
+	TranslationFilters::MediaStreamRequestFilter* mediaStreamRequestFilter			= new TranslationFilters::MediaStreamRequestFilter(this->protocal);
 
 	pluginPollFilter->setNextFilter(commandAndcontrolFilter);
 	commandAndcontrolFilter->setNextFilter(pluginPageFilter);
 	pluginPageFilter->setNextFilter(pluginInteractionFilter);
 	pluginInteractionFilter->setNextFilter(mobilePluginPageFilter);
+	mobilePluginPageFilter->setNextFilter(mediaStreamRequestFilter);
 
 
 	this->translationFilter = pluginPollFilter;

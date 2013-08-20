@@ -6,3 +6,4 @@
 #include "RequestNextDataChunkMessage.h"
 #include "ReplyMessage.h"
 #include "MobilePluginPageMessage.h"
+#include "MediaStreamRequestMessage.h"

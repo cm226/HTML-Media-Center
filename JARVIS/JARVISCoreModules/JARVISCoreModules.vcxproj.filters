@@ -405,6 +405,12 @@
     <ClCompile Include="CoreModules\HTMLRendere\URL\URLBuilderFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\MediaStreamRequestMessage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\MediaStreamRequestFilter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreModules\Comms\Comms.h">
@@ -903,6 +909,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CoreModules\HTMLRendere\URL\URLBuilderFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\MediaStreamRequestMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\MediaStreamRequestFilter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

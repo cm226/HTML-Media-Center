@@ -201,6 +201,8 @@
     <ClCompile Include="CoreModules\HTMLRendere\URL\URLBuilder.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\URL\IURLBuilder.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\URL\URLBuilderFactory.cpp" />
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\MediaStreamRequestMessage.cpp" />
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\MediaStreamRequestFilter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreModules\Comms\Comms.h" />
@@ -369,6 +371,8 @@
     <ClInclude Include="CoreModules\HTMLRendere\URL\URLBuilder.h" />
     <ClInclude Include="CoreModules\HTMLRendere\URL\IURLBuilder.h" />
     <ClInclude Include="CoreModules\HTMLRendere\URL\URLBuilderFactory.h" />
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\MediaStreamRequestMessage.h" />
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\MediaStreamRequestFilter.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ErrorLogger\ErrorLogger.vcxproj">

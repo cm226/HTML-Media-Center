@@ -9,6 +9,7 @@
 #include "../TranslatedMessages/PluginPageMessage.h"
 #include "../TranslatedMessages/PluginInteractionRequestMessage.h"
 #include "../TranslatedMessages/MobilePluginPageMessage.h"
+#include "../TranslatedMessages/MediaStreamRequestMessage.h"
 
 #include "MessageSubjectEvent.h"
 
@@ -29,6 +30,7 @@ public:
 	MessageSubjectEvent<TranslatedMessages::PluginPageMessage> onPluginPageMessageReceved;
 	MessageSubjectEvent<TranslatedMessages::PluginInteractionRequestMessage> onPluginInteractionMessageReceved;
 	MessageSubjectEvent<TranslatedMessages::MobilePluginPageMessage> onMobilePluginPageMessageReceved;
+	MessageSubjectEvent<TranslatedMessages::MediaStreamRequestMessage> onMediaStreamRequestMessageReceved;
 
 	MessageSubject();
 

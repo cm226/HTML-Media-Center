@@ -7,5 +7,6 @@
 #include "PluginPageTranslationFilter.h"
 #include "MobilePluginPageTranslationFilter.h"
 #include "PluginInteractionFilter.h"
+#include "MediaStreamRequestFilter.h"
 
 #endif
