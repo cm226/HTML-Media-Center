@@ -9,12 +9,12 @@ $(document).ready(function()
 	var artistElementWidth = parseInt($("#ArtistList").children().first().css("width")) + 4; // + 4 is for the padding
 
 
-	var numRows = 3;
+	var numRows;
 	if(window.matchMedia("(max-height: 400px)").matches)
 		numRows = 1;
 	else
 	{
-		if(window.matchMedia( "(min-height: 800px)").matches)
+		if(window.matchMedia( "(min-height: 700px)").matches)
 			numRows = 3;
 		else
 			numRows = 2;
@@ -22,6 +22,7 @@ $(document).ready(function()
 
 	var artistListLen = Math.ceil(count/numRows) * artistElementWidth;
 	console.log(artistListLen);
+	console.log("num Rows: "+numRows);
 
 	$("#ArtistList").css("width",artistListLen+"px")
     

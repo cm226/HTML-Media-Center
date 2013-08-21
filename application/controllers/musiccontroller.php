@@ -98,4 +98,11 @@ class MusicController extends Controller {
 		$fileURL = ROOT . DS . 'public'. str_replace("/","\\",str_replace("../public","", $res[0]['Song']['songURL']));
 		$this->set("file",$fileURL);
 	}
+	
+	function playAudioStream()
+	{
+		$songList =  $_POST['songs'];
+		$this->set("songs",$songList);
+		
+	}
 }

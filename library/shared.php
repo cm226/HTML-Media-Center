@@ -101,7 +101,7 @@ function callHook() {
 	$baseMediaCenterURL = $publicURL;
 	$publicURL = $publicURL . 'public';
 	define("PUBLIC_FOLDER",$publicURL);
-	define("WEB_ROOT",$baseMediaCenterURL . $viewVersion . DS);
+	define("WEB_ROOT",$baseMediaCenterURL . $viewVersion.DS);
 		
 
 	$controllerName = $controller;

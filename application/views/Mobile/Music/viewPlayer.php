@@ -39,6 +39,7 @@ var myPlaylist = [
         artist:<?php echo "'".str_replace("'","\'",$song['Artist']['artistName'])."'" ;?>,
         rating:4,
         duration:<?php echo "'". $song["Song"]["songLength"] ."'";?>,
+		id: <?php echo $song["Song"]["songID"] ?>,
 	<?php 
 		if(file_exists(PUBLIC_FOLDER.'/img/Music/Albums/'.str_replace("'","\'",$song["Album"]["albumName"]).'.png'))
 		echo 'cover: \''.PUBLIC_FOLDER.'/img/Music/Albums/'. str_replace("'","\'",$song["Album"]["albumName"]).'.png \'';
@@ -70,14 +71,25 @@ $( document ).ready(function() {
 
 	});
 
-function sendPlaylist($destination)
+function sendPlaylist(destination)
 {
-
+	console.log("in here");
 	var songs = [];
 	for (var i = 0; i < numSongs; i++)
-	 {
-		  songs.push(myPlaylist[i]);
-	 }
+		  songs.push(myPlaylist[i].id);
+	 
+	 var songList = songs.toString();
+	 console.log(songList);
+	 
+	 $.ajax({
+		  type: "POST",
+		   url: <?php echo "\"".WEB_ROOT."/Music/playAudioStream\""; ?>, 
+		  data: { songs: songList }
+		}).done(function( msg )
+		{
+		  $("#actionResult").html(msg);
+		});
+	 
 	
 }
 
@@ -115,7 +127,7 @@ function sendPlaylist($destination)
 
 <div data-role="content">
 
-
+<div id="actionResult"></div>
 
 <div data-role="controlgroup" data-type="horizontal" class="localnav">
             <a href="#" data-role="button" data-transition="fade" id="playPrev">Previus</a>
@@ -128,7 +140,7 @@ function sendPlaylist($destination)
 <div data-role="popup" id="popupMenu" data-theme="a">
         <ul data-role="listview" data-inset="true" style="min-width:210px;" data-theme="d">
             <li data-role="divider" data-theme="b">Choose an action</li>
-            <li><a href="#" onClick="">Stream Playlist</a></li>
+            <li><a onClick="sendPlaylist('test');">Stream Playlist</a></li>
         </ul>
 </div>
 </div>

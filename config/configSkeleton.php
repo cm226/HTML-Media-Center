@@ -7,6 +7,6 @@ define('DB_PASSWORD', WRITE PASSWORD HERE);
 define('DB_HOST', 'localhost');
 define('VERSION',0.9);
 
-$GLOBALS['ignoreHeader1'] = array('viewPlayer','getArtistAlbums','getArtistBackgrounds','Upload','mobilePluginPage');
+$GLOBALS['ignoreHeader1'] = array('viewPlayer','getArtistAlbums','getArtistBackgrounds','Upload','mobilePluginPage','playAudioStream');
 
 define('ROOT_PASSWORD', WRITE PASSWORD HERE);
