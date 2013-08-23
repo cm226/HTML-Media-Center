@@ -18,6 +18,13 @@ function __construct()
 	   }
 }
 
+
+function send($message)
+{
+	$this->transever->sendMessage($message);
+	return $this->transever->readReply();
+}
+
 function listLoadedPlugins()
 {
 	$this->transever->sendMessage(new LSPlugins());
@@ -43,7 +50,6 @@ function requestPluginInteractionPage($pluginCallbackID, $pluginContextArgs)
 	$this->transever->sendMessage(new PluginPageInteractionMessage($pluginCallbackID, $pluginContextArgs));
 	return $this->transever->readReply();
 }
-
 
 
 }

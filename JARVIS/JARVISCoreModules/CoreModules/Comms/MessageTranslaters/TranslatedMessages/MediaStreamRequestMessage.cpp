@@ -14,6 +14,7 @@ MediaStreamRequestMessage::MediaStreamRequestMessage(char* data, unsigned int le
 		try
 		{
 			int id = boost::lexical_cast<int>(nextValue);
+			_ids.push_back(id);
 		}
 		catch(boost::bad_lexical_cast &)
         {
@@ -39,4 +40,11 @@ std::string MediaStreamRequestMessage::getHeader()
 {
 	return "RMS";
 }
+
+std::list<int>& MediaStreamRequestMessage::MediaIDs()
+{
+	return _ids;
+}
+
+
 }

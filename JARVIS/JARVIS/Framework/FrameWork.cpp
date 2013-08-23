@@ -29,6 +29,7 @@ JARVISFramework::JARVISFramework()
 #endif
 
 	this->pluginPageResponder.reset(new PluginPageResponder(this->pluginLoader, this->cModules.getComms()));
+	this->mediaStreamResponder.reset(new MediaStreamResponder(&this->cModules));
 
 	ErrorLogger::logInfo("Loading Modules");
 	this->loadStartupPlugins();

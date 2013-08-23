@@ -42,6 +42,11 @@ void AudioDevice::Start_Audio_Stream(MusicPlaylist& playlist)
 	vlc_interafce.Play_Playlist(_ip, ss.str(), playlist);
 }
 
+std::string AudioDevice::Get_Name()
+{
+	return "Not Implemented";
+}
+
 void AudioDevice::Pause_CurrentStream()
 {
 	//TODO

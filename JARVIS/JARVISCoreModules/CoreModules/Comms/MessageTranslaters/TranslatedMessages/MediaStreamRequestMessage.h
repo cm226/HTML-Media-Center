@@ -10,7 +10,7 @@ class DLLCORE_API MediaStreamRequestMessage: public AbstractMessage
 	enum MEDIA_TYPE{AUDIO, VIDEO};
 private:
 	MEDIA_TYPE _media_type;
-	std::list<int> ids;
+	std::list<int> _ids;
 
 
 public:
@@ -19,6 +19,8 @@ public:
 
 	virtual void serialize(coremodules::comms::messagetranslaters::StringMessageSerializer& serialiser);
 	static std::string getHeader();
+
+	std::list<int>& MediaIDs();
 };
 }
 

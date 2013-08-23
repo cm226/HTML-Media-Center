@@ -73,7 +73,6 @@ $( document ).ready(function() {
 
 function sendPlaylist(destination)
 {
-	console.log("in here");
 	var songs = [];
 	for (var i = 0; i < numSongs; i++)
 		  songs.push(myPlaylist[i].id);

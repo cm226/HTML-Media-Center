@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>JARVIS</name>
+	<name>ErrorLogger</name>
 	<comment></comment>
 	<projects>
-		<project>ErrorLogger</project>
-		<project>JARVISCoreModules</project>
-		<project>MediaStreaming</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -34,7 +31,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildLocation</key>
-					<value>${workspace_loc:/JARVIS/Debug}</value>
+					<value>${workspace_loc:/ErrorLogger/Debug}</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.cleanBuildTarget</key>
@@ -72,6 +69,7 @@
 		</buildCommand>
 		<buildCommand>
 			<name>org.eclipse.cdt.managedbuilder.core.ScannerConfigBuilder</name>
+			<triggers>full,incremental,</triggers>
 			<arguments>
 			</arguments>
 		</buildCommand>

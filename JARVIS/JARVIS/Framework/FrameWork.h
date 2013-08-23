@@ -14,6 +14,7 @@
 #include "../../JARVISCoreModules/CoreModules/CoreModules.h"
 #include "Plugin/Loader/Loader.h"
 #include "PluginPageResponder.h"
+#include "MediaStreamResponder.h"
 
 #include "../../JARVISCoreModules/CoreModules/Comms/Protocals/IProtocal.h"
 #include <boost/scoped_ptr.hpp>
@@ -23,6 +24,8 @@ class JARVISFramework
 private:
 	Loader* pluginLoader;
 	boost::scoped_ptr<PluginPageResponder> pluginPageResponder;
+	boost::scoped_ptr<MediaStreamResponder> mediaStreamResponder;
+
 	CoreModules cModules;
 
 

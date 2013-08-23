@@ -29,6 +29,7 @@ public:
 	void Set_IP(std::string ip);
 	void Start_Audio_Stream(MusicPlaylist& playlist);
 	int getID();
+	std::string Get_Name();
 
 	void Pause_CurrentStream();
 	void Play_CurrentStream();

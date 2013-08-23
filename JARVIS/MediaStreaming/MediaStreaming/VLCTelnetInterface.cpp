@@ -1,6 +1,6 @@
 #include "VLCTelnetInterface.h"
 
-#include <boost\asio.hpp>
+#include <boost/asio.hpp>
 
 #include <sstream>
 #include <stdlib.h>

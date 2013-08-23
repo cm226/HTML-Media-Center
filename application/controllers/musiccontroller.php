@@ -102,7 +102,7 @@ class MusicController extends Controller {
 	function playAudioStream()
 	{
 		$songList =  $_POST['songs'];
-		$this->set("songs",$songList);
+		$this->set("reply",$this->Music->streamPlaylist($songList));
 		
 	}
 }

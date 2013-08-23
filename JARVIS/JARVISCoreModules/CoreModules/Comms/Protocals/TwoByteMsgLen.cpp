@@ -87,7 +87,6 @@ void TwoByteMsgLen::sendMessage( AbstractMessage* data)
 		messageStream << msgSizeBits[0] <<msgSizeBits[1]<< messageContent;
 		fullMessage = messageStream.str();
 
-		int msgLenfull = fullMessage.length();
 		MessageChunker chunker(2048,fullMessage);
 		chunker.Chunk_Message(messageChunks);
 
@@ -107,7 +106,7 @@ void TwoByteMsgLen::sendMessageChunks(std::list<std::string>& chunks)
 	{
 		std::string message = *chunkIt;
 		int msgLen =  message.length();
-		this->socket.send(boost::asio::buffer(message.c_str(),message.length()));
+		this->socket.send(boost::asio::buffer(message.c_str(),msgLen));
 	}
 }
 

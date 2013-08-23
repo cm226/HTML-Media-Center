@@ -1,4 +1,7 @@
 <?php
+require_once("../scripts/JARVISCOMS/JARVIS.Comms.php");
+require_once("../scripts/JARVISCOMS/Messages/RequestStreamMediaMessage.php");
+
 
 class Music extends Model {
 	
@@ -209,6 +212,15 @@ class Music extends Model {
 				Artist.artistID = Album.artistID
 			  ORDER BY dateAdded DESC LIMIT 10";
 		return $this->query($q);
+	}
+
+	function streamPlaylist($playlist)
+	{
+		$playlistArray=explode(',',$playlist);
+		$comms = new JARVISCommas();
+
+		return $comms->send(new RequestStreamMediaMessage($playlistArray));
+		
 	}
 	
 }
