@@ -1,5 +1,5 @@
 #include "AudioDevice.h"
-#include "VLCTelnetInterface.h"
+#include "../VLCTelnetInterface.h"
 
 #include <sstream>
 

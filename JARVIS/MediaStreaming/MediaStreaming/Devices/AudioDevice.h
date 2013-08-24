@@ -2,8 +2,8 @@
 
 #include <string>
 
-#include "MusicPlaylist.h"
-#include "exportMacros.h"
+#include "../MusicPlaylist.h"
+#include "../exportMacros.h"
 
 class DLLMEDIA_STREAM_API AudioDevice
 {

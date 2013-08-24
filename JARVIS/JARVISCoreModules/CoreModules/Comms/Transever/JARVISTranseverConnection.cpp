@@ -31,25 +31,6 @@ void JARVISTranseverConnection::processConnection()
 		ErrorLogger::logError("connection Timed out");
 		return;
 	}
-
-	/*
-	ListPluginsMessage* lpmsg = dynamic_cast<ListPluginsMessage*>(msg);
-	if(lpmsg != NULL)
-	{
-		// move to translation filters when ready
-		Comms::_messageSubject.onListPluginsMessageReceved.signal(lpmsg,&msgProtocal);
-		delete msg;
-		return;
-	}
-
-
-	AbstractMessage* reply = msg->actionMessage();
-	if(reply != NULL)
-	{
-		msgProtocal.sendMessage(reply);
-		delete reply;
-	}
-	*/
 	delete msg;
 }
 
