@@ -105,4 +105,10 @@ class MusicController extends Controller {
 		$this->set("reply",$this->Music->streamPlaylist($songList));
 		
 	}
+
+	function makeAgentQuery()
+	{
+		$agents = $this->Music->makeAgentRequest();
+		$this->set('agents',$agents);
+	}
 }

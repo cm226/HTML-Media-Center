@@ -25,7 +25,7 @@ AgentPollRequestFilter::~AgentPollRequestFilter() {
 
 AbstractMessage* AgentPollRequestFilter::translateMessage(std::string header, char* bytes, unsigned int bytesLength)
 {
-	if(header.compare(TranslatedMessages::MediaStreamRequestMessage::getHeader()) == 0)
+	if(header.compare(TranslatedMessages::AgentRequestMessage::getHeader()) == 0)
 	{
 		ErrorLogger::logInfo("Agent Poll Request Message Receved");
 		TranslatedMessages::AgentRequestMessage* msg = new TranslatedMessages::AgentRequestMessage(bytes, bytesLength);

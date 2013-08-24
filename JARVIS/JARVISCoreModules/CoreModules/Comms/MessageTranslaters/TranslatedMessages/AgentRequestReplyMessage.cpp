@@ -21,7 +21,7 @@ AgentRequestReplyMessage::~AgentRequestReplyMessage() {
 void AgentRequestReplyMessage::serialize(coremodules::comms::messagetranslaters::StringMessageSerializer& serialiser)
 {
 	std::stringstream ss;
-
+	serialiser.serialiseValue(getHeader());
 	for(auto agent: _agents)
 		ss << agent << ",";
 

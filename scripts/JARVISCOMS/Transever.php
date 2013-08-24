@@ -94,8 +94,8 @@ public function readReply()
 		}
 		
 		$out = implode($out_chunks);
+		
 		$messageParts = explode("$",$out);
-
 		
 		$out = substr($out, strlen($messageParts[0])+1);
 		return $out;

@@ -1,7 +1,7 @@
 <?php
 require_once("../scripts/JARVISCOMS/JARVIS.Comms.php");
 require_once("../scripts/JARVISCOMS/Messages/RequestStreamMediaMessage.php");
-
+require_once("../scripts/JARVISCOMS/Messages/AgentRequestMessage.php");
 
 class Music extends Model {
 	
@@ -221,6 +221,13 @@ class Music extends Model {
 
 		return $comms->send(new RequestStreamMediaMessage($playlistArray));
 		
+	}
+
+	function makeAgentRequest()
+	{
+		$comms = new JARVISCommas();
+		$agents = $comms->send(new AgentRequestMessage());
+		return explode(',',$agents);
 	}
 	
 }

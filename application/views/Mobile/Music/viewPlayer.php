@@ -88,8 +88,17 @@ function sendPlaylist(destination)
 		{
 		  $("#actionResult").html(msg);
 		});
-	 
-	
+}
+
+function getAgents()
+{
+	 $.ajax({
+		  type: "POST",
+		   url: <?php echo "\"".WEB_ROOT."/Music/makeAgentQuery\""; ?>
+		}).done(function( msg )
+		{
+			  $("#resultPopup").append(msg);
+		});
 }
 
 
@@ -137,9 +146,9 @@ function sendPlaylist(destination)
 <div id="actionsPopup">
 <a href="#popupMenu" data-rel="popup" data-role="button" data-inline="true" data-transition="slideup" data-icon="gear" data-theme="a" data-iconpos="notext"></a>
 <div data-role="popup" id="popupMenu" data-theme="a">
-        <ul data-role="listview" data-inset="true" style="min-width:210px;" data-theme="d">
-            <li data-role="divider" data-theme="b">Choose an action</li>
-            <li><a onClick="sendPlaylist('test');">Stream Playlist</a></li>
+        <ul id="resultPopup" data-role="listview" data-inset="true" style="min-width:210px;" data-theme="d">
+            <li data-role="divider" data-theme="b">Actions</li>
+            <li><a onClick="getAgents();">Stream Playlist</a></li>
         </ul>
 </div>
 </div>
