@@ -8,6 +8,10 @@
 #include "DeviceList.h"
 #include <boost/asio.hpp>
 
+#include "Comms/DevicePollConnectionFactory.h"
+#include "../../../Comms/Broadcaster.h"
+#include "../../../Comms/Transever/TCPAsyncTransever.h"
+
 namespace Devices {
 
 DeviceList::DeviceList() {
@@ -21,21 +25,17 @@ DeviceList::~DeviceList() {
 
 void DeviceList::Initalise_device_List()
 {
+	boost::asio::io_service io_sercive;
 
-	 boost::system::error_code error;
-	 boost::asio::ip::udp::socket socket(_impl->_ioService);
+	Broadcaster broadcaster(io_sercive, 1001);
+	Comms::DevicePollConnectionFactory connectionFactory;
+	TCPAsyncTransever transever(io_sercive, 1002,connectionFactory);
+	boost::thread comms_thread(io_sercive.run());
 
-	    socket.open(boost::asio::ip::udp::v4(), error);
-	    if (!error)
-	    {
-	        socket.set_option(ba::ip::udp::socket::reuse_address(true));
-	        socket.set_option(ba::socket_base::broadcast(true));
+	broadcaster.Broadcast_Message("hello");
 
-	        ba::ip::udp::endpoint senderEndpoint(ba::ip::address_v4::broadcast(), port);
 
-	        socket.send_to(data, senderEndpoint);
-	        socket.close(error);
-	    }
+	comms_thread.join();
 
 }
 
