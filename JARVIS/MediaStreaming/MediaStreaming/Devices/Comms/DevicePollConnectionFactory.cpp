@@ -6,22 +6,28 @@
  */
 
 #include "DevicePollConnectionFactory.h"
+#include "DevicePollConnection.h"
+
 
 namespace Comms {
 
-DevicePollConnectionFactory::DevicePollConnectionFactory() {
-	// TODO Auto-generated constructor stub
+DevicePollConnectionFactory::DevicePollConnectionFactory(std::list<AudioDevice>& device_List,
+																boost::asio::io_service& io_service)
+	:_device_List(device_List),
+	 _io_service(io_service)
+{
 
 }
 
-DevicePollConnectionFactory::~DevicePollConnectionFactory() {
-	// TODO Auto-generated destructor stub
+DevicePollConnectionFactory::~DevicePollConnectionFactory()
+{
+
 }
 
 boost::shared_ptr<ITranseverConnection> DevicePollConnectionFactory::create(
 		boost::asio::io_service& service)
 {
-
+	return boost::shared_ptr<ITranseverConnection>(new DevicePollConnection(_io_service, _device_List));
 }
 
 } /* namespace Comms */

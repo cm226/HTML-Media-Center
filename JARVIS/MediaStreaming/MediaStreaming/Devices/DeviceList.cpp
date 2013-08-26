@@ -7,6 +7,8 @@
 
 #include "DeviceList.h"
 #include <boost/asio.hpp>
+#include <boost/chrono.hpp>
+#include <boost/thread.hpp>
 
 #include "Comms/DevicePollConnectionFactory.h"
 #include "../../../Comms/Broadcaster.h"
@@ -32,9 +34,13 @@ void DeviceList::Initalise_device_List()
 	TCPAsyncTransever transever(io_sercive, 1002,connectionFactory);
 	boost::thread comms_thread(io_sercive.run());
 
-	broadcaster.Broadcast_Message("hello");
+	std::string AGENT_HELLO_BROADCAST;
+	AGENT_HELLO_BROADCAST.append(1,7);
+	broadcaster.Broadcast_Message(AGENT_HELLO_BROADCAST);
 
+	boost::this_thread::sleep( boost::chrono::seconds(10) ); // allow 10 sec for agents to respond
 
+	io_sercive.stop();
 	comms_thread.join();
 
 }

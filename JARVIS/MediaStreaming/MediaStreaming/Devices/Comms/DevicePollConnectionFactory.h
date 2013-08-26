@@ -8,14 +8,21 @@
 #ifndef DEVICEPOLLCONNECTIONFACTORY_H_
 #define DEVICEPOLLCONNECTIONFACTORY_H_
 
+#include <list>
+
 #include "../../../../Comms/Transever/ITranseverConnectionFactory.h"
+#include "../AudioDevice.h"
 
 namespace Comms {
 
 class DevicePollConnectionFactory : ITranseverConnectionFactory
 {
+private:
+	std::list<AudioDevice>& _device_List;
+	boost::asio::io_service& _io_service;
+
 public:
-	DevicePollConnectionFactory();
+	DevicePollConnectionFactory(std::list<AudioDevice>& device_List,boost::asio::io_service& io_service);
 	virtual ~DevicePollConnectionFactory();
 
 	boost::shared_ptr<ITranseverConnection> create(boost::asio::io_service& service);
