@@ -5,14 +5,15 @@ import MediaRendereAudio
 
 #SERVER = '192.168.0.199'
 PORT = 45001
-
+BORADCASTPORT = 40003
 
 def getServerIP():
 	s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-	s.bind(('0', 40002))
+	s.bind(('<broadcast>', BORADCASTPORT))
+	#s.setblocking(0)
 	s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 	
-	msg, addr = s.recvfrom(1025)
+	msg, addr = s.recv(1025)
 	if msg == "AGENT_HELLO_BROADCAST":
 		print "reply from server: "+ str(addr)
 		s.sendto("AGENT_HELLO_REPLY", addr)
@@ -35,12 +36,12 @@ def waitForConnection() :
 
 def rendererFactory(command, data, socket):
     return {'PLAY_VID_STREAM':  MediaRendereVideo.render,
-            'PLAY_MUSIC_STREAM' MediaRendereAudio.render
+            'PLAY_MUSIC_STREAM': MediaRendereAudio.render
            }[command](data,socket)
 		   
 def canRanderFactory(command, data):
     return {'PLAY_VID_STREAM':  MediaRendereVideo.canRender,
-            'PLAY_MUSIC_STREAM' MediaRendereAudio.canRender
+            'PLAY_MUSIC_STREAM': MediaRendereAudio.canRender
            }[command](data)
     
    

@@ -9,19 +9,20 @@
 #define DEVICEPOLLCONNECTION_H_
 
 #include <list>
+#include <string>
 
 #include "../../../../Comms/Transever/ITranseverConnection.h"
 #include "../AudioDevice.h"
 
 namespace Comms {
 
-class DevicePollConnection : ITranseverConnection
+class DevicePollConnection : public ITranseverConnection
 {
 private:
 	std::list<AudioDevice>& _device_list;
 
-	std::string parseIP(boost::asio::mutable_buffer& buff);
-	void createAudioDevice(boost::asio::mutable_buffer& ip);
+	std::string parseIP(std::string& buff);
+	void createAudioDevice(std::string& ip);
 public:
 	DevicePollConnection(boost::asio::io_service& service, std::list<AudioDevice>& deviceList);
 	virtual ~DevicePollConnection();

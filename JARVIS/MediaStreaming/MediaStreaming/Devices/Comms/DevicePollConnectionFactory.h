@@ -15,7 +15,7 @@
 
 namespace Comms {
 
-class DevicePollConnectionFactory : ITranseverConnectionFactory
+class DevicePollConnectionFactory :public ITranseverConnectionFactory
 {
 private:
 	std::list<AudioDevice>& _device_List;
