@@ -3,6 +3,7 @@
 	<name>JARVIS</name>
 	<comment></comment>
 	<projects>
+		<project>Comms</project>
 		<project>ErrorLogger</project>
 		<project>JARVISCoreModules</project>
 		<project>MediaStreaming</project>

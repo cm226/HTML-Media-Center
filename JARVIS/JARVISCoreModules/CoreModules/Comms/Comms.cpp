@@ -7,7 +7,6 @@
 
 
 #include "Comms.h"
-#include "Transever/TCPTransever.h"
 #include "JSON/JSONCURLRequest.h"
 #include <boost/bind.hpp>
 
@@ -17,6 +16,7 @@ coremodules::comms::messagetranslaters::messagesubject::MessageSubject Comms::_m
 
 Comms::Comms(): transever(io_service,45001,connecionFactory)
 {
+
 }
 
 Comms::~Comms() {
@@ -29,6 +29,7 @@ void Comms::startComms()
 
 void Comms::doComms()
 {
+	transever.start_accept();
 	this->io_service.run();
 }
 

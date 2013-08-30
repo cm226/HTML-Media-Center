@@ -38,8 +38,21 @@ class Music extends Model {
 		$allArtistsSongResult = $this->query($allArtistsSongq);
 		return $allArtistsSongResult;
 	}
+
+	function getAlbums()
+	{
+		$albumsQ = "SELECT Album.albumID,
+				   Album.albumName,
+				   Album.year,
+				   Album.albumRating,
+				   Artist.artistName
+			    FROM Album, Artist
+			    WHERE Album.artistID = Artist.artistID";	
+
+		return $this->query($albumsQ);
+	}
 	
-	function getArtistsAlbumSongs($artistID, $albumName)
+	function getAlbumSongs($albumID)
 	{
 		$allArtistsSongq = 'SELECT Song.songID, 
 								songName,
@@ -54,13 +67,13 @@ class Music extends Model {
 
 							 WHERE  Album.artistID = Artist.artistID 
 								AND Album.albumID = Song.albumID 
-								AND Album.artistID = \''.$artistID.'\'
-								AND Album.albumName = \''. $albumName . '\'';
+								AND Album.albumid = \''. $albumID . '\'';
 								
 		$albumQueeryRes = $this->query($allArtistsSongq);
 		
 		return $albumQueeryRes;
 	}
+
 	
 	function getArtistsAlbums($artistID)
 	{
@@ -190,6 +203,12 @@ class Music extends Model {
 	function getSongForID($ID)
 	{
 		$q = "SELECT * FROM Song WHERE songID = ".$ID;
+		return $this->query($q);
+	}
+
+	function getAlbumForID($albumID)
+	{
+		$q = "SELECT * From Album WHERE albumID = ".$albumID;
 		return $this->query($q);
 	}
 	

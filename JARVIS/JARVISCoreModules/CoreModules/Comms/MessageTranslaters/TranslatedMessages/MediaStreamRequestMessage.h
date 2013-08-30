@@ -1,5 +1,5 @@
 #pragma once
-#include "AbstractMessage.h"
+#include "../../../../../Comms/MessageTranslaters/TranslatedMessages/AbstractMessage.h"
 #include "../../../exportMacros.h"
 #include <list>
 

@@ -8,7 +8,7 @@
 #ifndef PLAUGINPAGEMESSAGE_H_
 #define PLAUGINPAGEMESSAGE_H_
 
-#include "AbstractMessage.h"
+#include "../../../../../Comms/MessageTranslaters/TranslatedMessages/AbstractMessage.h"
 #include "../../../exportMacros.h"
 #include <string>
 

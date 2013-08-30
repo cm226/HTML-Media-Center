@@ -4,7 +4,7 @@
 
 
 <link rel="stylesheet" href="<?php echo PUBLIC_FOLDER;?>/css/Mobile/jquery.mobile-1.3.1.min.css"/>
-<link rel="stylesheet" href="<?php echo PUBLIC_FOLDER;?>/css/Mobile/musicViewPlayer.css"/>
+
 
 <script type="text/javascript" src="<?php echo PUBLIC_FOLDER;?>/js/Mobile/helperFunctions.js"></script> 
 
@@ -31,7 +31,7 @@ $( document ).on( "pageinit", "#musicPlayer", function() {
 var myPlaylist = [
 
 <?php
- foreach ($songs as &$song) { ?>
+ foreach ($songs as $song) { ?>
 
     {
         mp3:<?php echo "'".PUBLIC_FOLDER."/mix/Music/".str_replace(" ","%20",str_replace("'","\'",$song["Song"]["songURL"])) ."'";?>,

@@ -28,7 +28,19 @@ class MusicController extends Controller {
 	
 	function viewPlayer($artistID)
 	{
+		$funcArgs = func_get_args();
 		
+		if($funcArgs[0] == 'takethisout')
+		{
+			if($funcArgs[1] == 'album')
+			{
+				$artistID = 
+				$this->set('songs',$this->Music->getAlbumSongs($funcArgs[2]));
+			}
+
+		}	
+		else // this is the old way phase out
+		{
 		if($artistID == "") // hack for view shuffle
 		{
 			$this->set("songs", $this->Music->get10RandomSongs());
@@ -49,9 +61,12 @@ class MusicController extends Controller {
 		
 		// viewing an artist
 		if(!isset($_POST['album']))
+		{
 			$this->set('songs',$this->Music->getArtistsSongs($artistID));
-		else
-			$this->set('songs',$this->Music->getArtistsAlbumSongs($artistID,$_POST['album']));
+		}
+		}
+
+
 	}
 
 	function viewPlaylist($playlist) //improve this whole thing by using AJAX and each result has a submit button
@@ -110,5 +125,17 @@ class MusicController extends Controller {
 	{
 		$agents = $this->Music->makeAgentRequest();
 		$this->set('agents',$agents);
+	}
+
+	function viewAlbums()
+	{
+		$albums = $this->Music->getAlbums();
+		$this->set('albums',$albums);
+	}
+
+	function viewAlbum($albumID)
+	{
+		$album = $this->Music->getAlbumForID($albumID);
+		$this->set('album', $album[0]);
 	}
 }

@@ -16,6 +16,28 @@ Broadcaster::~Broadcaster()
 {
 
 }
+/*
+void Broadcaster::Broadcast_Message(std::string message)
+{
+	namespace ba = boost::asio;
+
+	boost::system::error_code myError;
+
+
+	 boost::asio::ip::udp::endpoint targetEndpoint;                  // Create endpoint on specified IP.
+	 targetEndpoint.address(boost::asio::ip::address::from_string("127.0.0.1", myError));
+	 targetEndpoint.port(40002);
+
+	 boost::asio::ip::udp::socket socket(_io_service);
+	 socket.open( targetEndpoint.protocol(), myError );
+	 char myMessage[] = {7};                      // Send basig string, enable socket level debugging.
+	 socket.send_to(boost::asio::buffer(myMessage, sizeof(myMessage)), targetEndpoint, boost::asio::socket_base::debug(true), myError);
+
+
+	 int i = 0;
+	 i++;
+}*/
+
 
 void Broadcaster::Broadcast_Message(std::string message)
 {
@@ -37,3 +59,4 @@ void Broadcaster::Broadcast_Message(std::string message)
 	}
 
 }
+

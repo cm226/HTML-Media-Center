@@ -8,7 +8,7 @@
 #ifndef PLUGININTERACTIONREQUESTMESSAGE_H_
 #define PLUGININTERACTIONREQUESTMESSAGE_H_
 
-#include "AbstractMessage.h"
+#include "../../../../../Comms/MessageTranslaters/TranslatedMessages/AbstractMessage.h"
 #include "../../../exportMacros.h"
 #include <string>
 #include <list>

@@ -8,7 +8,7 @@
 #ifndef LISTPLUGINSMESSAGE_H_
 #define LISTPLUGINSMESSAGE_H_
 
-#include "AbstractMessage.h"
+#include "../../../../../Comms/MessageTranslaters/TranslatedMessages/AbstractMessage.h"
 #include "../../../exportMacros.h"
 
 class DLLCORE_API ListPluginsMessage: public AbstractMessage {

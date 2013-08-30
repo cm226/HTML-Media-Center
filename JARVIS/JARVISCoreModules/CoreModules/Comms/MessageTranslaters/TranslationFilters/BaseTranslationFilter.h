@@ -10,7 +10,7 @@
 
 #include <string>
 #include "../TranslatedMessages/TranslatedMessages.h"
-#include "../../Protocals/IProtocal.h"
+#include "../../../../../Comms/Protocals/IProtocal.h"
 
 namespace TranslationFilters {
 

@@ -5,7 +5,7 @@
 #ifndef COREMODULES_COMMS_MESSAGETRANSLATERS_TRANSLATEDMESSAGES_REQUESTNEXTDATACHUNKMESSAGE_H
 #define COREMODULES_COMMS_MESSAGETRANSLATERS_TRANSLATEDMESSAGES_REQUESTNEXTDATACHUNKMESSAGE_H
 
-#include "AbstractMessage.h"
+#include "../../../../../Comms/MessageTranslaters/TranslatedMessages/AbstractMessage.h"
 
 namespace TranslatedMessages {
 

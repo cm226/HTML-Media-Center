@@ -22,11 +22,6 @@ Then you should be good to go :)
  ToDo 
  
 extract each core module into seperate dlls
-
-update the mobile and desktop sites to use the same controllers and models 
-	problems to solve on this
-		different css and js inclusion (currently being handled)
-		different template class intansiation based on url requested		
 	
 update the agent and serverside python scripts to allow for DHCP (its set on a static ip od 192.168.0.198 for debuging)
 
@@ -34,14 +29,12 @@ unit test project for the main cpp .exe
 
 create a remote control page for pauseing, changing volume fastforwardung and so on of playing things
 
+Update View player PHP to be a php class that you fill with a playlist and it writes the html 
+
+phase ot the find file in template(can prob take it out now)
+
+phase out the post methods in view player
+
 Bugs
-
-try accessing the url 
-http://localhost/HTML-Media-Center/Mobile/Plugin/mobilePluginPage/Database%20Interface%20Generator$
-the backend C++ crashed for some reason
-
-This problem seems to be for all urls now and unit tests pass for the Comms core modules. 
-
-not sure but the php seems to stop appending to the message buffer in the transever or the socket buffer is full on messages over 2427 bytes in length (unconfirmed on windows)
 
 

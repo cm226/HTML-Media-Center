@@ -8,7 +8,7 @@
 #ifndef AGENTREQUESTREPLYMESSAGE_H_
 #define AGENTREQUESTREPLYMESSAGE_H_
 
-#include "AbstractMessage.h"
+#include "../../../../../Comms/MessageTranslaters/TranslatedMessages/AbstractMessage.h"
 #include <list>
 #include <string>
 

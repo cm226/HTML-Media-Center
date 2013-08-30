@@ -10,20 +10,22 @@
 
 
 #include "AudioDevice.h"
-#include <list>
+
+#include <unordered_map>
 
 namespace Devices {
 
 class DeviceList {
 private:
 
-		std::list<AudioDevice> _audio_devices;
+		std::unordered_map<int,AudioDevice> _audio_devices;
 public:
 	DeviceList();
 	virtual ~DeviceList();
 
 	void Initalise_device_List();
-	std::list<AudioDevice>& Get_Audio_Devices();
+	void Get_Audio_Devices(std::list<AudioDevice>&);
+	bool Try_Get_Audio_Device_From_ID(AudioDevice& device, int id);
 
 };
 

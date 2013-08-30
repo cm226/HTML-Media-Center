@@ -8,11 +8,12 @@
 #ifndef TRANSEVERCONNECTIONFACTORY_H_
 #define TRANSEVERCONNECTIONFACTORY_H_
 
-#include "ITranseverConnection.h"
+#include "../../../../Comms/Transever/ITranseverConnection.h"
+#include "../../../../Comms/Transever/ITranseverConnectionFactory.h"
 #include <boost/shared_ptr.hpp>
 #include <boost/asio.hpp>
 
-class TranseverConnectionFactory
+class TranseverConnectionFactory : public ITranseverConnectionFactory
 {
 public:
 	TranseverConnectionFactory();

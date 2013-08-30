@@ -4,7 +4,7 @@
 #pragma once
 #ifndef COREMODULES_COMMS_MESSAGETRANSLATERS_TRANSLATEDMESSAGES_PLUGINPAGEREPLYMESSAGE_H
 #define COREMODULES_COMMS_MESSAGETRANSLATERS_TRANSLATEDMESSAGES_PLUGINPAGEREPLYMESSAGE_H
-#include "AbstractMessage.h"
+#include "../../../../../Comms/MessageTranslaters/TranslatedMessages/AbstractMessage.h"
 #include "../../../exportMacros.h"
 
 namespace TranslatedMessages {

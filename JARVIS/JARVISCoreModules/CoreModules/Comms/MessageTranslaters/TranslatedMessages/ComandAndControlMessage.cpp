@@ -23,7 +23,7 @@ AbstractMessage* ComandAndControlMessage::actionMessage()
 {
 	this->stripNextValue(); // remove header from message
 	std::string comAndContValue = this->stripNextValue();
-	int value = atoi(comAndContValue.c_str());
+	//int value = atoi(comAndContValue.c_str());
 	//if(value != 0)
 		//EventManager::commandAndControlMessageReceved.notify(value, NULL);
 

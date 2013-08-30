@@ -50,11 +50,13 @@
 								<option defaultValue="true" id="gnu.cpp.link.so.debug.option.shared.207660584" name="Shared (-shared)" superClass="gnu.cpp.link.so.debug.option.shared" valueType="boolean"/>
 								<option id="gnu.cpp.link.option.paths.523638706" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="/home/craig/curl-7.28.1/lib/.libs"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Comms/Debug}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MediaStreaming/Debug}&quot;"/>
 									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0/stage/lib"/>
 								</option>
 								<option id="gnu.cpp.link.option.libs.953033221" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="curl"/>
+									<listOptionValue builtIn="false" value="Comms"/>
 									<listOptionValue builtIn="false" value="MediaStreaming"/>
 									<listOptionValue builtIn="false" value="boost_system"/>
 									<listOptionValue builtIn="false" value="boost_filesystem"/>

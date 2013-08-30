@@ -10,12 +10,14 @@
 #include <boost/bind.hpp>
 
 
+
 using namespace boost::asio::ip;
 
 TCPAsyncTransever::TCPAsyncTransever(boost::asio::io_service& io_service, int port, ITranseverConnectionFactory& factory) :
-	acceptor(io_service, tcp::endpoint(tcp::v4(), port)), connection_factory(factory)
+	acceptor(io_service, tcp::endpoint(tcp::v4(), port)),
+	connection_factory(factory)
+
 {
-	start_accept();
 }
 
 TCPAsyncTransever::~TCPAsyncTransever()

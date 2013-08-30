@@ -5,18 +5,18 @@ import MediaRendereAudio
 
 #SERVER = '192.168.0.199'
 PORT = 45001
-BORADCASTPORT = 40003
+BORADCASTPORT = 40002
 
 def getServerIP():
 	s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-	s.bind(('<broadcast>', BORADCASTPORT))
+	s.bind(('127.0.0.1', BORADCASTPORT))
 	#s.setblocking(0)
 	s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 	
-	msg, addr = s.recv(1025)
-	if msg == "AGENT_HELLO_BROADCAST":
+	msg, addr = s.recv(1)
+	if msg == 7:
 		print "reply from server: "+ str(addr)
-		s.sendto("AGENT_HELLO_REPLY", addr)
+		#s.sendto("AGENT_HELLO_REPLY", addr)
 		return
 
 	print 'Bad send from server' + msg

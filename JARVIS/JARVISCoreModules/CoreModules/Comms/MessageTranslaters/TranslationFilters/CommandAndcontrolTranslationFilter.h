@@ -9,7 +9,7 @@
 #define COMMANDANDCONTROLTRANSLATIONFILTER_H_
 
 #include "BaseTranslationFilter.h"
-#include "../../Protocals/IProtocal.h"
+#include "../../../../../Comms/Protocals/IProtocal.h"
 
 namespace TranslationFilters {
 

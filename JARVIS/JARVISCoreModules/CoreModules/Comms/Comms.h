@@ -11,13 +11,14 @@
 #include <string>
 #include "../../../ErrorLogger/Errors/ErrorLogger.h"
 
-#include "Transever/TCPAsyncTransever.h"
+#include "../../../Comms/Transever/TCPAsyncTransever.h"
 #include "Transever/TranseverConnectionFactory.h"
 
 #include "IComms.h"
 #include "CURL/CurlManager.h"
 #include <boost/thread.hpp>
 #include <boost/asio.hpp>
+#include <boost/shared_ptr.hpp>
 
 
 class Comms : public CommsNS::IComms{
@@ -27,8 +28,6 @@ private:
 
 	TCPAsyncTransever transever;
 	CommsNS::CurlManager curlMan;
-
-	
 
 	boost::thread* commsThread;
 

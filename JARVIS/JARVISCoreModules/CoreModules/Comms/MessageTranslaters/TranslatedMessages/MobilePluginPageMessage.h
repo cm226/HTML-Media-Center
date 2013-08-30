@@ -8,7 +8,7 @@
 #ifndef MOBILEPLUGINPAGEMESSAGE_H_
 #define MOBILEPLUGINPAGEMESSAGE_H_
 
-#include "AbstractMessage.h"
+#include "../../../../../Comms/MessageTranslaters/TranslatedMessages/AbstractMessage.h"
 #include "../../../exportMacros.h"
 
 namespace TranslatedMessages {

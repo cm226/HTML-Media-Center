@@ -7,7 +7,7 @@
 
 #include "TwoByteMsgLen.h"
 #include "../../../../ErrorLogger/Errors/ErrorLogger.h"
-#include "../Transever/Exceptions/TimeoutExpiredException.h"
+#include "../../../../Comms/Transever/Exceptions/TimeoutExpiredException.h"
 #include "../Transever/MessageChunker.h"
 
 #include <boost/thread.hpp>

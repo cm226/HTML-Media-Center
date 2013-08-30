@@ -6,7 +6,7 @@
 #define COREMODULES_COMMS_MESSAGETRANSLATERS_MESSAGESUBJECT_MESSAGESUBJECTEVENT_H
 
 
-#include "../../Protocals/IProtocal.h"
+#include "../../../../../Comms/Protocals/IProtocal.h"
 #include <boost/function.hpp>
 #include <boost/bind.hpp>
 #include "../../../exportMacros.h"

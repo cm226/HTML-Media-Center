@@ -8,7 +8,7 @@
 #ifndef COMANDANDCONTROLMESSAGE_H_
 #define COMANDANDCONTROLMESSAGE_H_
 
-#include "AbstractMessage.h"
+#include "../../../../../Comms/MessageTranslaters/TranslatedMessages/AbstractMessage.h"
 
 namespace TranslationFilters {
 

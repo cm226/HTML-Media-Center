@@ -12,7 +12,7 @@
 #include <map>
 #include <boost/shared_ptr.hpp>
 #include "Serialisers/Serializer.h"
-#include "../../../../JARVISCoreModules/CoreModules/Errors/ErrorLogger.h"
+#include "../../../../ErrorLogger/Errors/ErrorLogger.h"
 #include "FieldReader.h"
 #include "FieldWriter.h"
 

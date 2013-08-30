@@ -16,7 +16,7 @@
 #include "PluginPageResponder.h"
 #include "MediaStreamResponder.h"
 
-#include "../../JARVISCoreModules/CoreModules/Comms/Protocals/IProtocal.h"
+#include "../../Comms/Protocals/IProtocal.h"
 #include <boost/scoped_ptr.hpp>
 
 class JARVISFramework

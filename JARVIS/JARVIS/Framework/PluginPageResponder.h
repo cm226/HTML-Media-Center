@@ -17,7 +17,7 @@
 #include "../../JARVISCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/PluginInteractionRequestMessage.h"
 #include "../../JARVISCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ReplyMessage.h"
 
-#include "../../JARVISCoreModules/CoreModules/Comms/Protocals/IProtocal.h"
+#include "../../Comms/Protocals/IProtocal.h"
 
 
 class PluginPageResponder {

@@ -8,9 +8,9 @@
 #ifndef TRANSLATER_H_
 #define TRANSLATER_H_
 
-#include "TranslatedMessages/AbstractMessage.h"
+#include "../../../../Comms/MessageTranslaters/TranslatedMessages/AbstractMessage.h"
 #include "TranslationFilters/MessageTranslationFilters.h"
-#include "../Protocals/IProtocal.h"
+#include "../../../../Comms/Protocals/IProtocal.h"
 
 class Translater
 {

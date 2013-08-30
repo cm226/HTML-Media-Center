@@ -11,7 +11,7 @@
 #include <boost/asio.hpp>
 #include <list>
 #include "../MessageTranslaters/Translater.h"
-#include "IProtocal.h"
+#include "../../../../Comms/Protocals/IProtocal.h"
 
 
 class TwoByteMsgLen : public coremodules::comms::protocals::IProtocal
