@@ -3,6 +3,7 @@
 #include "Devices/AudioDevice.h"
 #include "MusicPlaylist.h"
 #include "exportMacros.h"
+#include "Devices\DeviceList.h"
 
 #include <unordered_map>
 
@@ -10,7 +11,7 @@ class DLLMEDIA_STREAM_API MediaStreamer
 {
 private:
 	#pragma warning( disable : 4251)
-	std::unordered_map<int,AudioDevice> audioDevices;
+	Devices::DeviceList _device_List;
 	#pragma warning( default : 4251)
 
 public:

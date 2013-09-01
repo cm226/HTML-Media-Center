@@ -76,6 +76,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Framework\FrameWork.cpp" />
+    <ClCompile Include="Framework\MediaStreamResponder.cpp" />
     <ClCompile Include="Framework\PluginPageResponder.cpp" />
     <ClCompile Include="Framework\Plugin\Loader\Loader.cpp" />
     <ClCompile Include="Framework\Plugin\PageCallbackContext.cpp" />
@@ -84,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\FrameWork.h" />
+    <ClInclude Include="Framework\MediaStreamResponder.h" />
     <ClInclude Include="Framework\PluginPageResponder.h" />
     <ClInclude Include="Framework\Plugin\HTMLCALLBACKDef.h" />
     <ClInclude Include="Framework\Plugin\IPluginDLLFactory.h" />
@@ -100,6 +102,9 @@
     </ProjectReference>
     <ProjectReference Include="..\JARVISCoreModules\JARVISCoreModules.vcxproj">
       <Project>{afb997c0-ff5e-4894-84af-c57003862646}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\MediaStreaming\MediaStreaming\MediaStreaming.vcxproj">
+      <Project>{285ca905-ac26-412c-a358-a49d570286ae}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

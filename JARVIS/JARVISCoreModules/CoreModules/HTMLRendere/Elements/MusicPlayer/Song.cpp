@@ -11,7 +11,7 @@ namespace coremodules {
 namespace htmlrendere {
 namespace elements {
 
-Song::Song(std::string name, std::string url, std::string artist):
+HTMLSong ::HTMLSong (std::string name, std::string url, std::string artist):
 	_len_hour(0),
 	_len_min(0),
 	_len_sec(0),

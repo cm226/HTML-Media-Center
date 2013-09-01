@@ -11,12 +11,12 @@
 #include <list>
 #include <string>
 
-#include "../../../../Comms/Transever/ITranseverConnection.h"
+#include "Transever/ITranseverConnection.h"
 #include "../AudioDevice.h"
 
 namespace Comms {
 
-class DevicePollConnection : public ITranseverConnection
+class DevicePollConnection : public MediaStreamingComms::ITranseverConnection
 {
 private:
 	std::list<AudioDevice>& _device_list;

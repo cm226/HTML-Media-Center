@@ -10,12 +10,12 @@
 
 #include <list>
 
-#include "../../../../Comms/Transever/ITranseverConnectionFactory.h"
+#include "Transever/ITranseverConnectionFactory.h"
 #include "../AudioDevice.h"
 
 namespace Comms {
 
-class DevicePollConnectionFactory :public ITranseverConnectionFactory
+class DevicePollConnectionFactory :public MediaStreamingComms::ITranseverConnectionFactory
 {
 private:
 	std::list<AudioDevice>& _device_List;
@@ -25,7 +25,7 @@ public:
 	DevicePollConnectionFactory(std::list<AudioDevice>& device_List,boost::asio::io_service& io_service);
 	virtual ~DevicePollConnectionFactory();
 
-	boost::shared_ptr<ITranseverConnection> create(boost::asio::io_service& service);
+	boost::shared_ptr<MediaStreamingComms::ITranseverConnection> create(boost::asio::io_service& service);
 };
 
 } /* namespace Comms */

@@ -23,10 +23,10 @@ class DLLCORE_API MusicPlaylist : public IElement
 {
 private:
 	#pragma warning( disable : 4251)
-	std::list<Song> _songs;
+	std::list<HTMLSong> _songs;
 	#pragma warning( default : 4251)
 
-	void writeSongLength(Song& song, std::stringstream& ss);
+	void writeSongLength(HTMLSong& song, std::stringstream& ss);
 protected:
 	std::string getTagText();
 	std::string getTagContent();
@@ -35,8 +35,8 @@ public:
 	MusicPlaylist();
 	virtual ~MusicPlaylist();
 
-	void addSong(Song& song);
-	std::list<Song>& getSongs();
+	void addSong(HTMLSong& song);
+	std::list<HTMLSong>& getSongs();
 
 	std::string getText();
 

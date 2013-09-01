@@ -14,7 +14,7 @@
 namespace Comms {
 
 DevicePollConnection::DevicePollConnection(boost::asio::io_service& service, std::list<AudioDevice>& deviceList) :
-		ITranseverConnection(service),
+		MediaStreamingComms::ITranseverConnection(service),
 		_device_list(deviceList)
 {
 }

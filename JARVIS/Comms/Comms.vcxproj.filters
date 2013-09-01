@@ -15,55 +15,70 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Framework\FrameWork.cpp">
+    <ClCompile Include="Broadcaster.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\Plugin\Loader\Loader.cpp">
+    <ClCompile Include="Transever\Exceptions\TimeoutExpiredException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\Plugin\Plugin.cpp">
+    <ClCompile Include="Transever\AbstractTransever.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="JARVIS.cpp">
+    <ClCompile Include="Transever\ITranseverConnection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\Plugin\PageCallbackContext.cpp">
+    <ClCompile Include="Transever\ITranseverConnectionFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\PluginPageResponder.cpp">
+    <ClCompile Include="Transever\MessageChunker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\MediaStreamResponder.cpp">
+    <ClCompile Include="Transever\TCPAsyncTransever.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageTranslaters\TranslatedMessages\AbstractMessage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageTranslaters\StringMessageSerializer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocals\IProtocal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Framework\FrameWork.h">
+    <ClInclude Include="Broadcaster.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Plugin\IPluginDLLFactory.h">
+    <ClInclude Include="exportMacros.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Plugin\Loader\Loader.h">
+    <ClInclude Include="Transever\Exceptions\TimeoutExpiredException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Plugin\Plugin.h">
+    <ClInclude Include="Transever\AbstractTransever.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Plugin\PageCallbackContext.h">
+    <ClInclude Include="Transever\ITranseverConnection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Plugin\HTMLCALLBACKDef.h">
+    <ClInclude Include="Transever\ITranseverConnectionFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\PluginPageResponder.h">
+    <ClInclude Include="Transever\MessageChunker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\MediaStreamResponder.h">
+    <ClInclude Include="Transever\TCPAsyncTransever.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
+    <ClInclude Include="MessageTranslaters\TranslatedMessages\AbstractMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageTranslaters\StringMessageSerializer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocals\IProtocal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -15,7 +15,7 @@ namespace coremodules {
 namespace htmlrendere {
 namespace elements {
 
-class DLLCORE_API Song {
+class DLLCORE_API HTMLSong {
 
 private:
 	#pragma warning( disable : 4251)
@@ -27,8 +27,8 @@ private:
 	int _len_hour, _len_min, _len_sec;
 
 public:
-	Song(std::string name,std::string url, std::string artist);
-	virtual ~Song(){};
+	HTMLSong (std::string name,std::string url, std::string artist);
+	virtual ~HTMLSong (){};
 
 	void setLength(int hours, int mins, int sec);
 

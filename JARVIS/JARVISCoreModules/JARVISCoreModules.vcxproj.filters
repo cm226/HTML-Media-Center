@@ -411,6 +411,15 @@
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\MediaStreamRequestFilter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\AgentPollRequestFilter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AgentRequestMessage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AgentRequestReplyMessage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreModules\Comms\Comms.h">
@@ -915,6 +924,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\MediaStreamRequestFilter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\AgentPollRequestFilter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AgentRequestMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AgentRequestReplyMessage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

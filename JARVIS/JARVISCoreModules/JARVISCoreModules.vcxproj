@@ -78,6 +78,8 @@
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubjectEvent.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\StringMessageSerializer.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AbstractMessage.cpp" />
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AgentRequestMessage.cpp" />
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AgentRequestReplyMessage.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\ComandAndControlMessage.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\ListPluginsMessage.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\MobilePluginPageMessage.cpp" />
@@ -86,6 +88,7 @@
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\ReplyMessage.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\RequestNextDataChunkMessage.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\Translater.cpp" />
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\AgentPollRequestFilter.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\BaseTranslationFilter.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\CommandAndcontrolTranslationFilter.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\MobilePluginPageTranslationFilter.cpp" />
@@ -215,6 +218,8 @@
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubjectEvent.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\StringMessageSerializer.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AbstractMessage.h" />
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AgentRequestMessage.h" />
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AgentRequestReplyMessage.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\ComandAndControlMessage.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\ListPluginsMessage.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\MobilePluginPageMessage.h" />
@@ -224,6 +229,7 @@
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\RequestNextDataChunkMessage.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\TranslatedMessages.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\Translater.h" />
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\AgentPollRequestFilter.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\BaseTranslationFilter.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\CommandAndcontrolTranslationFilter.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\MessageTranslationFilters.h" />

@@ -5,24 +5,25 @@ import MediaRendereAudio
 
 #SERVER = '192.168.0.199'
 PORT = 45001
-BORADCASTPORT = 40003
+BORADCASTPORT = 40002
+AGENT_HELLO_BROADCAST = 7
 
 def getServerIP():
-	s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-	s.bind(('<broadcast>', BORADCASTPORT))
-	#s.setblocking(0)
-	s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-	
-	msg, addr = s.recv(1025)
-	if msg == "AGENT_HELLO_BROADCAST":
-		print "reply from server: "+ str(addr)
-		s.sendto("AGENT_HELLO_REPLY", addr)
-		return
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        
+        s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+        s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        s.bind(('0.0.0.0', BORADCASTPORT))
+        
+        msg = s.recv(1025)
+        if ord(msg) == AGENT_HELLO_BROADCAST:
+                print "reply from server: "+ str(msg)
+                return
 
-	print 'Bad send from server' + msg
+        print 'Bad send from server' + msg
 
-	return
-	
+        return
+        
 
 def waitForConnection() :
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -38,7 +39,7 @@ def rendererFactory(command, data, socket):
     return {'PLAY_VID_STREAM':  MediaRendereVideo.render,
             'PLAY_MUSIC_STREAM': MediaRendereAudio.render
            }[command](data,socket)
-		   
+                   
 def canRanderFactory(command, data):
     return {'PLAY_VID_STREAM':  MediaRendereVideo.canRender,
             'PLAY_MUSIC_STREAM': MediaRendereAudio.canRender
@@ -48,18 +49,18 @@ def canRanderFactory(command, data):
 getServerIP()
 print 'server hello ok wateing for connection'
 while(1):
-	conn, addr = waitForConnection()
-	data = conn.recv(1024)
+        conn, addr = waitForConnection()
+        data = conn.recv(1024)
 
-	if data:
-		splitData = data.split(',',1)
-		if(canRanderFactory(splitData[0],splitData[1])):
-			conn.send("PLAY_STREAM_REPLY,OK")
-			rendererFactory(splitData[0],splitData[1],conn)
-		else:
-			conn.send("PLAY_STREAM_REPLY,FAIL")
-		
-					
-	conn.close()
+        if data:
+                splitData = data.split(',',1)
+                if(canRanderFactory(splitData[0],splitData[1])):
+                        conn.send("PLAY_STREAM_REPLY,OK")
+                        rendererFactory(splitData[0],splitData[1],conn)
+                else:
+                        conn.send("PLAY_STREAM_REPLY,FAIL")
+                
+                                        
+        conn.close()
 
 sys.exit()

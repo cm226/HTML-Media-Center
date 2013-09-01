@@ -11,10 +11,11 @@
 #include "AbstractMessage.h"
 #include <list>
 #include <string>
+#include "../../../exportMacros.h"
 
 namespace TranslatedMessages {
 
-class AgentRequestReplyMessage: public AbstractMessage
+class DLLCORE_API AgentRequestReplyMessage: public AbstractMessage
 {
 private:
 	std::list<std::string> _agents;
