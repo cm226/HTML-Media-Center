@@ -29,10 +29,13 @@ update the mobile and desktop sites to use the same controllers and models
 		different template class intansiation based on url requested		
 	
 update the agent and serverside python scripts to allow for DHCP (its set on a static ip od 192.168.0.198 for debuging)
-
+	- part wat completed but the server C++ needs to be updated to get the correct IP of itself its set right now at 162.168.0.199
+	
 unit test project for the main cpp .exe
 
 create a remote control page for pauseing, changing volume fastforwardung and so on of playing things
+
+
 
 Bugs
 

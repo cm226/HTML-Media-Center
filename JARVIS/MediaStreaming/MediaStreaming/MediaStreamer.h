@@ -19,6 +19,7 @@ public:
 	~MediaStreamer(void);
 
 
+	void Resend_Agent_Handshake_Message();
 	void Get_Audio_Devices(std::list<AudioDevice>& devices);
 	bool Try_Get_Audio_Device_From_ID(AudioDevice& device, int id);
 };

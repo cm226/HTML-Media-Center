@@ -176,14 +176,26 @@ void JARVISFramework::loadedPlugins(ListPluginsMessage*, coremodules::comms::pro
 void JARVISFramework::processCommandLoop()
 {
 	std::string command;
+	const unsigned buffer_size = 100;
+	char buffer[buffer_size];
+
 	while(!this->shuttingDown)
 	{
-		std::cin >> command;
-			if(command == "shutdown")
-			{
-					this->shuttingDown = true;
-					return;
-			}
+		std::cin.getline(buffer, buffer_size);
+		command = buffer;
+		if(command == "shutdown")
+		{
+				this->shuttingDown = true;
+				return;
+		}
+		else if(command == "media resend_handshake")
+		{
+			this->cModules.getMediaStreamer().Resend_Agent_Handshake_Message();
+		}
+		else
+		{
+			ErrorLogger::logError("Unrecognised Command:" + command);
+		}
 	}
 }
 

@@ -8,7 +8,7 @@
 #ifndef DEVICEPOLLCONNECTION_H_
 #define DEVICEPOLLCONNECTION_H_
 
-#include <list>
+#include <unordered_map>
 #include <string>
 
 #include "Transever/ITranseverConnection.h"
@@ -19,12 +19,12 @@ namespace Comms {
 class DevicePollConnection : public MediaStreamingComms::ITranseverConnection
 {
 private:
-	std::list<AudioDevice>& _device_list;
+	std::unordered_map<int, AudioDevice>& _device_list;
 
 	std::string parseIP(std::string& buff);
 	void createAudioDevice(std::string& ip);
 public:
-	DevicePollConnection(boost::asio::io_service& service, std::list<AudioDevice>& deviceList);
+	DevicePollConnection(boost::asio::io_service& service, std::unordered_map<int, AudioDevice>& deviceList);
 	virtual ~DevicePollConnection();
 
 	void processConnection();

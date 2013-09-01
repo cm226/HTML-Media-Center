@@ -2,35 +2,21 @@ import socket
 import sys
 import MediaRendereVideo
 import MediaRendereAudio
+import ServerHandshakeHander
 
-#SERVER = '192.168.0.199'
 PORT = 45001
-BORADCASTPORT = 40002
-AGENT_HELLO_BROADCAST = 7
+
+
 
 def getServerIP():
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        
-        s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-        s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        s.bind(('0.0.0.0', BORADCASTPORT))
-        
-        msg = s.recv(1025)
-        if ord(msg) == AGENT_HELLO_BROADCAST:
-                print "reply from server: "+ str(msg)
-                return
-
-        print 'Bad send from server' + msg
-
-        return
-        
+         return ServerHandshakeHander.listenForHandshake()   
 
 def waitForConnection() :
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) # force a socket bind even
                                                             #if OS still reservs socket to cleanup stray packets
 
-    s.bind(('0', PORT))
+    s.bind(('0.0.0.0', PORT))
     s.listen(1)
      
     return s.accept()

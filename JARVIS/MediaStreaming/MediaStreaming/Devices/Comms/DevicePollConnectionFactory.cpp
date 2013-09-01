@@ -11,7 +11,7 @@
 
 namespace Comms {
 
-DevicePollConnectionFactory::DevicePollConnectionFactory(std::list<AudioDevice>& device_List,
+DevicePollConnectionFactory::DevicePollConnectionFactory(std::unordered_map<int, AudioDevice>& device_List,
 																boost::asio::io_service& io_service)
 	:_device_List(device_List),
 	 _io_service(io_service)

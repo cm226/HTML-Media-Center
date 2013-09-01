@@ -27,22 +27,51 @@ DeviceList::~DeviceList() {
 
 void DeviceList::Initalise_device_List()
 {
+	_audio_devices.clear();
 	boost::asio::io_service io_sercive;
 
 	Broadcaster broadcaster(io_sercive, 40002);
 	Comms::DevicePollConnectionFactory connectionFactory(_audio_devices, io_sercive);
-	TCPAsyncTransever transever(io_sercive, 1002,connectionFactory);
-	boost::thread comms_thread(boost::bind(&boost::asio::io_service::run, &io_sercive));
+	TCPAsyncTransever transever(io_sercive, 40003,connectionFactory); // handles any responces to the Agent Hello Broadcast
+	boost::thread comms_thread(boost::bind(&boost::asio::io_service::run, &io_sercive)); // start the comms Service
 
-	std::string AGENT_HELLO_BROADCAST;
-	AGENT_HELLO_BROADCAST.append(1,7);
+	std::string AGENT_HELLO_BROADCAST = build_Broadcast_Message();
+
 	broadcaster.Broadcast_Message(AGENT_HELLO_BROADCAST);
-
-	boost::this_thread::sleep(boost::posix_time::milliseconds(100)); // allow 10 sec for agents to respond
+	boost::this_thread::sleep(boost::posix_time::seconds(10)); // allow 10 sec for agents to respond
 
 	io_sercive.stop();
 	comms_thread.join();
 
 }
+
+std::string DeviceList::build_Broadcast_Message()
+{
+	std::string AGENT_HELLO_BROADCAST;
+	AGENT_HELLO_BROADCAST.append(1,7);
+
+	AGENT_HELLO_BROADCAST.append(1,192);
+	AGENT_HELLO_BROADCAST.append(1,168);
+	AGENT_HELLO_BROADCAST.append(1,0);
+	AGENT_HELLO_BROADCAST.append(1,199);
+
+	return AGENT_HELLO_BROADCAST;
+}
+
+void DeviceList::Get_Audio_Devices(std::list<AudioDevice>& audio_Devices)
+{
+	for(auto audio_device : _audio_devices)
+		audio_Devices.push_back(audio_device.second);
+}
+
+bool DeviceList::Try_Get_Audio_Device_From_ID(AudioDevice& device, int id)
+{
+	if(_audio_devices.find(id) == _audio_devices.end())
+		return false;
+
+	device = _audio_devices[id];
+	return true;
+}
+
 
 } /* namespace Devices */
