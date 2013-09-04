@@ -20,6 +20,7 @@ public/css/Mobile/images/*
 *~
 *.dll
 
+*.pyc
 *.mk
 *.png
 *.jpg

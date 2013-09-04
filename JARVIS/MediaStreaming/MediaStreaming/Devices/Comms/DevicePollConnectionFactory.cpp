@@ -11,9 +11,8 @@
 
 namespace Comms {
 
-DevicePollConnectionFactory::DevicePollConnectionFactory(std::unordered_map<int,AudioDevice>& device_List,
-																boost::asio::io_service& io_service)
-	:_device_List(device_List),
+<
+DevicePollConnectionFactory::DevicePollConnectionFactory(std::unordered_map<int, AudioDevice>& device_List, boost::asio::io_service& io_service) :_device_List(device_List),
 	 _io_service(io_service)
 {
 
@@ -24,10 +23,10 @@ DevicePollConnectionFactory::~DevicePollConnectionFactory()
 
 }
 
-boost::shared_ptr<ITranseverConnection> DevicePollConnectionFactory::create(
+boost::shared_ptr<MediaStreamingComms::ITranseverConnection> DevicePollConnectionFactory::create(
 		boost::asio::io_service& service)
 {
-	return boost::shared_ptr<ITranseverConnection>(new DevicePollConnection(_io_service, _device_List));
+	return boost::shared_ptr<MediaStreamingComms::ITranseverConnection>(new DevicePollConnection(_io_service, _device_List));
 }
 
 } /* namespace Comms */

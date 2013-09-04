@@ -30,7 +30,7 @@ std::string MusicPlaylist::getTagContent()
 {
 	std::stringstream songHTMLstream;
 
-	for(std::list<Song>::iterator songsIt = _songs.begin();
+	for(std::list<HTMLSong >::iterator songsIt = _songs.begin();
 			songsIt != _songs.end(); songsIt++)
 	{
 		songHTMLstream << "{";
@@ -49,17 +49,17 @@ std::string MusicPlaylist::getText()
 	return getTagContent();
 }
 
-void MusicPlaylist::addSong(Song& song)
+void MusicPlaylist::addSong(HTMLSong& song)
 {
 	_songs.push_back(song);
 }
 
-std::list<Song>& MusicPlaylist::getSongs()
+std::list<HTMLSong>& MusicPlaylist::getSongs()
 {
 	return _songs;
 }
 
-void MusicPlaylist::writeSongLength(Song& song, std::stringstream& ss)
+void MusicPlaylist::writeSongLength(HTMLSong& song, std::stringstream& ss)
 {
 	int hour, min, sec;
 	song.getLength(hour, min, sec);

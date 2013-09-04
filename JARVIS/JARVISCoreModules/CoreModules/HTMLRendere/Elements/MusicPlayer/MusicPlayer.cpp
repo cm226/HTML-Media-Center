@@ -75,10 +75,10 @@ MusicPlayer::~MusicPlayer()
 
 void MusicPlayer::buildPlaylistHTML(MusicPlaylist& playlist)
 {
-	std::list<Song> songs =  playlist.getSongs();
+	std::list<HTMLSong> songs =  playlist.getSongs();
 	std::stringstream songsHTMLStrm;
 	int counter =0;
-	for(std::list<Song>::iterator songIt = songs.begin();
+	for(std::list<HTMLSong>::iterator songIt = songs.begin();
 			songIt != songs.end(); songIt ++)
 	{
 		songsHTMLStrm << "<li><a href='"  << counter << "'>"<< songIt->getName()<<"</a></li>";

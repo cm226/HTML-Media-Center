@@ -11,20 +11,19 @@
 #include <unordered_map>
 #include <string>
 
-#include "../../../../Comms/Transever/ITranseverConnection.h"
+#include "Transever/ITranseverConnection.h"
 #include "../AudioDevice.h"
 
 namespace Comms {
 
-class DevicePollConnection : public ITranseverConnection
+class DevicePollConnection : public MediaStreamingComms::ITranseverConnection
 {
 private:
-	std::unordered_map<int,AudioDevice>& _device_list;
-
+	std::unordered_map<int, AudioDevice>& _device_list;
 	std::string parseIP(std::string& buff);
 	void createAudioDevice(std::string& ip);
 public:
-	DevicePollConnection(boost::asio::io_service& service, std::unordered_map<int,AudioDevice>& deviceList);
+	DevicePollConnection(boost::asio::io_service& service, std::unordered_map<int, AudioDevice>& deviceList);
 	virtual ~DevicePollConnection();
 
 	void processConnection();

@@ -10,22 +10,22 @@
 
 #include <unordered_map>
 
-#include "../../../../Comms/Transever/ITranseverConnectionFactory.h"
+#include "Transever/ITranseverConnectionFactory.h"
 #include "../AudioDevice.h"
 
 namespace Comms {
 
-class DevicePollConnectionFactory :public ITranseverConnectionFactory
+class DevicePollConnectionFactory :public MediaStreamingComms::ITranseverConnectionFactory
 {
 private:
-	std::unordered_map<int,AudioDevice>& _device_List;
+	std::unordered_map<int, AudioDevice>& _device_List;
 	boost::asio::io_service& _io_service;
 
 public:
-	DevicePollConnectionFactory(std::unordered_map<int,AudioDevice>& device_List,boost::asio::io_service& io_service);
+	DevicePollConnectionFactory(std::unordered_map<int, AudioDevice>& _device_List,boost::asio::io_service& io_service);
 	virtual ~DevicePollConnectionFactory();
 
-	boost::shared_ptr<ITranseverConnection> create(boost::asio::io_service& service);
+	boost::shared_ptr<MediaStreamingComms::ITranseverConnection> create(boost::asio::io_service& service);
 };
 
 } /* namespace Comms */

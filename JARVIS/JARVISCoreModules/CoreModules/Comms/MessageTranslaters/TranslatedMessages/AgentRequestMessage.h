@@ -8,11 +8,13 @@
 #ifndef AGENTREQUESTMESSAGE_H_
 #define AGENTREQUESTMESSAGE_H_
 
-#include "../../../../../Comms/MessageTranslaters/TranslatedMessages/AbstractMessage.h"
+#include "AbstractMessage.h"
+#include "../../../exportMacros.h"
+>>>>>>> f4855cc0357f94ea74b95d110b8d2209c43a1b07
 
 namespace TranslatedMessages {
 
-class AgentRequestMessage: public AbstractMessage
+class DLLCORE_API AgentRequestMessage: public AbstractMessage
 {
 public:
 	AgentRequestMessage(char* message, unsigned int length);

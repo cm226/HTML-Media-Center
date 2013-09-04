@@ -19,9 +19,9 @@ MusicTimeMachinePlugin::~MusicTimeMachinePlugin() {
 
 bool MusicTimeMachinePlugin::whatDoYouLookLike(Page* p)
 {
-	coremodules::htmlrendere::elements::Song song1("name1", "url1", "artist1");
-	coremodules::htmlrendere::elements::Song song2("name2", "url2", "artist2");
-	coremodules::htmlrendere::elements::Song song3("name3", "url3", "artist3");
+	coremodules::htmlrendere::elements::HTMLSong song1("name1", "url1", "artist1");
+	coremodules::htmlrendere::elements::HTMLSong song2("name2", "url2", "artist2");
+	coremodules::htmlrendere::elements::HTMLSong song3("name3", "url3", "artist3");
 
 	coremodules::htmlrendere::elements::MusicPlaylist playlist;
 	playlist.addSong(song1);
