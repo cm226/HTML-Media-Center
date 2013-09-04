@@ -3,7 +3,7 @@
 #include "Devices/AudioDevice.h"
 #include "MusicPlaylist.h"
 #include "exportMacros.h"
-#include "Devices\DeviceList.h"
+#include "Devices/DeviceList.h"
 
 #include "Devices/DeviceList.h"
 

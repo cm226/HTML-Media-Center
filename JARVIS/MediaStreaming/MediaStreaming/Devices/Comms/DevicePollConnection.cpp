@@ -13,13 +13,8 @@
 
 namespace Comms {
 
-<<<<<<< HEAD
-DevicePollConnection::DevicePollConnection(boost::asio::io_service& service, std::unordered_map<int,AudioDevice>& deviceList) :
-		ITranseverConnection(service),
-=======
 DevicePollConnection::DevicePollConnection(boost::asio::io_service& service, std::unordered_map<int, AudioDevice>& deviceList) :
 		MediaStreamingComms::ITranseverConnection(service),
->>>>>>> f4855cc0357f94ea74b95d110b8d2209c43a1b07
 		_device_list(deviceList)
 {
 }
@@ -51,11 +46,7 @@ void DevicePollConnection::createAudioDevice(std::string& ip)
 	AudioDevice newDevice;
 	std::string parsed_device_IP = parseIP(ip);
 	newDevice.Set_IP(parsed_device_IP);
-<<<<<<< HEAD
-	_device_list[newDevice.getID()] = newDevice;
-=======
-	_device_list[newDevice.getID()]  = (newDevice);
->>>>>>> f4855cc0357f94ea74b95d110b8d2209c43a1b07
+	_device_list[newDevice.getID()]  = newDevice;
 	ErrorLogger::logInfo("Device Registered with ip: "+parsed_device_IP);
 }
 std::string DevicePollConnection::parseIP(std::string& buff)
