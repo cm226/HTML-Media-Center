@@ -396,6 +396,18 @@
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AgentRequestReplyMessage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AbstractMessage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\Comms\Protocals\StringMessageSerializer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\Comms\Protocals\IProtocal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\Comms\Transever\Exceptions\TimeoutExpiredException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreModules\Comms\Comms.h">
@@ -909,6 +921,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AgentRequestReplyMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Comms\Protocals\StringMessageSerializer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
