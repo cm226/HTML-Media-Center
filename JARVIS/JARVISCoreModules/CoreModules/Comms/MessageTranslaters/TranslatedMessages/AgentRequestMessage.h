@@ -8,7 +8,7 @@
 #ifndef AGENTREQUESTMESSAGE_H_
 #define AGENTREQUESTMESSAGE_H_
 
-#include "../../../../../Comms/MessageTranslaters/TranslatedMessages/AbstractMessage.h"
+#include "AbstractMessage.h"
 #include "../../../exportMacros.h"
 
 namespace TranslatedMessages {
