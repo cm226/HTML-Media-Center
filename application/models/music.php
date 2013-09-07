@@ -47,7 +47,8 @@ class Music extends Model {
 				   Album.albumRating,
 				   Artist.artistName
 			    FROM Album, Artist
-			    WHERE Album.artistID = Artist.artistID";	
+			    WHERE Album.artistID = Artist.artistID
+				ORDER BY Album.albumName";	
 
 		return $this->query($albumsQ);
 	}

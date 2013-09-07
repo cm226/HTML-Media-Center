@@ -4,7 +4,7 @@
 
 	foreach($albums as $album)
 	{
-		?> <li><a href="../Music/viewAlbum/<?php echo $album['Album']['albumID'];?>"><?php echo $album['Album']['albumName'];?></a></li> <?php
+		?> <li><a href="../../Mobile/Music/viewAlbum/<?php echo $album['Album']['albumID'];?>"><?php echo $album['Album']['albumName'];?></a></li> <?php
 	}
 
  ?>

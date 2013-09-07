@@ -24,9 +24,6 @@
     <ClCompile Include="CoreModules\Comms\JSON\JSONCURLRequest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AbstractMessage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\ComandAndControlMessage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -49,12 +46,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CoreModules\Comms\Transever\AbstractTransever.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CoreModules\Comms\Transever\TCPTransever.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CoreModules\CoreModules.cpp">
@@ -330,13 +321,7 @@
     <ClCompile Include="CoreModules\Comms\Transever\MessageChunker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CoreModules\Comms\Transever\Exceptions\TimeoutExpiredException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\RequestNextDataChunkMessage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CoreModules\Comms\MessageTranslaters\StringMessageSerializer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\ReplyMessage.cpp">
@@ -345,13 +330,7 @@
     <ClCompile Include="CoreModules\Comms\Transever\TranseverConnectionFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CoreModules\Comms\Transever\TCPAsyncTransever.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CoreModules\Comms\Transever\JARVISTranseverConnection.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CoreModules\Comms\Transever\ITranseverConnection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CoreModules\Comms\Protocals\TwoByteMsgLen.cpp">
@@ -367,9 +346,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CoreModules\Comms\Protocals\IProtocal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubjectEvent.cpp">

@@ -76,8 +76,6 @@
     <ClCompile Include="CoreModules\Comms\JSON\JSONCURLRequest.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubject.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubjectEvent.cpp" />
-    <ClCompile Include="CoreModules\Comms\MessageTranslaters\StringMessageSerializer.cpp" />
-    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AbstractMessage.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AgentRequestMessage.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\AgentRequestReplyMessage.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\ComandAndControlMessage.cpp" />
@@ -95,14 +93,8 @@
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginInteractionFilter.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPageTranslationFilter.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.cpp" />
-    <ClCompile Include="CoreModules\Comms\Protocals\IProtocal.cpp" />
     <ClCompile Include="CoreModules\Comms\Protocals\TwoByteMsgLen.cpp" />
-    <ClCompile Include="CoreModules\Comms\Transever\AbstractTransever.cpp" />
-    <ClCompile Include="CoreModules\Comms\Transever\Exceptions\TimeoutExpiredException.cpp" />
-    <ClCompile Include="CoreModules\Comms\Transever\ITranseverConnection.cpp" />
     <ClCompile Include="CoreModules\Comms\Transever\JARVISTranseverConnection.cpp" />
-    <ClCompile Include="CoreModules\Comms\Transever\TCPAsyncTransever.cpp" />
-    <ClCompile Include="CoreModules\Comms\Transever\TCPTransever.cpp" />
     <ClCompile Include="CoreModules\Comms\Transever\TranseverConnectionFactory.cpp" />
     <ClCompile Include="CoreModules\CoreModules.cpp" />
     <ClCompile Include="CoreModules\Database\Database.cpp" />

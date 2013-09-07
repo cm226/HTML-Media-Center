@@ -46,7 +46,6 @@ JARVISFramework::~JARVISFramework()
 void JARVISFramework::process()
 {
 	this->cModules.getComms()->startComms();
-	this->cModules.getMediaStreamer().Initalise_Avalabale_Audio_Devices();
 	boost::thread listenForConnectionThread(boost::bind(&JARVISFramework::processCommandLoop, this));
 
 	while(!this->shuttingDown)
