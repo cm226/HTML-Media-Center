@@ -24,16 +24,18 @@ Then you should be good to go :)
 extract each core module into seperate dlls
 	
 update the agent and serverside python scripts to allow for DHCP (its set on a static ip od 192.168.0.198 for debuging)
-	- part wat completed but the server C++ needs to be updated to get the correct IP of itself its set right now at 162.168.0.199
+	- part way completed but the server C++ needs to be updated to get the correct IP of itself its set right now at 162.168.0.199
 	
 unit test project for the main cpp .exe
 
 create a remote control page for pauseing, changing volume fastforwardung and so on of playing things
 
+put initalise User Agents into seperate thread so it dosent hold up startup process
 
-Update View player PHP to be a php class that you fill with a playlist and it writes the html 
+Music channles (playlists depermined by plugins)
 
-Bugs
+recently watched desktop "widget"
+
 phase ot the find file in template(can prob take it out now)
 
 phase out the post methods in view player
