@@ -61,7 +61,6 @@ public function sendMessage($Message)
 		
 		$msgHeaderStr = chr($hightBit). chr($lowBit);
 		$messageStr = $msgHeaderStr.$messageStr;
-		
 		socket_write($this->sock, $messageStr, strlen($messageStr));
 	}
 }

@@ -4,7 +4,7 @@ import MediaRendereVideo
 import MediaRendereAudio
 import ServerHandshakeHander
 
-PORT = 45001
+PORT = 45005
 
 def getServerIP():
          return ServerHandshakeHander.listenForHandshake()   

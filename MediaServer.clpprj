@@ -38,7 +38,7 @@
 			</treenode>
 			<treenode node="Messages/RequestMobilePluginPageMessage.php;PHP:PHP Include;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php;f14;5;57;5;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="Messages/RequestNextChunkMessage.php;PHP:PHP Include;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f14;2;50;2;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="Messages/RequestNextChunkMessage.php;PHP:PHP Include;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f14;2;50;2;;;;vpos;;v;;r;;d-1,-1;;b1,0;;m">
 			</treenode>
 			<treenode node="Messages/RequestPluginPageMessage.php;PHP:PHP Include;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php;f14;3;51;3;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
@@ -178,11 +178,17 @@
 			</treenode>
 			<treenode node="JARVISCommas;PHP:Class Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php;f0;7;1;54;;;;vpos;;v;;r;;d0,8;;b0,0;;m">
 				<treenode node="__construct;PHP:Function Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php;f0;11;1;18;;;;vpos;;v;;r;;d0,12;;b0,0;;m">
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php;f7;13;12;13;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 				</treenode>
 				<treenode node="listLoadedPlugins;PHP:Function Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php;f0;27;1;31;;;;vpos;;v;;r;;d0,28;;b0,0;;m">
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php;f1;29;6;29;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 				</treenode>
 				<treenode node="requestMobilePluginPage;PHP:Function Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php;f0;40;1;44;;;;vpos;;v;;r;;d0,41;;b0,0;;mpluginName;;p">
 					<treenode node="pluginName;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php;f33;40;44;40;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php;f1;42;6;42;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
 				<treenode node="requestPluginInteractionPage;PHP:Function Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php;f0;47;1;51;;;;vpos;;v;;r;;d0,48;;b0,0;;mpluginCallbackID;;ppluginContextArgs;;p">
@@ -190,13 +196,19 @@
 					</treenode>
 					<treenode node="pluginContextArgs;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php;f57;47;75;47;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php;f1;49;6;49;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 				</treenode>
 				<treenode node="requestPluginPage;PHP:Function Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php;f0;34;1;38;;;;vpos;;v;;r;;d0,35;;b0,0;;mpluginName;;p">
 					<treenode node="pluginName;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php;f27;34;38;34;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php;f1;36;6;36;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 				</treenode>
 				<treenode node="send;PHP:Function Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php;f0;21;1;25;;;;vpos;;v;;r;;d0,22;;b0,0;;mmessage;;p">
 					<treenode node="message;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php;f14;21;22;21;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php;f1;23;6;23;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
 				<treenode node="transever;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php;f4;9;14;9;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
@@ -260,7 +272,15 @@
 			</treenode>
 			<treenode node="Music;PHP:Class Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f0;5;1;252;;;;vpos;;vModel;;c;;r;;d26,5;;b0,0;;m">
 				<treenode node="addSongsToPlayList;PHP:Function Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f1;160;2;171;;;;vpos;;v;;r;;d1,161;;b0,0;;mplaylistName;;pURLlist;;p">
+					<treenode node="AddToPlaylistsq;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;169;18;169;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="insertValues;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;162;15;162;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 					<treenode node="playlistName;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f29;160;42;160;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f7;165;12;165;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="url;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f23;163;27;163;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 					<treenode node="URLlist;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f44;160;52;160;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
@@ -268,59 +288,129 @@
 				<treenode node="cratePlaylist;PHP:Function Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f1;106;2;110;;;;vpos;;v;;r;;d1,107;;b0,0;;mplaylistName;;p">
 					<treenode node="playlistName;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f24;106;37;106;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
+					<treenode node="playlistq;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;108;12;108;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;109;7;109;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 				</treenode>
 				<treenode node="filterSongs;PHP:Function Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f1;133;2;151;;;;vpos;;v;;r;;d1,134;;b0,0;;mArtist;;pSong;;p">
 					<treenode node="Artist;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f22;133;29;133;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
+					<treenode node="filterSongsq;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;135;15;135;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 					<treenode node="Song;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f31;133;36;133;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f9;150;14;150;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
 				<treenode node="get10RandomSongs;PHP:Function Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f1;173;2;194;;;;vpos;;v;;r;;d1,174;;b0,0;;m">
+					<treenode node="select5RandomSongs;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;175;21;175;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f9;192;14;192;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 				</treenode>
 				<treenode node="getAlbumForID;PHP:Function Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f1;209;2;213;;;;vpos;;v;;r;;d1,210;;b0,0;;malbumID;;p">
 					<treenode node="albumID;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f24;209;32;209;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
+					<treenode node="q;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;211;4;211;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f9;212;14;212;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 				</treenode>
 				<treenode node="getAlbums;PHP:Function Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f1;41;2;53;;;;vpos;;v;;r;;d1,42;;b0,0;;m">
+					<treenode node="albumsQ;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;43;10;43;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f9;52;14;52;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 				</treenode>
 				<treenode node="getAlbumSongs;PHP:Function Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f1;55;2;75;;;;vpos;;v;;r;;d1,56;;b0,0;;malbumID;;p">
 					<treenode node="albumID;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f24;55;32;55;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="albumQueeryRes;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;72;17;72;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="allArtistsSongq;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;57;18;57;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f20;72;25;72;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
 				<treenode node="getArtistForID;PHP:Function Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f1;196;2;201;;;;vpos;;v;;r;;d1,197;;b0,0;;martistID;;p">
 					<treenode node="artistID;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f25;196;34;196;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
+					<treenode node="q;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;198;4;198;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f9;199;14;199;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 				</treenode>
 				<treenode node="getArtistsAlbums;PHP:Function Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f1;78;2;97;;;;vpos;;v;;r;;d1,79;;b0,0;;martistID;;p">
+					<treenode node="albumQueery;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;80;14;80;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="albumQueeryRes;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;93;17;93;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 					<treenode node="artistID;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f27;78;36;78;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f20;93;25;93;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
 				<treenode node="getArtistsSongs;PHP:Function Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f1;21;2;39;;;;vpos;;v;;r;;d1,22;;b0,0;;martistID;;p">
+					<treenode node="allArtistsSongq;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;23;18;23;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="allArtistsSongResult;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;37;23;37;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 					<treenode node="artistID;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f26;21;35;21;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f26;37;31;37;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
 				<treenode node="getPlayLists;PHP:Function Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f1;99;2;104;;;;vpos;;v;;r;;d1,100;;b0,0;;m">
+					<treenode node="playlistq;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;101;12;101;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f9;102;14;102;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 				</treenode>
 				<treenode node="getRecentlyAdded;PHP:Function Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f1;215;2;234;;;;vpos;;v;;r;;d1,216;;b0,0;;m">
+					<treenode node="q;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;217;4;217;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f9;233;14;233;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 				</treenode>
 				<treenode node="getSongForID;PHP:Function Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f1;203;2;207;;;;vpos;;v;;r;;d1,204;;b0,0;;mID;;p">
 					<treenode node="ID;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f23;203;26;203;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="q;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;205;4;205;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f9;206;14;206;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
 				<treenode node="getSongsFromPlayList;PHP:Function Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f1;112;2;131;;;;vpos;;v;;r;;d1,113;;b0,0;;mplaylist;;p">
 					<treenode node="playlist;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f31;112;40;112;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
+					<treenode node="playlistSongsq;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;114;17;114;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f9;130;14;130;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 				</treenode>
 				<treenode node="isInPlayList;PHP:Function Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f1;154;2;158;;;;vpos;;v;;r;;d1,155;;b0,0;;msongURL;;pplayList;;p">
+					<treenode node="isInPlaylistq;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;156;16;156;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 					<treenode node="playList;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f33;154;42;154;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 					<treenode node="songURL;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f23;154;31;154;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f16;157;21;157;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 				</treenode>
 				<treenode node="makeAgentRequest;PHP:Function Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f1;245;2;250;;;;vpos;;v;;r;;d1,246;;b0,0;;m">
+					<treenode node="agents;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;248;9;248;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="comms;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;247;8;247;;;;vposJARVISCommas;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 				</treenode>
 				<treenode node="streamPlaylist;PHP:Function Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f1;236;2;243;;;;vpos;;v;;r;;d1,237;;b0,0;;mplaylist;;p">
+					<treenode node="comms;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;239;8;239;;;;vposJARVISCommas;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 					<treenode node="playlist;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f25;236;34;236;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="playlistArray;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;238;16;238;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
 				<treenode node="view;PHP:Function Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f1;16;2;19;;;;vpos;;v;;r;;d1,17;;b0,0;;mshearchCriteria;;p">
@@ -328,6 +418,12 @@
 					</treenode>
 				</treenode>
 				<treenode node="viewAll;PHP:Function Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f1;7;2;14;;;;vpos;;v;;r;;d1,8;;b0,0;;m">
+					<treenode node="allArtistsq;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;10;14;10;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="allArtistsResult;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f2;11;19;11;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\application\models\music.php;f22;11;27;11;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 				</treenode>
 			</treenode>
 			<treenode node="MusicController;PHP:Class Name;C:\wamp\www\HTML-Media-Center\application\controllers\musiccontroller.php;f0;3;1;140;;;;vpos;;vController;;c;;r;;d41,3;;b0,0;;m">
@@ -554,19 +650,57 @@
 				<treenode node="variables;PHP:Var Name;C:\wamp\www\HTML-Media-Center\library\template.class.php;f11;3;21;3;;;;vpos;;v;;r;;d-1,-1;;b2,0;;m">
 				</treenode>
 			</treenode>
-			<treenode node="Transever;PHP:Class Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f0;4;1;106;;;;vpos;;v;;r;;d0,5;;b0,0;;m">
+			<treenode node="Transever;PHP:Class Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f0;4;1;105;;;;vpos;;v;;r;;d0,5;;b0,0;;m">
 				<treenode node="__construct;PHP:Function Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f0;11;1;37;;;;vpos;;v;;r;;d0,12;;b0,0;;mport;;p">
 					<treenode node="port;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f21;11;26;11;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f6;20;11;20;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="timeout;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f1;32;9;32;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 				</treenode>
 				<treenode node="__destruct;PHP:Function Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f0;39;1;45;;;;vpos;;v;;r;;d0,40;;b0,0;;m">
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f4;41;9;41;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 				</treenode>
 				<treenode node="isConnected;PHP:Function Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f0;47;1;50;;;;vpos;;v;;r;;d0,48;;b0,0;;m">
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f8;49;13;49;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 				</treenode>
-				<treenode node="readReply;PHP:Function Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f7;68;1;103;;;;vpos;;v;;r;;d0,69;;b1,0;;m">
+				<treenode node="readReply;PHP:Function Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f7;67;1;102;;;;vpos;;v;;r;;d0,69;;b1,0;;m">
+					<treenode node="bytesLeft;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f2;78;12;78;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="messageParts;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f2;96;15;96;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="messageSize;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f2;73;14;73;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="msgSizeBytes;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f2;72;15;72;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="out;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f2;94;6;94;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="out_chunks;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f2;80;13;80;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="read_chunk_counter;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f2;82;21;82;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="read_chunk_size;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f2;77;18;77;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f4;69;9;69;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 				</treenode>
-				<treenode node="sendMessage;PHP:Function Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f7;52;1;66;;;;vpos;;v;;r;;d0,53;;b1,0;;mMessage;;p">
+				<treenode node="sendMessage;PHP:Function Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f7;52;1;65;;;;vpos;;v;;r;;d0,53;;b1,0;;mMessage;;p">
+					<treenode node="hightBit;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f2;59;11;59;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="lowBit;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f2;58;9;58;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 					<treenode node="Message;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f28;52;36;52;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="messageStr;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f2;56;13;56;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="msgHeaderStr;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f2;61;15;61;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="msgLen;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f2;57;9;57;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="this;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f4;54;9;54;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
 				<treenode node="address;PHP:Var Name;C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php;f4;7;12;7;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
@@ -7737,7 +7871,7 @@
 		<file name="C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Messages\listPluginsMessage.php" crc="767394256"/>
 		<file name="C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Messages\AgentRequestMessage.php" crc="644162598"/>
 		<file name="C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Messages\AbstractMessage.php" crc="689699883"/>
-		<file name="C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php" crc="1220619693"/>
+		<file name="C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\Transever.php" crc="1408794800"/>
 		<file name="C:\wamp\www\HTML-Media-Center\scripts\JARVISCOMS\JARVIS.Comms.php" crc="-2033267546"/>
 		<file name="C:\wamp\www\HTML-Media-Center\scripts\AgentComms\AgientComFunctions.php" crc="-4008047"/>
 		<file name="C:\wamp\www\HTML-Media-Center\scripts\telnet.php" crc="-421449183"/>
