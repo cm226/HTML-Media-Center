@@ -20,8 +20,8 @@ class DevicePollConnection : public MediaStreamingComms::ITranseverConnection
 {
 private:
 	std::unordered_map<int, AudioDevice>& _device_list;
-	std::string parseIP(std::string& buff);
-	void createAudioDevice(std::string& ip);
+	std::string parseIP(unsigned char ip_address[4]);
+	void createAudioDevice(unsigned char ip_address[4]);
 public:
 	DevicePollConnection(boost::asio::io_service& service, std::unordered_map<int, AudioDevice>& deviceList);
 	virtual ~DevicePollConnection();

@@ -11,7 +11,7 @@
 #include <string>
 #include "../../../ErrorLogger/Errors/ErrorLogger.h"
 
-#include "../../../Comms/Transever/TCPAsyncTransever.h"
+#include "Transever/TCPAsyncTransever.h"
 #include "Transever/TranseverConnectionFactory.h"
 
 #include "IComms.h"

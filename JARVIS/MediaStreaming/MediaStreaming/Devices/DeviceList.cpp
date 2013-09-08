@@ -9,10 +9,12 @@
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
 #include <boost/thread.hpp>
+#include <sstream>
 
 #include "Comms/DevicePollConnectionFactory.h"
 #include "../../../Comms/Broadcaster.h"
 #include "Comms/Transever/TCPAsyncTransever.h"
+#include "../../../ErrorLogger/Errors/ErrorLogger.h"
 
 namespace Devices {
 
@@ -28,8 +30,13 @@ DeviceList::~DeviceList() {
 void DeviceList::Initalise_device_List()
 {
 	_audio_devices.clear();
-	boost::asio::io_service io_sercive;
+	boost::thread agentPollSevice(boost::bind(&DeviceList::wate_for_AgentReplys, this));
+	
+}
 
+void DeviceList::wate_for_AgentReplys()
+{
+	boost::asio::io_service io_sercive;
 	Broadcaster broadcaster(io_sercive, 40002);
 	Comms::DevicePollConnectionFactory connectionFactory(_audio_devices, io_sercive);
 
@@ -41,10 +48,11 @@ void DeviceList::Initalise_device_List()
 	broadcaster.Broadcast_Message(AGENT_HELLO_BROADCAST);
 
 	boost::this_thread::sleep(boost::posix_time::seconds(10)); // allow 10 sec for agents to respond
-
+	std::stringstream infoMsg;
+	infoMsg << "Finished Listening for Agents, collected : " << _audio_devices.size() << " devices";
+	ErrorLogger::logInfo(infoMsg.str());
 	io_sercive.stop();
 	comms_thread.join();
-
 }
 
 
@@ -56,7 +64,7 @@ std::string DeviceList::build_Broadcast_Message()
 	AGENT_HELLO_BROADCAST.append(1,192);
 	AGENT_HELLO_BROADCAST.append(1,168);
 	AGENT_HELLO_BROADCAST.append(1,0);
-	AGENT_HELLO_BROADCAST.append(1,199);
+	AGENT_HELLO_BROADCAST.append(1,16);
 
 	return AGENT_HELLO_BROADCAST;
 }

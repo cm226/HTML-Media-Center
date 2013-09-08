@@ -8,8 +8,8 @@
 #ifndef TRANSEVERCONNECTIONFACTORY_H_
 #define TRANSEVERCONNECTIONFACTORY_H_
 
-#include "../../../../Comms/Transever/ITranseverConnection.h"
-#include "../../../../Comms/Transever/ITranseverConnectionFactory.h"
+#include "ITranseverConnection.h"
+#include "ITranseverConnectionFactory.h"
 #include <boost/shared_ptr.hpp>
 #include <boost/asio.hpp>
 

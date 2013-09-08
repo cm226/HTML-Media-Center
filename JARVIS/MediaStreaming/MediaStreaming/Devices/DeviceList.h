@@ -19,6 +19,8 @@ private:
 
 	std::unordered_map<int, AudioDevice> _audio_devices;
 	std::string build_Broadcast_Message();
+	void wate_for_AgentReplys();
+
 public:
 	DeviceList();
 	virtual ~DeviceList();

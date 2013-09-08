@@ -1,5 +1,6 @@
 import sys
 import socket
+import struct
 
 
 class InvalidMessageFormatException(Exception):
@@ -9,7 +10,10 @@ class InvalidMessageFormatException(Exception):
         return repr(self.value)
 
 BORADCASTPORT = 40002
+SERVERREPLYPORT = 40003
+
 AGENT_HELLO_BROADCAST = 7
+AGENT_HELLO_REPLY = 8
 
 def listenForHandshake():
     s = bindSocket()
@@ -49,4 +53,10 @@ def parseIPAddress(ipBytes):
     return parsedServerIP
     
 def sendBoradcastReply(parsedIP):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect((parsedIP, SERVERREPLYPORT))
+    message = struct.pack('@BBBBB', 8,192,168,1,198)
+    print "sending reply: "+message
+    s.sendall(message)
+    s.close()
     return

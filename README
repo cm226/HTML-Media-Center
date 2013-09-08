@@ -25,12 +25,11 @@ extract each core module into seperate dlls
 	
 update the agent and serverside python scripts to allow for DHCP (its set on a static ip od 192.168.0.198 for debuging)
 	- part way completed but the server C++ needs to be updated to get the correct IP of itself its set right now at 162.168.0.199
+	- agent side python also is hard coded to send its ip address as 192.168.0.198
 	
 unit test project for the main cpp .exe
 
 create a remote control page for pauseing, changing volume fastforwardung and so on of playing things
-
-put initalise User Agents into seperate thread so it dosent hold up startup process
 
 Music channles (playlists depermined by plugins)
 

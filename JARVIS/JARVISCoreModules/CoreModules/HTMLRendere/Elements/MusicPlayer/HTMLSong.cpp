@@ -5,7 +5,7 @@
  *      Author: craig
  */
 
-#include "Song.h"
+#include "HTMLSong.h"
 
 namespace coremodules {
 namespace htmlrendere {
@@ -19,8 +19,7 @@ HTMLSong ::HTMLSong (std::string name, std::string url, std::string artist):
 	_len_min(0),
 	_len_sec(0)
 {
-	// TODO Auto-generated constructor stub
-
+	int i = 0;
 }
 
 

@@ -98,7 +98,10 @@
     <ClCompile Include="CoreModules\Comms\Protocals\StringMessageSerializer.cpp" />
     <ClCompile Include="CoreModules\Comms\Protocals\TwoByteMsgLen.cpp" />
     <ClCompile Include="CoreModules\Comms\Transever\Exceptions\TimeoutExpiredException.cpp" />
+    <ClCompile Include="CoreModules\Comms\Transever\ITranseverConnection.cpp" />
+    <ClCompile Include="CoreModules\Comms\Transever\ITranseverConnectionFactory.cpp" />
     <ClCompile Include="CoreModules\Comms\Transever\JARVISTranseverConnection.cpp" />
+    <ClCompile Include="CoreModules\Comms\Transever\TCPAsyncTransever.cpp" />
     <ClCompile Include="CoreModules\Comms\Transever\TranseverConnectionFactory.cpp" />
     <ClCompile Include="CoreModules\CoreModules.cpp" />
     <ClCompile Include="CoreModules\Database\Database.cpp" />
@@ -184,7 +187,7 @@
     <ClCompile Include="CoreModules\HTMLRendere\Elements\MenuList\MenuList.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\MusicPlayer\MusicPlayer.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\MusicPlayer\MusicPlaylist.cpp" />
-    <ClCompile Include="CoreModules\HTMLRendere\Elements\MusicPlayer\Song.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\MusicPlayer\HTMLSong.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\TextBox.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\IElement.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Page.cpp" />
@@ -239,6 +242,7 @@
     <ClInclude Include="CoreModules\Comms\Transever\AbstractTransever.h" />
     <ClInclude Include="CoreModules\Comms\Transever\Exceptions\TimeoutExpiredException.h" />
     <ClInclude Include="CoreModules\Comms\Transever\ITranseverConnection.h" />
+    <ClInclude Include="CoreModules\Comms\Transever\ITranseverConnectionFactory.h" />
     <ClInclude Include="CoreModules\Comms\Transever\JARVISTranseverConnection.h" />
     <ClInclude Include="CoreModules\Comms\Transever\TCPAsyncTransever.h" />
     <ClInclude Include="CoreModules\Comms\Transever\TCPTransever.h" />
@@ -348,7 +352,7 @@
     <ClInclude Include="CoreModules\HTMLRendere\Elements\MenuList\MenuList.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\MusicPlayer\MusicPlayer.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\MusicPlayer\MusicPlaylist.h" />
-    <ClInclude Include="CoreModules\HTMLRendere\Elements\MusicPlayer\Song.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\MusicPlayer\HTMLSong.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\TextBox.h" />
     <ClInclude Include="CoreModules\HTMLRendere\HTMLRendere.h" />
     <ClInclude Include="CoreModules\HTMLRendere\IElement.h" />

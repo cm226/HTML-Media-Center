@@ -26,33 +26,31 @@ DevicePollConnection::~DevicePollConnection()
 
 void DevicePollConnection::processConnection()
 {
-	char header[1];
+	unsigned char header[1];
 	this->socket_.read_some(boost::asio::buffer(header));
 
 	if(header[0] == AGENT_HELLO_REPLY)
 	{
-		char ip_address[4];
+		unsigned char ip_address[4];
 		this->socket_.read_some(boost::asio::buffer(ip_address));
-
-		std::string addressStr(ip_address);
-		createAudioDevice(addressStr);
+		createAudioDevice(ip_address);
 	}
 	else
 		ErrorLogger::logError("Received a message with bad header to device poll in media streaming");
 }
 
-void DevicePollConnection::createAudioDevice(std::string& ip)
+void DevicePollConnection::createAudioDevice(unsigned char ip_address[4])
 {
 	AudioDevice newDevice;
-	std::string parsed_device_IP = parseIP(ip);
+	std::string parsed_device_IP = parseIP(ip_address);
 	newDevice.Set_IP(parsed_device_IP);
 	_device_list[newDevice.getID()]  = newDevice;
 	ErrorLogger::logInfo("Device Registered with ip: "+parsed_device_IP);
 }
-std::string DevicePollConnection::parseIP(std::string& buff)
+std::string DevicePollConnection::parseIP(unsigned char ip_address[4])
 {
 	std::stringstream ip;
-	ip << buff[0] << '.' << buff[1] << '.' << buff[2] << '.' << buff[3];
+	ip << (int)ip_address[0] << '.' << (int)ip_address[1] << '.' << (int)ip_address[2] << '.' << (int)ip_address[3];
 	return ip.str();
 }
 

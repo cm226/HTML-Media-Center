@@ -369,9 +369,6 @@
     <ClCompile Include="CoreModules\HTMLRendere\Elements\MusicPlayer\MusicPlaylist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CoreModules\HTMLRendere\Elements\MusicPlayer\Song.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CoreModules\HTMLRendere\URL\URLBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -406,6 +403,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CoreModules\Comms\Transever\Exceptions\TimeoutExpiredException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\Comms\Transever\ITranseverConnection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\Comms\Transever\ITranseverConnectionFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\Comms\Transever\TCPAsyncTransever.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\MusicPlayer\HTMLSong.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -896,9 +905,6 @@
     <ClInclude Include="CoreModules\HTMLRendere\Elements\MusicPlayer\MusicPlaylist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CoreModules\HTMLRendere\Elements\MusicPlayer\Song.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CoreModules\HTMLRendere\URL\URLBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -924,6 +930,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CoreModules\Comms\Protocals\StringMessageSerializer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Comms\Transever\ITranseverConnectionFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\MusicPlayer\HTMLSong.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

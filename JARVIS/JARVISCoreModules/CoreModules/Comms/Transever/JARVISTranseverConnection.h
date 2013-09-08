@@ -8,7 +8,7 @@
 #ifndef JARVISTRANSEVERCONNECTION_H_
 #define JARVISTRANSEVERCONNECTION_H_
 
-#include "../../../../Comms/Transever/ITranseverConnection.h"
+#include "ITranseverConnection.h"
 
 class JARVISTranseverConnection: public ITranseverConnection
 {

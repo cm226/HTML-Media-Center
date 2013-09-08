@@ -12,7 +12,7 @@
 
 #include "../../IElement.h"
 #include "../../../exportMacros.h"
-#include "Song.h"
+#include "HTMLSong.h"
 
 
 namespace coremodules {

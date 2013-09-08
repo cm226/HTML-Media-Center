@@ -9,8 +9,10 @@ class DLLCORE_API MediaStreamRequestMessage: public AbstractMessage
 {
 	enum MEDIA_TYPE{AUDIO, VIDEO};
 private:
+	#pragma warning( disable : 4251)
 	MEDIA_TYPE _media_type;
 	std::list<int> _ids;
+	#pragma warning( default : 4251)
 
 
 public:
