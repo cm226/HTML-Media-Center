@@ -15,11 +15,13 @@
 #include "../../../Comms/Broadcaster.h"
 #include "Comms/Transever/TCPAsyncTransever.h"
 #include "../../../ErrorLogger/Errors/ErrorLogger.h"
+#include "Comms/GetLanIPLinux.h"
 
 namespace Devices {
 
 DeviceList::DeviceList() {
-	// TODO Auto-generated constructor stub
+	Comms::GetLanIPLinux ipgetter;
+	ipgetter.getIP();
 
 }
 
@@ -30,7 +32,7 @@ DeviceList::~DeviceList() {
 void DeviceList::Initalise_device_List()
 {
 	_audio_devices.clear();
-	boost::thread agentPollSevice(boost::bind(&DeviceList::wate_for_AgentReplys, this));
+	//boost::thread agentPollSevice(boost::bind(&DeviceList::wate_for_AgentReplys, this));
 	
 }
 

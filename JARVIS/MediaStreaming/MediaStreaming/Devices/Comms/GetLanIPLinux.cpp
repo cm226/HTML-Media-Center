@@ -6,6 +6,7 @@
  */
 
 #include "GetLanIPLinux.h"
+#include "../../../../ErrorLogger/Errors/ErrorLogger.h"
 
 #include <arpa/inet.h>
 #include <sys/socket.h>
@@ -14,6 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string>
 
 namespace Comms {
 
@@ -32,45 +34,35 @@ std::string GetLanIPLinux::getIP()
 	char host[NI_MAXHOST];
 
 	if (getifaddrs(&ifaddr) == -1)
-	{
-		// didnt work print Error
+		ErrorLogger::logError("Failed to get network inteface card LAN IP :( ");
+
+	for (ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next) {
+	   if (ifa->ifa_addr == NULL)
+		   continue;
+
+	   family = ifa->ifa_addr->sa_family;
+
+	   if (family == AF_INET || family == AF_INET6)
+	   {
+		   std::string name = ifa->ifa_name;
+		   if(name.find("wlan",0) != std::string::npos &&
+				   name.find("wlan",0) != std::string::npos)
+		   {
+
+			   s = getnameinfo(ifa->ifa_addr,
+					   (family == AF_INET) ? sizeof(struct sockaddr_in) :
+											 sizeof(struct sockaddr_in6),
+					   host, NI_MAXHOST, NULL, 0, NI_NUMERICHOST);
+			   ErrorLogger::logInfo("host: "+std::string(host));
+			   return std::string(host);
+			   if (s != 0)
+				   ErrorLogger::logError("getnameinfo failed");
+		   }
+	   }
 	}
 
-	/* Walk through linked list, maintaining head pointer so we
-	              can free list later */
-
-	           for (ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next) {
-	               if (ifa->ifa_addr == NULL)
-	                   continue;
-
-	               family = ifa->ifa_addr->sa_family;
-
-	               /* Display interface name and family (including symbolic
-	                  form of the latter for the common families) */
-
-	               printf("%s  address family: %d%s\n",
-	                       ifa->ifa_name, family,
-	                       (family == AF_PACKET) ? " (AF_PACKET)" :
-	                       (family == AF_INET) ?   " (AF_INET)" :
-	                       (family == AF_INET6) ?  " (AF_INET6)" : "");
-
-	               /* For an AF_INET* interface address, display the address */
-
-	               if (family == AF_INET || family == AF_INET6) {
-	                   s = getnameinfo(ifa->ifa_addr,
-	                           (family == AF_INET) ? sizeof(struct sockaddr_in) :
-	                                                 sizeof(struct sockaddr_in6),
-	                           host, NI_MAXHOST, NULL, 0, NI_NUMERICHOST);
-	                   if (s != 0) {
-	                       printf("getnameinfo() failed: %s\n", gai_strerror(s));
-	                       exit(EXIT_FAILURE);
-	                   }
-	                   printf("\taddress: <%s>\n", host);
-	               }
-	           }
-
-	           freeifaddrs(ifaddr);
-		return "";
+	freeifaddrs(ifaddr);
+	return "";
 }
 
 } /* namespace Comms */
