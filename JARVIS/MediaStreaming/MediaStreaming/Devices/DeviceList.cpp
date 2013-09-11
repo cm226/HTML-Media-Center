@@ -9,19 +9,22 @@
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
 #include <boost/thread.hpp>
+#include <boost/algorithm/string.hpp>
+#include <boost/lexical_cast.hpp>
 #include <sstream>
+#include <vector>
+
 
 #include "Comms/DevicePollConnectionFactory.h"
 #include "../../../Comms/Broadcaster.h"
 #include "Comms/Transever/TCPAsyncTransever.h"
 #include "../../../ErrorLogger/Errors/ErrorLogger.h"
-#include "Comms/GetLanIPLinux.h"
+#include "Comms/IPGetter.h"
 
 namespace Devices {
 
 DeviceList::DeviceList() {
-	Comms::GetLanIPLinux ipgetter;
-	ipgetter.getIP();
+
 
 }
 
@@ -61,14 +64,40 @@ void DeviceList::wate_for_AgentReplys()
 
 std::string DeviceList::build_Broadcast_Message()
 {
+
+	Comms::IPGetter ipgetter;
+	std::string lanIP = ipgetter.getLANIP();
+
+	std::vector<std::string> strs;
+	boost::split(strs,lanIP,boost::is_any_of("."));
+
+	if(strs.size() != 4)
+	{
+		ErrorLogger::logError("Weird IP returned form IP getter returning localhost: "+lanIP);
+		return "";
+	}
+
 	std::string AGENT_HELLO_BROADCAST;
+	try
+	{
+	char p1 = boost::lexical_cast<char>(strs[0]);
+	char p2 = boost::lexical_cast<char>(strs[1]);
+	char p3 = boost::lexical_cast<char>(strs[2]);
+	char p4 = boost::lexical_cast<char>(strs[3]);
+
+
 	AGENT_HELLO_BROADCAST.append(1,7);
 
-	AGENT_HELLO_BROADCAST.append(1,192);
-	AGENT_HELLO_BROADCAST.append(1,168);
-	AGENT_HELLO_BROADCAST.append(1,0);
-	AGENT_HELLO_BROADCAST.append(1,16);
-
+	AGENT_HELLO_BROADCAST.append(1,p1);
+	AGENT_HELLO_BROADCAST.append(1,p2);
+	AGENT_HELLO_BROADCAST.append(1,p3);
+	AGENT_HELLO_BROADCAST.append(1,p4);
+	}
+	catch(boost::bad_lexical_cast& e)
+	{
+		ErrorLogger::logError("poorly formed IP from ip getter: "+lanIP);
+		return "127.0.0.1";
+	}
 	return AGENT_HELLO_BROADCAST;
 }
 

@@ -22,6 +22,7 @@ std::string IPGetter::getLANIP()
 {
 #ifdef _WIN32
 	//windows Code
+	return "127.0.0.1";
 #elif linux
 	// UNIX code
 #include "GetLanIPLinux.h"
