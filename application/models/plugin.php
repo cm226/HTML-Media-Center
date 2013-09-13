@@ -42,6 +42,12 @@ function getPluginReply($pluginCallbackID, $contextArgs)
 	return $reply;
 }
 
+function getStatusData()
+{
+	$comms = new JARVISCommas();
+	return $comms->send(new RequestDiagnosticMessage());
+}
+
 
 }
 

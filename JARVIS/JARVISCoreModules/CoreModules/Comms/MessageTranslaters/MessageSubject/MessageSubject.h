@@ -11,6 +11,7 @@
 #include "../TranslatedMessages/MobilePluginPageMessage.h"
 #include "../TranslatedMessages/MediaStreamRequestMessage.h"
 #include "../TranslatedMessages/AgentRequestMessage.h"
+#include "../TranslatedMessages/RequestDisagnosticsMessage.h"
 
 #include "MessageSubjectEvent.h"
 
@@ -33,6 +34,7 @@ public:
 	MessageSubjectEvent<TranslatedMessages::MobilePluginPageMessage> onMobilePluginPageMessageReceved;
 	MessageSubjectEvent<TranslatedMessages::MediaStreamRequestMessage> onMediaStreamRequestMessageReceved;
 	MessageSubjectEvent<TranslatedMessages::AgentRequestMessage> onAgentRequestMessageReceved;
+	MessageSubjectEvent<TranslatedMessages::RequestDisagnosticsMessage> onDiagnosticMessageReceved;
 
 	MessageSubject();
 

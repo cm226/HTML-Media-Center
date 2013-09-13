@@ -73,6 +73,7 @@ void Translater::buildTranslationFilterPipeline()
 	TranslationFilters::MobilePluginPageTranslationFilter* mobilePluginPageFilter	= new TranslationFilters::MobilePluginPageTranslationFilter(this->protocal);
 	TranslationFilters::MediaStreamRequestFilter* mediaStreamRequestFilter			= new TranslationFilters::MediaStreamRequestFilter(this->protocal);
 	TranslationFilters::AgentPollRequestFilter* agentPollRequestFilter 				= new TranslationFilters::AgentPollRequestFilter(this->protocal);
+	TranslationFilters::RequestDiagnosticMessageFilter* reqDiagMsgFilter 			= new TranslationFilters::RequestDiagnosticMessageFilter(this->protocal);
 
 	pluginPollFilter->setNextFilter(commandAndcontrolFilter);
 	commandAndcontrolFilter->setNextFilter(pluginPageFilter);
@@ -80,6 +81,7 @@ void Translater::buildTranslationFilterPipeline()
 	pluginInteractionFilter->setNextFilter(mobilePluginPageFilter);
 	mobilePluginPageFilter->setNextFilter(mediaStreamRequestFilter);
 	mediaStreamRequestFilter->setNextFilter(agentPollRequestFilter);
+	agentPollRequestFilter->setNextFilter(reqDiagMsgFilter);
 
 
 	this->translationFilter = pluginPollFilter;

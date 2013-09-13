@@ -26,6 +26,8 @@ foreach ($plugins as $plugin)
 }
 
 ?>
+
+<div id="controlsPannel">
 <div id="addNewFolder">
 	<h4 id="newFolderAddBttn">+</h4>
 
@@ -37,3 +39,7 @@ foreach ($plugins as $plugin)
 
 </div
 
+<div id="Status">
+	<a href="../Plugin/Status" ><h4 id="newFolderAddBttn">+</h4></a>
+</div>
+</div>

@@ -1,4 +1,6 @@
 <?php
+
+
 class PluginController extends Controller {
 
 function Main()
@@ -29,6 +31,30 @@ function pluginInteraction()
 	}
 	
 	$this->set('page',$this->Plugin->getPluginReply($callbackID,$contextElements));	
+}
+
+function Status()
+{
+	$processedCatagorys = array();
+	$statusData = $this->Plugin->getStatusData();
+	$catagories = explode(',',$statusData);
+	foreach($catagories as $catagory)
+	{
+		$catagoryEntrysStart = strpos($catagory, '{');
+		$catagoryEntrysEnd = strpos($catagory, '}');
+
+		if($catagoryEntrysStart and $catagoryEntrysEnd)
+		{
+			$catName = substr($catagory,0, $catagoryEntrysStart);
+			$carVals = substr($catagory,$catagoryEntrysStart, $catagoryEntrysEnd);
+			$processedCatagorys[$catName] = explode(',',$carVals);
+		}
+		else
+		{
+		}
+	}
+
+	return $processedCatagorys;
 }
 
 

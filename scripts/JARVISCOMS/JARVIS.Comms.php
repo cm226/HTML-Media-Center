@@ -4,6 +4,7 @@ require_once('Messages/listPluginsMessage.php');
 require_once('Messages/RequestPluginPageMessage.php');
 require_once('Messages/PluginPageInteractionMessage.php');
 require_once('Messages/RequestMobilePluginPageMessage.php');
+require_once('Messages/RequestDiagnosticMessage.php');
 
 class JARVISCommas
 {

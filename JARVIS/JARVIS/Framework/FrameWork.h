@@ -43,6 +43,7 @@ public:
 
 private:
 	void loadedPlugins(ListPluginsMessage*, coremodules::comms::protocals::IProtocal*);
+	void processDiagnosticMessage(TranslatedMessages::RequestDisagnosticsMessage*, coremodules::comms::protocals::IProtocal*);
 
 	void loadStartupPlugins();
 	bool commandAndControlMessageReceved(int type);

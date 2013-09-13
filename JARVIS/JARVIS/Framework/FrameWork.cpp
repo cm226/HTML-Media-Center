@@ -18,6 +18,8 @@ JARVISFramework::JARVISFramework()
 	this->shuttingDown = false;
 
 	this->cModules.getComms()->messagesubject()->onListPluginsMessageReceved.connect(this, &JARVISFramework::loadedPlugins);
+	this->cModules.getComms()->messagesubject()->onDiagnosticMessageReceved.connect(this, &JARVISFramework::processDiagnosticMessage);
+
 
 	EventManager::commandAndControlMessageReceved.attach(this,&JARVISFramework::commandAndControlMessageReceved);
 
@@ -79,6 +81,33 @@ void JARVISFramework::loadStartupPlugins()
 
 	    }
 	  }
+}
+
+
+void JARVISFramework::processDiagnosticMessage(TranslatedMessages::RequestDisagnosticsMessage* msg,
+		coremodules::comms::protocals::IProtocal* protocal)
+{
+	std::stringstream statusMessage;
+
+	bool dbConnection = cModules.getDatabaseConnection()->isConnected();
+	statusMessage << "Database Connection{Connection Status:";
+	if(dbConnection)
+		statusMessage << "1";
+	else
+		statusMessage << "0";
+
+	statusMessage << "},Audio Devices{";
+	std::list<AudioDevice> audioDevices;
+	cModules.getMediaStreamer().Get_Audio_Devices(audioDevices);
+
+	for(auto device: audioDevices)
+	{
+		statusMessage << device.Get_Name() << "1";
+	}
+	statusMessage << "}";
+
+	protocal->sendMessage(new TranslatedMessages::ReplyMessage(statusMessage.str()));
+
 }
 
 

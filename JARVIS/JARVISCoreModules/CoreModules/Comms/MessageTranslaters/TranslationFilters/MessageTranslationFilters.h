@@ -9,5 +9,6 @@
 #include "PluginInteractionFilter.h"
 #include "MediaStreamRequestFilter.h"
 #include "AgentPollRequestFilter.h"
+#include "RequestDiagnosticMessageFilter.h"
 
 #endif

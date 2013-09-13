@@ -7,3 +7,4 @@
 #include "MobilePluginPageMessage.h"
 #include "MediaStreamRequestMessage.h"
 #include "AgentRequestMessage.h"
+#include "RequestDisagnosticsMessage.h"
