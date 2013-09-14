@@ -1,3 +1,9 @@
+html body
+{
+	margin:0px;
+	padding: 0px;
+}
+
 .collapableFolder
 {
 	width: 50px;
@@ -101,26 +107,41 @@
 
 }
 
-#addNewFolder
+#controlsPannel
+{
+	float: right;
+	margin-right: 0px;
+	background-color:#333333;
+
+	-webkit-border-top-left-radius: 20px;
+	-webkit-border-bottom-left-radius: 20px;
+	-moz-border-radius-topleft: 20px;
+	-moz-border-radius-bottomleft: 20px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+
+	
+}
+
+#controlsPannel
 {
 	color:#D0D0D0 ;
-	float: right;
-	margin-right: 30px;
 }
 
 
-#addNewFolder h4
+#controlsPannel h4
 {
 	font-size: 30px;
 	float:right;
+	margin: 10px;
 }
 
-#addNewFolder h4:hover
+#controlsPannel h4:hover
 {
 	text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
 }
 
-#addNewFolder h3
+#controlsPannel h3
 {
 	color: black;
 }

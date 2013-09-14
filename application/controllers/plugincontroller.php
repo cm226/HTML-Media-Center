@@ -54,7 +54,8 @@ function Status()
 		}
 	}
 
-	return $processedCatagorys;
+	$this->set('processedCatagorys',$processedCatagorys);	
+
 }
 
 

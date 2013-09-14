@@ -8,6 +8,8 @@
 #include "RequestDiagnosticMessageFilter.h"
 
 #include "../TranslatedMessages/RequestDisagnosticsMessage.h"
+#include "../../Comms.h"
+#include "../../../../../ErrorLogger/Errors/ErrorLogger.h"
 
 namespace TranslationFilters {
 
@@ -26,7 +28,10 @@ AbstractMessage* RequestDiagnosticMessageFilter::translateMessage(std::string he
 {
 	if(header.compare(TranslatedMessages::RequestDisagnosticsMessage::getHeader()) ==0 )
 	{
-		return new TranslatedMessages::RequestDisagnosticsMessage(bytes, bytesLength);
+		ErrorLogger::logInfo("Plugin Page Message Receved");
+		TranslatedMessages::RequestDisagnosticsMessage* msg = new TranslatedMessages::RequestDisagnosticsMessage(bytes, bytesLength);
+		Comms::_messageSubject.onDiagnosticMessageReceved.signal(msg,protocal);
+		return msg;
 	}
 
 	return forwardMessage(header, bytes, bytesLength);

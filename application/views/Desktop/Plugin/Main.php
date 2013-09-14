@@ -40,6 +40,6 @@ foreach ($plugins as $plugin)
 </div
 
 <div id="Status">
-	<a href="../Plugin/Status" ><h4 id="newFolderAddBttn">+</h4></a>
+	<h4 id="newFolderAddBttn" onClick="window.location = '../Plugin/Status'">...</h4>
 </div>
 </div>

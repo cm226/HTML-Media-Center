@@ -61,7 +61,9 @@ AbstractMessage* Translater::translateMessage(char* message, unsigned int messag
 
 AbstractMessage* Translater::messageFactory(std::string msgHeader, char* data, unsigned int messageLength)
 {
-	return this->translationFilter->translateMessage(msgHeader,data,messageLength);
+	AbstractMessage* message = NULL;
+	message = this->translationFilter->translateMessage(msgHeader,data,messageLength);
+	return message;
 }
 
 void Translater::buildTranslationFilterPipeline()
