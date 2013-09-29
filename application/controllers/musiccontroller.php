@@ -138,4 +138,5 @@ class MusicController extends Controller {
 		$album = $this->Music->getAlbumForID($albumID);
 		$this->set('album', $album[0]);
 	}
+
 }
