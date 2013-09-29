@@ -35,7 +35,12 @@ DeviceList::~DeviceList() {
 void DeviceList::Initalise_device_List()
 {
 	_audio_devices.clear();
-	boost::thread agentPollSevice(boost::bind(&DeviceList::wate_for_AgentReplys, this));
+	//boost::thread agentPollSevice(boost::bind(&DeviceList::wate_for_AgentReplys, this));
+	AudioDevice ad1 = AudioDevice();
+	ad1.Set_IP("192.168.1.1");
+
+	_audio_devices[0] = ad1;
+	_audio_devices[1] = ad1;
 	
 }
 

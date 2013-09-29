@@ -99,13 +99,16 @@ void JARVISFramework::processDiagnosticMessage(TranslatedMessages::RequestDisagn
 	statusMessage << "},Audio Devices{";
 	std::list<AudioDevice> audioDevices;
 	cModules.getMediaStreamer().Get_Audio_Devices(audioDevices);
-
-	for(auto device: audioDevices)
+	std::list<AudioDevice>::iterator lastDevice = audioDevices.end();
+	--lastDevice;
+	for(std::list<AudioDevice>::iterator device = audioDevices.begin();
+			device != audioDevices.end(); device++)
 	{
-		statusMessage << device.Get_Name() << "1";
+		statusMessage << device->Get_Name() << ":1";
+		if(device != lastDevice)
+			statusMessage << ".";
 	}
 	statusMessage << "}";
-
 	protocal->sendMessage(new TranslatedMessages::ReplyMessage(statusMessage.str()));
 
 }

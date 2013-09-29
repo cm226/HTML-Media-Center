@@ -46,8 +46,21 @@ function Status()
 		if($catagoryEntrysStart and $catagoryEntrysEnd)
 		{
 			$catName = substr($catagory,0, $catagoryEntrysStart);
-			$carVals = substr($catagory,$catagoryEntrysStart, $catagoryEntrysEnd);
-			$processedCatagorys[$catName] = explode(',',$carVals);
+			$carVals = substr($catagory,$catagoryEntrysStart+1, $catagoryEntrysEnd - $catagoryEntrysStart -1);
+			$allValls = explode('.',$carVals);
+			$processedStatusValues = array();
+			foreach($allValls as $val)
+			{
+				$nameStatus = explode(':',$val);
+				$procVal = array();
+				$procVal[0] = $nameStatus[0];
+	
+				if($nameStatus[1] == "1") $procVal[1] = true;
+				else $procVal[1] = false;
+
+				array_push($processedStatusValues, $procVal);
+			}
+			$processedCatagorys[$catName] =$processedStatusValues;
 		}
 		else
 		{
