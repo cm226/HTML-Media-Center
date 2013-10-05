@@ -97,7 +97,8 @@ std::string Query::buildQuery()
 			std::vector<std::string> tableNames;
 			std::vector<std::string>::iterator tnameIt;
 			(*constraintIter)->getTableNames(&tableNames);
-			for(tnameIt = tableNames.begin(); tnameIt != tableNames.end(); tnameIt++) tables.insert((*tnameIt));
+			for(tnameIt = tableNames.begin(); tnameIt != tableNames.end(); tnameIt++)
+				tables.insert((*tnameIt));
 		}
 	}
 

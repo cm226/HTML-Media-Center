@@ -31,13 +31,15 @@ unit test project for the main cpp .exe
 
 create a remote control page for pauseing, changing volume fastforwardung and so on of playing things
 
-Music channles (playlists depermined by plugins)
+Music channels (playlists depermined by plugins)
 
 recently watched desktop "widget"
 
 phase ot the find file in template(can prob take it out now)
 
 phase out the post methods in view player
+
+implement status page in mobile
 
 Bugs
 

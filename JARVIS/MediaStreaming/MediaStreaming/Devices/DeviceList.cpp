@@ -36,6 +36,11 @@ void DeviceList::Initalise_device_List()
 {
 	_audio_devices.clear();
 	//boost::thread agentPollSevice(boost::bind(&DeviceList::wate_for_AgentReplys, this));
+	AudioDevice ad1 = AudioDevice();
+	ad1.Set_IP("192.168.1.1");
+
+	_audio_devices[0] = ad1;
+	_audio_devices[1] = ad1;
 	
 }
 
@@ -78,12 +83,11 @@ std::string DeviceList::build_Broadcast_Message()
 	}
 
 	std::string AGENT_HELLO_BROADCAST;
-	try
-	{
-	char p1 = boost::lexical_cast<char>(strs[0]);
-	char p2 = boost::lexical_cast<char>(strs[1]);
-	char p3 = boost::lexical_cast<char>(strs[2]);
-	char p4 = boost::lexical_cast<char>(strs[3]);
+
+	unsigned char p1 = (unsigned char)atoi(strs[0].c_str());
+	unsigned char p2 = (unsigned char)atoi(strs[1].c_str());
+	unsigned char p3 = (unsigned char)atoi(strs[2].c_str());
+	unsigned char p4 = (unsigned char)atoi(strs[3].c_str());
 
 
 	AGENT_HELLO_BROADCAST.append(1,7);
@@ -92,12 +96,7 @@ std::string DeviceList::build_Broadcast_Message()
 	AGENT_HELLO_BROADCAST.append(1,p2);
 	AGENT_HELLO_BROADCAST.append(1,p3);
 	AGENT_HELLO_BROADCAST.append(1,p4);
-	}
-	catch(boost::bad_lexical_cast& e)
-	{
-		ErrorLogger::logError("poorly formed IP from ip getter: "+lanIP);
-		return "127.0.0.1";
-	}
+
 	return AGENT_HELLO_BROADCAST;
 }
 

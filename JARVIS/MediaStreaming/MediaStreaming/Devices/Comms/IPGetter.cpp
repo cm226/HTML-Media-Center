@@ -6,7 +6,13 @@
  */
 
 #include "IPGetter.h"
+#include "../../../../ErrorLogger/Errors/ErrorLogger.h"
 
+#ifdef _WIN32
+
+#else
+#include "GetLanIPLinux.h"
+#endif
 
 namespace Comms {
 
@@ -23,14 +29,11 @@ std::string IPGetter::getLANIP()
 #ifdef _WIN32
 	//windows Code
 	return "127.0.0.1";
-#elif linux
+#else
 	// UNIX code
-#include "GetLanIPLinux.h"
 	GetLanIPLinux linxIPGetter;
-	return linxIPGetter.GetLanIPLinux();
+	return linxIPGetter.getIP();
 #endif
-
-
 }
 std::string IPGetter::getWANIP()
 {
