@@ -25,31 +25,31 @@ class Template {
 
     function render() {
 		extract($this->variables);
-		$viewDir = ROOT . DS . 'application' . DS . 'views';	
+		$viewDir = ROOT . DS . 'application' . DS . 'views'. DS. $this->_viewVersion;	
 
 			if(in_array($this->_action, $this->_ignoreHeaders)) // igores headers and footers if that value is set for the current view 
 			{
 //				echo findFile( $this->_controller . DS . $this->_action . '.php');
-				include ($this->findFile( $this->_controller . DS . $this->_action . '.php'));
+				include ($viewDir. DS. $this->_controller . DS . $this->_action . '.php');
 				return;
 			}
 		
-			include ($this->findFile('header.php'));
-			if ($this->findFile($this->_controller . DS . $this->_action.'defineIncludes.php') != false) {
-				include ($this->findFile( $this->_controller . DS . $this->_action.'defineIncludes.php'));
+			include ($viewDir. DS.'header.php');
+			if (file_exists($viewDir. DS. $this->_controller . DS . $this->_action.'defineIncludes.php') != false) {
+				include ($viewDir. DS. $this->_controller . DS . $this->_action.'defineIncludes.php');
 			}
-			include ($this->findFile('headerEnd.php')); // give views the chance to include there own stlysheets / js etc
+			include ($viewDir. DS.'headerEnd.php'); // give views the chance to include there own stlysheets / js etc
 			
-			if ($this->findFile($this->_controller . DS . 'header.php') != false) {
-				include ($this->findFile($this->_controller . DS . 'header.php'));
+			if (file_exists($viewDir. DS. $this->_controller . DS . 'header.php') != false) {
+				include ($viewDir. DS.$this->_controller . DS . 'header.php');
 			}
 			
-			include ($this->findFile($this->_controller . DS . $this->_action . '.php'));		 
+			include ($viewDir. DS. $this->_controller . DS . $this->_action . '.php');		 
 
-			if ($this->findFile( $this->_controller . DS . 'footer.php')!=false) {
-				include ($this->findFile($this->_controller . DS . 'footer.php'));
+			if (file_exists($viewDir. DS. $this->_controller . DS . 'footer.php')!=false) {
+				include ($viewDir. DS.$this->_controller . DS . 'footer.php');
 			} 
-			include ($this->findFile('footer.php'));
+			include ($viewDir. DS.'footer.php');
     }
 
 
