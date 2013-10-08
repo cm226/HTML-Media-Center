@@ -417,6 +417,12 @@
     <ClCompile Include="CoreModules\HTMLRendere\Elements\MusicPlayer\HTMLSong.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\RequestDiagnosticMessageFilter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\RequestDisagnosticsMessage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreModules\Comms\Comms.h">
@@ -936,6 +942,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CoreModules\HTMLRendere\Elements\MusicPlayer\HTMLSong.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\RequestDiagnosticMessageFilter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\RequestDisagnosticsMessage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

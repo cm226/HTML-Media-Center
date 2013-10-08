@@ -12,7 +12,7 @@
 #include <boost/asio.hpp>
 
 
-class COMMS_API Broadcaster {
+class Broadcaster {
 private:
 	boost::asio::io_service& _io_service;
 	int _port;

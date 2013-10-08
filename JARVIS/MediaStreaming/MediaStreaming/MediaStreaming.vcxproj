@@ -49,6 +49,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WINDOWS;DLLEXPORT_MEDIA_STREAMER;_WIN32_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -73,6 +74,7 @@
     <ClInclude Include="Devices\Comms\Broadcaster.h" />
     <ClInclude Include="Devices\Comms\DevicePollConnection.h" />
     <ClInclude Include="Devices\Comms\DevicePollConnectionFactory.h" />
+    <ClInclude Include="Devices\Comms\IPGetter.h" />
     <ClInclude Include="Devices\Comms\MessageTranslaters\StringMessageSerializer.h" />
     <ClInclude Include="Devices\Comms\MessageTranslaters\TranslatedMessages\AbstractMessage.h" />
     <ClInclude Include="Devices\Comms\Protocals\IProtocal.h" />
@@ -95,6 +97,7 @@
     <ClCompile Include="Devices\Comms\Broadcaster.cpp" />
     <ClCompile Include="Devices\Comms\DevicePollConnection.cpp" />
     <ClCompile Include="Devices\Comms\DevicePollConnectionFactory.cpp" />
+    <ClCompile Include="Devices\Comms\IPGetter.cpp" />
     <ClCompile Include="Devices\Comms\MessageTranslaters\StringMessageSerializer.cpp" />
     <ClCompile Include="Devices\Comms\MessageTranslaters\TranslatedMessages\AbstractMessage.cpp" />
     <ClCompile Include="Devices\Comms\Protocals\IProtocal.cpp" />

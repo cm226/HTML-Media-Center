@@ -85,6 +85,7 @@
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\PluginInteractionRequestMessage.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\PluginPageMessage.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\ReplyMessage.cpp" />
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\RequestDisagnosticsMessage.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\RequestNextDataChunkMessage.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\Translater.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\AgentPollRequestFilter.cpp" />
@@ -94,6 +95,7 @@
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginInteractionFilter.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPageTranslationFilter.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.cpp" />
+    <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\RequestDiagnosticMessageFilter.cpp" />
     <ClCompile Include="CoreModules\Comms\Protocals\IProtocal.cpp" />
     <ClCompile Include="CoreModules\Comms\Protocals\StringMessageSerializer.cpp" />
     <ClCompile Include="CoreModules\Comms\Protocals\TwoByteMsgLen.cpp" />
@@ -225,6 +227,7 @@
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\PluginInteractionRequestMessage.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\PluginPageMessage.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\ReplyMessage.h" />
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\RequestDisagnosticsMessage.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\RequestNextDataChunkMessage.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\TranslatedMessages.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\Translater.h" />
@@ -236,6 +239,7 @@
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginInteractionFilter.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPageTranslationFilter.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.h" />
+    <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\RequestDiagnosticMessageFilter.h" />
     <ClInclude Include="CoreModules\Comms\Protocals\IProtocal.h" />
     <ClInclude Include="CoreModules\Comms\Protocals\StringMessageSerializer.h" />
     <ClInclude Include="CoreModules\Comms\Protocals\TwoByteMsgLen.h" />

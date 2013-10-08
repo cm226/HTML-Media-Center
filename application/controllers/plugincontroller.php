@@ -14,6 +14,11 @@ function mobilePluginPage($plugin)
 	$this->set('page',$this->Plugin->getPluginPage($plugin, true));		
 }
 
+function pluginPage($plugin)
+{
+	$this->set('page',$this->Plugin->getPluginPage($plugin, false));		
+}
+
 function pluginInteraction()
 {
 	$contextElements = func_get_args();
