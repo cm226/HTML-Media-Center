@@ -32,5 +32,10 @@ class SharedController extends Controller {
 	{
 		
 	}
+	
+	function genericPluginFormHandler()
+	{
+	
+	}
 }
 ?>

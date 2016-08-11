@@ -107,9 +107,6 @@
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Tables\Movie\Fields\thumbnailURL.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Errors\ErrorLogger.cpp">
-      <Filter>Source Files\Src</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Database\Tables\Album\Fields\albumID.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>

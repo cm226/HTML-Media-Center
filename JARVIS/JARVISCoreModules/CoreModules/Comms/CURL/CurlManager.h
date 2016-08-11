@@ -8,7 +8,7 @@
 #ifndef CURLMANAGER_H_
 #define CURLMANAGER_H_
 
-#include <curl.h>
+#include <curl/curl.h>
 #include "ICURLRequest.h"
 #include <string>
 

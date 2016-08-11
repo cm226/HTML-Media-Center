@@ -423,6 +423,9 @@
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\RequestDisagnosticsMessage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CoreModules\TaskList\TaskList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreModules\Comms\Comms.h">
@@ -948,6 +951,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\RequestDisagnosticsMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\TaskList\TaskList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

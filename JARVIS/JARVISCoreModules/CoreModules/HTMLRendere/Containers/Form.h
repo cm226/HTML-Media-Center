@@ -29,6 +29,7 @@ public:
 
 	virtual void addElement(IElement* element);
 	virtual void removeElement(IElement* element);
+	virtual void setHandler(int depth, CALLBACk_HANDLE handl, std::string pluginName);
 
 };
 

@@ -47,9 +47,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\StringMessageSerializer.cpp">
-      <Filter>Source Files\SRC</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\Translater.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
@@ -92,9 +89,6 @@
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Protocals\TwoByteMsgLen.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Transever\AbstractTransever.cpp">
-      <Filter>Source Files\SRC</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Transever\ITranseverConnection.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
@@ -107,9 +101,6 @@
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Transever\TCPAsyncTransever.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Transever\TCPTransever.cpp">
-      <Filter>Source Files\SRC</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\Transever\TranseverConnectionFactory.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
@@ -120,12 +111,6 @@
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\JSON\JSONCURLRequest.cpp">
-      <Filter>Source Files\SRC</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\EventModel\Events\Event.cpp">
-      <Filter>Source Files\SRC</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\EventModel\EventHandler\EventHandler.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\EventModel\EventHandler\EvntHandlerBase.cpp">
@@ -153,6 +138,15 @@
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\MobilePluginPageMessage.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\URL\URLBuilderFactory.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\URL\IURLBuilder.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\URL\URLBuilder.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
   </ItemGroup>

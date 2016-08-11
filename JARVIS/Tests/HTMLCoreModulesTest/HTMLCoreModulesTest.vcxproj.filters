@@ -37,6 +37,9 @@
     <Filter Include="Source Files\ElementTests\FileUpload">
       <UniqueIdentifier>{3994d8f5-75cc-42ea-8373-1f53b745d0cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\SRC">
+      <UniqueIdentifier>{e9f5d9e9-9fff-451f-9fb9-2bc974a4df90}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ElementTests\TextBoxTests.cpp">
@@ -108,6 +111,15 @@
     <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\PageBuilders\MobilePageBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\URL\IURLBuilder.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\URL\URLBuilder.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\URL\URLBuilderFactory.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -115,6 +127,15 @@
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\URL\IURLBuilder.h">
+      <Filter>Source Files\SRC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\URL\URLBuilder.h">
+      <Filter>Source Files\SRC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JARVISCoreModules\CoreModules\HTMLRendere\URL\URLBuilderFactory.h">
+      <Filter>Source Files\SRC</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
