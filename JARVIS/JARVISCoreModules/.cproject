@@ -30,9 +30,9 @@
 								<option id="gnu.cpp.compiler.so.debug.option.optimization.level.1622420783" name="Optimization Level" superClass="gnu.cpp.compiler.so.debug.option.optimization.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.so.debug.option.debugging.level.2121115718" name="Debug Level" superClass="gnu.cpp.compiler.so.debug.option.debugging.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1786151474" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0"/>
 									<listOptionValue builtIn="false" value="/home/craig/Documents/Projects/mysql-connector-c++-1.1.7"/>
 									<listOptionValue builtIn="false" value="/home/craig/Documents/Projects/curl-7.50.1/include/curl"/>
+									<listOptionValue builtIn="false" value="/home/craig/Documents/Projects/boost_1_60_0"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.other.other.1651733787" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" useByScannerDiscovery="false" value="-c -fmessage-length=0 -std=c++0x -Wno-unknown-pragmas -fPIC" valueType="string"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.300847323" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
