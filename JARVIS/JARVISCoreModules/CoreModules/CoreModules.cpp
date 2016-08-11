@@ -18,6 +18,7 @@ struct CoreModules::privateMembers
 	DatabaseTables::Database* databasecon;
 	Comms comms;
 	MediaStreamer mediaStreamer;
+	TaskList taskList;
 };
 
 CoreModules::CoreModules():members(new privateMembers())
@@ -62,5 +63,10 @@ CommsNS::IComms* CoreModules::getComms()
 MediaStreamer& CoreModules::getMediaStreamer()
 {
 	return this->members->mediaStreamer;
+}
+
+TaskList & CoreModules::getTaskList()
+{
+	return this->members->taskList;
 }
 

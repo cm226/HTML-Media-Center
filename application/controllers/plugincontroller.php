@@ -35,6 +35,17 @@ function pluginInteraction()
 		return;
 	}
 	
+	foreach( $_POST as $post_key => $post_val) {
+	    if( is_array( $post_val) ) {
+	        foreach( $post_val as $postvar_key => $postvar_val ) 
+	        {
+	            array_push($contextElements, $postvar_key. "=" . $postvar_val );
+	        }
+	    } else {
+	        array_push($contextElements, $post_key . "=" . $post_val);
+	    }
+	}
+
 	$this->set('page',$this->Plugin->getPluginReply($callbackID,$contextElements));	
 }
 

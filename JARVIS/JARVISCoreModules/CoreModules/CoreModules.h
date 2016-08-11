@@ -8,13 +8,16 @@
 #ifndef COREMODULES_H_
 #define COREMODULES_H_
 
+
 #include <boost/shared_ptr.hpp>
 #include "HTMLRendere/HTMLRendere.h"
 #include "EventModel/EventModel.h"
 #include "Database/Database.h"
 #include "exportMacros.h"
+
 #include "Comms/IComms.h"
 #include "../../MediaStreaming/MediaStreaming/MediaStreamer.h"
+#include "TaskList/TaskList.h"
 
 
 class DLLCORE_API CoreModules {
@@ -32,6 +35,8 @@ public:
 	DatabaseTables::Database* getDatabaseConnection();
 	CommsNS::IComms* getComms();
 	MediaStreamer& getMediaStreamer();
+	TaskList& getTaskList();
+	
 
 
 

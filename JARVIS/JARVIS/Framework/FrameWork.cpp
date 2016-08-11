@@ -25,7 +25,7 @@ JARVISFramework::JARVISFramework()
 
 
 #ifdef _WINDOWS
-	this->pluginLoader = new Loader("C:\\wamp\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\plugins");
+	this->pluginLoader = new Loader("C:\\wamp64\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\plugins");
 #else
 	this->pluginLoader = new Loader("/var/www/HTML-Media-Center/JARVIS/Plugins");
 #endif
@@ -50,6 +50,7 @@ void JARVISFramework::process()
 	this->cModules.getComms()->startComms();
 	boost::thread listenForConnectionThread(boost::bind(&JARVISFramework::processCommandLoop, this));
 
+	this->cModules.getTaskList().StartTasks();
 	while(!this->shuttingDown)
 	{
 #ifdef _WINDOWS

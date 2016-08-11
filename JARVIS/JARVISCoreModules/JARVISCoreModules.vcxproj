@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,14 +19,14 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -39,9 +39,9 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\include;D:\programming\boost_1_52_0;D:\programming\curl MSVS\include\curl;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\programming\curl MSVS\lib\Release;D:\programming\curl2;D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\lib;D:\programming\boost_1_52_0\stage\lib;$(LibraryPath)</LibraryPath>
-    <ExecutablePath>D:\programming\curl2;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>C:\Program Files %28x86%29\MySQL\MySQL Connector C++ 1.1.7\include;C:\Users\cmate_000\Documents\boost_1_60_0;C:\Users\cmate_000\Documents\curl-7.50.0\builds\libcurl-vc14-x86-release-dll-ipv6-sspi-winssl\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\cmate_000\Documents\curl-7.50.0\builds\libcurl-vc14-x86-release-dll-ipv6-sspi-winssl\lib;C:\Program Files %28x86%29\MySQL\MySQL Connector C++ 1.1.7\lib\opt;C:\Users\cmate_000\Documents\boost_1_60_0\stage\lib;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>C:\Users\cmate_000\Documents\curl-7.40.0-devel-mingw64\bin;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\include;D:\programming\boost_1_52_0;D:\programming\curl-7.28.1\include\curl;$(IncludePath)</IncludePath>
@@ -50,11 +50,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_WINDOWS;_WIN32_WINDOWS;DLLEXPORT_CORE_MODULES_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;_WIN32_WINDOWS;DLLEXPORT_CORE_MODULES_;mysqlcppconn_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>mysqlcppconn.lib;curllib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mysqlcppconn.lib;libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -207,6 +207,7 @@
     <ClCompile Include="CoreModules\HTMLRendere\URL\URLBuilderFactory.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\MediaStreamRequestMessage.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\MediaStreamRequestFilter.cpp" />
+    <ClCompile Include="CoreModules\TaskList\TaskList.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreModules\Comms\Comms.h" />
@@ -384,6 +385,7 @@
     <ClInclude Include="CoreModules\HTMLRendere\URL\URLBuilderFactory.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\MediaStreamRequestMessage.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\MediaStreamRequestFilter.h" />
+    <ClInclude Include="CoreModules\TaskList\TaskList.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ErrorLogger\ErrorLogger.vcxproj">

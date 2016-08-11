@@ -9,8 +9,7 @@
 #include <sstream>
 
 Form::Form(std::string name) : IContainer(name) {
-	this->addAttribute("action=\"../Shared/genericPluginFormHandler\"");
-
+	this->addAttribute("method=\"POST\"");
 }
 
 Form::~Form() {
@@ -48,4 +47,12 @@ std::string Form::getTagContent()
 	}
 
 	return ss.str();
+}
+
+void Form::setHandler(int depth, CALLBACk_HANDLE handl, std::string pluginName)
+{
+	std::stringstream actionCallback;
+	actionCallback << "action=\"" << buildCallbackLocationString(depth, handl, pluginName) << "\"";
+	this->addAttribute(actionCallback.str());
+	;
 }

@@ -10,7 +10,7 @@
 
 #include "../IElement.h"
 
-class TextBox: public IElement {
+class DLLCORE_API TextBox: public IElement {
 
 protected:
 	virtual std::string getTagText() {return "input";};
