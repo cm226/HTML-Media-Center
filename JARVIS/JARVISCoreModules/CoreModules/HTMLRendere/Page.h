@@ -11,6 +11,7 @@
 #include "IElement.h"
 #include <vector>
 #include <string>
+#include <list>
 
 #include "../exportMacros.h"
 

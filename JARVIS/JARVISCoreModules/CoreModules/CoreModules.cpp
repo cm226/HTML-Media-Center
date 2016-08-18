@@ -19,6 +19,7 @@ struct CoreModules::privateMembers
 	Comms comms;
 	MediaStreamer mediaStreamer;
 	TaskList taskList;
+	FileSystem filesystem;
 };
 
 CoreModules::CoreModules():members(new privateMembers())
@@ -68,5 +69,10 @@ MediaStreamer& CoreModules::getMediaStreamer()
 TaskList & CoreModules::getTaskList()
 {
 	return this->members->taskList;
+}
+
+FileSystem& CoreModules::getFileSystem()
+{
+	return this->members->filesystem;
 }
 

@@ -16,6 +16,7 @@ Page::Page() {
 Page::~Page() {
 }
 
+
 void Page::addElement(IElement* element)
 {
 	this->elements.push_back(element);

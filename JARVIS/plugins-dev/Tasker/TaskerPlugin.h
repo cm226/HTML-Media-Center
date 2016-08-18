@@ -12,6 +12,12 @@ private:
 	CALLBACk_HANDLE taskAdded;
 	std::string plugin_name;
 
+	void wStringToString(std::wstring& in, std::string& out);
+	void makeURLWeblink(std::wstring& location, bool& success);
+
+	void buildCommandPresets(Page* p, Form* form);
+	void buildBlendFileList(Page* p);
+	void buildOutputFileList(Page* p);
 	bool handleTaskAdded(Page* page, PageCallbackContext* context);
 
 public:

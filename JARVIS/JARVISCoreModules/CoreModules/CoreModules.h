@@ -18,6 +18,7 @@
 #include "Comms/IComms.h"
 #include "../../MediaStreaming/MediaStreaming/MediaStreamer.h"
 #include "TaskList/TaskList.h"
+#include "Files/Files.h"
 
 
 class DLLCORE_API CoreModules {
@@ -36,6 +37,7 @@ public:
 	CommsNS::IComms* getComms();
 	MediaStreamer& getMediaStreamer();
 	TaskList& getTaskList();
+	FileSystem& getFileSystem();
 	
 
 

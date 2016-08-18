@@ -10,6 +10,7 @@ TaskList::TaskList()
 {
 	ErrorLogger::logInfo("Loading Task List...");
 	this->_processTasks = false;
+	this->_shutdownOnComplete = false;
 }
 
 TaskList::~TaskList()
@@ -52,33 +53,31 @@ void TaskList::processTasks()
 			system(exec.c_str());
 
 			ErrorLogger::logInfo("Task Finished" + exec);
+			
+			if (this->_shutdownOnComplete &&
+				this->_tasks.size() == 0)
+			{
+				if (LIVE)
+				{
+					//all tasks complete, shutdown
+#ifdef _WINDOWS
+					system("shutdown -s -t 10");
+#else
+					system("shutdown -t 10");
+#endif // _WINDOWS
+				}
+				else
+				{
+					ErrorLogger::logInfo("I would be shutting down now");
+				}
+
+			}
 		}
 
 		boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 	}
 
 }
-/*
-boost::process::child TaskList::startNextTask()
-{
-
-	std::vector<std::string> args;
-	boost::process::context ctx;
-	ctx.stdout_behavior = boost::process::capture_stream();
-
-	if (this->_tasks.size() <= 0)
-	{
-		ErrorLogger::logError("startNextTask() called with empty tasklist");
-		return boost::process::launch("", args, ctx);
-	}
-
-	std::string exec = this->_tasks.front();
-	this->_tasks.pop_front();
-
-	ErrorLogger::logInfo("Starting Task" + exec);
-	return boost::process::launch(exec, args, ctx);
-}
-*/
 
 void TaskList::AddTask(std::string cmd)
 {
@@ -89,4 +88,10 @@ void TaskList::AddTask(std::string cmd)
 std::list<std::string> TaskList::GetTasks()
 {
 	return this->_tasks;
+}
+
+
+void TaskList::ShutdownOnComplete(bool shutdown)
+{
+	this->_shutdownOnComplete = shutdown;
 }

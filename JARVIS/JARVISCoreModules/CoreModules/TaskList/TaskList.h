@@ -11,10 +11,10 @@
 class DLLCORE_API TaskList {
 private:
 	bool _processTasks;
+	bool _shutdownOnComplete;
 	std::list<std::string> _tasks;
 	boost::thread* _taskThread;
 
-	//boost::process::child startNextTask();
 	void processTasks();
 
 
@@ -27,6 +27,8 @@ public:
 
 	void AddTask(std::string cmd);
 	std::list<std::string> GetTasks();
+
+	void ShutdownOnComplete(bool shutdown);
 
 };
 

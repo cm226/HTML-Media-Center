@@ -177,15 +177,19 @@
     <ClCompile Include="CoreModules\EventModel\EventManager.cpp" />
     <ClCompile Include="CoreModules\EventModel\Events\Event.cpp" />
     <ClCompile Include="CoreModules\EventModel\Events\EventSig.cpp" />
+    <ClCompile Include="CoreModules\Files\Directory.cpp" />
+    <ClCompile Include="CoreModules\Files\FileSystem.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Containers\ElementList.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Containers\Form.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Containers\IContainer.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\CheckBox.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockedElements\BottomDockedElement.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockingLayout.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\FileUpload.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\FormSubmit.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\HTMLImage.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\Lable.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\LineBreak.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\MenuList\MenuList.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\MusicPlayer\MusicPlayer.cpp" />
     <ClCompile Include="CoreModules\HTMLRendere\Elements\MusicPlayer\MusicPlaylist.cpp" />
@@ -208,6 +212,7 @@
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\MediaStreamRequestMessage.cpp" />
     <ClCompile Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\MediaStreamRequestFilter.cpp" />
     <ClCompile Include="CoreModules\TaskList\TaskList.cpp" />
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\Dropdown.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreModules\Comms\Comms.h" />
@@ -345,15 +350,20 @@
     <ClInclude Include="CoreModules\EventModel\Events\Event.h" />
     <ClInclude Include="CoreModules\EventModel\Events\EventSig.h" />
     <ClInclude Include="CoreModules\exportMacros.h" />
+    <ClInclude Include="CoreModules\Files\Directory.h" />
+    <ClInclude Include="CoreModules\Files\Files.h" />
+    <ClInclude Include="CoreModules\Files\FileSystem.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Containers\ElementList.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Containers\Form.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Containers\IContainer.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\CheckBox.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockedElements\BottomDockedElement.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\DockingLayout\DockingLayout.h" />
     <ClInclude Include="coremodules\htmlrendere\elements\fileupload.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\FormSubmit.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\HTMLImage.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\Lable.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\LineBreak.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\MenuList\MenuList.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\MusicPlayer\MusicPlayer.h" />
     <ClInclude Include="CoreModules\HTMLRendere\Elements\MusicPlayer\MusicPlaylist.h" />
@@ -386,6 +396,7 @@
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslatedMessages\MediaStreamRequestMessage.h" />
     <ClInclude Include="CoreModules\Comms\MessageTranslaters\TranslationFilters\MediaStreamRequestFilter.h" />
     <ClInclude Include="CoreModules\TaskList\TaskList.h" />
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\Dropdown.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ErrorLogger\ErrorLogger.vcxproj">

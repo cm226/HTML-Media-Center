@@ -1,6 +1,8 @@
 #include "TaskerPlugin.h"
 
+
 #include <stdio.h>
+#include <boost\filesystem.hpp>
 
 
 TaskerPlugin::TaskerPlugin(CoreModules* framework) : Plugin(framework) , plugin_name("Tasker")
@@ -14,6 +16,118 @@ TaskerPlugin::~TaskerPlugin()
 {
 }
 
+void TaskerPlugin::wStringToString(std::wstring& in, std::string& out)
+{
+	// disaster waiting to happen :( fix TODO
+	out = std::string(in.begin(), in.end());
+}
+
+void TaskerPlugin::makeURLWeblink(std::wstring& location, bool& success)
+{
+	boost::filesystem::path fileLocation(location);
+	boost::filesystem::path publicLocation(HTMLMEDIAPUBLIC);
+	
+	boost::filesystem::path::iterator webRoot_iter;
+	boost::filesystem::path::iterator location_iter
+		= fileLocation.begin();
+
+	for (webRoot_iter = publicLocation.begin();
+	webRoot_iter != publicLocation.end();
+		webRoot_iter++)
+	{
+		if (webRoot_iter->compare(*location_iter) != 0)
+		{
+			success = false;
+			return;
+		}
+		location_iter++;
+	}
+
+	success = true;
+	boost::filesystem::path output;
+	for (location_iter; location_iter != fileLocation.end(); location_iter++)
+		output.append(location_iter->c_str());
+	location = output.c_str();
+	return;
+}
+
+void TaskerPlugin::buildOutputFileList(Page* p)
+{
+	std::list<std::wstring> outFileList;
+	std::list<std::wstring>::iterator outFileListIt;
+	
+	Hyperlink* downloadLink;
+	std::wstring w_URL_link;
+	std::string URL_link;
+	bool webLinkMade = false;
+
+	Lable* blendFile;
+
+	this->coreMod->getFileSystem().RetrieveNewFiles(".png", outFileList);
+
+	
+	for (outFileListIt = outFileList.begin();
+	outFileListIt != outFileList.end();
+		outFileListIt++)
+	{
+		w_URL_link = *outFileListIt;
+		makeURLWeblink(w_URL_link, webLinkMade);
+		if (webLinkMade)
+		{
+			w_URL_link = L"http:////localhost:81//HTML-Media-Center//public//" + w_URL_link;
+			this->wStringToString(w_URL_link, URL_link);
+			downloadLink = new Hyperlink(URL_link, URL_link, URL_link);
+			p->addElement(downloadLink);
+			p->addElement(new LineBreak("br"));
+		}
+	}
+}
+
+void TaskerPlugin::buildCommandPresets(Page* page, Form* form)
+{
+	Dropdown* presetsDropdown = new Dropdown("presets");
+	presetsDropdown->AddItem("","", 0, 0);
+	presetsDropdown->AddItem("Blender","blender -b file.blend -o /project/renders/frame_##### -f 1", 0, 0);
+
+	page->addElement(presetsDropdown);
+
+	Lable* lable = new Lable("Command");
+	lable->setText("Set Command String:");
+
+	TextBox* cmd_strTB = new TextBox("cmd_str");
+	cmd_strTB->addAttribute("name=\"cmd_str\"");
+	cmd_strTB->addAttribute("class=\"longTextBox\"");
+
+
+	form->addElement(lable);
+	form->addElement(cmd_strTB);
+}
+
+void TaskerPlugin::buildBlendFileList(Page* p)
+{
+	ElementList* blendFiles = new ElementList("blendFiles");
+	std::list<std::wstring> blendFileList;
+	std::list<std::wstring>::iterator blendFilesIt;
+	Lable* blendFile;
+
+	this->coreMod->getFileSystem().RetrieveNewFiles(".blend", blendFileList);
+
+	for (blendFilesIt = blendFileList.begin();
+		 blendFilesIt != blendFileList.end();
+	   ++blendFilesIt)
+	{
+		std::string conv_str;
+		this->wStringToString(*blendFilesIt, conv_str);
+
+		blendFile = new Lable(conv_str);
+		blendFile->setText(conv_str);
+		blendFiles->addElement(blendFile);
+	}
+
+	p->addElement(blendFiles);
+
+}
+
 bool TaskerPlugin::whatDoYouLookLike(Page* page)
 {
 
@@ -23,7 +137,10 @@ bool TaskerPlugin::whatDoYouLookLike(Page* page)
 	std::string cmd_str;
 
 	Lable* commands = new Lable("cmd_list");
+	Lable* shutdownLable = new Lable("ShutdownLable");
+	Checkbox* shutdownOnComplete = new Checkbox("shutdownOnComplete");
 	
+	shutdownOnComplete->addAttribute("name=\"shutdown\"");
 
 	for (task_it = tasks.begin();
 		task_it != tasks.end();
@@ -33,24 +150,37 @@ bool TaskerPlugin::whatDoYouLookLike(Page* page)
 		cmd_str.append("<br/>");
 	}
 	commands->setText(cmd_str);
+	shutdownLable->setText("Shutdown on task complete: ");
 
-	Lable* lable = new Lable ("Command");
-	lable->setText("Set Command String:");
-
-	TextBox* emailAddres = new TextBox("cmd_str");
-	emailAddres->addAttribute("name=\"cmd_str\"");
-
+	this->buildCommandPresets(page, form);
+	
 	FormSubmit* submitBttn = new FormSubmit("Submit");
 
 	form->setHandler(1, taskAdded, this->plugin_name);
 
 
 	form->addElement(commands);
-	form->addElement(lable);
-	form->addElement(emailAddres);
 	form->addElement(submitBttn);
+	form->addElement(shutdownLable);
+	form->addElement(shutdownOnComplete);
 
 	page->addElement(form);
+
+	this->buildBlendFileList(page);
+	this->buildOutputFileList(page);
+
+
+	Lable* test = new Lable("test");
+	std::stringstream dropdownJS;
+	dropdownJS << std::endl << "$('#presets').change(" << std::endl
+		<< "function() {"
+		<< "$('#cmd_str').val($('#presets').val())"
+		<< std::endl
+		<< "})"
+		<< std::endl;
+	test->appendEmbeddedJSCode(dropdownJS.str());
+
+	page->addElement(test);
 
 	return true;
 }
@@ -71,6 +201,12 @@ bool TaskerPlugin::handleTaskAdded(Page* page, PageCallbackContext* context)
 	{
 		ErrorLogger::logError("failed to find cmd_str in add task page context");
 
+	}
+
+	if (keyValContext.find("shutdown") != keyValContext.end())
+	{
+		if (keyValContext["shutdown"].compare("on") == 0)
+			this->coreMod->getTaskList().ShutdownOnComplete(true);
 	}
 
 	return true;

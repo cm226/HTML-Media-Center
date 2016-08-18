@@ -29,10 +29,6 @@ void DesktopPageBuilder::buildHTMLHeadElement()
 		std::list<std::string> jsFiles = (*elementIt)->getJSIncludes();
 		std::list<std::string> cssFile = (*elementIt)->getCSSIncludes();
 
-		std::string embeddedJS = (*elementIt)->getEmbeddedJS();
-		if(embeddedJS.size() > 0)
-			buildEmbeddedJS(embeddedJS);
-
 		for(std::list<std::string>::iterator jsFileIt = jsFiles.begin(); jsFileIt != jsFiles.end(); jsFileIt++)
 			buildJSInclude(*jsFileIt);
 
@@ -67,7 +63,13 @@ void DesktopPageBuilder::buildBody()
 }
 void DesktopPageBuilder::buildFooter()
 {
-
+	std::vector<IElement*>::iterator elementIt;
+	for (elementIt = this->elements->begin(); elementIt != this->elements->end(); elementIt++)
+	{
+		std::string embeddedJS = (*elementIt)->getEmbeddedJS();
+		if (embeddedJS.size() > 0)
+			buildEmbeddedJS(embeddedJS);
+	}
 }
 
 void DesktopPageBuilder::buildPage(std::string* page, std::vector<IElement*>* elements)

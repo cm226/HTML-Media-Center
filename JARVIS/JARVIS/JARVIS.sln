@@ -45,6 +45,7 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tasker", "..\plugins-dev\Tasker\Tasker.vcxproj", "{2D4D50D6-9E87-4232-A258-0A861EE602C5}"
 	ProjectSection(ProjectDependencies) = postProject
 		{AFB997C0-FF5E-4894-84AF-C57003862646} = {AFB997C0-FF5E-4894-84AF-C57003862646}
+		{B3C985D0-399F-44AB-914A-B69D3A92C846} = {B3C985D0-399F-44AB-914A-B69D3A92C846}
 	EndProjectSection
 EndProject
 Global
