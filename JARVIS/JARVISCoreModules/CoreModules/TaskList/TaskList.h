@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-#include <boost\thread.hpp>
+#include <boost/thread.hpp>
 
 
 class DLLCORE_API TaskList {

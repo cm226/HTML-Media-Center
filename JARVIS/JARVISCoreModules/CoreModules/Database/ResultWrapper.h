@@ -1,4 +1,5 @@
 #pragma once
+
 #include <cppconn/resultset.h>
 #include <string>
 
