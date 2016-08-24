@@ -10,7 +10,7 @@ class DLLCORE_API Dropdown :
 	public IElement
 {
 private:
-	std::list<std::pair<std::string, std::string>> _elements;
+	std::list<std::pair<std::string, std::string> > _elements;
 
 	virtual std::string getTagText();
 	virtual std::string getTagContent();

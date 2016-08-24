@@ -2,7 +2,7 @@
 
 
 #include <stdio.h>
-#include <boost\filesystem.hpp>
+#include <boost/filesystem.hpp>
 
 
 TaskerPlugin::TaskerPlugin(CoreModules* framework) : Plugin(framework) , plugin_name("Tasker")
@@ -47,7 +47,8 @@ void TaskerPlugin::makeURLWeblink(std::wstring& location, bool& success)
 	boost::filesystem::path output;
 	for (location_iter; location_iter != fileLocation.end(); location_iter++)
 		output.append(location_iter->c_str());
-	location = output.c_str();
+
+	location = output.generic_wstring();
 	return;
 }
 
