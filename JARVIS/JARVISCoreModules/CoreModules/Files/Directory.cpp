@@ -1,7 +1,7 @@
 #include "Directory.h"
 
-#include <boost\filesystem.hpp>
-#include "..\..\..\ErrorLogger\Errors\ErrorLogger.h"
+#include <boost/filesystem.hpp>
+#include "../../../ErrorLogger/Errors/ErrorLogger.h"
 
 using namespace boost::filesystem;
 
@@ -28,7 +28,7 @@ void Directory::Search(std::string ext, std::list<std::wstring>& results)
 	{
 		if (x.path().extension().compare(ext) == 0)
 		{
-			results.push_back(x.path().c_str());
+			results.push_back(x.path().generic_wstring());
 		}
 	}
 }

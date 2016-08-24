@@ -1,6 +1,6 @@
 #pragma once
 
-#include "..\exportMacros.h"
+#include "../exportMacros.h"
 #include "Directory.h"
 #include <string>
 #include <list>

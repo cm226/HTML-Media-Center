@@ -1,6 +1,6 @@
 #include "FileSystem.h"
-#include "..\config.h"
-#include "..\..\..\ErrorLogger\Errors\ErrorLogger.h"
+#include "../config.h"
+#include "../../../ErrorLogger/Errors/ErrorLogger.h"
 
 
 
