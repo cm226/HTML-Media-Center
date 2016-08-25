@@ -27,7 +27,7 @@ JARVISFramework::JARVISFramework()
 #ifdef _WINDOWS
 	this->pluginLoader = new Loader("C:\\wamp64\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\plugins");
 #else
-	this->pluginLoader = new Loader("/var/www/html/HTML-Media-Center/JARVIS/Plugins");
+	this->pluginLoader = new Loader("/home/JARVIS");
 #endif
 
 	this->pluginPageResponder.reset(new PluginPageResponder(this->pluginLoader, this->cModules.getComms()));
@@ -71,6 +71,12 @@ void JARVISFramework::loadStartupPlugins()
 	fs::directory_iterator end_iter;
 
 	Plugin* mediaImages = NULL;
+
+	if(!fs::exists(pluginDirectory))
+	{
+		ErrorLogger::logError("Plugin Directory dosnt exist!!");
+		return;
+	}
 
 	for( fs::directory_iterator dir_iter(pluginDirectory) ; dir_iter != end_iter ; ++dir_iter)
 	  {
