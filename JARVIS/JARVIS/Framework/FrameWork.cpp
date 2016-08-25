@@ -27,7 +27,7 @@ JARVISFramework::JARVISFramework()
 #ifdef _WINDOWS
 	this->pluginLoader = new Loader("C:\\wamp64\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\plugins");
 #else
-	this->pluginLoader = new Loader("/var/www/HTML-Media-Center/JARVIS/Plugins");
+	this->pluginLoader = new Loader("/var/www/html/HTML-Media-Center/JARVIS/Plugins");
 #endif
 
 	this->pluginPageResponder.reset(new PluginPageResponder(this->pluginLoader, this->cModules.getComms()));

@@ -20,7 +20,7 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactExtension="so" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.sharedLib" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.sharedLib,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.so.debug.1535297025" name="Debug" parent="cdt.managedbuild.config.gnu.so.debug">
+				<configuration artifactExtension="so" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.sharedLib" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.sharedLib,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.so.debug.1535297025" name="Debug" parent="cdt.managedbuild.config.gnu.so.debug" postbuildStep="cp libMediaStreaming.so ../../../JARVIS/Debug">
 					<folderInfo id="cdt.managedbuild.config.gnu.so.debug.1535297025." name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.so.debug.1788997960" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.so.debug">
 							<targetPlatform id="cdt.managedbuild.target.gnu.platform.so.debug.152303658" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.so.debug"/>
@@ -31,7 +31,7 @@
 								<option id="gnu.cpp.compiler.so.debug.option.debugging.level.2019166405" name="Debug Level" superClass="gnu.cpp.compiler.so.debug.option.debugging.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.other.other.975498051" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" useByScannerDiscovery="false" value="-c -fmessage-length=0 -std=c++0x -Wno-unknown-pragmas -fPIC" valueType="string"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1520342375" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0"/>
+									<listOptionValue builtIn="false" value="/home/craig/Documents/Projects/boost_1_60_0"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.preprocessor.def.1310852117" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="linux"/>
@@ -47,11 +47,11 @@
 								<option defaultValue="true" id="gnu.c.link.so.debug.option.shared.504941713" name="Shared (-shared)" superClass="gnu.c.link.so.debug.option.shared" valueType="boolean"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.so.debug.1087183448" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.so.debug">
-								<option defaultValue="true" id="gnu.cpp.link.so.debug.option.shared.1365674665" name="Shared (-shared)" superClass="gnu.cpp.link.so.debug.option.shared" valueType="boolean"/>
-								<option id="gnu.cpp.link.option.paths.341898657" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
+								<option defaultValue="true" id="gnu.cpp.link.so.debug.option.shared.1365674665" name="Shared (-shared)" superClass="gnu.cpp.link.so.debug.option.shared" useByScannerDiscovery="false" valueType="boolean"/>
+								<option id="gnu.cpp.link.option.paths.341898657" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" useByScannerDiscovery="false" valueType="libPaths">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Comms/Debug}&quot;"/>
 								</option>
-								<option id="gnu.cpp.link.option.libs.1882676361" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
+								<option id="gnu.cpp.link.option.libs.1882676361" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" useByScannerDiscovery="false" valueType="libs">
 									<listOptionValue builtIn="false" value="Comms"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.186630453" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">

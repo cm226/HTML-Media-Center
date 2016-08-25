@@ -29,10 +29,10 @@
 								<option id="gnu.cpp.compiler.option.other.other.917208135" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" useByScannerDiscovery="false" value="-c -fmessage-length=0  `sdl-config --cflags --libs` -rdynamic -std=c++0x -Wno-unknown-pragmas" valueType="string"/>
 								<option id="gnu.cpp.compiler.option.other.verbose.449346262" name="Verbose (-v)" superClass="gnu.cpp.compiler.option.other.verbose" useByScannerDiscovery="false" value="false" valueType="boolean"/>
 								<option id="gnu.cpp.compiler.option.include.paths.63574297" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0"/>
 									<listOptionValue builtIn="false" value="/home/craig/curl-7.28.1/include/curl"/>
 									<listOptionValue builtIn="false" value="/usr/include/"/>
 									<listOptionValue builtIn="false" value="/home/craig/Documents/Projects/mysql-connector-c++-1.1.7"/>
+									<listOptionValue builtIn="false" value="/home/craig/Documents/Projects/boost_1_60_0"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1192249051" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -62,13 +62,14 @@
 									<listOptionValue builtIn="false" value="--export-dynamic"/>
 								</option>
 								<option id="gnu.cpp.link.option.paths.421915942" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
-									<listOptionValue builtIn="false" value="/var/www/HTML-Media-Center/JARVIS/JARVISCoreModules/Debug"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Comms/Debug}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MediaStreaming/Debug}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ErrorLogger/Debug}&quot;"/>
-									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0/stage/lib"/>
 									<listOptionValue builtIn="false" value="/usr/lib"/>
 									<listOptionValue builtIn="false" value="/home/craig/curl-7.28.1/lib/.libs"/>
+									<listOptionValue builtIn="false" value="/home/craig/Documents/Projects/boost_1_60_0/stage/lib"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/JARVISCoreModules/Debug}&quot;"/>
+									<listOptionValue builtIn="false" value="/home/media/Documents/Projects/mysql-connector-c++-1.1.7/driver"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.414897229" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>

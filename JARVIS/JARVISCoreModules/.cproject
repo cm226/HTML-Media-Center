@@ -53,8 +53,8 @@
 								<option id="gnu.cpp.link.option.paths.523638706" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Comms/Debug}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MediaStreaming/Debug}&quot;"/>
-									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0/stage/lib"/>
 									<listOptionValue builtIn="false" value="/home/craig/Documents/Projects/curl-7.50.1/lib"/>
+									<listOptionValue builtIn="false" value="/home/craig/Documents/Projects/boost_1_60_0/stage/lib"/>
 								</option>
 								<option id="gnu.cpp.link.option.libs.953033221" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="curl"/>
