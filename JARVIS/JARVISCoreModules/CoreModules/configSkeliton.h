@@ -1,5 +1,6 @@
 #define HTMLMEDIAPUBLIC "<route to pub url>"
 #define HTMLMEDIAROOT "<root HTMLMediaCente folder>"
+#define HOST "localhost" // string representing the host name e.g localhost / 192.168.0.1
 
 #define LIVE true // set to false for dev env
 #define LOG_LOCATION "logLocation"

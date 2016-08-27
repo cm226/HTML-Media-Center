@@ -13,4 +13,6 @@
 
 <br>
 
+<a href="../Admin/Shutdown" class="link2">Shutdown</a>
+
 

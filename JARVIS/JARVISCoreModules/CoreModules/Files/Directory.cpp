@@ -10,7 +10,8 @@ Directory::Directory(std::string location)
 	this->_location = location;
 	if (!exists(this->_location))
 	{
-		ErrorLogger::logWarn("FileSystem: Searchable directoyr created that dosn't exist!");
+		ErrorLogger::logWarn("FileSystem: Searchable directory created that dosn't exist! : " +
+			this->_location);
 	}
 }
 
