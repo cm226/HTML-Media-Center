@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <boost/filesystem.hpp>
 
+#include "../../JARVISCoreModules/CoreModules/config.h"
+
 
 TaskerPlugin::TaskerPlugin(CoreModules* framework) : Plugin(framework) , plugin_name("Tasker")
 {
@@ -60,6 +62,8 @@ void TaskerPlugin::buildOutputFileList(Page* p)
 	Hyperlink* downloadLink;
 	std::wstring w_URL_link;
 	std::string URL_link;
+	std::stringstream urlBuilder; 
+
 	bool webLinkMade = false;
 
 	Lable* blendFile;
@@ -75,8 +79,12 @@ void TaskerPlugin::buildOutputFileList(Page* p)
 		makeURLWeblink(w_URL_link, webLinkMade);
 		if (webLinkMade)
 		{
-			w_URL_link = L"http:////localhost:81//HTML-Media-Center//public//" + w_URL_link;
+			urlBuilder << "http:////" << HOST << "//HTML-Media-Center//public//";
 			this->wStringToString(w_URL_link, URL_link);
+			urlBuilder << URL_link;
+			URL_link = urlBuilder.str();
+			urlBuilder.str("");
+
 			downloadLink = new Hyperlink(URL_link, URL_link, URL_link);
 			p->addElement(downloadLink);
 			p->addElement(new LineBreak("br"));
