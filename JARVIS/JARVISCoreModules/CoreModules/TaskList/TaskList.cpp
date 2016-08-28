@@ -63,7 +63,7 @@ void TaskList::processTasks()
 #ifdef _WINDOWS
 					system("shutdown -s -t 10");
 #else
-					system("shutdown -t 10");
+					system("shutdown -t 1");
 #endif // _WINDOWS
 				}
 				else
