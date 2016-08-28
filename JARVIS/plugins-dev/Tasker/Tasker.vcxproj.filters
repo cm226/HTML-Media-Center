@@ -18,12 +18,18 @@
     <ClInclude Include="TaskerPlugin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AddTaskPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TaskerPlugin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Tasker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AddTaskPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
