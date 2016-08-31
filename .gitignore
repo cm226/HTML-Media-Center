@@ -21,6 +21,8 @@ public/css/Mobile/images/*
 *~
 *.dll
 
+*.o
+*.d
 *.pyc
 *.mk
 *.png
@@ -32,7 +34,8 @@ public/css/Mobile/images/*
 *.user
 *ipch/
 *.settings/
-*Debug/
+*.so
+
 *Release/
 
 .DS_Store
