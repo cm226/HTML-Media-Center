@@ -90,9 +90,14 @@ void AddTaskPage::buildOutputFileList()
 
 void AddTaskPage::buildCommandPresets(Form* form)
 {
+	std::stringstream blenderCommand;
 	Dropdown* presetsDropdown = new Dropdown("presets");
 	presetsDropdown->AddItem("", "", 0, 0);
-	presetsDropdown->AddItem("Blender", "blender -b file.blend -o /project/renders/frame_##### -f 1", 0, 0);
+
+	blenderCommand << "/opt/blender/blender -b ";
+	blenderCommand << "file.blend ";
+	blenderCommand << "-o " << HTMLMEDIAPUBLIC << TEMPLOC << "/frame_##### -f 1";
+	presetsDropdown->AddItem("Blender", blenderCommand.str(), 0, 0);
 
 	_page->addElement(presetsDropdown);
 
