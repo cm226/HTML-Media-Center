@@ -22,7 +22,6 @@ public/css/Mobile/images/*
 *.dll
 
 *.o
-*.d
 *.pyc
 *.mk
 *.png
