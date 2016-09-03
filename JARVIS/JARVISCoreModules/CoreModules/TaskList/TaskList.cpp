@@ -63,7 +63,7 @@ void TaskList::processTasks()
 #ifdef _WINDOWS
 					system("shutdown -s -t 10");
 #else
-					system("shutdown -t 1");
+					system("dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 \"org.freedesktop.login1.Manager.PowerOff\" boolean:true");
 #endif // _WINDOWS
 				}
 				else

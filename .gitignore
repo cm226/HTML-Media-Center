@@ -36,7 +36,7 @@ public/css/Mobile/images/*
 *.so
 
 *Release/
-
+*Debug/
 .DS_Store
 
 JARVIS/JARVISCoreModules/CoreModules/Errors/StackWalker/*
