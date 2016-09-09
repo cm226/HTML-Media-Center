@@ -7,11 +7,14 @@
 #include "../../JARVISCoreModules/CoreModules/config.h"
 #include "AddTaskPage.h"
 
+#include "someRandClass.h"
 
 TaskerPlugin::TaskerPlugin(CoreModules* framework) : Plugin(framework) , plugin_name("Tasker")
 {
 	boost::function2<bool, Page*, PageCallbackContext* > f = boost::bind(&TaskerPlugin::handleTaskAdded, this, _1, _2);
 	this->taskAdded = this->subscribeHTMLCallback(f);
+
+	someRandClass test;
 }
 
 

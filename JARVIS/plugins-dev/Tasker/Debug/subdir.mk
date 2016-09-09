@@ -6,17 +6,20 @@
 CPP_SRCS += \
 ../AddTaskPage.cpp \
 ../Tasker.cpp \
-../TaskerPlugin.cpp 
+../TaskerPlugin.cpp \
+../someRandClass.cpp 
 
 OBJS += \
 ./AddTaskPage.o \
 ./Tasker.o \
-./TaskerPlugin.o 
+./TaskerPlugin.o \
+./someRandClass.o 
 
 CPP_DEPS += \
 ./AddTaskPage.d \
 ./Tasker.d \
-./TaskerPlugin.d 
+./TaskerPlugin.d \
+./someRandClass.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
