@@ -9,6 +9,7 @@
 #include "AddTaskPage.h"
 #include "CmdForm.h"
 
+#include "someRandClass.h"
 
 TaskerPlugin::TaskerPlugin(CoreModules* framework) : Plugin(framework) , plugin_name("Tasker")
 {

@@ -23,7 +23,6 @@ public/css/Mobile/images/*
 
 *.o
 *.pyc
-*.mk
 *.png
 *.jpg
 *.bmp
@@ -50,7 +49,6 @@ public/css/Mobile/images/*
 *.lib
 
 *Release/
-
 .DS_Store
 
 JARVIS/JARVISCoreModules/CoreModules/Errors/StackWalker/*
