@@ -11,10 +11,9 @@ Dropdown::~Dropdown()
 {
 }
 
-void Dropdown::AddItem(std::string name, std::string value, int depth, CALLBACk_HANDLE handl)
+void Dropdown::AddItem(DropdownElement& element)
 {
-	std::pair<std::string, std::string> item(name, value);
-	this->_elements.push_back(item);
+	this->_elements.push_back(element);
 }
 
 std::string Dropdown::getTagText()
@@ -24,14 +23,18 @@ std::string Dropdown::getTagText()
 
 std::string Dropdown::getTagContent()
 {
-	std::list<std::pair<std::string, std::string>>::iterator items;
+	std::list<DropdownElement>::iterator items;
 	std::stringstream str_builder; 
 
 	for (items = this->_elements.begin();
 		 items != this->_elements.end();
 		 items++)
 	{
-		str_builder << "<option value=\"" << items->second << "\">" << items->first<< "</option>";
+		str_builder << "<option value=\"" << items->Value() << "\"";
+		if (items->Selected())
+			str_builder << " selected ";
+
+		str_builder << ">" << items->Name() << "</option>";
 	}
 
 	return str_builder.str();

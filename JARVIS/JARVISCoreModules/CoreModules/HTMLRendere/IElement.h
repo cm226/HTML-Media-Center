@@ -36,8 +36,8 @@ protected:
 	virtual std::string getMobileTagContent(){return getTagContent();};
 	virtual std::string writeAttributes();
 
-	std::string buildCallbackLocationString(int depth, CALLBACk_HANDLE handl, std::string pluginName, std::vector<std::string> contextArgs,std::string location = "pluginInteraction");
-	std::string buildCallbackLocationString(int depth, CALLBACk_HANDLE handl, std::string pluginName,std::string location = "pluginInteraction");
+	std::string buildCallbackLocationString(CALLBACk_HANDLE handl, std::string pluginName, std::vector<std::string> contextArgs,std::string location = "pluginInteraction");
+	std::string buildCallbackLocationString(CALLBACk_HANDLE handl, std::string pluginName,std::string location = "pluginInteraction");
 
 public:
 	IElement(std::string name);
@@ -50,8 +50,8 @@ public:
 	void appendEmbeddedJSCode(std::string code);
 	void appendJQueryMobileHeaderContent(std::string html);
 
-	void addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName, std::vector<std::string> contextArgs);
-	void addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName);
+	void addOnclickCallbackAttribute(CALLBACk_HANDLE handl, std::string pluginName, std::vector<std::string> contextArgs);
+	void addOnclickCallbackAttribute(CALLBACk_HANDLE handl, std::string pluginName);
 	
 	//TODO implement asinc onclick finctions
 	//void addAsincOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName);

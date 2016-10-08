@@ -10,15 +10,12 @@ class TaskerPlugin : public Plugin
 {
 private:
 	CALLBACk_HANDLE taskAdded;
+	CALLBACk_HANDLE fileUploaded;
+
 	std::string plugin_name;
 
-	void wStringToString(std::wstring& in, std::string& out);
-	void makeURLWeblink(std::wstring& location, bool& success);
-
-	void buildCommandPresets(Page* p, Form* form);
-	void buildBlendFileList(Page* p);
-	void buildOutputFileList(Page* p);
 	bool handleTaskAdded(Page* page, PageCallbackContext* context);
+	bool handleFileUploaded(Page* page, PageCallbackContext* context);
 
 public:
 	TaskerPlugin(CoreModules* framework);

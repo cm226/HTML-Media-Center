@@ -426,9 +426,6 @@
     <ClCompile Include="CoreModules\TaskList\TaskList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CoreModules\HTMLRendere\Elements\Dropdown.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CoreModules\Files\FileSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -439,6 +436,24 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CoreModules\HTMLRendere\Elements\CheckBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\Files\File\File.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\Files\File\IFileSource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\Files\File\Base64FileDataURLSource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\Comms\Protocals\ChunckedTwoByteMsgLen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\Dropdown\Dropdown.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreModules\HTMLRendere\Elements\Dropdown\DropdownElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -971,9 +986,6 @@
     <ClInclude Include="CoreModules\TaskList\TaskList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CoreModules\HTMLRendere\Elements\Dropdown.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CoreModules\Files\Files.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -987,6 +999,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CoreModules\HTMLRendere\Elements\CheckBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Files\File\File.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Files\File\IFileSource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Files\File\Base64FileDataURLSource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\Comms\Protocals\ChunckedTwoByteMsgLen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\Dropdown\Dropdown.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreModules\HTMLRendere\Elements\Dropdown\DropdownElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,7 +1,9 @@
 #pragma once
 
-#include "../IElement.h"
-#include "../../exportMacros.h"
+#include "../../IElement.h"
+#include "../../../exportMacros.h"
+
+#include "DropdownElement.h"
 
 #include <string>
 #include <list>
@@ -10,7 +12,7 @@ class DLLCORE_API Dropdown :
 	public IElement
 {
 private:
-	std::list<std::pair<std::string, std::string> > _elements;
+	std::list<DropdownElement> _elements;
 
 	virtual std::string getTagText();
 	virtual std::string getTagContent();
@@ -19,6 +21,6 @@ public:
 	Dropdown(std::string name);
 	~Dropdown();
 
-	void AddItem(std::string name,std::string value, int depth, CALLBACk_HANDLE handl);
+	void AddItem(DropdownElement& element);
 };
 

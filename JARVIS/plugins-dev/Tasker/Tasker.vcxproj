@@ -118,10 +118,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AddTaskPage.h" />
+    <ClInclude Include="CmdForm.h" />
     <ClInclude Include="TaskerPlugin.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AddTaskPage.cpp" />
+    <ClCompile Include="CmdForm.cpp" />
     <ClCompile Include="Tasker.cpp" />
     <ClCompile Include="TaskerPlugin.cpp" />
   </ItemGroup>

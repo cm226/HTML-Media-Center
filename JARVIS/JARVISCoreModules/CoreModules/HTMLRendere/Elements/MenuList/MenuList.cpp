@@ -33,12 +33,12 @@ std::string MenuList::getTagContent()
 	return this->itemsList.getText();
 }
 
-void MenuList::addItem(std::string item, int depth, CALLBACk_HANDLE handl, std::string pluginName)
+void MenuList::addItem(std::string item, CALLBACk_HANDLE handl, std::string pluginName)
 {
 	Lable* newItem = new Lable("MenuItem");
 	newItem->addAttribute("class='menuItem'");
 	newItem->setText(item);
-	newItem->addOnclickCallbackAttribute(depth, handl, pluginName);
+	newItem->addOnclickCallbackAttribute(handl, pluginName);
 
 	this->itemsList.addElement(newItem);
 }

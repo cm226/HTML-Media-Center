@@ -40,7 +40,7 @@ public:
 	*/
 	~MenuList();
 
-	void addItem(std::string item, int depth, CALLBACk_HANDLE handl, std::string pluginName);
+	void addItem(std::string item, CALLBACk_HANDLE handl, std::string pluginName);
 };
 
 

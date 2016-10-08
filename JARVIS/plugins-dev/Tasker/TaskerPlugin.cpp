@@ -5,13 +5,18 @@
 
 
 #include "../../JARVISCoreModules/CoreModules/config.h"
+#include "../../JARVISCoreModules/CoreModules/Files/Files.h"
 #include "AddTaskPage.h"
+#include "CmdForm.h"
 
 
 TaskerPlugin::TaskerPlugin(CoreModules* framework) : Plugin(framework) , plugin_name("Tasker")
 {
-	boost::function2<bool, Page*, PageCallbackContext* > f = boost::bind(&TaskerPlugin::handleTaskAdded, this, _1, _2);
-	this->taskAdded = this->subscribeHTMLCallback(f);
+	boost::function2<bool, Page*, PageCallbackContext* > taskAdded = boost::bind(&TaskerPlugin::handleTaskAdded, this, _1, _2);
+	boost::function2<bool, Page*, PageCallbackContext* > fileUploaded = boost::bind(&TaskerPlugin::handleFileUploaded, this, _1, _2);
+
+	this->taskAdded = this->subscribeHTMLCallback(taskAdded);
+	this->fileUploaded = this->subscribeHTMLCallback(fileUploaded);
 }
 
 
@@ -34,6 +39,7 @@ bool TaskerPlugin::whatDoYouLookLike(Page* page)
 	taskPageData._pngFiles = PNG_files;
 	taskPageData._pluginName = this->plugin_name;
 	taskPageData._submitCallback = this->taskAdded;
+	taskPageData._fileUploadCallback = this->fileUploaded;
 
 	AddTaskPage addTaskPage(taskPageData);
 	addTaskPage.Make(page);
@@ -46,6 +52,48 @@ const char* TaskerPlugin::pluginName()
 	return this->plugin_name.c_str();
 }
 
+bool TaskerPlugin::handleFileUploaded(Page* page, PageCallbackContext* context)
+{
+
+	std::map<std::string, std::string> keyValContext =
+		context->getKeyValueAdditionalContext();
+
+	std::string filename;
+	std::string base64Data;
+
+	if (keyValContext.find("name") != keyValContext.end() &&
+		keyValContext.find("value") != keyValContext.end())
+	{
+		filename = keyValContext.find("name")->second;
+		base64Data = keyValContext.find("value")->second;
+		base64Data = base64Data.substr(base64Data.find(',') + 1, std::string::npos);
+
+		File uploadedFile(std::make_shared<Base64FileDataURLSource>(base64Data));
+		uploadedFile.SetLocation(Directory(WORKING_FILES), filename);
+
+		if (!uploadedFile.Save())
+			ErrorLogger::logError("Failed write uploaded tasker file");
+		else
+		{
+			CmdForm formBuilder;
+			formBuilder.SetDefaultFileName(
+				FILETYPE::BLENDER,
+				uploadedFile.Location());
+			
+			formBuilder.Build(page,
+				this->taskAdded,
+				this->plugin_name);
+		}
+	}
+	else
+	{
+		ErrorLogger::logError("failed to find uploaded image data in request");
+	}
+
+
+	return true;
+
+}
 bool TaskerPlugin::handleTaskAdded(Page* page, PageCallbackContext* context)
 {
 	std::map<std::string, std::string> keyValContext = 

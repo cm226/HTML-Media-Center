@@ -130,7 +130,7 @@ $('#upload-button .upload').click(function() {
     // Upload each file separately
     $.each(dataArray, function(index, file) {  
 
-$.post(uploadLocation, dataArray[index], function(data) 
+var ret = $.post(uploadLocation, dataArray[index], function(data) 
 {
  
     // The name of the file
@@ -155,9 +155,9 @@ $.post(uploadLocation, dataArray[index], function(data)
     }
 
 // Show a message showing the file URL.
-var dataSplit = data.split(':');
-$('.scroll-pane').append(data);
-             
+//var dataSplit = data.split(':');
+//$('.scroll-pane').append(data);  
+
         }
 		);
     });

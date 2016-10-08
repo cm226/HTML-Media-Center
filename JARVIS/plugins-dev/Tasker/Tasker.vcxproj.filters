@@ -21,6 +21,9 @@
     <ClInclude Include="AddTaskPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CmdForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TaskerPlugin.cpp">
@@ -30,6 +33,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AddTaskPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CmdForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

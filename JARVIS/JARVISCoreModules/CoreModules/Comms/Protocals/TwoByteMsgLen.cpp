@@ -22,44 +22,57 @@ TwoByteMsgLen::~TwoByteMsgLen()
 
 }
 
-
-
-AbstractMessage* TwoByteMsgLen::getMessageOrTimeout(unsigned timoutMiliseconds)
+char* TwoByteMsgLen::readMsgRaw(unsigned timoutMiliseconds, int& messageSize)
 {
 	boost::asio::socket_base::bytes_readable command(true);
 	socket.io_control(command);
 
 	int wateCounter = 0;
-	int maxWateTill = (timoutMiliseconds /1000)+1;
+	int maxWateTill = (timoutMiliseconds / 1000) + 1;
 	std::size_t bytes_readable;
-	while((bytes_readable = command.get()) < 2)
+	while ((bytes_readable = command.get()) < 2)
 	{
-		if(wateCounter > maxWateTill)
+		if (wateCounter > maxWateTill)
 		{
 			ErrorLogger::logError("Connection Closed due to non responcive end point");
 			throw coremodules::comms::transever::exceptions::TimeoutExpiredException("A responce never came from the endfpoint within the timeout time");
 			return NULL;
 		}
-		boost::this_thread::sleep( boost::posix_time::seconds(1) );
+		boost::this_thread::sleep(boost::posix_time::seconds(1));
 		socket.io_control(command);
 		wateCounter++;
 	}
 
 	unsigned char* msgSize = new unsigned char[2];
 	boost::system::error_code error;
-	boost::asio::read(socket,boost::asio::buffer(msgSize,2),error);
+	boost::asio::read(socket, boost::asio::buffer(msgSize, 2), error);
 
-	int messageSize = msgSize[0];
+	messageSize = msgSize[0];
 	messageSize = messageSize << 8;
 	messageSize += msgSize[1];
 
-	std::cout << error;
-	char* accualMessage = new char[messageSize+1];
-	boost::asio::read(socket,boost::asio::buffer(accualMessage,messageSize),error);
+	if (error.value() != 0)
+	{
+		ErrorLogger::logError(error.message());
+	}
+
+	char* accualMessage = new char[messageSize + 1];
+	boost::asio::read(socket, boost::asio::buffer(accualMessage, messageSize), error);
 	accualMessage[messageSize] = '\0';
 
-	AbstractMessage* message =  this->messageTranslater.translateMessage(accualMessage,messageSize);
 	delete[] msgSize;
+
+	return accualMessage;
+}
+
+
+
+AbstractMessage* TwoByteMsgLen::getMessageOrTimeout(unsigned timoutMiliseconds)
+{
+	
+	int messageSize;
+	char* accualMessage = this->readMsgRaw(timoutMiliseconds, messageSize);
+	AbstractMessage* message = this->messageTranslater.translateMessage(accualMessage, messageSize);
 	return message;
 }
 

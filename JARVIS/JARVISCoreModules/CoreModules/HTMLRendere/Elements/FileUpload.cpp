@@ -7,13 +7,18 @@
 
 #include "FileUpload.h"
 
-FileUpload::FileUpload(std::string name,int depth, CALLBACk_HANDLE handl, std::string pluginName) : IElement(name)
+#include "../../config.h"
+
+FileUpload::FileUpload(std::string name, CALLBACk_HANDLE handl, std::string pluginName) : IElement(name)
 {
-	std::string uploadLocationString = buildCallbackLocationString(depth,handl,pluginName,"Upload");
+	std::string uploadLocationString = buildCallbackLocationString(handl,pluginName);
 
 	this->appendEmbeddedJSCode("var uploadLocation = \""+uploadLocationString+"\";");
-	this->includeCSS("../../public/css/HTMLRendereCSS/UploadElementStyle.css");
-	this->includeJS("../../public/js/HTMLRendereJS/UploadElementJavascript.js");
+
+	this->includeCSS("http://" + std::string(HOST) + "/HTML-Media-Center/public/css/HTMLRendereCSS/UploadElementStyle.css");
+
+	this->includeJS("http://" + std::string(HOST) + "/HTML-Media-Center/public/js/HTMLRendereJS/UploadSingleElementJavascript.js");
+	//this->includeJS("http://" + std::string(HOST) + "/HTML-Media-Center/public/js/HTMLRendereJS/UploadElementJavascript.js");
 }
 
 FileUpload::~FileUpload()

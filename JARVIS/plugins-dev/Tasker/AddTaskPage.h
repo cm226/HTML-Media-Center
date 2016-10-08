@@ -11,6 +11,7 @@ struct AddTaskPageData
 	std::list<std::wstring> _blendFiles;
 	std::string _pluginName;
 	CALLBACk_HANDLE _submitCallback;
+	CALLBACk_HANDLE _fileUploadCallback;
 };
 
 
@@ -22,12 +23,11 @@ private:
 
 	void wStringToString(std::wstring& in, std::string& out);
 	void makeURLWeblink(std::wstring& location, bool& success);
-
-	void buildFormCmdString(Form* form);
+	
+	void buildCmdString();
 
 	void buildForm();
 	void buildOutputFileList();
-	void buildCommandPresets(Form* form);
 	void buildBlendFileList();
 
 public:

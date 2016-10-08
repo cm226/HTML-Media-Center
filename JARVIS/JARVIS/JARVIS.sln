@@ -48,6 +48,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tasker", "..\plugins-dev\Ta
 		{B3C985D0-399F-44AB-914A-B69D3A92C846} = {B3C985D0-399F-44AB-914A-B69D3A92C846}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileCoreModuleTests", "..\FileCoreModuleTests\FileCoreModuleTests.vcxproj", "{7349FE9E-3E1D-48A1-8EC5-FE5D2711E972}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -132,6 +134,14 @@ Global
 		{2D4D50D6-9E87-4232-A258-0A861EE602C5}.Release|Win32.Build.0 = Release|Win32
 		{2D4D50D6-9E87-4232-A258-0A861EE602C5}.Release|x64.ActiveCfg = Release|x64
 		{2D4D50D6-9E87-4232-A258-0A861EE602C5}.Release|x64.Build.0 = Release|x64
+		{7349FE9E-3E1D-48A1-8EC5-FE5D2711E972}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7349FE9E-3E1D-48A1-8EC5-FE5D2711E972}.Debug|Win32.Build.0 = Debug|Win32
+		{7349FE9E-3E1D-48A1-8EC5-FE5D2711E972}.Debug|x64.ActiveCfg = Debug|x64
+		{7349FE9E-3E1D-48A1-8EC5-FE5D2711E972}.Debug|x64.Build.0 = Debug|x64
+		{7349FE9E-3E1D-48A1-8EC5-FE5D2711E972}.Release|Win32.ActiveCfg = Release|Win32
+		{7349FE9E-3E1D-48A1-8EC5-FE5D2711E972}.Release|Win32.Build.0 = Release|Win32
+		{7349FE9E-3E1D-48A1-8EC5-FE5D2711E972}.Release|x64.ActiveCfg = Release|x64
+		{7349FE9E-3E1D-48A1-8EC5-FE5D2711E972}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

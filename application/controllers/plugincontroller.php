@@ -23,7 +23,7 @@ function pluginInteraction()
 {
 	
 	$contextElements = func_get_args();
-	
+
 	if(count($contextElements) < 2)
 	{
 		echo 'Error: bad ammount of arguments in context no callbackID';

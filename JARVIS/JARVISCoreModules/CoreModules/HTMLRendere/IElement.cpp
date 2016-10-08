@@ -7,6 +7,8 @@
 
 #include "IElement.h"
 
+#include "../config.h"
+
 
 IElement::IElement(std::string name)
 {
@@ -22,32 +24,31 @@ void IElement::addAttribute(std::string attribute)
 	this->attributes.push_back(attribute);
 }
 
-void IElement::addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName, std::vector<std::string>  contextArgs)
+void IElement::addOnclickCallbackAttribute(CALLBACk_HANDLE handl, std::string pluginName, std::vector<std::string>  contextArgs)
 {
 	std::stringstream movieAttributeStream ;
 	movieAttributeStream << "onClick=\"window.location='";
-	movieAttributeStream << buildCallbackLocationString(depth, handl, pluginName, contextArgs);
+	movieAttributeStream << buildCallbackLocationString(handl, pluginName, contextArgs);
 	movieAttributeStream << "'\"";
 	this->addAttribute(movieAttributeStream.str());
 }
 
-void IElement::addOnclickCallbackAttribute(int depth, CALLBACk_HANDLE handl, std::string pluginName)
+void IElement::addOnclickCallbackAttribute(CALLBACk_HANDLE handl, std::string pluginName)
 {	
 	std::stringstream movieAttributeStream ;
 	movieAttributeStream << "onClick=\"window.location='";
-	movieAttributeStream << buildCallbackLocationString(depth, handl, pluginName) <<"'\"";;
+	movieAttributeStream << buildCallbackLocationString(handl, pluginName) <<"'\"";;
 	this->addAttribute(movieAttributeStream.str());
 }
 
-std::string IElement::buildCallbackLocationString(int depth, CALLBACk_HANDLE handl, std::string pluginName, std::vector<std::string> contextArgs,std::string location)
+std::string IElement::buildCallbackLocationString(CALLBACk_HANDLE handl, std::string pluginName, std::vector<std::string> contextArgs,std::string location)
 {
 	std::stringstream locationStream ;
 
-	for(int i = 0; i < depth; i++)
-		locationStream << "../";
-	locationStream<<location<<"/";	
-	
-	locationStream << handl << "/" << pluginName;
+	locationStream << "http://" << HOST << "/HTML-Media-Center/Desktop/Plugin/pluginInteraction/" <<
+		handl << "/" << pluginName;
+
+
 	std::vector<std::string>::iterator contextArgsIt;
 	for(contextArgsIt = contextArgs.begin(); contextArgsIt != contextArgs.end(); contextArgsIt++)
 		locationStream << "/"<<*contextArgsIt;
@@ -55,15 +56,12 @@ std::string IElement::buildCallbackLocationString(int depth, CALLBACk_HANDLE han
 	return locationStream.str();
 }
 
-std::string IElement::buildCallbackLocationString(int depth, CALLBACk_HANDLE handl, std::string pluginName,std::string location)
+std::string IElement::buildCallbackLocationString(CALLBACk_HANDLE handl, std::string pluginName,std::string location)
 {
 	std::stringstream locationStream ;
 	
-	for(int i = 0; i < depth; i++)
-		locationStream << "../";
-	locationStream<<location<<"/";		
-
-	locationStream << handl << "/" << pluginName;
+	locationStream << "http://" << HOST << "/HTML-Media-Center/Desktop/Plugin/pluginInteraction/" <<
+		handl << "/" << pluginName;
 
 	return locationStream.str();
 }

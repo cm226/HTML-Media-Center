@@ -49,10 +49,10 @@ std::string Form::getTagContent()
 	return ss.str();
 }
 
-void Form::setHandler(int depth, CALLBACk_HANDLE handl, std::string pluginName)
+void Form::setHandler(CALLBACk_HANDLE handl, std::string pluginName)
 {
 	std::stringstream actionCallback;
-	actionCallback << "action=\"" << buildCallbackLocationString(depth, handl, pluginName) << "\"";
+	actionCallback << "action=\"" << buildCallbackLocationString(handl, pluginName) << "\"";
 	this->addAttribute(actionCallback.str());
 	;
 }
