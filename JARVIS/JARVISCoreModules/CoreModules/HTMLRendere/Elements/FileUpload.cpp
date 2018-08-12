@@ -15,9 +15,9 @@ FileUpload::FileUpload(std::string name, CALLBACk_HANDLE handl, std::string plug
 
 	this->appendEmbeddedJSCode("var uploadLocation = \""+uploadLocationString+"\";");
 
-	this->includeCSS("http://" + std::string(HOST) + "/HTML-Media-Center/public/css/HTMLRendereCSS/UploadElementStyle.css");
+	this->includeCSS("http://" + std::string(MY_HOST) + "/HTML-Media-Center/public/css/HTMLRendereCSS/UploadElementStyle.css");
 
-	this->includeJS("http://" + std::string(HOST) + "/HTML-Media-Center/public/js/HTMLRendereJS/UploadSingleElementJavascript.js");
+	this->includeJS("http://" + std::string(MY_HOST) + "/HTML-Media-Center/public/js/HTMLRendereJS/UploadSingleElementJavascript.js");
 	//this->includeJS("http://" + std::string(HOST) + "/HTML-Media-Center/public/js/HTMLRendereJS/UploadElementJavascript.js");
 }
 

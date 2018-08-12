@@ -27,7 +27,7 @@ public:
 	TwoByteMsgLen(boost::asio::ip::tcp::socket& socket);
 	virtual ~TwoByteMsgLen();
 
-	char* TwoByteMsgLen::readMsgRaw(unsigned timoutMiliseconds, int& messageSize);
+	char* readMsgRaw(unsigned timoutMiliseconds, int& messageSize);
 	AbstractMessage* getMessageOrTimeout(unsigned timoutMiliseconds);
 	void sendMessage( AbstractMessage* data);
 

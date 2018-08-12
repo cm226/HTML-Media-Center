@@ -1,9 +1,9 @@
 #include "ChunckedTwoByteMsgLen.h"
 
-#include "..\..\..\..\ErrorLogger\Errors\ErrorLogger.h"
+#include "../../../../ErrorLogger/Errors/ErrorLogger.h"
 #include "../../../../Comms/Transever/Exceptions/TimeoutExpiredException.h"
 
-#include <boost\thread.hpp>
+#include <boost/thread.hpp>
 
 
 ChunckedTwoByteMsgLen::ChunckedTwoByteMsgLen(boost::asio::ip::tcp::socket& socket) : socket(socket),

@@ -45,7 +45,7 @@ std::string IElement::buildCallbackLocationString(CALLBACk_HANDLE handl, std::st
 {
 	std::stringstream locationStream ;
 
-	locationStream << "http://" << HOST << "/HTML-Media-Center/Desktop/Plugin/pluginInteraction/" <<
+	locationStream << "http://" << MY_HOST << "/HTML-Media-Center/Desktop/Plugin/pluginInteraction/" <<
 		handl << "/" << pluginName;
 
 
@@ -60,7 +60,7 @@ std::string IElement::buildCallbackLocationString(CALLBACk_HANDLE handl, std::st
 {
 	std::stringstream locationStream ;
 	
-	locationStream << "http://" << HOST << "/HTML-Media-Center/Desktop/Plugin/pluginInteraction/" <<
+	locationStream << "http://" << MY_HOST << "/HTML-Media-Center/Desktop/Plugin/pluginInteraction/" <<
 		handl << "/" << pluginName;
 
 	return locationStream.str();

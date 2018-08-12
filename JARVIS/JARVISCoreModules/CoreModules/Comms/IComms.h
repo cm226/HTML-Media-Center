@@ -24,7 +24,7 @@ namespace CommsNS {
 		virtual bool downloadFile(std::string const& URL, std::string const& fileName) = 0;
 
 		virtual void stopComms() = 0;
-		virtual void startComms() = 0;
+		virtual void startComms(std::string static_content_path = "") = 0;
 	};
 }
 

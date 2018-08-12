@@ -20,28 +20,27 @@
 #include <boost/asio.hpp>
 #include <boost/shared_ptr.hpp>
 
+#include <memory>
 
 
 class Comms : public CommsNS::IComms{
 private:
-	boost::asio::io_service io_service;
 	TranseverConnectionFactory connecionFactory;
 
-	TCPAsyncTransever transever;
 	CommsNS::CurlManager curlMan;
 
-	boost::thread* commsThread;
-
-	void doComms();
+	std::unique_ptr<boost::thread> serverThread;
+	std::string m_static_content_path;
+	void doHTTP();
 
 public:
 
 	Comms();
 	virtual ~Comms();
 
-	void startComms();
+	void startComms(std::string static_content_path = "") override;
 	void stopComms();
-
+	
 	coremodules::comms::messagetranslaters::messagesubject::MessageSubject* messagesubject();
 	static coremodules::comms::messagetranslaters::messagesubject::MessageSubject _messageSubject;
 

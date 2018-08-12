@@ -47,7 +47,7 @@ JARVISFramework::~JARVISFramework()
 
 void JARVISFramework::process()
 {
-	this->cModules.getComms()->startComms();
+	this->cModules.getComms()->startComms("/home/boss_man/Projects/HTML-Media-Center/JARVIS/JARVIS/Framework/Static_content/");
 	boost::thread listenForConnectionThread(boost::bind(&JARVISFramework::processCommandLoop, this));
 
 	this->cModules.getTaskList().StartTasks();

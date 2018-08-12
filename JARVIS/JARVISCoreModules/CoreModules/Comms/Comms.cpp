@@ -8,13 +8,14 @@
 
 #include "Comms.h"
 #include "JSON/JSONCURLRequest.h"
+#include "HTTPServer/HTTPServer.h"
 #include <boost/bind.hpp>
 
 
 
 coremodules::comms::messagetranslaters::messagesubject::MessageSubject Comms::_messageSubject;
 
-Comms::Comms(): transever(io_service,45001,connecionFactory)
+Comms::Comms()
 {
 
 }
@@ -22,23 +23,30 @@ Comms::Comms(): transever(io_service,45001,connecionFactory)
 Comms::~Comms() {
 }
 
-void Comms::startComms()
+void Comms::startComms(std::string static_content)
 {
-	this->commsThread = new boost::thread(boost::bind(&Comms::doComms, this));
+    m_static_content_path = static_content;
+
+	this->serverThread = 
+		std::make_unique<boost::thread>(
+			boost::bind(&Comms::doHTTP, this));
 }
 
-void Comms::doComms()
+void Comms::doHTTP()
 {
-	transever.start_accept();
-	this->io_service.run();
+	try {
+        HTTPServer handler(m_static_content_path);
+        http::server<HTTPServer>::options options(handler);
+        http::server<HTTPServer> server_(options.address(MY_HOST).port("80"));
+        server_.run();
+    }
+    catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+    }
 }
 
-void Comms::stopComms()
-{
-	this->io_service.stop();
+void Comms::stopComms(){
 
-	this->commsThread->join();
-	delete this->commsThread;
 }
 
 

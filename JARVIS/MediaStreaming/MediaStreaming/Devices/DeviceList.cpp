@@ -15,11 +15,11 @@
 #include <vector>
 
 
-#include "Comms/DevicePollConnectionFactory.h"
-#include "../../../Comms/Broadcaster.h"
+//#include "../../../JARVISCoreModules/CoreModules/Comms/DevicePollConnectionFactory.h"
+#include "../../../JARVISCoreModules/CoreModules/Comms/Broadcaster.h"
 #include "Comms/Transever/TCPAsyncTransever.h"
 #include "../../../ErrorLogger/Errors/ErrorLogger.h"
-#include "Comms/IPGetter.h"
+#include "../../../JARVISCoreModules/CoreModules/Comms/IPGetter.h"
 
 namespace Devices {
 
@@ -47,23 +47,23 @@ void DeviceList::Initalise_device_List()
 void DeviceList::wate_for_AgentReplys()
 {
 	
-	boost::asio::io_service io_sercive;
-	Broadcaster broadcaster(io_sercive, 40002);
-	Comms::DevicePollConnectionFactory connectionFactory(_audio_devices, io_sercive);
+	// boost::asio::io_service io_sercive;
+	// Broadcaster broadcaster(io_sercive, 40002);
+	// Comms::DevicePollConnectionFactory connectionFactory(_audio_devices, io_sercive);
 
-	TCPAsyncTransever transever(io_sercive, 40003,connectionFactory); // handles any responces to the Agent Hello Broadcast
-	boost::thread comms_thread(boost::bind(&boost::asio::io_service::run, &io_sercive)); // start the comms Service
+	// TCPAsyncTransever transever(io_sercive, 40003,connectionFactory); // handles any responces to the Agent Hello Broadcast
+	// boost::thread comms_thread(boost::bind(&boost::asio::io_service::run, &io_sercive)); // start the comms Service
 
-	std::string AGENT_HELLO_BROADCAST = build_Broadcast_Message();
+	// std::string AGENT_HELLO_BROADCAST = build_Broadcast_Message();
 
-	broadcaster.Broadcast_Message(AGENT_HELLO_BROADCAST);
+	// broadcaster.Broadcast_Message(AGENT_HELLO_BROADCAST);
 
-	boost::this_thread::sleep(boost::posix_time::seconds(10)); // allow 10 sec for agents to respond
-	std::stringstream infoMsg;
-	infoMsg << "Finished Listening for Agents, collected : " << _audio_devices.size() << " device(s)";
-	ErrorLogger::logInfo(infoMsg.str());
-	io_sercive.stop();
-	comms_thread.join();
+	// boost::this_thread::sleep(boost::posix_time::seconds(10)); // allow 10 sec for agents to respond
+	// std::stringstream infoMsg;
+	// infoMsg << "Finished Listening for Agents, collected : " << _audio_devices.size() << " device(s)";
+	// ErrorLogger::logInfo(infoMsg.str());
+	// io_sercive.stop();
+	// comms_thread.join();
 }
 
 

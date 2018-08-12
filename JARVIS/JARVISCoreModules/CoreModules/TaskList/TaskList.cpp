@@ -4,6 +4,7 @@
 #include <string>
 #include <boost/thread.hpp>
 #include <stdlib.h>
+#include <iostream>
 
 #include "../../../ErrorLogger/Errors/ErrorLogger.h"
 TaskList::TaskList()

@@ -12,7 +12,8 @@
 #include <string>
 
 #include "Transever/ITranseverConnection.h"
-#include "../AudioDevice.h"
+
+class AudioDevice;
 
 namespace Comms {
 
