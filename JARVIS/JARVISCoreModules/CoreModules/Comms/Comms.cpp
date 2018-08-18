@@ -36,6 +36,7 @@ void Comms::doHTTP()
 {
 	try {
         HTTPServer handler(m_static_content_path);
+        m_server = std::shared_ptr<HTTPServer>(&handler, [](auto p){});
         http::server<HTTPServer>::options options(handler);
         http::server<HTTPServer> server_(options.address(MY_HOST).port("80"));
         server_.run();
@@ -68,6 +69,10 @@ bool Comms::downloadFile(std::string const& URL, std::string const& fileName)
 	return this->curlMan.downloadItemToFile(URL,fileName);
 }
 
+std::shared_ptr<HTTPServer> Comms::Server(){
+
+    return m_server;
+}
 
 
 

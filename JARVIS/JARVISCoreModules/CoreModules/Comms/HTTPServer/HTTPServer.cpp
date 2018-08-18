@@ -18,6 +18,12 @@ void HTTPServer::operator()(
     server::string_type ip = source(request);
     std::string destination = request.destination;
 
+    if(m_handler_map.find(destination) != m_handler_map.end()){
+        m_handler_map[destination](request, connection);
+        return;
+    }
+
+    // we dont have a handler so check if its a static resource
     if(destination == "/"){
         destination = "index.html";
     }
@@ -31,4 +37,14 @@ void HTTPServer::operator()(
 
 
     connection->write(file_data);
+}
+
+void HTTPServer::MapURLRequest(
+        std::string url,
+        URLHandle handler) {
+
+            void* that = this;
+            auto pair = std::make_pair(url, handler);
+            m_handler_map.emplace(pair);
+
 }

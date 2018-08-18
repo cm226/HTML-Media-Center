@@ -6,6 +6,7 @@
 #include <boost/filesystem.hpp>
 #include <sstream>
 #include "../../JARVISCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ReplyMessage.h"
+#include "../../JARVISCoreModules/CoreModules/Comms/HTTPServer/HTTPServer.h"
 #include <list>
 
 #ifdef _WINDOWS
@@ -23,19 +24,8 @@ JARVISFramework::JARVISFramework()
 
 	EventManager::commandAndControlMessageReceved.attach(this,&JARVISFramework::commandAndControlMessageReceved);
 
-
-#ifdef _WINDOWS
-	this->pluginLoader = new Loader("C:\\wamp64\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\plugins");
-#else
-	this->pluginLoader = new Loader("/home/JARVIS");
-#endif
-
 	this->pluginPageResponder.reset(new PluginPageResponder(this->pluginLoader, this->cModules.getComms()));
 	this->mediaStreamResponder.reset(new MediaStreamResponder(&this->cModules));
-
-	ErrorLogger::logInfo("Loading Modules");
-	this->loadStartupPlugins();
-	ErrorLogger::logInfo("Modules Loaded");
 }
 
 JARVISFramework::~JARVISFramework()
@@ -43,12 +33,36 @@ JARVISFramework::~JARVISFramework()
 	delete this->pluginLoader;
 }
 
-
-
 void JARVISFramework::process()
 {
 	this->cModules.getComms()->startComms("/home/boss_man/Projects/HTML-Media-Center/JARVIS/JARVIS/Framework/Static_content/");
 	boost::thread listenForConnectionThread(boost::bind(&JARVISFramework::processCommandLoop, this));
+
+	this->cModules.getComms()->Server()->MapURLRequest(
+		"/loadedPlugins", 
+		[&](
+			http::server<HTTPServer>::request,
+            http::server<HTTPServer>::connection_ptr connection
+		){
+			std::vector<Plugin*> loadedPlugins;
+			this->pluginLoader->listLoadedPlugins(&loadedPlugins);
+
+			for(auto plugin : loadedPlugins){
+				connection->write(plugin->pluginName());
+			}
+			
+		}
+	);
+
+	#ifdef _WINDOWS
+	this->pluginLoader = new Loader("C:\\wamp64\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\plugins");
+#else
+	this->pluginLoader = new Loader("/home/JARVIS");
+#endif
+
+	ErrorLogger::logInfo("Loading Modules");
+	this->loadStartupPlugins();
+	ErrorLogger::logInfo("Modules Loaded");
 
 	this->cModules.getTaskList().StartTasks();
 	while(!this->shuttingDown)

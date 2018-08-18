@@ -2,5 +2,25 @@
     <h1>hello</h1>
     <p>This is a paragraph</p>
 
+    <div id="loadedPlugins"/>
+    <script>
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let plugins = this.responseText.split(',');
+                    
+                    let html = '';
+                    plugins.forEach(element => {
+                        html += '<a href="/plugins/'+element+'"> '+element+'</a>';
+                    });
+                    document.getElementById("loadedPlugins").innerHTML = html;
+                }
+            };
+            xhttp.open("GET", "loadedPlugins", true);
+            xhttp.send();
+    
+    
+    </script>
+
 
 </html>

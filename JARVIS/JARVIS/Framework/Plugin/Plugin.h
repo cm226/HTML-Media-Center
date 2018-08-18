@@ -23,10 +23,6 @@ class Plugin {
 public:
 	enum pluginGroup{MISC, MUSIC, MOVIE, TV, CONTENT_GEN, PROG};
 
-private:
-	CALLBACk_HANDLE nextFreeCallbackHandle;
-	std::map<CALLBACk_HANDLE, boost::function2<bool ,Page*,PageCallbackContext* > > pageCallbacks;
-	
 
 protected:
 	CoreModules* coreMod;
@@ -35,39 +31,13 @@ protected:
 public:
 	Plugin(CoreModules* coreMod) : myGroup(MISC)
 	{
-		nextFreeCallbackHandle = 0;
 		this->coreMod = coreMod;
 	};
 
 	pluginGroup pluginGroup(){return this->myGroup;};
-	bool notifyPageCallback(Page* page, PageCallbackContext* context)
-	{
-		if(this->pageCallbacks.find(context->callbackHandle) != this->pageCallbacks.end())
-		{
-			boost::function2<bool ,Page*,PageCallbackContext* > callbackFunc = this->pageCallbacks[context->callbackHandle];
-			bool retVal = callbackFunc(page, context);
-			return retVal;
-		}
-
-		ErrorLogger::logError("page callback just called for unregistered handle");
-
-	#ifdef _DEBUG
-		throw std::runtime_error("unregistered callback called in HTML callbacks");
-	#endif
-
-		return false;
-	};
-	CALLBACk_HANDLE subscribeHTMLCallback(boost::function2<bool ,Page*,PageCallbackContext* > callbk)
-	{
-		CALLBACk_HANDLE hndl = nextFreeCallbackHandle;
-		nextFreeCallbackHandle++;
-
-		this->pageCallbacks[hndl] = callbk;
-		return hndl;
-	}
-
-	virtual bool whatDoYouLookLike(Page*) = 0;
-	virtual const char* pluginName() = 0;
+	
+	virtual void handleRequest(std::string requestURL) = 0;
+	virtual const std::string pluginName() = 0;
 	virtual ~Plugin(){};
 
 };

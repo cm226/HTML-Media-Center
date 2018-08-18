@@ -22,8 +22,9 @@
 
 #include <memory>
 
+class HTTPServer;
 
-class Comms : public CommsNS::IComms{
+class __attribute__((__visibility__("default"))) Comms : public CommsNS::IComms{
 private:
 	TranseverConnectionFactory connecionFactory;
 
@@ -39,14 +40,19 @@ public:
 	virtual ~Comms();
 
 	void startComms(std::string static_content_path = "") override;
-	void stopComms();
+	void stopComms() override;
 	
-	coremodules::comms::messagetranslaters::messagesubject::MessageSubject* messagesubject();
+	std::shared_ptr<HTTPServer> Server() override;
+	
+	coremodules::comms::messagetranslaters::messagesubject::MessageSubject* messagesubject() override;
 	static coremodules::comms::messagetranslaters::messagesubject::MessageSubject _messageSubject;
 
-	CommsNS::IJSONRequest* createJSONRequest();
-	bool downloadFile(std::string const& URL, std::string const& fileName);
+	CommsNS::IJSONRequest* createJSONRequest() override;
+	bool downloadFile(std::string const& URL, std::string const& fileName) override;
 
+private:
+
+	std::shared_ptr<HTTPServer> m_server;
 
 };
 

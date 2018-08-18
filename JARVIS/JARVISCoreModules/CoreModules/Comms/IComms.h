@@ -11,8 +11,10 @@
 #include "JSON/IJSONRequest.h"
 #include "MessageTranslaters/MessageSubject/MessageSubject.h"
 
+class HTTPServer;
+
 namespace CommsNS {
-	class IComms
+	class __attribute__((__visibility__("default"))) IComms
 	{
 
 	public:
@@ -25,6 +27,7 @@ namespace CommsNS {
 
 		virtual void stopComms() = 0;
 		virtual void startComms(std::string static_content_path = "") = 0;
+		virtual std::shared_ptr<HTTPServer> Server() = 0;
 	};
 }
 
