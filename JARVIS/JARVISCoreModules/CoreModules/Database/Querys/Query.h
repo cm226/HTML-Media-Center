@@ -22,7 +22,7 @@ namespace DatabaseTables {
 
 class DLLCORE_API Query : public IQuery {
 private:
-	ResultWrapper* result;
+	std::shared_ptr<ResultWrapper> result;
 	std::vector<IDatabaseTableField*>* fields;
 	std::vector<IConstraint*>* constraints;
 	std::vector<Descriptors::Descriptor*>* descriptors;
@@ -41,7 +41,7 @@ public:
 
 	std::string buildQuery();
 	void listSelectedFields(IDatabaseTableField** fields, int* numOfFeilds);
-	void setQueryResult(ResultWrapper* result);
+	void setQueryResult(std::shared_ptr<ResultWrapper> result);
 	bool nextLine();
 
 };

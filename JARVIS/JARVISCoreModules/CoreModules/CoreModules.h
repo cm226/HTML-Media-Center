@@ -21,7 +21,7 @@
 #include "Files/Files.h"
 
 
-class __attribute__((__visibility__("default"))) CoreModules {
+class DLLCORE_API CoreModules {
 private:
 	struct privateMembers;
 	#pragma warning( disable : 4251)

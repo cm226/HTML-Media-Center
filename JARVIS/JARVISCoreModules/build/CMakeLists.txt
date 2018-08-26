@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 3.7)
 project (CoreModules)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -std=c++17 -pthread -g")
-SET(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -fPIC -ldl -lcurl -lmysqlcppconn")
+SET(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -fPIC -ldl -lcurl")
 
 find_package(Boost COMPONENTS system filesystem signals REQUIRED)
 
@@ -10,7 +10,10 @@ find_package(Boost COMPONENTS system filesystem signals REQUIRED)
 include_directories (/home/boss_man/Projects/cpp-netlib )
 
 include_directories(${Boost_INCLUDE_DIR})
-include_directories (~/Projects/mpsqlConnector/mysql-connector-c++-8.0.12-linux-glibc2.12-x86-64bit/include/jdbc)
+
+SET(USING_MYSQL OFF)
+
+include_directories (/home/boss_man/Projects/mariadb_connector/mariadb-connector-c-3.0.6-src/include)
 
 set(SRCS 
 ../CoreModules/CoreModules.cpp
@@ -18,70 +21,9 @@ set(SRCS
 ../CoreModules/Database/Querys/Descriptor/Descriptor.cpp
 ../CoreModules/Database/Querys/Descriptor/Limit.cpp
 ../CoreModules/Database/Querys/Query.cpp
-../CoreModules/Database/Querys/Constraints/Equals.cpp
-../CoreModules/Database/Querys/Constraints/GreaterThan.cpp
-../CoreModules/Database/Querys/Constraints/LessThan.cpp
-../CoreModules/Database/Querys/Constraints/LessThanEqualToo.cpp
-../CoreModules/Database/Querys/Constraints/GreatherThanEqualTo.cpp
-../CoreModules/Database/Querys/Constraints/ConstraintGroup/ConstraintGroup.cpp
-../CoreModules/Database/Querys/Constraints/ConstraintGroup/ORConstraintGroup.cpp
-../CoreModules/Database/Querys/Constraints/Like.cpp
-../CoreModules/Database/Querys/UpdateQuery.cpp
+../CoreModules/Database/Querys/NoBullshitQuery.cpp
 ../CoreModules/Database/ResultWrapper.cpp
 ../CoreModules/Database/Database.cpp
-../CoreModules/Database/Tables/Episode/Fields/episodeID.cpp
-../CoreModules/Database/Tables/Episode/Fields/episodePlayCount.cpp
-../CoreModules/Database/Tables/Episode/Fields/episodeName.cpp
-../CoreModules/Database/Tables/Episode/Fields/seasonID.cpp
-../CoreModules/Database/Tables/Episode/Fields/episodeNumber.cpp
-../CoreModules/Database/Tables/Episode/Fields/filePath.cpp
-../CoreModules/Database/Tables/Episode/Episode.cpp
-../CoreModules/Database/Tables/Picture/Fields/picURL.cpp
-../CoreModules/Database/Tables/Picture/Fields/albumName2.cpp
-../CoreModules/Database/Tables/Picture/Fields/picName.cpp
-../CoreModules/Database/Tables/Picture/Picture.cpp
-../CoreModules/Database/Tables/PictureAlbum/Fields/albumName1.cpp
-../CoreModules/Database/Tables/PictureAlbum/PictureAlbum.cpp
-../CoreModules/Database/Tables/Song/Fields/albumID1.cpp
-../CoreModules/Database/Tables/Song/Fields/songID.cpp
-../CoreModules/Database/Tables/Song/Fields/playCount.cpp
-../CoreModules/Database/Tables/Song/Fields/songName.cpp
-../CoreModules/Database/Tables/Song/Fields/songRating.cpp
-../CoreModules/Database/Tables/Song/Fields/songURL.cpp
-../CoreModules/Database/Tables/Song/Song.cpp
-../CoreModules/Database/Tables/Season/Season.cpp
-../CoreModules/Database/Tables/Season/Fields/seriesName1.cpp
-../CoreModules/Database/Tables/Season/Fields/seriesNumber.cpp
-../CoreModules/Database/Tables/Season/Fields/seasonID1.cpp
-../CoreModules/Database/Tables/PlaylistSong/Fields/playlistName2.cpp
-../CoreModules/Database/Tables/PlaylistSong/Fields/songID1.cpp
-../CoreModules/Database/Tables/PlaylistSong/Fields/playlistSongID.cpp
-../CoreModules/Database/Tables/PlaylistSong/PlaylistSong.cpp
-../CoreModules/Database/Tables/Artist/Fields/genre.cpp
-../CoreModules/Database/Tables/Artist/Fields/artistID.cpp
-../CoreModules/Database/Tables/Artist/Fields/artistRating.cpp
-../CoreModules/Database/Tables/Artist/Fields/artistName.cpp
-../CoreModules/Database/Tables/Artist/Artist.cpp
-../CoreModules/Database/Tables/IDatabaseTableField.cpp
-../CoreModules/Database/Tables/Album/Fields/artistID1.cpp
-../CoreModules/Database/Tables/Album/Fields/albumID.cpp
-../CoreModules/Database/Tables/Album/Fields/albumRating.cpp
-../CoreModules/Database/Tables/Album/Fields/albumName.cpp
-../CoreModules/Database/Tables/Album/Album.cpp
-../CoreModules/Database/Tables/Series/Fields/seriesGenre.cpp
-../CoreModules/Database/Tables/Series/Fields/seriesIMDB.cpp
-../CoreModules/Database/Tables/Series/Fields/seriesName.cpp
-../CoreModules/Database/Tables/Series/Series.cpp
-../CoreModules/Database/Tables/Playlist/Fields/playlistPlayCount.cpp
-../CoreModules/Database/Tables/Playlist/Fields/playlistName1.cpp
-../CoreModules/Database/Tables/Playlist/Playlist.cpp
-../CoreModules/Database/Tables/Movie/Fields/movieGenre.cpp
-../CoreModules/Database/Tables/Movie/Fields/movieURL.cpp
-../CoreModules/Database/Tables/Movie/Fields/movieName.cpp
-../CoreModules/Database/Tables/Movie/Fields/movieIMDB.cpp
-../CoreModules/Database/Tables/Movie/Fields/thumbnailURL.cpp
-../CoreModules/Database/Tables/Movie/Fields/movieID.cpp
-../CoreModules/Database/Tables/Movie/Movie.cpp
 ../CoreModules/Database/Tables/DatabaseTable.cpp
 ../CoreModules/Database/ExtendedPluginDB/SubCatagory.cpp
 ../CoreModules/Database/ExtendedPluginDB/Serialisers/Serializer.cpp
@@ -185,10 +127,11 @@ set(SRCS
 
 )
 
-link_directories(/home/boss_man/Projects/mpsqlConnector/mysql-connector-c++-8.0.12-linux-glibc2.12-x86-64bit/lib64)
+link_directories(/home/boss_man/Projects/mariadb_connector/mariadb-connector-c-3.0.6-src/build/libmariadb)
 link_directories(/home/boss_man/Projects/cpp-netlib/build/libs/network/src)
 
 add_library(CoreModules SHARED ${SRCS})
 
 target_link_libraries( CoreModules ${Boost_LIBRARIES} )
 target_link_libraries( CoreModules libcppnetlib-server-parsers.so )
+target_link_libraries( CoreModules libmariadbclient.a )

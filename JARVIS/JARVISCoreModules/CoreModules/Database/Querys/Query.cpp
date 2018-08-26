@@ -22,7 +22,6 @@ Query::Query() {
 }
 
 Query::~Query() {
-	delete this->result;
 	delete this->fields;
 	delete this->constraints;
 	delete this->descriptors;
@@ -133,11 +132,8 @@ void Query::listSelectedFields(IDatabaseTableField** fields, int* numOfFeilds)
 	*numOfFeilds = counter+1;
 }
 
-void Query::setQueryResult(ResultWrapper* result)
+void Query::setQueryResult(std::shared_ptr<ResultWrapper> result)
 {
-	if(this->result != NULL)
-		delete this->result;
-
 	this->result = result;
 }
 
@@ -151,7 +147,7 @@ bool Query::nextLine()
 		std::vector<IDatabaseTableField*>::iterator fieildIt;
 		for (fieildIt = this->fields->begin(); fieildIt < this->fields->end(); fieildIt++)
 		{
-			(*fieildIt)->takeValue(this->result);
+			(*fieildIt)->takeValue(result.get());
 
 		}
 		return true;

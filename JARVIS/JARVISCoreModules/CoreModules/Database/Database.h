@@ -10,26 +10,23 @@
 
 #include <string>
 #include <vector>
+#include <list>
+#include <functional>
 
 #include "Tables/DatabaseTable.h"
 #include "Querys/Querys.h"
+#include "Results/ResultTypes.h"
 #include "../exportMacros.h"
 
-#include <cppconn/driver.h>
-#include <cppconn/exception.h>
-#include <cppconn/resultset.h>
-#include <cppconn/statement.h>
-#include <cppconn/prepared_statement.h>
+#include <mysql.h>
+
 
 namespace DatabaseTables {
 
 class DLLCORE_API Database {
 private:
 	bool connected;
-	  sql::Driver *driver;
-	  sql::Connection *con;
-
-	  void fillField(IDatabaseTableField* field, sql::ResultSet* results);
+	std::shared_ptr<MYSQL> m_mysql;
 
 public:
 	Database();
@@ -38,7 +35,11 @@ public:
 	bool Connect(std::string userName, std::string password, std::string DatabaseName, std::string host);
 
 	bool insertRow(DatabaseTable* row);
-	bool runQuery(IQuery* query);
+	bool runQuery(
+		IQuery* query,
+		std::function<std::shared_ptr<ResultBase>()>& result_factory,
+		std::list<std::shared_ptr<ResultBase>>& result_list
+	);
 	bool isConnected();
 	
 

@@ -1,0 +1,33 @@
+<html>
+
+    <div id="meals">
+
+    </div>
+
+    <ul id="list">
+
+    </ul>
+
+
+    <script>
+        var mealListJSON = [];
+
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let mealListJSON = JSON.parse(this.responseText);
+                let html = '';
+                mealListJSON.forEach(element => {
+                    html += "<ul>" + element.meal + '</ul>';
+                });
+
+                document.getElementById("meals").innerHTML = html;
+            }
+        };
+        xhttp.open("GET", "Plugins/Shopping/foodList", true);
+        xhttp.send();
+
+
+    </script>
+
+</html>

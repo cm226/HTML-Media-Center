@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 3.7)
 project (JARVIS)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -pthread -g")
-SET(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -ldl -lcurl -lmysqlcppconn")
+SET(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -ldl -lcurl")
 
 find_package(Boost COMPONENTS system filesystem signals thread REQUIRED)
 
@@ -10,7 +10,7 @@ find_package(Boost COMPONENTS system filesystem signals thread REQUIRED)
 include_directories (/home/boss_man/Projects/cpp-netlib )
 
 include_directories(${Boost_INCLUDE_DIR})
-include_directories (~/Projects/mpsqlConnector/mysql-connector-c++-8.0.12-linux-glibc2.12-x86-64bit/include/jdbc)
+include_directories (/home/boss_man/Projects/mariadb_connector/mariadb-connector-c-3.0.6-src/include)
 
 set(SRCS 
 ../JARVIS/JARVIS.cpp
@@ -22,7 +22,6 @@ set(SRCS
 ../JARVIS/Framework/Plugin/PageCallbackContext.cpp
 )
 
-link_directories(/home/boss_man/Projects/mpsqlConnector/mysql-connector-c++-8.0.12-linux-glibc2.12-x86-64bit/lib64)
 link_directories(/home/boss_man/Projects/cpp-netlib/build/libs/network/src)
 link_directories(./)
 
