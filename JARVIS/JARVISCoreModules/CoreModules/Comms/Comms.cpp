@@ -9,6 +9,7 @@
 #include "Comms.h"
 #include "JSON/JSONCURLRequest.h"
 #include "HTTPServer/HTTPServer.h"
+#include "HTTPServer/HTTPUrlRouter.h"
 #include <boost/bind.hpp>
 
 
@@ -26,6 +27,7 @@ Comms::~Comms() {
 void Comms::startComms(std::string static_content)
 {
     m_static_content_path = static_content;
+    m_router = std::make_shared<HTTPUrlRouter>();
 
 	this->serverThread = 
 		std::make_unique<boost::thread>(
@@ -35,10 +37,10 @@ void Comms::startComms(std::string static_content)
 void Comms::doHTTP()
 {
 	try {
-        HTTPServer handler(m_static_content_path);
+        HTTPServer handler(m_static_content_path, m_router);
         m_server = std::shared_ptr<HTTPServer>(&handler, [](auto p){});
-        http::server<HTTPServer>::options options(handler);
-        http::server<HTTPServer> server_(options.address(MY_HOST).port("80"));
+        boost::network::http::server<HTTPServer>::options options(handler);
+        boost::network::http::server<HTTPServer> server_(options.address(MY_HOST).port("80"));
         server_.run();
     }
     catch (std::exception &e) {
@@ -69,9 +71,12 @@ bool Comms::downloadFile(std::string const& URL, std::string const& fileName)
 	return this->curlMan.downloadItemToFile(URL,fileName);
 }
 
-std::shared_ptr<HTTPServer> Comms::Server(){
+std::shared_ptr<HTTPUrlRouter> Comms::Router(){
 
-    return m_server;
+    if(m_router == nullptr){
+        ErrorLogger::logError("Getting URL router before comms has started!!!");
+    }
+    return m_router;
 }
 
 

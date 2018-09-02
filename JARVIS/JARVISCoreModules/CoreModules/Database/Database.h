@@ -37,8 +37,7 @@ public:
 	bool insertRow(DatabaseTable* row);
 	bool runQuery(
 		IQuery* query,
-		std::function<std::shared_ptr<ResultBase>()>& result_factory,
-		std::list<std::shared_ptr<ResultBase>>& result_list
+		ResultWrapper& result_list
 	);
 	bool isConnected();
 	

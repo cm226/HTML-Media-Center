@@ -1,14 +1,19 @@
 #include "HTTPServer.h"
 
+#include <boost/network/protocol/http/server.hpp>
+
 #include "../../Files/Files.h"
 
-typedef http::server<HTTPServer> server;
+
+typedef boost::network::http::server<HTTPServer> server;
 
 HTTPServer::HTTPServer(
-    std::string static_content
+    std::string static_content,
+    std::shared_ptr<HTTPUrlRouter> router
 ) {
 
     m_static_content = static_content;
+    m_router = router;
 }
 
 void HTTPServer::operator()(
@@ -18,8 +23,11 @@ void HTTPServer::operator()(
     server::string_type ip = source(request);
     std::string destination = request.destination;
 
-    if(m_handler_map.find(destination) != m_handler_map.end()){
-        m_handler_map[destination](request, connection);
+    if(m_router->HasHandler(destination)){
+        m_router->Route(
+            destination,
+            request,
+            connection);
         return;
     }
 
@@ -39,12 +47,3 @@ void HTTPServer::operator()(
     connection->write(file_data);
 }
 
-void HTTPServer::MapURLRequest(
-        std::string url,
-        URLHandle handler) {
-
-            void* that = this;
-            auto pair = std::make_pair(url, handler);
-            m_handler_map.emplace(pair);
-
-}

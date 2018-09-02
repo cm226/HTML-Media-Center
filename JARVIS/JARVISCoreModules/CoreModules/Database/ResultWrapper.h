@@ -14,8 +14,10 @@ private:
 	std::map<std::string, int> m_colum_map;
 
 public:
-	ResultWrapper(MYSQL_RES* resultSet);
+	ResultWrapper();
 	~ResultWrapper(void);
+
+	void SetResults(MYSQL_RES* resultSet);
 
 	int32_t getInt(const std::string& col_name);
 	int32_t getInt(unsigned int col);

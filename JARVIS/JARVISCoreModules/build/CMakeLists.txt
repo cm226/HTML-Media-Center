@@ -38,6 +38,7 @@ set(SRCS
 ../CoreModules/Files/File/Base64FileDataURLSource.cpp
 ../CoreModules/Files/File/TxtFileSource.cpp
 ../CoreModules/Files/FileSystem.cpp
+../CoreModules/Comms/HTTPServer/HTTPUrlRouter.cpp
 ../CoreModules/Comms/HTTPServer/HTTPServer.cpp
 ../CoreModules/Comms/Broadcaster.cpp
 ../CoreModules/Comms/IPGetter.cpp

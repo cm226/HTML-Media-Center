@@ -2,10 +2,21 @@
 
 #include "../../../ErrorLogger/Errors/ErrorLogger.h"
 
-ResultWrapper::ResultWrapper(MYSQL_RES* res_set)
+ResultWrapper::ResultWrapper()
 	:m_row(nullptr),
 	 m_res_set(nullptr)
 {
+	
+}
+
+
+ResultWrapper::~ResultWrapper(void)
+{
+}
+
+void ResultWrapper::SetResults(
+	MYSQL_RES* res_set
+){
 	m_res_set= std::shared_ptr<MYSQL_RES>(
 		res_set,
 		[](auto p){
@@ -23,11 +34,6 @@ ResultWrapper::ResultWrapper(MYSQL_RES* res_set)
 		m_colum_map[field->name] = col_number;
 		col_number++;
 	}
-}
-
-
-ResultWrapper::~ResultWrapper(void)
-{
 }
 
 int32_t ResultWrapper::getInt(

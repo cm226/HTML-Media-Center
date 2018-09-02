@@ -7,13 +7,13 @@ MusicGlobPlugin::MusicGlobPlugin(CoreModules* cm)
     :Plugin(cm){
 
         auto comms = cm->getComms();
-        auto server = comms->Server();
+        auto router = comms->Router();
 
-        server->MapURLRequest(
+        router->MapURLRequest(
             "/plugins/Music%20Glob",
             [&](
-                http::server<HTTPServer>::request,
-                http::server<HTTPServer>::connection_ptr connection
+                boost::network::http::server<HTTPServer>::request,
+                boost::network::http::server<HTTPServer>::connection_ptr connection
             ){
                 connection->write("<html><h1>Globs</h1></html>");
             }

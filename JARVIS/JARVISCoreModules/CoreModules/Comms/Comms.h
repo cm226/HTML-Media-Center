@@ -23,8 +23,9 @@
 #include <memory>
 
 class HTTPServer;
+class HTTPUrlRouter;
 
-class __attribute__((__visibility__("default"))) Comms : public CommsNS::IComms{
+class Comms : public CommsNS::IComms{
 private:
 	TranseverConnectionFactory connecionFactory;
 
@@ -42,7 +43,7 @@ public:
 	void startComms(std::string static_content_path = "") override;
 	void stopComms() override;
 	
-	std::shared_ptr<HTTPServer> Server() override;
+	std::shared_ptr<HTTPUrlRouter> Router() override;
 	
 	coremodules::comms::messagetranslaters::messagesubject::MessageSubject* messagesubject() override;
 	static coremodules::comms::messagetranslaters::messagesubject::MessageSubject _messageSubject;
@@ -53,6 +54,7 @@ public:
 private:
 
 	std::shared_ptr<HTTPServer> m_server;
+	std::shared_ptr<HTTPUrlRouter> m_router;
 
 };
 

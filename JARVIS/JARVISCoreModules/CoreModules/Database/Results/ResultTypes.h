@@ -8,13 +8,13 @@ class ResultBase{
 };
 
 
-template<typename T>
+template<typename T, const char* col_name>
 class ResultList
     : public ResultBase{
 
 public:
-    ResultList(std::string colName)
-    : m_col_name(colName)
+    ResultList()
+    : m_col_name(col_name)
     {
 
     }
@@ -34,6 +34,10 @@ public:
         return true;
     }
 
+    std::vector<T>& Values(){
+        return m_values;
+    }
+
 private:
     
     std::vector<T> m_values;
@@ -42,20 +46,18 @@ private:
 };
 
 
-template <typename T>
+template <
+    typename Type,
+    const char* col_name,
+    typename... TChildren>
 class ResultGroup :
     public ResultBase{
 
 public:
     ResultGroup(
-        std::string col_name,
-        std::vector<std::shared_ptr<ResultBase>> children
     ):
         m_col_name(col_name),
-        m_children(children),
         m_have_value(false) {
-
-
     }
     virtual ~ResultGroup(){}
 
@@ -65,8 +67,8 @@ public:
     
         do{
 
-            T value;
-            if constexpr (std::is_same<T, std::string>::value){
+            Type value;
+            if constexpr (std::is_same<Type, std::string>::value){
                 value = result->getString(m_col_name.c_str());
             }
             
@@ -79,17 +81,80 @@ public:
                 return false;
             }
 
-            for(auto& child : m_children){
-                child->ReadNext(result);
-            }
+            ReadChild(m_children, result);
         } while(result->next());
         return false;
     }
 
 
+
+public: 
+    Type Value(){
+        return m_value;
+    }
+
+    std::tuple<TChildren...>& Children(){
+        return m_children;
+    }
+
 private:
-    T m_value;
+
+// some template functions for iterating children
+template<std::size_t I = 0, typename... Tp>
+inline typename std::enable_if<I == sizeof...(Tp), void>::type
+  ReadChild(std::tuple<Tp...>& t, std::shared_ptr<ResultWrapper> result)
+  { }
+
+template<std::size_t I = 0, typename... Tp>
+inline typename std::enable_if<I < sizeof...(Tp), void>::type
+  ReadChild(std::tuple<Tp...>& t, std::shared_ptr<ResultWrapper> result)
+  {
+    std::get<I>(t).ReadNext(result);
+    ReadChild<I + 1, Tp...>(t, result);
+  }
+
+
+private:
+    Type m_value;
     bool m_have_value;
     std::string m_col_name;
-    std::vector<std::shared_ptr<ResultBase>> m_children;
+    std::tuple<TChildren...> m_children;
+};
+
+template<typename T>
+class Results{
+
+public:
+    Results(ResultWrapper& res_wrapper){
+
+        // dosnt need to be like this, FIXME
+        auto res_wrapper_ptr = 
+            std::shared_ptr<ResultWrapper>(&res_wrapper, [](auto p){});
+
+        while(res_wrapper.next()){
+			auto result = Push();
+			result->ReadNext(res_wrapper_ptr);
+		}
+
+    }
+
+    std::shared_ptr<T> Push(
+    ){
+        auto p = std::make_shared<T>();   
+        m_results.push_back(p);
+        return p;
+    }
+
+    auto begin(){
+        return m_results.begin();
+    }
+
+    auto end(){
+        return m_results.end();
+    }
+
+
+private:
+    std::vector<std::shared_ptr<T>> m_results;
+
 };

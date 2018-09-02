@@ -26,6 +26,8 @@ JARVISFramework::JARVISFramework()
 
 	this->pluginPageResponder.reset(new PluginPageResponder(this->pluginLoader, this->cModules.getComms()));
 	this->mediaStreamResponder.reset(new MediaStreamResponder(&this->cModules));
+
+	ErrorLogger::logInfo("Initialised");
 }
 
 JARVISFramework::~JARVISFramework()
@@ -38,17 +40,17 @@ void JARVISFramework::process()
 	this->cModules.getComms()->startComms("/home/boss_man/Projects/HTML-Media-Center/JARVIS/JARVIS/Framework/Static_content/");
 	boost::thread listenForConnectionThread(boost::bind(&JARVISFramework::processCommandLoop, this));
 
-	this->cModules.getComms()->Server()->MapURLRequest(
+	this->cModules.getComms()->Router()->MapURLRequest(
 		"/loadedPlugins", 
 		[&](
-			http::server<HTTPServer>::request,
-            http::server<HTTPServer>::connection_ptr connection
+			boost::network::http::server<HTTPServer>::request,
+            boost::network::http::server<HTTPServer>::connection_ptr connection
 		){
 			std::vector<Plugin*> loadedPlugins;
 			this->pluginLoader->listLoadedPlugins(&loadedPlugins);
 
 			for(auto plugin : loadedPlugins){
-				connection->write(plugin->pluginName());
+				connection->write(plugin->pluginName() + ",");
 			}
 			
 		}

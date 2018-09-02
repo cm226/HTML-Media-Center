@@ -1,28 +1,23 @@
-#include <boost/network/protocol/http/server.hpp>
+
 #include <iostream>
-
-namespace http = boost::network::http;
-
-class HTTPServer;
-typedef std::function<
-            void(
-                http::server<HTTPServer>::request,
-                http::server<HTTPServer>::connection_ptr
-             )> URLHandle;
+#include "HTTPUrlRouter.h"
 
 class HTTPServer {
     public:
 
-        HTTPServer(std::string static_content);
+        HTTPServer(
+            std::string static_content,
+            std::shared_ptr<HTTPUrlRouter> router
+        );
         
         void operator()(
-            http::server<HTTPServer>::request const &request,
-            http::server<HTTPServer>::connection_ptr connection
+            boost::network::http::server<HTTPServer>::request const &request,
+            boost::network::http::server<HTTPServer>::connection_ptr connection
         );
     
 
-        void MapURLRequest(std::string url, URLHandle handler);
+        
     private:
         std::string m_static_content;
-        std::map<std::string, URLHandle> m_handler_map;
+        std::shared_ptr<HTTPUrlRouter> m_router;
 };

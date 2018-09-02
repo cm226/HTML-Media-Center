@@ -1,6 +1,4 @@
 <html>
-    <h1>hello</h1>
-    <p>This is a paragraph</p>
 
     <div id="loadedPlugins"/>
     <script>
@@ -11,7 +9,9 @@
                     
                     let html = '';
                     plugins.forEach(element => {
-                        html += '<a href="/plugins/'+element+'"> '+element+'</a>';
+                        if(element !== ''){
+                            html += '<a href="/plugins/'+element+'"> '+element+'</a>';
+                        }
                     });
                     document.getElementById("loadedPlugins").innerHTML = html;
                 }

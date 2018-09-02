@@ -110,8 +110,7 @@ bool Database::insertRow(DatabaseTable* row)
 }
 bool Database::runQuery(
 	IQuery* query,
-	std::function<std::shared_ptr<ResultBase>()>& result_factory,
-	std::list<std::shared_ptr<ResultBase>>& result_list
+	ResultWrapper& results
 ) {
 	if(this->connected)
 	{
@@ -126,15 +125,8 @@ bool Database::runQuery(
 		}
 				
 		MYSQL_RES *result = mysql_store_result(m_mysql.get());
+		results.SetResults(result);
 
-		std::shared_ptr<ResultWrapper> res_wrapper = 
-			std::make_shared<ResultWrapper>(result); 
-
-		while(res_wrapper->next()){
-			auto new_result = result_factory();
-			result_list.push_back(new_result);
-			new_result->ReadNext(res_wrapper);
-		}
 		return true;
 
 	}
