@@ -20,54 +20,54 @@ ShoppingPlugin::ShoppingPlugin(
 
 
     router->MapURLRequest(
-        "/plugins/Shopping",
+        "/plugins/ShoppingList",
         [&](
             boost::network::http::server<HTTPServer>::request,
             boost::network::http::server<HTTPServer>::connection_ptr connection
         ){
-            DatabaseTables::NoBullshitQuery query("\
-                SELECT meal_name, ingredient_name, store\
-                FROM Meals, Ingredients \
-                WHERE Meals.id = Ingredients.id\
-                GROUP BY Meals.meal_name");
+            // DatabaseTables::NoBullshitQuery query("\
+            //     SELECT meal_name, ingredient_name, store\
+            //     FROM Meals, Ingredients \
+            //     WHERE Meals.id = Ingredients.id\
+            //     GROUP BY Meals.meal_name");
                 
-            ResultWrapper result_wrapper;
-            this->coreMod->getDatabaseConnection()->runQuery(
-                &query, 
-                result_wrapper);
+            // ResultWrapper result_wrapper;
+            // this->coreMod->getDatabaseConnection()->runQuery(
+            //     &query, 
+            //     result_wrapper);
 
-            auto results = Results<
-                            ResultGroup<
-                                std::string,
-                                meal_name_col,
-                                ResultList<std::string, ingred_name_col>,
-                                ResultList<std::string, ingred_store_col>
-                            >
-                        >(result_wrapper);            
+            // auto results = Results<
+            //                 ResultGroup<
+            //                     std::string,
+            //                     meal_name_col,
+            //                     ResultList<std::string, ingred_name_col>,
+            //                     ResultList<std::string, ingred_store_col>
+            //                 >
+            //             >(result_wrapper);            
 
-            std::stringstream results_json;
-            results_json << "{ meals : [";
+            // std::stringstream results_json;
+            // results_json << "{ meals : [";
 
-            for(auto& meal : results ){
+            // for(auto& meal : results ){
 
-                results_json << "{'meal':'" << meal->Value();
+            //     results_json << "{'meal':'" << meal->Value();
 
-                auto ingreds_name = std::get<0>(meal->Children());
-                auto ingreds_store = std::get<1>(meal->Children());
+            //     auto ingreds_name = std::get<0>(meal->Children());
+            //     auto ingreds_store = std::get<1>(meal->Children());
 
-                results_json << "', 'ingredients':[";
-                for(auto& ingred_name : ingreds_name.Values()){
-                    results_json << "'" << ingred_name << "', ";
-                }
-            }
+            //     results_json << "', 'ingredients':[";
+            //     for(auto& ingred_name : ingreds_name.Values()){
+            //         results_json << "'" << ingred_name << "', ";
+            //     }
+            // }
 
-            results_json<<"]}";
+            // results_json<<"]}";
 
-            connection->set_status(boost::network::http::server<HTTPServer>::connection::ok);
-			std::map<std::string, std::string> headers;
-			connection->set_headers(headers);
-            
-            connection->write(results_json.str());
+            // connection->set_status(boost::network::http::server<HTTPServer>::connection::ok);
+			// std::map<std::string, std::string> headers;
+			// connection->set_headers(headers);
+
+            // connection->write(results_json.str());
 
         }
     );

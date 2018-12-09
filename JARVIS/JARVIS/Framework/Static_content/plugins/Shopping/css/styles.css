@@ -1,0 +1,63 @@
+.logo{
+	width: auto;
+	margin: 0 auto;
+	display:block;
+	margin-bottom: 20px;
+}
+
+.form-group{
+	width: auto;
+	margin: 0 auto;
+	display:block;
+	text-align: center;
+	overflow: auto;
+}
+
+.form-group:after{
+	clear:both;
+}
+
+.container{
+	margin: 0 20%;
+}
+
+select{
+	width: 50%;
+	height:40px;
+}
+
+input[name="meal-list"]{
+	height:40px;
+}
+
+input::placeholder{
+	padding-left: 10px;
+}
+
+.clear{
+	clear:both;
+}
+
+.btn{
+	padding: 9px 20px;
+    height: 40px;
+    font-size: 1.1em;
+	background: black;
+	border: 1px solid black;
+	color: white;	
+}
+
+.btn:hover{
+	background: white;
+	color: black;
+}
+
+hr{
+	border-top: 1px solid #dedede;
+	display: block;
+	margin: 10px 10%;
+	clear:both;
+}
+.list-container{
+	margin-top:20px;
+}
