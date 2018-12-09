@@ -39,11 +39,22 @@ void HTTPServer::operator()(
     std::string requested_resource = 
         m_static_content + destination;
 
+
+
     TxtFileSource requested_file_source(requested_resource);
     std::string file_data;
-    requested_file_source.GetData(file_data);
+    std::map<std::string, std::string> headers;
 
-
-    connection->write(file_data);
+    connection->set_status(server::connection::ok);
+    if(!requested_file_source.GetData(file_data)){
+        headers= { {"Content-Type", "text/plain"}, };
+        connection->set_headers(headers);
+        connection->write("Sorry bro couldent find that resource ");
+    } else {
+        headers = {{"Content-Type", "text/html; charset=utf-8"},};
+        connection->set_headers(headers);
+        connection->write(file_data);
+    }
+    
 }
 

@@ -40,7 +40,7 @@ void Comms::doHTTP()
         HTTPServer handler(m_static_content_path, m_router);
         m_server = std::shared_ptr<HTTPServer>(&handler, [](auto p){});
         boost::network::http::server<HTTPServer>::options options(handler);
-        boost::network::http::server<HTTPServer> server_(options.address(MY_HOST).port("80"));
+        boost::network::http::server<HTTPServer> server_(options.address(MY_HOST).port("8080"));
         server_.run();
     }
     catch (std::exception &e) {

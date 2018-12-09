@@ -62,6 +62,11 @@ ShoppingPlugin::ShoppingPlugin(
             }
 
             results_json<<"]}";
+
+            connection->set_status(boost::network::http::server<HTTPServer>::connection::ok);
+			std::map<std::string, std::string> headers;
+			connection->set_headers(headers);
+            
             connection->write(results_json.str());
 
         }

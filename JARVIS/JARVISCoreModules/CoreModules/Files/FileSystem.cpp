@@ -25,7 +25,7 @@ void FileSystem::RetrieveNewFiles(std::string extention,
 									std::list<std::wstring>& files)
 {
 	std::list<Directory>::iterator directorys = this->_watched_dirs.begin();
-	for (directorys; directorys != this->_watched_dirs.end();
+	for (; directorys != this->_watched_dirs.end();
 	directorys++)
 	{
 		directorys->Search(extention, files);

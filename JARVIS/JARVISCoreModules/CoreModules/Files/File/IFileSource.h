@@ -3,6 +3,7 @@
 #include "../../exportMacros.h"
 
 #include <vector>
+#include <stddef.h>
 
 class DLLCORE_API IFileSource
 {

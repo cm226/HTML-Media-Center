@@ -1,0 +1,2 @@
+/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/libCoreModules.so
+/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/JARVIS

@@ -37,7 +37,7 @@ JARVISFramework::~JARVISFramework()
 
 void JARVISFramework::process()
 {
-	this->cModules.getComms()->startComms("/home/boss_man/Projects/HTML-Media-Center/JARVIS/JARVIS/Framework/Static_content/");
+	this->cModules.getComms()->startComms("/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVIS/Framework/Static_content/");
 	boost::thread listenForConnectionThread(boost::bind(&JARVISFramework::processCommandLoop, this));
 
 	this->cModules.getComms()->Router()->MapURLRequest(
@@ -46,6 +46,11 @@ void JARVISFramework::process()
 			boost::network::http::server<HTTPServer>::request,
             boost::network::http::server<HTTPServer>::connection_ptr connection
 		){
+
+			connection->set_status(boost::network::http::server<HTTPServer>::connection::ok);
+			std::map<std::string, std::string> headers;
+			connection->set_headers(headers);
+
 			std::vector<Plugin*> loadedPlugins;
 			this->pluginLoader->listLoadedPlugins(&loadedPlugins);
 
