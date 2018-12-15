@@ -9,7 +9,6 @@ SET(BUILD_SHARED_LIBS ON)
 find_package(Boost COMPONENTS system filesystem signals thread REQUIRED)
 
 include_directories (/home/craig/Programming/MySql/mariadb-connector-c-3.0.6-linux-x86_64/include/mariadb)
-include_directories (/home/craig/Programming/cpp_netlib/cpp-netlib-0.13.0-rc1)
 include_directories(${Boost_INCLUDE_DIR})
 
 set(SRCS 
@@ -21,7 +20,6 @@ link_directories(/home/craig/Programming/cpp_netlib_build/Debug)
 
 add_library(Shopping ${SRCS})
 target_link_libraries( Shopping ${Boost_LIBRARIES} )
-target_link_libraries( Shopping libcppnetlib-server-parsers.so )
 target_link_libraries( Shopping  libCoreModules.so)
 
 install(TARGETS Shopping DESTINATION .)

@@ -1,10 +1,20 @@
 #include "TxtFileSource.h"
+#include "../../../../ErrorLogger/Errors/ErrorLogger.h"
 
 #include <fstream>
 
-TxtFileSource::TxtFileSource(std::string path){
+TxtFileSource::TxtFileSource(
+    std::string path,
+    std::string defaultExt ){
+    
+    if(path.find(".") == -1){
+        path.append("."+defaultExt);
+    }
+
     m_path = path;
 }
+
+
 
 bool TxtFileSource::GetData(std::vector<unsigned char>& buffer){
 
@@ -28,6 +38,7 @@ bool TxtFileSource::GetData(std::vector<unsigned char>& buffer){
 }
 
 bool TxtFileSource::GetData(std::string& buffer){
+
     std::ifstream file(m_path, std::ios::in|std::ios::binary|std::ios::ate);
     if(!file){
         return false;
@@ -35,15 +46,24 @@ bool TxtFileSource::GetData(std::string& buffer){
 
     auto length = file.tellg();
 
-    char* tmp_buffer = new char[length];
+    try {
+        char* tmp_buffer = new char[length];
 
-    file.seekg(0);
-    file.read(tmp_buffer, length);
+        file.seekg(0);
+        file.read(tmp_buffer, length);
 
-    buffer = std::string(tmp_buffer, length);
+        buffer = std::string(tmp_buffer, length);
 
-    delete[] tmp_buffer;
-    return true;
+        delete[] tmp_buffer;
+        return true;
+    } catch (std::exception& e){
+
+        ErrorLogger::logError("Failed to read file " +
+             m_path + " got exception " + e.what());
+
+        return false;
+    }
+    
 }
 
 size_t TxtFileSource::GetDataSize(){

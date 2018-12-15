@@ -41,14 +41,14 @@ void HTTPServer::operator()(
 
 
 
-    TxtFileSource requested_file_source(requested_resource);
+    TxtFileSource requested_file_source(requested_resource, "html");
     std::string file_data;
     std::map<std::string, std::string> headers;
 
 
     if(!requested_file_source.GetData(file_data)){
         connection->set_status(server::connection::not_found);
-        headers= { {"Content-Type", "text/plain"}, };
+        headers= { {"Content-Type", "text/html"}, };
         connection->set_headers(headers);
         connection->write("Sorry bro couldent find that resource ");
     } else {

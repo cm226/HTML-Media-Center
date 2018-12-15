@@ -2,9 +2,10 @@
 
 #include <stdio.h>
 #include <string>
-#include <boost/thread.hpp>
+#include <thread>
 #include <stdlib.h>
 #include <iostream>
+#include <chrono>
 
 #include "../../../ErrorLogger/Errors/ErrorLogger.h"
 TaskList::TaskList()
@@ -18,10 +19,7 @@ TaskList::~TaskList()
 {
 	ErrorLogger::logInfo("Stopping Task List...");
 	this->_processTasks = false;
-	this->_taskThread->join();
-
-	delete this->_taskThread;
-
+	this->_taskThread.join();
 }
 
 void TaskList::StartTasks()
@@ -31,7 +29,7 @@ void TaskList::StartTasks()
 	if (system(NULL))
 	{
 		this->_processTasks = true;
-		this->_taskThread = new boost::thread(boost::bind(&TaskList::processTasks, this));
+		this->_taskThread = std::thread(&TaskList::processTasks, this);
 	}
 	else
 	{
@@ -75,7 +73,7 @@ void TaskList::processTasks()
 			}
 		}
 
-		boost::this_thread::sleep(boost::posix_time::milliseconds(100));
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
 
 }

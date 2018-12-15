@@ -71,7 +71,7 @@ bool Comms::downloadFile(std::string const& URL, std::string const& fileName)
 	return this->curlMan.downloadItemToFile(URL,fileName);
 }
 
-std::shared_ptr<HTTPUrlRouter> Comms::Router(){
+std::shared_ptr<IHTTPUrlRouter> Comms::Router(){
 
     if(m_router == nullptr){
         ErrorLogger::logError("Getting URL router before comms has started!!!");

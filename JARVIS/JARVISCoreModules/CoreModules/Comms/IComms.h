@@ -11,7 +11,7 @@
 #include "JSON/IJSONRequest.h"
 #include "MessageTranslaters/MessageSubject/MessageSubject.h"
 
-class HTTPUrlRouter;
+class IHTTPUrlRouter;
 
 namespace CommsNS {
 	class __attribute__((__visibility__("default"))) IComms
@@ -27,7 +27,7 @@ namespace CommsNS {
 
 		virtual void stopComms() = 0;
 		virtual void startComms(std::string static_content_path = "") = 0;
-		virtual std::shared_ptr<HTTPUrlRouter> Router() = 0;
+		virtual std::shared_ptr<IHTTPUrlRouter> Router() = 0;
 	};
 }
 

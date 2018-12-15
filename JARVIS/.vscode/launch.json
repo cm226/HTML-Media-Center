@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/JARVIS/JARVIS",
+            "program": "${workspaceFolder}/bin/JARVIS",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

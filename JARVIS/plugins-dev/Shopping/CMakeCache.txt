@@ -226,7 +226,7 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 Shopping_BINARY_DIR:STATIC=/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping
 
 //Dependencies for the target
-Shopping_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libboost_system.so;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;general;/usr/lib/x86_64-linux-gnu/libboost_signals.so;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so;general;/usr/lib/x86_64-linux-gnu/libboost_chrono.so;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so;general;/usr/lib/x86_64-linux-gnu/libboost_atomic.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;libcppnetlib-server-parsers.so;general;libCoreModules.so;
+Shopping_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libboost_system.so;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;general;/usr/lib/x86_64-linux-gnu/libboost_signals.so;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so;general;/usr/lib/x86_64-linux-gnu/libboost_chrono.so;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so;general;/usr/lib/x86_64-linux-gnu/libboost_atomic.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;libCoreModules.so;
 
 //Value Computed by CMake
 Shopping_SOURCE_DIR:STATIC=/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping

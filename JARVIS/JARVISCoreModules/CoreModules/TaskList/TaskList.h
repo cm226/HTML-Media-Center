@@ -4,8 +4,8 @@
 #include "../exportMacros.h"
 #include <string>
 #include <vector>
-
-#include <boost/thread.hpp>
+#include <list>
+#include <thread>
 
 
 class DLLCORE_API TaskList {
@@ -13,7 +13,7 @@ private:
 	bool _processTasks;
 	bool _shutdownOnComplete;
 	std::list<std::string> _tasks;
-	boost::thread* _taskThread;
+	std::thread _taskThread;
 
 	void processTasks();
 

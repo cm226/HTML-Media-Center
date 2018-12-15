@@ -23,6 +23,7 @@
 #include <memory>
 
 class HTTPServer;
+class IHTTPUrlRouter;
 class HTTPUrlRouter;
 
 class Comms : public CommsNS::IComms{
@@ -43,7 +44,7 @@ public:
 	void startComms(std::string static_content_path = "") override;
 	void stopComms() override;
 	
-	std::shared_ptr<HTTPUrlRouter> Router() override;
+	std::shared_ptr<IHTTPUrlRouter> Router() override;
 	
 	coremodules::comms::messagetranslaters::messagesubject::MessageSubject* messagesubject() override;
 	static coremodules::comms::messagetranslaters::messagesubject::MessageSubject _messageSubject;

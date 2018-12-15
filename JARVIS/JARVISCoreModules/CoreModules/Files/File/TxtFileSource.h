@@ -12,12 +12,13 @@ class DLLCORE_API TxtFileSource : public IFileSource
 {
 public:
 
-	TxtFileSource(std::string path);
+	TxtFileSource(std::string path, std::string defaultExt);
 	
 
 	virtual bool GetData(std::vector<unsigned char>& buffer) override;
 	bool GetData(std::string& buffer);
 	virtual size_t GetDataSize() override;
+
 protected:
 private:
 

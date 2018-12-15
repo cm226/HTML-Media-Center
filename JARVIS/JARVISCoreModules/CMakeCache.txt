@@ -199,7 +199,7 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 CoreModules_BINARY_DIR:STATIC=/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules
 
 //Dependencies for the target
-CoreModules_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libboost_system.so;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;general;/usr/lib/x86_64-linux-gnu/libboost_signals.so;general;libcppnetlib-server-parsers.so;general;libmariadbclient.a;
+CoreModules_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libboost_system.so;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;general;/usr/lib/x86_64-linux-gnu/libboost_signals.so;general;libcppnetlib-server-parsers.a;general;libmariadbclient.a;
 
 //Value Computed by CMake
 CoreModules_SOURCE_DIR:STATIC=/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules

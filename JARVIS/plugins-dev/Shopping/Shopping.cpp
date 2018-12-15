@@ -1,7 +1,8 @@
 #include "Shopping.h"
 #include "../../JARVISCoreModules/CoreModules/Database/Querys/NoBullshitQuery.h"
 #include "../../JARVISCoreModules/CoreModules/Database/Results/ResultTypes.h"
-#include "../../JARVISCoreModules/CoreModules/Comms/HTTPServer/HTTPServer.h"
+
+#include "../../JARVISCoreModules/CoreModules/Comms/HTTPServer/IHTTPUrlRouter.h"
 
 extern const char meal_name_col[] = "Meal.name";
 extern const char ingred_name_col[] = "Ingredient.name";
@@ -22,8 +23,7 @@ ShoppingPlugin::ShoppingPlugin(
     router->MapURLRequest(
         "/plugins/ShoppingList",
         [&](
-            boost::network::http::server<HTTPServer>::request,
-            boost::network::http::server<HTTPServer>::connection_ptr connection
+            std::shared_ptr<IHTTPUrlRouter::IConnection> connection
         ){
             // DatabaseTables::NoBullshitQuery query("\
             //     SELECT meal_name, ingredient_name, store\

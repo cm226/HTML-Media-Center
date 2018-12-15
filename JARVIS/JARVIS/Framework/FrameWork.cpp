@@ -1,13 +1,13 @@
 #include "FrameWork.h"
 
 #include <stdio.h>
-#include <boost/thread.hpp>
-#include <boost/bind.hpp>
+#include <thread>
 #include <boost/filesystem.hpp>
 #include <sstream>
 #include "../../JARVISCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ReplyMessage.h"
 #include "../../JARVISCoreModules/CoreModules/Comms/HTTPServer/HTTPServer.h"
 #include <list>
+#include <chrono>
 
 #ifdef _WINDOWS
 #include <Windows.h>
@@ -21,8 +21,6 @@ JARVISFramework::JARVISFramework()
 	this->cModules.getComms()->messagesubject()->onListPluginsMessageReceved.connect(this, &JARVISFramework::loadedPlugins);
 	this->cModules.getComms()->messagesubject()->onDiagnosticMessageReceved.connect(this, &JARVISFramework::processDiagnosticMessage);
 
-
-	EventManager::commandAndControlMessageReceved.attach(this,&JARVISFramework::commandAndControlMessageReceved);
 
 	this->pluginPageResponder.reset(new PluginPageResponder(this->pluginLoader, this->cModules.getComms()));
 	this->mediaStreamResponder.reset(new MediaStreamResponder(&this->cModules));
@@ -38,24 +36,17 @@ JARVISFramework::~JARVISFramework()
 void JARVISFramework::process()
 {
 	this->cModules.getComms()->startComms("/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVIS/Framework/Static_content/");
-	boost::thread listenForConnectionThread(boost::bind(&JARVISFramework::processCommandLoop, this));
 
 	this->cModules.getComms()->Router()->MapURLRequest(
 		"/loadedPlugins", 
 		[&](
-			boost::network::http::server<HTTPServer>::request,
-            boost::network::http::server<HTTPServer>::connection_ptr connection
+			std::shared_ptr<IHTTPUrlRouter::IConnection> connection 
 		){
-
-			connection->set_status(boost::network::http::server<HTTPServer>::connection::ok);
-			std::map<std::string, std::string> headers;
-			connection->set_headers(headers);
-
 			std::vector<Plugin*> loadedPlugins;
 			this->pluginLoader->listLoadedPlugins(&loadedPlugins);
 
 			for(auto plugin : loadedPlugins){
-				connection->write(plugin->pluginName() + ",");
+				connection->Write(plugin->pluginName() + ",");
 			}
 			
 		}
@@ -72,14 +63,16 @@ void JARVISFramework::process()
 	ErrorLogger::logInfo("Modules Loaded");
 
 	this->cModules.getTaskList().StartTasks();
+
+	
+	std::thread listenForConnectionThread(&JARVISFramework::processCommandLoop, this);
+
 	while(!this->shuttingDown)
 	{
-#ifdef _WINDOWS
-		Sleep(1000); // sleep for a second
-#else
-		sleep(1);
-#endif
+		std::this_thread::sleep_for(std::chrono::seconds(1));
 	}
+	listenForConnectionThread.join();
+
 
 	this->cModules.getComms()->stopComms();
 	ErrorLogger::logInfo("Shutting down");
@@ -258,27 +251,4 @@ void JARVISFramework::processCommandLoop()
 		}
 	}
 }
-
-bool JARVISFramework::commandAndControlMessageReceved(int type)
-{
-	//TODO change type to an enum when i get the time
-
-	switch(type)
-	{
-		case 1: // shutdown command
-			this->shuttingDown = true;
-		break;
-		case 2: // havent deided yet
-		break;
-
-		default: // unknown command and control message
-			return false;
-		break;
-
-	}
-
-	return true;
-
-}
-
 

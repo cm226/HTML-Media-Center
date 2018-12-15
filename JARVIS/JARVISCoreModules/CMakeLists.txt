@@ -85,11 +85,6 @@ CoreModules/Comms/Protocals/StringMessageSerializer.cpp
 CoreModules/Comms/Protocals/ChunckedTwoByteMsgLen.cpp
 CoreModules/Comms/Protocals/IProtocal.cpp
 CoreModules/Comms/Protocals/TwoByteMsgLen.cpp
-CoreModules/EventModel/EventHandler/EventHandler.cpp
-CoreModules/EventModel/EventHandler/EvntHandlerBase.cpp
-CoreModules/EventModel/Events/Event.cpp
-CoreModules/EventModel/Events/EventSig.cpp
-CoreModules/EventModel/EventManager.cpp
 CoreModules/HTMLRendere/PageBuilders/DesktopPageBuilder.cpp
 CoreModules/HTMLRendere/PageBuilders/MobilePageBuilder.cpp
 CoreModules/HTMLRendere/Containers/ElementList.cpp
@@ -142,7 +137,7 @@ link_directories(/home/craig/Programming/cpp_netlib_build/Debug)
 add_library(CoreModules SHARED ${SRCS})
 
 target_link_libraries( CoreModules ${Boost_LIBRARIES} )
-target_link_libraries( CoreModules libcppnetlib-server-parsers.so )
+target_link_libraries( CoreModules libcppnetlib-server-parsers.a )
 target_link_libraries( CoreModules libmariadbclient.a )
 
 install(TARGETS CoreModules LIBRARY DESTINATION bin)

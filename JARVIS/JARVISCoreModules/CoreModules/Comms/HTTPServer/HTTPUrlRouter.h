@@ -6,15 +6,14 @@
 
 #include <boost/network/protocol/http/server.hpp>
 
+#include "IHTTPUrlRouter.h"
+
 class HTTPServer;
-typedef std::function<
-            void(
-                boost::network::http::server<HTTPServer>::request,
-                boost::network::http::server<HTTPServer>::connection_ptr
-             )> URLHandle;
 
 
-class HTTPUrlRouter{
+class HTTPUrlRouter :
+    public IHTTPUrlRouter 
+{
 
     public:
         HTTPUrlRouter();
@@ -30,5 +29,17 @@ class HTTPUrlRouter{
 
     private:
         std::map<std::string, URLHandle> m_handler_map;
+
+        class Connection : 
+            public IHTTPUrlRouter::IConnection
+        {
+            public:
+                Connection();
+                void Write(std::string);   
+
+                std::string toString();
+            private:
+                std::stringstream msg;
+        };
 
 };

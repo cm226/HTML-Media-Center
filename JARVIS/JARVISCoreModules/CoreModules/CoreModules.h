@@ -11,7 +11,6 @@
 
 #include <boost/shared_ptr.hpp>
 #include "HTMLRendere/HTMLRendere.h"
-#include "EventModel/EventModel.h"
 #include "Database/Database.h"
 #include "exportMacros.h"
 

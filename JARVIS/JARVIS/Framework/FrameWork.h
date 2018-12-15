@@ -30,10 +30,6 @@ private:
 
 
 	bool shuttingDown;
-	CppEventHandler ppEventHandler;
-	CppEventHandler cAndcEventHandler;
-	CppEventHandler ViewReqEventHandler;
-	CppEventHandler interactionReqEventHandler;
 
 public:
 	JARVISFramework();
@@ -46,7 +42,6 @@ private:
 	void processDiagnosticMessage(TranslatedMessages::RequestDisagnosticsMessage*, coremodules::comms::protocals::IProtocal*);
 
 	void loadStartupPlugins();
-	bool commandAndControlMessageReceved(int type);
 
 	void processCommandLoop();
 
