@@ -74,3 +74,13 @@ size_t TxtFileSource::GetDataSize(){
 
     return file.tellg();
 }
+
+std::string TxtFileSource::ext(){
+    auto period = m_path.find_last_of(".");
+    if(period == std::string::npos){
+        return "";
+    }
+
+    return m_path.substr(period);
+
+}

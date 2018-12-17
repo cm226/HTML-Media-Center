@@ -4,7 +4,8 @@
 
 ResultWrapper::ResultWrapper()
 	:m_row(nullptr),
-	 m_res_set(nullptr)
+	 m_res_set(nullptr),
+	 m_unused_row(false)
 {
 	
 }
@@ -66,10 +67,26 @@ double ResultWrapper::getDouble(const char* columnName)
 std::string ResultWrapper::getString(
 	std::string col_name
 ){
-	if(m_colum_map.find(col_name) == m_colum_map.end()){
+
+	// It seems somewhat arbitrary wether implementaions include the table name 
+	// in the column map or not, so w/e just support both
+	
+	if(m_colum_map.find(col_name) != m_colum_map.end()){
 		return getString(m_colum_map[col_name]);
+	} else {
+		auto index = col_name.find_first_of(".");
+		if(index != std::string::npos){
+			auto col_name_without_table = 
+				col_name.substr(index+1);
+			if(m_colum_map.find(col_name_without_table) != 
+				m_colum_map.end()){
+					return getString(m_colum_map[col_name]);
+				}
+		}
 	}
 	
+	
+
 	ErrorLogger::logError(
 		"Failed to find column :" + col_name + " in result");
 	return "";
@@ -85,11 +102,21 @@ std::string ResultWrapper::getString(unsigned int col)
 	return std::string(m_row[col]);
 }
 
+void ResultWrapper::unNext(){
+	m_unused_row = true;
+}
+
 bool ResultWrapper::next()
 {
 	if(m_res_set == nullptr){
 		ErrorLogger::logError("no results when moveing next ResultWrapper");
 		return false;
+	}
+
+	// If the last row was not parsed, then return it now instead of moving on
+	if(m_unused_row){
+		m_unused_row = false;
+		return true;
 	}
 
 	m_row = mysql_fetch_row(m_res_set.get());

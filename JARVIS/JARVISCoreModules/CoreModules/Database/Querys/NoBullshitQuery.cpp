@@ -21,7 +21,7 @@ NoBullshitQuery::~NoBullshitQuery(
 
 }
 
-std::string&& NoBullshitQuery::AsJson(
+std::string NoBullshitQuery::AsJson(
 ){
     if(m_result == nullptr){
         ErrorLogger::logError(

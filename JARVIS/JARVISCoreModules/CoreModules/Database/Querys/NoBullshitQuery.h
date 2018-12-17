@@ -12,7 +12,7 @@ public:
     NoBullshitQuery(std::string query);
     virtual ~NoBullshitQuery();
 
-    std::string&& AsJson();
+    std::string AsJson();
 
 public: // IQuery
 	virtual std::string buildQuery();

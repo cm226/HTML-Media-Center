@@ -5,17 +5,22 @@ CREATE TABLE Meals (
     id MEDIUMINT NOT NULL AUTO_INCREMENT,
     meal_name CHAR(255),
     PRIMARY KEY(id)
-);
+) ENGINE = InnoDB;
 
 CREATE TABLE Ingredients (
     id MEDIUMINT NOT NULL AUTO_INCREMENT,
     ingredient_name VARCHAR(255) ,
     store VARCHAR(255) ,
-    meal_id MEDIUMINT,
+    meal_id MEDIUMINT NOT NULL,
     PRIMARY KEY(id),
-    CONSTRAINT `fk_meal_id`
-		FOREIGN KEY (meal_id) REFERENCES Meals (id)
-);
+    CONSTRAINT `fk_meal_id` FOREIGN KEY (meal_id) REFERENCES Meals (id) ON DELETE CASCADE ON UPDATE RESTRICT
+) ENGINE = InnoDB;
 
 INSERT INTO Meals VALUES(null, "test_meal");
-INSERT INTO Ingredients VALUES(null, "test_ingred", "store", 1);
+INSERT INTO Meals VALUES(null, "test_meal2");
+
+INSERT INTO Ingredients VALUES(null, "test_ingred", "Sainsbury", 1);
+INSERT INTO Ingredients VALUES(null, "test_ingred2", "Sainsbury", 1);
+INSERT INTO Ingredients VALUES(null, "aldi_ingred", "Aldi", 1);
+
+INSERT INTO Ingredients VALUES(null, "test_meal2_ingred", "Sainsbury", 2);

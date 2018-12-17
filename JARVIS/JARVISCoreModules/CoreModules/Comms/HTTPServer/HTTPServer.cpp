@@ -47,13 +47,22 @@ void HTTPServer::operator()(
 
 
     if(!requested_file_source.GetData(file_data)){
+
         connection->set_status(server::connection::not_found);
         headers= { {"Content-Type", "text/html"}, };
+
+
         connection->set_headers(headers);
         connection->write("Sorry bro couldent find that resource ");
     } else {
         connection->set_status(server::connection::ok);
-        headers = {{"Content-Type", "text/html; charset=utf-8"},};
+        std::string ext = requested_file_source.ext();
+        if(ext.compare(".css") == 0) {
+            headers= { {"Content-Type", "text/css"}, };
+        } else {
+            headers= { {"Content-Type", "text/html"}, };
+        }
+
         connection->set_headers(headers);
         connection->write(file_data);
     }

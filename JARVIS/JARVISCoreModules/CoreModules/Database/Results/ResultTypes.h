@@ -77,7 +77,13 @@ public:
                 m_have_value = true;
             }
 
+            // If we encounter a value in the results list
+            // That dosnt belong to this group then return 
+            // because we have reached the end of this group.
             if(value != m_value){
+                // since we have not used this group, we 
+                // wind back the results wrapper
+                result->unNext();
                 return false;
             }
 

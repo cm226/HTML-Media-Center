@@ -4,9 +4,9 @@
 
 #include "../../JARVISCoreModules/CoreModules/Comms/HTTPServer/IHTTPUrlRouter.h"
 
-extern const char meal_name_col[] = "Meal.name";
-extern const char ingred_name_col[] = "Ingredient.name";
-extern const char ingred_store_col[] = "Ingredient.store";
+extern const char meal_name_col[] = "meal_name";
+extern const char ingred_name_col[] = "ingredient_name";
+extern const char ingred_store_col[] = "store";
 
 ShoppingPlugin::ShoppingPlugin(
     CoreModules* cm
@@ -25,49 +25,66 @@ ShoppingPlugin::ShoppingPlugin(
         [&](
             std::shared_ptr<IHTTPUrlRouter::IConnection> connection
         ){
-            // DatabaseTables::NoBullshitQuery query("\
-            //     SELECT meal_name, ingredient_name, store\
-            //     FROM Meals, Ingredients \
-            //     WHERE Meals.id = Ingredients.id\
-            //     GROUP BY Meals.meal_name");
+            DatabaseTables::NoBullshitQuery query("\
+                SELECT Meals.meal_name, Ingredients.ingredient_name, Ingredients.store\
+                FROM Meals, Ingredients \
+                WHERE Meals.id = Ingredients.meal_id\
+                ORDER BY Meals.meal_name");
                 
-            // ResultWrapper result_wrapper;
-            // this->coreMod->getDatabaseConnection()->runQuery(
-            //     &query, 
-            //     result_wrapper);
+            ResultWrapper result_wrapper;
+            this->coreMod->getDatabaseConnection()->runQuery(
+                &query, 
+                result_wrapper);
 
-            // auto results = Results<
-            //                 ResultGroup<
-            //                     std::string,
-            //                     meal_name_col,
-            //                     ResultList<std::string, ingred_name_col>,
-            //                     ResultList<std::string, ingred_store_col>
-            //                 >
-            //             >(result_wrapper);            
+            auto results = Results<
+                            ResultGroup<
+                                std::string,
+                                meal_name_col,
+                                ResultList<std::string, ingred_name_col>,
+                                ResultList<std::string, ingred_store_col>
+                            >
+                        >(result_wrapper);            
 
-            // std::stringstream results_json;
-            // results_json << "{ meals : [";
+            std::stringstream results_json;
+            results_json << "{ \"meals\" : {";
 
-            // for(auto& meal : results ){
+            bool first = true;
+            for(auto& meal : results ){
 
-            //     results_json << "{'meal':'" << meal->Value();
+                if(!first){
+                    results_json << ",";
+                }
+                first = false;
+                
+                results_json << "\"" << meal->Value() << "\" : ";
 
-            //     auto ingreds_name = std::get<0>(meal->Children());
-            //     auto ingreds_store = std::get<1>(meal->Children());
+                auto ingreds_name = std::get<0>(meal->Children());
+                auto ingreds_store = std::get<1>(meal->Children());
 
-            //     results_json << "', 'ingredients':[";
-            //     for(auto& ingred_name : ingreds_name.Values()){
-            //         results_json << "'" << ingred_name << "', ";
-            //     }
-            // }
+                auto store_values = ingreds_store.Values();
+                auto ingred_values = ingreds_name.Values();
 
-            // results_json<<"]}";
+                if(store_values.size() != 
+                    ingred_values.size()){
 
-            // connection->set_status(boost::network::http::server<HTTPServer>::connection::ok);
-			// std::map<std::string, std::string> headers;
-			// connection->set_headers(headers);
+                        ErrorLogger::logWarn("sad times, store and ingredient results not the same size");
+                        return;
+                }
 
-            // connection->write(results_json.str());
+                results_json << "[";
+                for(int i = 0; i < ingred_values.size(); i++){
+                    if(i != 0){
+                        results_json << ",";
+                    }
+                    results_json << "{\"ingred\" : \"" << ingred_values[i] << "\",";
+                    results_json << "\"store\" : \"" << store_values[i] << "\"}";
+                }
+                results_json<<"]";
+            }
+
+            results_json<<"}}";
+
+            connection->Write(results_json.str());
 
         }
     );

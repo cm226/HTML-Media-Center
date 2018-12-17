@@ -13,6 +13,8 @@ private:
 	MYSQL_ROW m_row;
 	std::map<std::string, int> m_colum_map;
 
+	bool m_unused_row;
+
 public:
 	ResultWrapper();
 	~ResultWrapper(void);
@@ -27,6 +29,7 @@ public:
 	std::string getString(unsigned int col);
 
 	bool next();
+	void unNext();
 
 };
 
