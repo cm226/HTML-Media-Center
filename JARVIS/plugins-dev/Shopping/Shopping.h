@@ -15,6 +15,12 @@ public:
 	void handleRequest(std::string requestURL);
 	const std::string pluginName();
 
+private:
+
+	std::string resultsToString(
+		ResultWrapper& results
+	);
+
 };
 
 

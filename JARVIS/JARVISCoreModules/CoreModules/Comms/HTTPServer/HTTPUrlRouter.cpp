@@ -1,7 +1,14 @@
 #include "HTTPUrlRouter.h"
 
-HTTPUrlRouter::Connection::Connection(){
+HTTPUrlRouter::Connection::Connection(
+    std::string request_body){
 
+        m_request_body = request_body;
+}
+
+std::string HTTPUrlRouter::Connection::RequestBody(
+){
+    return m_request_body;
 }
 
 void HTTPUrlRouter::Connection::Write(
@@ -40,7 +47,7 @@ void HTTPUrlRouter::Route(
     boost::network::http::server<HTTPServer>::connection_ptr connection_ptr
 ) {
     auto handler = m_handler_map[url];
-    auto connection = std::make_shared<Connection>();
+    auto connection = std::make_shared<Connection>(request.body);
     handler(connection);
 
     connection_ptr->set_status(boost::network::http::server<HTTPServer>::connection::ok);

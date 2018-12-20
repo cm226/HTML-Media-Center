@@ -34,11 +34,15 @@ class HTTPUrlRouter :
             public IHTTPUrlRouter::IConnection
         {
             public:
-                Connection();
+                Connection(std::string request_body);
                 void Write(std::string);   
 
                 std::string toString();
+
+                std::string RequestBody();
+                
             private:
+                std::string m_request_body;
                 std::stringstream msg;
         };
 

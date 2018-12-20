@@ -15,6 +15,11 @@ class HTTPServer {
             boost::network::http::server<HTTPServer>::request const &request,
             boost::network::http::server<HTTPServer>::connection_ptr connection
         );
+
+        void HandleRequest(
+            boost::network::http::server<HTTPServer>::request const &request,
+            boost::network::http::server<HTTPServer>::connection_ptr connection
+        );
     
 
         

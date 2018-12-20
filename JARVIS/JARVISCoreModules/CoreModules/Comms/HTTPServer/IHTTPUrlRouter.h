@@ -12,6 +12,7 @@ class IHTTPUrlRouter
             public:
 
                 virtual void Write(std::string) = 0;
+                virtual std::string RequestBody() = 0;
 
         };
 

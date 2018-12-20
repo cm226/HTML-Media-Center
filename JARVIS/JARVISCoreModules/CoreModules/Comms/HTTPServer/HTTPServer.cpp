@@ -2,6 +2,8 @@
 
 #include <boost/network/protocol/http/server.hpp>
 
+#include "POSTRequestHandler.h"
+
 #include "../../Files/Files.h"
 
 
@@ -16,7 +18,7 @@ HTTPServer::HTTPServer(
     m_router = router;
 }
 
-void HTTPServer::operator()(
+void HTTPServer::HandleRequest(
     server::request const &request,
     server::connection_ptr connection
 ) {
@@ -59,6 +61,8 @@ void HTTPServer::operator()(
         std::string ext = requested_file_source.ext();
         if(ext.compare(".css") == 0) {
             headers= { {"Content-Type", "text/css"}, };
+        } else if(ext.compare(".js") == 0) {
+            headers= { {"Content-Type", "application/javascript"}, };
         } else {
             headers= { {"Content-Type", "text/html"}, };
         }
@@ -66,6 +70,30 @@ void HTTPServer::operator()(
         connection->set_headers(headers);
         connection->write(file_data);
     }
+
+}
+
+void HTTPServer::operator()(
+    server::request const &request,
+    server::connection_ptr connection
+) {
+
+    // need to do a special thing for post to read the post data. 
+    std::string body = request.body;
+    if (request.method == "POST") {
+      auto h = std::make_shared<POSTRequestHandler>(request);
+      connection->read([h, this](server::connection::input_range chunk,
+                           boost::system::error_code ec, size_t chunk_size,
+                           server::connection_ptr connection) {
+        (*h)(chunk, ec, chunk_size, connection, this);
+      });
+    } else{
+        // GET 
+        HandleRequest(request, connection);
+    }
+
+    
+    
     
 }
 

@@ -1,5 +1,8 @@
+DROP TABLE IF EXISTS SelectedIngredients;
+DROP TABLE IF EXISTS SelectedMeals;
 DROP TABLE IF EXISTS Ingredients;
 DROP TABLE IF EXISTS Meals;
+
 
 CREATE TABLE Meals (
     id MEDIUMINT NOT NULL AUTO_INCREMENT,
@@ -14,6 +17,20 @@ CREATE TABLE Ingredients (
     meal_id MEDIUMINT NOT NULL,
     PRIMARY KEY(id),
     CONSTRAINT `fk_meal_id` FOREIGN KEY (meal_id) REFERENCES Meals (id) ON DELETE CASCADE ON UPDATE RESTRICT
+) ENGINE = InnoDB;
+
+CREATE TABLE SelectedMeals(
+    id MEDIUMINT NOT NULL,
+    PRIMARY KEY(id),
+    CONSTRAINT `fk_selected_meal_id` FOREIGN KEY (id) REFERENCES Meals (id) ON DELETE CASCADE ON UPDATE RESTRICT
+) ENGINE = InnoDB;
+
+CREATE TABLE SelectedIngredients(
+    id MEDIUMINT NOT NULL,
+    PRIMARY KEY(id),
+    meal_id MEDIUMINT NOT NULL,
+    CONSTRAINT `fk_ingred_selected_meal_id` FOREIGN KEY (meal_id) REFERENCES SelectedMeals (id) ON DELETE CASCADE ON UPDATE RESTRICT,
+    CONSTRAINT `fk_selected_ingredient_id` FOREIGN KEY (id) REFERENCES Ingredients (id) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE = InnoDB;
 
 INSERT INTO Meals VALUES(null, "test_meal");

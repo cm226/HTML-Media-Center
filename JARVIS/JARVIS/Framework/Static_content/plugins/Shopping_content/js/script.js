@@ -1,3 +1,8 @@
+// install our service worker
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('shopping-worker.js');
+}
+
 var _meals;
 
 var _selectedMeals = {
@@ -6,6 +11,7 @@ var _selectedMeals = {
 function removeSelectedMeal(meal){
     if(_selectedMeals[meal] !== undefined){
         delete _selectedMeals[meal];
+        SendSelectedToServer();
         displaySelected();
     }
 }
@@ -39,24 +45,42 @@ function displaySelected(){
     $('#sainsbury_list').html(sainsbo_html);
 }
 
+function SendSelectedToServer(){
+
+    $.post("/plugins/ShoppingList/UpdateSelected",
+    JSON.stringify(_selectedMeals),
+    function(data, status){
+        // handle error, should prob look for ack of some kind ..... w/e
+    });
+}
+
+function GetAndDisplaySelected(){
+    $.get("/plugins/ShoppingList/GetSelected",
+    {},
+    function(data, status){
+        _selectedMeals = JSON.parse(data).meals;
+        displaySelected();
+    });
+}
+
+
 $( document ).ready(function() {
 
-    
-
-    $.post("/plugins/ShoppingList",{},
+    $.get("/plugins/ShoppingList",{},
     function(data, status){
 
         data = data.replace("\n", "");
 
         _meals = JSON.parse(data).meals;
 
-        console.log("Data: " + _meals + "\nStatus: " + status);
+        GetAndDisplaySelected();
 
         $( "#meal-list" ).autocomplete({
             source: Object.keys(_meals),
             select: function (event, ui) {
 
                 _selectedMeals[ui.item.value] = _meals[ui.item.value];
+                SendSelectedToServer();
 
                 displaySelected();
             }

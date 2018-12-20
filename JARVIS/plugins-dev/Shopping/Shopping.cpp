@@ -4,6 +4,9 @@
 
 #include "../../JARVISCoreModules/CoreModules/Comms/HTTPServer/IHTTPUrlRouter.h"
 
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
+
 extern const char meal_name_col[] = "meal_name";
 extern const char ingred_name_col[] = "ingredient_name";
 extern const char ingred_store_col[] = "store";
@@ -36,62 +39,156 @@ ShoppingPlugin::ShoppingPlugin(
                 &query, 
                 result_wrapper);
 
-            auto results = Results<
-                            ResultGroup<
-                                std::string,
-                                meal_name_col,
-                                ResultList<std::string, ingred_name_col>,
-                                ResultList<std::string, ingred_store_col>
-                            >
-                        >(result_wrapper);            
-
-            std::stringstream results_json;
-            results_json << "{ \"meals\" : {";
-
-            bool first = true;
-            for(auto& meal : results ){
-
-                if(!first){
-                    results_json << ",";
-                }
-                first = false;
-                
-                results_json << "\"" << meal->Value() << "\" : ";
-
-                auto ingreds_name = std::get<0>(meal->Children());
-                auto ingreds_store = std::get<1>(meal->Children());
-
-                auto store_values = ingreds_store.Values();
-                auto ingred_values = ingreds_name.Values();
-
-                if(store_values.size() != 
-                    ingred_values.size()){
-
-                        ErrorLogger::logWarn("sad times, store and ingredient results not the same size");
-                        return;
-                }
-
-                results_json << "[";
-                for(int i = 0; i < ingred_values.size(); i++){
-                    if(i != 0){
-                        results_json << ",";
-                    }
-                    results_json << "{\"ingred\" : \"" << ingred_values[i] << "\",";
-                    results_json << "\"store\" : \"" << store_values[i] << "\"}";
-                }
-                results_json<<"]";
-            }
-
-            results_json<<"}}";
-
-            connection->Write(results_json.str());
+            connection->Write(resultsToString(result_wrapper));
 
         }
     );
 
+    router->MapURLRequest(
+        "/plugins/ShoppingList/UpdateSelected",
+        [&](
+            std::shared_ptr<IHTTPUrlRouter::IConnection> connection
+        ){
+            auto selected = connection->RequestBody();
+
+            // parse JSON with property tree
+            namespace pt = boost::property_tree;
+
+            // Create a root
+            pt::ptree root;
+
+            std::stringstream selected_json(selected);
+            // Load the json file in this ptree
+            pt::read_json(selected_json, root);
+
+            std::vector<std::pair<
+                std::string,
+                std::vector<std::pair<std::string, std::string>> 
+            >> selected_meals;
+
+            for(auto iter = root.begin(); iter != root.end(); iter++)
+            {
+                std::vector<std::pair<std::string, std::string>> ingreds;
+                for(auto iter2 = iter->second.begin(); iter2 != iter->second.end(); iter2++){
+                    ingreds.push_back(
+                        {iter2->second.get<std::string>("store"),
+                        iter2->second.get<std::string>("ingred")});
+                }
+                selected_meals.push_back(
+                    {iter->first, ingreds});
+            }
+
+            ResultWrapper result_wrapper;
+            DatabaseTables::NoBullshitQuery query("DELETE FROM SelectedMeals");
+            this->coreMod->getDatabaseConnection()->runQuery(&query,result_wrapper);
+
+            DatabaseTables::NoBullshitQuery query2("DELETE FROM SelectedIngredients");
+            this->coreMod->getDatabaseConnection()->runQuery(&query2,result_wrapper);
+
+            for(auto meal : selected_meals){
+                
+                // insert the meal
+                DatabaseTables::NoBullshitQuery query("\
+                    INSERT INTO SelectedMeals(id) VALUES(\
+                        (SELECT id FROM Meals WHERE meal_name='"+meal.first+"')\
+                    )");
+                this->coreMod->getDatabaseConnection()->runQuery(
+                    &query, 
+                    result_wrapper);
+
+                    for(auto ingred : meal.second){
+                        DatabaseTables::NoBullshitQuery query("\
+                            INSERT INTO SelectedIngredients(id, meal_id) VALUES(\
+                                (SELECT id FROM Ingredients WHERE ingredient_name='"+ingred.second+"' AND store='"+ingred.first+"'),\
+                                (SELECT id FROM Meals WHERE meal_name='"+meal.first+"')\
+                            )");
+                        this->coreMod->getDatabaseConnection()->runQuery(
+                            &query, 
+                            result_wrapper);
+                    }
+            }
+            
+    });
+
+    router->MapURLRequest(
+        "/plugins/ShoppingList/GetSelected",
+        [&](
+            std::shared_ptr<IHTTPUrlRouter::IConnection> connection
+        ){
+            DatabaseTables::NoBullshitQuery query("\
+                SELECT Meals.meal_name, Ingredients.ingredient_name, Ingredients.store\
+                FROM Meals, SelectedIngredients, Ingredients\
+                WHERE Meals.id=SelectedIngredients.meal_id AND SelectedIngredients.id = Ingredients.id\
+                ORDER BY Meals.meal_name");
+                
+            ResultWrapper result_wrapper;
+            this->coreMod->getDatabaseConnection()->runQuery(
+                &query, 
+                result_wrapper);
+
+            connection->Write(resultsToString(result_wrapper));
+
+    });
+
+
 }
 
 ShoppingPlugin::~ShoppingPlugin(){
+
+}
+
+std::string ShoppingPlugin::resultsToString(
+		ResultWrapper& result_wrapper
+) {
+    auto results = Results<
+            ResultGroup<
+                std::string,
+                meal_name_col,
+                ResultList<std::string, ingred_name_col>,
+                ResultList<std::string, ingred_store_col>
+            >
+        >(result_wrapper);            
+
+    std::stringstream results_json;
+    results_json << "{ \"meals\" : {";
+
+    bool first = true;
+    for(auto& meal : results ){
+
+        if(!first){
+            results_json << ",";
+        }
+        first = false;
+        
+        results_json << "\"" << meal->Value() << "\" : ";
+
+        auto ingreds_name = std::get<0>(meal->Children());
+        auto ingreds_store = std::get<1>(meal->Children());
+
+        auto store_values = ingreds_store.Values();
+        auto ingred_values = ingreds_name.Values();
+
+        if(store_values.size() != 
+            ingred_values.size()){
+
+                ErrorLogger::logWarn("sad times, store and ingredient results not the same size");
+                return "";
+        }
+
+        results_json << "[";
+        for(int i = 0; i < ingred_values.size(); i++){
+            if(i != 0){
+                results_json << ",";
+            }
+            results_json << "{\"ingred\" : \"" << ingred_values[i] << "\",";
+            results_json << "\"store\" : \"" << store_values[i] << "\"}";
+        }
+        results_json<<"]";
+    }
+
+    results_json<<"}}";
+
+    return results_json.str();
 
 }
 
