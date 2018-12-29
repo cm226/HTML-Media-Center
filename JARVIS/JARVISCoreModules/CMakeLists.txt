@@ -1,11 +1,11 @@
 cmake_minimum_required (VERSION 3.5)
 project (CoreModules)
 
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -std=c++17 -pthread -g")
-SET(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -fPIC -ldl -lcurl")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -std=c++17 -stdlib=libstdc++ -pthread -g")
+SET(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -fPIC -ldl -lcurl -lssl -lcrypto -lstdc++ /usr/lib/x86_64-linux-gnu/libstdc++.so.6")
 SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_GLIBCXX_DEBUG")
 
-find_package(Boost COMPONENTS system filesystem signals REQUIRED)
+find_package(Boost 1.58.0 EXACT COMPONENTS system filesystem signals thread)
 
 
 #include_directories (/home/boss_man/Projects/cpp-netlib )
@@ -18,6 +18,8 @@ SET(USING_MYSQL OFF)
 
 #include_directories (/home/boss_man/Projects/mariadb_connector/mariadb-connector-c-3.0.6-src/include)
 include_directories (/home/craig/Programming/MySql/mariadb-connector-c-3.0.6-linux-x86_64/include/mariadb)
+
+add_definitions(-DBOOST_NETWORK_ENABLE_HTTPS)
 
 set(SRCS 
 CoreModules/CoreModules.cpp
@@ -131,14 +133,12 @@ CoreModules/MediaStreaming/MediaStreaming/telnet.cpp
 #link_directories(/home/boss_man/Projects/mariadb_connector/mariadb-connector-c-3.0.6-src/build/libmariadb)
 link_directories(/home/craig/Programming/MySql/mariadb-connector-c-3.0.6-linux-x86_64/lib/mariadb)
 
-#link_directories(/home/boss_man/Projects/cpp-netlib/build/libs/network/src)
-link_directories(/home/craig/Programming/cpp_netlib_build/Debug)
-
+link_directories(../bin)
 
 add_library(CoreModules SHARED ${SRCS})
 
+target_link_libraries( CoreModules cppnetlib-server-parsers)
 target_link_libraries( CoreModules ${Boost_LIBRARIES} )
-target_link_libraries( CoreModules libcppnetlib-server-parsers.a )
 target_link_libraries( CoreModules libmariadbclient.a )
 
 install(TARGETS CoreModules LIBRARY DESTINATION bin)

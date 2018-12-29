@@ -2,8 +2,6 @@
 #include "../../JARVISCoreModules/CoreModules/Database/Querys/NoBullshitQuery.h"
 #include "../../JARVISCoreModules/CoreModules/Database/Results/ResultTypes.h"
 
-#include "../../JARVISCoreModules/CoreModules/Comms/HTTPServer/IHTTPUrlRouter.h"
-
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 
@@ -49,66 +47,31 @@ ShoppingPlugin::ShoppingPlugin(
         [&](
             std::shared_ptr<IHTTPUrlRouter::IConnection> connection
         ){
-            auto selected = connection->RequestBody();
-
-            // parse JSON with property tree
-            namespace pt = boost::property_tree;
-
-            // Create a root
-            pt::ptree root;
-
-            std::stringstream selected_json(selected);
-            // Load the json file in this ptree
-            pt::read_json(selected_json, root);
-
-            std::vector<std::pair<
-                std::string,
-                std::vector<std::pair<std::string, std::string>> 
-            >> selected_meals;
-
-            for(auto iter = root.begin(); iter != root.end(); iter++)
-            {
-                std::vector<std::pair<std::string, std::string>> ingreds;
-                for(auto iter2 = iter->second.begin(); iter2 != iter->second.end(); iter2++){
-                    ingreds.push_back(
-                        {iter2->second.get<std::string>("store"),
-                        iter2->second.get<std::string>("ingred")});
-                }
-                selected_meals.push_back(
-                    {iter->first, ingreds});
-            }
-
             ResultWrapper result_wrapper;
-            DatabaseTables::NoBullshitQuery query("DELETE FROM SelectedMeals");
-            this->coreMod->getDatabaseConnection()->runQuery(&query,result_wrapper);
+            DatabaseTables::NoBullshitQuery query("DELETE FROM SelectedIngredients");
+            this->coreMod->getDatabaseConnection()->runQuery(
+                &query, 
+                result_wrapper);
 
-            DatabaseTables::NoBullshitQuery query2("DELETE FROM SelectedIngredients");
-            this->coreMod->getDatabaseConnection()->runQuery(&query2,result_wrapper);
-
-            for(auto meal : selected_meals){
-                
-                // insert the meal
-                DatabaseTables::NoBullshitQuery query("\
-                    INSERT INTO SelectedMeals(id) VALUES(\
-                        (SELECT id FROM Meals WHERE meal_name='"+meal.first+"')\
-                    )");
-                this->coreMod->getDatabaseConnection()->runQuery(
-                    &query, 
-                    result_wrapper);
-
-                    for(auto ingred : meal.second){
-                        DatabaseTables::NoBullshitQuery query("\
-                            INSERT INTO SelectedIngredients(id, meal_id) VALUES(\
-                                (SELECT id FROM Ingredients WHERE ingredient_name='"+ingred.second+"' AND store='"+ingred.first+"'),\
-                                (SELECT id FROM Meals WHERE meal_name='"+meal.first+"')\
-                            )");
-                        this->coreMod->getDatabaseConnection()->runQuery(
-                            &query, 
-                            result_wrapper);
-                    }
-            }
+            this->processSelectedMessages(connection);
             
     });
+
+    router->MapURLRequest(
+        "/plugins/ShoppingList/PendingSelected",
+        [&](
+            std::shared_ptr<IHTTPUrlRouter::IConnection> connection
+        ){
+            // This handler is invoked when the serice worker 
+            // reconnects with pending messages
+
+            // right now just process the messages in an additive way 
+            // ( you cant delete anything when you 'live')
+            processSelectedMessages(connection);
+
+        });
+
+
 
     router->MapURLRequest(
         "/plugins/ShoppingList/GetSelected",
@@ -137,6 +100,56 @@ ShoppingPlugin::~ShoppingPlugin(){
 
 }
 
+void ShoppingPlugin::processSelectedMessages(
+    std::shared_ptr<IHTTPUrlRouter::IConnection> connection
+) {
+    auto selected = connection->RequestBody();
+
+    // parse JSON with property tree
+    namespace pt = boost::property_tree;
+
+    // Create a root
+    pt::ptree root;
+
+    std::stringstream selected_json(selected);
+    // Load the json file in this ptree
+    pt::read_json(selected_json, root);
+
+    std::vector<std::pair<
+        std::string,
+        std::vector<std::pair<std::string, std::string>> 
+    >> selected_meals;
+
+    for(auto iter = root.begin(); iter != root.end(); iter++)
+    {
+        std::vector<std::pair<std::string, std::string>> ingreds;
+        for(auto iter2 = iter->second.begin(); iter2 != iter->second.end(); iter2++){
+            ingreds.push_back(
+                {iter2->second.get<std::string>("store"),
+                iter2->second.get<std::string>("ingred")});
+        }
+        selected_meals.push_back(
+            {iter->first, ingreds});
+    }
+
+
+    ResultWrapper result_wrapper;
+    for(auto meal : selected_meals){
+
+            for(auto ingred : meal.second){
+                DatabaseTables::NoBullshitQuery query("\
+                    INSERT INTO SelectedIngredients(id, meal_id) VALUES(\
+                        (SELECT id FROM Ingredients WHERE ingredient_name='"+ingred.second+"' AND store='"+ingred.first+"'),\
+                        (SELECT id FROM Meals WHERE meal_name='"+meal.first+"')\
+                    )");
+                this->coreMod->getDatabaseConnection()->runQuery(
+                    &query, 
+                    result_wrapper);
+            }
+    }
+
+}
+
 std::string ShoppingPlugin::resultsToString(
 		ResultWrapper& result_wrapper
 ) {
@@ -150,7 +163,7 @@ std::string ShoppingPlugin::resultsToString(
         >(result_wrapper);            
 
     std::stringstream results_json;
-    results_json << "{ \"meals\" : {";
+    results_json << "{";
 
     bool first = true;
     for(auto& meal : results ){
@@ -186,7 +199,7 @@ std::string ShoppingPlugin::resultsToString(
         results_json<<"]";
     }
 
-    results_json<<"}}";
+    results_json<<"}";
 
     return results_json.str();
 

@@ -1,13 +1,11 @@
 cmake_minimum_required (VERSION 3.2)
 project (JARVIS)
 
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -pthread -g")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -stdlib=libstdc++ -pthread -g")
 SET(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -ldl -lcurl -lstdc++ /usr/lib/x86_64-linux-gnu/libstdc++.so.6")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_GLIBCXX_DEBUG")
 
-
-
-find_package(Boost COMPONENTS system filesystem signals thread REQUIRED)
+find_package(Boost 1.58.0 REQUIRED COMPONENTS system filesystem signals thread)
 
 include_directories (/home/craig/Programming/cpp_netlib/cpp-netlib-0.13.0-rc1)
 include_directories(${Boost_INCLUDE_DIR})
@@ -23,12 +21,13 @@ Framework/Plugin/Plugin.cpp
 Framework/Plugin/PageCallbackContext.cpp
 )
 
-link_directories(/home/craig/Programming/cpp_netlib_build/Debug)
 link_directories(../bin)
 
 add_executable(JARVIS ${SRCS})
 target_link_libraries( JARVIS ${Boost_LIBRARIES} )
-target_link_libraries( JARVIS libcppnetlib-server-parsers.so )
+
+
 target_link_libraries( JARVIS  libCoreModules.so)
+target_link_libraries( JARVIS ${OPENSSL_LIBRARIES})
 
 install(TARGETS JARVIS DESTINATION bin)

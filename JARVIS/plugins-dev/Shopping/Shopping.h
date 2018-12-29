@@ -3,6 +3,8 @@
 #include "../../JARVIS/Framework/Plugin/IPluginDLLFactory.h"
 #include "../../JARVIS/Framework/Plugin/Plugin.h"
 
+#include "../../JARVISCoreModules/CoreModules/Comms/HTTPServer/IHTTPUrlRouter.h"
+
 
 class ShoppingPlugin 
     : 
@@ -19,6 +21,10 @@ private:
 
 	std::string resultsToString(
 		ResultWrapper& results
+	);
+
+	void processSelectedMessages(
+		std::shared_ptr<IHTTPUrlRouter::IConnection> connection
 	);
 
 };

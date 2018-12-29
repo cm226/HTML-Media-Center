@@ -20,7 +20,7 @@ HTTPServer::HTTPServer(
 
 void HTTPServer::HandleRequest(
     server::request const &request,
-    server::connection_ptr connection
+    const server::connection_ptr& connection
 ) {
     server::string_type ip = source(request);
     std::string destination = request.destination;
@@ -57,7 +57,7 @@ void HTTPServer::HandleRequest(
         connection->set_headers(headers);
         connection->write("Sorry bro couldent find that resource ");
     } else {
-        connection->set_status(server::connection::ok);
+        
         std::string ext = requested_file_source.ext();
         if(ext.compare(".css") == 0) {
             headers= { {"Content-Type", "text/css"}, };
@@ -67,17 +67,18 @@ void HTTPServer::HandleRequest(
             headers= { {"Content-Type", "text/html"}, };
         }
 
+        
         connection->set_headers(headers);
         connection->write(file_data);
+        connection->set_status(server::connection::ok);
     }
 
 }
 
 void HTTPServer::operator()(
     server::request const &request,
-    server::connection_ptr connection
-) {
-
+    const server::connection_ptr& connection
+) {    
     // need to do a special thing for post to read the post data. 
     std::string body = request.body;
     if (request.method == "POST") {

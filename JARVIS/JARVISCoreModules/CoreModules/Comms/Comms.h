@@ -16,9 +16,8 @@
 
 #include "IComms.h"
 #include "CURL/CurlManager.h"
-#include <boost/thread.hpp>
 #include <boost/asio.hpp>
-#include <boost/shared_ptr.hpp>
+#include <boost/network/protocol/http/server.hpp>
 
 #include <memory>
 
@@ -26,13 +25,14 @@ class HTTPServer;
 class IHTTPUrlRouter;
 class HTTPUrlRouter;
 
+
 class Comms : public CommsNS::IComms{
 private:
 	TranseverConnectionFactory connecionFactory;
 
 	CommsNS::CurlManager curlMan;
 
-	std::unique_ptr<boost::thread> serverThread;
+	std::unique_ptr<std::thread> serverThread;
 	std::string m_static_content_path;
 	void doHTTP();
 
@@ -54,8 +54,10 @@ public:
 
 private:
 
-	std::shared_ptr<HTTPServer> m_server;
 	std::shared_ptr<HTTPUrlRouter> m_router;
+
+	std::shared_ptr<boost::network::http::server<HTTPServer>> m_server;
+	std::shared_ptr<boost::asio::io_service> m_io_service;
 
 };
 

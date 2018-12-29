@@ -3,6 +3,11 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('shopping-worker.js');
 }
 
+navigator.serviceWorker.ready.then(function(swRegistration) {
+    return swRegistration.sync.register('sync');
+});
+
+
 var _meals;
 
 var _selectedMeals = {
@@ -58,7 +63,7 @@ function GetAndDisplaySelected(){
     $.get("/plugins/ShoppingList/GetSelected",
     {},
     function(data, status){
-        _selectedMeals = JSON.parse(data).meals;
+        _selectedMeals = JSON.parse(data);
         displaySelected();
     });
 }
@@ -71,7 +76,7 @@ $( document ).ready(function() {
 
         data = data.replace("\n", "");
 
-        _meals = JSON.parse(data).meals;
+        _meals = JSON.parse(data);
 
         GetAndDisplaySelected();
 
