@@ -68,13 +68,12 @@ void Comms::doHTTP()
         
         boost::network::http::server<HTTPServer>::options options(handler);
         m_server = std::make_shared<boost::network::http::server<HTTPServer>>(
-            //options.address(MY_HOST)
-            options.address("0.0.0.0")
+            options.address(MY_HOST)
             .port("8442")
             .io_service(m_io_service)
-            //.reuse_address(true)
-            // .thread_pool(
-            //    std::make_shared<boost::network::utils::thread_pool>(2))
+            .reuse_address(true)
+             .thread_pool(
+                std::make_shared<boost::network::utils::thread_pool>(2))
             .context(ctx));
 
         // this call blocks

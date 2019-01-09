@@ -67,10 +67,10 @@ void HTTPServer::HandleRequest(
             headers= { {"Content-Type", "text/html"}, };
         }
 
-        
+        connection->set_status(server::connection::ok);
         connection->set_headers(headers);
         connection->write(file_data);
-        connection->set_status(server::connection::ok);
+        
     }
 
 }

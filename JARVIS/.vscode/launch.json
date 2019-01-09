@@ -11,7 +11,7 @@
             "program": "${workspaceFolder}/bin/JARVIS",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/bin",
             "environment": [
                 {
                     "name": "LD_LIBRARY_PATH",
