@@ -1,0 +1,64 @@
+FROM ubuntu:18.04
+
+RUN apt update && apt install -y \
+    xz-utils \
+    build-essential \
+    curl \
+    wget \
+    software-properties-common \
+    libbz2-1.0 libbz2-dev libbz2-ocaml libbz2-ocaml-dev \
+    openssl
+
+RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
+    && apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main" \
+    && apt-get update \
+    && apt-get install -y clang-6.0 \
+    && ln -s /usr/bin/clang-6.0 /usr/bin/clang \
+    && ln -s /usr/bin/clang++-6.0 /usr/bin/clang++
+
+RUN add-apt-repository ppa:jonathonf/python-3.6 \
+    && apt-get update
+
+
+RUN wget http://sourceforge.net/projects/boost/files/boost/1.58.0/boost_1_58_0.tar.gz \
+    && tar xfz boost_1_58_0.tar.gz \
+    && rm boost_1_58_0.tar.gz \
+    && cd boost_1_58_0 \
+    && ./bootstrap.sh --with-toolset=clang --with-python-version=3.6 \
+    && ./b2 --prefix=/usr -j 4 link=shared runtime-link=shared toolset=clang cxxflags="-std=c++17 -stdlib=libstdc++ -Wno-register" linkflags="-stdlib=libstdc++" threading=multi --layout=tagged --without-python install
+
+RUN wget https://cmake.org/files/v3.13/cmake-3.13.2.tar.gz \
+    && tar -xzvf cmake-3.13.2.tar.gz \
+    && cd cmake-3.13.2/ \
+    && ./bootstrap \
+    && make -j4 \
+    && make install \
+    && cd ../ \
+    && rm cmake-3.13.2.tar.gz
+
+RUN wget http://downloads.cpp-netlib.org/0.13.0/cpp-netlib-0.13.0-rc1.tar.gz \
+    && tar xfz cpp-netlib-0.13.0-rc1.tar.gz \
+    && rm cpp-netlib-0.13.0-rc1.tar.gz \
+    && sed -i 's/c++11/c++17/g' cpp-netlib-0.13.0-rc1/CMakeLists.txt
+
+RUN mkdir cpp-net-build \
+    && cd cpp-net-build \
+    && cmake -DCMAKE_BUILD_TYPE=Debug \
+     -DCMAKE_C_COMPILER=clang-6.0 \
+     -DCMAKE_CXX_COMPILER=clang-6.0 \
+     -DCPP-NETLIB_BUILD_TESTS=OFF \
+     -DCPP-NETLIB_BUILD_EXAMPLES=OFF \
+     -DCPP-NETLIB_ENABLE_HTTPS=ON \
+     -DCPP-NETLIB_BUILD_SHARED_LIBS=ON \
+     -DCMAKE_CXX_FLAGS="-stdlib=libstdc++" \
+     -DCMAKE_EXE_LINKER_FLAGS="-lstdc++" \
+    ../cpp-netlib-0.13.0-rc1 \
+    && make \
+    && cd ../
+
+RUN apt-get -y install git-core
+
+RUN mkdir JARVIS \
+    && git clone https://github.com/cm226/HTML-Media-Center.git ./JARVIS \
+    && cd /JARVIS/JARVIS/JARVISCoreModules \
+    && ./build_debug
