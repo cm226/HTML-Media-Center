@@ -7,7 +7,9 @@ RUN apt update && apt install -y \
     wget \
     software-properties-common \
     libbz2-1.0 libbz2-dev libbz2-ocaml libbz2-ocaml-dev \
-    openssl
+    mariadb-server \
+    git-core \
+    libcurl4-openssl-dev
 
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
     && apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main" \
@@ -16,33 +18,59 @@ RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
     && ln -s /usr/bin/clang-6.0 /usr/bin/clang \
     && ln -s /usr/bin/clang++-6.0 /usr/bin/clang++
 
-RUN add-apt-repository ppa:jonathonf/python-3.6 \
-    && apt-get update
+RUN wget https://www.openssl.org/source/openssl-1.0.2l.tar.gz \
+    && tar -xzvf openssl-1.0.2l.tar.gz \
+    && rm openssl-1.0.2l.tar.gz
 
-
-RUN wget http://sourceforge.net/projects/boost/files/boost/1.58.0/boost_1_58_0.tar.gz \
+RUN mkdir -p /home/craig/Programming/ \
+    && cd /home/craig/Programming/ \
+    && wget http://sourceforge.net/projects/boost/files/boost/1.58.0/boost_1_58_0.tar.gz \
     && tar xfz boost_1_58_0.tar.gz \
-    && rm boost_1_58_0.tar.gz \
-    && cd boost_1_58_0 \
-    && ./bootstrap.sh --with-toolset=clang --with-python-version=3.6 \
-    && ./b2 --prefix=/usr -j 4 link=shared runtime-link=shared toolset=clang cxxflags="-std=c++17 -stdlib=libstdc++ -Wno-register" linkflags="-stdlib=libstdc++" threading=multi --layout=tagged --without-python install
+    && rm boost_1_58_0.tar.gz 
 
 RUN wget https://cmake.org/files/v3.13/cmake-3.13.2.tar.gz \
     && tar -xzvf cmake-3.13.2.tar.gz \
-    && cd cmake-3.13.2/ \
+    && rm cmake-3.13.2.tar.gz
+    
+
+RUN mkdir -p /home/craig/Programming/MySql \
+    && cd /home/craig/Programming/MySql \
+    && wget https://downloads.mariadb.com/Connectors/c/connector-c-3.0.6/mariadb-connector-c-3.0.6-linux-x86_64.tar.gz \
+    && tar -xf mariadb-connector-c-3.0.6-linux-x86_64.tar.gz \
+    && rm mariadb-connector-c-3.0.6-linux-x86_64.tar.gz
+
+
+RUN mkdir -p /home/craig/Programming/cpp_netlib \
+    && cd /home/craig/Programming/cpp_netlib \
+    && wget http://downloads.cpp-netlib.org/0.13.0/cpp-netlib-0.13.0-rc1.tar.gz \
+    && tar xfz cpp-netlib-0.13.0-rc1.tar.gz \
+    && rm cpp-netlib-0.13.0-rc1.tar.gz
+
+
+RUN mkdir -p /home/craig/Programming/JARVIS \
+    && cd /home/craig/Programming/JARVIS \
+    && git clone https://github.com/cm226/HTML-Media-Center.git \
+    && mv HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/configSkeliton.h HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h
+
+################################################
+
+RUN cd /openssl-1.0.2l \
+    && ./config \
+    && make install \
+    && ln -sf /usr/local/ssl/bin/openssl `which openssl` \
+    && ln -s /usr/local/ssl/include/openssl/ /usr/local/include/openssl
+
+RUN cd cmake-3.13.2/ \
     && ./bootstrap \
     && make -j4 \
-    && make install \
-    && cd ../ \
-    && rm cmake-3.13.2.tar.gz
+    && make install 
 
-RUN wget http://downloads.cpp-netlib.org/0.13.0/cpp-netlib-0.13.0-rc1.tar.gz \
-    && tar xfz cpp-netlib-0.13.0-rc1.tar.gz \
-    && rm cpp-netlib-0.13.0-rc1.tar.gz \
-    && sed -i 's/c++11/c++17/g' cpp-netlib-0.13.0-rc1/CMakeLists.txt
+RUN cd /home/craig/Programming/boost_1_58_0 \
+    && ./bootstrap.sh --with-toolset=clang \
+    && ./b2 --prefix=/usr -j 4 link=shared runtime-link=shared toolset=clang cxxflags="-std=c++14 -stdlib=libstdc++ -Wno-register" linkflags="-lstdc++" threading=multi --layout=tagged --without-python install
 
-RUN mkdir cpp-net-build \
-    && cd cpp-net-build \
+RUN mkdir /home/craig/Programming/cpp-net-build \
+    && cd /home/craig/Programming/cpp-net-build \
     && cmake -DCMAKE_BUILD_TYPE=Debug \
      -DCMAKE_C_COMPILER=clang-6.0 \
      -DCMAKE_CXX_COMPILER=clang-6.0 \
@@ -50,15 +78,8 @@ RUN mkdir cpp-net-build \
      -DCPP-NETLIB_BUILD_EXAMPLES=OFF \
      -DCPP-NETLIB_ENABLE_HTTPS=ON \
      -DCPP-NETLIB_BUILD_SHARED_LIBS=ON \
-     -DCMAKE_CXX_FLAGS="-stdlib=libstdc++" \
+     -DCMAKE_CXX_FLAGS="-std=c++14 -stdlib=libstdc++" \
      -DCMAKE_EXE_LINKER_FLAGS="-lstdc++" \
-    ../cpp-netlib-0.13.0-rc1 \
+    ../cpp_netlib/cpp-netlib-0.13.0-rc1 \
     && make \
-    && cd ../
-
-RUN apt-get -y install git-core
-
-RUN mkdir JARVIS \
-    && git clone https://github.com/cm226/HTML-Media-Center.git ./JARVIS \
-    && cd /JARVIS/JARVIS/JARVISCoreModules \
-    && ./build_debug
+    && cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin
