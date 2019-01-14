@@ -26,7 +26,7 @@ link_directories(../bin)
 add_executable(JARVIS ${SRCS})
 target_link_libraries( JARVIS ${Boost_LIBRARIES} )
 
-
+target_link_libraries( JARVIS cppnetlib-server-parsers)
 target_link_libraries( JARVIS  libCoreModules.so)
 target_link_libraries( JARVIS ${OPENSSL_LIBRARIES})
 
