@@ -85,12 +85,13 @@ RUN mkdir /home/craig/Programming/cpp-net-build \
     && make \
     && cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin
 
-#RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/ \
-#     && ./build_release \
-#     && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVIS \
-#     && cmake -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0 -DOPENSSL_ROOT_DIR=/openssl-1.0.2l/ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=. CMakeLists.txt \
-#     && make install \
-#     && cp ./bin/JARVIS ../bin
+RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/ \
+    && git pull origin master \
+     && ./build_release \
+     && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVIS \
+     && cmake -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0 -DOPENSSL_ROOT_DIR=/openssl-1.0.2l/ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=. CMakeLists.txt \
+     && make install \
+     && cp ./bin/JARVIS ../bin
 
 #CMD source /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/run \
 #     && /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/JARVIS

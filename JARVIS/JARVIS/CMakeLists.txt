@@ -29,6 +29,6 @@ target_link_libraries( JARVIS ${Boost_LIBRARIES} )
 
 target_link_libraries( JARVIS cppnetlib-server-parsers)
 target_link_libraries( JARVIS  libCoreModules.so)
-target_link_libraries(untitled OpenSSL::SSL)
+target_link_libraries( JARVIS OpenSSL::SSL)
 
 install(TARGETS JARVIS DESTINATION bin)
