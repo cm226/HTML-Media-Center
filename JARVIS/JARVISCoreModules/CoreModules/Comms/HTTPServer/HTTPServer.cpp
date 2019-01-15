@@ -6,6 +6,8 @@
 
 #include "../../Files/Files.h"
 
+#include "../../../../ErrorLogger/Errors/ErrorLogger.h"
+
 
 typedef boost::network::http::server<HTTPServer> server;
 
@@ -67,6 +69,7 @@ void HTTPServer::HandleRequest(
             headers= { {"Content-Type", "text/html"}, };
         }
 
+        ErrorLogger::logInfo("responding to request");
         connection->set_status(server::connection::ok);
         connection->set_headers(headers);
         connection->write(file_data);
@@ -79,6 +82,8 @@ void HTTPServer::operator()(
     server::request const &request,
     const server::connection_ptr& connection
 ) {    
+
+    ErrorLogger::logInfo("Got request");
     // need to do a special thing for post to read the post data. 
     std::string body = request.body;
     if (request.method == "POST") {
@@ -91,6 +96,7 @@ void HTTPServer::operator()(
     } else{
         // GET 
         HandleRequest(request, connection);
+        ErrorLogger::logInfo("its a get request");
     }
 
     

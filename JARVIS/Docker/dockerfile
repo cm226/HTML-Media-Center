@@ -93,5 +93,7 @@ RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules
      && make install \
      && cp ./bin/JARVIS ../bin
 
-#CMD source /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/run \
-#     && /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/JARVIS
+# start the server
+#CMD cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/ \
+#    && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin \
+#    && ./JARVIS
