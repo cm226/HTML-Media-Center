@@ -9,7 +9,8 @@ RUN apt update && apt install -y \
     libbz2-1.0 libbz2-dev libbz2-ocaml libbz2-ocaml-dev \
     mariadb-server \
     git-core \
-    libcurl4-openssl-dev
+    libcurl4-openssl-dev \
+    systemd
 
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
     && apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main" \
@@ -55,7 +56,7 @@ RUN mkdir -p /home/craig/Programming/JARVIS \
 ################################################
 
 RUN cd /openssl-1.0.2l \
-    && ./config \
+    && ./config shared\
     && make install \
     && ln -sf /usr/local/ssl/bin/openssl `which openssl` \
     && ln -s /usr/local/ssl/include/openssl/ /usr/local/include/openssl
@@ -79,11 +80,15 @@ RUN mkdir /home/craig/Programming/cpp-net-build \
      -DCPP-NETLIB_BUILD_EXAMPLES=OFF \
      -DCPP-NETLIB_ENABLE_HTTPS=ON \
      -DCPP-NETLIB_BUILD_SHARED_LIBS=ON \
+     -DOPENSSL_ROOT_DIR=/openssl-1.0.2l/ \
      -DCMAKE_CXX_FLAGS="-std=c++14 -stdlib=libstdc++" \
      -DCMAKE_EXE_LINKER_FLAGS="-lstdc++" \
     ../cpp_netlib/cpp-netlib-0.13.0-rc1 \
     && make \
     && cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin
+
+#Setup the config file
+RUN sed -i 's/#define MY_HOST "localhost"/#define MY_HOST "172.17.0.2"/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h
 
 RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/ \
     && git pull origin master \
@@ -91,7 +96,12 @@ RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules
      && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVIS \
      && cmake -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0 -DOPENSSL_ROOT_DIR=/openssl-1.0.2l/ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=. CMakeLists.txt \
      && make install \
-     && cp ./bin/JARVIS ../bin
+     && cp ./bin/JARVIS ../bin  
+
+# build plugins
+RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping \
+     && cmake -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/JARVIS CMakeLists.txt \
+     && make install
 
 # start the server
 #CMD cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/ \
