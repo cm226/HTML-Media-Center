@@ -96,8 +96,8 @@ RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules
      && cmake -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0 -DOPENSSL_ROOT_DIR=/openssl-1.0.2l/ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=. CMakeLists.txt \
      && make install \
      && cp ./bin/JARVIS ../bin  
-     
-RUN cd .
+
+RUN cd /
 
 # build plugins
 RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping \
@@ -106,7 +106,9 @@ RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopp
      && make install
 
 # start the server
-CMD /usr/bin/mysqld_safe & mysql_install_db \
+CMD cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping \
+     && git pull origin master \
+     && /usr/bin/mysqld_safe & mysql_install_db \
      && sleep 5s \
      && mysql < /home/craig/Programming/JARVIS/HTML-Media-Center/db/Database.sql \
      && mysql arseholeDB < /home/craig/Programming/JARVIS/HTML-Media-Center/db/Database.sql \
