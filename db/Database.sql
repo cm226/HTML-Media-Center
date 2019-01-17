@@ -1,3 +1,6 @@
+DROP USER if EXSISTS arsehole;
+DROP DATABASE IF EXSISTS arseholeDB;
+
 CREATE DATABASE arseholeDB;
 CREATE USER 'arsehole' IDENTIFIED BY 'pw';
 GRANT USAGE ON *.* TO 'arsehole'@'%' IDENTIFIED BY 'pw';
