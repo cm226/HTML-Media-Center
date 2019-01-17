@@ -9,8 +9,7 @@ RUN apt update && apt install -y \
     libbz2-1.0 libbz2-dev libbz2-ocaml libbz2-ocaml-dev \
     mariadb-server \
     git-core \
-    libcurl4-openssl-dev \
-    systemd
+    libcurl4-openssl-dev
 
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
     && apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main" \
@@ -100,10 +99,15 @@ RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules
 
 # build plugins
 RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping \
+     && git pull origin master \
      && cmake -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/JARVIS CMakeLists.txt \
      && make install
 
 # start the server
-#CMD cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/ \
+#CMD /usr/bin/mysqld_safe & mysql_install_db \
+#     && sleep 5s \
+#     && mysql < /home/craig/Programming/JARVIS/HTML-Media-Center/db/Database.sql \
+#     && mysql arseholeDB < /home/craig/Programming/JARVIS/HTML-Media-Center/db/Database.sql \
+#     && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/ \
 #    && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin \
 #    && ./JARVIS
