@@ -87,7 +87,11 @@ RUN mkdir /home/craig/Programming/cpp-net-build \
     && cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin
 
 #Setup the config file
-RUN sed -i 's/#define MY_HOST "localhost"/#define MY_HOST "172.17.0.2"/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h
+RUN  sed -i 's/#define MY_HOST "localhost"/#define MY_HOST "172.17.0.2"/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h \
+     && sed -i 's/<dbuser/arsehole/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h \
+     && sed -i 's/<dbname>/arseholeDB/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h \
+     && sed -i 's/<dbpw>/pw/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h
+
 
 RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/ \
     && git pull origin master \
@@ -97,8 +101,6 @@ RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules
      && make install \
      && cp ./bin/JARVIS ../bin  
 
-RUN cd /
-
 # build plugins
 RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping \
      && git pull origin master \
@@ -106,12 +108,12 @@ RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopp
      && make install
 
 # start the server
-CMD cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping \
-     && git pull origin master \
-     && /usr/bin/mysqld_safe & mysql_install_db \
-     && sleep 5s \
-     && mysql < /home/craig/Programming/JARVIS/HTML-Media-Center/db/Database.sql \
-     && mysql arseholeDB < /home/craig/Programming/JARVIS/HTML-Media-Center/db/Database.sql \
-     && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/ \
-    && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin \
-    && ./JARVIS
+#CMD cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping \
+#     && git pull origin master \
+#     && /usr/bin/mysqld_safe & mysql_install_db \
+#     && sleep 5s \
+#     && mysql < /home/craig/Programming/JARVIS/HTML-Media-Center/db/Database.sql \
+#     && mysql arseholeDB < /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping/db.sql \
+#     && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/ \
+#    && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin \
+#    && ./JARVIS
