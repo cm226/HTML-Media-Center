@@ -107,6 +107,10 @@ RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopp
      && cmake -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/JARVIS CMakeLists.txt \
      && make install
 
+COPY server.crt /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/cert.pem
+COPY server.pem /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/key.pem
+
+
 # start the server, usually do this manually, so that if server crashes we dont loose the container
 #CMD cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping \
 #     && git pull origin master \
@@ -117,3 +121,8 @@ RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopp
 #     && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/ \
 #     && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin \
 #     && ./JARVIS
+
+# build and run from inside docker folder with 
+# sudo docker build -t media .
+# sudo docker run -p 8442:8442 -ti media
+# then run cmd above 
