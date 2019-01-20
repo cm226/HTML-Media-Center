@@ -107,16 +107,13 @@ RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopp
      && cmake -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/JARVIS CMakeLists.txt \
      && make install
 
-# Setup the database
-CMD cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping \
-     && git pull origin master \
-     && /usr/bin/mysqld_safe & mysql_install_db \
-     && sleep 5s \
-     && mysql < /home/craig/Programming/JARVIS/HTML-Media-Center/db/Database.sql \
-     && mysql arseholeDB < /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping/db.sql
-
 # start the server, usually do this manually, so that if server crashes we dont loose the container
-#CMD /usr/bin/mysqld_safe & mysql_install_db \
-#     cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/ \
+#CMD cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping \
+#     && git pull origin master \
+#     && /usr/bin/mysqld_safe & mysql_install_db \
+#     && sleep 5s \
+#     && mysql < /home/craig/Programming/JARVIS/HTML-Media-Center/db/Database.sql \
+#     && mysql arseholeDB < /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping/db.sql \
+#     && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/ \
 #     && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin \
 #     && ./JARVIS
