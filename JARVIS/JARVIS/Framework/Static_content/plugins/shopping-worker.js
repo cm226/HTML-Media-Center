@@ -103,8 +103,10 @@ var ClearPendingSelected = function(){
 }
 
 var SendMessageToClient = function(msg){
-  var msg_chan = new MessageChannel();
-  client.postMessage(msg, [msg_chan.port2]);
+
+  // broadcast our message
+  self.clients.matchAll().then(
+    all => all.map(client => client.postMessage(msg)));
 }
 
 self.addEventListener('sync', function(event) {
@@ -126,8 +128,8 @@ self.addEventListener('sync', function(event) {
         }
       ).then(()=>{
         ClearPendingSelected();
-      }).catch(()=>{
-        ClearPendingSelected();
+      }).catch((e)=>{
+        console.error(e);
       });
     }
 
@@ -148,13 +150,19 @@ var doGetSelected = function(event){
       StoreSelectedItems(json);
     });
 
+    // inform the client that we are connected to the server
+    SendMessageToClient("connected");
     return responce;
 
-  }).catch(()=>{
+  }).catch((e)=>{
 
     // the request failed, we are probb offline so we need
     // to fake this request with our latest available knowledge. 
     return GetStoredSelected().then(selected => {
+      if(selected === undefined){
+        console.error ("got undefined responce from selected indexDB query");
+        selected = "";
+      }
       return new Response(JSON.stringify(selected), {
         headers: {'Content-Type': 'text/plain'}
       });
@@ -207,9 +215,13 @@ self.addEventListener('fetch', event => {
     fetch(event.request).then(response => {
 
     // Put a copy of the response in the runtime cache.
-    return cache.put(event.request, response.clone()).then(() => {
-      return response;
+    var new_responce = response.clone();
+    caches.open(RUNTIME).then(
+        cache => {
+          cache.put(event.request, new_responce)
     });
+
+    return response;
 
   }).catch((e)=>{
 
