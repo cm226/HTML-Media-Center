@@ -1,6 +1,16 @@
 // install our service worker
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('shopping-worker.js');
+
+    navigator.serviceWorker.addEventListener('message', function(event){
+        if(event.data === "connected"){
+            $(".status").css("background-color", "green");
+            $(".status").html(event.data);
+        }
+        
+        console.log("Client 1 Received Message: " + event.data);
+        
+    });
 }
 
 navigator.serviceWorker.ready.then(function(swRegistration) {

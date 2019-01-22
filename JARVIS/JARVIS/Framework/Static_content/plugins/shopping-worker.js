@@ -102,6 +102,11 @@ var ClearPendingSelected = function(){
   });
 }
 
+var SendMessageToClient = function(msg){
+  var msg_chan = new MessageChannel();
+  client.postMessage(msg, [msg_chan.port2]);
+}
+
 self.addEventListener('sync', function(event) {
   if (event.tag == 'sync') {
 
