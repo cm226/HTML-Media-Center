@@ -222,8 +222,7 @@ subjectAltName = @alt_names
 basicConstraints = CA:true
 keyUsage = nonRepudiation, digitalSignature, keyEncipherment
 [alt_names]
-IP.1 = 192.168.1.78
-#IP.1 = 127.0.0.1
+IP.1 = 127.0.0.1
 
 [ v3_ca ]
 

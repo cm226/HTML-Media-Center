@@ -26,6 +26,7 @@ self.addEventListener('install', event => {
     caches.open(PRECACHE)
       .then(cache => cache.addAll(PRECACHE_URLS))
       .then(self.skipWaiting())
+      .catch((error)=>{console.error(error)})
   );
 });
 
@@ -129,83 +130,87 @@ self.addEventListener('sync', function(event) {
   }
 });
 
+
+var doGetSelected = function(event){
+
+  console.log("getting selected");
+
+  return fetch(event.request).then(responce => {
+
+    let newSelected = responce.clone();
+    // store the responce from the server incase we need to use it
+    newSelected.json().then((json)=>{
+      StoreSelectedItems(json);
+    });
+
+    return responce;
+
+  }).catch(()=>{
+
+    // the request failed, we are probb offline so we need
+    // to fake this request with our latest available knowledge. 
+    return GetStoredSelected().then(selected => {
+      return new Response(JSON.stringify(selected), {
+        headers: {'Content-Type': 'text/plain'}
+      });
+    })
+  });
+
+}
+
+var doUpdateSelected = function(event){
+
+  console.log("updating selected, skipping cache");
+
+  // you need to do this dumb clone thing, 
+  // because reading the json counts as 'using' the request 
+  // which the browser gets grumpy about.
+  let newSelected = event.request.clone();
+  newSelected.json().then((json)=>{
+    StoreSelectedItems(json);
+    lastSelected = json;
+  });
+
+  return fetch(event.request).then((responce)=>{
+    return responce;
+  }).catch(()=>{
+
+    // this request requires no responce from the server
+    // we do this because this request dosnt need to fail
+    // we have stored the state of the selected and itll be 
+    // synced when we connect again
+    return new Response("", {
+      headers: {'Content-Type': 'application/json'}
+    });
+
+
+  });
+}
 // The fetch handler serves responses for same-origin resources from a cache.
 // If no response is found, it populates the runtime cache with the response
 // from the network before returning it to the page.
 self.addEventListener('fetch', event => {
   // Skip cross-origin requests, like those for Google Analytics.
-    event.respondWith(
-      caches.match(event.request).then(cachedResponse => {
-        
-        // get selected should always attempt server first
-        // to get the latest selected even if its cached
-        if(event.request.url.includes("GetSelected")){
-          console.log("getting selected");
 
-          return fetch(event.request).then(responce => {
+  // handle specific requests
+  if(event.request.url.includes("GetSelected")){ event.respondWith(doGetSelected(event)); return; }
+  if(event.request.url.includes("UpdateSelected")){ event.respondWith(doUpdateSelected(event)); return; }
 
-            let newSelected = responce.clone();
-            // store the responce from the server incase we need to use it
-            newSelected.json().then((json)=>{
-              StoreSelectedItems(json);
-            });
+  // try get from server first
 
-            return responce;
+  event.respondWith(
+    fetch(event.request).then(response => {
 
-          }).catch(()=>{
+    // Put a copy of the response in the runtime cache.
+    return cache.put(event.request, response.clone()).then(() => {
+      return response;
+    });
 
-            // the request failed, we are probb offline so we need
-            // to fake this request with our latest available knowledge. 
-            return GetStoredSelected().then(selected => {
-              return new Response(JSON.stringify(selected), {
-                headers: {'Content-Type': 'text/plain'}
-              });
-            })
-          });
-        }
+  }).catch((e)=>{
 
-        if (cachedResponse) {
-          return cachedResponse;
-        }
+    return caches.open(RUNTIME).then(cache => {
+      return caches.match(event.request)
+    })
 
-        if(event.request.url.includes("UpdateSelected")){
-          console.log("updating selected, skipping cache");
-
-          // you need to do this dumb clone thing, 
-          // because reading the json counts as 'using' the request 
-          // which the browser gets grumpy about.
-          let newSelected = event.request.clone();
-          newSelected.json().then((json)=>{
-            StoreSelectedItems(json);
-            lastSelected = json;
-          });
-
-          return fetch(event.request).then((responce)=>{
-            return responce;
-          }).catch(()=>{
-
-            // this request requires no responce from the server
-            // we do this because this request dosnt need to fail
-            // we have stored the state of the selected and itll be 
-            // synced when we connect again
-            return new Response("", {
-              headers: {'Content-Type': 'application/json'}
-            });
-
-
-          });
-          
-        }
-
-        return caches.open(RUNTIME).then(cache => {
-
-          return fetch(event.request).then(response => {
-            // Put a copy of the response in the runtime cache.
-            return cache.put(event.request, response.clone()).then(() => {
-              return response;
-            });
-          });
-        });
-      })
-    );
+  }));
 });
