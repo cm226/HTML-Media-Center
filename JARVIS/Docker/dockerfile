@@ -85,7 +85,8 @@ RUN mkdir /home/craig/Programming/cpp-net-build \
 RUN mkdir -p /home/craig/Programming/JARVIS \
     && cd /home/craig/Programming/JARVIS \
     && git clone https://github.com/cm226/HTML-Media-Center.git \
-    && mv HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/configSkeliton.h HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h
+    && mv HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/configSkeliton.h HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h \
+    && mkdir /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin
 
 #Setup the config file
 RUN  sed -i 's/#define MY_HOST "localhost"/#define MY_HOST "172.17.0.2"/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h \
@@ -121,7 +122,7 @@ COPY server.pem /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/key.
 
 
 
-# start the server, usually do this manually, so that if server crashes we dont loose the container
+# start the server
 CMD service mysql start \
      && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/ \
      && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin \
