@@ -120,7 +120,9 @@ void ShoppingPlugin::processSelectedMessages(
         std::vector<std::pair<std::string, std::string>> 
     >> selected_meals;
 
-    for(auto iter = root.begin(); iter != root.end(); iter++)
+    auto selected_JSON = root.get<std::string>("selected");
+
+    for(auto iter = selected_JSON.begin(); iter != selected_JSON.end(); iter++)
     {
         std::vector<std::pair<std::string, std::string>> ingreds;
         for(auto iter2 = iter->second.begin(); iter2 != iter->second.end(); iter2++){
@@ -132,7 +134,13 @@ void ShoppingPlugin::processSelectedMessages(
             {iter->first, ingreds});
     }
 
+    // do the extras
+    auto extra_ingredients = root.get<std::string>("extra");
 
+
+
+
+    // put them in the db
     ResultWrapper result_wrapper;
     for(auto meal : selected_meals){
 

@@ -83,7 +83,7 @@ function displaySelected(){
 function SendSelectedToServer(){
 
     $.post("/plugins/ShoppingList/UpdateSelected",
-    JSON.stringify(_selectedMeals),
+    JSON.stringify({selected: _selectedMeals, extra : _extraIngreds}),
     function(data, status){
         // handle error, should prob look for ack of some kind ..... w/e
     });
