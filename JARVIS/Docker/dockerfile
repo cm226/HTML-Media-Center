@@ -130,5 +130,5 @@ CMD service mysql start \
 
 # build and run from inside docker folder with 
 # sudo docker build -t media .
-# sudo docker run -p 8442:8442 -v ~/mdbdata/arsehole:/var/lib/mysql -v -ti media
+# sudo docker run -p 8442:8442 -v ~/mdbdata/arsehole:/var/lib/mysql -ti media
 # then run cmd above 
