@@ -46,12 +46,6 @@ RUN mkdir -p /home/craig/Programming/cpp_netlib \
     && tar xfz cpp-netlib-0.13.0-rc1.tar.gz \
     && rm cpp-netlib-0.13.0-rc1.tar.gz
 
-
-RUN mkdir -p /home/craig/Programming/JARVIS \
-    && cd /home/craig/Programming/JARVIS \
-    && git clone https://github.com/cm226/HTML-Media-Center.git \
-    && mv HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/configSkeliton.h HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h
-
 ################################################
 
 RUN cd /openssl-1.0.2l \
@@ -85,6 +79,13 @@ RUN mkdir /home/craig/Programming/cpp-net-build \
     ../cpp_netlib/cpp-netlib-0.13.0-rc1 \
     && make \
     && cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin
+
+## start my build stuff
+
+RUN mkdir -p /home/craig/Programming/JARVIS \
+    && cd /home/craig/Programming/JARVIS \
+    && git clone https://github.com/cm226/HTML-Media-Center.git \
+    && mv HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/configSkeliton.h HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h
 
 #Setup the config file
 RUN  sed -i 's/#define MY_HOST "localhost"/#define MY_HOST "172.17.0.2"/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h \
