@@ -85,3 +85,5 @@ JARVIS/test/Server
 JARVIS/JARVISCoreModules/CMakeCache\.txt
 
 JARVIS/plugins-dev/Shopping/CMakeCache\.txt
+
+JARVIS/bin/
