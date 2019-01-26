@@ -107,22 +107,28 @@ RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopp
      && cmake -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/JARVIS CMakeLists.txt \
      && make install
 
+# setup mysql db
+
+RUN /usr/bin/mysqld_safe & mysql_install_db \
+     && sleep 5s \
+     && mysql < /home/craig/Programming/JARVIS/HTML-Media-Center/db/Database.sql \
+     && mysql arseholeDB < /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping/db.sql
+
+
 COPY server.crt /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/cert.pem
 COPY server.pem /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/key.pem
 
 
+
 # start the server, usually do this manually, so that if server crashes we dont loose the container
-#CMD cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping \
-#     && git pull origin master \
-#     && /usr/bin/mysqld_safe & mysql_install_db \
-#     && sleep 5s \
-#     && mysql < /home/craig/Programming/JARVIS/HTML-Media-Center/db/Database.sql \
-#     && mysql arseholeDB < /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping/db.sql \
-#     && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/ \
-#     && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin \
-#     && ./JARVIS
+CMD service mysql start \
+     && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping \
+     && git pull origin master \
+     && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/ \
+     && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin \
+     && ./JARVIS
 
 # build and run from inside docker folder with 
 # sudo docker build -t media .
-# sudo docker run -p 8442:8442 -ti media
+# sudo sudo docker run -p 8442:8442 -v ~/mdbdata/arsehole:/var/lib/mysql -v -ti media
 # then run cmd above 
