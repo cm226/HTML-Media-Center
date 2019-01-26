@@ -12,8 +12,10 @@ const PRECACHE_URLS = [
   'Shopping_content/js/script.js',
   'Shopping_content/js/jquery.min.js',
   'Shopping_content/js/jquery-ui.min.js',
+  'Shopping_content/js/jquery.mobile-1.4.5.min.js',
   'Shopping_content/css/styles.css',
   'Shopping_content/css/jquery-ui.min.css',
+  'Shopping_content/css/jquery.mobile-1.4.5.min.css'
 ];
 
 var lastSelected = {}; 

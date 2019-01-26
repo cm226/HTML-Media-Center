@@ -23,6 +23,9 @@ var _meals;
 var _selectedMeals = {
 }
 
+var _extraIngreds = []
+;
+
 function removeSelectedMeal(meal){
     if(_selectedMeals[meal] !== undefined){
         delete _selectedMeals[meal];
@@ -34,25 +37,42 @@ function removeSelectedMeal(meal){
 function displaySelected(){
 
     let meal_html = '';
-    let sainsbo_html = '';
-    let alid_html = '';
+    let sainsbo_html = '<form><fieldset data-role="controlgroup"><div class="ui-controlgroup-controls">';
+    let alid_html = '<form><fieldset data-role="controlgroup"><div class="ui-controlgroup-controls">';
 
-
+    let checkbox_id = 0;
+    let ingreds = [];
     $.each(_selectedMeals, (meal, ingredients)=>{
         meal_html += '<tr><td>' + meal +
          '</td><td><button onClick=\'removeSelectedMeal("'+
             meal+
           '");\'>Delete</button></td></tr>';
 
-        $.each(ingredients, (index, ingredient)=>{
-            if(ingredient.store === 'Sainsbury'){
-                sainsbo_html += '<li>'+ingredient.ingred+'</li>';
-            } else if(ingredient.store === 'Aldi') {
-                alid_html += '<li>'+ingredient.ingred+'</li>';
-            }
-            
-        });
+          ingreds = ingreds.concat(ingredients);
     });
+
+    ingreds = ingreds.concat(_extraIngreds);
+
+    $.each(ingreds, (index, ingredient)=>{
+        checkbox_id++;
+
+        let html = 
+        '<div class="ui-checkbox">\
+        <label for="checkbox'+checkbox_id+'" class="ui-btn ui-corner-all ui-btn-b ui-btn-icon-left ui-first-child">'+ingredient.ingred+'\
+        <input type="checkbox" name="checkbox'+checkbox_id+'" id="checkbox'+checkbox_id+'">\
+        </input></label></div>';
+
+        if(ingredient.store === 'Sainsbury'){
+            sainsbo_html += html;
+
+        } else if(ingredient.store === 'Aldi') {
+            alid_html += html;
+        }
+        
+    });
+
+    alid_html += '</div></fieldset></form>';
+    sainsbo_html += '</div></fieldset></form>';
 
     $('#meals').html(meal_html);
 
@@ -100,6 +120,28 @@ $( document ).ready(function() {
                 displaySelected();
             }
           });
+
+        $("#aldi_extras").keyup(function(event) {
+            if (event.keyCode === 13) {
+                _extraIngreds.push({
+                    ingred : $("#aldi_extras").val(),
+                    store : "Aldi"
+                });
+                displaySelected();
+                $("#aldi_extras").val("");
+            }
+        });
+
+        $("#sainsbo_extras").keyup(function(event) {
+            if (event.keyCode === 13) {
+                _extraIngreds.push({
+                    ingred : $("#sainsbo_extras").val(),
+                    store: "Sainsbury"
+                });
+                displaySelected();
+                $("#sainsbo_extras").val("");
+            }
+        });
     });
 
 });
