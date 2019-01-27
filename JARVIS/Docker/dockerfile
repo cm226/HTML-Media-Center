@@ -110,6 +110,11 @@ RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopp
      && make install
 
 # setup mysql db
+# carefull with this there is annoyingness here, since we map the db files to an extrnal volme when we run 
+# the container loading these scripts dont do anything unless you dont mount that volume.. 
+## so if you want to se up the external volume for the first time, mount the extrnal volme (see run docker) and
+## load these scripts manually with an interactive terminal, this is only required for first tiom setup tho. 
+# it sucks 
 
 RUN /usr/bin/mysqld_safe & mysql_install_db \
      && sleep 5s \
