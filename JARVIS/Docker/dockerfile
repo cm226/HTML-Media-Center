@@ -121,7 +121,7 @@ COPY server.pem /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/key.
 
 
 
-# start the server, usually do this manually, so that if server crashes we dont loose the container
+# start the server
 CMD service mysql start \
      && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/ \
      && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin \

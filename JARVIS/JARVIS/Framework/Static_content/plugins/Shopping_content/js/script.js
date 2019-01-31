@@ -8,8 +8,6 @@ if ('serviceWorker' in navigator) {
             $(".status").html(event.data);
         }
         
-        console.log("Client 1 Received Message: " + event.data);
-        
     });
 }
 
@@ -18,18 +16,18 @@ navigator.serviceWorker.ready.then(function(swRegistration) {
 });
 
 
-var _meals;
+var _server_state;
+var _extraIngreds = [];
 
-var _selectedMeals = {
-}
-
-var _extraIngreds = []
-;
 
 function removeSelectedMeal(meal){
-    if(_selectedMeals[meal] !== undefined){
-        delete _selectedMeals[meal];
-        SendSelectedToServer();
+    if(_server_state[meal] !== undefined){
+        _server_state[meal].selected = 0;
+        $.each(_server_state[meal].ingreds, (index, ingred)=>{
+            ingred.selected = "0";
+        });
+
+        SendStateToServer();
         displaySelected();
     }
 }
@@ -42,18 +40,24 @@ function displaySelected(){
 
     let checkbox_id = 0;
     let ingreds = [];
-    $.each(_selectedMeals, (meal, ingredients)=>{
-        meal_html += '<tr><td>' + meal +
-         '</td><td><button onClick=\'removeSelectedMeal("'+
-            meal+
-          '");\'>Delete</button></td></tr>';
+    $.each(_server_state, (meal_name, meal)=>{
 
-          ingreds = ingreds.concat(ingredients);
+        if(meal.selected){
+            meal_html += '<tr><td>' + meal_name +
+            '</td><td><button onClick=\'removeSelectedMeal("'+
+            meal_name+
+             '");\'>Delete</button></td></tr>';
+        }
+        
+        ingreds = ingreds.concat(meal.ingreds);
     });
 
     ingreds = ingreds.concat(_extraIngreds);
 
     $.each(ingreds, (index, ingredient)=>{
+        if(ingredient.selected === "0"){
+            return true;// contune
+        }
         checkbox_id++;
 
         let html = 
@@ -80,24 +84,24 @@ function displaySelected(){
     $('#sainsbury_list').html(sainsbo_html);
 }
 
-function SendSelectedToServer(){
+function SendStateToServer(){
 
     $.post("/plugins/ShoppingList/UpdateSelected",
-    JSON.stringify({selected: _selectedMeals, extra : _extraIngreds}),
+    JSON.stringify(_server_state),
     function(data, status){
         // handle error, should prob look for ack of some kind ..... w/e
     });
 }
 
-function GetAndDisplaySelected(){
-    $.get("/plugins/ShoppingList/GetSelected",
-    {},
-    function(data, status){
-        _selectedMeals = JSON.parse(data);
-        displaySelected();
-    });
+function SendExtrasToServer(){
+    if(_extraIngreds.length !== 0){
+        $.post("/plugins/ShoppingList/UpdateExtras",
+        "{ \"extras\" : " + JSON.stringify(_extraIngreds) + "}",
+        function(data, status){
+            // handle error, should prob look for ack of some kind ..... w/e
+        });
+    }
 }
-
 
 $( document ).ready(function() {
 
@@ -106,27 +110,57 @@ $( document ).ready(function() {
 
         data = data.replace("\n", "");
 
-        _meals = JSON.parse(data);
+        // contains all meals, ingredients and selected state in the format
+        /*
+        {
+            mealname : {
+                selected: true/false,
+                ingreds : [
+                    {
+                        ingred : name
+                        store: store,
+                        selected : true/false
+                    }
+                ]
+            },
+            ...
+        }
+        */
+        _server_state = JSON.parse(data);
 
-        GetAndDisplaySelected();
+        displaySelected();
 
         $( "#meal-list" ).autocomplete({
-            source: Object.keys(_meals),
+            source: Object.keys(_server_state),
             select: function (event, ui) {
 
-                _selectedMeals[ui.item.value] = _meals[ui.item.value];
-                SendSelectedToServer();
+                _server_state[ui.item.value].selected = "1";
+                $.each(_server_state[ui.item.value].ingreds, (index, ingred)=>{
+                    ingred.selected = "1"
+                });
+
+                SendStateToServer();
 
                 displaySelected();
             }
           });
 
+    });
+
+    $.get("/plugins/ShoppingList/GetExtras",{},
+    function(data,status){
+        var i = 0;
+
+        _extraIngreds = JSON.parse(data).extras;
+        displaySelected();
         $("#aldi_extras").keyup(function(event) {
             if (event.keyCode === 13) {
+
                 _extraIngreds.push({
                     ingred : $("#aldi_extras").val(),
                     store : "Aldi"
                 });
+                SendExtrasToServer();
                 displaySelected();
                 $("#aldi_extras").val("");
             }
@@ -138,10 +172,15 @@ $( document ).ready(function() {
                     ingred : $("#sainsbo_extras").val(),
                     store: "Sainsbury"
                 });
+                SendExtrasToServer();
                 displaySelected();
                 $("#sainsbo_extras").val("");
             }
         });
+        
     });
+
+    
+        
 
 });

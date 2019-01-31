@@ -114,6 +114,10 @@ bool Database::runQuery(
 ) {
 	if(this->connected)
 	{
+		// my sql connector is not thread safe (found out the hard way) anway
+		// we need explusive access here
+		std::lock_guard<std::mutex> lock(m_query_mutex);
+		
 		std::string queryStr = query->buildQuery();
 		ErrorLogger::logInfo("Running Query on Database: "+queryStr);
 		

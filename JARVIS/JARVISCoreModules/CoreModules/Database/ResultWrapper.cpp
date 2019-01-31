@@ -2,6 +2,8 @@
 
 #include "../../../ErrorLogger/Errors/ErrorLogger.h"
 
+#include "boost/lexical_cast.hpp"
+
 ResultWrapper::ResultWrapper()
 	:m_row(nullptr),
 	 m_res_set(nullptr),
@@ -100,6 +102,38 @@ std::string ResultWrapper::getString(unsigned int col)
 	}
 
 	return std::string(m_row[col]);
+}
+
+bool ResultWrapper::getBoolean(unsigned int col) {
+
+	if(m_row == nullptr){
+		ErrorLogger::logError("m_row empty in getBoolean");
+		return 0;
+	}
+
+	return boost::lexical_cast<bool>(m_row[col]);
+}
+
+bool ResultWrapper::getBoolean(std::string col_name) {
+
+	// needs some template love
+	if(m_colum_map.find(col_name) != m_colum_map.end()){
+		return getBoolean(m_colum_map[col_name]);
+	} else {
+		auto index = col_name.find_first_of(".");
+		if(index != std::string::npos){
+			auto col_name_without_table = 
+				col_name.substr(index+1);
+			if(m_colum_map.find(col_name_without_table) != 
+				m_colum_map.end()){
+					return getBoolean(m_colum_map[col_name]);
+				}
+		}
+	}
+
+	ErrorLogger::logError(
+		"Failed to find column :" + col_name + " in result");
+	return false;
 }
 
 void ResultWrapper::unNext(){

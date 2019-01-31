@@ -31,6 +31,10 @@ public:
             m_values.push_back(result->getString(m_col_name.c_str()));
         }
 
+        if constexpr (std::is_same<T, bool>::value){
+            m_values.push_back(result->getBoolean(m_col_name.c_str()));
+        }
+
         return true;
     }
 
@@ -71,6 +75,12 @@ public:
             if constexpr (std::is_same<Type, std::string>::value){
                 value = result->getString(m_col_name.c_str());
             }
+
+            if constexpr (std::is_same<Type, bool>::value){
+                value = result->getBoolean(m_col_name.c_str());
+            }
+
+            
             
             if(!m_have_value){
                 m_value = value;
