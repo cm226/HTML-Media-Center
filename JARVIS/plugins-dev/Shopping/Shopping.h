@@ -1,4 +1,4 @@
-#pragma once
+	#pragma once
 
 #include "../../JARVIS/Framework/Plugin/IPluginDLLFactory.h"
 #include "../../JARVIS/Framework/Plugin/Plugin.h"
@@ -24,12 +24,29 @@ private:
 	);
 
 	void processSelectedMessages(
+		std::shared_ptr<IHTTPUrlRouter::IConnection> connection,
+		bool allow_unselect
+	);
+
+	void processExtras(
 		std::shared_ptr<IHTTPUrlRouter::IConnection> connection
 	);
 
+	void getExtras(
+		std::shared_ptr<IHTTPUrlRouter::IConnection> connection
+	);
+
+	void setSelectedIngreds(
+  	  	const std::vector<std::string>& selected_ingredients,
+		bool allow_undet
+	);
+
+	void setSelectedMeals(
+  	  	const std::vector<std::string>& selected_meals,
+		bool allow_unset
+	);
+
 };
-
-
 
 DLLHELL_API Plugin* makePlugin(CoreModules* framework)
 {

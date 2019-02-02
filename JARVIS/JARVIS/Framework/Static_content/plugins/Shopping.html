@@ -8,8 +8,10 @@
 	<meta name="description" content="Shopping List">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1"/>
  
-  <link rel="stylesheet" href="Shopping_content/css/jquery-ui.min.css">
-  <link rel="stylesheet" href="Shopping_content/css/styles.css">
+	<link rel="stylesheet" href="Shopping_content/css/jquery-ui.min.css">
+	<link rel="stylesheet" href="Shopping_content/css/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="Shopping_content/css/styles.css">
+	
   
 </head>
 
@@ -29,20 +31,28 @@
 		</div>
 		<hr>
 		<h3>Aldi</h3>
+		<div class="form-group">
+			<input type="text" name="meal-list" id="aldi_extras" placeholder="extras"/>
+		</div>
 		<div class="aldi-ingredients"> 
 			<ul id="aldi_list">
 			</ul>
 		</div>
 		<hr>
+		<div class="form-group">
+			<input type="text" name="meal-list" id="sainsbo_extras" placeholder="extras"/>
+		</div>
 		<h3>Sainsbo</h3>
 		<div class="sainsbo-ingredients">
 				<ul id="sainsbury_list"></ul>
 		</div>
 	</div>
 	</div>
+	
 	<div class="status">Working offline</div>
   <script src="Shopping_content/js/jquery.min.js"></script>
 	<script src="Shopping_content/js/jquery-ui.min.js"></script>
+	<script src="Shopping_content/js/jquery.mobile-1.4.5.min.js"></script>
 	<script src="Shopping_content/js/idb.js"></script>
   <script src="Shopping_content/js/script.js"></script>
 </body>

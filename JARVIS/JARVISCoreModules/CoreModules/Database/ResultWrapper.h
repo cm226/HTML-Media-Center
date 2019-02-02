@@ -28,6 +28,9 @@ public:
 	std::string getString(std::string col_name);
 	std::string getString(unsigned int col);
 
+	bool getBoolean(std::string col_name);
+	bool getBoolean(unsigned int col);
+
 	bool next();
 	void unNext();
 
