@@ -37,7 +37,7 @@ function unselectIngredient(ingred_name){
     $.each(_server_state, (index, meal)=>{
         $.each(meal.ingreds, (index, ingred)=>{
             if(ingred.ingred === ingred_name){
-                ingred.selected = false;
+                ingred.selected = "0";
                 SendStateToServer();
                 displaySelected();
                 found = true;  
