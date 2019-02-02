@@ -106,7 +106,7 @@ void ShoppingPlugin::setSelectedMeals(
             &selected_query, 
             result_wrapper);
 
-    } else {
+    } else if(selected_meals.size() != 0) {
 
         std::string meals = boost::algorithm::join(selected_meals, ",");
         DatabaseTables::NoBullshitQuery selected_query(
@@ -143,7 +143,7 @@ void ShoppingPlugin::setSelectedIngreds(
             &query, 
             result_wrapper);
 
-    } else {
+    } else if(selected_ingredients.size() != 0 ){
         std::string ingredients = boost::algorithm::join(selected_ingredients, ",");
 
         DatabaseTables::NoBullshitQuery query(

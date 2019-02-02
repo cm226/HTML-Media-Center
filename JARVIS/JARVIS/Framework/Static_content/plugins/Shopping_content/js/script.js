@@ -32,6 +32,42 @@ function removeSelectedMeal(meal){
     }
 }
 
+function unselectIngredient(ingred_name){
+    let found = false;
+    $.each(_server_state, (index, meal)=>{
+        $.each(meal.ingreds, (index, ingred)=>{
+            if(ingred.ingred === ingred_name){
+                ingred.selected = false;
+                SendStateToServer();
+                displaySelected();
+                found = true;  
+                return; 
+            }
+        });
+        if(found) return;
+    });
+
+    if(found) return;
+
+    let index_to_remove = -1;
+    $.each(_extraIngreds, (index, ingred)=>{
+        if(ingred.ingred === ingred_name){
+            index_to_remove = index;
+            found = true;   
+            return
+        }
+    });
+    
+    if(found){
+        _extraIngreds.splice(index_to_remove,1);
+        SendExtrasToServer();
+        displaySelected();
+        return;
+    }
+
+    console.error("failed to find ingredient: "+ingred_name + " in ingreds list");
+}
+
 function displaySelected(){
 
     let meal_html = '';
@@ -64,7 +100,9 @@ function displaySelected(){
         '<div class="ui-checkbox">\
         <label for="checkbox'+checkbox_id+'" class="ui-btn ui-corner-all ui-btn-b ui-btn-icon-left ui-first-child">'+ingredient.ingred+'\
         <input type="checkbox" name="checkbox'+checkbox_id+'" id="checkbox'+checkbox_id+'">\
-        </input></label></div>';
+        <button class="delete-bttn" onClick="unselectIngredient(\''+ingredient.ingred+'\')">delete</button>\
+        </input></label>\
+        </div>';
 
         if(ingredient.store === 'Sainsbury'){
             sainsbo_html += html;
@@ -94,13 +132,11 @@ function SendStateToServer(){
 }
 
 function SendExtrasToServer(){
-    if(_extraIngreds.length !== 0){
-        $.post("/plugins/ShoppingList/UpdateExtras",
-        "{ \"extras\" : " + JSON.stringify(_extraIngreds) + "}",
-        function(data, status){
-            // handle error, should prob look for ack of some kind ..... w/e
-        });
-    }
+    $.post("/plugins/ShoppingList/UpdateExtras",
+    "{ \"extras\" : " + JSON.stringify(_extraIngreds) + "}",
+    function(data, status){
+        // handle error, should prob look for ack of some kind ..... w/e
+    });
 }
 
 $( document ).ready(function() {
