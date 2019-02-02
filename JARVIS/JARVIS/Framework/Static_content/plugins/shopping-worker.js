@@ -157,7 +157,7 @@ var doSync = ()=>{
 
 self.addEventListener('sync', function(event) {
   if (event.tag == 'sync') {
-    event.waitUntil(doSync());
+    //event.waitUntil(doSync());
   }
 });
 
@@ -305,7 +305,7 @@ self.addEventListener('fetch', event => {
   if(event.request.url.includes("GetExtras")){ event.respondWith(doGetExtras(event)); return; }
 
   if(event.request.url.includes("ShoppingList")){ 
-    event.waitUntil(doSync());
+    //event.waitUntil(doSync());
     event.respondWith(doGetServerState(event));
     return;
   }
