@@ -5,6 +5,7 @@
 #include "POSTRequestHandler.h"
 
 #include "../../Files/Files.h"
+#include "../../../../ErrorLogger/Errors/ErrorLogger.h"
 
 
 typedef boost::network::http::server<HTTPServer> server;
@@ -26,11 +27,21 @@ void HTTPServer::HandleRequest(
     std::string destination = request.destination;
 
     if(m_router->HasHandler(destination)){
-        m_router->Route(
-            destination,
-            request,
-            connection);
-        return;
+        // crappy plugin may except when handling 
+        // this request, catch and log error
+        try{
+            m_router->Route(
+                destination,
+                request,
+                connection);
+            return;
+        } catch (std::exception& e){
+            ErrorLogger::logError(
+                "exception while handling request : "
+                 + destination + 
+                 " exception was: " + e.what()
+            );
+        }
     }
 
     // we dont have a handler so check if its a static resource
