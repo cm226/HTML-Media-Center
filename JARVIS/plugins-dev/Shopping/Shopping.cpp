@@ -264,21 +264,21 @@ void ShoppingPlugin::getExtras(
         &selected_query, 
         result_wrapper);
 
-    // Hack to get arround my lazyness
     auto results = Results<
-        ResultGroup<
-            std::string,
-            ingred_name_col,
-            ResultList<std::string, ingred_store_col>
+        ResultRow<
+            Column<std::string, ingred_name_col>,
+            Column<std::string, ingred_store_col>
         >>(result_wrapper);   
 
 
     std::stringstream results_json;
     results_json << "{\"extras\":[";
+
     bool first = true;
-    for (auto& extra : results){
-        auto store = std::get<0>(extra->Children()).Values()[0];
-        auto ingredient = extra->Value();
+    for (auto& row : results){
+
+        auto ingredient = std::get<0>(row->Row()).Value();
+        auto store = std::get<1>(row->Row()).Value();
 
         if(!first){
             results_json << ",";    
@@ -303,10 +303,10 @@ std::string ShoppingPlugin::resultsToString(
             ResultGroup<
                 std::string,
                 meal_name_col,
-                ResultList<std::string, selected_meal_name_col>,
-                ResultList<std::string, ingred_name_col>,
-                ResultList<std::string, ingred_store_col>,
-                ResultList<bool, selected_ingred_name_col>
+                ResultList<Column<std::string, selected_meal_name_col>>,
+                ResultList<Column<std::string, ingred_name_col>>,
+                ResultList<Column<std::string, ingred_store_col>>,
+                ResultList<Column<bool, selected_ingred_name_col>>
             >
         >(result_wrapper);            
 
@@ -329,7 +329,7 @@ std::string ShoppingPlugin::resultsToString(
         auto selected_meal = std::get<0>(meal->Children());
         auto selected_meals_values = selected_meal.Values();
 
-        results_json << "\"selected\" : "<<selected_meals_values[0] << ",";
+        results_json << "\"selected\" : " << selected_meals_values[0].Value() << ",";
 
 
         auto ingredients = std::get<1>(meal->Children());
@@ -359,9 +359,9 @@ std::string ShoppingPlugin::resultsToString(
                 results_json << ",";
             }
             results_json << "{"
-            << "\"ingred\": \"" << ingred_values[i] << "\","
-            << "\"store\" : \"" << store_values[i] << "\","
-            << "\"selected\" : \"" << selected_values[i] << "\""
+            << "\"ingred\": \"" << ingred_values[i].Value() << "\","
+            << "\"store\" : \"" << store_values[i].Value() << "\","
+            << "\"selected\" : \"" << selected_values[i].Value() << "\""
             << "}";
         }
         results_json<<"]}";
