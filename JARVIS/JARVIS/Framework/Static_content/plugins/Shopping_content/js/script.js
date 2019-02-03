@@ -79,10 +79,10 @@ function displaySelected(){
     $.each(_server_state, (meal_name, meal)=>{
 
         if(meal.selected){
-            meal_html += '<tr><td>' + meal_name +
-            '</td><td><button onClick=\'removeSelectedMeal("'+
+            meal_html += '<tr><td class="meal-name">' + meal_name +
+            '</td><td class="meal-delete"><button class="delete-bttn" onClick=\'removeSelectedMeal("'+
             meal_name+
-             '");\'>Delete</button></td></tr>';
+             '");\'><img src="https://image.flaticon.com/icons/png/128/579/579006.png"/></button></td></tr>';
         }
         
         ingreds = ingreds.concat(meal.ingreds);
@@ -100,7 +100,9 @@ function displaySelected(){
         '<div class="ui-checkbox">\
         <label for="checkbox'+checkbox_id+'" class="ui-btn ui-corner-all ui-btn-b ui-btn-icon-left ui-first-child">'+ingredient.ingred+'\
         <input type="checkbox" name="checkbox'+checkbox_id+'" id="checkbox'+checkbox_id+'">\
-        <button class="delete-bttn" onClick="unselectIngredient(\''+ingredient.ingred+'\')">delete</button>\
+        <button class="delete-bttn" onClick="unselectIngredient(\''+ingredient.ingred+'\')">\
+        <img src="https://image.flaticon.com/icons/png/128/579/579006.png"/>\
+        </button>\
         </input></label>\
         </div>';
 
