@@ -19,7 +19,6 @@
 #include "../exportMacros.h"
 
 #include <mysql.h>
-#include <mutex>
 
 
 namespace DatabaseTables {
@@ -27,7 +26,6 @@ namespace DatabaseTables {
 class DLLCORE_API Database {
 private:
 	bool connected;
-	std::mutex m_query_mutex;
 
 	std::string m_userName,
 	std::string m_password,
