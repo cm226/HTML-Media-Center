@@ -27,8 +27,12 @@ namespace DatabaseTables {
 class DLLCORE_API Database {
 private:
 	bool connected;
-	std::shared_ptr<MYSQL> m_mysql;
 	std::mutex m_query_mutex;
+
+	std::string m_userName,
+	std::string m_password,
+	std::string m_DatabaseName,
+	std::string m_hostName
 
 public:
 	Database();
