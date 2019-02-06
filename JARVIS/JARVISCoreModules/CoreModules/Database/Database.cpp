@@ -60,12 +60,12 @@ bool Database::Connect(
 		 }
 	);
 
-	m_userName = username;
+	m_userName = userName;
 	m_password = password;
 	m_DatabaseName = DatabaseName;
 	m_hostName = hostName;
 
-	if(ConnectInternal(mysql_con)){
+	if(ConnectInternal(mysql_conn)){
 		this->connected = true;
 		return true;
 	}
@@ -140,9 +140,9 @@ bool Database::runQuery(
 		 }
 		);
 
-		if(!ConnectInternal(mysql_con)){
+		if(!ConnectInternal(mysql_conn)){
 			std::string("Failed to connect to db :") +
-				 mysql_error(mysql_conn.get()));
+				 mysql_error(mysql_conn.get());
 		}
 
 		std::string queryStr = query->buildQuery();
