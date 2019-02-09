@@ -16,6 +16,10 @@ public:
 	void handleRequest(std::string requestURL);
 	const std::string pluginName();
 
+private:
+	bool CheckForUpdate();
+	bool BuildUpdate();
+
 };
 
 DLLHELL_API Plugin* makePlugin(CoreModules* framework)

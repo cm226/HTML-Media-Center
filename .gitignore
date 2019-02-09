@@ -89,3 +89,7 @@ JARVIS/plugins-dev/Shopping/CMakeCache\.txt
 JARVIS/bin/
 
 JARVIS/JARVIS/JARVIS
+
+JARVIS/plugins-dev/AutoUpdater/CMakeCache\.txt
+
+JARVIS/plugins-dev/AutoUpdater/install_manifest\.txt
