@@ -1,6 +1,8 @@
 html head+body .ui-btn.ui-btn-b { 
 	background: #fff;
 	color: #000;
+	text-shadow: 0 0 0;
+	border: 0;
   
   }
 
@@ -13,6 +15,10 @@ html head+body .ui-btn.ui-btn-b {
 
 ul {
 	padding-left: 0;
+  }
+
+  table#meals{
+	  width:100%;
   }
 
 .form-group{
@@ -101,8 +107,10 @@ button::after { display:none;}
 .delete-bttn img { 
 	height:20px;
 	width:20px;
+	cursor: pointer;
   }
-
+  .ui-btn-icon-left:after, .ui-btn-icon-right:after, .ui-btn-icon-top:after, .ui-btn-icon-bottom:after, .ui-btn-icon-notext:after{ display: none;}
+  
 .meal-name{
 	width:90%;
 }

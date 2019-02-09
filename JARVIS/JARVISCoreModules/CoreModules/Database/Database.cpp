@@ -22,36 +22,55 @@ Database::~Database() {
 	
 }
 
+bool Database::ConnectInternal(
+	std::shared_ptr<MYSQL> mysql_con
+){
+	if (!mysql_real_connect(
+			mysql_con.get(),
+			"127.0.0.1",
+			m_userName.c_str(),
+			m_password.c_str(), 
+            m_DatabaseName.c_str(),
+			0,
+			"/tmp/mysql.sock", 0)) {
+
+			ErrorLogger::logError(
+				std::string("Failed to connect to database with error :") +
+				 mysql_error(mysql_con.get()));
+
+			return false;
+	}
+
+	return true;
+
+
+}
+
 bool Database::Connect(
 	std::string userName,
 	std::string password,
 	std::string DatabaseName,
 	std::string hostName
 ) {
-	m_mysql = std::shared_ptr<MYSQL>(mysql_init(NULL),
+	// This function just tests the credentials supplied 
+	// and stores if we have had valid ones
+	std::shared_ptr<MYSQL> mysql_conn = std::shared_ptr<MYSQL>(mysql_init(NULL),
 		 [](auto ptr){
 			 mysql_close(ptr);
 		 }
 	);
 
-  	if (!mysql_real_connect(
-			m_mysql.get(),
-			"127.0.0.1",
-			userName.c_str(),
-			password.c_str(), 
-            DatabaseName.c_str(),
-			0,
-			"/tmp/mysql.sock", 0)) {
+	m_userName = userName;
+	m_password = password;
+	m_DatabaseName = DatabaseName;
+	m_hostName = hostName;
 
-			ErrorLogger::logError(
-				std::string("Failed to connect to database with error :") +
-				 mysql_error(m_mysql.get()));
-
-			return false;
+	if(ConnectInternal(mysql_conn)){
+		this->connected = true;
+		return true;
 	}
-
-	this->connected = true;
-	return true;
+	
+	return false;
 	
 }
 
@@ -114,21 +133,29 @@ bool Database::runQuery(
 ) {
 	if(this->connected)
 	{
-		// my sql connector is not thread safe (found out the hard way) anway
-		// we need explusive access here
-		std::lock_guard<std::mutex> lock(m_query_mutex);
-		
+
+		std::shared_ptr<MYSQL> mysql_conn = std::shared_ptr<MYSQL>(mysql_init(NULL),
+		 [](auto ptr){
+			 mysql_close(ptr);
+		 }
+		);
+
+		if(!ConnectInternal(mysql_conn)){
+			std::string("Failed to connect to db :") +
+				 mysql_error(mysql_conn.get());
+		}
+
 		std::string queryStr = query->buildQuery();
 		ErrorLogger::logInfo("Running Query on Database: "+queryStr);
 		
-		if (mysql_real_query(m_mysql.get(), queryStr.c_str(), queryStr.length()) != 0){
+		if (mysql_real_query(mysql_conn.get(), queryStr.c_str(), queryStr.length()) != 0){
 			ErrorLogger::logError(
 				std::string("Failed to run db query :") +
-				 mysql_error(m_mysql.get()));
+				 mysql_error(mysql_conn.get()));
 			return false;
 		}
 				
-		MYSQL_RES *result = mysql_store_result(m_mysql.get());
+		MYSQL_RES *result = mysql_store_result(mysql_conn.get());
 		results.SetResults(result);
 
 		return true;

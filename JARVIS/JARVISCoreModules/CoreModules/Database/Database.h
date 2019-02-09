@@ -12,6 +12,7 @@
 #include <vector>
 #include <list>
 #include <functional>
+#include <memory>
 
 #include "Tables/DatabaseTable.h"
 #include "Querys/Querys.h"
@@ -19,7 +20,6 @@
 #include "../exportMacros.h"
 
 #include <mysql.h>
-#include <mutex>
 
 
 namespace DatabaseTables {
@@ -27,8 +27,11 @@ namespace DatabaseTables {
 class DLLCORE_API Database {
 private:
 	bool connected;
-	std::shared_ptr<MYSQL> m_mysql;
-	std::mutex m_query_mutex;
+
+	std::string m_userName;
+	std::string m_password;
+	std::string m_DatabaseName;
+	std::string m_hostName;
 
 public:
 	Database();
@@ -42,6 +45,11 @@ public:
 		ResultWrapper& result_list
 	);
 	bool isConnected();
+
+private: 
+	bool ConnectInternal(
+		std::shared_ptr<MYSQL> mysql_con
+	);
 	
 
 };
