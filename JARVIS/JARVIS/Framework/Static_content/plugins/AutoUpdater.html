@@ -32,9 +32,9 @@
         $( function() {
           $( "#check" ).click( function( event ) {
             $.ajax({
-                url: "/plugins/AutoUpdater/check",
+                url: "/plugins/AutoUpdater/check_update",
                 success : (data)=>{
-                    if(data === "ready"){
+                    if(data.trim() === "1"){
                         $("#update").removeAttr("disabled")
                     }
                 }

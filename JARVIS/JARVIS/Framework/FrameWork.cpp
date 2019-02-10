@@ -8,6 +8,7 @@
 #include "../../JARVISCoreModules/CoreModules/Comms/HTTPServer/HTTPServer.h"
 #include <list>
 #include <chrono>
+#include <future>
 
 #ifdef _WINDOWS
 #include <Windows.h>
@@ -21,6 +22,9 @@ JARVISFramework::JARVISFramework()
 	this->cModules.getComms()->messagesubject()->onListPluginsMessageReceved.connect(this, &JARVISFramework::loadedPlugins);
 	this->cModules.getComms()->messagesubject()->onDiagnosticMessageReceved.connect(this, &JARVISFramework::processDiagnosticMessage);
 
+	this->cModules.getComms()->sig_shutdown.connect([this](){
+		shuttingDown = true;
+	});
 
 	this->pluginPageResponder.reset(new PluginPageResponder(this->pluginLoader, this->cModules.getComms()));
 	this->mediaStreamResponder.reset(new MediaStreamResponder(&this->cModules));
@@ -65,13 +69,7 @@ void JARVISFramework::process()
 	this->cModules.getTaskList().StartTasks();
 
 	
-	std::thread listenForConnectionThread(&JARVISFramework::processCommandLoop, this);
-
-	while(!this->shuttingDown)
-	{
-		std::this_thread::sleep_for(std::chrono::seconds(1));
-	}
-	listenForConnectionThread.join();
+	processCommandLoop();
 
 
 	this->cModules.getComms()->stopComms();
@@ -226,16 +224,28 @@ void JARVISFramework::loadedPlugins(ListPluginsMessage*, coremodules::comms::pro
 	protocal->sendMessage(new TranslatedMessages::ReplyMessage(reply.str()));
 }
 
+
+std::string GetLineFromCin() {
+    std::string line;
+    std::getline(std::cin, line);
+    return line;
+}
+
 void JARVISFramework::processCommandLoop()
 {
 	std::string command;
-	const unsigned buffer_size = 100;
-	char buffer[buffer_size];
+
+	auto future = std::async(std::launch::async, GetLineFromCin);
 
 	while(!this->shuttingDown)
 	{
-		std::cin.getline(buffer, buffer_size);
-		command = buffer;
+		
+		if (future.wait_for(std::chrono::seconds(0)) == std::future_status::ready) {
+            command = future.get();
+        } else {
+			continue;
+		}
+
 		if(command == "shutdown")
 		{
 				this->shuttingDown = true;
@@ -249,6 +259,14 @@ void JARVISFramework::processCommandLoop()
 		{
 			ErrorLogger::logError("Unrecognised Command:" + command);
 		}
+
+		future = std::async(std::launch::async, GetLineFromCin);
+		std::this_thread::sleep_for(std::chrono::seconds(1));
 	}
+
+	if(shuttingDown){
+		std::cin.setstate(std::ios::failbit);
+	}
+
 }
 

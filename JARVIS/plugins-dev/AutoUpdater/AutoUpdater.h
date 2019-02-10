@@ -3,6 +3,9 @@
 #include "../../JARVIS/Framework/Plugin/IPluginDLLFactory.h"
 #include "../../JARVIS/Framework/Plugin/Plugin.h"
 
+#include <memory>
+#include <thread>
+#include <mutex>
 
 
 class AutoUpdater 
@@ -19,6 +22,10 @@ public:
 private:
 	bool CheckForUpdate();
 	bool BuildUpdate();
+	void Restart();
+
+	std::unique_ptr<std::thread> m_build_thread;
+	std::mutex m_build_mutex;
 
 };
 

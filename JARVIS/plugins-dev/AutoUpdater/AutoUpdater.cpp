@@ -24,10 +24,31 @@ AutoUpdater::AutoUpdater(
         }
     );    
 
+    router->MapURLRequest(
+        "/plugins/AutoUpdater/update",
+        [&](
+            std::shared_ptr<IHTTPUrlRouter::IConnection> connection
+        ){
+            std::lock_guard<std::mutex> lock(m_build_mutex);
+
+            if(m_build_thread == nullptr ){
+                m_build_thread = std::make_unique<std::thread>([&](){
+                    BuildUpdate();
+                    Restart();
+                });
+            }
+
+            connection->Write("building");
+        }
+    ); 
+
 }
 
-AutoUpdater::~AutoUpdater(){
-
+AutoUpdater::~AutoUpdater()
+{
+    if(m_build_thread != nullptr){
+        m_build_thread->join();
+    }
 }
 
 bool AutoUpdater::CheckForUpdate(
@@ -35,7 +56,7 @@ bool AutoUpdater::CheckForUpdate(
     std::system("cd /home/craig/Programming/JARVIS/HTML-Media-Center && \
     git pull origin master > gitPullOut.txt");
 
-    std::ifstream pull_output("gitPullOut.txt");
+    std::ifstream pull_output("/home/craig/Programming/JARVIS/HTML-Media-Center/gitPullOut.txt");
     std::string pull_out_str((std::istreambuf_iterator<char>(pull_output)),
                  std::istreambuf_iterator<char>());
 
@@ -64,6 +85,10 @@ bool AutoUpdater::BuildUpdate(
     return exit_code == 0;
 }
 
+void AutoUpdater::Restart(){
+    coreMod->getComms()->sig_shutdown();
+}
+
 
 void AutoUpdater::handleRequest(
     std::string requestURL
@@ -71,5 +96,5 @@ void AutoUpdater::handleRequest(
 }
 
 const std::string AutoUpdater::pluginName(){
-    return "Auto Updater";
+    return "AutoUpdater";
 }

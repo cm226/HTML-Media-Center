@@ -51,6 +51,7 @@ public:
 
 	CommsNS::IJSONRequest* createJSONRequest() override;
 	bool downloadFile(std::string const& URL, std::string const& fileName) override;
+	
 
 private:
 
