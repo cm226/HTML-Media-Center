@@ -227,9 +227,9 @@ var doUpdateExtras = function(event){
 
   return fetch(event.request).then(responce => {
 
-    let extras = responce.clone();
-    // store the responce from the server incase we need to use it
-    extras.json().then((json)=>{
+
+    // store the data incase we need it later
+    request_copy.json().then((json)=>{
 
       StoreExtras(json);
 
