@@ -20,6 +20,7 @@ const PRECACHE_URLS = [
 var lastSelected = {}; 
 
 self.importScripts('Shopping_content/js/idb.js');
+self.importScripts('WorkerFiles/Storeage.js');
 
 // The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', event => {
@@ -45,89 +46,115 @@ self.addEventListener('activate', event => {
   );
 });
 
-var StoreSelectedItems = function(selectedItems){
-  var dbPromise = idb.open('selected-db', 1, function(upgradeDb) {
-    console.log("creating Selected ingredients store")
-    if (!upgradeDb.objectStoreNames.contains('selectedIngreds')) {
-      var selectedIngreds = upgradeDb.createObjectStore('selectedIngreds');
-      selectedIngreds.createIndex('id', 'id', {unique: true});
+// this function adds the pending changes onto 
+// the suplpied base layer
+var AddLayersForExtras = function(base){
+
+  GetOfflineExtras().then((offline_extras)=>{
+
+    var addLayer = (base, layer)=>{
+
+      $.each(layer.add, (index, ingred)=>{
+        base.push(ingred);
+      });
+
+
+      $.each(layer.del, (index, ingred)=>{
+        base.push(ingred);
+      });
+      return base;
     }
+
+    let result = base;
+    $.each(offline_extras, (index, layer)=>{
+      result = addLayer(result, layer);
+    })
+    return result;
   });
+}
+
+var AddLayersForSelected = function(base){
+
+  GetOfflineSelected().then((offline_Selected)=>{
+
+    var addLayer = (base, layer)=>{
+
+      
 
 
-  dbPromise.then(function(db) {
-    var tx = db.transaction('selectedIngreds', 'readwrite');
-    var store = tx.objectStore('selectedIngreds');
-    // id is currently unused
-    store.put(selectedItems, 1);
-    return tx.complete;
-  }).then(function() {
-    console.log('added item to the store os!');
+    };
+
+    let result = base;
+    $.each(offline_extras, (index, layer)=>{
+      result = addLayer(result, layer);
+    })
+    return result;
+
+
   });
 
 }
 
-var StoreExtras = function(extras){
-  var dbPromise = idb.open('extras-db', 1, function(upgradeDb) {
-    console.log("creating extras ingredients store")
-    if (!upgradeDb.objectStoreNames.contains('extras')) {
-      var selectedIngreds = upgradeDb.createObjectStore('extras');
-      selectedIngreds.createIndex('id', 'id', {unique: true});
+var diffObj = function(obj1, obj2){
+
+  let result = {};
+  $.each(obj1, (index, val)=>{
+
+    if(typeof(val) == "object"){
+      result[index] = diffObj(obj1[index], obj2[index])
+    } else if(!obj2.hasOwnProperty(index) || val !== obj2[index]){
+      result[index] = val
     }
+
   });
+}
 
+var diffSelected = function(target){
 
-  dbPromise.then(function(db) {
-    var tx = db.transaction('extras', 'readwrite');
-    var store = tx.objectStore('extras');
-    // id is currently unused
-    store.put(extras, 1);
-    return tx.complete;
-  }).then(function() {
-    console.log('added item to the store os!');
+  GetStoredSelected().then((selected)=>{
+
+    let difs = diffObj(target, selected);
+    return difs;
   });
 
 }
 
-var GetStoredSelected = function(){
-  
-  var dbPromise = idb.open('selected-db', 1, function(upgradeDb) {
-    console.log("creating Selected ingredients store")
-    if (!upgradeDb.objectStoreNames.contains('selectedIngreds')) {
-      var selectedIngreds = upgradeDb.createObjectStore('selectedIngreds');
-      selectedIngreds.createIndex('id', 'id', {unique: true});
-    }
+var diffExtras = function(taret){
+
+  GetStoredExtras().then((extras)=>{
+
+    let stored_state = AddLayersForExtras(extras);
+    let difs ={add:[], del:[]};
+    // populate a list of names of ingredients in both lists
+    let stored_ingreds = [];
+    let target_ingreds = [];
+    
+    $.each(stored_state, (index, extra)=>{
+      stored_ingreds.push(extra.ingreds);
+    });
+
+    $.each(target, (index, extra)=>{
+      target_ingreds.push(extra.ingreds);
+    });
+
+    // now check for deletions and addidions using the arrays
+    // as keys for the objects
+    $.each(target, (index, extra)=>{
+      if(!stored_ingreds.includes(extra.ingred))
+      {
+        difs.add.push(extra);
+      }
+    });
+
+    $.each(stored_state, (index, extra)=>{
+      if(!target_ingreds.includes(extra.ingred))
+      {
+        difs.del.push(extra);
+      }
+    });
   });
 
-  // return a promice which resolves with the value of the selected
-  return dbPromise.then(function(db) {
-    var tx = db.transaction('selectedIngreds', 'readonly');
-    var store = tx.objectStore('selectedIngreds');
-    return store.get(1);
-  });
-
-};
-
-
-var GetStoredExtras = function(){
-  
-  var dbPromise = idb.open('extras-db', 1, function(upgradeDb) {
-    console.log("creating extras ingredients store")
-    if (!upgradeDb.objectStoreNames.contains('extras')) {
-      var selectedIngreds = upgradeDb.createObjectStore('extras');
-      selectedIngreds.createIndex('id', 'id', {unique: true});
-    }
-  });
-
-  // return a promice which resolves with the value of the selected
-  return dbPromise.then(function(db) {
-    var tx = db.transaction('extras', 'readonly');
-    var store = tx.objectStore('extras');
-    return store.get(1);
-  });
-
-};
-
+}
 
 var SendMessageToClient = function(msg){
 
@@ -158,6 +185,8 @@ var doSync = ()=>{
 self.addEventListener('sync', function(event) {
   if (event.tag == 'sync') {
     //event.waitUntil(doSync());
+    // sync is currently disabled to prevent 
+    // ofline updates from screwing the server
   }
 });
 
@@ -171,7 +200,7 @@ var doGetServerState = function(event){
     let serverState = responce.clone();
     // store the responce from the server incase we need to use it
     serverState.json().then((json)=>{
-      StoreSelectedItems(json);
+      CacheServerSelected(json);
     });
 
     // inform the client that we are connected to the server
@@ -212,7 +241,7 @@ var doUpdateServerState = function(event){
 
     // store the new state for when we are online again
     request_copy.json().then((json)=>{
-      StoreSelectedItems(json);
+      StoreOfflineUpdates(json);
     });
 
 
@@ -244,7 +273,7 @@ var doUpdateExtras = function(event){
     // store the new extras for sync later
     request_copy.json().then((json)=>{
 
-      StoreExtras(json);
+      StoreOfflineExtras(json);
 
     }).catch((e)=>{
       console.log(e);
@@ -267,7 +296,7 @@ var doGetExtras = function(event){
     // store the responce from the server incase we need to use it
     extras.json().then((json)=>{
 
-      StoreExtras(json);
+      CacheServerExtras(json);
 
     }).catch((e)=>{
       console.log(e);
