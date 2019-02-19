@@ -30,6 +30,11 @@ public:
             return true;
         }
 
+        if constexpr (std::is_same<T, int>::value){
+            m_value = result.getInt(m_col_name.c_str());
+            return true;
+        }
+
         ErrorLogger::logError(std::string("invalid template type in column:  ") + __PRETTY_FUNCTION__);
         return true;
         

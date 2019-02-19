@@ -11,6 +11,7 @@ extern const char ingred_name_col[] = "ingredient_name";
 extern const char ingred_store_col[] = "store";
 extern const char selected_meal_name_col[] = "selected_meal";
 extern const char selected_ingred_name_col[] = "selected_ingred";
+extern const char ingred_id_col[] = "id";
 
 
 ShoppingPlugin::ShoppingPlugin(
@@ -32,7 +33,7 @@ ShoppingPlugin::ShoppingPlugin(
         ){
             DatabaseTables::NoBullshitQuery query("\
                 SELECT Meals.meal_name, Meals.selected_meal, \
-                    Ingredients.ingredient_name, Ingredients.store, Ingredients.selected_ingred\
+                    Ingredients.id, Ingredients.ingredient_name, Ingredients.store, Ingredients.selected_ingred\
                 FROM Meals, Ingredients \
                 WHERE Meals.id = Ingredients.meal_id\
                 ORDER BY Meals.meal_name");
@@ -130,10 +131,10 @@ void ShoppingPlugin::setSelectedMeals(
 }
 
 void ShoppingPlugin::setSelectedIngreds(
-    const std::vector<std::string>& selected_ingredients,
+    const std::vector<std::string>& selected_ingredient_ids,
     bool allow_unset
 ){
-    if(selected_ingredients.size() == 0 && allow_unset){
+    if(selected_ingredient_ids.size() == 0 && allow_unset){
 
         DatabaseTables::NoBullshitQuery query(
             "UPDATE Ingredients SET selected_ingred = 0");      
@@ -143,11 +144,11 @@ void ShoppingPlugin::setSelectedIngreds(
             &query, 
             result_wrapper);
 
-    } else if(selected_ingredients.size() != 0 ){
-        std::string ingredients = boost::algorithm::join(selected_ingredients, ",");
+    } else if(selected_ingredient_ids.size() != 0 ){
+        std::string ingredients = boost::algorithm::join(selected_ingredient_ids, ",");
 
         DatabaseTables::NoBullshitQuery query(
-            "UPDATE Ingredients SET selected_ingred = 1 WHERE Ingredients.ingredient_name IN ("+ingredients+")");      
+            "UPDATE Ingredients SET selected_ingred = 1 WHERE Ingredients.id IN ("+ingredients+")");      
 
         ResultWrapper result_wrapper;
         this->coreMod->getDatabaseConnection()->runQuery(
@@ -156,7 +157,7 @@ void ShoppingPlugin::setSelectedIngreds(
 
         if(allow_unset){
             DatabaseTables::NoBullshitQuery unselected_query(
-                "UPDATE Ingredients SET selected_ingred = 0 WHERE Ingredients.ingredient_name NOT IN ("+ingredients+")");
+                "UPDATE Ingredients SET selected_ingred = 0 WHERE Ingredients.id NOT IN ("+ingredients+")");
 
             this->coreMod->getDatabaseConnection()->runQuery(
                 &unselected_query, 
@@ -186,7 +187,7 @@ void ShoppingPlugin::processSelectedMessages(
     pt::read_json(selected_json, root);
 
     std::vector<std::string> selected_meals;
-    std::vector<std::string> selected_ingredients;
+    std::vector<std::string> selected_ingredient_ids;
 
     for(auto iter = root.begin(); iter != root.end(); iter++)
     {
@@ -200,13 +201,13 @@ void ShoppingPlugin::processSelectedMessages(
         for(auto iter2 = ingredients.begin(); iter2 != ingredients.end(); iter2++){
             auto selected = iter2->second.get<std::string>("selected");
             if(selected.compare("1") == 0){
-                selected_ingredients.push_back("'"+iter2->second.get<std::string>("ingred")+"'");
+                selected_ingredient_ids.push_back("'"+iter2->second.get<std::string>("id")+"'");
             }
         }
         
     }
     // put them in the db
-    setSelectedIngreds(selected_ingredients, allow_unselect);
+    setSelectedIngreds(selected_ingredient_ids, allow_unselect);
     setSelectedMeals(selected_meals, allow_unselect);
 }
 
@@ -306,7 +307,8 @@ std::string ShoppingPlugin::resultsToString(
                 ResultList<Column<std::string, selected_meal_name_col>>,
                 ResultList<Column<std::string, ingred_name_col>>,
                 ResultList<Column<std::string, ingred_store_col>>,
-                ResultList<Column<bool, selected_ingred_name_col>>
+                ResultList<Column<bool, selected_ingred_name_col>>,
+                ResultList<Column<int, ingred_id_col>>
             >
         >(result_wrapper);            
 
@@ -335,11 +337,13 @@ std::string ShoppingPlugin::resultsToString(
         auto ingredients = std::get<1>(meal->Children());
         auto ingred_store = std::get<2>(meal->Children());
         auto selected_ingreds = std::get<3>(meal->Children());
+        auto ingredients_id = std::get<4>(meal->Children());
 
 
         auto ingred_values = ingredients.Values();
         auto store_values = ingred_store.Values();
         auto selected_values = selected_ingreds.Values();
+        auto ingred_ids = ingredients_id.Values();
         
 
         if(store_values.size() != 
@@ -361,6 +365,7 @@ std::string ShoppingPlugin::resultsToString(
             results_json << "{"
             << "\"ingred\": \"" << ingred_values[i].Value() << "\","
             << "\"store\" : \"" << store_values[i].Value() << "\","
+            << "\"id\" : \"" << ingred_ids[i].Value() << "\","
             << "\"selected\" : \"" << selected_values[i].Value() << "\""
             << "}";
         }

@@ -42,7 +42,7 @@ void ResultWrapper::SetResults(
 int32_t ResultWrapper::getInt(
 	const std::string& col_name
 ) {
-	if(m_colum_map.find(col_name) == m_colum_map.end()){
+	if(m_colum_map.find(col_name) != m_colum_map.end()){
 		return getInt(m_colum_map[col_name]);
 	}
 	
