@@ -118,3 +118,8 @@ button::after { display:none;}
 .meal-delete{
 	text-align: right
 }
+
+.meal_list{
+	font-weight: lighter;
+    color: grey;
+}
