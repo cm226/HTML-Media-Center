@@ -36,7 +36,8 @@ function unselectIngredient(ingred_name){
     let found = false;
     $.each(_server_state, (index, meal)=>{
         $.each(meal.ingreds, (index, ingred)=>{
-            if(ingred.ingred === ingred_name){
+            if(ingred.ingred === ingred_name &&
+                ingred.selected === "1"){
                 ingred.selected = "0";
                 SendStateToServer();
                 displaySelected();
@@ -75,16 +76,19 @@ function displaySelected(){
     let alid_html = '<form><fieldset data-role="controlgroup"><div class="ui-controlgroup-controls">';
 
     let checkbox_id = 0;
-    let ingreds = [];
+    let ingreds = {};
     
     $.each(_server_state, (meal_name, meal)=>{
 
-        if(meal.selected){
-            meal_html += '<tr><td class="meal-name">' + meal_name +
-            '</td><td class="meal-delete"><button class="delete-bttn" onClick=\'removeSelectedMeal("'+
-            meal_name+
-             '");\'><img src="https://image.flaticon.com/icons/png/128/579/579006.png"/></button></td></tr>';
+        if(!meal.selected){
+            return;
         }
+
+        meal_html += '<tr><td class="meal-name">' + meal_name +
+        '</td><td class="meal-delete"><button class="delete-bttn" onClick=\'removeSelectedMeal("'+
+        meal_name+
+            '");\'><img src="https://image.flaticon.com/icons/png/128/579/579006.png"/></button></td></tr>';
+        
         
         $.each(meal.ingreds, (index, ingredient)=>{
             if(ingreds[ingredient.ingred] === undefined){
