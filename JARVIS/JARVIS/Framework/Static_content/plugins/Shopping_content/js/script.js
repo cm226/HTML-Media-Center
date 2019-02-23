@@ -36,7 +36,8 @@ function unselectIngredient(ingred_name){
     let found = false;
     $.each(_server_state, (index, meal)=>{
         $.each(meal.ingreds, (index, ingred)=>{
-            if(ingred.ingred === ingred_name){
+            if(ingred.ingred === ingred_name &&
+                ingred.selected === "1"){
                 ingred.selected = "0";
                 SendStateToServer();
                 displaySelected();
@@ -75,22 +76,42 @@ function displaySelected(){
     let alid_html = '<form><fieldset data-role="controlgroup"><div class="ui-controlgroup-controls">';
 
     let checkbox_id = 0;
-    let ingreds = [];
+    let ingreds = {};
+    
     $.each(_server_state, (meal_name, meal)=>{
 
-        if(meal.selected){
-            meal_html += '<tr><td class="meal-name">' + meal_name +
-            '</td><td class="meal-delete"><button class="delete-bttn" onClick=\'removeSelectedMeal("'+
-            meal_name+
-             '");\'><img src="https://image.flaticon.com/icons/png/128/579/579006.png"/></button></td></tr>';
+        if(!meal.selected){
+            return;
         }
+
+        meal_html += '<tr><td class="meal-name">' + meal_name +
+        '</td><td class="meal-delete"><button class="delete-bttn" onClick=\'removeSelectedMeal("'+
+        meal_name+
+            '");\'><img src="https://image.flaticon.com/icons/png/128/579/579006.png"/></button></td></tr>';
         
-        ingreds = ingreds.concat(meal.ingreds);
+        
+        $.each(meal.ingreds, (index, ingredient)=>{
+            if(ingreds[ingredient.ingred] === undefined){
+                ingreds[ingredient.ingred] = ingredient;
+                ingreds[ingredient.ingred].meals = [];
+            }
+            
+            ingreds[ingredient.ingred].meals.push(meal_name);
+            
+        });
     });
 
-    ingreds = ingreds.concat(_extraIngreds);
+    $.each(_extraIngreds, (index, ingredient)=>{
+        if(ingreds[ingredient.ingred] === undefined){
+            ingreds[ingredient.ingred] = ingredient;
+            ingreds[ingredient.ingred].meals = [];
+        }
 
-    $.each(ingreds, (index, ingredient)=>{
+        ingreds[ingredient.ingred].meals.push("extra");
+    });
+
+
+    $.each(ingreds, (name, ingredient)=>{
         if(ingredient.selected === "0"){
             return true;// contune
         }
@@ -99,6 +120,7 @@ function displaySelected(){
         let html = 
         '<div class="ui-checkbox">\
         <label for="checkbox'+checkbox_id+'" class="ui-btn ui-corner-all ui-btn-b ui-btn-icon-left ui-first-child">'+ingredient.ingred+'\
+        <span class="meal_list">('+ingredient.meals.toString()+') </span>\
         <input type="checkbox" name="checkbox'+checkbox_id+'" id="checkbox'+checkbox_id+'">\
         <button class="delete-bttn" onClick="unselectIngredient(\''+ingredient.ingred+'\')">\
         <img src="https://image.flaticon.com/icons/png/128/579/579006.png"/>\
