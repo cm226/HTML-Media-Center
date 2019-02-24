@@ -1,5 +1,6 @@
 #include "AutoUpdater.h"
 
+#include "../../ErrorLogger/Errors/ErrorLogger.h"
 #include "../../JARVISCoreModules/CoreModules/Comms/HTTPServer/IHTTPUrlRouter.h"
 
 #include <stdlib.h> 
@@ -33,8 +34,12 @@ AutoUpdater::AutoUpdater(
 
             if(m_build_thread == nullptr ){
                 m_build_thread = std::make_unique<std::thread>([&](){
-                    BuildUpdate();
-                    Restart();
+                    if(BuildUpdate() == 0){
+                        Restart();
+                    } else {
+                        ErrorLogger::logError("Failed to build update");
+                    }
+                    
                 });
             }
 
@@ -79,10 +84,14 @@ bool AutoUpdater::BuildUpdate(
      "&& cmake -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/JARVIS CMakeLists.txt \\ "
      "&& make install";
 
-    auto cmd = std::system(updateCMD.c_str());
-    auto exit_code = WEXITSTATUS(cmd);
+    bool normal_exit = false;
+    std::string output = this->coreMod->getTaskList().RunSystemCommand(updateCMD, normal_exit);
 
-    return exit_code == 0;
+    if(!normal_exit){
+        ErrorLogger::logError("Got abnormal exit from update command, the output was : " + output);
+    }
+
+    return normal_exit;
 }
 
 void AutoUpdater::Restart(){

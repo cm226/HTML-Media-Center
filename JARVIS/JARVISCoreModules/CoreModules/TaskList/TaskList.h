@@ -30,6 +30,8 @@ public:
 
 	void ShutdownOnComplete(bool shutdown);
 
+	std::string RunSystemCommand(std::string cmd, bool& exit_code);
+
 };
 
 

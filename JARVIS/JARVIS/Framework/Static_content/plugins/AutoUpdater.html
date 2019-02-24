@@ -21,6 +21,7 @@
     
         <button class="ui-button ui-widget ui-corner-all" id="check">Check for Updates</button>
         <button class="ui-button ui-widget ui-corner-all" disabled id="update">Update</button>
+        <div id="status"></div>
     
     </div>
 
@@ -44,7 +45,10 @@
 
           $( "#update" ).click( function( event ) {
             $.ajax({
-                url: "/plugins/AutoUpdater/update"
+                url: "/plugins/AutoUpdater/update",
+                success : (data)=>{
+                    $('#status').html(data);
+                }
             });
           });
 
