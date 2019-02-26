@@ -2,6 +2,7 @@
 
 #include "../../ErrorLogger/Errors/ErrorLogger.h"
 #include "../../JARVISCoreModules/CoreModules/Comms/HTTPServer/IHTTPUrlRouter.h"
+#include "../../JARVISCoreModules/CoreModules/config.h"
 
 #include <stdlib.h> 
 #include <fstream>
@@ -70,19 +71,13 @@ bool AutoUpdater::CheckForUpdate(
 
 bool AutoUpdater::BuildUpdate(
 ){
-    std::string updateCMD = "\\ "
-     "cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/ \\ "
-     "&& ./build_release \\ "
-     "&& cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVIS \\ "
-     "&& cmake -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0 -DOPENSSL_ROOT_DIR=/openssl-1.0.2l/ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=. CMakeLists.txt \\ "
-     "&& make install \\ "
-     "&& cp ./bin/JARVIS ../bin \\ "
-     "&& cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping \\ "
-     "&& cmake -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/JARVIS CMakeLists.txt \\ "
-     "&& make install\\ "
-     "&& cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/AutoUpdater \\ "
-     "&& cmake -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/JARVIS CMakeLists.txt \\ "
-     "&& make install";
+    std::string updateCMD;
+    if(LIVE){
+        updateCMD = "/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/BuildAll.sh Release";
+    } else {
+        updateCMD = "/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/BuildAll.sh Debug";
+    }
+    
 
     bool normal_exit = false;
     std::string output = this->coreMod->getTaskList().RunSystemCommand(updateCMD, normal_exit);

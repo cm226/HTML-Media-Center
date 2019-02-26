@@ -95,19 +95,9 @@ RUN  sed -i 's/#define MY_HOST "localhost"/#define MY_HOST "172.17.0.2"/g' /home
      && sed -i 's/<dbpw>/pw/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h
 
 
-RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/ \
-    && git pull origin master \
-     && ./build_release \
-     && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVIS \
-     && cmake -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0 -DOPENSSL_ROOT_DIR=/openssl-1.0.2l/ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=. CMakeLists.txt \
-     && make install \
-     && cp ./bin/JARVIS ../bin  
-
-# build plugins
-RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/Shopping \
+RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/ \
      && git pull origin master \
-     && cmake -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/JARVIS CMakeLists.txt \
-     && make install
+     && ./BuildAll.sh
 
 # setup mysql db
 # carefull with this there is annoyingness here, since we map the db files to an extrnal volme when we run 
