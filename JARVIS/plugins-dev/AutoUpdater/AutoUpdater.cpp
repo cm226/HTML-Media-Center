@@ -35,7 +35,7 @@ AutoUpdater::AutoUpdater(
 
             if(m_build_thread == nullptr ){
                 m_build_thread = std::make_unique<std::thread>([&](){
-                    if(BuildUpdate() == 0){
+                    if(BuildUpdate()){
                         Restart();
                     } else {
                         ErrorLogger::logError("Failed to build update");
