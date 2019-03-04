@@ -94,3 +94,24 @@ void TaskList::ShutdownOnComplete(bool shutdown)
 {
 	this->_shutdownOnComplete = shutdown;
 }
+
+
+std::string TaskList::RunSystemCommand(std::string cmd, bool& exit_code) {
+	
+	std::array<char, 2048> buffer;
+    std::string result;
+	FILE* pipe = popen(cmd.c_str(), "r");
+    if (!pipe) {
+        ErrorLogger::logError("Popen Failed!!");
+		return "";
+    }
+    while (fgets(buffer.data(), buffer.size(), pipe) != nullptr) {
+        result += buffer.data();
+    }
+
+	auto exit = pclose(pipe);
+	exit_code = WIFEXITED(exit);
+	
+    return result;
+
+}

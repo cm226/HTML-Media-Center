@@ -1,0 +1,60 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Auto Updater</title>
+	<meta name="description" content="Autoupdater">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1"/>
+ 
+	<link rel="stylesheet" href="Shopping_content/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="Shopping_content/css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="AutoUpdater_content/style.css">
+	
+  
+</head>
+
+<body>
+
+    <div id="page">
+    
+        <button class="ui-button ui-widget ui-corner-all" id="check">Check for Updates</button>
+        <button class="ui-button ui-widget ui-corner-all" disabled id="update">Update</button>
+        <div id="status"></div>
+    
+    </div>
+
+    <script src="Shopping_content/js/jquery.min.js"></script>
+	<script src="Shopping_content/js/jquery-ui.min.js"></script>
+    <script src="Shopping_content/js/jquery.mobile-1.4.5.min.js"></script>
+    
+    <script>
+        $( function() {
+          $( "#check" ).click( function( event ) {
+            $.ajax({
+                url: "/plugins/AutoUpdater/check_update",
+                success : (data)=>{
+                    if(data.trim() === "1"){
+                        $("#update").removeAttr("disabled")
+                    }
+                }
+            });
+
+          });
+
+          $( "#update" ).click( function( event ) {
+            $.ajax({
+                url: "/plugins/AutoUpdater/update",
+                success : (data)=>{
+                    $('#status').html(data);
+                }
+            });
+          });
+
+        });
+
+    </script>
+
+</body>
+</html>

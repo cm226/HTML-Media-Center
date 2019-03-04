@@ -8,6 +8,9 @@
 #include "../../JARVISCoreModules/CoreModules/Comms/HTTPServer/HTTPServer.h"
 #include <list>
 #include <chrono>
+#include <future>
+
+#include <sys/select.h>
 
 #ifdef _WINDOWS
 #include <Windows.h>
@@ -21,6 +24,9 @@ JARVISFramework::JARVISFramework()
 	this->cModules.getComms()->messagesubject()->onListPluginsMessageReceved.connect(this, &JARVISFramework::loadedPlugins);
 	this->cModules.getComms()->messagesubject()->onDiagnosticMessageReceved.connect(this, &JARVISFramework::processDiagnosticMessage);
 
+	this->cModules.getComms()->sig_shutdown.connect([this](){
+		shuttingDown = true;
+	});
 
 	this->pluginPageResponder.reset(new PluginPageResponder(this->pluginLoader, this->cModules.getComms()));
 	this->mediaStreamResponder.reset(new MediaStreamResponder(&this->cModules));
@@ -65,13 +71,7 @@ void JARVISFramework::process()
 	this->cModules.getTaskList().StartTasks();
 
 	
-	std::thread listenForConnectionThread(&JARVISFramework::processCommandLoop, this);
-
-	while(!this->shuttingDown)
-	{
-		std::this_thread::sleep_for(std::chrono::seconds(1));
-	}
-	listenForConnectionThread.join();
+	processCommandLoop();
 
 
 	this->cModules.getComms()->stopComms();
@@ -226,29 +226,54 @@ void JARVISFramework::loadedPlugins(ListPluginsMessage*, coremodules::comms::pro
 	protocal->sendMessage(new TranslatedMessages::ReplyMessage(reply.str()));
 }
 
+
+std::string GetLineFromCin() {
+    std::string line;
+    std::getline(std::cin, line);
+    return line;
+}
+
 void JARVISFramework::processCommandLoop()
 {
 	std::string command;
-	const unsigned buffer_size = 100;
-	char buffer[buffer_size];
+	
+	while(!this->shuttingDown) {
+			
+		// we are using select here( which is a linux specific command) because
+		// the std lib dosnt seem to have anything to support async io and we need that 
+		// because we can shutdown from a seperate thread
+		struct timeval tv;
+		tv.tv_sec = 0;
+		tv.tv_usec = 100;
 
-	while(!this->shuttingDown)
-	{
-		std::cin.getline(buffer, buffer_size);
-		command = buffer;
-		if(command == "shutdown")
+		fd_set fds;
+		FD_ZERO (&fds);
+		FD_SET (STDIN_FILENO, &fds);
+		
+		int result = select (STDIN_FILENO + 1, &fds, NULL, NULL, &tv);
+		if (result && result != -1)
 		{
-				this->shuttingDown = true;
-				return;
-		}
-		else if(command == "media resend_handshake")
-		{
-			this->cModules.getMediaStreamer().Resend_Agent_Handshake_Message();
-		}
-		else
-		{
-			ErrorLogger::logError("Unrecognised Command:" + command);
+			if (FD_ISSET (0, &fds))
+			{
+				std::getline(std::cin, command);
+			}
+
+			if(command == "shutdown")
+			{
+					this->shuttingDown = true;
+					return;
+			}
+			else if(command == "media resend_handshake")
+			{
+				this->cModules.getMediaStreamer().Resend_Agent_Handshake_Message();
+			}
+			else
+			{
+				ErrorLogger::logError("Unrecognised Command:" + command);
+			}
+
 		}
 	}
+
 }
 
