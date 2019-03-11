@@ -177,50 +177,16 @@ window.onerror = function(message, source, lineno, colno, error) {
 
 $( document ).ready(function() {
 
-    $.get("/plugins/ShoppingList",{},
-    function(data, status){
+    let error_handler = function(jqXHR, textStatus, errorThrown){
+        $.post("/plugins/ClientLogger/logError",
+        JSON.stringify({
+            jqXHR : jqXHR, 
+            textStatus : textStatus,
+            errorThrown : errorThrown,
+        }));
+    };
 
-        data = data.replace("\n", "");
-
-        // contains all meals, ingredients and selected state in the format
-        /*
-        {
-            mealname : {
-                selected: true/false,
-                ingreds : [
-                    {
-                        ingred : name
-                        store: store,
-                        selected : true/false
-                    }
-                ]
-            },
-            ...
-        }
-        */
-        _server_state = JSON.parse(data);
-
-        displaySelected();
-
-        $( "#meal-list" ).autocomplete({
-            source: Object.keys(_server_state),
-            select: function (event, ui) {
-
-                _server_state[ui.item.value].selected = "1";
-                $.each(_server_state[ui.item.value].ingreds, (index, ingred)=>{
-                    ingred.selected = "1"
-                });
-
-                SendStateToServer();
-
-                displaySelected();
-            }
-          });
-
-    });
-
-    $.get("/plugins/ShoppingList/GetExtras",{},
-    function(data,status){
+    let extras_handler = function(data,status){
         var i = 0;
 
         _extraIngreds = JSON.parse(data).extras;
@@ -250,7 +216,52 @@ $( document ).ready(function() {
             }
         });
         
-    });
+    };
+
+    let list_handler = function(data, status){
+
+        data = data.replace("\n", "");
+
+        // contains all meals, ingredients and selected state in the format
+        /*
+        {
+            mealname : {
+                selected: true/false,
+                ingreds : [
+                    {
+                        ingred : name
+                        store: store,
+                        selected : true/false
+                    }
+                ]
+            },
+            ...
+        }
+        */
+        _server_state = JSON.parse(data);
+
+        $.get("/plugins/ShoppingList/GetExtras",{},extras_handler).error(error_handler);
+        displaySelected();
+
+        $( "#meal-list" ).autocomplete({
+            source: Object.keys(_server_state),
+            select: function (event, ui) {
+
+                _server_state[ui.item.value].selected = "1";
+                $.each(_server_state[ui.item.value].ingreds, (index, ingred)=>{
+                    ingred.selected = "1"
+                });
+
+                SendStateToServer();
+
+                displaySelected();
+            }
+          });
+
+    }
+
+    $.get("/plugins/ShoppingList",{},list_handler)
+    .error(error_handler);
 
     
         
