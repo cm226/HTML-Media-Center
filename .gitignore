@@ -95,3 +95,7 @@ JARVIS/plugins-dev/AutoUpdater/CMakeCache\.txt
 JARVIS/plugins-dev/AutoUpdater/install_manifest\.txt
 
 JARVIS/CMakeCache\.txt
+
+JARVIS/plugins-dev/ClientLoger/CMakeCache\.txt
+
+JARVIS/plugins-dev/ClientLoger/install_manifest\.txt

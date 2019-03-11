@@ -15,7 +15,6 @@ navigator.serviceWorker.ready.then(function(swRegistration) {
     return swRegistration.sync.register('sync');
 });
 
-
 var _server_state;
 var _extraIngreds = [];
 
@@ -161,6 +160,19 @@ function SendExtrasToServer(){
     function(data, status){
         // handle error, should prob look for ack of some kind ..... w/e
     });
+}
+
+window.onerror = function(message, source, lineno, colno, error) {
+
+    $.post("/plugins/ClientLogger/logError",
+    JSON.stringify({
+        message : message, 
+        source : source,
+        lineno : lineno,
+        colno : colno,
+        stack : error.stack
+    }));
+
 }
 
 $( document ).ready(function() {
