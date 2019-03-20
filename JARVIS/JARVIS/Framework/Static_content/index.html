@@ -1,24 +1,42 @@
 <html>
 
+    <head>
+        <link rel="stylesheet" type="text/css" href="index.css">.
+    </head>
+
     <div id="loadedPlugins"/>
-    <script>
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    let plugins = this.responseText.split(',');
-                    
-                    let html = '';
-                    plugins.forEach(element => {
-                        if(element !== ''){
-                            html += '<a href="/plugins/'+element+'"> '+element+'</a>';
-                        }
-                    });
-                    document.getElementById("loadedPlugins").innerHTML = html;
-                }
-            };
-            xhttp.open("GET", "loadedPlugins", true);
-            xhttp.send();
     
+    
+    <script>
+    
+        let displayPlugins = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let plugins = this.responseText.split(',');
+                
+                let html = '';
+                plugins.forEach(element => {
+                    if(element !== ''){
+                        html += '<div class="appCard">\
+                                <a href="/plugins/'+element+'">\
+                                <img src="appimg.png" height="75px" width="75px"/>\
+                                 <span>'+element+'<span>\
+                                 </a>\
+                                </div>';
+                    }
+                });
+                document.getElementById("loadedPlugins").innerHTML = html;
+            }
+        };
+        
+        //var xhttp = new XMLHttpRequest();
+        //xhttp.onreadystatechange = displayPlugins;
+        //xhttp.open("GET", "loadedPlugins", true);
+        //xhttp.send();
+    
+
+
+        // test code 
+        displayPlugins.call({readyState : 4, status: 200, responseText : "plugn1, plugin2"});
     
     </script>
 

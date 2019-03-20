@@ -1,0 +1,11 @@
+#loadedPlugins{
+    margin: auto;
+    width: 75%;
+    padding: 10px;
+}
+
+.appCard{
+    width:75px;
+    padding: 20px;
+    display: inline-block;
+}
