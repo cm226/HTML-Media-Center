@@ -17,9 +17,8 @@ private:
 
 	void renderEntry(model::LogEntry& entry, ElementList* elementList);
 
-	void renderErrorEntry(model::LogEntry& entry, ElementList* elementList);
-	void renderWarnEntry(model::LogEntry& entry, ElementList* elementList);
-	void renderInfoEntry(model::LogEntry& entry, ElementList* elementList);
+
+	std::string entriesToJson();
 
 public:
 	LogViewerPlugin(CoreModules* cm);
