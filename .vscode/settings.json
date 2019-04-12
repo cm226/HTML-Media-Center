@@ -53,6 +53,7 @@
         "typeinfo": "cpp",
         "utility": "cpp",
         "algorithm": "cpp",
-        "*.ipp": "cpp"
+        "*.ipp": "cpp",
+        "strstream": "cpp"
     }
 }

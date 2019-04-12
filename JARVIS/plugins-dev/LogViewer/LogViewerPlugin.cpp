@@ -1,6 +1,8 @@
 #include "LogViewerPlugin.h"
 #include "../../JARVISCoreModules/CoreModules/config.h"
 
+#include "../../JARVISCoreModules/CoreModules/Comms/HTTPServer/IHTTPUrlRouter.h"
+
 #include <sstream>
 
 LogViewerPlugin::LogViewerPlugin(CoreModules* cm): Plugin(cm), name("LogViewer")
@@ -11,13 +13,13 @@ LogViewerPlugin::LogViewerPlugin(CoreModules* cm): Plugin(cm), name("LogViewer")
     auto router = comms->Router();
 
     router->MapURLRequest(
-        "/plugins/LogViewer/entries",
+        "/plugins/LogViewer/Entries",
         [&](
             std::shared_ptr<IHTTPUrlRouter::IConnection> connection
         ){
-            connection->write(entriesToJson());
+            connection->Write(entriesToJson());
         }
-    );    
+    );     
 }
 
 
@@ -28,21 +30,21 @@ LogViewerPlugin::~LogViewerPlugin(void)
 
 std::string LogViewerPlugin::entriesToJson(){
 
-	std::priority_queue<model::LogEntry> entries;
-	if(!logParser->getAllEntrys(entries)){
+	std::vector<model::LogEntry> entries;
+	if(!logParser.getAllEntrys(entries)){
 		ErrorLogger::logError("Failed to get error log entries");
 	}
 
-	std::string_stream ss;
+	std::stringstream ss;
 	ss<<"[";
-	first = true;
+	bool first = true;
 	for(auto& entry : entries){
-		if(!first){ss<<","}
+		if(!first){ss<<",";}
 		first = false;
 		ss << "{" 
-		<< "msg:" << entry.getMessage()
-		<< "ts:" << to_simple_string(entry.logTimeStamp())
-		<< "sev:" << entry.getSeverityStr()
+		<< "\"msg\":\"" << entry.getMessage() << "\","
+		<< "\"ts\":\"" << to_simple_string(entry.logTimeStamp()) << "\","
+		<< "\"sev\":\"" << entry.getSeverityStr() << "\""
 		<< "}"; 
 	}
 
@@ -51,13 +53,16 @@ std::string LogViewerPlugin::entriesToJson(){
 	return ss.str();
 }
 
+void LogViewerPlugin::handleRequest(std::string requestURL){
+	return;
+}
 
 bool LogViewerPlugin::whatDoYouLookLike(Page* page)
 {
 	return true;
 }
 
-const char* LogViewerPlugin::pluginName()
+const std::string LogViewerPlugin::pluginName()
 {
-	return this->name.c_str();
+	return this->name;
 }

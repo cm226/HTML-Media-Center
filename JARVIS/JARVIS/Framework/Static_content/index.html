@@ -28,15 +28,11 @@
             }
         };
         
-        //var xhttp = new XMLHttpRequest();
-        //xhttp.onreadystatechange = displayPlugins;
-        //xhttp.open("GET", "loadedPlugins", true);
-        //xhttp.send();
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = displayPlugins;
+        xhttp.open("GET", "loadedPlugins", true);
+        xhttp.send();
     
-
-
-        // test code 
-        displayPlugins.call({readyState : 4, status: 200, responseText : "plugn1, plugin2"});
     
     </script>
 
