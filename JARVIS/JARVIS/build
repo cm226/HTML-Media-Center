@@ -10,5 +10,5 @@ else
       echo "Building $config"
 fi
 
-cmake -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0 -DCMAKE_BUILD_TYPE=$config -DCMAKE_INSTALL_PREFIX=../ CMakeLists.txt
+cmake -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0 -DOPENSSL_ROOT_DIR=/openssl-1.0.2l/ -DCMAKE_BUILD_TYPE=$config -DCMAKE_INSTALL_PREFIX=../ CMakeLists.txt
 make install
