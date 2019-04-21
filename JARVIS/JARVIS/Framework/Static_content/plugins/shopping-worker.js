@@ -20,6 +20,7 @@ const PRECACHE_URLS = [
 var lastSelected = {}; 
 
 self.importScripts('Shopping_content/js/idb.js');
+self.importScripts('service_helpers.js');
 
 // The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', event => {
@@ -310,26 +311,6 @@ self.addEventListener('fetch', event => {
     return;
   }
   
+  return GetFromCacheThenUpdate(PRECACHE, event.request);
 
-  // try get from server first
-
-  event.respondWith(
-    fetch(event.request).then(response => {
-
-    // Put a copy of the response in the runtime cache.
-    var new_responce = response.clone();
-    caches.open(RUNTIME).then(
-        cache => {
-          cache.put(event.request, new_responce)
-    });
-
-    return response;
-
-  }).catch((e)=>{
-
-    return caches.open(RUNTIME).then(cache => {
-      return caches.match(event.request)
-    })
-
-  }));
 });
