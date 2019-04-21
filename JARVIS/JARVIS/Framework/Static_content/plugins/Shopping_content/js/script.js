@@ -255,6 +255,9 @@ $( document ).ready(function() {
                 SendStateToServer();
 
                 displaySelected();
+
+                $(this).val('');
+                return false;
             }
           });
 
