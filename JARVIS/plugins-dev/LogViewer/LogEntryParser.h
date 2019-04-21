@@ -1,18 +1,18 @@
 #pragma once
 #include <string>
-#include <queue>
+#include <vector>
 #include <iostream>
 #include <fstream>
 
 
-#include "Model\LogEntry.h"
+#include "Model/LogEntry.h"
 class LogEntryParser
 {
 private:
 	std::string fileLocation;
 	std::ifstream logFile;
 
-	bool readLast10Entrys(std::vector<std::string>& logEntrys);
+	bool readLastNEntrys(std::vector<std::string>& logEntrys, unsigned int n);
 	model::LogEntry parseLogEntry(std::string message);
 	model::LogEntry::SEVERITY parseEntrySeverity(std::string severityStr);
 
@@ -24,6 +24,6 @@ public:
 	~LogEntryParser(void);
 
 	bool setLogFileLocation(std::string logFile);
-	bool getAllEntrys(std::priority_queue<model::LogEntry>& list);
+	bool getAllEntrys(std::vector<model::LogEntry>& list);
 };
 

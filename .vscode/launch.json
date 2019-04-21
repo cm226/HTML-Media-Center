@@ -11,8 +11,13 @@
             "program": "/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/JARVIS",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
+            "cwd": "/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin",
+            "environment": [
+                {
+                    "name": "LD_LIBRARY_PATH",
+                    "value": "/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin"
+                }
+            ],
             "externalConsole": true,
             "MIMode": "gdb",
             "setupCommands": [

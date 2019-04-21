@@ -4,7 +4,7 @@
 #include<boost/tokenizer.hpp>
 #include <boost/algorithm/string.hpp>
 
-#include "../../JARVISCoreModules/CoreModules/Errors/ErrorLogger.h"
+#include "../../ErrorLogger/Errors/ErrorLogger.h"
 
 
 LogEntryParser::LogEntryParser()
@@ -41,22 +41,22 @@ void LogEntryParser::closeLogFileIfOpen()
 		this->logFile.close();
 }
 
-bool LogEntryParser::getAllEntrys(std::priority_queue<model::LogEntry>& list)
+bool LogEntryParser::getAllEntrys(std::vector<model::LogEntry>& list)
 {
 	openLogFile();
 
 	std::vector<std::string> last10LogEntrys;
-	readLast10Entrys(last10LogEntrys);
+	readLastNEntrys(last10LogEntrys, 50);
 
-	for(std::vector<std::string>::iterator entryIt = last10LogEntrys.begin(); entryIt != last10LogEntrys.end(); entryIt++)
-		list.push(parseLogEntry(*entryIt));
+	for(auto& entry : last10LogEntrys)
+		list.push_back(parseLogEntry(entry));
 
 	closeLogFileIfOpen();
 	return true;
 }
 
 
-bool LogEntryParser::readLast10Entrys(std::vector<std::string>& logEntrys)
+bool LogEntryParser::readLastNEntrys(std::vector<std::string>& logEntrys, unsigned int n)
 {
 	int offsetFromEnd = 0;
 	char c;
@@ -65,7 +65,7 @@ bool LogEntryParser::readLast10Entrys(std::vector<std::string>& logEntrys)
 	{
 		this->logFile.seekg(-1,this->logFile.end);
 		this->logFile.read(&c,1);
-		for(int numEntrys = 0; numEntrys < 10; numEntrys ++)
+		for(int numEntrys = 0; numEntrys < n; numEntrys ++)
 		{
 			while(c != '\n' && (int)this->logFile.tellg() > 0)
 			{
