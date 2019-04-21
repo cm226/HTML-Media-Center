@@ -17,16 +17,17 @@ private:
 
 	void renderEntry(model::LogEntry& entry, ElementList* elementList);
 
-	void renderErrorEntry(model::LogEntry& entry, ElementList* elementList);
-	void renderWarnEntry(model::LogEntry& entry, ElementList* elementList);
-	void renderInfoEntry(model::LogEntry& entry, ElementList* elementList);
+
+	std::string entriesToJson();
 
 public:
 	LogViewerPlugin(CoreModules* cm);
 	virtual ~LogViewerPlugin(void);
 
+	void handleRequest(std::string requestURL);
+
 	virtual bool whatDoYouLookLike(Page*);
-	virtual const char* pluginName();
+	virtual const std::string pluginName();
 };
 
 #endif
