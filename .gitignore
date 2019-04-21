@@ -47,6 +47,8 @@ public/css/Mobile/images/*
 *unsuccessfulbuild
 *.ilk
 *.lib
+*\CMakeCache.txt
+*\install_manifest.txt
 
 *Release/
 .DS_Store
@@ -76,10 +78,6 @@ JARVIS/test/bin/Server
 
 JARVIS/test/bin/server\.pem
 
-JARVIS/test/CMakeCache\.txt
-
-JARVIS/test/CMakeLists\.txt
-
 JARVIS/test/Server
 
 JARVIS/JARVISCoreModules/CMakeCache\.txt
@@ -90,16 +88,3 @@ JARVIS/bin/
 
 JARVIS/JARVIS/JARVIS
 
-JARVIS/plugins-dev/AutoUpdater/CMakeCache\.txt
-
-JARVIS/plugins-dev/AutoUpdater/install_manifest\.txt
-
-JARVIS/CMakeCache\.txt
-
-JARVIS/plugins-dev/ClientLoger/CMakeCache\.txt
-
-JARVIS/plugins-dev/ClientLoger/install_manifest\.txt
-
-JARVIS/JARVIS/CMakeCache\.txt
-
-JARVIS/JARVIS/install_manifest\.txt
