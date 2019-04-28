@@ -17,3 +17,6 @@ certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n craig -i server.crt
 
 #convert to der for android(maybe)
 #openssl x509 -inform PEM -outform DER -in CA.crt -out CA.der.crt
+
+cp server.crt ../bin/cert.pem
+cp server.pem ../bin/key.pem

@@ -262,35 +262,22 @@ var doUpdateExtras = function(event){
 
 var doGetExtras = function(event){
 
-  return fetch(event.request).then(responce => {
+  return GetDataCacheThenUpdate(
+    GetStoredExtras,
 
-    let extras = responce.clone();
-    // store the responce from the server incase we need to use it
-    extras.json().then((json)=>{
-
-      StoreExtras(json);
-
-    }).catch((e)=>{
-      console.log(e);
-    });
-
-    return responce;
-
-  }).catch((e)=>{
-
-    return GetStoredExtras().then(selected => {
-      if(selected === undefined){
-        console.error ("got undefined responce from selected indexDB query");
-        selected = "";
-      }
-      return new Response(JSON.stringify(selected), {
-        headers: {'Content-Type': 'text/plain'}
-      });
-    })
+    (responce)=>{
+      let extras = responce.clone();
+      // store the responce from the server incase we need to use it
+      extras.json().then((json)=>{
+  
+        StoreExtras(json);
+  
+      }).catch((e)=>{
+        console.log(e);
+      })  
+    },
     
-  });
-
-
+    event.request);
 }
 
 // The fetch handler serves responses for same-origin resources from a cache.
@@ -306,7 +293,6 @@ self.addEventListener('fetch', event => {
   if(event.request.url.includes("GetExtras")){ event.respondWith(doGetExtras(event)); return; }
 
   if(event.request.url.includes("ShoppingList")){ 
-    //event.waitUntil(doSync());
     event.respondWith(doGetServerState(event));
     return;
   }

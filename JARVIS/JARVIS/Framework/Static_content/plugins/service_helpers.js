@@ -7,5 +7,25 @@ var GetFromCacheThenUpdate = function(cache, request){
                 return responce;
             })
         })
-      })
+    })
+}
+
+var GetDataCacheThenUpdate = function(cachePromise, storeFn, request){
+    cachePromise.then(result =>{
+        
+        let req = fetch(request).then(responce=>{
+            storeFn(responce);
+        });
+        
+        if(result !== undefined){
+            req();
+
+            return new Response(JSON.stringify(result), {
+                headers: {'Content-Type': 'text/plain'}
+            });
+
+        } else {
+            return req();
+        }
+    });
 }
