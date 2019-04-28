@@ -20,7 +20,7 @@ public:
 	const std::string pluginName();
 
 private:
-	bool CheckForUpdate();
+	bool CheckForUpdate(std::string& output);
 	bool BuildUpdate();
 	void Restart();
 

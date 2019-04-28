@@ -22,7 +22,13 @@ AutoUpdater::AutoUpdater(
         [&](
             std::shared_ptr<IHTTPUrlRouter::IConnection> connection
         ){
-            connection->Write(CheckForUpdate() ? "1" : "0");
+            std::string output;
+            bool have_update = CheckForUpdate(output);
+            if(have_update){
+                connection->Write("1," + output);
+            } else {
+                connection->Write("0," + output);
+            }
         }
     );    
 
@@ -58,15 +64,21 @@ AutoUpdater::~AutoUpdater()
 }
 
 bool AutoUpdater::CheckForUpdate(
+    std::string& output
 ){
-    std::system("cd /home/craig/Programming/JARVIS/HTML-Media-Center && \
-    git pull origin master > gitPullOut.txt");
+    bool normal_exit = false;
+    output = this->coreMod->getTaskList().RunSystemCommand(
+        "(cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/ && git pull origin master)",
+        normal_exit);
 
-    std::ifstream pull_output("/home/craig/Programming/JARVIS/HTML-Media-Center/gitPullOut.txt");
-    std::string pull_out_str((std::istreambuf_iterator<char>(pull_output)),
-                 std::istreambuf_iterator<char>());
+    bool haveUpdates = output.find("Already up to date") == std::string::npos;
 
-    return pull_out_str.find("Already up-to-date") == std::string::npos;
+    if(!normal_exit){
+        ErrorLogger::logError("Got error from pull: " + output);
+        return false;
+    }
+
+    return haveUpdates;
 }
 
 bool AutoUpdater::BuildUpdate(

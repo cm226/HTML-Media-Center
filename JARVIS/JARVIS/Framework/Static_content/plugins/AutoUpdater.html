@@ -35,9 +35,13 @@
             $.ajax({
                 url: "/plugins/AutoUpdater/check_update",
                 success : (data)=>{
-                    if(data.trim() === "1"){
+                    if(data.trim()[0] === "1"){
                         $("#update").removeAttr("disabled")
                     }
+
+                    $("#status").html(
+                            data
+                    );
                 }
             });
 
