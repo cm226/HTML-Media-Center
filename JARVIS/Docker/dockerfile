@@ -122,9 +122,8 @@ COPY /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/ /home/craig/
 
 # start the server
 CMD service mysql start \
-     && cd /home/craig/bin/ \
-     && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/craig/bin \
-     && ./JARVIS
+     && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/ \
+     && ./UpdateBootstraper.sh
 
 # build and run from inside docker folder with 
 # sudo docker build -t media .
