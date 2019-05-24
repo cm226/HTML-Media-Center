@@ -115,11 +115,6 @@ RUN /usr/bin/mysqld_safe & mysql_install_db \
 COPY server.crt /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/cert.pem
 COPY server.pem /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/key.pem
 
-
-#move the exe to its running location
-COPY /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/ /home/craig/
-
-
 # start the server
 CMD service mysql start \
      && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/ \
