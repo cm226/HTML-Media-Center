@@ -89,7 +89,9 @@ RUN mkdir -p /home/craig/Programming/JARVIS \
     && cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin
 
 #Setup the config file
-RUN  sed -i 's/#define MY_HOST "localhost"/#define MY_HOST "172.17.0.2"/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h \
+# this command isnt really that scary, just picks stuff out until it gets the ip address only
+RUN  my_ip=$(ip addr | grep 172 | awk '{$1=$1};1' | cut -d " " -f 2 | cut -d "/" -f 1) \
+     && sed -i "s/#define MY_HOST \"localhost\"/#define MY_HOST \"$my_ip\"/g" /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h \
      && sed -i 's/<dbuser/arsehole/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h \
      && sed -i 's/<dbname>/arseholeDB/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h \
      && sed -i 's/<dbpw>/pw/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h
@@ -97,7 +99,7 @@ RUN  sed -i 's/#define MY_HOST "localhost"/#define MY_HOST "172.17.0.2"/g' /home
 
 RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/ \
      && git pull origin master \
-     && ./BuildAll.sh
+     && ./BuildAll.sh Release
 
 # setup mysql db
 # carefull with this there is annoyingness here, since we map the db files to an extrnal volme when we run 

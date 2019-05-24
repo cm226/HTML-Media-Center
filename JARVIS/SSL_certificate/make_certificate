@@ -20,3 +20,6 @@ certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n craig -i server.crt
 
 cp server.crt ../bin/cert.pem 
 cp server.pem ../bin/key.pem
+
+cp server.crt ../Docker/server.crt
+cp server.pem ../Docker/server.pem
