@@ -6,7 +6,6 @@
  */
 
 #include "PluginPageResponder.h"
-#include "../../JARVISCoreModules/CoreModules/HTMLRendere/URL/URLBuilderFactory.h"
 
 PluginPageResponder::PluginPageResponder(Loader* pluginLoader, CommsNS::IComms* comms) : pluginLoader(pluginLoader)
 {

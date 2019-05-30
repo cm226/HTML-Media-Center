@@ -6,10 +6,10 @@
 
 FileSystem::FileSystem()
 {
-	std::string tempLocation(HTMLMEDIAPUBLIC);
-	tempLocation.append(TEMPLOC);
+	auto config = Config::GetInstance();
+	std::string tempLocation(config->TempLoc());
 
-	this->_watched_dirs.push_back(Directory(WORKING_FILES));
+	this->_watched_dirs.push_back(Directory(config->WorkingFiles()));
 	this->_watched_dirs.push_back(Directory(tempLocation));
 	
 }

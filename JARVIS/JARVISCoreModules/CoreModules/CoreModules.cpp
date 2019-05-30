@@ -50,7 +50,8 @@ DatabaseTables::Database* CoreModules::getDatabaseConnection()
 	if(this->members->databasecon == NULL)
 	{
 		this->members->databasecon = new DatabaseTables::Database();
-		this->members->databasecon->Connect(DATABSEUSER, DATABASEPASSWORD,DATABASENAME,"localhost");
+		auto config = Config::GetInstance();
+		this->members->databasecon->Connect(config->DBUser(), config->DBPw(),config->DBName(),"localhost");
 	}
 
 	return this->members->databasecon;

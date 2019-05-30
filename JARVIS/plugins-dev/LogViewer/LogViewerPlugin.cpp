@@ -7,7 +7,9 @@
 
 LogViewerPlugin::LogViewerPlugin(CoreModules* cm): Plugin(cm), name("LogViewer")
 {
-	this->logParser.setLogFileLocation(LOG_LOCATION+std::string("\\log.log"));
+	this->logParser.setLogFileLocation(
+		Config::GetInstance()->LogLocation()+
+		std::string("\\log.log"));
 
 	auto comms = cm->getComms();
     auto router = comms->Router();
@@ -55,11 +57,6 @@ std::string LogViewerPlugin::entriesToJson(){
 
 void LogViewerPlugin::handleRequest(std::string requestURL){
 	return;
-}
-
-bool LogViewerPlugin::whatDoYouLookLike(Page* page)
-{
-	return true;
 }
 
 const std::string LogViewerPlugin::pluginName()

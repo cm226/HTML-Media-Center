@@ -4,6 +4,7 @@
 #include <thread>
 #include <boost/filesystem.hpp>
 #include <sstream>
+#include "../../JARVISCoreModules/CoreModules/config.h"
 #include "../../JARVISCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ReplyMessage.h"
 #include "../../JARVISCoreModules/CoreModules/Comms/HTTPServer/HTTPServer.h"
 #include <list>
@@ -20,6 +21,8 @@ JARVISFramework::JARVISFramework()
 {
 	ErrorLogger::logInfo("JARVIS initalising...");
 	this->shuttingDown = false;
+
+	Config::ReadConfig("config.ini");
 
 	this->cModules.getComms()->messagesubject()->onListPluginsMessageReceved.connect(this, &JARVISFramework::loadedPlugins);
 	this->cModules.getComms()->messagesubject()->onDiagnosticMessageReceved.connect(this, &JARVISFramework::processDiagnosticMessage);
