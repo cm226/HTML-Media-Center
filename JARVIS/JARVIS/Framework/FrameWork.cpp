@@ -4,6 +4,7 @@
 #include <thread>
 #include <boost/filesystem.hpp>
 #include <sstream>
+#include "../../JARVISCoreModules/CoreModules/config.h"
 #include "../../JARVISCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ReplyMessage.h"
 #include "../../JARVISCoreModules/CoreModules/Comms/HTTPServer/HTTPServer.h"
 #include <list>
@@ -18,18 +19,22 @@
 
 JARVISFramework::JARVISFramework()
 {
+	Config::ReadConfig("config.ini");
+
+	cModules = std::make_shared<CoreModules>();
+
 	ErrorLogger::logInfo("JARVIS initalising...");
 	this->shuttingDown = false;
 
-	this->cModules.getComms()->messagesubject()->onListPluginsMessageReceved.connect(this, &JARVISFramework::loadedPlugins);
-	this->cModules.getComms()->messagesubject()->onDiagnosticMessageReceved.connect(this, &JARVISFramework::processDiagnosticMessage);
+	this->cModules->getComms()->messagesubject()->onListPluginsMessageReceved.connect(this, &JARVISFramework::loadedPlugins);
+	this->cModules->getComms()->messagesubject()->onDiagnosticMessageReceved.connect(this, &JARVISFramework::processDiagnosticMessage);
 
-	this->cModules.getComms()->sig_shutdown.connect([this](){
+	this->cModules->getComms()->sig_shutdown.connect([this](){
 		shuttingDown = true;
 	});
 
-	this->pluginPageResponder.reset(new PluginPageResponder(this->pluginLoader, this->cModules.getComms()));
-	this->mediaStreamResponder.reset(new MediaStreamResponder(&this->cModules));
+	this->pluginPageResponder.reset(new PluginPageResponder(this->pluginLoader, this->cModules->getComms()));
+	this->mediaStreamResponder.reset(new MediaStreamResponder(this->cModules.get()));
 
 	ErrorLogger::logInfo("Initialised");
 }
@@ -41,9 +46,9 @@ JARVISFramework::~JARVISFramework()
 
 void JARVISFramework::process()
 {
-	this->cModules.getComms()->startComms("/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVIS/Framework/Static_content/");
+	this->cModules->getComms()->startComms("/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVIS/Framework/Static_content/");
 
-	this->cModules.getComms()->Router()->MapURLRequest(
+	this->cModules->getComms()->Router()->MapURLRequest(
 		"/loadedPlugins", 
 		[&](
 			std::shared_ptr<IHTTPUrlRouter::IConnection> connection 
@@ -68,13 +73,13 @@ void JARVISFramework::process()
 	this->loadStartupPlugins();
 	ErrorLogger::logInfo("Modules Loaded");
 
-	this->cModules.getTaskList().StartTasks();
+	this->cModules->getTaskList().StartTasks();
 
 	
 	processCommandLoop();
 
 
-	this->cModules.getComms()->stopComms();
+	this->cModules->getComms()->stopComms();
 	ErrorLogger::logInfo("Shutting down");
 }
 
@@ -98,7 +103,7 @@ void JARVISFramework::loadStartupPlugins()
 	    {
 	    	fs::path path = dir_iter->path();
 	    	std::string filenameStr = path.filename().string();
-	    	pluginLoader->loadPlugin(filenameStr,&mediaImages, &this->cModules);
+	    	pluginLoader->loadPlugin(filenameStr,&mediaImages, this->cModules.get());
 
 	    }
 	  }
@@ -110,7 +115,7 @@ void JARVISFramework::processDiagnosticMessage(TranslatedMessages::RequestDisagn
 {
 	std::stringstream statusMessage;
 
-	bool dbConnection = cModules.getDatabaseConnection()->isConnected();
+	bool dbConnection = cModules->getDatabaseConnection()->isConnected();
 	statusMessage << "Database Connection{Connection Status:";
 	if(dbConnection)
 		statusMessage << "1";
@@ -119,7 +124,7 @@ void JARVISFramework::processDiagnosticMessage(TranslatedMessages::RequestDisagn
 
 	statusMessage << "},Audio Devices{";
 	std::list<AudioDevice> audioDevices;
-	cModules.getMediaStreamer().Get_Audio_Devices(audioDevices);
+	cModules->getMediaStreamer().Get_Audio_Devices(audioDevices);
 	std::list<AudioDevice>::iterator lastDevice = audioDevices.end();
 	--lastDevice;
 	for(std::list<AudioDevice>::iterator device = audioDevices.begin();
@@ -263,9 +268,17 @@ void JARVISFramework::processCommandLoop()
 					this->shuttingDown = true;
 					return;
 			}
+			else if(command == "update config")
+			{
+					if(Config::ReadConfig("config.ini")){
+						ErrorLogger::logInfo("Config updated");
+					}else {
+						ErrorLogger::logWarn("Config failed to update");
+					}
+			}
 			else if(command == "media resend_handshake")
 			{
-				this->cModules.getMediaStreamer().Resend_Agent_Handshake_Message();
+				this->cModules->getMediaStreamer().Resend_Agent_Handshake_Message();
 			}
 			else
 			{

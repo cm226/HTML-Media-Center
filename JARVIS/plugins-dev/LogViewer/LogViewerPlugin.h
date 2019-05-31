@@ -15,8 +15,6 @@ private:
 	std::string name;
 	LogEntryParser logParser;
 
-	void renderEntry(model::LogEntry& entry, ElementList* elementList);
-
 
 	std::string entriesToJson();
 
@@ -26,7 +24,6 @@ public:
 
 	void handleRequest(std::string requestURL);
 
-	virtual bool whatDoYouLookLike(Page*);
 	virtual const std::string pluginName();
 };
 

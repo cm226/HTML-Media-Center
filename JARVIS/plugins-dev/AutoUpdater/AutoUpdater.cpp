@@ -84,7 +84,7 @@ bool AutoUpdater::CheckForUpdate(
 bool AutoUpdater::BuildUpdate(
 ){
     std::string updateCMD;
-    if(LIVE){
+    if(Config::GetInstance()->Live()){
         updateCMD = "/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/BuildAll.sh Release";
     } else {
         updateCMD = "/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/BuildAll.sh Debug";

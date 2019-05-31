@@ -90,7 +90,9 @@ void ErrorLogger::appendToLogFile(std::string message)
 {
 	using namespace std;
 	ofstream logFile;
-	logFile.open((LOG_LOCATION+std::string("\\log.log")).c_str(), fstream::out | fstream::app);
+	logFile.open((
+		Config::GetInstance()->LogLocation()+
+		std::string("\\log.log")).c_str(), fstream::out | fstream::app);
 	if(logFile.is_open())
 	{
 		logFile << message;

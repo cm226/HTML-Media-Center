@@ -56,7 +56,7 @@ void TaskList::processTasks()
 			if (this->_shutdownOnComplete &&
 				this->_tasks.size() == 0)
 			{
-				if (LIVE)
+				if (Config::GetInstance()->Live())
 				{
 					//all tasks complete, shutdown
 #ifdef _WINDOWS
