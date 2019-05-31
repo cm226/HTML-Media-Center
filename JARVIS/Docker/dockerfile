@@ -84,22 +84,25 @@ RUN mkdir /home/craig/Programming/cpp-net-build \
 RUN mkdir -p /home/craig/Programming/JARVIS \
     && cd /home/craig/Programming/JARVIS \
     && git clone https://github.com/cm226/HTML-Media-Center.git \
-    && mv HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/configSkeliton.h HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h \
+    && cd HTML-Media-Center \
+    && git checkout f_add_ini_config \
     && mkdir /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin \
     && cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin
-
-#Setup the config file
-# this command isnt really that scary, just picks stuff out until it gets the ip address only
-RUN  my_ip=$(ip addr | grep 172 | awk '{$1=$1};1' | cut -d " " -f 2 | cut -d "/" -f 1) \
-     && sed -i "s/#define MY_HOST \"localhost\"/#define MY_HOST \"$my_ip\"/g" /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h \
-     && sed -i 's/<dbuser/arsehole/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h \
-     && sed -i 's/<dbname>/arseholeDB/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h \
-     && sed -i 's/<dbpw>/pw/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config.h
-
 
 RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/ \
      && git pull origin master \
      && ./BuildAll.sh Release
+
+#Setup the config file
+# this command isnt really that scary, just picks stuff out until it gets the ip address only
+RUN  my_ip=$(ip addr | grep 172 | awk '{$1=$1};1' | cut -d " " -f 2 | cut -d "/" -f 1) \
+     && cp /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config_template.ini /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/config.ini \
+     && sed -i "s/<host>/$my_ip /g" /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/config.ini \
+     && sed -i 's/<dbuser>/arsehole/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/config.ini \
+     && sed -i 's/<dbname>/arseholeDB/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/config.ini \
+     && sed -i 's/<dbpw>/pw/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/config.ini
+
+
 
 # setup mysql db
 # carefull with this there is annoyingness here, since we map the db files to an extrnal volme when we run 
@@ -118,9 +121,9 @@ COPY server.crt /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/cert
 COPY server.pem /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/key.pem
 
 # start the server
-CMD service mysql start \
-     && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/ \
-     && ./UpdateBootstraper.sh
+#CMD service mysql start \
+#     && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/ \
+#     && ./UpdateBootstraper.sh
 
 # build and run from inside docker folder with 
 # sudo docker build -t media .

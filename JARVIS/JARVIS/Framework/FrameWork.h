@@ -26,7 +26,7 @@ private:
 	boost::scoped_ptr<PluginPageResponder> pluginPageResponder;
 	boost::scoped_ptr<MediaStreamResponder> mediaStreamResponder;
 
-	CoreModules cModules;
+	std::shared_ptr<CoreModules> cModules;
 
 
 	bool shuttingDown;
