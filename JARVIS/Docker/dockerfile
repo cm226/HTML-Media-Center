@@ -92,7 +92,7 @@ RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/ \
      && ./BuildAll.sh Release
 
 #Setup the config file
-RUN && cp /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config_template.ini /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/config.ini \
+RUN  cp /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config_template.ini /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/config.ini \
      && sed -i 's/<dbuser>/arsehole/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/config.ini \
      && sed -i 's/<dbname>/arseholeDB/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/config.ini \
      && sed -i 's/<dbpw>/pw/g' /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/config.ini
