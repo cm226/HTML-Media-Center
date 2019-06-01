@@ -17,7 +17,7 @@ ul {
 	padding-left: 0;
   }
 
-  table#meals{
+ table#meals{
 	  width:100%;
   }
 
@@ -122,4 +122,18 @@ button::after { display:none;}
 .meal_list{
 	font-weight: lighter;
     color: grey;
+}
+
+#mealSelectionContainer{
+	display: grid;
+	grid-column-gap: 10px;
+	grid-template-columns: auto 70px;
+}
+
+#filerList{
+	grid-column-start: 1;
+}
+
+#openAll{
+	grid-column-start: 2;
 }

@@ -18,6 +18,13 @@ navigator.serviceWorker.ready.then(function(swRegistration) {
 var _server_state;
 var _extraIngreds = [];
 
+function selectMeal(mealName){
+    _server_state[mealName].selected = "1";
+    $.each(_server_state[mealName].ingreds, (index, ingred)=>{
+        ingred.selected = "1"
+    });
+}
+
 
 function removeSelectedMeal(meal){
     if(_server_state[meal] !== undefined){
@@ -77,7 +84,11 @@ function displaySelected(){
     let checkbox_id = 0;
     let ingreds = {};
     
+    $('#fullMealList').empty();
+
     $.each(_server_state, (meal_name, meal)=>{
+
+        $('#fullMealList').append('<li class="fullMealListSelectBttn ui-li-static ui-body-inherit ui-first-child">'+meal_name+'</li>');
 
         if(!meal.selected){
             return;
@@ -98,6 +109,13 @@ function displaySelected(){
             ingreds[ingredient.ingred].meals.push(meal_name);
             
         });
+    });
+
+    $(".fullMealListSelectBttn").on("tap", (event)=>{
+
+        selectMeal(event.target.innerText);
+        $( '#dialogPage' ).dialog( 'close' );
+        displaySelected();
     });
 
     $.each(_extraIngreds, (index, ingredient)=>{
@@ -247,10 +265,7 @@ $( document ).ready(function() {
             source: Object.keys(_server_state),
             select: function (event, ui) {
 
-                _server_state[ui.item.value].selected = "1";
-                $.each(_server_state[ui.item.value].ingreds, (index, ingred)=>{
-                    ingred.selected = "1"
-                });
+                selectMeal(ui.item.value);
 
                 SendStateToServer();
 
@@ -260,6 +275,8 @@ $( document ).ready(function() {
                 return false;
             }
           });
+
+        $( "#dialog" ).dialog({ autoOpen: false });
 
     }
 
