@@ -19,6 +19,7 @@ class HTTPUrlRouter :
         HTTPUrlRouter();
 
         void MapURLRequest(std::string url, URLHandle handler);
+        void RegisterWidgit(std::shared_ptr<File> widgit);
 
         bool HasHandler(const std::string& url);
         void Route(
@@ -29,6 +30,7 @@ class HTTPUrlRouter :
 
     private:
         std::map<std::string, URLHandle> m_handler_map;
+        std::vector<std::shared_ptr<File>> m_widgits;
 
         class Connection : 
             public IHTTPUrlRouter::IConnection

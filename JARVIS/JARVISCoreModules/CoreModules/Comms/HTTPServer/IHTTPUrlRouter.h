@@ -1,5 +1,7 @@
 #pragma once 
 
+#include "../../Files/Files.h"
+
 #include <memory>
 #include <string>
 #include <functional>
@@ -20,5 +22,6 @@ class IHTTPUrlRouter
 
 
         virtual void MapURLRequest(std::string url, URLHandle handler) = 0;
+        virtual void RegisterWidgit(std::shared_ptr<File> widgit) = 0;
 
 };

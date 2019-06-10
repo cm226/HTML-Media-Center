@@ -48,21 +48,6 @@ void JARVISFramework::process()
 {
 	this->cModules->getComms()->startComms("/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVIS/Framework/Static_content/");
 
-	this->cModules->getComms()->Router()->MapURLRequest(
-		"/loadedPlugins", 
-		[&](
-			std::shared_ptr<IHTTPUrlRouter::IConnection> connection 
-		){
-			std::vector<Plugin*> loadedPlugins;
-			this->pluginLoader->listLoadedPlugins(&loadedPlugins);
-
-			for(auto plugin : loadedPlugins){
-				connection->Write(plugin->pluginName() + ",");
-			}
-			
-		}
-	);
-
 	#ifdef _WINDOWS
 	this->pluginLoader = new Loader("C:\\wamp64\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\plugins");
 #else

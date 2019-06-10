@@ -9,28 +9,32 @@
     
     <script>
     
+        let showPlugin = function(){
+            if (this.readyState == 4 && this.status == 200) {
+                let widgit = "<div>" + this.responseText + "</div>";
+                
+                $("#loadedPlugins").append(widgit);
+            }
+        }
+
         let displayPlugins = function() {
             if (this.readyState == 4 && this.status == 200) {
-                let plugins = this.responseText.split(',');
+                let widgit_urls = this.responseText.split(',');
                 
-                let html = '';
-                plugins.forEach(element => {
-                    if(element !== ''){
-                        html += '<div class="appCard">\
-                                <a href="/plugins/'+element+'">\
-                                <img src="appimg.png" height="75px" width="75px"/>\
-                                 <span>'+element+'<span>\
-                                 </a>\
-                                </div>';
-                    }
+                widgit_urls.forEach(url => {
+                    
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = showPlugin;
+                    xhttp.open("GET", url, true);
+                    xhttp.send();
+
                 });
-                document.getElementById("loadedPlugins").innerHTML = html;
             }
         };
         
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = displayPlugins;
-        xhttp.open("GET", "loadedPlugins", true);
+        xhttp.open("GET", "pluginWigits", true);
         xhttp.send();
     
     

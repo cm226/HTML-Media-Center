@@ -23,7 +23,13 @@ std::string HTTPUrlRouter::Connection::toString(){
 
 HTTPUrlRouter::HTTPUrlRouter(    
 ){
-
+    MapURLRequest("/pluginWigits",[&](
+		std::shared_ptr<IHTTPUrlRouter::IConnection> connection 
+    ){
+        for(auto widgit : m_widgits){
+            connection->Write(widgit->Name() + ",");
+        }
+    });
 }
 
 void HTTPUrlRouter::MapURLRequest(
@@ -33,6 +39,12 @@ void HTTPUrlRouter::MapURLRequest(
     auto pair = std::make_pair(url, handler);
     m_handler_map.emplace(pair);
 
+}
+
+void HTTPUrlRouter::RegisterWidgit(
+    std::shared_ptr<File> widgit
+){
+    m_widgits.push_back(widgit);
 }
 
 bool HTTPUrlRouter::HasHandler(

@@ -27,6 +27,10 @@ std::string File::Location()
 	return this->_dir.toString() + this->_filename;
 }
 
+std::string File::Name(){
+	return this->_filename;
+}
+
 bool File::Save()
 {
 	size_t dataSize = this->_dataSource->GetDataSize();
