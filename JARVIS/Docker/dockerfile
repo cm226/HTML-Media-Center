@@ -67,7 +67,7 @@ RUN mkdir -p /home/craig/Programming/JARVIS \
     && git clone https://github.com/cm226/HTML-Media-Center.git \
     && cd HTML-Media-Center \
     && git checkout origin/f_add_widgits \
-    && mkdir /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin \
+    && mkdir /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin
 
 RUN ./home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/Docker/buildBoost.sh $build_type
 
