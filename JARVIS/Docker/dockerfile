@@ -11,7 +11,8 @@ RUN apt update && apt install -y \
     libbz2-1.0 libbz2-dev libbz2-ocaml libbz2-ocaml-dev \
     mariadb-server \
     git-core \
-    libcurl4-openssl-dev
+    libcurl4-openssl-dev \
+    gdb gdbserver
 
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
     && apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main" \
@@ -61,9 +62,12 @@ RUN cd cmake-3.13.2/ \
     && make -j4 \
     && make install 
 
-RUN cd /home/craig/Programming/boost_1_58_0 \
-    && ./bootstrap.sh --with-toolset=clang \
-    && ./b2 --prefix=/usr -j 4 link=shared runtime-link=shared toolset=clang cxxflags="-std=c++14 -stdlib=libstdc++ -Wno-register" linkflags="-lstdc++" threading=multi --layout=tagged --without-python install
+RUN mkdir -p /home/craig/Programming/JARVIS \
+    && cd /home/craig/Programming/JARVIS/ \
+    && git clone https://github.com/cm226/HTML-Media-Center.git \
+    && mkdir /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin \
+
+RUN ./home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/Docker/buildBoost.sh $build_type
 
 RUN mkdir /home/craig/Programming/cpp-net-build \
     && cd /home/craig/Programming/cpp-net-build \
@@ -92,7 +96,7 @@ RUN mkdir -p /home/craig/Programming/JARVIS \
 
 RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/ \
      && git pull origin master \
-     && ./BuildAll.sh Release
+     && ./BuildAll.sh $build_type
 
 #Setup the config file
 RUN  cp /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config_template.ini /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/config.ini \
@@ -128,6 +132,7 @@ COPY server.pem /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/key.
 
 # build and run from inside docker folder with 
 # sudo docker build -t media .
+# sudo docker build --build-arg build_type=Debug -t media .
 # sudo docker run -p 8442:8442 -v ~/mdbdata/arsehole:/var/lib/mysql -ti --restart unless-stopped media
 # sudo docker run -p 8442:8442 -v /home/boss_man/Projects/HTML-Media-Center:/home/craig/Programming/JARVIS/HTML-Media-Center -ti media
 # then run cmd above 
