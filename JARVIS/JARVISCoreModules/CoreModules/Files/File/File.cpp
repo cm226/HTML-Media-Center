@@ -31,6 +31,13 @@ std::string File::Name(){
 	return this->_filename;
 }
 
+bool File::ToString(std::string& str){
+	if(!_dataSource)
+		return false;
+
+	return _dataSource->GetData(str);
+}
+
 bool File::Save()
 {
 	size_t dataSize = this->_dataSource->GetDataSize();

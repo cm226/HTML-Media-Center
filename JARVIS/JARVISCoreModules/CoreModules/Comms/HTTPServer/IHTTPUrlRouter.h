@@ -5,6 +5,7 @@
 #include <memory>
 #include <string>
 #include <functional>
+#include <string>
 
 class IHTTPUrlRouter
 {
@@ -22,6 +23,6 @@ class IHTTPUrlRouter
 
 
         virtual void MapURLRequest(std::string url, URLHandle handler) = 0;
-        virtual void RegisterWidgit(std::shared_ptr<File> widgit) = 0;
+        virtual void RegisterWidgit(std::string widgit) = 0;
 
 };

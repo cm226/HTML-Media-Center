@@ -88,3 +88,15 @@ JARVIS/bin/
 
 JARVIS/JARVIS/JARVIS
 
+
+JARVIS/SSL_certificate/server\.csr
+
+JARVIS/Docker/server\.crt
+
+JARVIS/SSL_certificate/server\.pfx
+
+JARVIS/SSL_certificate/server\.pem
+
+JARVIS/SSL_certificate/server\.crt
+
+JARVIS/Docker/server\.pem

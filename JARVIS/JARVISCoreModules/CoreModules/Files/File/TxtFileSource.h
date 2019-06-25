@@ -16,7 +16,8 @@ public:
 	
 
 	virtual bool GetData(std::vector<unsigned char>& buffer) override;
-	bool GetData(std::string& buffer);
+
+	bool GetData(std::string& buffer) override;
 	virtual size_t GetDataSize() override;
 	
 	std::string ext();

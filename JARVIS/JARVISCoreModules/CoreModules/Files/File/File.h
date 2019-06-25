@@ -20,6 +20,8 @@ public:
 	void SetLocation(Directory dir, std::string filename);
 	std::string Location();
 	std::string Name();
+	bool ToString(std::string& file);
+
 	bool Save();
 
 };

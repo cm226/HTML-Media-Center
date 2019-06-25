@@ -2,7 +2,11 @@ FROM ubuntu:18.04
 
 ARG build_type=Release
 
-RUN apt update && apt install -y \
+EXPOSE 8442
+
+RUN apt update
+
+RUN apt install -y \
     xz-utils \
     build-essential \
     curl \
@@ -11,8 +15,9 @@ RUN apt update && apt install -y \
     libbz2-1.0 libbz2-dev libbz2-ocaml libbz2-ocaml-dev \
     mariadb-server \
     git-core \
-    libcurl4-openssl-dev \
-    gdb gdbserver
+    libcurl4-openssl-dev
+
+RUN apt install -y gdb gdbserver
 
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
     && apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main" \
@@ -74,8 +79,9 @@ RUN ./home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/Docker/buildBoost.s
 RUN mkdir /home/craig/Programming/cpp-net-build \
     && cd /home/craig/Programming/cpp-net-build \
     && sed -i 's/c++11/c++14/g' ../cpp_netlib/cpp-netlib-0.13.0-rc1/CMakeLists.txt \
-    && sed -i 's/add_definitions(-DBOOST_NETWORK_DEBUG)/add_definitions(-DBOOST_NETWORK_DEBUG) \n add_definitions(-D_GLIBCXX_DEBUG)/g' ../cpp_netlib/cpp-netlib-0.13.0-rc1/CMakeLists.txt \
-    && cmake -DCMAKE_BUILD_TYPE=$build_type \
+    && sed -i 's/add_definitions(-DBOOST_NETWORK_DEBUG)/add_definitions(-DBOOST_NETWORK_DEBUG) \n add_definitions(-D_GLIBCXX_DEBUG)/g' ../cpp_netlib/cpp-netlib-0.13.0-rc1/CMakeLists.txt
+
+RUN cmake -DCMAKE_BUILD_TYPE=Debug \
      -DCMAKE_C_COMPILER=clang-6.0 \
      -DCMAKE_CXX_COMPILER=clang-6.0 \
      -DCPP-NETLIB_BUILD_TESTS=OFF \
@@ -90,11 +96,7 @@ RUN mkdir /home/craig/Programming/cpp-net-build \
 
 ## start my build stuff
 
-RUN mkdir -p /home/craig/Programming/JARVIS \
-    && cd /home/craig/Programming/JARVIS/ \
-    && git clone https://github.com/cm226/HTML-Media-Center.git \
-    && mkdir /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin \
-    && cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin
+RUN cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin
 
 RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/ \
      && git pull origin master \
@@ -136,5 +138,5 @@ COPY server.pem /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/key.
 # sudo docker build -t media .
 # sudo docker build --build-arg build_type=Debug -t media .
 # sudo docker run -p 8442:8442 -v ~/mdbdata/arsehole:/var/lib/mysql -ti --restart unless-stopped media
-# sudo docker run -p 8442:8442 -v /home/boss_man/Projects/HTML-Media-Center:/home/craig/Programming/JARVIS/HTML-Media-Center -ti media
+# sudo docker run -p 8442:8442 -p 9091:9091 -v /home/boss_man/Projects/HTML-Media-Center:/home/craig/Programming/JARVIS/HTML-Media-Center --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -ti media
 # then run cmd above 

@@ -1,7 +1,8 @@
 <html>
 
     <head>
-        <link rel="stylesheet" type="text/css" href="index.css">.
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <script src="plugins/Shopping_content/js/jquery.min.js"></script>
     </head>
 
     <div id="loadedPlugins"/>
@@ -9,26 +10,10 @@
     
     <script>
     
-        let showPlugin = function(){
-            if (this.readyState == 4 && this.status == 200) {
-                let widgit = "<div>" + this.responseText + "</div>";
-                
-                $("#loadedPlugins").append(widgit);
-            }
-        }
-
         let displayPlugins = function() {
             if (this.readyState == 4 && this.status == 200) {
-                let widgit_urls = this.responseText.split(',');
-                
-                widgit_urls.forEach(url => {
-                    
-                    var xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = showPlugin;
-                    xhttp.open("GET", url, true);
-                    xhttp.send();
-
-                });
+                let widgit_html = this.responseText;
+                $("#loadedPlugins").append(widgit_html);
             }
         };
         

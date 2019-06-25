@@ -32,7 +32,7 @@ Comms::~Comms() {
 void Comms::startComms(std::string static_content)
 {
     m_static_content_path = static_content;
-    m_router = std::make_shared<HTTPUrlRouter>();
+    m_router = std::make_shared<HTTPUrlRouter>(m_static_content_path);
 
 	this->serverThread = 
 		std::make_unique<std::thread>(&Comms::doHTTP, this);
