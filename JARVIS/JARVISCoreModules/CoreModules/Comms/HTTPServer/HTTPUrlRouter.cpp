@@ -33,7 +33,7 @@ HTTPUrlRouter::HTTPUrlRouter(
             std::string widgit_str;
             if(widgit->ToString(widgit_str)){
                 connection->Write(
-                    "<div class=\"\widgit\">" +
+                    "<div class=\"widgit\">" +
                         widgit_str + 
                     "</div>");
             }
