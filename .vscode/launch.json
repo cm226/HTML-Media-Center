@@ -8,14 +8,39 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/JARVIS",
+            "program": "/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/JARVIS", 
             "args": [],
             "stopAtEntry": false,
             "cwd": "/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin",
             "environment": [
                 {
                     "name": "LD_LIBRARY_PATH",
-                    "value": "/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin"
+                    "value": "/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin" 
+                }
+            ],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(gdb) Remote Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/boss_man/Projects/HTML-Media-Center/JARVIS/bin/JARVIS",
+            "miDebuggerServerAddress": "localhost:9091",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "/home/boss_man/Projects/HTML-Media-Center/JARVIS/bin",
+            "environment": [
+                {
+                    "name": "LD_LIBRARY_PATH",
+                    "value": "/home/boss_man/Projects/HTML-Media-Center/JARVIS/bin"
                 }
             ],
             "externalConsole": true,

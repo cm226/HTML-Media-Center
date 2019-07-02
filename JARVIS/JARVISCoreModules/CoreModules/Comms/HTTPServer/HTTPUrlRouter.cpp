@@ -21,9 +21,24 @@ std::string HTTPUrlRouter::Connection::toString(){
     return msg.str();
 }
 
-HTTPUrlRouter::HTTPUrlRouter(    
+HTTPUrlRouter::HTTPUrlRouter( 
+    std::string static_content   
 ){
+    m_static_content = static_content;
 
+    MapURLRequest("/pluginWigits",[&](
+		std::shared_ptr<IHTTPUrlRouter::IConnection> connection 
+    ){
+        for(auto widgit : m_widgits){
+            std::string widgit_str;
+            if(widgit->ToString(widgit_str)){
+                connection->Write(
+                    "<div class=\"widgit\">" +
+                        widgit_str + 
+                    "</div>");
+            }
+        }
+    });
 }
 
 void HTTPUrlRouter::MapURLRequest(
@@ -33,6 +48,17 @@ void HTTPUrlRouter::MapURLRequest(
     auto pair = std::make_pair(url, handler);
     m_handler_map.emplace(pair);
 
+}
+
+void HTTPUrlRouter::RegisterWidgit(
+    std::string widgit
+){
+    auto file = std::make_shared<File>(
+        std::make_shared<TxtFileSource>(m_static_content + widgit, ".html")
+    );
+    file->SetLocation(Directory(m_static_content + widgit), "widgit.html");
+
+    m_widgits.push_back(file);
 }
 
 bool HTTPUrlRouter::HasHandler(

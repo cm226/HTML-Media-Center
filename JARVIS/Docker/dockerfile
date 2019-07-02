@@ -1,6 +1,12 @@
 FROM ubuntu:18.04
 
-RUN apt update && apt install -y \
+ARG build_type=Release
+
+EXPOSE 8442
+
+RUN apt update
+
+RUN apt install -y \
     xz-utils \
     build-essential \
     curl \
@@ -10,6 +16,8 @@ RUN apt update && apt install -y \
     mariadb-server \
     git-core \
     libcurl4-openssl-dev
+
+RUN apt install -y gdb gdbserver
 
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
     && apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main" \
@@ -59,14 +67,21 @@ RUN cd cmake-3.13.2/ \
     && make -j4 \
     && make install 
 
-RUN cd /home/craig/Programming/boost_1_58_0 \
-    && ./bootstrap.sh --with-toolset=clang \
-    && ./b2 --prefix=/usr -j 4 link=shared runtime-link=shared toolset=clang cxxflags="-std=c++14 -stdlib=libstdc++ -Wno-register" linkflags="-lstdc++" threading=multi --layout=tagged --without-python install
+RUN mkdir -p /home/craig/Programming/JARVIS \
+    && cd /home/craig/Programming/JARVIS/ \
+    && git clone https://github.com/cm226/HTML-Media-Center.git \
+    && cd HTML-Media-Center \
+    && git checkout origin/f_add_widgits \
+    && mkdir /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin
+
+RUN ./home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/Docker/buildBoost.sh $build_type
 
 RUN mkdir /home/craig/Programming/cpp-net-build \
     && cd /home/craig/Programming/cpp-net-build \
     && sed -i 's/c++11/c++14/g' ../cpp_netlib/cpp-netlib-0.13.0-rc1/CMakeLists.txt \
-    && cmake -DCMAKE_BUILD_TYPE=Debug \
+    && sed -i 's/add_definitions(-DBOOST_NETWORK_DEBUG)/add_definitions(-DBOOST_NETWORK_DEBUG) \n add_definitions(-D_GLIBCXX_DEBUG)/g' ../cpp_netlib/cpp-netlib-0.13.0-rc1/CMakeLists.txt
+
+RUN cmake -DCMAKE_BUILD_TYPE=Debug \
      -DCMAKE_C_COMPILER=clang-6.0 \
      -DCMAKE_CXX_COMPILER=clang-6.0 \
      -DCPP-NETLIB_BUILD_TESTS=OFF \
@@ -81,15 +96,11 @@ RUN mkdir /home/craig/Programming/cpp-net-build \
 
 ## start my build stuff
 
-RUN mkdir -p /home/craig/Programming/JARVIS \
-    && cd /home/craig/Programming/JARVIS/ \
-    && git clone https://github.com/cm226/HTML-Media-Center.git \
-    && mkdir /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin \
-    && cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin
+RUN cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin
 
 RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/ \
      && git pull origin master \
-     && ./BuildAll.sh Release
+     && ./BuildAll.sh $build_type
 
 #Setup the config file
 RUN  cp /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config_template.ini /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/config.ini \
@@ -116,15 +127,16 @@ COPY server.crt /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/cert
 COPY server.pem /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/key.pem
 
 # start the server
-CMD service mysql start \
+#CMD service mysql start \
 # this command isnt really that scary, just picks stuff out until it gets the ip address only
-     && my_ip=$(ip addr | grep 172 | awk '{$1=$1};1' | cut -d " " -f 2 | cut -d "/" -f 1) \
-     && sed -i "s/<host>/$my_ip /g" /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/config.ini \
-     && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/ \
-     && ./UpdateBootstraper.sh
+     #&& my_ip=$(ip addr | grep 172 | awk '{$1=$1};1' | cut -d " " -f 2 | cut -d "/" -f 1) \
+     #&& sed -i "s/<host>/$my_ip /g" /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/config.ini \
+     #&& cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/ \
+     #&& ./UpdateBootstraper.sh
 
 # build and run from inside docker folder with 
 # sudo docker build -t media .
+# sudo docker build --build-arg build_type=Debug -t media .
 # sudo docker run -p 8442:8442 -v ~/mdbdata/arsehole:/var/lib/mysql -ti --restart unless-stopped media
-# sudo docker run -p 8442:8442 -v /home/boss_man/Projects/HTML-Media-Center:/home/craig/Programming/JARVIS/HTML-Media-Center -ti media
+# sudo docker run -p 8442:8442 -p 9091:9091 -v /home/boss_man/Projects/HTML-Media-Center:/home/craig/Programming/JARVIS/HTML-Media-Center --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -ti media
 # then run cmd above 

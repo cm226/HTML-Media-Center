@@ -16,6 +16,8 @@ AutoUpdater::AutoUpdater(
 {
     auto comms = cm->getComms();
     auto router = comms->Router();
+    
+    router->RegisterWidgit("/plugins/AutoUpdater_content/widgit.html");
 
     router->MapURLRequest(
         "/plugins/AutoUpdater/check_update",

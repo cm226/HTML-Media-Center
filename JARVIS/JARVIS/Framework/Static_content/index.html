@@ -1,7 +1,8 @@
 <html>
 
     <head>
-        <link rel="stylesheet" type="text/css" href="index.css">.
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <script src="plugins/Shopping_content/js/jquery.min.js"></script>
     </head>
 
     <div id="loadedPlugins"/>
@@ -11,26 +12,14 @@
     
         let displayPlugins = function() {
             if (this.readyState == 4 && this.status == 200) {
-                let plugins = this.responseText.split(',');
-                
-                let html = '';
-                plugins.forEach(element => {
-                    if(element !== ''){
-                        html += '<div class="appCard">\
-                                <a href="/plugins/'+element+'">\
-                                <img src="appimg.png" height="75px" width="75px"/>\
-                                 <span>'+element+'<span>\
-                                 </a>\
-                                </div>';
-                    }
-                });
-                document.getElementById("loadedPlugins").innerHTML = html;
+                let widgit_html = this.responseText;
+                $("#loadedPlugins").append(widgit_html);
             }
         };
         
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = displayPlugins;
-        xhttp.open("GET", "loadedPlugins", true);
+        xhttp.open("GET", "pluginWigits", true);
         xhttp.send();
     
     
