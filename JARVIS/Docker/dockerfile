@@ -127,12 +127,12 @@ COPY server.crt /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/cert
 COPY server.pem /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/key.pem
 
 # start the server
-#CMD service mysql start \
+CMD service mysql start \
 # this command isnt really that scary, just picks stuff out until it gets the ip address only
-     #&& my_ip=$(ip addr | grep 172 | awk '{$1=$1};1' | cut -d " " -f 2 | cut -d "/" -f 1) \
-     #&& sed -i "s/<host>/$my_ip /g" /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/config.ini \
-     #&& cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/ \
-     #&& ./UpdateBootstraper.sh
+     && my_ip=$(ip addr | grep 172 | awk '{$1=$1};1' | cut -d " " -f 2 | cut -d "/" -f 1) \
+     && sed -i "s/<host>/$my_ip /g" /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/config.ini \
+     && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/ \
+     && ./UpdateBootstraper.sh
 
 # build and run from inside docker folder with 
 # sudo docker build -t media .
