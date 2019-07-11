@@ -97,6 +97,8 @@ CoreModules/MediaStreaming/MediaStreaming/MediaStreamer.cpp
 CoreModules/MediaStreaming/MediaStreaming/Devices/DeviceList.cpp
 CoreModules/MediaStreaming/MediaStreaming/Devices/AudioDevice.cpp
 CoreModules/MediaStreaming/MediaStreaming/telnet.cpp
+CoreModules/Sensors/MotionSensor.cpp
+CoreModules/Sensors/Sensors.cpp
 ../ErrorLogger/Errors/ErrorLogger.cpp
 ../ErrorLogger/Errors/MyStackWalker.cpp
 

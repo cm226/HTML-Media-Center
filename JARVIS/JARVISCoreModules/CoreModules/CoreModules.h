@@ -17,6 +17,7 @@
 #include "MediaStreaming/MediaStreaming/MediaStreamer.h"
 #include "TaskList/TaskList.h"
 #include "Files/Files.h"
+#include "Sensors/Sensors.h"
 
 
 class DLLCORE_API CoreModules {
@@ -36,6 +37,7 @@ public:
 	MediaStreamer& getMediaStreamer();
 	TaskList& getTaskList();
 	FileSystem& getFileSystem();
+	Sensors& getSensors();
 	
 
 

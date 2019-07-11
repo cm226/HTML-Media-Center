@@ -48,6 +48,11 @@ void JARVISFramework::process()
 {
 	this->cModules->getComms()->startComms("/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVIS/Framework/Static_content/");
 
+	this->cModules->getSensors().Start(
+		this->cModules->getDatabaseConnection(),
+		this->cModules->getComms()->Router().get()
+	);
+
 	#ifdef _WINDOWS
 	this->pluginLoader = new Loader("C:\\wamp64\\www\\HTML-Media-Center\\JARVIS\\JARVIS\\plugins");
 #else

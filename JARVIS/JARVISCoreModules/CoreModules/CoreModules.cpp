@@ -13,6 +13,7 @@
 #include "Comms/Comms.h"
 
 
+
 struct CoreModules::privateMembers
 {
 	DatabaseTables::Database* databasecon;
@@ -20,11 +21,13 @@ struct CoreModules::privateMembers
 	MediaStreamer mediaStreamer;
 	TaskList taskList;
 	FileSystem filesystem;
+	Sensors sensors;
 };
 
 CoreModules::CoreModules():members(new privateMembers())
 {
 	this->members->databasecon = NULL;
+
 	ErrorLogger::logInfo("Core Modules Loaded");
 }
 
@@ -77,3 +80,6 @@ FileSystem& CoreModules::getFileSystem()
 	return this->members->filesystem;
 }
 
+Sensors& CoreModules::getSensors(){
+	return this->members->sensors;
+}
