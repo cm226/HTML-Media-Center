@@ -13,11 +13,11 @@ void Sensors::Start(
         LoadSensorsFromDB(db, router);
 }
 
-MotionSensor* Sensors::GetSensorByName(
+std::shared_ptr<MotionSensor> Sensors::GetSensorByName(
     std::string name ){
 
         if(m_sensors.find(name) != m_sensors.end()){
-            return m_sensors[name].get();
+            return m_sensors[name];
         }
 
         return nullptr;

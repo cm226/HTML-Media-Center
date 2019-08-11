@@ -9,7 +9,7 @@ public:
     Sensors();
 
     void Start(DatabaseTables::Database* db, IHTTPUrlRouter* router);
-    MotionSensor* GetSensorByName(std::string name);
+    std::shared_ptr<MotionSensor> GetSensorByName(std::string name);
     void GetAllSensors(std::vector<std::shared_ptr<MotionSensor>>& sensors);
 
 private:

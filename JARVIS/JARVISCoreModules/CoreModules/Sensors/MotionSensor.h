@@ -13,9 +13,12 @@ class MotionSensor{
         );
 
     public:
-        boost::signals2::signal<void ()> sig_motion;
+
+        void Motion(std::function<void ()> handler);
+        
 
     private:
+        std::vector<std::function<void ()>> m_sig_motion;
         std::string m_name;
 
 

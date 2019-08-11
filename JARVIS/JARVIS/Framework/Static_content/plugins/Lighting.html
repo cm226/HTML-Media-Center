@@ -1,0 +1,29 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Lighting</title>
+
+
+  <script src="Shopping_content/js/jquery.min.js"></script>
+</head>
+<body>
+
+    <div id="lightList"></div>
+
+    <script>
+        
+
+        $(document).ready(()=>{
+            $.get('/plugins/Lighting/AllLights', (responce)=>{
+                responce.split(',').each((light)=>{
+                    $('#lightList').append("<button>"+light+"</button>");
+                });
+            });
+        });
+
+    </script>
+
+</body>
+</html>

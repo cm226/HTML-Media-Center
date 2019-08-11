@@ -1,4 +1,5 @@
-#include <Vector>
+#pragma once
+#include <vector>
 
 class SunsetTimes{
 
@@ -6,7 +7,7 @@ public:
 
     SunsetTimes();
 
-    static bool IsSunDown();
+    bool IsSunDown();
 
 private:
 
