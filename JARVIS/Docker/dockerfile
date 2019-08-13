@@ -81,7 +81,8 @@ RUN mkdir /home/craig/Programming/cpp-net-build \
     && sed -i 's/c++11/c++14/g' ../cpp_netlib/cpp-netlib-0.13.0-rc1/CMakeLists.txt \
     && sed -i 's/add_definitions(-DBOOST_NETWORK_DEBUG)/add_definitions(-DBOOST_NETWORK_DEBUG) \n add_definitions(-D_GLIBCXX_DEBUG)/g' ../cpp_netlib/cpp-netlib-0.13.0-rc1/CMakeLists.txt
 
-RUN cmake -DCMAKE_BUILD_TYPE=Debug \
+RUN cd /home/craig/Programming/cpp-net-build \ 
+     && cmake -DCMAKE_BUILD_TYPE=Debug \
      -DCMAKE_C_COMPILER=clang-6.0 \
      -DCMAKE_CXX_COMPILER=clang-6.0 \
      -DCPP-NETLIB_BUILD_TESTS=OFF \
