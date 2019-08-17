@@ -13,6 +13,8 @@
 
 #include <sys/select.h>
 
+#include <cctype>
+
 #ifdef _WINDOWS
 #include <Windows.h>
 #endif
@@ -231,6 +233,35 @@ std::string GetLineFromCin() {
 void JARVISFramework::processCommandLoop()
 {
 	std::string command;
+
+	struct command_t{
+		std::function<void()> handler;
+		std::string description;
+
+	};
+
+	std::map<std::string,command_t> command_list = {
+		{"shutdown",{[&]{this->shuttingDown = true;}, "Shuts down services and exits program"}},
+
+		{"help",{
+			[&]{std::cout << "Commands:" << std::endl;
+				for(auto& cmd : command_list){
+					std::cout << cmd.first << "\t : " << cmd.second.description << std::endl;
+				}}, "displays help"}},
+
+		{"update config",{
+			[]{
+			if(Config::ReadConfig("config.ini")){
+				ErrorLogger::logInfo("Config updated");
+			}else {
+				ErrorLogger::logWarn("Config failed to update");
+			}}, "Rereads the config.ini file"}},
+
+		{"media resend_handshake",{
+			[&]{this->cModules->getMediaStreamer().Resend_Agent_Handshake_Message();},
+			 "Resends the Agent handshake"}},
+	};
+
 	
 	while(!this->shuttingDown) {
 			
@@ -253,24 +284,15 @@ void JARVISFramework::processCommandLoop()
 				std::getline(std::cin, command);
 			}
 
-			if(command == "shutdown")
-			{
-					this->shuttingDown = true;
-					return;
-			}
-			else if(command == "update config")
-			{
-					if(Config::ReadConfig("config.ini")){
-						ErrorLogger::logInfo("Config updated");
-					}else {
-						ErrorLogger::logWarn("Config failed to update");
-					}
-			}
-			else if(command == "media resend_handshake")
-			{
-				this->cModules->getMediaStreamer().Resend_Agent_Handshake_Message();
-			}
-			else
+			std::transform(command.begin(), command.end(), command.begin(), 
+                [](unsigned char c){ return std::tolower(c); }
+            );
+			std::cout<< command;
+			if(command_list.find(command) != command_list.end()){
+				
+				command_list[command].handler();
+
+			} else
 			{
 				ErrorLogger::logError("Unrecognised Command:" + command);
 			}

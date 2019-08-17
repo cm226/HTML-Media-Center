@@ -85,7 +85,7 @@ void LightingController::turnOnLight(
             exit_code);
         
         if(exit_code != 0){
-            ErrorLogger::logInfo("Failed to turn light on got exit code: " +exit_code);
+            ErrorLogger::logInfo("Failed to turn light on got exit code: " + std::to_string(exit_code));
         }
 
     } else{
@@ -102,7 +102,7 @@ void LightingController::turnOffLight(
         exit_code);
     
     if(exit_code != 0){
-        ErrorLogger::logInfo("Failed to turn light on got exit code: " +exit_code);
+        ErrorLogger::logInfo("Failed to turn light on got exit code: " + std::to_string(exit_code));
     }
 }
 
