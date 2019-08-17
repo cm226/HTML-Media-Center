@@ -13,4 +13,14 @@ class LightingController : public Plugin {
 
     private:
         void bedroomMotion();
+        void turnOnLight(
+            std::string name
+        );
+        void turnOffLight(
+            std::string name
+        );
+
+    private:
+        bool m_sleeping;
+        std::chrono::time_point<std::chrono::system_clock> m_sleeping_at;
 };

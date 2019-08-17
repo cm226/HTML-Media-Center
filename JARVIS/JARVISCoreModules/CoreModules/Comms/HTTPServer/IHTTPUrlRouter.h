@@ -16,6 +16,7 @@ class IHTTPUrlRouter
 
                 virtual void Write(std::string) = 0;
                 virtual std::string RequestBody() = 0;
+                virtual std::map<std::string, std::string> RequestParams() = 0;
 
         };
 

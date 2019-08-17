@@ -1,0 +1,73 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Lighting</title>
+
+
+  <script src="../Shopping_content/js/jquery.min.js"></script>
+</head>
+<body>
+
+    <div id="lightList"></div>
+
+    <script>
+        
+        function TurnOnLight(light){
+
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function() { 
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                    callback(xmlHttp.responseText);
+                }
+            }
+            xmlHttp.open("GET", "/plugins/Lighting/TurnOnLight?name="+light, true); // true for asynchronous 
+            xmlHttp.send(null);
+
+        }
+
+        function TurnOffLight(light){
+
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function() { 
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                    callback(xmlHttp.responseText);
+                }
+            }
+            xmlHttp.open("GET", "/plugins/Lighting/TurnOffLight?name="+light, true); // true for asynchronous 
+            xmlHttp.send(null);
+
+        }
+
+        function SetSleeping(){
+
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function() { 
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                    callback(xmlHttp.responseText);
+                }
+            }
+            xmlHttp.open("GET", "/plugins/Lighting/Sleeping", true); // true for asynchronous 
+            xmlHttp.send(null);
+
+
+        }
+
+        $(document).ready(()=>{
+            $.get('/plugins/Lighting/AllLights', (responce)=>{
+                let lights = responce.split(',');
+                lights.forEach((light)=>{
+                    let trimedLight = light.trim();
+                    $('#lightList').append("<button onClick='TurnOnLight(\""+trimedLight+"\")'>"+trimedLight+" on </button>");
+                    $('#lightList').append("<button onClick='TurnOffLight(\""+trimedLight+"\")'>"+trimedLight+" off </button>");
+                    $('body').append("<button onClick='SetSleeping()'> Set Sleeping </button>");
+                    SetSleeping
+                });
+            });
+        });
+
+    </script>
+
+</body>
+</html>

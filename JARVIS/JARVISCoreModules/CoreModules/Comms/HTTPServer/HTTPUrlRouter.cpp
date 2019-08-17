@@ -1,14 +1,22 @@
 #include "HTTPUrlRouter.h"
 
 HTTPUrlRouter::Connection::Connection(
-    std::string request_body){
+    std::string request_body,
+    std::map<std::string, std::string> query_params
+){
 
         m_request_body = request_body;
+        m_query_params = query_params;
 }
 
 std::string HTTPUrlRouter::Connection::RequestBody(
 ){
     return m_request_body;
+}
+
+std::map<std::string, std::string> HTTPUrlRouter::Connection::RequestParams(
+) {
+    return m_query_params;
 }
 
 void HTTPUrlRouter::Connection::Write(
@@ -70,10 +78,11 @@ bool HTTPUrlRouter::HasHandler(
 void HTTPUrlRouter::Route(
     const std::string& url, 
     boost::network::http::server<HTTPServer>::request request,
-    boost::network::http::server<HTTPServer>::connection_ptr connection_ptr
+    boost::network::http::server<HTTPServer>::connection_ptr connection_ptr,
+    std::map<std::string, std::string> query_params
 ) {
     auto handler = m_handler_map[url];
-    auto connection = std::make_shared<Connection>(request.body);
+    auto connection = std::make_shared<Connection>(request.body, query_params);
     handler(connection);
 
     connection_ptr->set_status(boost::network::http::server<HTTPServer>::connection::ok);

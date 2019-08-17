@@ -140,5 +140,5 @@ CMD service mysql start \
 # sudo docker build -t media .
 # sudo docker build --build-arg build_type=Debug -t media .
 # sudo docker run -p 8442:8442 -v ~/mdbdata/arsehole:/var/lib/mysql -ti --restart unless-stopped media
-# sudo docker run -p 8442:8442 -p 9091:9091 -v /home/boss_man/Projects/HTML-Media-Center:/home/craig/Programming/JARVIS/HTML-Media-Center --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -ti media
+# sudo docker run -p 8442:8442 -p 9091:9091 -v /home/craig/Programming/HTML-Media-Center:/home/craig/Programming/JARVIS/HTML-Media-Center --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -ti media
 # then run cmd above 

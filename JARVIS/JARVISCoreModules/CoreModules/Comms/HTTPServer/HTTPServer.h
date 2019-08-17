@@ -20,6 +20,12 @@ class HTTPServer {
             boost::network::http::server<HTTPServer>::request const &request,
             const boost::network::http::server<HTTPServer>::connection_ptr& connection
         );
+
+    private:
+        std::map<std::string, std::string> get_queries(
+            const std::string dest,
+            std::string& url_out
+        );
     
 
         

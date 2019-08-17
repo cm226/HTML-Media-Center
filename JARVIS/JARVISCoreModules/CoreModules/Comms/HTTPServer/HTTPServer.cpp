@@ -19,21 +19,59 @@ HTTPServer::HTTPServer(
     m_router = router;
 }
 
+std::map<std::string, std::string> HTTPServer::get_queries(
+    const std::string dest,
+    std::string& url_out
+) {
+
+    std::size_t pos = dest.find_first_of("?");
+    url_out = dest.substr(0, pos);
+
+    std::map<std::string, std::string> queries;
+    if (pos != std::string::npos) {
+        std::string query_string = dest.substr(pos + 1);
+
+        // Replace '&' with space
+        for (pos = 0; pos < query_string.size(); pos++) {
+            if (query_string[pos] == '&') {
+                query_string[pos] = ' ';
+            }
+        }
+
+        std::istringstream sin(query_string);
+        while (sin >> query_string) {
+
+            pos = query_string.find_first_of("=");
+
+            if (pos != std::string::npos) {
+                const std::string key = query_string.substr(0, pos);
+                const std::string value = query_string.substr(pos + 1);
+                queries[key] = value;
+            }
+        }
+    }
+
+    return queries;
+}
+
 void HTTPServer::HandleRequest(
     server::request const &request,
     const server::connection_ptr& connection
 ) {
     server::string_type ip = source(request);
     std::string destination = request.destination;
+    std::string path;
+    auto querys = get_queries(destination, path);
 
-    if(m_router->HasHandler(destination)){
+    if(m_router->HasHandler(path)){
         // crappy plugin may except when handling 
         // this request, catch and log error
         try{
             m_router->Route(
-                destination,
+                path,
                 request,
-                connection);
+                connection,
+                querys);
             return;
         } catch (std::exception& e){
             ErrorLogger::logError(

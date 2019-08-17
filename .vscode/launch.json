@@ -32,15 +32,15 @@
             "name": "(gdb) Remote Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/boss_man/Projects/HTML-Media-Center/JARVIS/bin/JARVIS",
+            "program": "/home/craig/Programming/HTML-Media-Center/JARVIS/bin/JARVIS",
             "miDebuggerServerAddress": "localhost:9091",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "/home/boss_man/Projects/HTML-Media-Center/JARVIS/bin",
+            "cwd": "/home/craig/Programming/HTML-Media-Center/JARVIS/bin",
             "environment": [
                 {
                     "name": "LD_LIBRARY_PATH",
-                    "value": "/home/boss_man/Projects/HTML-Media-Center/JARVIS/bin"
+                    "value": "/home/craig/Programming/HTML-Media-Center/JARVIS/bin"
                 }
             ],
             "externalConsole": true,
