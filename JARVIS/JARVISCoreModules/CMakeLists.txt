@@ -18,6 +18,7 @@ SET(USING_MYSQL OFF)
 
 #include_directories (/home/boss_man/Projects/mariadb_connector/mariadb-connector-c-3.0.6-src/include)
 include_directories (/home/craig/Programming/MySql/mariadb-connector-c-3.0.6-linux-x86_64/include/mariadb)
+include_directories (/home/craig/Programming/rapidJSON/include)
 
 add_definitions(-DBOOST_NETWORK_ENABLE_HTTPS)
 

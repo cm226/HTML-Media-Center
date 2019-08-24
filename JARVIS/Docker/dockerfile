@@ -4,9 +4,9 @@ ARG build_type=Release
 
 EXPOSE 8442
 
-RUN apt update
+RUN apt-get update
 
-RUN apt install -y \
+RUN apt install -y --fix-missing \
     xz-utils \
     build-essential \
     curl \
@@ -15,7 +15,8 @@ RUN apt install -y \
     libbz2-1.0 libbz2-dev libbz2-ocaml libbz2-ocaml-dev \
     mariadb-server \
     git-core \
-    libcurl4-openssl-dev
+    libcurl4-openssl-dev \
+    nodejs
 
 RUN apt install -y gdb gdbserver
 
@@ -54,6 +55,11 @@ RUN mkdir -p /home/craig/Programming/cpp_netlib \
     && tar xfz cpp-netlib-0.13.0-rc1.tar.gz \
     && rm cpp-netlib-0.13.0-rc1.tar.gz
 
+RUN mkdir -p /home/craig/Programming/rapidJSON \
+     && cd /home/craig/Programming/rapidJSON \
+     && git clone https://github.com/Tencent/rapidjson.git . \
+     && git checkout tags/v1.1.0
+
 ################################################
 
 RUN cd /openssl-1.0.2l \
@@ -71,7 +77,7 @@ RUN mkdir -p /home/craig/Programming/JARVIS \
     && cd /home/craig/Programming/JARVIS/ \
     && git clone https://github.com/cm226/HTML-Media-Center.git \
     && cd HTML-Media-Center \
-    && git checkout origin/f_add_widgits \
+    && git checkout origin/master \
     && mkdir /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin
 
 RUN ./home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/Docker/buildBoost.sh $build_type
@@ -82,7 +88,7 @@ RUN mkdir /home/craig/Programming/cpp-net-build \
     && sed -i 's/add_definitions(-DBOOST_NETWORK_DEBUG)/add_definitions(-DBOOST_NETWORK_DEBUG) \n add_definitions(-D_GLIBCXX_DEBUG)/g' ../cpp_netlib/cpp-netlib-0.13.0-rc1/CMakeLists.txt
 
 RUN cd /home/craig/Programming/cpp-net-build \ 
-     && cmake -DCMAKE_BUILD_TYPE=Debug \
+     && cmake -DCMAKE_BUILD_TYPE=$build_type \
      -DCMAKE_C_COMPILER=clang-6.0 \
      -DCMAKE_CXX_COMPILER=clang-6.0 \
      -DCPP-NETLIB_BUILD_TESTS=OFF \
@@ -97,11 +103,11 @@ RUN cd /home/craig/Programming/cpp-net-build \
 
 ## start my build stuff
 
-RUN cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin
+RUN if [ "$build_type" = "Release" ] ; then cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin ;fi
 
-RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/ \
+RUN if [ "$build_type" = "Release" ] ; then cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/ \
      && git pull origin master \
-     && ./BuildAll.sh $build_type
+     && ./BuildAll.sh $build_type; fi
 
 #Setup the config file
 RUN  cp /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModules/CoreModules/config_template.ini /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/config.ini \

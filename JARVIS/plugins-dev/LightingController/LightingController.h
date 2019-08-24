@@ -23,4 +23,5 @@ class LightingController : public Plugin {
     private:
         bool m_sleeping;
         std::chrono::time_point<std::chrono::system_clock> m_sleeping_at;
+        bool m_last_light_state;
 };

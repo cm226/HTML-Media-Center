@@ -1,9 +1,12 @@
 #include "LightingController.h"
 #include "SunsetTimes.h"
 
+#include "rapidjson/document.h"
+
 LightingController::LightingController(CoreModules* cm):
     Plugin(cm),
-    m_sleeping(false){
+    m_sleeping(false),
+    m_last_light_state(false){
 
         auto comms = cm->getComms();
         auto router = comms->Router();
@@ -15,7 +18,7 @@ LightingController::LightingController(CoreModules* cm):
             [&](
                 std::shared_ptr<IHTTPUrlRouter::IConnection> connection
         ){
-            connection->Write("Bedroom");
+            connection->Write("[{\"name\" : \"Bedroom\", \"state\" : \""+std::to_string(m_last_light_state)+"\"}]");
         });
 
 
@@ -34,6 +37,8 @@ LightingController::LightingController(CoreModules* cm):
             }
 
             turnOnLight(light);
+
+            connection->Write("{\"name\" : \"Bedroom\", \"state\" : \""+std::to_string(m_last_light_state)+"\"}");
         });
 
         router->MapURLRequest(
@@ -44,6 +49,8 @@ LightingController::LightingController(CoreModules* cm):
             auto params = connection->RequestParams();
             auto light = params["name"];
             turnOffLight(light);
+
+            connection->Write("[{\"name\" : \"Bedroom\", \"state\" : \""+std::to_string(m_last_light_state)+"\"}]");
             
         });
 
@@ -54,6 +61,9 @@ LightingController::LightingController(CoreModules* cm):
         ){
             m_sleeping_at = std::chrono::system_clock::now();
             m_sleeping = true;
+            turnOffLight("Bedroom");
+            m_last_light_state = false;
+            
             ErrorLogger::logInfo("Sleeping Set");
         });
 
@@ -97,9 +107,20 @@ void LightingController::turnOffLight(
     std::string name
 ){
     bool exit_code = 0;
-    this->coreMod->getTaskList().RunSystemCommand(
+    std::string output = this->coreMod->getTaskList().RunSystemCommand(
         "node ControlLighting light="+name+" state=off",
         exit_code);
+
+    if(exit_code != 0){
+        ErrorLogger::logInfo("Failed to turn light on got exit code: " + std::to_string(exit_code));
+        return;
+    }
+
+    rapidjson::Document d;
+    d.Parse(output.c_str());
+    rapidjson::Value& light_state = d["light_state"];
+    m_last_light_state = light_state.GetBool();
+    
     
     if(exit_code != 0){
         ErrorLogger::logInfo("Failed to turn light on got exit code: " + std::to_string(exit_code));

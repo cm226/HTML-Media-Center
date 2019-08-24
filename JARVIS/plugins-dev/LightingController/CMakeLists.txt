@@ -10,6 +10,7 @@ find_package(Boost 1.58.0 REQUIRED COMPONENTS system filesystem signals thread)
 
 include_directories (/home/craig/Programming/MySql/mariadb-connector-c-3.0.6-linux-x86_64/include/mariadb)
 include_directories(${Boost_INCLUDE_DIR})
+include_directories (/home/craig/Programming/rapidJSON/include)
 
 set(SRCS 
 SunsetTimes.cpp
