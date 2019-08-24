@@ -65,6 +65,19 @@ LightingController::LightingController(CoreModules* cm):
             m_last_light_state = false;
             
             ErrorLogger::logInfo("Sleeping Set");
+
+            // turn off motion sensing untill morning. 
+            // auto req = cm->getComms()->createJSONRequest();
+
+            // SunsetTimes sunset;
+            // auto sunset = sunset.nextSunSet();
+            // req->requestURL("http://192.168.1.xx/?sleep="+std::to_string(sunset));
+            // std::string reply;
+            // if(!req->makeRequest(reply)){
+            //     ErrorLogger::logInfo("Failed to talk to otion sensor to turn off");
+            // }
+
+
         });
 
 

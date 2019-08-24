@@ -8,6 +8,7 @@ public:
     SunsetTimes();
 
     bool IsSunDown();
+    int nextSunSet();
 
 private:
 

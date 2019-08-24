@@ -119,8 +119,8 @@ RUN  cp /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/JARVISCoreModule
 
 # setup mysql db
 # carefull with this there is annoyingness here, since we map the db files to an extrnal volme when we run 
-# the container loading these scripts dont do anything unless you dont mount that volume.. 
-## so if you want to se up the external volume for the first time, mount the extrnal volme (see run docker) and
+# the container loading these scripts doesn't do anything unless you dont mount that volume.. 
+## so if you want to set up the external volume for the first time, mount the extrnal volme (see run docker) and
 ## load these scripts manually with an interactive terminal, this is only required for first tiom setup tho. 
 # it sucks 
 
@@ -133,15 +133,11 @@ RUN /usr/bin/mysqld_safe & mysql_install_db \
 
 COPY server.crt /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/cert.pem
 COPY server.pem /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/key.pem
+COPY maybeRunBootstrap /
+
 
 # start the server
-CMD service mysql start \
-# this command isnt really that scary, just picks stuff out until it gets the ip address only
-     && my_ip=$(ip addr | grep 172 | awk '{$1=$1};1' | cut -d " " -f 2 | cut -d "/" -f 1) \
-     && sed -i "s/<host>/$my_ip /g" /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/config.ini \
-     && cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/ \
-     && ./UpdateBootstraper.sh
-
+CMD ./maybeRunBootstrap $build_type
 # build and run from inside docker folder with 
 # sudo docker build -t media .
 # sudo docker build --build-arg build_type=Debug -t media .
