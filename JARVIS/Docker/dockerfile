@@ -15,8 +15,10 @@ RUN apt install -y --fix-missing \
     libbz2-1.0 libbz2-dev libbz2-ocaml libbz2-ocaml-dev \
     mariadb-server \
     git-core \
-    libcurl4-openssl-dev \
-    nodejs
+    libcurl4-openssl-dev
+
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+     && apt-get -y install nodejs
 
 RUN apt install -y gdb gdbserver
 
@@ -100,6 +102,9 @@ RUN cd /home/craig/Programming/cpp-net-build \
      -DCMAKE_EXE_LINKER_FLAGS="-lstdc++" \
     ../cpp_netlib/cpp-netlib-0.13.0-rc1 \
     && make
+
+RUN cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/LightingController/Node \
+     && npm install codetheweb/tuyapi
 
 ## start my build stuff
 
