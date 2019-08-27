@@ -44,9 +44,10 @@ let light2Promice = new Promise((resolve, reject)=>{
 
 light1Promice.then((light1Data)=>{
   light2Promice.then((light2Data)=>{
-    console.log({
+    console.log(JSON.stringify({
       light1 : light1Data,
       light2 : light2Data
-    });
+    }));
+    process.exit(0);
   });
 });

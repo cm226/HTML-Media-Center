@@ -8,6 +8,8 @@ LightingController::LightingController(CoreModules* cm):
     m_sleeping(false),
     m_last_light_state(false){
 
+        m_lighting_dir = "/home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/plugins-dev/LightingController/Node";
+
         auto comms = cm->getComms();
         auto router = comms->Router();
 
@@ -50,7 +52,7 @@ LightingController::LightingController(CoreModules* cm):
             auto light = params["name"];
             turnOffLight(light);
 
-            connection->Write("[{\"name\" : \"Bedroom\", \"state\" : \""+std::to_string(m_last_light_state)+"\"}]");
+            connection->Write("{\"name\" : \"Bedroom\", \"state\" : \""+std::to_string(m_last_light_state)+"\"}");
             
         });
 
@@ -62,7 +64,6 @@ LightingController::LightingController(CoreModules* cm):
             m_sleeping_at = std::chrono::system_clock::now();
             m_sleeping = true;
             turnOffLight("Bedroom");
-            m_last_light_state = false;
             
             ErrorLogger::logInfo("Sleeping Set");
 
@@ -103,13 +104,17 @@ void LightingController::turnOnLight(
 ){
     if(!m_sleeping){
         bool exit_code = 0;
-        this->coreMod->getTaskList().RunSystemCommand(
-            "node ControlLighting light="+name+" state=on",
+        std::string output = this->coreMod->getTaskList().RunSystemCommand(
+            "(cd "+m_lighting_dir+" && node ControlLights.js state on)",
             exit_code);
         
-        if(exit_code != 0){
+        if(!exit_code){
             ErrorLogger::logInfo("Failed to turn light on got exit code: " + std::to_string(exit_code));
+            return;
         }
+
+        parseNodeOutput(output);
+        
 
     } else{
         ErrorLogger::logInfo("Attempted to turn on light but sleeping is set");
@@ -121,23 +126,43 @@ void LightingController::turnOffLight(
 ){
     bool exit_code = 0;
     std::string output = this->coreMod->getTaskList().RunSystemCommand(
-        "node ControlLighting light="+name+" state=off",
+        "(cd "+m_lighting_dir+" && node ControlLights.js state off)",
         exit_code);
 
-    if(exit_code != 0){
+    if(!exit_code){
         ErrorLogger::logInfo("Failed to turn light on got exit code: " + std::to_string(exit_code));
         return;
     }
 
-    rapidjson::Document d;
-    d.Parse(output.c_str());
-    rapidjson::Value& light_state = d["light_state"];
-    m_last_light_state = light_state.GetBool();
+    parseNodeOutput(output);
+
+}
+
+void LightingController::parseNodeOutput(
+    std::string output
+){
     
-    
-    if(exit_code != 0){
-        ErrorLogger::logInfo("Failed to turn light on got exit code: " + std::to_string(exit_code));
+    try{
+        rapidjson::Document d;
+        d.Parse(output.c_str());
+
+        if(!d.IsObject()){
+            throw std::runtime_error("document is not obejct");
+        }
+
+        if(!d.HasMember("light1") || !d.HasMember("light2")){
+            throw std::runtime_error("object dosnt have all lights");
+        }
+        rapidjson::Value& light1 = d["light1"];
+        rapidjson::Value& light2 = d["light2"];
+
+        m_last_light_state = light1["state"].GetBool() || light2["state"].GetBool();
+
+    } catch(std::exception& e){
+        ErrorLogger::logError("Failed to parse node output" + output + "got : "+ e.what());
     }
+
+    return;   
 }
 
 void LightingController::handleRequest(std::string requestURL){

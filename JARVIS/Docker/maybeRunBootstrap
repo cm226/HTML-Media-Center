@@ -1,6 +1,7 @@
 
 if [ "$1" != "Release" ] 
 then 
+    cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/
     bash
     exit 0
 fi

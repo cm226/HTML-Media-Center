@@ -56,7 +56,7 @@ bool SunsetTimes::IsSunDown(){
     return false;
 }
 
-int SunsetTimes::nextSunUp(    
+int SunsetTimes::nextSunSet(    
 ) {
     std::chrono::system_clock::time_point now = 
         std::chrono::system_clock::now();
@@ -65,5 +65,5 @@ int SunsetTimes::nextSunUp(
 
     tm local_tm = *localtime(&tt);
 
-    return sunset[local_tm.tm_mon];
+    return m_sunset[local_tm.tm_mon];
 }
