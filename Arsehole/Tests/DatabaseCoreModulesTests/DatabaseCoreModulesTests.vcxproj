@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{15420602-18D1-45ED-A955-126C313917FE}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>DatabaseCoreModulesTests</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\Users\cmate_000\Documents\mysql-connector-c++-noinstall-1.1.7-winx64\include;C:\Users\cmate_000\Documents\boost_1_60_0;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\MySQL\MySQL Connector C++ 1.1.7\lib\opt;C:\Users\cmate_000\Documents\boost_1_60_0\stage\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>mysqlcppconn.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Database.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Constraints\ConstraintGroup\ConstraintGroup.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Constraints\ConstraintGroup\ORConstraintGroup.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Constraints\Equals.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Constraints\GreaterThan.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Constraints\GreatherThanEqualTo.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Constraints\LessThan.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Constraints\LessThanEqualToo.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Constraints\Like.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Descriptor\Descriptor.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Descriptor\Limit.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Query.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\UpdateQuery.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\ResultWrapper.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Album\Album.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Album\Fields\albumID.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Album\Fields\albumName.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Album\Fields\albumRating.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Album\Fields\artistID1.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\DatabaseTable.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\IDatabaseTableField.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Movie\Fields\movieGenre.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Movie\Fields\movieID.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Movie\Fields\movieIMDB.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Movie\Fields\movieName.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Movie\Fields\movieURL.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Movie\Fields\thumbnailURL.cpp" />
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Movie\Movie.cpp" />
+    <ClCompile Include="ConnectTests.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="SelectTests.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ErrorLogger\ErrorLogger.vcxproj">
+      <Project>{b3c985d0-399f-44ab-914a-b69d3a92c846}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

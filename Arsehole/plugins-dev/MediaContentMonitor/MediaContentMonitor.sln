@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MediaContentMonitor", "MediaContentMonitor.vcxproj", "{E7A6FFC5-4664-4D23-9EC1-68B6C422B4FC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "arseholeCoreModules", "..\..\arseholeCoreModules\arseholeCoreModules.vcxproj", "{AFB997C0-FF5E-4894-84AF-C57003862646}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7A6FFC5-4664-4D23-9EC1-68B6C422B4FC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E7A6FFC5-4664-4D23-9EC1-68B6C422B4FC}.Debug|Win32.Build.0 = Debug|Win32
+		{E7A6FFC5-4664-4D23-9EC1-68B6C422B4FC}.Release|Win32.ActiveCfg = Release|Win32
+		{E7A6FFC5-4664-4D23-9EC1-68B6C422B4FC}.Release|Win32.Build.0 = Release|Win32
+		{AFB997C0-FF5E-4894-84AF-C57003862646}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AFB997C0-FF5E-4894-84AF-C57003862646}.Debug|Win32.Build.0 = Debug|Win32
+		{AFB997C0-FF5E-4894-84AF-C57003862646}.Release|Win32.ActiveCfg = Release|Win32
+		{AFB997C0-FF5E-4894-84AF-C57003862646}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

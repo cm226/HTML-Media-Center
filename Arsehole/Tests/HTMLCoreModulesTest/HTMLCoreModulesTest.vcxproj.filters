@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\ElementTests">
+      <UniqueIdentifier>{c4fdffba-b641-4258-b19c-84474b54959b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ElementTests\TextBox">
+      <UniqueIdentifier>{a0ae03e0-0e5e-42e8-bc13-253ea15cd784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ElementTests\Lable">
+      <UniqueIdentifier>{3b6d86db-9948-4914-a319-a486de440067}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ElementTests\Hyperlink">
+      <UniqueIdentifier>{e7d19c6c-a1b1-47ac-b5e9-902dc1e6d002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ElementTests\HTMLImage">
+      <UniqueIdentifier>{dd364fb3-7864-4714-b283-d1e34ded8f28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ElementTests\FormSubmit">
+      <UniqueIdentifier>{8b899a6f-e139-4603-bc69-957010263d1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ContainerTests">
+      <UniqueIdentifier>{67294e3c-38ba-4d1e-8c1d-0df8d16a3cc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ElementTests\FileUpload">
+      <UniqueIdentifier>{3994d8f5-75cc-42ea-8373-1f53b745d0cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SRC">
+      <UniqueIdentifier>{e9f5d9e9-9fff-451f-9fb9-2bc974a4df90}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ElementTests\TextBoxTests.cpp">
+      <Filter>Source Files\ElementTests\TextBox</Filter>
+    </ClCompile>
+    <ClCompile Include="LableTests.cpp">
+      <Filter>Source Files\ElementTests\Lable</Filter>
+    </ClCompile>
+    <ClCompile Include="HyperlinkTests.cpp">
+      <Filter>Source Files\ElementTests\Hyperlink</Filter>
+    </ClCompile>
+    <ClCompile Include="HTMLImageTests.cpp">
+      <Filter>Source Files\ElementTests\HTMLImage</Filter>
+    </ClCompile>
+    <ClCompile Include="FormTests.cpp">
+      <Filter>Source Files\ContainerTests</Filter>
+    </ClCompile>
+    <ClCompile Include="PageTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementListTests.cpp">
+      <Filter>Source Files\ContainerTests</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\Page.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementTests\FileUploadTester.cpp">
+      <Filter>Source Files\ElementTests\FileUpload</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\Elements\FileUpload.cpp">
+      <Filter>Source Files\ElementTests\FileUpload</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\Elements\FormSubmit.cpp">
+      <Filter>Source Files\ElementTests\FormSubmit</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementTests\FormSubmitTester.cpp">
+      <Filter>Source Files\ElementTests\FormSubmit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\Elements\HTMLImage.cpp">
+      <Filter>Source Files\ElementTests\HTMLImage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\Elements\Hyperlink.cpp">
+      <Filter>Source Files\ElementTests\Hyperlink</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\Elements\Lable.cpp">
+      <Filter>Source Files\ElementTests\Lable</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\IElement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\Containers\ElementList.cpp">
+      <Filter>Source Files\ContainerTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\Containers\Form.cpp">
+      <Filter>Source Files\ContainerTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\Containers\IContainer.cpp">
+      <Filter>Source Files\ContainerTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\Elements\TextBox.cpp">
+      <Filter>Source Files\ElementTests\TextBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\PageBuilders\DesktopPageBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\PageBuilders\MobilePageBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\URL\IURLBuilder.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\URL\URLBuilder.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\URL\URLBuilderFactory.cpp">
+      <Filter>Source Files\SRC</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\URL\IURLBuilder.h">
+      <Filter>Source Files\SRC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\URL\URLBuilder.h">
+      <Filter>Source Files\SRC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\URL\URLBuilderFactory.h">
+      <Filter>Source Files\SRC</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
