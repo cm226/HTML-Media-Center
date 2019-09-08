@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../arsehole/Framework/Plugin/Plugin.h"
+#include "../../../Arsehole/Framework/Plugin/Plugin.h"
 
 class TextFileDeployerPlugin : public Plugin
 {

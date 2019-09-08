@@ -84,12 +84,12 @@
 		<link>
 			<name>dbSrc/Database</name>
 			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/Database</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/Database</locationURI>
 		</link>
 		<link>
 			<name>dbSrc/ErrorLogger.cpp</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/Errors/ErrorLogger.cpp</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/Errors/ErrorLogger.cpp</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

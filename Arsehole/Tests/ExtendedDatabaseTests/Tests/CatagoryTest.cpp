@@ -1,10 +1,10 @@
 #include "../stdafx.h"
-#include "../../../arseholeCoreModules/CoreModules/Database/ExtendedPluginDB/Catagory.h"
+#include "../../../ArseholeCoreModules/CoreModules/Database/ExtendedPluginDB/Catagory.h"
 
 
 BOOST_AUTO_TEST_CASE(CatagoryListSubs)
 {
-	ExtendedDatabase::Catagory catagory("/var/www/HTML-Media-Center/arsehole/Tests/ExtendedDatabaseTests/TestData");
+	ExtendedDatabase::Catagory catagory("/var/www/HTML-Media-Center/Arsehole/Tests/ExtendedDatabaseTests/TestData");
 
 	const std::list<ExtendedDatabase::SubCatagory> subCatagorys = catagory.ListSubCatagories();
 
@@ -21,7 +21,7 @@ BOOST_AUTO_TEST_CASE(CatagoryListSubs)
 
 BOOST_AUTO_TEST_CASE(CatagoryLookupSubCat)
 {
-	ExtendedDatabase::Catagory catagory("/var/www/HTML-Media-Center/arsehole/Tests/ExtendedDatabaseTests/TestData");
+	ExtendedDatabase::Catagory catagory("/var/www/HTML-Media-Center/Arsehole/Tests/ExtendedDatabaseTests/TestData");
 	ExtendedDatabase::SubCatagory subCat("","");
 
 	bool foindit = catagory.tryLookupSubcatagoryFromName("Music", subCat);
@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE(CatagoryLookupSubCat)
 
 BOOST_AUTO_TEST_CASE(CatagoryNonExsitantLookupSubCat)
 {
-	ExtendedDatabase::Catagory catagory("/var/www/HTML-Media-Center/arsehole/Tests/ExtendedDatabaseTests/TestData");
+	ExtendedDatabase::Catagory catagory("/var/www/HTML-Media-Center/Arsehole/Tests/ExtendedDatabaseTests/TestData");
 	ExtendedDatabase::SubCatagory subCat("","");
 
 	bool foindit = catagory.tryLookupSubcatagoryFromName("BLARGH", subCat);
@@ -46,12 +46,12 @@ BOOST_AUTO_TEST_CASE(CatagoryNonExsitantLookupSubCat)
 BOOST_AUTO_TEST_CASE(CatagoryCreateSubCat)
 {
 	std::string subCatName = "createdSubCat";
-	std::string subCatToCreateDir = "/var/www/HTML-Media-Center/arsehole/Tests/ExtendedDatabaseTests/TestData/"+subCatName;
+	std::string subCatToCreateDir = "/var/www/HTML-Media-Center/Arsehole/Tests/ExtendedDatabaseTests/TestData/"+subCatName;
 
 	if(boost::filesystem::exists(subCatToCreateDir))
 		boost::filesystem::remove(subCatToCreateDir);
 
-	ExtendedDatabase::Catagory catagory("/var/www/HTML-Media-Center/arsehole/Tests/ExtendedDatabaseTests/TestData/");
+	ExtendedDatabase::Catagory catagory("/var/www/HTML-Media-Center/Arsehole/Tests/ExtendedDatabaseTests/TestData/");
 
 	catagory.addSubCatagory(subCatName);
 

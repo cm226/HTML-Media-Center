@@ -13,7 +13,7 @@
 #include <map>
 
 #include "../Plugin.h"
-#include "../../../../arseholeCoreModules/CoreModules/CoreModules.h"
+#include "../../../../ArseholeCoreModules/CoreModules/CoreModules.h"
 
 
 class Loader {

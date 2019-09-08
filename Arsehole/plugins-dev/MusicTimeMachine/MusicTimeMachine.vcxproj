@@ -40,7 +40,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>D:\programming\mysql-connector-c++-noinstall-1.1.1-win32\include;D:\programming\boost_1_52_0;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\wamp\www\HTML-Media-Center\arsehole\arsehole\Debug;D:\programming\boost_1_52_0\stage\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\wamp\www\HTML-Media-Center\Arsehole\Arsehole\Debug;D:\programming\boost_1_52_0\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -51,10 +51,10 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>arseholeCoreModules.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ArseholeCoreModules.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>COPY $(OutDir)$(AssemblyName).dll C:\\wamp\\www\\HTML-Media-Center\\arsehole\\arsehole\\plugins</Command>
+      <Command>COPY $(OutDir)$(AssemblyName).dll C:\\wamp\\www\\HTML-Media-Center\\Arsehole\\Arsehole\\plugins</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

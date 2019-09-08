@@ -1,6 +1,6 @@
 
-#include "../../arsehole/Framework/Plugin/IPluginDLLFactory.h"
-#include "../../arseholeCoreModules/CoreModules/Comms/HTTPServer/HTTPServer.h"
+#include "../../Arsehole/Framework/Plugin/IPluginDLLFactory.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/HTTPServer/HTTPServer.h"
 #include "MusicGlob.h"
 
 MusicGlobPlugin::MusicGlobPlugin(CoreModules* cm)

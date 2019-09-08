@@ -47,106 +47,106 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\Translater.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\Translater.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\BaseTranslationFilter.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\BaseTranslationFilter.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\CommandAndcontrolTranslationFilter.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\CommandAndcontrolTranslationFilter.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginInteractionFilter.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginInteractionFilter.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPageTranslationFilter.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPageTranslationFilter.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\AbstractMessage.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\AbstractMessage.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\ComandAndControlMessage.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\ComandAndControlMessage.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\ListPluginsMessage.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\ListPluginsMessage.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\PluginInteractionRequestMessage.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\PluginInteractionRequestMessage.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\PluginPageMessage.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\PluginPageMessage.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\ReplyMessage.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\ReplyMessage.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\RequestNextDataChunkMessage.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\RequestNextDataChunkMessage.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\Protocals\TwoByteMsgLen.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\Protocals\TwoByteMsgLen.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\Transever\ITranseverConnection.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\Transever\ITranseverConnection.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\Transever\arseholeTranseverConnection.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\Transever\ArseholeTranseverConnection.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\Transever\MessageChunker.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\Transever\MessageChunker.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\Transever\TCPAsyncTransever.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\Transever\TCPAsyncTransever.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\Transever\TranseverConnectionFactory.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\Transever\TranseverConnectionFactory.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\Transever\Exceptions\TimeoutExpiredException.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\Transever\Exceptions\TimeoutExpiredException.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\CURL\CurlManager.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\CURL\CurlManager.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\JSON\JSONCURLRequest.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\JSON\JSONCURLRequest.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\EventModel\EventHandler\EvntHandlerBase.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\EventModel\EventHandler\EvntHandlerBase.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\EventModel\EventManager.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\EventModel\EventManager.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\Protocals\IProtocal.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\Protocals\IProtocal.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\Comms.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\Comms.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubject.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubject.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubjectEvent.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubjectEvent.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
     <ClCompile Include="TwoByteMsgLenTests.cpp">
       <Filter>Source Files\ProtocalTests</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\MobilePluginPageTranslationFilter.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\MobilePluginPageTranslationFilter.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\MobilePluginPageMessage.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\MobilePluginPageMessage.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\URL\URLBuilderFactory.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\URL\URLBuilderFactory.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\URL\IURLBuilder.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\URL\IURLBuilder.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\URL\URLBuilder.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\URL\URLBuilder.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
   </ItemGroup>

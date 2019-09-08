@@ -8,7 +8,7 @@
 #ifndef PLUGIN_H_
 #define PLUGIN_H_
 
-#include "../../../arseholeCoreModules/CoreModules/CoreModules.h"
+#include "../../../ArseholeCoreModules/CoreModules/CoreModules.h"
 #include "PageCallbackContext.h"
 
 #include <boost/function.hpp>

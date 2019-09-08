@@ -84,42 +84,42 @@
 		<link>
 			<name>Containers</name>
 			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/HTMLRendere/Containers</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/HTMLRendere/Containers</locationURI>
 		</link>
 		<link>
 			<name>Elements</name>
 			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/HTMLRendere/Elements</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/HTMLRendere/Elements</locationURI>
 		</link>
 		<link>
 			<name>HTMLRendere.h</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/HTMLRendere/HTMLRendere.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/HTMLRendere/HTMLRendere.h</locationURI>
 		</link>
 		<link>
 			<name>IElement.cpp</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/HTMLRendere/IElement.cpp</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/HTMLRendere/IElement.cpp</locationURI>
 		</link>
 		<link>
 			<name>IElement.h</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/HTMLRendere/IElement.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/HTMLRendere/IElement.h</locationURI>
 		</link>
 		<link>
 			<name>Page.cpp</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/HTMLRendere/Page.cpp</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/HTMLRendere/Page.cpp</locationURI>
 		</link>
 		<link>
 			<name>Page.h</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/HTMLRendere/Page.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/HTMLRendere/Page.h</locationURI>
 		</link>
 		<link>
 			<name>PageBuilder.cpp</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/HTMLRendere/PageBuilder.cpp</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/HTMLRendere/PageBuilder.cpp</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

@@ -7,7 +7,7 @@
 #ifdef _WINDOWS
 
 
-#ifndef _arsehole
+#ifndef _Arsehole
 #define DLLHELL_API  __declspec(dllexport)
 #else
 #define DLLHELL_API __declspec(dllimport)

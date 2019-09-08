@@ -5,7 +5,7 @@
 #ifndef IMAGEGETTERS_IIMAGECONTENTGETTER_H
 #define IMAGEGETTERS_IIMAGECONTENTGETTER_H
 
-#include "../../../arsehole/Framework/Plugin/Plugin.h"
+#include "../../../Arsehole/Framework/Plugin/Plugin.h"
 namespace imagegetters {
 
 

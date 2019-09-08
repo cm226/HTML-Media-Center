@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "../../arseholeCoreModules/CoreModules/HTMLRendere/Elements/HTMLImage.h"
+#include "../../ArseholeCoreModules/CoreModules/HTMLRendere/Elements/HTMLImage.h"
 
 BOOST_AUTO_TEST_CASE(HTMLImageConstructor)
 {

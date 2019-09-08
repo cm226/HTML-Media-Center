@@ -58,7 +58,7 @@ BOOST_AUTO_TEST_CASE(downloadImage)
 
 
 	std::string downloadedFileName = "test.jpg";
-	std::string downloadedDirectory = "C:\\wamp\\www\\HTML-Media-Center\\arsehole\\arsehole\\";
+	std::string downloadedDirectory = "C:\\wamp\\www\\HTML-Media-Center\\Arsehole\\Arsehole\\";
 	std::string downloadedLocation = downloadedDirectory + downloadedFileName;
 	BOOST_CHECK_EQUAL(imgGetter.downloadAndCopyImage("http://g-ecx.images-amazon.com/images/G/02/kindle/merch/gw/Device_acc-GW-D-03-uk-600x180._V394748754_.jpg",
 													 downloadedDirectory,downloadedFileName,200,250), true);
@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE(downloadImageBADURL)
 
 
 	std::string downloadedFileName = "test.jpg";
-	std::string downloadedDirectory = "C:\\wamp\\www\\HTML-Media-Center\\arsehole\\arsehole\\";
+	std::string downloadedDirectory = "C:\\wamp\\www\\HTML-Media-Center\\Arsehole\\Arsehole\\";
 	std::string downloadedLocation = downloadedDirectory + downloadedFileName;
 	BOOST_CHECK_EQUAL(imgGetter.downloadAndCopyImage("http://google/blarghy.jpg",
 													 downloadedDirectory,downloadedFileName,200,250), false);

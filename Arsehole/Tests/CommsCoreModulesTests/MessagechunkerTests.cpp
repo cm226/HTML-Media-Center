@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "../../arseholeCoreModules/CoreModules/Comms/Transever/MessageChunker.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/Transever/MessageChunker.h"
 
 
 BOOST_AUTO_TEST_CASE(MessageChunkerConstructorTests)

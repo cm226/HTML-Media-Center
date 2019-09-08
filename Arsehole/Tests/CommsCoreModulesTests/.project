@@ -84,52 +84,52 @@
 		<link>
 			<name>commsSrc/CURL</name>
 			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/Comms/CURL</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/Comms/CURL</locationURI>
 		</link>
 		<link>
 			<name>commsSrc/Comms.cpp</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/Comms/Comms.cpp</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/Comms/Comms.cpp</locationURI>
 		</link>
 		<link>
 			<name>commsSrc/Comms.h</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/Comms/Comms.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/Comms/Comms.h</locationURI>
 		</link>
 		<link>
 			<name>commsSrc/ErrorLogger.cpp</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/Errors/ErrorLogger.cpp</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/Errors/ErrorLogger.cpp</locationURI>
 		</link>
 		<link>
 			<name>commsSrc/EventModel</name>
 			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/EventModel</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/EventModel</locationURI>
 		</link>
 		<link>
 			<name>commsSrc/IComms.h</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/Comms/IComms.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/Comms/IComms.h</locationURI>
 		</link>
 		<link>
 			<name>commsSrc/JSON</name>
 			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/Comms/JSON</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/Comms/JSON</locationURI>
 		</link>
 		<link>
 			<name>commsSrc/MessageTranslaters</name>
 			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/Comms/MessageTranslaters</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/Comms/MessageTranslaters</locationURI>
 		</link>
 		<link>
 			<name>commsSrc/Protocals</name>
 			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/Comms/Protocals</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/Comms/Protocals</locationURI>
 		</link>
 		<link>
 			<name>commsSrc/Transever</name>
 			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/Comms/Transever</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/Comms/Transever</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

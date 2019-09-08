@@ -8,7 +8,7 @@ LightingController::LightingController(CoreModules* cm):
     m_sleeping(false),
     m_last_light_state(false){
 
-        m_lighting_dir = "/home/craig/Programming/arsehole/HTML-Media-Center/arsehole/plugins-dev/LightingController/Node";
+        m_lighting_dir = "/home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/plugins-dev/LightingController/Node";
 
         auto comms = cm->getComms();
         auto router = comms->Router();

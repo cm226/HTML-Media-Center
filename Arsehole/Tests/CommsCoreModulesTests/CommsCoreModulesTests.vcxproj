@@ -78,39 +78,39 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\Comms.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\CURL\CurlManager.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\JSON\JSONCURLRequest.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubject.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubjectEvent.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\AbstractMessage.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\ComandAndControlMessage.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\ListPluginsMessage.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\MobilePluginPageMessage.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\PluginInteractionRequestMessage.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\PluginPageMessage.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\ReplyMessage.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\RequestNextDataChunkMessage.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\Translater.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\BaseTranslationFilter.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\CommandAndcontrolTranslationFilter.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\MobilePluginPageTranslationFilter.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginInteractionFilter.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPageTranslationFilter.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\Protocals\IProtocal.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\Protocals\TwoByteMsgLen.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\Transever\Exceptions\TimeoutExpiredException.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\Transever\ITranseverConnection.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\Transever\arseholeTranseverConnection.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\Transever\MessageChunker.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\Transever\TCPAsyncTransever.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Comms\Transever\TranseverConnectionFactory.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\EventModel\EventHandler\EvntHandlerBase.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\EventModel\EventManager.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\URL\IURLBuilder.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\URL\URLBuilder.cpp" />
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\URL\URLBuilderFactory.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\Comms.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\CURL\CurlManager.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\JSON\JSONCURLRequest.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubject.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\MessageSubject\MessageSubjectEvent.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\AbstractMessage.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\ComandAndControlMessage.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\ListPluginsMessage.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\MobilePluginPageMessage.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\PluginInteractionRequestMessage.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\PluginPageMessage.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\ReplyMessage.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslatedMessages\RequestNextDataChunkMessage.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\Translater.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\BaseTranslationFilter.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\CommandAndcontrolTranslationFilter.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\MobilePluginPageTranslationFilter.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginInteractionFilter.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPageTranslationFilter.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\MessageTranslaters\TranslationFilters\PluginPollTranslationFilter.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\Protocals\IProtocal.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\Protocals\TwoByteMsgLen.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\Transever\Exceptions\TimeoutExpiredException.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\Transever\ITranseverConnection.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\Transever\ArseholeTranseverConnection.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\Transever\MessageChunker.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\Transever\TCPAsyncTransever.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Comms\Transever\TranseverConnectionFactory.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\EventModel\EventHandler\EvntHandlerBase.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\EventModel\EventManager.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\URL\IURLBuilder.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\URL\URLBuilder.cpp" />
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\URL\URLBuilderFactory.cpp" />
     <ClCompile Include="CURLManagerTests.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MessagechunkerTests.cpp" />
@@ -122,7 +122,7 @@
     <ProjectReference Include="..\..\ErrorLogger\ErrorLogger.vcxproj">
       <Project>{b3c985d0-399f-44ab-914a-b69d3a92c846}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\arseholeCoreModules\arseholeCoreModules.vcxproj">
+    <ProjectReference Include="..\..\ArseholeCoreModules\ArseholeCoreModules.vcxproj">
       <Project>{afb997c0-ff5e-4894-84af-c57003862646}</Project>
     </ProjectReference>
   </ItemGroup>

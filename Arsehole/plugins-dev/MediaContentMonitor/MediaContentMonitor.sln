@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MediaContentMonitor", "MediaContentMonitor.vcxproj", "{E7A6FFC5-4664-4D23-9EC1-68B6C422B4FC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "arseholeCoreModules", "..\..\arseholeCoreModules\arseholeCoreModules.vcxproj", "{AFB997C0-FF5E-4894-84AF-C57003862646}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArseholeCoreModules", "..\..\ArseholeCoreModules\ArseholeCoreModules.vcxproj", "{AFB997C0-FF5E-4894-84AF-C57003862646}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

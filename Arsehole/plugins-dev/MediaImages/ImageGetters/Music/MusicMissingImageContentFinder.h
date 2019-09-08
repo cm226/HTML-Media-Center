@@ -6,7 +6,7 @@
 #define IMAGEGETTERS_MUSIC_MUSICMISSINGIMAGECONTENTFINDER_H
 
 #include <string>
-#include "../../../../arseholeCoreModules/CoreModules/Database/Database.h"
+#include "../../../../ArseholeCoreModules/CoreModules/Database/Database.h"
 namespace imagegetters {
 namespace music {
 

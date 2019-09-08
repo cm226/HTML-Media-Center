@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "../../arseholeCoreModules/CoreModules/HTMLRendere/Elements/Lable.h"
-#include "../../arseholeCoreModules/CoreModules/HTMLRendere/Containers/Form.h"
+#include "../../ArseholeCoreModules/CoreModules/HTMLRendere/Elements/Lable.h"
+#include "../../ArseholeCoreModules/CoreModules/HTMLRendere/Containers/Form.h"
 
 BOOST_AUTO_TEST_CASE(formConstructor)
 {

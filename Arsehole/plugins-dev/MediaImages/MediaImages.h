@@ -1,7 +1,7 @@
 #ifndef MEDIA_IMAGES_
 #define MEDIA_IMAGES_
 
-#include "../../arsehole/Framework/Plugin/IPluginDLLFactory.h"
+#include "../../Arsehole/Framework/Plugin/IPluginDLLFactory.h"
 #include "MediaImagesPlugin.h"
 
 

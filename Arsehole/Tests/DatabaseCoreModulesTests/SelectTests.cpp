@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "../../arseholeCoreModules/CoreModules/Database/Database.h"
-#include "../../arseholeCoreModules/CoreModules/Database/Tables/Movie/Movie.h"
-#include "../../arseholeCoreModules/CoreModules/config.h"
+#include "../../ArseholeCoreModules/CoreModules/Database/Database.h"
+#include "../../ArseholeCoreModules/CoreModules/Database/Tables/Movie/Movie.h"
+#include "../../ArseholeCoreModules/CoreModules/config.h"
 
 
 BOOST_AUTO_TEST_CASE(DatabaseSelect)

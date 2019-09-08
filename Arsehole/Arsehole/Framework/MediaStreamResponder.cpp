@@ -7,8 +7,8 @@
 
 #include "MediaStreamResponder.h"
 #include "../../ErrorLogger/Errors/ErrorLogger.h"
-#include "../../arseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ReplyMessage.h"
-#include "../../arseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/AgentRequestReplyMessage.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ReplyMessage.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/AgentRequestReplyMessage.h"
 #include <sstream>
 
 MediaStreamResponder::MediaStreamResponder(CoreModules* cm) : _mediaStreamer(cm->getMediaStreamer())

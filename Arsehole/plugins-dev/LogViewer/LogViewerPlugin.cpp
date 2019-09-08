@@ -1,7 +1,7 @@
 #include "LogViewerPlugin.h"
-#include "../../arseholeCoreModules/CoreModules/config.h"
+#include "../../ArseholeCoreModules/CoreModules/config.h"
 
-#include "../../arseholeCoreModules/CoreModules/Comms/HTTPServer/IHTTPUrlRouter.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/HTTPServer/IHTTPUrlRouter.h"
 
 #include <sstream>
 

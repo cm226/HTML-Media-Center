@@ -35,88 +35,88 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Database.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Database.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\ResultWrapper.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\ResultWrapper.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\DatabaseTable.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Tables\DatabaseTable.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\IDatabaseTableField.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Tables\IDatabaseTableField.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Album\Album.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Tables\Album\Album.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Query.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Querys\Query.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\UpdateQuery.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Querys\UpdateQuery.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Descriptor\Descriptor.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Querys\Descriptor\Descriptor.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Descriptor\Limit.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Querys\Descriptor\Limit.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Constraints\Equals.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Querys\Constraints\Equals.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Constraints\GreaterThan.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Querys\Constraints\GreaterThan.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Constraints\GreatherThanEqualTo.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Querys\Constraints\GreatherThanEqualTo.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Constraints\LessThan.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Querys\Constraints\LessThan.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Constraints\LessThanEqualToo.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Querys\Constraints\LessThanEqualToo.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Constraints\Like.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Querys\Constraints\Like.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Constraints\ConstraintGroup\ConstraintGroup.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Querys\Constraints\ConstraintGroup\ConstraintGroup.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Querys\Constraints\ConstraintGroup\ORConstraintGroup.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Querys\Constraints\ConstraintGroup\ORConstraintGroup.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Movie\Movie.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Tables\Movie\Movie.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Movie\Fields\movieGenre.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Tables\Movie\Fields\movieGenre.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Movie\Fields\movieID.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Tables\Movie\Fields\movieID.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Movie\Fields\movieIMDB.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Tables\Movie\Fields\movieIMDB.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Movie\Fields\movieName.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Tables\Movie\Fields\movieName.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Movie\Fields\movieURL.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Tables\Movie\Fields\movieURL.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Movie\Fields\thumbnailURL.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Tables\Movie\Fields\thumbnailURL.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Album\Fields\albumID.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Tables\Album\Fields\albumID.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Album\Fields\albumName.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Tables\Album\Fields\albumName.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Album\Fields\albumRating.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Tables\Album\Fields\albumRating.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\Database\Tables\Album\Fields\artistID1.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\Database\Tables\Album\Fields\artistID1.cpp">
       <Filter>Source Files\Src</Filter>
     </ClCompile>
   </ItemGroup>

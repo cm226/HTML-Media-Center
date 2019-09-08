@@ -6,7 +6,7 @@
  */
 
 #include "MusicTimeMachinePlugin.h"
-#include "../../arseholeCoreModules/CoreModules/HTMLRendere/Elements/MusicPlayer/MusicPlayer.h"
+#include "../../ArseholeCoreModules/CoreModules/HTMLRendere/Elements/MusicPlayer/MusicPlayer.h"
 
 MusicTimeMachinePlugin::MusicTimeMachinePlugin(CoreModules* cm) : Plugin(cm)
 {

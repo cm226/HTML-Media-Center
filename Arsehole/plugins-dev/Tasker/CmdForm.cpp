@@ -1,6 +1,6 @@
 #include "CmdForm.h"
 
-#include "../../arseholeCoreModules/CoreModules/config.h"
+#include "../../ArseholeCoreModules/CoreModules/config.h"
 
 CmdForm::CmdForm() :_default_set(false)
 {

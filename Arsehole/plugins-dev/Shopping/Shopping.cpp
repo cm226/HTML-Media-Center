@@ -1,6 +1,6 @@
 #include "Shopping.h"
-#include "../../arseholeCoreModules/CoreModules/Database/Querys/NoBullshitQuery.h"
-#include "../../arseholeCoreModules/CoreModules/Database/Results/ResultTypes.h"
+#include "../../ArseholeCoreModules/CoreModules/Database/Querys/NoBullshitQuery.h"
+#include "../../ArseholeCoreModules/CoreModules/Database/Results/ResultTypes.h"
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>

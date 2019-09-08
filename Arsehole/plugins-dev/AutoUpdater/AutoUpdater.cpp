@@ -1,8 +1,8 @@
 #include "AutoUpdater.h"
 
 #include "../../ErrorLogger/Errors/ErrorLogger.h"
-#include "../../arseholeCoreModules/CoreModules/Comms/HTTPServer/IHTTPUrlRouter.h"
-#include "../../arseholeCoreModules/CoreModules/config.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/HTTPServer/IHTTPUrlRouter.h"
+#include "../../ArseholeCoreModules/CoreModules/config.h"
 
 #include <stdlib.h> 
 #include <fstream>
@@ -70,7 +70,7 @@ bool AutoUpdater::CheckForUpdate(
 ){
     bool normal_exit = false;
     output = this->coreMod->getTaskList().RunSystemCommand(
-        "(cd /home/craig/Programming/arsehole/HTML-Media-Center/arsehole/ && git pull origin master)",
+        "(cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ && git pull origin master)",
         normal_exit);
 
     bool haveUpdates = output.find("Already up to date") == std::string::npos;
@@ -87,9 +87,9 @@ bool AutoUpdater::BuildUpdate(
 ){
     std::string updateCMD;
     if(Config::GetInstance()->Live()){
-        updateCMD = "/home/craig/Programming/arsehole/HTML-Media-Center/arsehole/BuildAll.sh Release";
+        updateCMD = "/home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/BuildAll.sh Release";
     } else {
-        updateCMD = "/home/craig/Programming/arsehole/HTML-Media-Center/arsehole/BuildAll.sh Debug";
+        updateCMD = "/home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/BuildAll.sh Debug";
     }
     
 

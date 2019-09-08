@@ -9,7 +9,7 @@
 #define DATABASEINTERFACEGENERATOR_H_
 
 
-#include "../../arsehole/Framework/Plugin/IPluginDLLFactory.h"
+#include "../../Arsehole/Framework/Plugin/IPluginDLLFactory.h"
 #include "DatabaseInterfaceGeneratorPlugin.h"
 
 

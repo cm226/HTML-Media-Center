@@ -4,8 +4,8 @@
 #ifndef _LOG_VIEWER_PLUGIN
 #define _LOG_VIEWER_PLUGIN
 
-#include "../../arseholeCoreModules/CoreModules/CoreModules.h"
-#include "../../arsehole/Framework/Plugin/Plugin.h"
+#include "../../ArseholeCoreModules/CoreModules/CoreModules.h"
+#include "../../Arsehole/Framework/Plugin/Plugin.h"
 #include "LogEntryParser.h"
 #include <string>
 

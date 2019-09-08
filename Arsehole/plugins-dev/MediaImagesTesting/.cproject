@@ -47,7 +47,7 @@
 									<listOptionValue builtIn="false" value="/home/craig/libpng-1.6.2/.libs"/>
 									<listOptionValue builtIn="false" value="/home/craig/mysql-connector-c++-1.1.1-linux-glibc2.3-x86-32bit/lib"/>
 									<listOptionValue builtIn="false" value="/home/craig/curl-7.28.1/lib/.libs"/>
-									<listOptionValue builtIn="false" value="/var/www/HTML-Media-Center/arsehole/arseholeCoreModules/Debug"/>
+									<listOptionValue builtIn="false" value="/var/www/HTML-Media-Center/Arsehole/ArseholeCoreModules/Debug"/>
 									<listOptionValue builtIn="false" value="/home/craig/boost/boost_1_51_0/stage/lib"/>
 								</option>
 								<option id="gnu.cpp.link.option.libs.794842455" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
@@ -59,7 +59,7 @@
 									<listOptionValue builtIn="false" value="boost_signals"/>
 									<listOptionValue builtIn="false" value="boost_filesystem"/>
 									<listOptionValue builtIn="false" value="boost_system"/>
-									<listOptionValue builtIn="false" value="arseholeCoreModules"/>
+									<listOptionValue builtIn="false" value="ArseholeCoreModules"/>
 									<listOptionValue builtIn="false" value="boost_unit_test_framework"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1388329308" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">

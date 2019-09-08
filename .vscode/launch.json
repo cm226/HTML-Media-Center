@@ -8,14 +8,14 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/craig/Programming/arsehole/HTML-Media-Center/arsehole/bin/arsehole", 
+            "program": "/home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/Arsehole", 
             "args": [],
             "stopAtEntry": false,
-            "cwd": "/home/craig/Programming/arsehole/HTML-Media-Center/arsehole/bin",
+            "cwd": "/home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin",
             "environment": [
                 {
                     "name": "LD_LIBRARY_PATH",
-                    "value": "/home/craig/Programming/arsehole/HTML-Media-Center/arsehole/bin" 
+                    "value": "/home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin" 
                 }
             ],
             "externalConsole": true,
@@ -32,15 +32,15 @@
             "name": "(gdb) Remote Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/craig/Programming/HTML-Media-Center/arsehole/bin/arsehole",
+            "program": "/home/craig/Programming/HTML-Media-Center/Arsehole/bin/Arsehole",
             "miDebuggerServerAddress": "localhost:9091",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "/home/craig/Programming/HTML-Media-Center/arsehole/bin",
+            "cwd": "/home/craig/Programming/HTML-Media-Center/Arsehole/bin",
             "environment": [
                 {
                     "name": "LD_LIBRARY_PATH",
-                    "value": "/home/craig/Programming/HTML-Media-Center/arsehole/bin"
+                    "value": "/home/craig/Programming/HTML-Media-Center/Arsehole/bin"
                 }
             ],
             "externalConsole": true,

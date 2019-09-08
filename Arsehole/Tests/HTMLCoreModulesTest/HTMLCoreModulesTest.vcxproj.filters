@@ -66,58 +66,58 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\Page.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\Page.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ElementTests\FileUploadTester.cpp">
       <Filter>Source Files\ElementTests\FileUpload</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\Elements\FileUpload.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\Elements\FileUpload.cpp">
       <Filter>Source Files\ElementTests\FileUpload</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\Elements\FormSubmit.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\Elements\FormSubmit.cpp">
       <Filter>Source Files\ElementTests\FormSubmit</Filter>
     </ClCompile>
     <ClCompile Include="ElementTests\FormSubmitTester.cpp">
       <Filter>Source Files\ElementTests\FormSubmit</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\Elements\HTMLImage.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\Elements\HTMLImage.cpp">
       <Filter>Source Files\ElementTests\HTMLImage</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\Elements\Hyperlink.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\Elements\Hyperlink.cpp">
       <Filter>Source Files\ElementTests\Hyperlink</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\Elements\Lable.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\Elements\Lable.cpp">
       <Filter>Source Files\ElementTests\Lable</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\IElement.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\IElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\Containers\ElementList.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\Containers\ElementList.cpp">
       <Filter>Source Files\ContainerTests</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\Containers\Form.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\Containers\Form.cpp">
       <Filter>Source Files\ContainerTests</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\Containers\IContainer.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\Containers\IContainer.cpp">
       <Filter>Source Files\ContainerTests</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\Elements\TextBox.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\Elements\TextBox.cpp">
       <Filter>Source Files\ElementTests\TextBox</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\PageBuilders\DesktopPageBuilder.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\PageBuilders\DesktopPageBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\PageBuilders\MobilePageBuilder.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\PageBuilders\MobilePageBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\URL\IURLBuilder.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\URL\IURLBuilder.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\URL\URLBuilder.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\URL\URLBuilder.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\URL\URLBuilderFactory.cpp">
+    <ClCompile Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\URL\URLBuilderFactory.cpp">
       <Filter>Source Files\SRC</Filter>
     </ClCompile>
   </ItemGroup>
@@ -128,13 +128,13 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\URL\IURLBuilder.h">
+    <ClInclude Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\URL\IURLBuilder.h">
       <Filter>Source Files\SRC</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\URL\URLBuilder.h">
+    <ClInclude Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\URL\URLBuilder.h">
       <Filter>Source Files\SRC</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\arseholeCoreModules\CoreModules\HTMLRendere\URL\URLBuilderFactory.h">
+    <ClInclude Include="..\..\ArseholeCoreModules\CoreModules\HTMLRendere\URL\URLBuilderFactory.h">
       <Filter>Source Files\SRC</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,8 +1,8 @@
 #include "ClientLogger.h"
 
 #include "../../ErrorLogger/Errors/ErrorLogger.h"
-#include "../../arseholeCoreModules/CoreModules/Comms/HTTPServer/IHTTPUrlRouter.h"
-#include "../../arseholeCoreModules/CoreModules/config.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/HTTPServer/IHTTPUrlRouter.h"
+#include "../../ArseholeCoreModules/CoreModules/config.h"
 
 #include <stdlib.h> 
 #include <fstream>

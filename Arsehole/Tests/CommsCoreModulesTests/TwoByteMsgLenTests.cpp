@@ -2,9 +2,9 @@
 #include <boost/thread.hpp>
 #include <boost/array.hpp>
 
-#include "../../arseholeCoreModules/CoreModules/Comms/Protocals/TwoByteMsgLen.h"
-#include "../../arseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ListPluginsMessage.h"
-#include "../../arseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ReplyMessage.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/Protocals/TwoByteMsgLen.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ListPluginsMessage.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ReplyMessage.h"
 
 void sendMessage()
 {

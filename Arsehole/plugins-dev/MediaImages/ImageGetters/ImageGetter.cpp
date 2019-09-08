@@ -18,8 +18,8 @@
 #include <boost/gil/extension/numeric/resample.hpp>
 
 
-#include "../../../arseholeCoreModules/CoreModules/config.h"
-#include "../../../arseholeCoreModules/CoreModules/Comms/Comms.h"
+#include "../../../ArseholeCoreModules/CoreModules/config.h"
+#include "../../../ArseholeCoreModules/CoreModules/Comms/Comms.h"
 
 ImageGetter::ImageGetter(CoreModules* cm)
 {

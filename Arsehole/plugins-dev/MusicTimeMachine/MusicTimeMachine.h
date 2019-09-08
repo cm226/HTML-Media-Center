@@ -8,7 +8,7 @@
 #ifndef MUSICTIMEMACHINE_H_
 #define MUSICTIMEMACHINE_H_
 
-#include "../../arsehole/Framework/Plugin/IPluginDLLFactory.h"
+#include "../../Arsehole/Framework/Plugin/IPluginDLLFactory.h"
 #include "MusicTimeMachinePlugin.h"
 
 

@@ -1,27 +1,27 @@
 /*
- * arseholeTranseverConnection.cpp
+ * ArseholeTranseverConnection.cpp
  *
  *  Created on: 21 May 2013
  *      Author: craig
  */
 
-#include "arseholeTranseverConnection.h"
+#include "ArseholeTranseverConnection.h"
 #include "../Protocals/ChunckedTwoByteMsgLen.h"
 #include "../../../../ErrorLogger/Errors/ErrorLogger.h"
 #include "../Comms.h"
 
-arseholeTranseverConnection::arseholeTranseverConnection(boost::asio::io_service& service)
+ArseholeTranseverConnection::ArseholeTranseverConnection(boost::asio::io_service& service)
 : ITranseverConnection(service)
 {
 
 
 }
 
-arseholeTranseverConnection::~arseholeTranseverConnection() {
+ArseholeTranseverConnection::~ArseholeTranseverConnection() {
 	// TODO Auto-generated destructor stub
 }
 
-void arseholeTranseverConnection::processConnection()
+void ArseholeTranseverConnection::processConnection()
 {
 	ChunckedTwoByteMsgLen msgProtocal(this->socket());
 

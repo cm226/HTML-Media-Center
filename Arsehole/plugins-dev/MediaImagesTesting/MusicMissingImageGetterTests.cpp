@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "../MediaImages/ImageGetters/Music/MusicMissingImageContentFinder.h"
-#include "../../arseholeCoreModules/CoreModules/config.h"
-#include "../../arseholeCoreModules/CoreModules/Database/Database.h"
+#include "../../ArseholeCoreModules/CoreModules/config.h"
+#include "../../ArseholeCoreModules/CoreModules/Database/Database.h"
 
 BOOST_AUTO_TEST_CASE(MusicImagecontentGetterconstructor)
 {
@@ -19,7 +19,7 @@ BOOST_AUTO_TEST_CASE(ArtistThumbnailTests)
 	int artistID;
 	bool isMissingContent = false;
 
-	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\arsehole\\TestDF\\ICT\\Music"));
+	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\Arsehole\\TestDF\\ICT\\Music"));
 	isMissingContent = contentFinder.searchDBforMissingArtistThumbImage(artistName,artistID);
 
 	bool isCorrect = false;
@@ -29,14 +29,14 @@ BOOST_AUTO_TEST_CASE(ArtistThumbnailTests)
 	BOOST_CHECK_EQUAL(isCorrect, true);
 	BOOST_CHECK_EQUAL(isMissingContent,true);
 
-	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\arsehole\\TestDF\\ICT2\\Music"));
+	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\Arsehole\\TestDF\\ICT2\\Music"));
 	isMissingContent = contentFinder.searchDBforMissingArtistThumbImage(artistName,artistID);
 
 	BOOST_CHECK_EQUAL(artistName.compare("testArtist2"), 0);
 	BOOST_CHECK_EQUAL(artistID, 2);
 	BOOST_CHECK_EQUAL(isMissingContent,true);
 
-	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\arsehole\\TestDF\\ICT3\\Music"));
+	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\Arsehole\\TestDF\\ICT3\\Music"));
 	isMissingContent = contentFinder.searchDBforMissingArtistThumbImage(artistName,artistID);
 
 	BOOST_CHECK_EQUAL(isMissingContent,false);
@@ -54,7 +54,7 @@ BOOST_AUTO_TEST_CASE(ArtistImageTests)
 	int artistID;
 	bool isMissingContent = false;
 
-	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\arsehole\\TestDF\\ICT\\Music"));
+	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\Arsehole\\TestDF\\ICT\\Music"));
 	isMissingContent = contentFinder.searchDBforMissingArtistImage(artistName,artistID);
 
 	bool isCorrect = false;
@@ -64,14 +64,14 @@ BOOST_AUTO_TEST_CASE(ArtistImageTests)
 	BOOST_CHECK_EQUAL(isCorrect, true);
 	BOOST_CHECK_EQUAL(isMissingContent,true);
 
-	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\arsehole\\TestDF\\ICT2\\Music"));
+	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\Arsehole\\TestDF\\ICT2\\Music"));
 	isMissingContent = contentFinder.searchDBforMissingArtistImage(artistName,artistID);
 
 	BOOST_CHECK_EQUAL(artistName.compare("testArtist2"), 0);
 	BOOST_CHECK_EQUAL(artistID, 2);
 	BOOST_CHECK_EQUAL(isMissingContent,true);
 
-	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\arsehole\\TestDF\\ICT3\\Music"));
+	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\Arsehole\\TestDF\\ICT3\\Music"));
 	isMissingContent = contentFinder.searchDBforMissingArtistImage(artistName,artistID);
 
 	BOOST_CHECK_EQUAL(isMissingContent,false);
@@ -89,7 +89,7 @@ BOOST_AUTO_TEST_CASE(AlbumTests)
 	int albumID;
 	bool isMissingContent = false;
 
-	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\arsehole\\TestDF\\ICT\\Music"));
+	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\Arsehole\\TestDF\\ICT\\Music"));
 	isMissingContent = contentFinder.searchDBforMissingAlbumImage(albumName,artistName,albumID);
 
 	BOOST_CHECK_EQUAL(artistName.compare("testArtist1"), 0);
@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE(AlbumTests)
 	BOOST_CHECK_EQUAL(albumID == 1 || albumID==2,true);
 	BOOST_CHECK_EQUAL(isMissingContent,true);
 
-	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\arsehole\\TestDF\\ICT2\\Music"));
+	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\Arsehole\\TestDF\\ICT2\\Music"));
 	isMissingContent = contentFinder.searchDBforMissingAlbumImage(albumName,artistName,albumID);
 
 	BOOST_CHECK_EQUAL(artistName.compare("testArtist1"), 0);
@@ -105,7 +105,7 @@ BOOST_AUTO_TEST_CASE(AlbumTests)
 	BOOST_CHECK_EQUAL(albumID == 1,true);
 	BOOST_CHECK_EQUAL(isMissingContent,true);
 
-	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\arsehole\\TestDF\\ICT3\\Music"));
+	contentFinder.setImageContentURL(std::string(HTMLMEDIAROOT).append("\\Arsehole\\TestDF\\ICT3\\Music"));
 	isMissingContent = contentFinder.searchDBforMissingAlbumImage(albumName,artistName,albumID);
 
 	BOOST_CHECK_EQUAL(isMissingContent,false);

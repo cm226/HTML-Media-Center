@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.2)
-project (arsehole)
+project (Arsehole)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -stdlib=libstdc++ -pthread -g -Wno-c++17-extensions -Wno-macro-redefined")
 SET(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -ldl -lcurl -lstdc++ /usr/lib/x86_64-linux-gnu/libstdc++.so.6")
@@ -13,7 +13,7 @@ include_directories(${Boost_INCLUDE_DIR})
 include_directories (/home/craig/Programming/MySql/mariadb-connector-c-3.0.6-linux-x86_64/include/mariadb)
 
 set(SRCS 
-arsehole.cpp
+Arsehole.cpp
 Framework/FrameWork.cpp
 Framework/MediaStreamResponder.cpp
 Framework/PluginPageResponder.cpp
@@ -24,11 +24,11 @@ Framework/Plugin/PageCallbackContext.cpp
 
 link_directories(../bin)
 
-add_executable(arsehole ${SRCS})
-target_link_libraries( arsehole ${Boost_LIBRARIES} )
+add_executable(Arsehole ${SRCS})
+target_link_libraries( Arsehole ${Boost_LIBRARIES} )
 
-target_link_libraries( arsehole cppnetlib-server-parsers)
-target_link_libraries( arsehole  libCoreModules.so)
-target_link_libraries( arsehole OpenSSL::SSL)
+target_link_libraries( Arsehole cppnetlib-server-parsers)
+target_link_libraries( Arsehole  libCoreModules.so)
+target_link_libraries( Arsehole OpenSSL::SSL)
 
-install(TARGETS arsehole DESTINATION bin)
+install(TARGETS Arsehole DESTINATION bin)

@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "../../arseholeCoreModules/CoreModules/HTMLRendere/Elements/Hyperlink.h"
+#include "../../ArseholeCoreModules/CoreModules/HTMLRendere/Elements/Hyperlink.h"
 
 BOOST_AUTO_TEST_CASE(HyperlinkConstructor)
 {

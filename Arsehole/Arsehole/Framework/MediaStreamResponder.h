@@ -8,9 +8,9 @@
 #ifndef MEDIASTREAMRESPONDER_H_
 #define MEDIASTREAMRESPONDER_H_
 
-#include "../../arseholeCoreModules/CoreModules/CoreModules.h"
-#include "../../arseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/MediaStreamRequestMessage.h"
-#include "../../arseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/AgentRequestMessage.h"
+#include "../../ArseholeCoreModules/CoreModules/CoreModules.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/MediaStreamRequestMessage.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/AgentRequestMessage.h"
 #include "../../Comms/Protocals/IProtocal.h"
 
 class MediaStreamResponder {

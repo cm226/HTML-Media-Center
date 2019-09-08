@@ -54,7 +54,7 @@ clean:
 	-@echo ' '
 
 post-build:
-	-cp libTasker.so /home/arsehole
+	-cp libTasker.so /home/Arsehole
 	-@echo ' '
 
 .PHONY: all clean dependents

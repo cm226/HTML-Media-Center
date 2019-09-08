@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-#include "../../arseholeCoreModules/CoreModules/Comms/Transever/TCPTransever.h"
-#include "../../arseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ListPluginsMessage.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/Transever/TCPTransever.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ListPluginsMessage.h"
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
 #include <boost/bind.hpp>

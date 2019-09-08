@@ -11,7 +11,7 @@
 #include <vector>
 #include <string>
 
-#include "../../arseholeCoreModules/CoreModules/CoreModules.h"
+#include "../../ArseholeCoreModules/CoreModules/CoreModules.h"
 #include "Plugin/Loader/Loader.h"
 #include "PluginPageResponder.h"
 #include "MediaStreamResponder.h"
@@ -19,7 +19,7 @@
 #include "../../Comms/Protocals/IProtocal.h"
 #include <boost/scoped_ptr.hpp>
 
-class arseholeFramework
+class ArseholeFramework
 {
 private:
 	Loader* pluginLoader;
@@ -32,8 +32,8 @@ private:
 	bool shuttingDown;
 
 public:
-	arseholeFramework();
-	virtual ~arseholeFramework();
+	ArseholeFramework();
+	virtual ~ArseholeFramework();
 
 	void process();
 

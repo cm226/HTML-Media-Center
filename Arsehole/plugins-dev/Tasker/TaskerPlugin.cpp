@@ -4,8 +4,8 @@
 #include <stdio.h>
 
 
-#include "../../arseholeCoreModules/CoreModules/config.h"
-#include "../../arseholeCoreModules/CoreModules/Files/Files.h"
+#include "../../ArseholeCoreModules/CoreModules/config.h"
+#include "../../ArseholeCoreModules/CoreModules/Files/Files.h"
 #include "AddTaskPage.h"
 #include "CmdForm.h"
 

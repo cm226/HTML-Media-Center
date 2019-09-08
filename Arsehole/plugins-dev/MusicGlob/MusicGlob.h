@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../arsehole/Framework/Plugin/IPluginDLLFactory.h"
-#include "../../arsehole/Framework/Plugin/Plugin.h"
+#include "../../Arsehole/Framework/Plugin/IPluginDLLFactory.h"
+#include "../../Arsehole/Framework/Plugin/Plugin.h"
 
 
 class MusicGlobPlugin 

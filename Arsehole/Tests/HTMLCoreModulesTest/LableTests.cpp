@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "../../arseholeCoreModules/CoreModules/HTMLRendere/Elements/Lable.h"
+#include "../../ArseholeCoreModules/CoreModules/HTMLRendere/Elements/Lable.h"
 
 BOOST_AUTO_TEST_CASE(LableConstructor)
 {

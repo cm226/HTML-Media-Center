@@ -8,7 +8,7 @@
 #ifndef MUSICTIMEMACHINEPLUGIN_H_
 #define MUSICTIMEMACHINEPLUGIN_H_
 
-#include "../../arsehole/Framework/Plugin/Plugin.h"
+#include "../../Arsehole/Framework/Plugin/Plugin.h"
 
 
 class MusicTimeMachinePlugin : public Plugin

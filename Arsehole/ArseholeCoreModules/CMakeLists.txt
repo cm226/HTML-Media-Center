@@ -54,7 +54,7 @@ CoreModules/Comms/IPGetter.cpp
 CoreModules/Comms/GetLanIPLinux.cpp
 CoreModules/Comms/CURL/CurlManager.cpp
 CoreModules/Comms/Transever/ITranseverConnection.cpp
-CoreModules/Comms/Transever/arseholeTranseverConnection.cpp
+CoreModules/Comms/Transever/ArseholeTranseverConnection.cpp
 CoreModules/Comms/Transever/ITranseverConnectionFactory.cpp
 CoreModules/Comms/Transever/TranseverConnectionFactory.cpp
 CoreModules/Comms/Transever/Exceptions/TimeoutExpiredException.cpp

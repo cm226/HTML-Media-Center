@@ -8,14 +8,14 @@
 #ifndef PLUGINPAGERESPONDER_H_
 #define PLUGINPAGERESPONDER_H_
 
-#include "../../arseholeCoreModules/CoreModules/CoreModules.h"
+#include "../../ArseholeCoreModules/CoreModules/CoreModules.h"
 #include "Plugin/Loader/Loader.h"
 
-#include "../../arseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ListPluginsMessage.h"
-#include "../../arseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/PluginPageMessage.h"
-#include "../../arseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/MobilePluginPageMessage.h"
-#include "../../arseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/PluginInteractionRequestMessage.h"
-#include "../../arseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ReplyMessage.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ListPluginsMessage.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/PluginPageMessage.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/MobilePluginPageMessage.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/PluginInteractionRequestMessage.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ReplyMessage.h"
 
 #include "../../Comms/Protocals/IProtocal.h"
 

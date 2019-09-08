@@ -1,7 +1,7 @@
 #ifndef _LOG_VIEWER_H
 #define _LOG_VIEWER_H
 
-#include "../../arsehole/Framework/Plugin/IPluginDLLFactory.h"
+#include "../../Arsehole/Framework/Plugin/IPluginDLLFactory.h"
 #include "LogViewerPlugin.h"
 
 

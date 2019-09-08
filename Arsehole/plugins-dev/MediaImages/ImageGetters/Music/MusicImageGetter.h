@@ -6,7 +6,7 @@
 
 #include "../IimageContentGetter.h"
 #include "../ImageGetter.h"
-#include "../../../../arsehole/Framework/Plugin/Plugin.h"
+#include "../../../../Arsehole/Framework/Plugin/Plugin.h"
 #include "MusicMissingImageContentFinder.h"
 
 

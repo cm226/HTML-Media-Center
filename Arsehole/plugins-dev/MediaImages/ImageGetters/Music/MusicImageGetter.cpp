@@ -1,7 +1,7 @@
 #include "MusicImageGetter.h"
 #include <sstream>
 #include <boost/bind.hpp>
-#include "../../../../arseholeCoreModules/CoreModules/Database/Tables/Artist/Artist.h"
+#include "../../../../ArseholeCoreModules/CoreModules/Database/Tables/Artist/Artist.h"
 
 MusicImageGetter::MusicImageGetter(CoreModules* cm) : imgGetter(cm), missingContentFinder(cm->getDatabaseConnection())
 {
@@ -170,7 +170,7 @@ bool MusicImageGetter::assertContextArguments(std::vector<std::string>& contexta
 	if(numContextAttributes <2)
 	{
 		ErrorLogger::logError("Media Images Plugin: not enough data in context array, missing the selected Image value");
-		std::cout << "Not Enough data see arsehole log for more";
+		std::cout << "Not Enough data see Arsehole log for more";
 		return false;
 	}
 

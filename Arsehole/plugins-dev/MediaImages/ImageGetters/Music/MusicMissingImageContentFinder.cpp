@@ -4,11 +4,11 @@
 #include<boost/filesystem.hpp>
 #include <boost/algorithm/string.hpp>
 #include "MusicMissingImageContentFinder.h"
-#include "../../../../arseholeCoreModules/CoreModules/config.h"
+#include "../../../../ArseholeCoreModules/CoreModules/config.h"
 #include "../../../../ErrorLogger/Errors/ErrorLogger.h"
 
-#include "../../../../arseholeCoreModules/CoreModules/Database/Tables/Artist/Artist.h"
-#include "../../../../arseholeCoreModules/CoreModules/Database/Tables/Album/Album.h"
+#include "../../../../ArseholeCoreModules/CoreModules/Database/Tables/Artist/Artist.h"
+#include "../../../../ArseholeCoreModules/CoreModules/Database/Tables/Album/Album.h"
 
 #include <iostream>
 #include <fstream>

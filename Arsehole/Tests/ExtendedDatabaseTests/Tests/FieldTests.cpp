@@ -1,9 +1,9 @@
 #include "../stdafx.h"
-#include "../../../arseholeCoreModules/CoreModules/Database/ExtendedPluginDB/Field.h"
+#include "../../../ArseholeCoreModules/CoreModules/Database/ExtendedPluginDB/Field.h"
 
 BOOST_AUTO_TEST_CASE(FieldWriteNormalCase)
 {
-	std::string filename = "/var/www/HTML-Media-Center/arsehole/Tests/ExtendedDatabaseTests/TestData/Music/Songs/bpm.edb";
+	std::string filename = "/var/www/HTML-Media-Center/Arsehole/Tests/ExtendedDatabaseTests/TestData/Music/Songs/bpm.edb";
 	ExtendedDatabase::Field<int, int> field(filename);
 
 	field.aquireData();
@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE(FieldWriteNormalCase)
 
 BOOST_AUTO_TEST_CASE(FieldReadNormalCase)
 {
-	ExtendedDatabase::Field<int, int> field("/var/www/HTML-Media-Center/arsehole/Tests/ExtendedDatabaseTests/TestData/Music/Songs/1:20-2:22.edb");
+	ExtendedDatabase::Field<int, int> field("/var/www/HTML-Media-Center/Arsehole/Tests/ExtendedDatabaseTests/TestData/Music/Songs/1:20-2:22.edb");
 
 	field.setSerialisers(ExtendedDatabase::Serializer<int>(), ExtendedDatabase::Serializer<int>());
 	field.aquireData();

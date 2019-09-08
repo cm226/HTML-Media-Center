@@ -55,7 +55,7 @@ clean:
 	-@echo ' '
 
 post-build:
-	-cp libErrorLogger.so ../../../arsehole/arsehole/Debug/
+	-cp libErrorLogger.so ../../../Arsehole/Arsehole/Debug/
 	-@echo ' '
 
 .PHONY: all clean dependents

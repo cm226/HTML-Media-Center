@@ -42,7 +42,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>C:\Program Files %28x86%29\GnuWin32\include\libpng12;D:\programming\zlib-1.2.8;D:\programming\jpeg-8c;C:\Users\cmate_000\Documents\boost_1_60_0;C:\Users\cmate_000\Documents\mysql-connector-c++-noinstall-1.1.7-winx64\include;D:\programming\curl MSVS\include\curl;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\programming\boost_1_52_0\stage\lib;D:\programming\curl MSVS\lib\Release;C:\wamp\www\HTML-Media-Center\arsehole\arsehole\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>D:\programming\boost_1_52_0\stage\lib;D:\programming\curl MSVS\lib\Release;C:\wamp\www\HTML-Media-Center\Arsehole\Arsehole\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -57,7 +57,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>arseholeCoreModules.lib;jpeg.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ArseholeCoreModules.lib;jpeg.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

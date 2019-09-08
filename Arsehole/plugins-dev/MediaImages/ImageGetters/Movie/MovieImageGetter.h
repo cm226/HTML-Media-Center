@@ -5,9 +5,9 @@
 
 #include "../IimageContentGetter.h"
 #include "../ImageGetter.h"
-#include "../../../../arsehole/Framework/Plugin/Plugin.h"
-#include "../../../../arseholeCoreModules/CoreModules/Database/Database.h"
-#include "../../../../arseholeCoreModules/CoreModules/Database/Tables/Movie/Movie.h"
+#include "../../../../Arsehole/Framework/Plugin/Plugin.h"
+#include "../../../../ArseholeCoreModules/CoreModules/Database/Database.h"
+#include "../../../../ArseholeCoreModules/CoreModules/Database/Tables/Movie/Movie.h"
 
 class MovieImageGetter : public imagegetters::IimageContentGetter
 {

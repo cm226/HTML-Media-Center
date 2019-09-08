@@ -8,14 +8,14 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/arsehole",
+            "program": "${workspaceFolder}/bin/Arsehole",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/bin",
             "environment": [
                 {
                     "name": "LD_LIBRARY_PATH",
-                    "value": "/home/craig/Programming/arsehole/HTML-Media-Center/arsehole/bin"
+                    "value": "/home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin"
                 }
             ],
             "externalConsole": true,

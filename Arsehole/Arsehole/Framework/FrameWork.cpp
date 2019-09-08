@@ -4,9 +4,9 @@
 #include <thread>
 #include <boost/filesystem.hpp>
 #include <sstream>
-#include "../../arseholeCoreModules/CoreModules/config.h"
-#include "../../arseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ReplyMessage.h"
-#include "../../arseholeCoreModules/CoreModules/Comms/HTTPServer/HTTPServer.h"
+#include "../../ArseholeCoreModules/CoreModules/config.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/MessageTranslaters/TranslatedMessages/ReplyMessage.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/HTTPServer/HTTPServer.h"
 #include <list>
 #include <chrono>
 #include <future>
@@ -19,17 +19,17 @@
 #include <Windows.h>
 #endif
 
-arseholeFramework::arseholeFramework()
+ArseholeFramework::ArseholeFramework()
 {
 	Config::ReadConfig("config.ini");
 
 	cModules = std::make_shared<CoreModules>();
 
-	ErrorLogger::logInfo("arsehole initalising...");
+	ErrorLogger::logInfo("Arsehole initalising...");
 	this->shuttingDown = false;
 
-	this->cModules->getComms()->messagesubject()->onListPluginsMessageReceved.connect(this, &arseholeFramework::loadedPlugins);
-	this->cModules->getComms()->messagesubject()->onDiagnosticMessageReceved.connect(this, &arseholeFramework::processDiagnosticMessage);
+	this->cModules->getComms()->messagesubject()->onListPluginsMessageReceved.connect(this, &ArseholeFramework::loadedPlugins);
+	this->cModules->getComms()->messagesubject()->onDiagnosticMessageReceved.connect(this, &ArseholeFramework::processDiagnosticMessage);
 
 	this->cModules->getComms()->sig_shutdown.connect([this](){
 		shuttingDown = true;
@@ -41,14 +41,14 @@ arseholeFramework::arseholeFramework()
 	ErrorLogger::logInfo("Initialised");
 }
 
-arseholeFramework::~arseholeFramework()
+ArseholeFramework::~ArseholeFramework()
 {
 	delete this->pluginLoader;
 }
 
-void arseholeFramework::process()
+void ArseholeFramework::process()
 {
-	this->cModules->getComms()->startComms("/home/craig/Programming/arsehole/HTML-Media-Center/arsehole/arsehole/Framework/Static_content/");
+	this->cModules->getComms()->startComms("/home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/Arsehole/Framework/Static_content/");
 
 	this->cModules->getSensors().Start(
 		this->cModules->getDatabaseConnection(),
@@ -56,9 +56,9 @@ void arseholeFramework::process()
 	);
 
 	#ifdef _WINDOWS
-	this->pluginLoader = new Loader("C:\\wamp64\\www\\HTML-Media-Center\\arsehole\\arsehole\\plugins");
+	this->pluginLoader = new Loader("C:\\wamp64\\www\\HTML-Media-Center\\Arsehole\\Arsehole\\plugins");
 #else
-	this->pluginLoader = new Loader("/home/arsehole");
+	this->pluginLoader = new Loader("/home/Arsehole");
 #endif
 
 	ErrorLogger::logInfo("Loading Modules");
@@ -75,7 +75,7 @@ void arseholeFramework::process()
 	ErrorLogger::logInfo("Shutting down");
 }
 
-void arseholeFramework::loadStartupPlugins()
+void ArseholeFramework::loadStartupPlugins()
 {
 	namespace fs = boost::filesystem;
 	fs::path pluginDirectory(this->pluginLoader->PluginDir());
@@ -102,7 +102,7 @@ void arseholeFramework::loadStartupPlugins()
 }
 
 
-void arseholeFramework::processDiagnosticMessage(TranslatedMessages::RequestDisagnosticsMessage* msg,
+void ArseholeFramework::processDiagnosticMessage(TranslatedMessages::RequestDisagnosticsMessage* msg,
 		coremodules::comms::protocals::IProtocal* protocal)
 {
 	std::stringstream statusMessage;
@@ -132,7 +132,7 @@ void arseholeFramework::processDiagnosticMessage(TranslatedMessages::RequestDisa
 }
 
 
-void arseholeFramework::loadedPlugins(ListPluginsMessage*, coremodules::comms::protocals::IProtocal* protocal)
+void ArseholeFramework::loadedPlugins(ListPluginsMessage*, coremodules::comms::protocals::IProtocal* protocal)
 {
 	using namespace std;
 	std::stringstream reply;
@@ -230,7 +230,7 @@ std::string GetLineFromCin() {
     return line;
 }
 
-void arseholeFramework::processCommandLoop()
+void ArseholeFramework::processCommandLoop()
 {
 	std::string command;
 

@@ -2,7 +2,7 @@
 
 #include <boost/filesystem.hpp>
 
-#include "../../arseholeCoreModules/CoreModules/config.h"
+#include "../../ArseholeCoreModules/CoreModules/config.h"
 #include "CmdForm.h"
 
 AddTaskPage::AddTaskPage(AddTaskPageData& pageData) : _pageData(pageData)

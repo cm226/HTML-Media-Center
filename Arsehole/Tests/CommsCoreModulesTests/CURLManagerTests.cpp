@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include <boost/filesystem.hpp>
 
-#include "../../arseholeCoreModules/CoreModules/Comms/CURL/CurlManager.h"
-#include "../../arseholeCoreModules/CoreModules/Comms/JSON/JSONCURLRequest.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/CURL/CurlManager.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/JSON/JSONCURLRequest.h"
 
 
 BOOST_AUTO_TEST_CASE(CURLManagerConstructorTests)
@@ -35,9 +35,9 @@ BOOST_AUTO_TEST_CASE(downloadFileTest)
 {
 	CommsNS::CurlManager curlMan;
 	#ifdef WIN32
-		std::string downloadLocation = "C:\\wamp\\www\\HTML-Media-Center\\arsehole\\arsehole\\test.png";
+		std::string downloadLocation = "C:\\wamp\\www\\HTML-Media-Center\\Arsehole\\Arsehole\\test.png";
 	#else
-		std::string downloadLocation = "/var/www/HTML-Media-Center/arsehole/arsehole/test.png";
+		std::string downloadLocation = "/var/www/HTML-Media-Center/Arsehole/Arsehole/test.png";
 	#endif
 	
 	bool worked = curlMan.downloadItemToFile("http://g-ecx.images-amazon.com/images/G/02/gno/beacon/BeaconSprite-UK-02._V397961423_.png",downloadLocation);
@@ -55,10 +55,10 @@ BOOST_AUTO_TEST_CASE(downloadToFileThatExsists)
 {
 	CommsNS::CurlManager curlMan;
 	
-	bool worked = curlMan.downloadItemToFile("http://g-ecx.images-amazon.com/images/G/02/gno/beacon/BeaconSprite-UK-02._V397961423_.png","C:\\wamp\\www\\HTML-Media-Center\\arsehole\\TestDF\\ExistingImage\\test.png");
+	bool worked = curlMan.downloadItemToFile("http://g-ecx.images-amazon.com/images/G/02/gno/beacon/BeaconSprite-UK-02._V397961423_.png","C:\\wamp\\www\\HTML-Media-Center\\Arsehole\\TestDF\\ExistingImage\\test.png");
 	
 	BOOST_CHECK_EQUAL(true,worked);
-	BOOST_CHECK_EQUAL(true,boost::filesystem::exists( "C:\\wamp\\www\\HTML-Media-Center\\arsehole\\TestDF\\ExistingImage\\test.png"));
+	BOOST_CHECK_EQUAL(true,boost::filesystem::exists( "C:\\wamp\\www\\HTML-Media-Center\\Arsehole\\TestDF\\ExistingImage\\test.png"));
 
 }
 
@@ -74,9 +74,9 @@ BOOST_AUTO_TEST_CASE(downloadToBadPath)
 BOOST_AUTO_TEST_CASE(downloadFileTestInvalidFile)
 {
 #ifdef WIN32
-		std::string downloadLocation = "C:\\wamp\\www\\HTML-Media-Center\\arsehole\\arsehole\\test.png";
+		std::string downloadLocation = "C:\\wamp\\www\\HTML-Media-Center\\Arsehole\\Arsehole\\test.png";
 	#else
-		std::string downloadLocation = "/var/www/HTML-Media-Center/arsehole/arsehole/test.png";
+		std::string downloadLocation = "/var/www/HTML-Media-Center/Arsehole/Arsehole/test.png";
 	#endif
 
 	CommsNS::CurlManager curlMan;

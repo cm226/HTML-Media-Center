@@ -84,12 +84,12 @@
 		<link>
 			<name>SRC/ErrorLogger.cpp</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/Errors/ErrorLogger.cpp</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/Errors/ErrorLogger.cpp</locationURI>
 		</link>
 		<link>
 			<name>SRC/ExtendedPluginDB</name>
 			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/arseholeCoreModules/CoreModules/Database/ExtendedPluginDB</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ArseholeCoreModules/CoreModules/Database/ExtendedPluginDB</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

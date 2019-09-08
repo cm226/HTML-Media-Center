@@ -6,7 +6,7 @@
  */
 
 #include "TranseverConnectionFactory.h"
-#include "arseholeTranseverConnection.h"
+#include "ArseholeTranseverConnection.h"
 
 TranseverConnectionFactory::TranseverConnectionFactory() {
 
@@ -19,6 +19,6 @@ TranseverConnectionFactory::~TranseverConnectionFactory() {
 
 boost::shared_ptr<ITranseverConnection> TranseverConnectionFactory::create(boost::asio::io_service& service)
 {
-	return boost::shared_ptr<ITranseverConnection>(new arseholeTranseverConnection(service));
+	return boost::shared_ptr<ITranseverConnection>(new ArseholeTranseverConnection(service));
 }
 

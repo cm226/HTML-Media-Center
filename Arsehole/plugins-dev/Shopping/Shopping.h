@@ -1,9 +1,9 @@
 	#pragma once
 
-#include "../../arsehole/Framework/Plugin/IPluginDLLFactory.h"
-#include "../../arsehole/Framework/Plugin/Plugin.h"
+#include "../../Arsehole/Framework/Plugin/IPluginDLLFactory.h"
+#include "../../Arsehole/Framework/Plugin/Plugin.h"
 
-#include "../../arseholeCoreModules/CoreModules/Comms/HTTPServer/IHTTPUrlRouter.h"
+#include "../../ArseholeCoreModules/CoreModules/Comms/HTTPServer/IHTTPUrlRouter.h"
 
 
 class ShoppingPlugin 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../arseholeCoreModules/CoreModules/HTMLRendere/HTMLRendere.h"
+#include "../../ArseholeCoreModules/CoreModules/HTMLRendere/HTMLRendere.h"
 
 enum FILETYPE {BLENDER};
 

@@ -6,8 +6,8 @@
  */
 
 #include "DatabaseInterfaceGeneratorPlugin.h"
-#include "../../arseholeCoreModules/CoreModules/HTMLRendere/Elements/FileUpload.h"
-#include "../../arseholeCoreModules/CoreModules/config.h"
+#include "../../ArseholeCoreModules/CoreModules/HTMLRendere/Elements/FileUpload.h"
+#include "../../ArseholeCoreModules/CoreModules/config.h"
 
 #include "InterfaceGenerator/SQLWriter.h"
 #include "InterfaceGenerator/SQLParser.h"

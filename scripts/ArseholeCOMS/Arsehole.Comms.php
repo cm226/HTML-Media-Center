@@ -6,7 +6,7 @@ require_once('Messages/PluginPageInteractionMessage.php');
 require_once('Messages/RequestMobilePluginPageMessage.php');
 require_once('Messages/RequestDiagnosticMessage.php');
 
-class arseholeCommas
+class ArseholeCommas
 {
 var $transever;
 
@@ -15,7 +15,7 @@ function __construct()
        $this->transever = new Transever();
 	   if(!$this->transever->isConnected())
 	   {
-	   		echo "Error Connecting to arsehole, he isent there";
+	   		echo "Error Connecting to Arsehole, he isent there";
 	   }
 }
 

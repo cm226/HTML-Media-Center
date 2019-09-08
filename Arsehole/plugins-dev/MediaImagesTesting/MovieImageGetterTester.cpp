@@ -2,8 +2,8 @@
 #include "stdafx.h"
 
 #include "../MediaImages/ImageGetters/Movie/MovieImageGetter.h"
-#include "../../arseholeCoreModules/CoreModules/Database/Database.h"
-#include "../../arseholeCoreModules/CoreModules/config.h"
+#include "../../ArseholeCoreModules/CoreModules/Database/Database.h"
+#include "../../ArseholeCoreModules/CoreModules/config.h"
 
 
 BOOST_AUTO_TEST_CASE(MovieGetterconstructor)

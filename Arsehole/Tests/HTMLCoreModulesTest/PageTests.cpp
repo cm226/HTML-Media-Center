@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "../../arseholeCoreModules/CoreModules/HTMLRendere/Elements/Lable.h"
-#include "../../arseholeCoreModules/CoreModules/HTMLRendere/Page.h"
+#include "../../ArseholeCoreModules/CoreModules/HTMLRendere/Elements/Lable.h"
+#include "../../ArseholeCoreModules/CoreModules/HTMLRendere/Page.h"
 
 BOOST_AUTO_TEST_CASE(pageConstructor)
 {

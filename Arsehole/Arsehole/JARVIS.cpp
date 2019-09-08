@@ -5,7 +5,7 @@
 #include "Framework/FrameWork.h"
 int main()
 {
-	arseholeFramework framework;
+	ArseholeFramework framework;
 	framework.process();
 
 	return 0;

@@ -3,8 +3,8 @@
 
 #include <string>
 #include <vector>
-#include "../../../arseholeCoreModules/CoreModules/CoreModules.h"
-#include "../../../arsehole/Framework/Plugin/Plugin.h"
+#include "../../../ArseholeCoreModules/CoreModules/CoreModules.h"
+#include "../../../Arsehole/Framework/Plugin/Plugin.h"
 
 class ImageGetter
 {

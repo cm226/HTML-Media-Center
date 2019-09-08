@@ -1,7 +1,7 @@
 #include "MovieImageGetter.h"
 
 
-#include "../../../../arseholeCoreModules/CoreModules/config.h"
+#include "../../../../ArseholeCoreModules/CoreModules/config.h"
 #include "../../../../ErrorLogger/Errors/ErrorLogger.h"
 #include <functional>
 #include <boost/bind.hpp>
@@ -32,7 +32,7 @@ bool MovieImageGetter::assertContextArguments(std::vector<std::string>& contexta
 	if(numContextAttributes <2)
 	{
 		ErrorLogger::logError("Media Images Plugin: not enough data in context array, missing the selected Image value");
-		std::cout << "Not Enough data see arsehole log for more";
+		std::cout << "Not Enough data see Arsehole log for more";
 		return false;
 	}
 

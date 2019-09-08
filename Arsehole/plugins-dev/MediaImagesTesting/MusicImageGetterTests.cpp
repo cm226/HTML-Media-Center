@@ -1,8 +1,8 @@
 #include "stdafx.h"
 
 #include "../MediaImages/ImageGetters/Music/MusicImageGetter.h"
-#include "../../arseholeCoreModules/CoreModules/config.h"
-#include "../../arseholeCoreModules/CoreModules/Database/Database.h"
+#include "../../ArseholeCoreModules/CoreModules/config.h"
+#include "../../ArseholeCoreModules/CoreModules/Database/Database.h"
 #include "../MediaImages/MediaImagesPlugin.h"
 
 

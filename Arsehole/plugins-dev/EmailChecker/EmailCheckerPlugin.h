@@ -8,7 +8,7 @@
 #ifndef EMAILCHECKERPLUGIN_H_
 #define EMAILCHECKERPLUGIN_H_
 
-#include "../../arsehole/Framework/Plugin/Plugin.h"
+#include "../../Arsehole/Framework/Plugin/Plugin.h"
 #include <string>
 
 

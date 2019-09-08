@@ -10,7 +10,7 @@
 
 #include <string>
 #include "../exportMacros.h"
-#include "../../arseholeCoreModules/CoreModules/config.h"
+#include "../../ArseholeCoreModules/CoreModules/config.h"
 
 #define WRITE_TO_LOGFILE true
 #define WRITE_TO_CONSOL true

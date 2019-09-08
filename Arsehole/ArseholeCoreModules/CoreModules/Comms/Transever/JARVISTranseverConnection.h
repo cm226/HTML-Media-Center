@@ -1,24 +1,24 @@
 /*
- * arseholeTranseverConnection.h
+ * ArseholeTranseverConnection.h
  *
  *  Created on: 21 May 2013
  *      Author: craig
  */
 
-#ifndef arseholeTRANSEVERCONNECTION_H_
-#define arseholeTRANSEVERCONNECTION_H_
+#ifndef ArseholeTRANSEVERCONNECTION_H_
+#define ArseholeTRANSEVERCONNECTION_H_
 
 #include "ITranseverConnection.h"
 
-class arseholeTranseverConnection: public ITranseverConnection
+class ArseholeTranseverConnection: public ITranseverConnection
 {
 
 
 public:
-	arseholeTranseverConnection(boost::asio::io_service& service);
-	virtual ~arseholeTranseverConnection();
+	ArseholeTranseverConnection(boost::asio::io_service& service);
+	virtual ~ArseholeTranseverConnection();
 
 	virtual void processConnection();
 };
 
-#endif /* arseholeTRANSEVERCONNECTION_H_ */
+#endif /* ArseholeTRANSEVERCONNECTION_H_ */

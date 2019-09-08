@@ -3,7 +3,7 @@
 #ifndef TASKERPLUGIN_H_
 #define TASKERPLUGIN_H_
 
-#include "../../arsehole/Framework/Plugin/Plugin.h"
+#include "../../Arsehole/Framework/Plugin/Plugin.h"
 #include <string>
 
 class TaskerPlugin : public Plugin

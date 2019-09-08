@@ -8,8 +8,8 @@
 #ifndef MEDIAIMAGESPLUGIN_H_
 #define MEDIAIMAGESPLUGIN_H_
 
-#include "../../arsehole/Framework/Plugin/Plugin.h"
-#include "../../arseholeCoreModules/CoreModules/Database/Tables/Movie/Movie.h"
+#include "../../Arsehole/Framework/Plugin/Plugin.h"
+#include "../../ArseholeCoreModules/CoreModules/Database/Tables/Movie/Movie.h"
 #include "ImageGetters/Movie/MovieImageGetter.h"
 #include "ImageGetters/Music/MusicImageGetter.h"
 

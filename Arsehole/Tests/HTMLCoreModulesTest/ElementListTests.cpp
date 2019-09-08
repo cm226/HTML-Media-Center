@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-#include "../../arseholeCoreModules/CoreModules/HTMLRendere/Elements/Lable.h"
-#include "../../arseholeCoreModules/CoreModules/HTMLRendere/Containers/ElementList.h"
+#include "../../ArseholeCoreModules/CoreModules/HTMLRendere/Elements/Lable.h"
+#include "../../ArseholeCoreModules/CoreModules/HTMLRendere/Containers/ElementList.h"
 
 BOOST_AUTO_TEST_CASE(ElementListConstructor)
 {
