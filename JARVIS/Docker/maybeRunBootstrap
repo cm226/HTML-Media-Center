@@ -1,3 +1,7 @@
+# this command isnt really that scary, just picks stuff out until it gets the ip address only
+my_ip=$(ip addr | grep 172 | awk '{$1=$1};1' | cut -d " " -f 2 | cut -d "/" -f 1)
+sed -i "s/<host>/$my_ip /g" /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/config.ini
+
 
 if [ "$1" != "Release" ] 
 then 
@@ -9,9 +13,6 @@ fi
 
 
 service mysql start 
-# this command isnt really that scary, just picks stuff out until it gets the ip address only
-my_ip=$(ip addr | grep 172 | awk '{$1=$1};1' | cut -d " " -f 2 | cut -d "/" -f 1)
-sed -i "s/<host>/$my_ip /g" /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/bin/config.ini
 cd /home/craig/Programming/JARVIS/HTML-Media-Center/JARVIS/
 ./UpdateBootstraper.sh
 
