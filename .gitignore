@@ -50,53 +50,55 @@ public/css/Mobile/images/*
 *\CMakeCache.txt
 *\install_manifest.txt
 
-*Release/
 .DS_Store
 
-JARVIS/JARVISCoreModules/CoreModules/Errors/StackWalker/*
-JARVIS/logs/*
-JARVIS/log/*
-JARVIS/Plugins/*
+CMakeFiles/
+node_modules/
 
-JARVIS/bin/libcppnetlib-client-connections\.so\.0
+Arsehole/ArseholeCoreModules/CoreModules/Errors/StackWalker/*
+Arsehole/logs/*
+Arsehole/log/*
+Arsehole/Plugins/*
 
-JARVIS/bin/libcppnetlib-client-connections\.so\.0\.13\.0
+Arsehole/bin/libcppnetlib-client-connections\.so\.0
 
-JARVIS/bin/libcppnetlib-server-parsers\.so\.0
+Arsehole/bin/libcppnetlib-client-connections\.so\.0\.13\.0
 
-JARVIS/bin/libcppnetlib-server-parsers\.so\.0\.13\.0
+Arsehole/bin/libcppnetlib-server-parsers\.so\.0
 
-JARVIS/bin/libcppnetlib-uri\.so\.0
+Arsehole/bin/libcppnetlib-server-parsers\.so\.0\.13\.0
 
-JARVIS/bin/libcppnetlib-uri\.so\.0\.13\.0
+Arsehole/bin/libcppnetlib-uri\.so\.0
 
-JARVIS/test/\.vscode/launch\.json
+Arsehole/bin/libcppnetlib-uri\.so\.0\.13\.0
 
-JARVIS/test/bin/dh2048\.pem
+Arsehole/test/\.vscode/launch\.json
 
-JARVIS/test/bin/Server
+Arsehole/test/bin/dh2048\.pem
 
-JARVIS/test/bin/server\.pem
+Arsehole/test/bin/Server
 
-JARVIS/test/Server
+Arsehole/test/bin/server\.pem
 
-JARVIS/JARVISCoreModules/CMakeCache\.txt
+Arsehole/test/Server
 
-JARVIS/plugins-dev/Shopping/CMakeCache\.txt
+Arsehole/ArseholeCoreModules/CMakeCache\.txt
 
-JARVIS/bin/
+Arsehole/plugins-dev/Shopping/CMakeCache\.txt
 
-JARVIS/JARVIS/JARVIS
+Arsehole/bin/
+
+Arsehole/Arsehole/Arsehole
 
 
-JARVIS/SSL_certificate/server\.csr
+Arsehole/SSL_certificate/server\.csr
 
-JARVIS/Docker/server\.crt
+Arsehole/Docker/server\.crt
 
-JARVIS/SSL_certificate/server\.pfx
+Arsehole/SSL_certificate/server\.pfx
 
-JARVIS/SSL_certificate/server\.pem
+Arsehole/SSL_certificate/server\.pem
 
-JARVIS/SSL_certificate/server\.crt
+Arsehole/SSL_certificate/server\.crt
 
-JARVIS/Docker/server\.pem
+Arsehole/Docker/server\.pem
