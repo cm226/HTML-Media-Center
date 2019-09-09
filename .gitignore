@@ -52,9 +52,6 @@ public/css/Mobile/images/*
 
 .DS_Store
 
-CMakeFiles/
-node_modules/
-
 Arsehole/ArseholeCoreModules/CoreModules/Errors/StackWalker/*
 Arsehole/logs/*
 Arsehole/log/*
@@ -90,6 +87,7 @@ Arsehole/bin/
 
 Arsehole/Arsehole/Arsehole
 
+Arsehole/Arsehole/Arsehole
 
 Arsehole/SSL_certificate/server\.csr
 
@@ -100,5 +98,7 @@ Arsehole/SSL_certificate/server\.pfx
 Arsehole/SSL_certificate/server\.pem
 
 Arsehole/SSL_certificate/server\.crt
+
+Arsehole/Docker/server\.pem
 
 Arsehole/Docker/server\.pem

@@ -1,8 +1,8 @@
-DROP USER if EXISTS arsehole;
-DROP DATABASE IF EXISTS arseholeDB;
+DROP USER if EXISTS Arsehole;
+DROP DATABASE IF EXISTS ArseholeDB;
 
-CREATE DATABASE arseholeDB;
-CREATE USER 'arsehole' IDENTIFIED BY 'pw';
-GRANT USAGE ON *.* TO 'arsehole'@'localhost' IDENTIFIED BY 'pw';
-GRANT ALL privileges ON `arseholeDB`.* TO 'arsehole'@'localhost';
+CREATE DATABASE ArseholeDB;
+CREATE USER 'Arsehole' IDENTIFIED BY 'pw';
+GRANT USAGE ON *.* TO 'Arsehole'@'localhost' IDENTIFIED BY 'pw';
+GRANT ALL privileges ON `ArseholeDB`.* TO 'Arsehole'@'localhost';
 FLUSH PRIVILEGES;
