@@ -75,77 +75,77 @@ RUN cd cmake-3.13.2/ \
     && make -j4 \
     && make install 
 
-# RUN mkdir -p /home/craig/Programming/Arsehole \
-#     && cd /home/craig/Programming/Arsehole/ \
-#     && git clone https://github.com/cm226/HTML-Media-Center.git \
-#     && cd HTML-Media-Center \
-#     && git checkout origin/f_rename_project \
-#     && mkdir /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin
+RUN mkdir -p /home/craig/Programming/Arsehole \
+    && cd /home/craig/Programming/Arsehole/ \
+    && git clone https://github.com/cm226/HTML-Media-Center.git \
+    && cd HTML-Media-Center \
+    && git checkout origin/f_rename_project \
+    && mkdir /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin
 
-# RUN ./home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/Docker/buildBoost.sh $build_type
+RUN ./home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/Docker/buildBoost.sh $build_type
 
-# RUN mkdir /home/craig/Programming/cpp-net-build \
-#     && cd /home/craig/Programming/cpp-net-build \
-#     && sed -i 's/c++11/c++14/g' ../cpp_netlib/cpp-netlib-0.13.0-rc1/CMakeLists.txt \
-#     && sed -i 's/add_definitions(-DBOOST_NETWORK_DEBUG)/add_definitions(-DBOOST_NETWORK_DEBUG) \n add_definitions(-D_GLIBCXX_DEBUG)/g' ../cpp_netlib/cpp-netlib-0.13.0-rc1/CMakeLists.txt
+RUN mkdir /home/craig/Programming/cpp-net-build \
+    && cd /home/craig/Programming/cpp-net-build \
+    && sed -i 's/c++11/c++14/g' ../cpp_netlib/cpp-netlib-0.13.0-rc1/CMakeLists.txt \
+    && sed -i 's/add_definitions(-DBOOST_NETWORK_DEBUG)/add_definitions(-DBOOST_NETWORK_DEBUG) \n add_definitions(-D_GLIBCXX_DEBUG)/g' ../cpp_netlib/cpp-netlib-0.13.0-rc1/CMakeLists.txt
 
-# RUN cd /home/craig/Programming/cpp-net-build \ 
-#      && cmake -DCMAKE_BUILD_TYPE=$build_type \
-#      -DCMAKE_C_COMPILER=clang-6.0 \
-#      -DCMAKE_CXX_COMPILER=clang-6.0 \
-#      -DCPP-NETLIB_BUILD_TESTS=OFF \
-#      -DCPP-NETLIB_BUILD_EXAMPLES=OFF \
-#      -DCPP-NETLIB_ENABLE_HTTPS=ON \
-#      -DCPP-NETLIB_BUILD_SHARED_LIBS=ON \
-#      -DOPENSSL_ROOT_DIR=/openssl-1.0.2l/ \
-#      -DCMAKE_CXX_FLAGS="-std=c++14 -stdlib=libstdc++" \
-#      -DCMAKE_EXE_LINKER_FLAGS="-lstdc++" \
-#     ../cpp_netlib/cpp-netlib-0.13.0-rc1 \
-#     && make
+RUN cd /home/craig/Programming/cpp-net-build \ 
+     && cmake -DCMAKE_BUILD_TYPE=$build_type \
+     -DCMAKE_C_COMPILER=clang-6.0 \
+     -DCMAKE_CXX_COMPILER=clang-6.0 \
+     -DCPP-NETLIB_BUILD_TESTS=OFF \
+     -DCPP-NETLIB_BUILD_EXAMPLES=OFF \
+     -DCPP-NETLIB_ENABLE_HTTPS=ON \
+     -DCPP-NETLIB_BUILD_SHARED_LIBS=ON \
+     -DOPENSSL_ROOT_DIR=/openssl-1.0.2l/ \
+     -DCMAKE_CXX_FLAGS="-std=c++14 -stdlib=libstdc++" \
+     -DCMAKE_EXE_LINKER_FLAGS="-lstdc++" \
+    ../cpp_netlib/cpp-netlib-0.13.0-rc1 \
+    && make
 
-# RUN cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/plugins-dev/LightingController/Node \
-#      && npm install codetheweb/tuyapi
+RUN cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/plugins-dev/LightingController/Node \
+     && npm install codetheweb/tuyapi
 
-# ## start my build stuff
+## start my build stuff
 
-# RUN if [ "$build_type" = "Release" ] ; then cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin ;fi
+RUN if [ "$build_type" = "Release" ] ; then cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin ;fi
 
-# RUN if [ "$build_type" = "Release" ] ; then cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ \
-#      && git pull origin master \
-#      && ./BuildAll.sh $build_type; fi
+RUN if [ "$build_type" = "Release" ] ; then cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ \
+     && git pull origin master \
+     && ./BuildAll.sh $build_type; fi
 
-# #Setup the config file
-# RUN  cp /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ArseholeCoreModules/CoreModules/config_template.ini /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini \
-#      && sed -i 's/<dbuser>/Arsehole/g' /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini \
-#      && sed -i 's/<dbname>/ArseholeDB/g' /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini \
-#      && sed -i 's/<dbpw>/pw/g' /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini
-
-
-
-# # setup mysql db
-# # carefull with this there is annoyingness here, since we map the db files to an extrnal volme when we run 
-# # the container loading these scripts doesn't do anything unless you dont mount that volume.. 
-# ## so if you want to set up the external volume for the first time, mount the extrnal volme (see run docker) and
-# ## load these scripts manually with an interactive terminal, this is only required for first tiom setup tho. 
-# # it sucks 
-
-# RUN /usr/bin/mysqld_safe & mysql_install_db \
-#      && sleep 5s \
-#      && mysql < /home/craig/Programming/Arsehole/HTML-Media-Center/db/Database.sql \
-#      && mysql ArseholeDB < /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/plugins-dev/Shopping/db.sql
-#      #&& mysql ArseholeDB < /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ArseholeCoreModules/CoreModules/Sensors/db.sql
+#Setup the config file
+RUN  cp /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ArseholeCoreModules/CoreModules/config_template.ini /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini \
+     && sed -i 's/<dbuser>/Arsehole/g' /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini \
+     && sed -i 's/<dbname>/ArseholeDB/g' /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini \
+     && sed -i 's/<dbpw>/pw/g' /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini
 
 
-# COPY server.crt /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/cert.pem
-# COPY server.pem /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/key.pem
-# COPY maybeRunBootstrap /
+
+# setup mysql db
+# carefull with this there is annoyingness here, since we map the db files to an extrnal volme when we run 
+# the container loading these scripts doesn't do anything unless you dont mount that volume.. 
+## so if you want to set up the external volume for the first time, mount the extrnal volme (see run docker) and
+## load these scripts manually with an interactive terminal, this is only required for first tiom setup tho. 
+# it sucks 
+
+RUN /usr/bin/mysqld_safe & mysql_install_db \
+     && sleep 5s \
+     && mysql < /home/craig/Programming/Arsehole/HTML-Media-Center/db/Database.sql \
+     && mysql ArseholeDB < /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/plugins-dev/Shopping/db.sql
+     #&& mysql ArseholeDB < /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ArseholeCoreModules/CoreModules/Sensors/db.sql
 
 
-# # start the server
-# CMD ./maybeRunBootstrap $build_type
-# # build and run from inside docker folder with 
-# # sudo docker build -t media .
-# # sudo docker build --build-arg build_type=Debug -t media .
-# # sudo docker run -p 8442:8442 -v ~/mdbdata/Arsehole:/var/lib/mysql -ti --restart unless-stopped media
-# # sudo docker run -p 8442:8442 -p 9091:9091 -v /home/craig/Programming/HTML-Media-Center:/home/craig/Programming/Arsehole/HTML-Media-Center --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -ti media
-# # then run cmd above 
+COPY server.crt /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/cert.pem
+COPY server.pem /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/key.pem
+COPY maybeRunBootstrap /
+
+
+# start the server
+CMD ./maybeRunBootstrap $build_type
+# build and run from inside docker folder with 
+# sudo docker build -t media .
+# sudo docker build --build-arg build_type=Debug -t media .
+# sudo docker run -p 8442:8442 -v ~/mdbdata/Arsehole:/var/lib/mysql -ti --restart unless-stopped media
+# sudo docker run -p 8442:8442 -p 9091:9091 -v ~/mdbdata/Arsehole:/var/lib/mysql -v /home/craig/Programming/HTML-Media-Center:/home/craig/Programming/Arsehole/HTML-Media-Center --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -ti media
+# then run cmd above 

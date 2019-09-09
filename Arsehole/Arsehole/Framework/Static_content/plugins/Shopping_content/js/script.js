@@ -114,8 +114,12 @@ function displaySelected(){
     $(".fullMealListSelectBttn").on("tap", (event)=>{
 
         selectMeal(event.target.innerText);
+        
+        SendStateToServer();
+
         $( '#dialogPage' ).dialog( 'close' );
         displaySelected();
+
     });
 
     $.each(_extraIngreds, (index, ingredient)=>{
