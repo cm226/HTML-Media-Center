@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{FC25158B-437B-4308-94C8-0310417A4595}</ProjectGuid>
+    <RootNamespace>TextFileDeployerTests</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>D:\programming\SQLConnector\include;D:\programming\boost_1_52_0;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\programming\boost_1_52_0\stage\lib;$(LibraryPath)</LibraryPath>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Stdafx.h" />
+    <ClInclude Include="targetVer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\InputCharWrapper.cpp" />
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\InputWrapper.cpp" />
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Languages\Css.cpp" />
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Languages\Javascript.cpp" />
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Languages\Language.cpp" />
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Languages\Xml.cpp" />
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Selections\Selection.cpp" />
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Selections\Selections.cpp" />
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\SelectorsRunner.cpp" />
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Selectors\CommentSelector.cpp" />
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Selectors\Commen\TokenFinder.cpp" />
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Selectors\NewlineSelector.cpp" />
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Selectors\Selector.cpp" />
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Selectors\SpaceSelector\ConsecutiveSpaceSelectionCreator.cpp" />
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Selectors\SpaceSelector\SpaceSelector.cpp" />
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\Stripper\Stripper.cpp" />
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\TextFileDeployer.cpp" />
+    <ClCompile Include="..\TextFileDeployer\TextfileDeployer\TextFileDeployerPlugin.cpp" />
+    <ClCompile Include="CommentSelectorTests.cpp" />
+    <ClCompile Include="JavascriptTests.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="NewlineSelectorTests.cpp" />
+    <ClCompile Include="SelectorTests\WhitespaceSelectorTests.cpp" />
+    <ClCompile Include="Stdafx.cpp" />
+    <ClCompile Include="StripperTests.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

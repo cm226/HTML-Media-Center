@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A80FE131-BA4E-4427-9641-3C093CEB3772}</ProjectGuid>
+    <RootNamespace>MediaImages</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Program Files (x86)\GnuWin32\include\libpng12;C:\Program Files %28x86%29\GnuWin32\include;C:\Users\cmate_000\Documents\jpeg-9b;C:\Users\cmate_000\Documents\boost_1_60_0;C:\Users\cmate_000\Documents\mysql-connector-c++-noinstall-1.1.7-winx64\include;D:\programming\curl MSVS\include\curl;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\programming\boost_1_52_0\stage\lib;C:\wamp\www\HTML-Media-Center\Arsehole\Arsehole\Debug;D:\programming\curl MSVS\lib\Release;$(LibraryPath)</LibraryPath>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_WINDOWS;WIN32;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ArseholeCoreModules.lib;jpeg.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>COPY $(SolutionDir)Debug\libMediaImages.dll $(SolutionDir)plugins</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ImageGetters\IimageContentGetter.cpp" />
+    <ClCompile Include="ImageGetters\ImageGetter.cpp" />
+    <ClCompile Include="ImageGetters\Music\MusicMissingImageContentFinder.cpp" />
+    <ClCompile Include="MediaImages.cpp" />
+    <ClCompile Include="MediaImagesPlugin.cpp" />
+    <ClCompile Include="ImageGetters\Movie\MovieImageGetter.cpp" />
+    <ClCompile Include="ImageGetters\Music\MusicImageGetter.cpp" />
+    <ClCompile Include="ImageGetters\TV\TVImageGetter.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ImageGetters\IimageContentGetter.h" />
+    <ClInclude Include="ImageGetters\ImageGetter.h" />
+    <ClInclude Include="ImageGetters\Music\MusicMissingImageContentFinder.h" />
+    <ClInclude Include="MediaImages.h" />
+    <ClInclude Include="MediaImagesPlugin.h" />
+    <ClInclude Include="ImageGetters\Movie\MovieImageGetter.h" />
+    <ClInclude Include="ImageGetters\Music\MusicImageGetter.h" />
+    <ClInclude Include="ImageGetters\TV\TVImageGetter.h" />
+    <ClInclude Include="Testing\MediaImagesTesting\MusicMissingImageGetterTests.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Arsehole\runTests.bat" />
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ErrorLogger\ErrorLogger.vcxproj">
+      <Project>{b3c985d0-399f-44ab-914a-b69d3a92c846}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

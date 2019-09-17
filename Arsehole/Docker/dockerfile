@@ -1,0 +1,151 @@
+FROM ubuntu:18.04
+
+ARG build_type=Release
+
+EXPOSE 8442
+
+RUN apt-get update
+
+RUN apt install -y --fix-missing \
+    xz-utils \
+    build-essential \
+    curl \
+    wget \
+    software-properties-common \
+    libbz2-1.0 libbz2-dev libbz2-ocaml libbz2-ocaml-dev \
+    mariadb-server \
+    git-core \
+    libcurl4-openssl-dev
+
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+     && apt-get -y install nodejs
+
+RUN apt install -y gdb gdbserver
+
+RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
+    && apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main" \
+    && apt-get update \
+    && apt-get install -y clang-6.0 \
+    && ln -s /usr/bin/clang-6.0 /usr/bin/clang \
+    && ln -s /usr/bin/clang++-6.0 /usr/bin/clang++
+
+RUN wget https://www.openssl.org/source/openssl-1.0.2l.tar.gz \
+    && tar -xzvf openssl-1.0.2l.tar.gz \
+    && rm openssl-1.0.2l.tar.gz
+
+RUN mkdir -p /home/craig/Programming/ \
+    && cd /home/craig/Programming/ \
+    && wget http://sourceforge.net/projects/boost/files/boost/1.58.0/boost_1_58_0.tar.gz \
+    && tar xfz boost_1_58_0.tar.gz \
+    && rm boost_1_58_0.tar.gz 
+
+RUN wget https://cmake.org/files/v3.13/cmake-3.13.2.tar.gz \
+    && tar -xzvf cmake-3.13.2.tar.gz \
+    && rm cmake-3.13.2.tar.gz
+    
+
+RUN mkdir -p /home/craig/Programming/MySql \
+    && cd /home/craig/Programming/MySql \
+    && wget https://downloads.mariadb.com/Connectors/c/connector-c-3.0.6/mariadb-connector-c-3.0.6-linux-x86_64.tar.gz \
+    && tar -xf mariadb-connector-c-3.0.6-linux-x86_64.tar.gz \
+    && rm mariadb-connector-c-3.0.6-linux-x86_64.tar.gz
+
+
+RUN mkdir -p /home/craig/Programming/cpp_netlib \
+    && cd /home/craig/Programming/cpp_netlib \
+    && wget http://downloads.cpp-netlib.org/0.13.0/cpp-netlib-0.13.0-rc1.tar.gz \
+    && tar xfz cpp-netlib-0.13.0-rc1.tar.gz \
+    && rm cpp-netlib-0.13.0-rc1.tar.gz
+
+RUN mkdir -p /home/craig/Programming/rapidJSON \
+     && cd /home/craig/Programming/rapidJSON \
+     && git clone https://github.com/Tencent/rapidjson.git . \
+     && git checkout tags/v1.1.0
+
+################################################
+
+RUN cd /openssl-1.0.2l \
+    && ./config shared\
+    && make install \
+    && ln -sf /usr/local/ssl/bin/openssl `which openssl` \
+    && ln -s /usr/local/ssl/include/openssl/ /usr/local/include/openssl
+
+RUN cd cmake-3.13.2/ \
+    && ./bootstrap \
+    && make -j4 \
+    && make install 
+
+RUN mkdir -p /home/craig/Programming/Arsehole \
+    && cd /home/craig/Programming/Arsehole/ \
+    && git clone https://github.com/cm226/HTML-Media-Center.git \
+    && cd HTML-Media-Center \
+    && git checkout origin/f_rename_project \
+    && mkdir /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin
+
+RUN ./home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/Docker/buildBoost.sh $build_type
+
+RUN mkdir /home/craig/Programming/cpp-net-build \
+    && cd /home/craig/Programming/cpp-net-build \
+    && sed -i 's/c++11/c++14/g' ../cpp_netlib/cpp-netlib-0.13.0-rc1/CMakeLists.txt \
+    && sed -i 's/add_definitions(-DBOOST_NETWORK_DEBUG)/add_definitions(-DBOOST_NETWORK_DEBUG) \n add_definitions(-D_GLIBCXX_DEBUG)/g' ../cpp_netlib/cpp-netlib-0.13.0-rc1/CMakeLists.txt
+
+RUN cd /home/craig/Programming/cpp-net-build \ 
+     && cmake -DCMAKE_BUILD_TYPE=$build_type \
+     -DCMAKE_C_COMPILER=clang-6.0 \
+     -DCMAKE_CXX_COMPILER=clang-6.0 \
+     -DCPP-NETLIB_BUILD_TESTS=OFF \
+     -DCPP-NETLIB_BUILD_EXAMPLES=OFF \
+     -DCPP-NETLIB_ENABLE_HTTPS=ON \
+     -DCPP-NETLIB_BUILD_SHARED_LIBS=ON \
+     -DOPENSSL_ROOT_DIR=/openssl-1.0.2l/ \
+     -DCMAKE_CXX_FLAGS="-std=c++14 -stdlib=libstdc++" \
+     -DCMAKE_EXE_LINKER_FLAGS="-lstdc++" \
+    ../cpp_netlib/cpp-netlib-0.13.0-rc1 \
+    && make
+
+RUN cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/plugins-dev/LightingController/Node \
+     && npm install codetheweb/tuyapi
+
+## start my build stuff
+
+RUN if [ "$build_type" = "Release" ] ; then cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin ;fi
+
+RUN if [ "$build_type" = "Release" ] ; then cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ \
+     && git pull origin master \
+     && ./BuildAll.sh $build_type; fi
+
+#Setup the config file
+RUN  cp /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ArseholeCoreModules/CoreModules/config_template.ini /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini \
+     && sed -i 's/<dbuser>/Arsehole/g' /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini \
+     && sed -i 's/<dbname>/ArseholeDB/g' /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini \
+     && sed -i 's/<dbpw>/pw/g' /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini
+
+
+
+# setup mysql db
+# carefull with this there is annoyingness here, since we map the db files to an extrnal volme when we run 
+# the container loading these scripts doesn't do anything unless you dont mount that volume.. 
+## so if you want to set up the external volume for the first time, mount the extrnal volme (see run docker) and
+## load these scripts manually with an interactive terminal, this is only required for first tiom setup tho. 
+# it sucks 
+
+RUN /usr/bin/mysqld_safe & mysql_install_db \
+     && sleep 5s \
+     && mysql < /home/craig/Programming/Arsehole/HTML-Media-Center/db/Database.sql \
+     && mysql ArseholeDB < /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/plugins-dev/Shopping/db.sql
+     #&& mysql ArseholeDB < /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ArseholeCoreModules/CoreModules/Sensors/db.sql
+
+
+COPY server.crt /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/cert.pem
+COPY server.pem /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/key.pem
+COPY maybeRunBootstrap /
+
+
+# start the server
+CMD ./maybeRunBootstrap $build_type
+# build and run from inside docker folder with 
+# sudo docker build -t media .
+# sudo docker build --build-arg build_type=Debug -t media .
+# sudo docker run -p 8442:8442 -v ~/mdbdata/Arsehole:/var/lib/mysql -ti --restart unless-stopped media
+# sudo docker run -p 8442:8442 -p 9091:9091 -v ~/mdbdata/Arsehole:/var/lib/mysql -v /home/craig/Programming/HTML-Media-Center:/home/craig/Programming/Arsehole/HTML-Media-Center --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -ti media
+# then run cmd above 
