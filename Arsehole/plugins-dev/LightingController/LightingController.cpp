@@ -29,7 +29,10 @@ LightingController::LightingController(CoreModules* cm):
             [&](
                 std::shared_ptr<IHTTPUrlRouter::IConnection> connection
         ){
-            auto params = connection->RequestParams();
+            std::map<std::string, std::string> params = connection->RequestParams();
+            if(params.find("name") == params.end()){
+                return;
+            }
             auto light = params["name"];
 
             if(std::chrono::system_clock::now() - m_sleeping_at > 

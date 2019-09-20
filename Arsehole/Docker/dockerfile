@@ -79,7 +79,7 @@ RUN mkdir -p /home/craig/Programming/Arsehole \
     && cd /home/craig/Programming/Arsehole/ \
     && git clone https://github.com/cm226/HTML-Media-Center.git \
     && cd HTML-Media-Center \
-    && git checkout origin/f_rename_project \
+    && git checkout origin/master \
     && mkdir /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin
 
 RUN ./home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/Docker/buildBoost.sh $build_type
