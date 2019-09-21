@@ -99,6 +99,8 @@ void LightingController::bedroomMotion(){
     SunsetTimes s;
     if(s.IsSunDown()){
         turnOnLight("bedroom");
+    } else {
+        ErrorLogger::logInfo("motion detected but sun is up");
     }
 }
 
