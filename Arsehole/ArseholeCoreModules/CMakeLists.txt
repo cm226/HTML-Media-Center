@@ -91,6 +91,7 @@ CoreModules/Comms/Protocals/ChunckedTwoByteMsgLen.cpp
 CoreModules/Comms/Protocals/IProtocal.cpp
 CoreModules/Comms/Protocals/TwoByteMsgLen.cpp
 CoreModules/TaskList/TaskList.cpp
+CoreModules/TaskList/Scheduler.cpp
 CoreModules/MediaStreaming/MediaStreaming/MusicPlaylist.cpp
 CoreModules/MediaStreaming/MediaStreaming/Song.cpp
 CoreModules/MediaStreaming/MediaStreaming/VLCTelnetInterface.cpp
