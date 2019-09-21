@@ -132,7 +132,7 @@ RUN  cp /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ArseholeCore
 RUN /usr/bin/mysqld_safe & mysql_install_db \
      && sleep 5s \
      && mysql < /home/craig/Programming/Arsehole/HTML-Media-Center/db/Database.sql \
-     && mysql ArseholeDB < /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/plugins-dev/Shopping/db.sql
+     && mysql ArseholeDB < /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/plugins-dev/Shopping/db.sql \
      && mysql ArseholeDB < /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ArseholeCoreModules/CoreModules/Sensors/db.sql
 
 
