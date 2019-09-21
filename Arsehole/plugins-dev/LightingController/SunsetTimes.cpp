@@ -47,7 +47,7 @@ bool SunsetTimes::IsSunDown(){
     auto sunset = m_sunset[local_tm.tm_mon];
     auto sunrise = m_sunrise[local_tm.tm_mon];
 
-    if(local_tm.tm_hour >= sunset &&
+    if(local_tm.tm_hour >= sunset ||
        local_tm.tm_hour <= sunrise) {
 
            return true;
