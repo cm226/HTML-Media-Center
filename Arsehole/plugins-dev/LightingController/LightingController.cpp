@@ -35,8 +35,9 @@ LightingController::LightingController(CoreModules* cm):
             }
             auto light = params["name"];
 
-            if(std::chrono::system_clock::now() - m_sleeping_at > 
-                std::chrono::hours(12)){
+            if(std::chrono::duration_cast<std::chrono::hours>(
+                std::chrono::system_clock::now() - m_sleeping_at) > 
+                std::chrono::hours(12)) {
                     m_sleeping = false;
                     ErrorLogger::logInfo("Sleeping Unset");
             }
