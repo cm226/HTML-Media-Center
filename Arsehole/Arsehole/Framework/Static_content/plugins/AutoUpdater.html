@@ -22,6 +22,18 @@
         <button class="ui-button ui-widget ui-corner-all" id="check">Check for Updates</button>
         <button class="ui-button ui-widget ui-corner-all" disabled id="update">Update</button>
         <div id="status"></div>
+
+
+          <form>
+            <fieldset data-role="controlgroup" style="width:100%">
+                <input type="checkbox" name="Pull-cb" id="Pull-cb">
+                <label for="Pull-cb">Pull</label>
+                <input type="checkbox" name="Build-cb" id="Build-cb">
+                <label for="Build-cb">Build</label>
+                <input type="checkbox" name="Restart-cb" id="Restart-cb">
+                <label for="Restart-cb">Restart</label>
+            </fieldset>
+        </form>
     
     </div>
 
@@ -30,6 +42,43 @@
     <script src="Shopping_content/js/jquery.mobile-1.4.5.min.js"></script>
     
     <script>
+
+
+        let have_first_stage = false;
+        let CheckStage = (stage)=>{
+            let id = "#"+stage+"-cb";
+            let el = $(id);
+            el.prop('checked', true).checkboxradio('refresh');
+        }
+
+
+        let GetStage = function() {
+            let url = "/plugins/AutoUpdater/getStage"
+            if(!have_first_stage) {
+                url += "?force_send=1";
+            }
+
+            $.ajax({
+                url: url,
+                success : (data)=>{
+                    
+                    switch(data.trim()){
+                        case "Restart" :
+                            CheckStage("Restart");
+                        case "Build" :
+                            CheckStage("Build");
+                        case "Pull" :
+                            CheckStage("Pull");
+                    }
+                    
+                    if(data.trim() !== 'Restart'){
+                       GetStage();
+                    }
+
+                }
+            });
+        }
+
         $( function() {
           $( "#check" ).click( function( event ) {
             $.ajax({
@@ -50,8 +99,8 @@
           $( "#update" ).click( function( event ) {
             $.ajax({
                 url: "/plugins/AutoUpdater/update",
-                success : (data)=>{
-                    $('#status').html(data);
+                success : ()=>{
+                    GetStage();
                 }
             });
           });

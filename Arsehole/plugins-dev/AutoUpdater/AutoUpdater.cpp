@@ -12,7 +12,8 @@
 AutoUpdater::AutoUpdater(
     CoreModules* cm
 ):
-    Plugin(cm)
+    Plugin(cm),
+    m_stage("")
 {
     auto comms = cm->getComms();
     auto router = comms->Router();
@@ -44,6 +45,13 @@ AutoUpdater::AutoUpdater(
             if(m_build_thread == nullptr ){
                 m_build_thread = std::make_unique<std::thread>([&](){
                     if(BuildUpdate()){
+                        {
+                            std::lock_guard<std::mutex> lk(m_build_stage_changed);
+                            m_stage = "Restart";
+                        }
+                        m_build_stage_cv.notify_one();
+                        // allow time to let client know about the new stage
+                        std::this_thread::sleep_for(std::chrono::seconds(2));
                         Restart();
                     } else {
                         ErrorLogger::logError("Failed to build update");
@@ -51,10 +59,29 @@ AutoUpdater::AutoUpdater(
                     
                 });
             }
-
-            connection->Write("building");
         }
-    ); 
+    );
+
+    router->MapURLRequest(
+        "/plugins/AutoUpdater/getStage",
+        [&](
+            std::shared_ptr<IHTTPUrlRouter::IConnection> connection
+        ){
+            auto params = connection->RequestParams();
+            auto force_send = params.find("force_send") != params.end();
+
+            if (m_stage != m_sentStage || force_send) {
+                connection->Write(m_stage);
+                m_sentStage = m_stage;
+                return;
+            }
+
+            std::unique_lock<std::mutex> lk(m_build_stage_changed);
+            m_build_stage_cv.wait(lk, [&]{return m_stage != m_sentStage;});
+            
+            connection->Write(m_stage);
+            m_sentStage = m_stage;
+    });
 
 }
 
@@ -69,9 +96,16 @@ bool AutoUpdater::CheckForUpdate(
     std::string& output
 ){
     bool normal_exit = false;
+    {
+        std::lock_guard<std::mutex> lk(m_build_stage_changed);
+        m_stage = "Pull";
+    }
+    m_build_stage_cv.notify_one();
+
     output = this->coreMod->getTaskList().RunSystemCommand(
         "(cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ && git pull origin master)",
         normal_exit);
+    
 
     bool haveUpdates = output.find("Already up to date") == std::string::npos;
 
@@ -86,6 +120,13 @@ bool AutoUpdater::CheckForUpdate(
 bool AutoUpdater::BuildUpdate(
 ){
     std::string updateCMD;
+
+    {
+        std::lock_guard<std::mutex> lk(m_build_stage_changed);
+        m_stage = "Build";
+    }
+    m_build_stage_cv.notify_one();
+
     if(Config::GetInstance()->Live()){
         updateCMD = "/home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/BuildAll.sh Release";
     } else {
@@ -97,6 +138,13 @@ bool AutoUpdater::BuildUpdate(
     std::string output = this->coreMod->getTaskList().RunSystemCommand(updateCMD, normal_exit);
 
     if(!normal_exit){
+
+        {
+            std::lock_guard<std::mutex> lk(m_build_stage_changed);
+            m_stage = "Build_failed";
+        }
+        m_build_stage_cv.notify_one();
+
         ErrorLogger::logError("Got abnormal exit from update command, the output was : " + output);
     }
 

@@ -15,4 +15,11 @@ cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ArseholeCoreModul
 && cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/plugins-dev/LightingController \
 && ./build $1 \
 
+if [ $? -eq 0 ]
+then
+    version=$(git rev-parse HEAD)
+    sed -i "s/Version=*\n/Version=$version/g" /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini
+fi
+
+
 exit

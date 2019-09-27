@@ -16,6 +16,7 @@ Config::Config(){
     m_dbName = "db_name";
     m_dbUser = "db_user";
     m_dbPassword = "db_pw";
+    m_version = "0";
 }
 
 bool Config::Initialise(std::string configLocation){
@@ -32,6 +33,7 @@ bool Config::Initialise(std::string configLocation){
         m_logLocation = pt.get<std::string>("stuff.logLocation");
         m_tempLoc = pt.get<std::string>("stuff.tempLoc");
         m_workingFiles = pt.get<std::string>("stuff.WorkingFiles");
+        m_version = pt.get<std::string>("stuff.Version");
 
         m_dbName = pt.get<std::string>("database.DatabaseName");
         m_dbUser = pt.get<std::string>("database.DatabaseUser");

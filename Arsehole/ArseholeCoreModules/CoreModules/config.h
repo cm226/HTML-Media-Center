@@ -17,6 +17,8 @@ public:
     std::string DBName(){return m_dbName;}
     std::string DBUser(){return m_dbUser;}
     std::string DBPw(){return m_dbPassword;}
+    
+    std::string Version(){return m_version;}
 
 private:
     Config();
@@ -29,6 +31,7 @@ private:
     std::string m_dbName;
     std::string m_dbUser;
     std::string m_dbPassword;
+    std::string m_version;
 
     bool m_live;
 
