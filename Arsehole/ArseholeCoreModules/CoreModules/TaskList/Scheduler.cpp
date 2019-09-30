@@ -20,7 +20,7 @@ void Scheduler::Start() {
                 task->Run();
             }
 
-            std::this_thread::sleep_for(std::chrono::minutes(1));
+            std::this_thread::sleep_for(std::chrono::minutes(5));
         }
     });
 }
@@ -32,6 +32,10 @@ void Scheduler::ScheduleTask(
 }
 
 bool Scheduler::nextTaskReady() {
+
+    if(m_next_tasks.size() == 0){
+        return false;
+    }
 
     if(m_next_tasks.top()->Time() > std::chrono::system_clock::now()){
         return true;
