@@ -6,8 +6,6 @@
 #include <functional>
 
 
-class TaskList;
-
 class ScheduledTask {
 
     public:
@@ -25,28 +23,6 @@ class ScheduledTask {
     protected: 
         std::chrono::time_point<std::chrono::system_clock> m_tp;
 
-};
-
-// executes a system command at a specified time
-class CmdTask : ScheduledTask {
-    
-    public:
-        CmdTask(
-            std::shared_ptr<TaskList> list,
-            std::chrono::time_point<std::chrono::system_clock> tp
-        ){
-            m_list = list;
-            m_tp = tp;
-        }
-        
-        void Run() {
-            m_list->AddTask(cmd);
-        }
-
-    private:
-
-        std::shared_ptr<TaskList> m_list;
-        std::string cmd;
 };
 
 // calls a callback at a speified time

@@ -20,6 +20,7 @@ struct CoreModules::privateMembers
 	Comms comms;
 	MediaStreamer mediaStreamer;
 	TaskList taskList;
+	Scheduler scheduler;
 	FileSystem filesystem;
 	Sensors sensors;
 };
@@ -73,6 +74,11 @@ MediaStreamer& CoreModules::getMediaStreamer()
 TaskList & CoreModules::getTaskList()
 {
 	return this->members->taskList;
+}
+
+Scheduler& CoreModules::getScheduler()
+{
+	return this->members->scheduler;
 }
 
 FileSystem& CoreModules::getFileSystem()

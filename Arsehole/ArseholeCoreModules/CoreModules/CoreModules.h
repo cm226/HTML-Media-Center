@@ -16,6 +16,7 @@
 #include "Comms/IComms.h"
 #include "MediaStreaming/MediaStreaming/MediaStreamer.h"
 #include "TaskList/TaskList.h"
+#include "TaskList/Scheduler.h"
 #include "Files/Files.h"
 #include "Sensors/Sensors.h"
 
@@ -36,6 +37,7 @@ public:
 	CommsNS::IComms* getComms();
 	MediaStreamer& getMediaStreamer();
 	TaskList& getTaskList();
+	Scheduler& getScheduler();
 	FileSystem& getFileSystem();
 	Sensors& getSensors();
 	

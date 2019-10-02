@@ -66,6 +66,7 @@ void ArseholeFramework::process()
 	ErrorLogger::logInfo("Modules Loaded");
 
 	this->cModules->getTaskList().StartTasks();
+	this->cModules->getScheduler().Start();
 
 	
 	processCommandLoop();
