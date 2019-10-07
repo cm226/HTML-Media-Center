@@ -50,4 +50,12 @@ light1Promice.then((light1Data)=>{
     }));
     process.exit(0);
   });
+}).catch((e)=>{
+  console.log(JSON.stringify({
+    error : e.toString()
+  }));
+  process.exit(1);
 });
+
+// stop the process from exiting untill we resolve the promise
+process.stdin.resume();
