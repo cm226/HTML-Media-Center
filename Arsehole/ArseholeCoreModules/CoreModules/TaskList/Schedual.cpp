@@ -1,11 +1,15 @@
 #include "Schedual.h"
 
 #include "../../../ErrorLogger/Errors/ErrorLogger.h"
+#include "../CoreModules.h"
+#include "Scheduler.h"
 
-Schedual::Schedual() :
+Schedual::Schedual(
+    std::shared_ptr<Scheduler> scheduler
+) :
     m_start_time(0),
     m_duration(0) {
-
+        m_scheduler = scheduler;
 }
 
 Schedual::~Schedual(){
@@ -26,10 +30,12 @@ Schedual::Enable(){
     }
 
     auto next_execution_time = m_start_time + m_duration;
+    ScheduleNextInstance(next_execution_time);
+
 
 }
 
-Schedual::SetFrequency(
+void Schedual::SetFrequency(
             std::chrono::duration duration,
             std::chrono::system_clock::timepoint start_time
 ){
@@ -38,9 +44,26 @@ Schedual::SetFrequency(
     
 }
 
-Schedual::SetCallback(
+void Schedual::ScheduleNextInstance(
+    std::chrono::duration when
+){
+
+    m_scheduler->ScheduleTask(
+            CallbackTask(
+                m_callback,
+                std::chrono::system_clock::now() + when
+            )
+    );
+}
+
+void Schedual::SetCallback(
     std::function<void ()> callback
 ) {
-    m_callback = callback;
+    m_callback = [callback, &this](){
+        ScheduleNextInstance(
+            std::chrono::system_clock::now() + m_duration
+        );
+        callback();
+    };
 }
 
