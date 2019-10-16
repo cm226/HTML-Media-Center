@@ -31,9 +31,6 @@ class Light {
                   set: this.targetState
               });
 
-                this.status.state = this.targetState;
-                this.onSet(this.status);
-
             } else {
                 this.device.disconnect();
                 this.status.state = data.dps['1'];
