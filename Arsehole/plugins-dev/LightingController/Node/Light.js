@@ -17,10 +17,12 @@ class Light {
         
         this.device.on('disconnected', () => {
             this.status.connected = false;
+            this.onSet(this.status);
         });
         
         this.device.on('error', error => {
             this.status.error = error;
+            this.onSet(this.status);
         });
 
         this.device.on('data', data => {
@@ -34,7 +36,6 @@ class Light {
             } else {
                 this.device.disconnect();
                 this.status.state = data.dps['1'];
-                this.onSet(this.status);
             }
         });
 

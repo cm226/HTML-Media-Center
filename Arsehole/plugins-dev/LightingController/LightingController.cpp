@@ -102,7 +102,12 @@ void LightingController::bedroomMotion(){
 void LightingController::turnOnLight(
     std::string name
 ){
-    std::lock_guard<std::mutex> guard(m_node_mutext);
+
+    if(!m_node_mutex.try_lock()) {
+        ErrorLogger::logInfo("failed to lock sending mutext");
+    } else {
+        m_node_mutex.lock();
+    }
     
     if(std::chrono::duration_cast<std::chrono::hours>(
         std::chrono::system_clock::now() - m_sleeping_at) > std::chrono::hours(12)) {
@@ -118,22 +123,22 @@ void LightingController::turnOnLight(
         
         if(!exit_code){
             ErrorLogger::logInfo("Failed to turn light on got exit code: " + std::to_string(exit_code));
-            return;
+        } else {
+            parseNodeOutput(output);
         }
-
-        parseNodeOutput(output);
-        
 
     } else{
         ErrorLogger::logInfo("Attempted to turn on light but sleeping is set");
     }
+
+    m_node_mutex.unlock();
 }
 
 void LightingController::turnOffLight(
     std::string name
 ){
 
-    std::lock_guard<std::mutex> guard(m_node_mutext);
+    std::lock_guard<std::mutex> guard(m_node_mutex);
 
     bool exit_code = 0;
     std::string output = this->coreMod->getTaskList().RunSystemCommand(

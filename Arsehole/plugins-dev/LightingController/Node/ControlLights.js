@@ -56,3 +56,6 @@ light1Promice.then((light1Data)=>{
   }));
   process.exit(1);
 });
+
+// stop the process from exiting untill we resolve the promise
+process.stdin.resume();
