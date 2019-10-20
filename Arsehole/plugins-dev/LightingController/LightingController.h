@@ -3,6 +3,8 @@
 #include "../../ArseholeCoreModules/CoreModules/CoreModules.h"
 #include "../../Arsehole/Framework/Plugin/Plugin.h"
 
+#include <mutex>
+
 class LightingController : public Plugin {
 
     public:
@@ -29,4 +31,7 @@ class LightingController : public Plugin {
         std::chrono::time_point<std::chrono::system_clock> m_sleeping_at;
         bool m_last_light_state;
         std::string m_lighting_dir;
+
+        // only have 1 node command in flight at once
+        std::mutex m_node_mutext;
 };

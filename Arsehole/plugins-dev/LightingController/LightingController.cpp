@@ -3,6 +3,7 @@
 
 #include "rapidjson/document.h"
 
+
 LightingController::LightingController(CoreModules* cm):
     Plugin(cm),
     m_sleeping(false),
@@ -101,7 +102,8 @@ void LightingController::bedroomMotion(){
 void LightingController::turnOnLight(
     std::string name
 ){
-
+    std::lock_guard<std::mutex> guard(m_node_mutext);
+    
     if(std::chrono::duration_cast<std::chrono::hours>(
         std::chrono::system_clock::now() - m_sleeping_at) > std::chrono::hours(12)) {
             m_sleeping = false;
@@ -130,6 +132,9 @@ void LightingController::turnOnLight(
 void LightingController::turnOffLight(
     std::string name
 ){
+
+    std::lock_guard<std::mutex> guard(m_node_mutext);
+
     bool exit_code = 0;
     std::string output = this->coreMod->getTaskList().RunSystemCommand(
         "(cd "+m_lighting_dir+" && node ControlLights.js state off)",
