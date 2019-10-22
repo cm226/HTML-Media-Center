@@ -107,19 +107,18 @@ RUN cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/plugins-dev/L
      && npm install codetheweb/tuyapi
 
 ## start my build stuff
-
-RUN if [ "$build_type" = "Release" ] ; then cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin ;fi
-
-RUN if [ "$build_type" = "Release" ] ; then cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ \
-     && git pull origin master \
-     && ./BuildAll.sh $build_type; fi
-
 #Setup the config file
 RUN  cp /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ArseholeCoreModules/CoreModules/config_template.ini /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini \
      && sed -i 's/<dbuser>/Arsehole/g' /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini \
      && sed -i 's/<dbname>/ArseholeDB/g' /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini \
      && sed -i 's/<dbpw>/pw/g' /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini
 
+
+RUN if [ "$build_type" = "Release" ] ; then cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin ;fi
+
+RUN if [ "$build_type" = "Release" ] ; then cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ \
+     && git pull origin master \
+     && ./BuildAll.sh $build_type; fi
 
 
 # setup mysql db
@@ -140,9 +139,9 @@ COPY server.crt /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/
 COPY server.pem /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/key.pem
 COPY maybeRunBootstrap /
 
-
+ENV build_type_env Release
 # start the server
-CMD ./maybeRunBootstrap $build_type
+CMD ["bash", "-c" ,"./maybeRunBootstrap $build_type_env"]
 # build and run from inside docker folder with 
 # sudo docker build -t media .
 # sudo docker build --build-arg build_type=Debug -t media .

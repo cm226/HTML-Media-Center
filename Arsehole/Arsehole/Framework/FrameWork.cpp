@@ -32,7 +32,9 @@ ArseholeFramework::ArseholeFramework()
 	this->cModules->getComms()->messagesubject()->onDiagnosticMessageReceved.connect(this, &ArseholeFramework::processDiagnosticMessage);
 
 	this->cModules->getComms()->sig_shutdown.connect([this](){
-		shuttingDown = true;
+		std::unique_lock<std::mutex> lk(m_shutdown_mutext);
+		this->shuttingDown = true;
+		m_shutdown_cv.notify_one();
 	});
 
 	this->pluginPageResponder.reset(new PluginPageResponder(this->pluginLoader, this->cModules->getComms()));
@@ -69,6 +71,11 @@ void ArseholeFramework::process()
 
 	
 	processCommandLoop();
+
+	{
+        std::unique_lock<std::mutex> lk(m_shutdown_mutext);
+        m_shutdown_cv.wait(lk, [&]{return shuttingDown;});
+    }
 
 
 	this->cModules->getComms()->stopComms();
@@ -223,13 +230,6 @@ void ArseholeFramework::loadedPlugins(ListPluginsMessage*, coremodules::comms::p
 	protocal->sendMessage(new TranslatedMessages::ReplyMessage(reply.str()));
 }
 
-
-std::string GetLineFromCin() {
-    std::string line;
-    std::getline(std::cin, line);
-    return line;
-}
-
 void ArseholeFramework::processCommandLoop()
 {
 	std::string command;
@@ -241,7 +241,12 @@ void ArseholeFramework::processCommandLoop()
 	};
 
 	std::map<std::string,command_t> command_list = {
-		{"shutdown",{[&]{this->shuttingDown = true;}, "Shuts down services and exits program"}},
+		{"shutdown",{[&]{
+			std::unique_lock<std::mutex> lk(m_shutdown_mutext);
+			this->shuttingDown = true;
+			m_shutdown_cv.notify_one();
+			
+		}, "Shuts down services and exits program"}},
 
 		{"help",{
 			[&]{std::cout << "Commands:" << std::endl;
@@ -275,13 +280,16 @@ void ArseholeFramework::processCommandLoop()
 		fd_set fds;
 		FD_ZERO (&fds);
 		FD_SET (STDIN_FILENO, &fds);
-		
+
 		int result = select (STDIN_FILENO + 1, &fds, NULL, NULL, &tv);
 		if (result && result != -1)
 		{
 			if (FD_ISSET (0, &fds))
 			{
-				std::getline(std::cin, command);
+				if(!std::getline(std::cin, command)){
+					ErrorLogger::logError("CLI error stopping CLI. ");
+					return;
+				}
 			}
 
 			std::transform(command.begin(), command.end(), command.begin(), 
