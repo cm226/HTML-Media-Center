@@ -30,14 +30,17 @@ LightingController::LightingController(CoreModules* cm):
             [&](
                 std::shared_ptr<IHTTPUrlRouter::IConnection> connection
         ){
+            ErrorLogger::logInfo("received turn on light msg");
             std::map<std::string, std::string> params = connection->RequestParams();
             if(params.find("name") == params.end()){
+                ErrorLogger::logInfo("name not found in params list");
                 return;
             }
             auto light = params["name"];
 
             turnOnLight(light);
 
+            ErrorLogger::logInfo("writting response");
             connection->Write("{\"name\" : \"Bedroom\", \"state\" : \""+std::to_string(m_last_light_state)+"\"}");
         });
 
@@ -103,11 +106,10 @@ void LightingController::turnOnLight(
     std::string name
 ){
 
-    if(!m_node_mutex.try_lock()) {
-        ErrorLogger::logInfo("failed to lock sending mutext");
-    } else {
-        m_node_mutex.lock();
-    }
+    ErrorLogger::logInfo("attempting to get lock");
+    std::lock_guard<std::mutex> guard(m_node_mutex);
+    
+    ErrorLogger::logInfo("got lock for light");
     
     if(std::chrono::duration_cast<std::chrono::hours>(
         std::chrono::system_clock::now() - m_sleeping_at) > std::chrono::hours(12)) {
@@ -117,6 +119,7 @@ void LightingController::turnOnLight(
     
     if(!m_sleeping){
         bool exit_code = 0;
+        ErrorLogger::logInfo("running system command");
         std::string output = this->coreMod->getTaskList().RunSystemCommand(
             "(cd "+m_lighting_dir+" && node ControlLights.js state on)",
             exit_code);
@@ -130,8 +133,6 @@ void LightingController::turnOnLight(
     } else{
         ErrorLogger::logInfo("Attempted to turn on light but sleeping is set");
     }
-
-    m_node_mutex.unlock();
 }
 
 void LightingController::turnOffLight(
