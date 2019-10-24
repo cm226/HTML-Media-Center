@@ -33,6 +33,22 @@
 
         <script>
 
+                var is_sleeping = false;
+                function UpdateSleepingStatus() {
+                    $.get('/plugins/Lighting/SleepingStatus', (responce)=>{
+
+                        var hours_until_not_sleeping = parseInt(responce);
+                        if(hours_until_not_sleeping > 0){
+                            is_sleeping = true;
+                            $('#sleepBttn').text('Unset sleeping ( hours until '+ hours_until_not_sleeping + ')');
+                        } else{
+                            is_sleeping = false;
+                            $('#sleepBttn').text('Set Sleeping');
+                        }
+                        
+                    });
+                }
+
                 function UpdateLightState(state){
                     var light_div = $("#"+state.name);
                     light_div.empty();
@@ -72,11 +88,11 @@
                     var xmlHttp = new XMLHttpRequest();
                     xmlHttp.onreadystatechange = function() { 
                         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-                            
+                            UpdateSleepingStatus();
                         }
                     }
-                    xmlHttp.open("GET", "/plugins/Lighting/Sleeping", true); // true for asynchronous 
-                    xmlHttp.send(null);
+                    xmlHttp.open("POST", "/plugins/Lighting/Sleeping", true); // true for asynchronous 
+                    xmlHttp.send(!is_sleeping);
         
         
                 }
@@ -110,6 +126,8 @@
                             
                         });
                     });
+
+                    UpdateSleepingStatus();
                 });
         
             </script>
