@@ -3,6 +3,7 @@
 
 #include "rapidjson/document.h"
 
+
 LightingController::LightingController(CoreModules* cm):
     Plugin(cm),
     m_sleeping(false),
@@ -23,26 +24,42 @@ LightingController::LightingController(CoreModules* cm):
             connection->Write("[{\"name\" : \"Bedroom\", \"state\" : \""+std::to_string(m_last_light_state)+"\"}]");
         });
 
+        router->MapURLRequest(
+            "/plugins/Lighting/SleepingStatus",
+            [&](
+                std::shared_ptr<IHTTPUrlRouter::IConnection> connection
+        ){
+            if(!m_sleeping){
+               connection->Write("0"); 
+               return;
+            }
+
+            auto hours_since_sleeping = std::chrono::duration_cast<std::chrono::hours>(
+                std::chrono::system_clock::now() - m_sleeping_at);
+
+            connection->Write(std::to_string(
+                    12 - hours_since_sleeping.count()
+            ));
+
+        });
+
 
         router->MapURLRequest(
             "/plugins/Lighting/TurnOnLight",
             [&](
                 std::shared_ptr<IHTTPUrlRouter::IConnection> connection
         ){
+            ErrorLogger::logInfo("received turn on light msg");
             std::map<std::string, std::string> params = connection->RequestParams();
             if(params.find("name") == params.end()){
+                ErrorLogger::logInfo("name not found in params list");
                 return;
             }
             auto light = params["name"];
 
-            if(std::chrono::system_clock::now() - m_sleeping_at > 
-                std::chrono::hours(12)){
-                    m_sleeping = false;
-                    ErrorLogger::logInfo("Sleeping Unset");
-            }
-
             turnOnLight(light);
 
+            ErrorLogger::logInfo("writting response");
             connection->Write("{\"name\" : \"Bedroom\", \"state\" : \""+std::to_string(m_last_light_state)+"\"}");
         });
 
@@ -64,11 +81,19 @@ LightingController::LightingController(CoreModules* cm):
             [&](
                 std::shared_ptr<IHTTPUrlRouter::IConnection> connection
         ){
-            m_sleeping_at = std::chrono::system_clock::now();
-            m_sleeping = true;
-            turnOffLight("Bedroom");
+            ErrorLogger::logInfo(connection->RequestBody());
+            if(connection->RequestBody() == "true"){
+                m_sleeping_at = std::chrono::system_clock::now();
+                m_sleeping = true;
+                turnOffLight("Bedroom");
+                
+                ErrorLogger::logInfo("Sleeping Set");
+            } else {
+                m_sleeping = false;
+                
+                ErrorLogger::logInfo("Sleeping Un-Set");
+            }
             
-            ErrorLogger::logInfo("Sleeping Set");
 
             // turn off motion sensing untill morning. 
             // auto req = cm->getComms()->createJSONRequest();
@@ -106,20 +131,31 @@ void LightingController::bedroomMotion(){
 
 void LightingController::turnOnLight(
     std::string name
-){
-    if(!m_sleeping){
+){  
+    ErrorLogger::logInfo("got lock for light");
+    
+    if(std::chrono::duration_cast<std::chrono::hours>(
+        std::chrono::system_clock::now() - m_sleeping_at) > std::chrono::hours(12)) {
+            m_sleeping = false;
+            ErrorLogger::logInfo("Sleeping Unset");
+    }
+    
+    if (!m_sleeping) { 
+
+        ErrorLogger::logInfo("attempting to get lock");
+        std::lock_guard<std::mutex> guard(m_node_mutex);
+
         bool exit_code = 0;
+        ErrorLogger::logInfo("running system command");
         std::string output = this->coreMod->getTaskList().RunSystemCommand(
             "(cd "+m_lighting_dir+" && node ControlLights.js state on)",
             exit_code);
         
         if(!exit_code){
             ErrorLogger::logInfo("Failed to turn light on got exit code: " + std::to_string(exit_code));
-            return;
+        } else {
+            parseNodeOutput(output);
         }
-
-        parseNodeOutput(output);
-        
 
     } else{
         ErrorLogger::logInfo("Attempted to turn on light but sleeping is set");
@@ -129,6 +165,9 @@ void LightingController::turnOnLight(
 void LightingController::turnOffLight(
     std::string name
 ){
+
+    std::lock_guard<std::mutex> guard(m_node_mutex);
+
     bool exit_code = 0;
     std::string output = this->coreMod->getTaskList().RunSystemCommand(
         "(cd "+m_lighting_dir+" && node ControlLights.js state off)",

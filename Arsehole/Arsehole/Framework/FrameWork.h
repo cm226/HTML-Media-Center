@@ -19,6 +19,9 @@
 #include "../../Comms/Protocals/IProtocal.h"
 #include <boost/scoped_ptr.hpp>
 
+#include <mutex>
+#include <condition_variable>
+
 class ArseholeFramework
 {
 private:
@@ -30,6 +33,8 @@ private:
 
 
 	bool shuttingDown;
+	std::mutex m_shutdown_mutext;
+	std::condition_variable m_shutdown_cv;
 
 public:
 	ArseholeFramework();

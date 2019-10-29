@@ -12,7 +12,8 @@
 
     </head>
 
-    <div id="loadedPlugins"/>
+    <div id="loadedPlugins" ></div>
+    <div id="version"></div>
     
     
     <script>
@@ -28,6 +29,19 @@
         xhttp.onreadystatechange = displayPlugins;
         xhttp.open("GET", "pluginWigits", true);
         xhttp.send();
+
+        let displayVersion = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let version = this.responseText;
+                $("#version").append(version);
+            }
+        } 
+
+        var version_xhttp = new XMLHttpRequest();
+        version_xhttp.onreadystatechange = displayVersion;
+        version_xhttp.open("GET", "getVersion", true);
+        version_xhttp.send();
+
     
     
     </script>

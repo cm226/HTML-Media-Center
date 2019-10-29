@@ -1,4 +1,5 @@
 #include "HTTPUrlRouter.h"
+#include "../../config.h"
 
 HTTPUrlRouter::Connection::Connection(
     std::string request_body,
@@ -47,6 +48,15 @@ HTTPUrlRouter::HTTPUrlRouter(
             }
         }
     });
+
+
+    MapURLRequest("/getVersion",[&](
+		std::shared_ptr<IHTTPUrlRouter::IConnection> connection 
+    ){
+        connection->Write(Config::GetInstance()->Version());
+    });
+
+    
 }
 
 void HTTPUrlRouter::MapURLRequest(

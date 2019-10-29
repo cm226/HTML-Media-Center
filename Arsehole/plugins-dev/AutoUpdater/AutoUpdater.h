@@ -6,6 +6,7 @@
 #include <memory>
 #include <thread>
 #include <mutex>
+#include <condition_variable>
 
 
 class AutoUpdater 
@@ -26,6 +27,12 @@ private:
 
 	std::unique_ptr<std::thread> m_build_thread;
 	std::mutex m_build_mutex;
+
+	std::mutex m_build_stage_changed;
+	std::condition_variable m_build_stage_cv;
+
+	std::string m_stage;
+	std::string m_sentStage; // last stage sent to client
 
 };
 

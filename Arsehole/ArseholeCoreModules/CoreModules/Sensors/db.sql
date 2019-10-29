@@ -5,3 +5,5 @@ CREATE TABLE Sensors (
     sensor_name VARCHAR(255),
     PRIMARY KEY(id)
 ) ENGINE = InnoDB;
+
+INSERT INTO Sensors VALUES (null, 'bedroom');
