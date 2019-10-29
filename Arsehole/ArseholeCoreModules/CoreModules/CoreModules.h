@@ -37,7 +37,7 @@ public:
 	CommsNS::IComms* getComms();
 	MediaStreamer& getMediaStreamer();
 	TaskList& getTaskList();
-	Scheduler& getScheduler();
+	std::shared_ptr<Scheduler> getScheduler();
 	FileSystem& getFileSystem();
 	Sensors& getSensors();
 	

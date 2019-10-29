@@ -13,14 +13,14 @@ class Schedual{
         );
         virtual ~Schedual();
 
-        void SetFequency(
-            std::chrono::duration duration,
-            std::chrono::system_clock::timepoint start_time 
+        void Initialise(
+            std::chrono::minutes duration,
+            std::chrono::system_clock::time_point start_time,
+            std::function<void ()> callback 
         );
-        void SetCallback(std::function<void ()> callback);
 
         void ScheduleNextInstance(
-            std::chrono::duration when
+            std::chrono::system_clock::time_point when
         );
 
         void Enable();
@@ -32,8 +32,8 @@ class Schedual{
         std::function<void ()> m_callback;
 
         bool m_enabled;
-        std::chrono::duration m_duration;
-        std::chrono::system_clock::timepoint m_start_time;
+        std::chrono::minutes m_duration;
+        std::chrono::system_clock::time_point m_start_time;
 
         std::shared_ptr<Scheduler> m_scheduler;
 

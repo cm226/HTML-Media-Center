@@ -7,63 +7,66 @@
 Schedual::Schedual(
     std::shared_ptr<Scheduler> scheduler
 ) :
-    m_start_time(0),
+    m_start_time(std::chrono::system_clock::time_point()),
     m_duration(0) {
         m_scheduler = scheduler;
 }
 
 Schedual::~Schedual(){
+}
 
 
-
-Schedual::Disable(){
+void Schedual::Disable(){
     m_enabled = false;
 }
 
-Schedual::Enable(){
+void Schedual::Enable(){
     m_enabled = true;
 
-    if( m_start_time ==0 ||
-        m_duration == 0 ||
+    if( m_start_time.time_since_epoch().count() ==0 ||
+        m_duration.count() == 0 ||
         !m_callback ){
-        ErrorLogger::logError("Failed to start schedual, its not been configured yet")
+        ErrorLogger::logError("Failed to start schedual, its not been configured yet");
     }
 
     auto next_execution_time = m_start_time + m_duration;
-    ScheduleNextInstance(next_execution_time);
+    ScheduleNextInstance(
+            next_execution_time
+    );
 
 
 }
 
-void Schedual::SetFrequency(
-            std::chrono::duration duration,
-            std::chrono::system_clock::timepoint start_time
+void Schedual::Initialise(
+            std::chrono::minutes duration,
+            std::chrono::system_clock::time_point start_time,
+            std::function<void ()> callback
 ){
     m_duration = duration;
     m_start_time = start_time;
     
-}
-
-void Schedual::ScheduleNextInstance(
-    std::chrono::duration when
-){
-
-    m_scheduler->ScheduleTask(
-            CallbackTask(
-                m_callback,
-                std::chrono::system_clock::now() + when
-            )
-    );
-}
-
-void Schedual::SetCallback(
-    std::function<void ()> callback
-) {
-    m_callback = [callback, &this](){
+    m_callback = [callback, this](){
         ScheduleNextInstance(
             std::chrono::system_clock::now() + m_duration
         );
         callback();
     };
 }
+
+void Schedual::ScheduleNextInstance(
+        std::chrono::system_clock::time_point when
+    ) {
+
+        auto t = std::chrono::system_clock::to_time_t(when);
+        std::string time = std::ctime(&t);
+        ErrorLogger::logInfo("next schedual will run at : "+time);
+
+        m_scheduler->ScheduleTask(
+            std::shared_ptr<ScheduledTask>(new CallbackTask(
+                m_callback,
+                when
+            ))
+        );
+}
+
 

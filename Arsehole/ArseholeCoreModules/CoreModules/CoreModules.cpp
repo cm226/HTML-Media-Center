@@ -20,7 +20,7 @@ struct CoreModules::privateMembers
 	Comms comms;
 	MediaStreamer mediaStreamer;
 	TaskList taskList;
-	Scheduler scheduler;
+	std::shared_ptr<Scheduler> scheduler;
 	FileSystem filesystem;
 	Sensors sensors;
 };
@@ -28,6 +28,7 @@ struct CoreModules::privateMembers
 CoreModules::CoreModules():members(new privateMembers())
 {
 	this->members->databasecon = NULL;
+	members->scheduler = std::make_shared<Scheduler>();
 
 	ErrorLogger::logInfo("Core Modules Loaded");
 }
@@ -36,6 +37,8 @@ CoreModules::CoreModules(DatabaseTables::Database* databaseOverride):members(new
 {
 	this->members->databasecon = databaseOverride;
 	ErrorLogger::logInfo("Core Modules Loaded");
+
+	
 }
 
 CoreModules::~CoreModules()
@@ -76,7 +79,7 @@ TaskList & CoreModules::getTaskList()
 	return this->members->taskList;
 }
 
-Scheduler& CoreModules::getScheduler()
+std::shared_ptr<Scheduler> CoreModules::getScheduler()
 {
 	return this->members->scheduler;
 }

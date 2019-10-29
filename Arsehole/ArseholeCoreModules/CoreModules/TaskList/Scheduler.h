@@ -1,3 +1,5 @@
+#pragma once 
+
 #include "TaskList.h"
 
 #include <memory>
@@ -26,7 +28,7 @@ class ScheduledTask {
 };
 
 // calls a callback at a speified time
-class CallbackTask : ScheduledTask {
+class CallbackTask : public ScheduledTask {
 
     public:
 

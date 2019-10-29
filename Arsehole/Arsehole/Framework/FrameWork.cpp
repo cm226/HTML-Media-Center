@@ -15,6 +15,8 @@
 
 #include <cctype>
 
+#include "../../ArseholeCoreModules/CoreModules/TaskList/Schedual.h"
+
 #ifdef _WINDOWS
 #include <Windows.h>
 #endif
@@ -66,8 +68,16 @@ void ArseholeFramework::process()
 	ErrorLogger::logInfo("Modules Loaded");
 
 	this->cModules->getTaskList().StartTasks();
-	this->cModules->getScheduler().Start();
+	this->cModules->getScheduler()->Start();
 
+	Schedual s(this->cModules->getScheduler());
+	s.Initialise(
+		std::chrono::minutes(1),
+		std::chrono::system_clock::now(),
+		[&](){
+			ErrorLogger::logInfo("worked");
+		});
+	s.Enable();
 	
 	processCommandLoop();
 
