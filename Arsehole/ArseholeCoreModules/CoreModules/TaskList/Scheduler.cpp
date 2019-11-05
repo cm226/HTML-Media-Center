@@ -13,14 +13,14 @@ void Scheduler::Start() {
         
         while (m_process_tasks)
         {
-            if(nextTaskReady()){
+            while(nextTaskReady()){
                 auto task = m_next_tasks.top();
                 m_next_tasks.pop();
 
                 task->Run();
             }
 
-            std::this_thread::sleep_for(std::chrono::seconds(5));
+            std::this_thread::sleep_for(std::chrono::minuets(5));
         }
     });
 }
