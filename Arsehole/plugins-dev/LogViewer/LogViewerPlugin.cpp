@@ -21,7 +21,12 @@ LogViewerPlugin::LogViewerPlugin(CoreModules* cm): Plugin(cm), name("LogViewer")
         [&](
             std::shared_ptr<IHTTPUrlRouter::IConnection> connection
         ){
-            connection->Write(entriesToJson());
+			auto params = connection->RequestParams();
+			std::size_t num_entries = 50;
+			if(params.find("size") != params.end()){
+				num_entries = stoi(params["size"]);
+			}
+            connection->Write(entriesToJson(num_entries));
         }
     );     
 }
@@ -32,10 +37,10 @@ LogViewerPlugin::~LogViewerPlugin(void)
 
 }
 
-std::string LogViewerPlugin::entriesToJson(){
+std::string LogViewerPlugin::entriesToJson(std::size_t n){
 
 	std::vector<model::LogEntry> entries;
-	if(!logParser.getAllEntrys(entries)){
+	if(!logParser.getParsedEntries(entries, n)){
 		ErrorLogger::logError("Failed to get error log entries");
 	}
 

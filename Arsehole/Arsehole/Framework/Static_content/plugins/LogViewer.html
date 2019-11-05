@@ -16,6 +16,9 @@
 </head>
 
 <body>
+    <labe>num of entries: </labe>
+    <input id="nEntries" type="text" value="50">
+    <input type="button" onclick="RefreshLogs();" value="go"/>
 
     <div id="page">
     
@@ -37,9 +40,14 @@
     <script src="Shopping_content/js/jquery.mobile-1.4.5.min.js"></script>
     
     <script>
-        $( document ).ready(function() {
+
+        let RefreshLogs = function(){
+            
+            $('#logs').empty();
+            let entries = $('#nEntries').val();
+            
             $.ajax({
-                url: "/plugins/LogViewer/Entries",
+                url: "/plugins/LogViewer/Entries?size="+entries,
                 success : (data)=>{
 
                     var parsedlog = JSON.parse(data);
@@ -54,6 +62,10 @@
 
                 }
             });
+        }
+        
+        $( document ).ready(function() {
+            RefreshLogs();
         });
 
     </script>

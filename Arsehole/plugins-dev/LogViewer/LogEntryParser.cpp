@@ -41,14 +41,16 @@ void LogEntryParser::closeLogFileIfOpen()
 		this->logFile.close();
 }
 
-bool LogEntryParser::getAllEntrys(std::vector<model::LogEntry>& list)
-{
+bool LogEntryParser::getParsedEntries(
+	std::vector<model::LogEntry>& list,
+	std::size_t n
+) {
 	openLogFile();
 
-	std::vector<std::string> last10LogEntrys;
-	readLastNEntrys(last10LogEntrys, 50);
+	std::vector<std::string> lastNLogEntrys;
+	readLastNEntrys(lastNLogEntrys, n);
 
-	for(auto& entry : last10LogEntrys)
+	for(auto& entry : lastNLogEntrys)
 		list.push_back(parseLogEntry(entry));
 
 	closeLogFileIfOpen();
