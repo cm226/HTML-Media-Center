@@ -129,6 +129,38 @@ void LightingController::bedroomMotion(){
     }
 }
 
+bool LightingController::trySetLightState(
+    bool state
+){
+
+    ErrorLogger::logInfo("attempting to get lock");
+    std::lock_guard<std::mutex> guard(m_node_mutex);
+
+    bool exit_code = 0;
+    ErrorLogger::logInfo("running system command");
+
+    std::string cmd = "(cd "+m_lighting_dir+" && node ControlLights.js state ";
+    if(state){
+        cmd += "on)";
+    } else {
+        cmd += "off)";
+    }
+
+    std::string output = this->coreMod->getTaskList().RunSystemCommand(
+        cmd,
+        exit_code
+    );
+    
+    if(!exit_code){
+        ErrorLogger::logInfo("Failed to turn light on got exit code: " + std::to_string(exit_code));
+    } else {
+        return parseNodeOutput(output, state);
+    }
+
+    return false;
+
+}
+
 void LightingController::turnOnLight(
     std::string name
 ){  
@@ -142,20 +174,14 @@ void LightingController::turnOnLight(
     
     if (!m_sleeping) { 
 
-        ErrorLogger::logInfo("attempting to get lock");
-        std::lock_guard<std::mutex> guard(m_node_mutex);
-
-        bool exit_code = 0;
-        ErrorLogger::logInfo("running system command");
-        std::string output = this->coreMod->getTaskList().RunSystemCommand(
-            "(cd "+m_lighting_dir+" && node ControlLights.js state on)",
-            exit_code);
-        
-        if(!exit_code){
-            ErrorLogger::logInfo("Failed to turn light on got exit code: " + std::to_string(exit_code));
-        } else {
-            parseNodeOutput(output);
+        int num_retrys = 3;
+        for(int i = 0; i < num_retrys; ++i){
+            if(trySetLightState(true)){
+                return;
+            }
         }
+
+        ErrorLogger::logWarn("Failed to set light state on after all retrys");
 
     } else{
         ErrorLogger::logInfo("Attempted to turn on light but sleeping is set");
@@ -165,25 +191,19 @@ void LightingController::turnOnLight(
 void LightingController::turnOffLight(
     std::string name
 ){
-
-    std::lock_guard<std::mutex> guard(m_node_mutex);
-
-    bool exit_code = 0;
-    std::string output = this->coreMod->getTaskList().RunSystemCommand(
-        "(cd "+m_lighting_dir+" && node ControlLights.js state off)",
-        exit_code);
-
-    if(!exit_code){
-        ErrorLogger::logInfo("Failed to turn light on got exit code: " + std::to_string(exit_code));
-        return;
+    int num_retrys = 3;
+    for(int i = 0; i < num_retrys; ++i){
+        if(trySetLightState(false)){
+            return;
+        }
     }
 
-    parseNodeOutput(output);
-
+    ErrorLogger::logWarn("Failed to set light state off after all retrys");
 }
 
-void LightingController::parseNodeOutput(
-    std::string output
+bool LightingController::parseNodeOutput(
+    std::string output,
+    bool expected_state
 ){
     
     try{
@@ -202,11 +222,14 @@ void LightingController::parseNodeOutput(
 
         m_last_light_state = light1["state"].GetBool() || light2["state"].GetBool();
 
+        return  expected_state == light1["state"].GetBool() &&
+                expected_state == light2["state"].GetBool();
+
     } catch(std::exception& e){
         ErrorLogger::logError("Failed to parse node output" + output + "got : "+ e.what());
     }
 
-    return;   
+    return false;
 }
 
 void LightingController::handleRequest(std::string requestURL){

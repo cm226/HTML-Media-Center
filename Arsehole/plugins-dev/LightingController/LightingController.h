@@ -22,8 +22,13 @@ class LightingController : public Plugin {
             std::string name
         );
 
-        void parseNodeOutput(
-            std::string output
+        bool parseNodeOutput(
+            std::string output,
+            bool expected_state
+        );
+
+        bool trySetLightState(
+            bool state
         );
 
     private:
