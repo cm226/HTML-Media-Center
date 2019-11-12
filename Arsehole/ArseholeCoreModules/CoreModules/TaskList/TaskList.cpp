@@ -19,6 +19,7 @@ TaskList::~TaskList()
 {
 	ErrorLogger::logInfo("Stopping Task List...");
 	this->_processTasks = false;
+	m_cv.notify_one();
 	this->_taskThread.join();
 }
 
@@ -59,11 +60,7 @@ void TaskList::processTasks()
 				if (Config::GetInstance()->Live())
 				{
 					//all tasks complete, shutdown
-#ifdef _WINDOWS
-					system("shutdown -s -t 10");
-#else
 					system("shutdown -P 1");
-#endif // _WINDOWS
 				}
 				else
 				{
@@ -71,17 +68,20 @@ void TaskList::processTasks()
 				}
 
 			}
+		} else{
+			    std::unique_lock<std::mutex> lk(m_mutex);
+    			m_cv.wait(lk, [&]{return this->_tasks.size() > 0 || _processTasks == false;});
 		}
-
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
 
 }
 
 void TaskList::AddTask(std::string cmd)
 {
+	std::lock_guard<std::mutex> lk(m_mutex);
 	std::cout << "adding command: " << cmd;
 	this->_tasks.push_back(cmd);
+	m_cv.notify_one();
 }
 
 std::list<std::string> TaskList::GetTasks()

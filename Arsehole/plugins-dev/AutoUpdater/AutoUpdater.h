@@ -1,4 +1,4 @@
-	#pragma once
+#pragma once
 
 #include "../../Arsehole/Framework/Plugin/IPluginDLLFactory.h"
 #include "../../Arsehole/Framework/Plugin/Plugin.h"
