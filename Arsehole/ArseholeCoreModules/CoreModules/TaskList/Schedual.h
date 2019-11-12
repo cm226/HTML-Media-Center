@@ -2,6 +2,7 @@
 #include <functional>
 #include <memory>
 #include <chrono>
+#include <vector>
 
 class Scheduler;
 
@@ -23,9 +24,18 @@ class Schedual{
             std::chrono::system_clock::time_point when
         );
 
-        void Enable();
+
+        // days is a list of days (represented as number of days since sunday) that the schedule is enabled for
+        void Enable(
+            std::vector<int> days
+        );
         void Disable();
 
+    private:
+
+        bool EnabledForDay(
+            std::chrono::system_clock::time_point when
+        );
 
     private:
 
@@ -34,6 +44,8 @@ class Schedual{
         bool m_enabled;
         std::chrono::minutes m_duration;
         std::chrono::system_clock::time_point m_start_time;
+
+        std::vector<int> m_enabled_days;
 
         std::shared_ptr<Scheduler> m_scheduler;
 

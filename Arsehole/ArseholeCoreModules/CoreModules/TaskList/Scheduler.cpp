@@ -6,12 +6,19 @@ Scheduler::Scheduler() {
     m_process_tasks = false;
 }
 
+Scheduler::~Scheduler(){
+    std::unique_lock<std::mutex> lk(m_cv_mutext);
+    m_shuting_down = true;
+
+    m_cv.notify_all();
+    m_task_adder_thread.join();
+}
+
 void Scheduler::Start() { 
-    m_process_tasks = true;
     
     m_task_adder_thread = std::thread([&](){
         
-        while (m_process_tasks)
+        while (!m_shuting_down)
         {
             while(nextTaskReady()){
                 auto task = m_next_tasks.top();
@@ -20,7 +27,8 @@ void Scheduler::Start() {
                 task->Run();
             }
 
-            std::this_thread::sleep_for(std::chrono::minuets(5));
+            std::unique_lock<std::mutex> lk(m_cv_mutext);
+            m_cv.wait_for(lk, std::chrono::minutes(5) , [&]{return m_shuting_down;});
         }
     });
 }

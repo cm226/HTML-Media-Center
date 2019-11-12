@@ -52,6 +52,7 @@ class Scheduler{
 
 public:
     Scheduler();
+    virtual ~Scheduler();
 
     void Start();
     void ScheduleTask(std::shared_ptr<ScheduledTask> task);
@@ -64,5 +65,10 @@ private:
     std::thread m_task_adder_thread;
     std::priority_queue<std::shared_ptr<ScheduledTask>> m_next_tasks;
     bool m_process_tasks;
+
+    // shutdown 
+    std::condition_variable m_cv;
+    std::mutex m_cv_mutext;
+    bool m_shuting_down;
 
 };

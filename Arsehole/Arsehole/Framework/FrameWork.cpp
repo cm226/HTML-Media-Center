@@ -30,7 +30,6 @@ ArseholeFramework::ArseholeFramework()
 	ErrorLogger::logInfo("Arsehole initalising...");
 	this->shuttingDown = false;
 
-	this->cModules->getComms()->messagesubject()->onListPluginsMessageReceved.connect(this, &ArseholeFramework::loadedPlugins);
 	this->cModules->getComms()->messagesubject()->onDiagnosticMessageReceved.connect(this, &ArseholeFramework::processDiagnosticMessage);
 
 	this->cModules->getComms()->sig_shutdown.connect([this](){
@@ -59,11 +58,7 @@ void ArseholeFramework::process()
 		this->cModules->getComms()->Router().get()
 	);
 
-	#ifdef _WINDOWS
-	this->pluginLoader = new Loader("C:\\wamp64\\www\\HTML-Media-Center\\Arsehole\\Arsehole\\plugins");
-#else
 	this->pluginLoader = new Loader("/home/Arsehole");
-#endif
 
 	ErrorLogger::logInfo("Loading Modules");
 	this->loadStartupPlugins();
@@ -71,15 +66,6 @@ void ArseholeFramework::process()
 
 	this->cModules->getTaskList().StartTasks();
 	this->cModules->getScheduler()->Start();
-
-	Schedual s(this->cModules->getScheduler());
-	s.Initialise(
-		std::chrono::minutes(1),
-		std::chrono::system_clock::now(),
-		[&](){
-			ErrorLogger::logInfo("worked");
-		});
-	s.Enable();
 	
 	processCommandLoop();
 
@@ -149,97 +135,6 @@ void ArseholeFramework::processDiagnosticMessage(TranslatedMessages::RequestDisa
 
 }
 
-
-void ArseholeFramework::loadedPlugins(ListPluginsMessage*, coremodules::comms::protocals::IProtocal* protocal)
-{
-	using namespace std;
-	std::stringstream reply;
-	std::vector<Plugin*> loadedPlugins;
-	this->pluginLoader->listLoadedPlugins(&loadedPlugins);
-
-	std::list<std::string> misc, music, movie, tv, content, prog;
-	// TODO tidy this crap
-	for(vector<Plugin*>::iterator it2 = loadedPlugins.begin(); it2 != loadedPlugins.end(); it2++)
-	{
-		switch((*it2)->pluginGroup())
-		{
-			case(Plugin::CONTENT_GEN):
-				content.push_back((*it2)->pluginName());
-			break;
-			case(Plugin::MISC):
-				misc.push_back((*it2)->pluginName());
-			break;
-			case(Plugin::MOVIE):
-				movie.push_back((*it2)->pluginName());
-			break;
-			case(Plugin::MUSIC):
-				music.push_back((*it2)->pluginName());
-			break;
-			case(Plugin::TV):
-				tv.push_back((*it2)->pluginName());
-			break;
-			case(Plugin::PROG):
-				prog.push_back((*it2)->pluginName());
-			break;
-		}
-	}
-
-	if(content.size() > 0)
-	{
-		reply << "%Content Creation";
-		for(std::list<std::string>::iterator it = content.begin(); it != content.end(); it++)
-		{
-			reply << "," << *it;
-		}
-	}
-
-	if(music.size() > 0)
-	{
-	reply << "%Music";
-	for(std::list<std::string>::iterator it = music.begin(); it != music.end(); it++)
-	{
-		reply << "," << *it;
-	}
-	}
-
-	if(movie.size() > 0)
-	{
-		reply << "%Movie";
-	for(std::list<std::string>::iterator it = movie.begin(); it != movie.end(); it++)
-	{
-		reply << "," << *it;
-	}
-	}
-
-	if(tv.size() > 0)
-	{
-		reply << "%Tv";
-	for(std::list<std::string>::iterator it = tv.begin(); it != tv.end(); it++)
-	{
-		reply << "," << *it;
-	}
-	}
-
-	if(prog.size() > 0)
-	{
-		reply << "%Programming";
-	for(std::list<std::string>::iterator it = prog.begin(); it != prog.end(); it++)
-	{
-		reply << "," << *it;
-	}
-	}
-
-	if(misc.size() > 0)
-	{
-	reply << "%miscellaneous";
-	for(std::list<std::string>::iterator it = misc.begin(); it != misc.end(); it++)
-	{
-		reply << "," << *it;
-	}
-	}
-
-	protocal->sendMessage(new TranslatedMessages::ReplyMessage(reply.str()));
-}
 
 void ArseholeFramework::processCommandLoop()
 {
