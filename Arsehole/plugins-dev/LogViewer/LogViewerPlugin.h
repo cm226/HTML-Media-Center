@@ -16,7 +16,7 @@ private:
 	LogEntryParser logParser;
 
 
-	std::string entriesToJson();
+	std::string entriesToJson(std::size_t n);
 
 public:
 	LogViewerPlugin(CoreModules* cm);

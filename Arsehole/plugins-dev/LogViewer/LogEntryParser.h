@@ -24,6 +24,6 @@ public:
 	~LogEntryParser(void);
 
 	bool setLogFileLocation(std::string logFile);
-	bool getAllEntrys(std::vector<model::LogEntry>& list);
+	bool getParsedEntries(std::vector<model::LogEntry>& list, std::size_t n = 50);
 };
 
