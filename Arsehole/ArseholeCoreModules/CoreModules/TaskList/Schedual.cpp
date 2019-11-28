@@ -13,6 +13,7 @@ Schedual::Schedual(
 }
 
 Schedual::~Schedual(){
+    m_enabled = false;
 }
 
 

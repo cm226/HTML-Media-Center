@@ -62,7 +62,6 @@ private:
 
 private:
 
-    std::thread m_task_adder_thread;
     std::priority_queue<std::shared_ptr<ScheduledTask>> m_next_tasks;
     bool m_process_tasks;
 

@@ -1,5 +1,6 @@
 #include "LightingController.h"
 #include "SunsetTimes.h"
+#include "../../ArseholeCoreModules/CoreModules/TaskList/Schedual.h"
 
 #include "rapidjson/document.h"
 
@@ -7,7 +8,7 @@
 LightingController::LightingController(CoreModules* cm):
     Plugin(cm),
     m_sleeping(false),
-    m_last_light_state(false){
+    m_last_light_state(false) {
 
         m_lighting_dir = "/home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/plugins-dev/LightingController/Node";
 
@@ -116,6 +117,8 @@ LightingController::LightingController(CoreModules* cm):
         }else {
             ErrorLogger::logInfo("failed to attatch to bedroom sensor");
         }
+
+        setupSchedule();
         
 
 }
@@ -230,6 +233,32 @@ bool LightingController::parseNodeOutput(
     }
 
     return false;
+}
+
+void LightingController::setupSchedule(
+) {
+    m_schedual = std::make_shared<Schedual>(
+        coreMod->getScheduler()
+    );
+
+    std::time_t t = std::time(nullptr);
+    std::tm* tm = std::localtime(&t);
+    tm->tm_hour = 17;
+    tm->tm_min = 0;
+
+    auto tp = std::chrono::system_clock::from_time_t(
+        std::mktime(tm)
+    );
+
+    m_schedual->Initialise(
+        std::chrono::hours(24),
+        tp,
+        [&](){
+            turnOnLight("bedroom");
+        }
+    );
+
+    m_schedual->Enable({1,2,3,4,5});
 }
 
 void LightingController::handleRequest(std::string requestURL){

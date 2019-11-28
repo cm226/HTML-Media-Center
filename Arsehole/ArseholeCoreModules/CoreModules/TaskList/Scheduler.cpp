@@ -11,12 +11,11 @@ Scheduler::~Scheduler(){
     m_shuting_down = true;
 
     m_cv.notify_all();
-    m_task_adder_thread.join();
 }
 
 void Scheduler::Start() { 
     
-    m_task_adder_thread = std::thread([&](){
+    auto adder_thread = std::thread([&](){
         
         while (!m_shuting_down)
         {
@@ -28,9 +27,10 @@ void Scheduler::Start() {
             }
 
             std::unique_lock<std::mutex> lk(m_cv_mutext);
-            m_cv.wait_for(lk, std::chrono::minutes(5) , [&]{return m_shuting_down;});
+            m_cv.wait_for(lk, std::chrono::minutes(1) , [&]{return m_shuting_down;});
         }
     });
+    adder_thread.detach();
 }
 
 void Scheduler::ScheduleTask(
