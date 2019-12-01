@@ -1,10 +1,10 @@
 #include "WeekdaySchedual.h"
 
 
-WeekdaySchedual::weekdaySchedual(
+WeekdaySchedual::WeekdaySchedual(
     std::shared_ptr<Scheduler> scheduler
 ) :
-Schedual(shceduler) {
+Schedual(scheduler) {
 
 }
 

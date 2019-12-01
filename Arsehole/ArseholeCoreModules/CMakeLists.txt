@@ -93,6 +93,7 @@ CoreModules/Comms/Protocals/TwoByteMsgLen.cpp
 CoreModules/TaskList/TaskList.cpp
 CoreModules/TaskList/Scheduler.cpp
 CoreModules/TaskList/Schedual.cpp
+CoreModules/TaskList/WeekdaySchedual.cpp
 CoreModules/MediaStreaming/MediaStreaming/MusicPlaylist.cpp
 CoreModules/MediaStreaming/MediaStreaming/Song.cpp
 CoreModules/MediaStreaming/MediaStreaming/VLCTelnetInterface.cpp
