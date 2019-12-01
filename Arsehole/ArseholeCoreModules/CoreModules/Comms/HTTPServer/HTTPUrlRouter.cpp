@@ -72,9 +72,8 @@ void HTTPUrlRouter::RegisterWidgit(
     std::string widgit
 ){
     auto file = std::make_shared<File>(
-        std::make_shared<TxtFileSource>(m_static_content + widgit, ".html")
+        std::make_shared<TxtFileSource>(Directory(m_static_content + widgit), "widgit","html")
     );
-    file->SetLocation(Directory(m_static_content + widgit), "widgit.html");
 
     m_widgits.push_back(file);
 }

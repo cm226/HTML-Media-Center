@@ -2,6 +2,7 @@
 
 #include "../../ArseholeCoreModules/CoreModules/CoreModules.h"
 #include "../../Arsehole/Framework/Plugin/Plugin.h"
+#include "../../ErrorLogger/Errors/LoggerModel.h"
 
 #include <mutex>
 
@@ -36,9 +37,9 @@ class LightingController : public Plugin {
         void setupSchedule();
 
     private:
-        bool m_sleeping;
+        LoggerModel<bool> m_sleeping;
         std::chrono::time_point<std::chrono::system_clock> m_sleeping_at;
-        bool m_last_light_state;
+        LoggerModel<bool> m_last_light_state;
         std::string m_lighting_dir;
         std::shared_ptr<WeekdaySchedual> m_schedual;
 

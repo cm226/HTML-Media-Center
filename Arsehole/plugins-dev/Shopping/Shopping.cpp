@@ -22,7 +22,7 @@ ShoppingPlugin::ShoppingPlugin(
     auto comms = cm->getComms();
     auto router = comms->Router();
 
-    router->RegisterWidgit("/plugins/Shopping_content/widgit.html");
+    router->RegisterWidgit("plugins/Shopping_content");
 
     auto db = cm->getDatabaseConnection();
 

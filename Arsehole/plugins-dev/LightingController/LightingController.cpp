@@ -7,22 +7,22 @@
 
 LightingController::LightingController(CoreModules* cm):
     Plugin(cm),
-    m_sleeping(false),
-    m_last_light_state(false) {
+    m_sleeping("Sleeping state change",false),
+    m_last_light_state("Light state change",false) {
 
         m_lighting_dir = "/home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/plugins-dev/LightingController/Node";
 
         auto comms = cm->getComms();
         auto router = comms->Router();
 
-        router->RegisterWidgit("/plugins/Lighting_content/widgit.html");
+        router->RegisterWidgit("plugins/Lighting_content");
 
         router->MapURLRequest(
             "/plugins/Lighting/AllLights",
             [&](
                 std::shared_ptr<IHTTPUrlRouter::IConnection> connection
         ){
-            connection->Write("[{\"name\" : \"Bedroom\", \"state\" : \""+std::to_string(m_last_light_state)+"\"}]");
+            connection->Write("[{\"name\" : \"Bedroom\", \"state\" : \""+std::to_string(m_last_light_state.Get())+"\"}]");
         });
 
         router->MapURLRequest(
@@ -30,7 +30,7 @@ LightingController::LightingController(CoreModules* cm):
             [&](
                 std::shared_ptr<IHTTPUrlRouter::IConnection> connection
         ){
-            if(!m_sleeping){
+            if(!m_sleeping.Get()){
                connection->Write("0"); 
                return;
             }
@@ -50,18 +50,16 @@ LightingController::LightingController(CoreModules* cm):
             [&](
                 std::shared_ptr<IHTTPUrlRouter::IConnection> connection
         ){
-            ErrorLogger::logInfo("received turn on light msg");
             std::map<std::string, std::string> params = connection->RequestParams();
             if(params.find("name") == params.end()){
-                ErrorLogger::logInfo("name not found in params list");
+                ErrorLogger::logError("name not found in params list");
                 return;
             }
             auto light = params["name"];
 
             turnOnLight(light);
 
-            ErrorLogger::logInfo("writting response");
-            connection->Write("{\"name\" : \"Bedroom\", \"state\" : \""+std::to_string(m_last_light_state)+"\"}");
+            connection->Write("{\"name\" : \"Bedroom\", \"state\" : \""+std::to_string(m_last_light_state.Get())+"\"}");
         });
 
         router->MapURLRequest(
@@ -73,7 +71,7 @@ LightingController::LightingController(CoreModules* cm):
             auto light = params["name"];
             turnOffLight(light);
 
-            connection->Write("{\"name\" : \"Bedroom\", \"state\" : \""+std::to_string(m_last_light_state)+"\"}");
+            connection->Write("{\"name\" : \"Bedroom\", \"state\" : \""+std::to_string(m_last_light_state.Get())+"\"}");
             
         });
 
@@ -82,15 +80,12 @@ LightingController::LightingController(CoreModules* cm):
             [&](
                 std::shared_ptr<IHTTPUrlRouter::IConnection> connection
         ){
-            ErrorLogger::logInfo(connection->RequestBody());
             if(connection->RequestBody() == "true"){
                 m_sleeping_at = std::chrono::system_clock::now();
-                m_sleeping = true;
+                m_sleeping.Set(true);
                 turnOffLight("Bedroom");
-                
-                ErrorLogger::logInfo("Sleeping Set");
             } else {
-                m_sleeping = false;
+                m_sleeping.Set(false);
                 
                 ErrorLogger::logInfo("Sleeping Un-Set");
             }
@@ -135,12 +130,9 @@ void LightingController::bedroomMotion(){
 bool LightingController::trySetLightState(
     bool state
 ){
-
-    ErrorLogger::logInfo("attempting to get lock");
     std::lock_guard<std::mutex> guard(m_node_mutex);
 
     bool exit_code = 0;
-    ErrorLogger::logInfo("running system command");
 
     std::string cmd = "(cd "+m_lighting_dir+" && node ControlLights.js state ";
     if(state){
@@ -155,7 +147,7 @@ bool LightingController::trySetLightState(
     );
     
     if(!exit_code){
-        ErrorLogger::logInfo("Failed to turn light on got exit code: " + std::to_string(exit_code));
+        ErrorLogger::logError("Failed to turn light on got exit code: " + std::to_string(exit_code));
     } else {
         return parseNodeOutput(output, state);
     }
@@ -167,15 +159,13 @@ bool LightingController::trySetLightState(
 void LightingController::turnOnLight(
     std::string name
 ){  
-    ErrorLogger::logInfo("got lock for light");
-    
     if(std::chrono::duration_cast<std::chrono::hours>(
         std::chrono::system_clock::now() - m_sleeping_at) > std::chrono::hours(12)) {
-            m_sleeping = false;
+            m_sleeping.Set(false);
             ErrorLogger::logInfo("Sleeping Unset");
     }
     
-    if (!m_sleeping) { 
+    if (!m_sleeping.Get()) { 
 
         int num_retrys = 3;
         for(int i = 0; i < num_retrys; ++i){
@@ -223,7 +213,7 @@ bool LightingController::parseNodeOutput(
         rapidjson::Value& light1 = d["light1"];
         rapidjson::Value& light2 = d["light2"];
 
-        m_last_light_state = light1["state"].GetBool() || light2["state"].GetBool();
+        m_last_light_state.Set(light1["state"].GetBool() || light2["state"].GetBool());
 
         return  expected_state == light1["state"].GetBool() &&
                 expected_state == light2["state"].GetBool();

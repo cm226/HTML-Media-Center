@@ -5,14 +5,22 @@
 
 #include "../../exportMacros.h"
 #include "IFileSource.h"
-
+#include "../Directory.h"
 
 
 class DLLCORE_API TxtFileSource : public IFileSource
 {
 public:
 
-	TxtFileSource(std::string path, std::string defaultExt);
+	TxtFileSource(
+		std::string location,
+		std::string defaultExt = ".txt"
+	);
+
+	TxtFileSource(
+		Directory dir,
+		std::string name,
+		std::string defaultExt = ".txt");
 	
 
 	virtual bool GetData(std::vector<unsigned char>& buffer) override;

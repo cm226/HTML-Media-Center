@@ -10,18 +10,12 @@ class DLLCORE_API File
 {
 private:
 	std::shared_ptr<IFileSource> _dataSource;
-	Directory _dir;
-	std::string _filename;
 protected:
 public:
 	File(std::shared_ptr<IFileSource> filesource);
 	~File();
 
-	void SetLocation(Directory dir, std::string filename);
-	std::string Location();
-	std::string Name();
 	bool ToString(std::string& file);
 
-	bool Save();
 
 };

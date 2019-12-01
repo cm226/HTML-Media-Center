@@ -1,20 +1,49 @@
 #include "TxtFileSource.h"
 #include "../../../../ErrorLogger/Errors/ErrorLogger.h"
 
+#include <boost/filesystem.hpp>
 #include <fstream>
 
+
+
 TxtFileSource::TxtFileSource(
-    std::string path,
-    std::string defaultExt ){
-    
-    if(path.find(".") == -1){
-        path.append("."+defaultExt);
+    std::string location,
+    std::string defaultExt
+) {
+
+    if(location.find(".") == -1){
+        location.append("."+defaultExt);
     }
 
-    m_path = path;
+
+    m_path = location;
+
+    if (!boost::filesystem::exists(m_path))
+	{
+		ErrorLogger::logWarn("FileSystem: Txt File source created that doesn't exist! : " +
+			m_path);
+	}
+
 }
 
+TxtFileSource::TxtFileSource(
+    Directory dir,
+	std::string name,
+	std::string defaultExt){
+    
+    if(name.find(".") == -1){
+        name.append("."+defaultExt);
+    }
 
+
+    m_path = dir.toString() + name;
+
+    if (!boost::filesystem::exists(m_path))
+	{
+		ErrorLogger::logWarn("FileSystem: Txt File source created that doesn't exist! : " +
+			m_path);
+	}
+}
 
 bool TxtFileSource::GetData(std::vector<unsigned char>& buffer){
 
