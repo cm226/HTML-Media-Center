@@ -1,6 +1,6 @@
 #include "LightingController.h"
 #include "SunsetTimes.h"
-#include "../../ArseholeCoreModules/CoreModules/TaskList/Schedual.h"
+#include "../../ArseholeCoreModules/CoreModules/TaskList/WeekdaySchedual.h"
 
 #include "rapidjson/document.h"
 
@@ -237,28 +237,12 @@ bool LightingController::parseNodeOutput(
 
 void LightingController::setupSchedule(
 ) {
-    m_schedual = std::make_shared<Schedual>(
+    m_schedual = std::make_shared<WeekdaySchedual>(
         coreMod->getScheduler()
     );
-
-    std::time_t t = std::time(nullptr);
-    std::tm* tm = std::localtime(&t);
-    tm->tm_hour = 17;
-    tm->tm_min = 0;
-
-    auto tp = std::chrono::system_clock::from_time_t(
-        std::mktime(tm)
-    );
-
-    m_schedual->Initialise(
-        std::chrono::hours(24),
-        tp,
-        [&](){
+    m_schedual->Initialse(17, 0, [&](){
             turnOnLight("bedroom");
-        }
-    );
-
-    m_schedual->Enable({1,2,3,4,5});
+    });
 }
 
 void LightingController::handleRequest(std::string requestURL){

@@ -48,6 +48,4 @@ class Schedual{
         std::vector<int> m_enabled_days;
 
         std::shared_ptr<Scheduler> m_scheduler;
-
-
 };

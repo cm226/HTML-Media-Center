@@ -18,7 +18,8 @@ cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ArseholeCoreModul
 if [ $? -eq 0 ]
 then
     version=$(git rev-parse HEAD)
-    sed -i "s/Version=*\n/Version=$version/g" /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini
+    echo "Build Successful updating version to $version"
+    sed -i "s/Version=.*\n/Version=$version/g" /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini
 fi
 
 
