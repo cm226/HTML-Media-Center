@@ -19,7 +19,7 @@ struct CoreModules::privateMembers
 	DatabaseTables::Database* databasecon;
 	Comms comms;
 	MediaStreamer mediaStreamer;
-	TaskList taskList;
+	std::shared_ptr<TaskList> taskList;
 	std::shared_ptr<Scheduler> scheduler;
 	FileSystem filesystem;
 	Sensors sensors;
@@ -29,6 +29,7 @@ CoreModules::CoreModules():members(new privateMembers())
 {
 	this->members->databasecon = NULL;
 	members->scheduler = std::make_shared<Scheduler>();
+	members->taskList = std::make_shared<TaskList>();
 
 	ErrorLogger::logInfo("Core Modules Loaded");
 }
@@ -56,9 +57,16 @@ DatabaseTables::Database* CoreModules::getDatabaseConnection()
 {
 	if(this->members->databasecon == NULL)
 	{
-		this->members->databasecon = new DatabaseTables::Database();
+		this->members->databasecon = new DatabaseTables::Database(
+			this->members->taskList
+		);
 		auto config = Config::GetInstance();
-		this->members->databasecon->Connect(config->DBUser(), config->DBPw(),config->DBName(),"localhost");
+		this->members->databasecon->Connect(
+			config->DBUser(),
+			 config->DBPw(),
+			 config->DBName(),
+			 "localhost"
+		);
 	}
 
 	return this->members->databasecon;
@@ -74,7 +82,7 @@ MediaStreamer& CoreModules::getMediaStreamer()
 	return this->members->mediaStreamer;
 }
 
-TaskList & CoreModules::getTaskList()
+std::shared_ptr<TaskList> CoreModules::getTaskList()
 {
 	return this->members->taskList;
 }

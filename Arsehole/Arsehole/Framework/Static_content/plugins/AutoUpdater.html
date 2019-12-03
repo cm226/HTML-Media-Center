@@ -61,6 +61,7 @@
             $.ajax({
                 url: url,
                 success : (data)=>{
+                    have_first_stage = true;
                     
                     switch(data.trim()){
                         case "Restart" :

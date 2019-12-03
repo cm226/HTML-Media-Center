@@ -36,7 +36,7 @@ public:
 	DatabaseTables::Database* getDatabaseConnection();
 	CommsNS::IComms* getComms();
 	MediaStreamer& getMediaStreamer();
-	TaskList& getTaskList();
+	std::shared_ptr<TaskList> getTaskList();
 	std::shared_ptr<Scheduler> getScheduler();
 	FileSystem& getFileSystem();
 	Sensors& getSensors();
