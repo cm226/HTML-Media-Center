@@ -122,6 +122,31 @@ void LightingController::bedroomMotion(){
     SunsetTimes s;
     if(s.IsSunDown()){
         turnOnLight("bedroom");
+        
+
+        std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
+        time_t tt = std::chrono::system_clock::to_time_t(now);
+        tm local_tm = *localtime(&tt);
+
+        if( !m_sleeping.Get() && local_tm.tm_hour < 21){
+            auto turn_off_time = std::chrono::system_clock::now() + 
+                std::chrono::minutes(5);
+
+            if(m_turn_off_light_task->IsElapsed()){
+                m_turn_off_light_task.reset();
+            }
+
+            if(m_turn_off_light_task == nullptr){
+                m_turn_off_light_task = std::make_shared<CallbackTask>(
+                    [&](){
+                        turnOffLight("bedroom");
+                    },
+                    turn_off_time
+                );
+            } else {
+                m_turn_off_light_task->ChangeTime(turn_off_time);
+            }
+        }
     } else {
         ErrorLogger::logInfo("motion detected but sun is up");
     }

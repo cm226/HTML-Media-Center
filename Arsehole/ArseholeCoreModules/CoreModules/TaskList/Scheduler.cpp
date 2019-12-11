@@ -45,7 +45,7 @@ bool Scheduler::nextTaskReady() {
         return false;
     }
 
-    if(m_next_tasks.top()->Time() < std::chrono::system_clock::now()){
+    if(m_next_tasks.top()->IsElapsed()){
         return true;
     }
 

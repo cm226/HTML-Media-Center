@@ -42,6 +42,9 @@ class LightingController : public Plugin {
         LoggerModel<bool> m_last_light_state;
         std::string m_lighting_dir;
         std::shared_ptr<WeekdaySchedual> m_schedual;
+        
+        // lights turn off after 5 min of no motion
+        std::shared_ptr<CallbackTask> m_turn_off_light_task;
 
         // only have 1 node command in flight at once
         std::mutex m_node_mutex;

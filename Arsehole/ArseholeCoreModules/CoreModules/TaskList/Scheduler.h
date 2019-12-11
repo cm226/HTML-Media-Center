@@ -6,6 +6,7 @@
 #include <queue>
 #include <chrono>
 #include <functional>
+#include <mutex>
 
 
 class ScheduledTask {
@@ -18,13 +19,33 @@ class ScheduledTask {
              return  m_tp < other.m_tp;
         }
 
-        std::chrono::time_point<std::chrono::system_clock> Time(){
-            return m_tp;
+        bool ChangeTime(std::chrono::time_point<std::chrono::system_clock> new_tp){
+            std::lock_guard<std::mutex> guard(m_tp_mutex);
+
+            if(m_elapsed){
+                return false;
+            }
+            
+            m_tp = new_tp;
+
+            return true;
+        }
+
+
+
+        bool IsElapsed(){
+            std::lock_guard<std::mutex> guard(m_tp_mutex);
+            if(m_tp < std::chrono::system_clock::now()){
+                m_elapsed = true;
+               return true;
+            }
+            return false;;
         }
 
     protected: 
         std::chrono::time_point<std::chrono::system_clock> m_tp;
-
+        std::mutex m_tp_mutex;
+        bool m_elapsed = false;
 };
 
 // calls a callback at a speified time
