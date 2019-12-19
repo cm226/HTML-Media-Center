@@ -8,13 +8,15 @@
 #include "Database.h"
 #include "ResultWrapper.h"
 #include "../../../ErrorLogger/Errors/ErrorLogger.h"
+#include "../TaskList/TaskList.h"
 #include <stdio.h>
 #include <sstream>
 
 
 namespace DatabaseTables {
 
-Database::Database() {
+Database::Database(std::shared_ptr<TaskList> tl)
+	: m_task_list(tl) {
 
 }
 
@@ -65,7 +67,9 @@ bool Database::Connect(
 	m_DatabaseName = DatabaseName;
 	m_hostName = hostName;
 
-	if(ConnectInternal(mysql_conn)){
+	startMysqlServer();
+
+	if(ConnectInternal(mysql_conn)) {
 		this->connected = true;
 		return true;
 	}
@@ -168,6 +172,20 @@ bool Database::runQuery(
 bool Database::isConnected()
 {
 	return this->connected;
+}
+
+void Database::startMysqlServer() {
+
+	ErrorLogger::logInfo("Attempting to start my sql server");
+
+	bool ret_code;
+	auto output = m_task_list->RunSystemCommand("service mysql start ", ret_code);
+
+	if(!ret_code){
+		ErrorLogger::logError("Failed to start the sql server" + output);
+	}
+	
+	return;
 }
 
 } /* namespace DatabaseTables */

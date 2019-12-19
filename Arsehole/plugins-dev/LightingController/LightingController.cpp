@@ -166,7 +166,7 @@ bool LightingController::trySetLightState(
         cmd += "off)";
     }
 
-    std::string output = this->coreMod->getTaskList().RunSystemCommand(
+    std::string output = this->coreMod->getTaskList()->RunSystemCommand(
         cmd,
         exit_code
     );

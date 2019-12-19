@@ -22,6 +22,8 @@
 #include <mysql.h>
 
 
+class TaskList;
+
 namespace DatabaseTables {
 
 class DLLCORE_API Database {
@@ -34,7 +36,7 @@ private:
 	std::string m_hostName;
 
 public:
-	Database();
+	Database(std::shared_ptr<TaskList> tasklist);
 	virtual ~Database();
 
 	bool Connect(std::string userName, std::string password, std::string DatabaseName, std::string host);
@@ -50,7 +52,12 @@ private:
 	bool ConnectInternal(
 		std::shared_ptr<MYSQL> mysql_con
 	);
-	
+
+	void startMysqlServer();
+
+private:
+
+	std::shared_ptr<TaskList> m_task_list;
 
 };
 

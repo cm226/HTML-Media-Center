@@ -102,7 +102,7 @@ bool AutoUpdater::CheckForUpdate(
     }
     m_build_stage_cv.notify_one();
 
-    output = this->coreMod->getTaskList().RunSystemCommand(
+    output = this->coreMod->getTaskList()->RunSystemCommand(
         "(cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ && git pull origin master)",
         normal_exit);
     
@@ -135,7 +135,7 @@ bool AutoUpdater::BuildUpdate(
     
 
     bool normal_exit = false;
-    std::string output = this->coreMod->getTaskList().RunSystemCommand(updateCMD, normal_exit);
+    std::string output = this->coreMod->getTaskList()->RunSystemCommand(updateCMD, normal_exit);
 
     if(!normal_exit){
 
