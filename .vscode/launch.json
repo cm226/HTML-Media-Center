@@ -29,7 +29,7 @@
             ]
         },
         {
-            "name": "(gdb) Remote Launch",
+            "name": "(gdb) Remote Launch Laptop",
             "type": "cppdbg",
             "request": "launch",
             "program": "/home/craig/Programming/HTML-Media-Center/Arsehole/bin/Arsehole",
@@ -37,6 +37,31 @@
             "args": [],
             "stopAtEntry": false,
             "cwd": "/home/craig/Programming/HTML-Media-Center/Arsehole/bin",
+            "environment": [
+                {
+                    "name": "LD_LIBRARY_PATH",
+                    "value": "/home/craig/Programming/HTML-Media-Center/Arsehole/bin"
+                }
+            ],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(gdb) Remote Launch Desktop",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/Arsehole",
+            "miDebuggerServerAddress": "localhost:9091",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "/home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin",
             "environment": [
                 {
                     "name": "LD_LIBRARY_PATH",

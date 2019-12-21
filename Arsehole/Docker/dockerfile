@@ -146,5 +146,4 @@ CMD ["bash", "-c" ,"./maybeRunBootstrap $build_type_env"]
 # sudo docker build -t media .
 # sudo docker build --build-arg build_type=Debug -t media .
 # sudo docker run -p 8442:8442 -v ~/mdbdata/Arsehole:/var/lib/mysql -ti --restart unless-stopped media
-# sudo docker run -p 8442:8442 -p 9091:9091 -v ~/mdbdata/Arsehole:/var/lib/mysql -v /home/craig/Programming/HTML-Media-Center:/home/craig/Programming/Arsehole/HTML-Media-Center --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -ti media
-# then run cmd above 
+# sudo docker run -p 8442:8442 -p 9091:9091 -v ~/mdbdata/Arsehole:/var/lib/mysql -v /home/craig/Programming/HTML-Media-Center:/home/craig/Programming/Arsehole/HTML-Media-Center --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --env build_type_env=Debug -ti media then run cmd above 
