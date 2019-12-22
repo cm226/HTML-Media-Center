@@ -19,7 +19,7 @@ if [ $? -eq 0 ]
 then
     version=$(git rev-parse HEAD)
     echo "Build Successful updating version to $version"
-    sed -i "s/Version=.*\n/Version=$version/g" /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini
+    sed -i "s/Version=.*/Version=$version/g" /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/config.ini
 fi
 
 

@@ -134,9 +134,12 @@ void LightingController::bedroomMotion(){
 
             if( m_turn_off_light_task != nullptr && 
                 m_turn_off_light_task->ChangeTime(turn_off_time)){
+                
+                ErrorLogger::logInfo("turn off time updated");
                 return;
             }
 
+            ErrorLogger::logInfo("Failed to update od expired");
             m_turn_off_light_task.reset();
 
             m_turn_off_light_task = std::make_shared<CallbackTask>(
