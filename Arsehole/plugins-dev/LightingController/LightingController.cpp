@@ -144,6 +144,7 @@ void LightingController::bedroomMotion(){
 
             m_turn_off_light_task = std::make_shared<CallbackTask>(
                 [&]() {
+                    ErrorLogger::logInfo("attempting to turn off light");
                     turnOffLight("bedroom");
                 },
                 turn_off_time

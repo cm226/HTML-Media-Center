@@ -1,4 +1,5 @@
 #include "Scheduler.h"
+#include "../../../ErrorLogger/Errors/ErrorLogger.h"
 
 
 Scheduler::Scheduler() {
@@ -36,6 +37,11 @@ void Scheduler::Start() {
 void Scheduler::ScheduleTask(
     std::shared_ptr<ScheduledTask> task
 ){
+
+    auto t = std::chrono::system_clock::to_time_t(task->GetTime());
+    std::string time = std::ctime(&t);
+    ErrorLogger::logInfo("task added to run at : "+time);
+
     m_next_tasks.push(task);   
 }
 

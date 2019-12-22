@@ -42,6 +42,10 @@ class ScheduledTask {
             return false;;
         }
 
+        std::chrono::time_point<std::chrono::system_clock> GetTime(){
+            return m_tp;
+        }
+
     protected: 
         std::chrono::time_point<std::chrono::system_clock> m_tp;
         std::mutex m_tp_mutex;
