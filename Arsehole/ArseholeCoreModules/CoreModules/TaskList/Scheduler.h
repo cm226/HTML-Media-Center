@@ -12,6 +12,10 @@
 class ScheduledTask {
 
     public:
+        ScheduledTask(std::string name) {
+            m_name = name;
+        }
+
         virtual void Run() = 0;
 
         bool operator< (const ScheduledTask& other
@@ -50,6 +54,7 @@ class ScheduledTask {
         std::chrono::time_point<std::chrono::system_clock> m_tp;
         std::mutex m_tp_mutex;
         bool m_elapsed = false;
+        std::string m_name;
 };
 
 // calls a callback at a speified time
@@ -59,8 +64,12 @@ class CallbackTask : public ScheduledTask {
 
         CallbackTask(
             std::function<void()> cmd,
-            std::chrono::time_point<std::chrono::system_clock> tp
-        ){
+            std::chrono::time_point<std::chrono::system_clock> tp,
+            std::string name = "callback task"
+        ) 
+            :
+            ScheduledTask(name) 
+        {
             m_cmd = cmd;
             m_tp = tp;
         }

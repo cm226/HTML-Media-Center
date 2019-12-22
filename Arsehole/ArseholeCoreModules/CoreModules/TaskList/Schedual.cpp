@@ -91,7 +91,8 @@ void Schedual::ScheduleNextInstance(
         m_scheduler->ScheduleTask(
             std::shared_ptr<ScheduledTask>(new CallbackTask(
                 m_callback,
-                when
+                when, 
+                "unnamed schedual"
             ))
         );
 }
