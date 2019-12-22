@@ -18,9 +18,12 @@ void Scheduler::Start() {
     
     auto adder_thread = std::thread([&](){
         
+        ErrorLogger::logInfo("Scheduler started");
         while (!m_shuting_down)
         {
+            ErrorLogger::logInfo("checking tasks, count: " + std::to_string(m_next_tasks.size()));
             while(nextTaskReady()){
+                ErrorLogger::logInfo(" running next task");
                 auto task = m_next_tasks.top();
                 m_next_tasks.pop();
 
