@@ -3,7 +3,7 @@
 
 
 Scheduler::Scheduler() : 
-m_shuting_down : false {
+m_shuting_down(false) {
 
     m_process_tasks = false;
 }
