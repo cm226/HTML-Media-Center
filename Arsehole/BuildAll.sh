@@ -14,6 +14,8 @@ cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ArseholeCoreModul
 && ./build $1 \
 && cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/plugins-dev/LightingController \
 && ./build $1 \
+&& cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/plugins-dev/Weather \
+&& ./build $1 \
 
 if [ $? -eq 0 ]
 then

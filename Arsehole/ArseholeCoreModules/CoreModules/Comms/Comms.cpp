@@ -82,7 +82,7 @@ void Comms::doHTTP()
         m_io_service->stop();
     }
     catch (std::exception &e) {
-        ErrorLogger::logError(std::string("Error while starting server") + e.what());
+        ErrorLogger::logError(std::string("Error while starting web server ") + e.what());
     }
 }
 

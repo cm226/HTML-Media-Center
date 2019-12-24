@@ -1,0 +1,38 @@
+
+<script>
+
+    function setWeather(location, data) {
+        $("#"+location+" #wind").text(data.Wind_speed);
+        $("#"+location+" #temp").text(data.Feels_like);
+        $("#"+location+" #weather").attr("src", data.Weather_type);
+    }
+
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            
+            var report = JSON.parse(xmlHttp.responseText);
+
+            setWeather("gilerton", report.Gilmerton);
+            setWeather("leith", report.Leith);
+
+        }
+    }
+    xmlHttp.open("GET", "/plugins/Weather/getReport", true);
+    xmlHttp.send(null);
+
+</script>
+
+<div id="gilerton">
+    <span>Gilermton</span>
+    <span id="wind"></span>
+    <span id="temp"></span>
+    <img id="weather" />
+</div>
+
+<div id="leith">
+    <span>Leith</span>
+    <span id="wind"></span>
+    <span id="temp"></span>
+    <img id="weather" />
+</div>

@@ -20,6 +20,8 @@ public:
     
     std::string Version(){return m_version;}
 
+    std::string MetOfficeAPIKey(){return "8d8b3c4b-ec6c-4ace-b18c-7a602a04c5e2";}
+
 private:
     Config();
     bool Initialise(std::string);
@@ -32,6 +34,7 @@ private:
     std::string m_dbUser;
     std::string m_dbPassword;
     std::string m_version;
+    std::string m_metoffice_API_key;
 
     bool m_live;
 

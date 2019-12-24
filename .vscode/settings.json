@@ -57,6 +57,15 @@
         "strstream": "cpp",
         "string_view": "cpp",
         "optional": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "unordered_set": "cpp",
+        "cfenv": "cpp",
+        "valarray": "cpp",
+        "iterator": "cpp",
+        "map": "cpp",
+        "memory_resource": "cpp",
+        "random": "cpp",
+        "set": "cpp",
+        "string": "cpp"
     }
 }
