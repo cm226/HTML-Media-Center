@@ -129,8 +129,8 @@ void LightingController::bedroomMotion(){
         tm local_tm = *localtime(&tt);
 
         if( !m_sleeping.Get() && 
-                (local_tm.tm_hour < 21 ||
-                 local_tm.tm_hour > 07
+                (local_tm.tm_hour < 21 &&
+                 local_tm.tm_hour > 7
                 )
             {
             auto turn_off_time = std::chrono::system_clock::now() + 
