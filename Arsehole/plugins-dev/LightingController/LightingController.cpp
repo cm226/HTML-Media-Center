@@ -132,6 +132,7 @@ void LightingController::bedroomMotion(){
                 (local_tm.tm_hour < 21 &&
                  local_tm.tm_hour > 7
                 )
+        )
             {
             auto turn_off_time = std::chrono::system_clock::now() + 
                 std::chrono::minutes(5);
