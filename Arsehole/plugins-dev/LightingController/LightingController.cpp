@@ -132,20 +132,23 @@ void LightingController::bedroomMotion(){
             auto turn_off_time = std::chrono::system_clock::now() + 
                 std::chrono::minutes(5);
 
-            if(m_turn_off_light_task->IsElapsed()){
-                m_turn_off_light_task.reset();
+            if( m_turn_off_light_task != nullptr && 
+                m_turn_off_light_task->ChangeTime(turn_off_time)){
+                return;
             }
 
-            if(m_turn_off_light_task == nullptr){
-                m_turn_off_light_task = std::make_shared<CallbackTask>(
-                    [&](){
-                        turnOffLight("bedroom");
-                    },
-                    turn_off_time
-                );
-            } else {
-                m_turn_off_light_task->ChangeTime(turn_off_time);
-            }
+            m_turn_off_light_task.reset();
+
+            m_turn_off_light_task = std::make_shared<CallbackTask>(
+                [&]() {
+                    turnOffLight("bedroom");
+                },
+                turn_off_time
+            );
+
+            coreMod->getScheduler()->ScheduleTask(m_turn_off_light_task);
+
+
         }
     } else {
         ErrorLogger::logInfo("motion detected but sun is up");
@@ -237,6 +240,14 @@ bool LightingController::parseNodeOutput(
         }
         rapidjson::Value& light1 = d["light1"];
         rapidjson::Value& light2 = d["light2"];
+
+        if(light1.HasMember("error") || light2.HasMember("error")){
+            ErrorLogger::logError("Failed to set light state, got error : "
+                 + std::string(light1["error"].GetString())
+                 + std::string(light2["error"].GetString()));
+            return false;
+            
+        }
 
         m_last_light_state.Set(light1["state"].GetBool() || light2["state"].GetBool());
 
