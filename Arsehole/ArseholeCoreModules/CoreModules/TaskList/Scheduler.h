@@ -23,6 +23,11 @@ class ScheduledTask {
              return  m_tp < other.m_tp;
         }
 
+        bool operator> (const ScheduledTask& other
+        ){
+             return  m_tp > other.m_tp;
+        }
+
         bool ChangeTime(std::chrono::time_point<std::chrono::system_clock> new_tp){
             std::lock_guard<std::mutex> guard(m_tp_mutex);
 
@@ -96,7 +101,21 @@ private:
 
 private:
 
-    std::priority_queue<std::shared_ptr<ScheduledTask>> m_next_tasks;
+    typedef std::shared_ptr<ScheduledTask> task_item_t;
+
+    std::function<bool (const task_item_t&, 
+                   const task_item_t&)> compare_f = 
+                   [](
+                   const task_item_t& item1, 
+                   const task_item_t& item2){
+                       return *item1 > *item2;
+                   };
+
+    std::priority_queue<
+        task_item_t, 
+        std::vector<task_item_t>, 
+        decltype(compare_f)
+    > m_next_tasks;
     bool m_process_tasks;
 
     // shutdown 

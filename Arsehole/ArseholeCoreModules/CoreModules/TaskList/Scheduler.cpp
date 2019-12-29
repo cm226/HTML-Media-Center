@@ -3,7 +3,8 @@
 
 
 Scheduler::Scheduler() : 
-m_shuting_down(false) {
+m_shuting_down(false),
+m_next_tasks(compare_f) {
 
     m_process_tasks = false;
 }
