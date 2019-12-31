@@ -64,16 +64,43 @@ void Weather::getWeatherReport(
     rapidjson::Document d;
     d.Parse(weather.c_str());
 
-    // is it past 8AM? if so then show tomorows forcast
+    // work out the time we want a forcast for
     std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
     time_t tt = std::chrono::system_clock::to_time_t(now);
     tm local_tm = *localtime(&tt);
 
-    if(local_tm.tm_hour > 8){
-        
+    if(local_tm.tm_hour > 8) {
+            now = now + std::chrono::days(1);
+            tt = std::chrono::system_clock::to_time_t(now);
+            local_tm = *localtime(&tt);
     }
+
+    // now set the target hour as 8AM. 
+    local_tm.tm_hour = 8;
+
+    time_t taregt_tt = std::mktime(&local_tm);
+    std::chrono::system_clock::from_time_t(taregt_tt);
+
     
     for(auto& day : d["SiteRep"]["DV"]["Location"]["Period"]) {
+        
+        struct tm tm;
+        strptime(time_details, "%Y-%m:%dZ", &tm);
+        time_t t = mktime(&tm); 
+        tm record_time = *localtime(&t);
+
+        int tommorows_day
+        // is it past 8AM? if so then show the forcast for tomorow
+        if(local_tm.tm_hour > 8) {
+            
+            auto tommorow = std::chrono::system_clock::time_point from_time_t(record_time) + 
+                std::chrono::days(1);
+
+            
+        }
+
+
+        
         for(auto& rep : day["Rep"][0]) {
 
             int min_past_midnight = std::stoi (rep["$"].GetString());
