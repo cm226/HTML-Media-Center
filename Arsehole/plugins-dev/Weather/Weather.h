@@ -3,6 +3,8 @@
 #include "../../Arsehole/Framework/Plugin/IPluginDLLFactory.h"
 #include "../../Arsehole/Framework/Plugin/Plugin.h"
 
+#include "rapidjson/document.h"
+
 class Weather 
     : 
         public Plugin {
@@ -16,9 +18,23 @@ public:
 
 private:
 
+	void populateReportFromRep(
+		const rapidjson::Value& day, 
+		const rapidjson::Value& rep,
+		std::string& report_json
+	);
+
+	void getReportForTime(
+    	const std::string location_id,
+    	std::string& report_json,
+    	std::chrono::time_point<std::chrono::system_clock> when,
+		rapidjson::Document& d
+	);
+
 	void getWeatherReport(
 		const std::string location_id,
-		std::string& report_json
+		std::string& report_json_morning,
+		std::string& report_json_evening
 	);
 
 };

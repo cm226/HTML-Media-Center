@@ -1,10 +1,57 @@
 
+<style>
+
+.location { 
+    grid-area: location;
+    font-size : 24px;
+    text-align: center;
+}
+.gridItem { 
+    font-size : 12px;
+}
+
+.temp1 { 
+    grid-area: temp1;
+}
+
+.temp2 { 
+    grid-area: temp2;
+}
+.wind1 { 
+    grid-area: wind1;
+}
+.wind2 { 
+    grid-area: wind2;
+}
+
+.gridItem > span {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.time1 { grid-area: time1; }
+.time2 { grid-area : time2; }
+
+.weather-report {
+  display: grid;
+  grid-template-areas:
+    'location location'
+    'time1 time2'
+    'temp1 temp2'
+    'wind1 wind2';
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+</style>
+
 <script>
 
-    function setWeather(location, data) {
-        $("#"+location+" #wind").text(data.Wind_speed);
-        $("#"+location+" #temp").text(data.Feels_like);
-        $("#"+location+" #weather").attr("src", data.Weather_type);
+    function setWeather(location, time, data) {
+        $("#"+location+" #wind" + time).text(data.Wind_speed);
+        $("#"+location+" #temp" + time).text(data.Feels_like);
+        $("#"+location+" #weather" + time).attr("src", data.Weather_type);
+        $("#"+location+" #time" + time).text(data.tr_start+":00");
     }
 
     var xmlHttp = new XMLHttpRequest();
@@ -13,8 +60,10 @@
             
             var report = JSON.parse(xmlHttp.responseText);
 
-            setWeather("gilerton", report.Gilmerton);
-            setWeather("leith", report.Leith);
+            setWeather("Gilmerton", 1, report.Gilmerton_morning);
+            setWeather("Gilmerton", 2, report.Gilmerton_evening);
+            setWeather("leith", 1, report.Leith_morning);
+            setWeather("leith", 2, report.Leith_evening);
 
         }
     }
@@ -23,16 +72,34 @@
 
 </script>
 
-<div id="gilerton">
-    <span>Gilermton</span>
-    <span id="wind"></span>
-    <span id="temp"></span>
+<div class="weather-report" id="Gilmerton">
+    <div class="location">Gilmerton</div>
+
+    <div class="temp1 gridItem">Temp : <span id="temp1"></span>&#8451</div>
+    <div class="temp2 gridItem">Temp : <span id="temp2"></span>&#8451</div>
+
+    <div class="wind1 gridItem">Wind speed : <span id="wind1"></span> mph</div>
+    <div class="wind2 gridItem">Wind speed : <span id="wind2"></span> mph</div>
+
+    <div class="time1 gridItem"> <span id="time1"></span></div>
+    <div class="time2 gridItem"> <span id="time2"></span></div>
+    
     <img id="weather" />
+
 </div>
 
-<div id="leith">
-    <span>Leith</span>
-    <span id="wind"></span>
-    <span id="temp"></span>
+<div class="weather-report" id="leith">
+    <div class="location">Leith</div>
+    
+    <div class="temp1 gridItem">Temp : <span id="temp1"></span>&#8451</div>
+    <div class="temp2 gridItem">Temp : <span id="temp2"></span>&#8451</div>
+
+    <div class="wind1 gridItem">Wind speed : <span id="wind1"></span> mph</div>
+    <div class="wind2 gridItem">Wind speed : <span id="wind2"></span> mph</div>
+
+    <div class="time1 gridItem"> <span id="time1"></span></div>
+    <div class="time2 gridItem"> <span id="time2"></span></div>
+
     <img id="weather" />
+
 </div>
