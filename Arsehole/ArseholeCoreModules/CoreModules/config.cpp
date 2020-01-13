@@ -39,6 +39,8 @@ bool Config::Initialise(std::string configLocation){
         m_dbUser = pt.get<std::string>("database.DatabaseUser");
         m_dbPassword = pt.get<std::string>("database.DatabasePassword");
 
+        m_metoffice_API_key = pt.get<std::string>("weather.metOfficeKey");
+
     } catch(std::exception& e){
         ErrorLogger::logError(std::string("Failed to read config file :") 
         + e.what());

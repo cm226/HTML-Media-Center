@@ -1,0 +1,167 @@
+
+<style>
+
+.location { 
+    grid-area: location;
+    font-size : 24px;
+    text-align: center;
+}
+.gridItem { 
+    font-size : 12px;
+}
+
+.temp1 { 
+    grid-area: temp1;
+}
+
+.temp2 { 
+    grid-area: temp2;
+}
+.wind1 { 
+    grid-area: wind1;
+}
+.wind2 { 
+    grid-area: wind2;
+}
+
+.gridItem > span {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.warning {
+    color: red;
+}
+
+.time1 { grid-area: time1; }
+.time2 { grid-area : time2; }
+
+.weather-report {
+  display: grid;
+  grid-template-areas:
+    'location location'
+    'time1 time2'
+    'temp1 temp2'
+    'wind1 wind2'
+    'weather1 weather2';
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+</style>
+
+<script>
+
+    function weatherIntToString(type){
+        
+        var type_lookup = [
+            'Clear night',
+            'Sunny day',
+            'Partly cloudy (night)',
+            'Partly cloudy (day)',
+            'Not used',
+            'Mist',
+            'Fog',
+            'Cloudy',
+            'Overcast',
+            'Light rain shower (night)',
+            'Light rain shower (day)',
+            'Drizzle',
+            'Light rain',
+            'Heavy rain shower (night)',
+            'Heavy rain shower (day)',
+            'Heavy rain',
+            'Sleet shower (night)',
+            'Sleet shower (day)',
+            'Sleet',
+            'Hail shower (night)',
+            'Hail shower (day)',
+            'Hail',
+            'Light snow shower (night)',
+            'Light snow shower (day)',
+            'Light snow',
+            'Heavy snow shower (night)',
+            'Heavy snow shower (day)',
+            'Heavy snow',
+            'Thunder shower (night)',
+            'Thunder shower (day)',
+            'Thunder'
+       ];
+
+       return type_lookup[parseInt(type)];
+    }
+
+    function setWeather(location, time, data) {
+        $("#"+location+" #wind" + time).text(data.Wind_speed + "/" + data.Gust_speed);
+        $("#"+location+" #temp" + time).text(data.Feels_like);
+        $("#"+location+" #time" + time).text(data.tr_start+":00");
+
+        let weather_type_str = weatherIntToString(data.Weather_type);
+        $("#"+location+" #weather" + time).text(weather_type_str);
+
+        var wind_threshold = 20;
+        if(parseInt(data.Wind_speed) > wind_threshold ||
+           parseInt(data.Gust_speed) > wind_threshold) {
+            $("#"+location+" #wind" + time).addClass("warning");
+        }
+
+        if(weather_type_str.includes("rain") ||
+            weather_type_str.includes("snow") ||
+            weather_type_str.includes("Hail") ||
+            weather_type_str.includes("Sleet") ){
+                $("#"+location+" #weather" + time).addClass("warning");
+        }
+    }
+
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            
+            var report = JSON.parse(xmlHttp.responseText);
+
+            setWeather("Gilmerton", 1, report.Gilmerton_morning);
+            setWeather("Gilmerton", 2, report.Gilmerton_evening);
+            setWeather("leith", 1, report.Leith_morning);
+            setWeather("leith", 2, report.Leith_evening);
+
+        }
+    }
+    xmlHttp.open("GET", "/plugins/Weather/getReport", true);
+    xmlHttp.send(null);
+
+</script>
+
+<div class="weather-report" id="Gilmerton">
+    <div class="location">Gilmerton</div>
+
+    <div class="temp1 gridItem">Temp : <span id="temp1"></span>&#8451</div>
+    <div class="temp2 gridItem">Temp : <span id="temp2"></span>&#8451</div>
+
+    <div class="wind1 gridItem">Wind/Gust speed : <span id="wind1"></span> mph</div>
+    <div class="wind2 gridItem">Wind/Gust speed : <span id="wind2"></span> mph</div>
+
+    <div class="time1 gridItem"> <span id="time1"></span></div>
+    <div class="time2 gridItem"> <span id="time2"></span></div>
+    
+    <div class="weather1 gridItem">weather : <span id="weather1"></span></div>
+    <div class="weather2 gridItem">weather : <span id="weather2"></span></div>
+
+</div>
+
+<div class="weather-report" id="leith">
+    <div class="location">Leith</div>
+    
+    <div class="temp1 gridItem">Temp : <span id="temp1"></span>&#8451</div>
+    <div class="temp2 gridItem">Temp : <span id="temp2"></span>&#8451</div>
+
+    <div class="wind1 gridItem">Wind/Gust speed : <span id="wind1"></span> mph</div>
+    <div class="wind2 gridItem">Wind/Gust speed : <span id="wind2"></span> mph</div>
+
+    <div class="time1 gridItem"> <span id="time1"></span></div>
+    <div class="time2 gridItem"> <span id="time2"></span></div>
+
+    <div class="weather1 gridItem">weather : <span id="weather1"></span></div>
+    <div class="weather2 gridItem">weather : <span id="weather2"></span></div>
+
+
+</div>
