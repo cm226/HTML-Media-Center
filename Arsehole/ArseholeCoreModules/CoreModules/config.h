@@ -20,7 +20,7 @@ public:
     
     std::string Version(){return m_version;}
 
-    std::string MetOfficeAPIKey(){return "8d8b3c4b-ec6c-4ace-b18c-7a602a04c5e2";}
+    std::string MetOfficeAPIKey(){return m_metoffice_API_key;}
 
 private:
     Config();

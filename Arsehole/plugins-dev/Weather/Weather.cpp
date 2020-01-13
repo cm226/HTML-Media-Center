@@ -57,6 +57,7 @@ void Weather::populateReportFromRep(
 ) {
 
     auto wind_speed = rep["S"].GetString();
+    auto gust_speed = rep["G"].GetString();
     auto feels_like_temp = rep["F"].GetString();
     auto weather_type = rep["W"].GetString();
     auto report_time_str = rep["$"].GetString();
@@ -69,6 +70,9 @@ void Weather::populateReportFromRep(
     rapidjson::Value ws;
     ws.SetString(rapidjson::StringRef(wind_speed));
 
+    rapidjson::Value gs;
+    gs.SetString(rapidjson::StringRef(gust_speed));
+
     rapidjson::Value fl_tmp;
     fl_tmp.SetString(rapidjson::StringRef(feels_like_temp));
 
@@ -76,6 +80,7 @@ void Weather::populateReportFromRep(
     wt.SetString(rapidjson::StringRef(weather_type));
 
     report.AddMember("Wind_speed", ws, report.GetAllocator());
+    report.AddMember("Gust_speed", gs, report.GetAllocator());
     report.AddMember("Feels_like", fl_tmp, report.GetAllocator());
     report.AddMember("Weather_type", wt, report.GetAllocator());
     report.AddMember("tr_start", report_time/60, report.GetAllocator());
