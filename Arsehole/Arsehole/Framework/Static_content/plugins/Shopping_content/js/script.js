@@ -18,6 +18,16 @@ navigator.serviceWorker.ready.then(function(swRegistration) {
 var _server_state;
 var _extraIngreds = [];
 
+function onClearAll(){
+    
+    _server_state = {};
+    _extraIngreds = [];
+        
+    SendStateToServer();
+    SendExtrasToServer();
+    displaySelected();
+}
+
 function selectMeal(mealName){
     _server_state[mealName].selected = "1";
     $.each(_server_state[mealName].ingreds, (index, ingred)=>{

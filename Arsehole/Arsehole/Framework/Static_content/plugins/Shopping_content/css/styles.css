@@ -147,3 +147,10 @@ button::after { display:none;}
 #openAll{
 	grid-column-start: 2;
 }
+
+#clearAllBtn{
+	width: auto;
+    background: #ff6060;
+    text-shadow: none;
+    border: 1px solid red;
+}
