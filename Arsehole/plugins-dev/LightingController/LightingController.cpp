@@ -164,7 +164,8 @@ void LightingController::bedroomMotion(){
 }
 
 bool LightingController::trySetLightState(
-    bool state
+    bool state,
+    int brightness
 ){
     std::lock_guard<std::mutex> guard(m_node_mutex);
 
@@ -176,6 +177,7 @@ bool LightingController::trySetLightState(
     } else {
         cmd += "off)";
     }
+    cmd += " brightness " + std::to_string(brightness);
 
     std::string output = this->coreMod->getTaskList()->RunSystemCommand(
         cmd,
@@ -195,17 +197,28 @@ bool LightingController::trySetLightState(
 void LightingController::turnOnLight(
     std::string name
 ){  
+
+    std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
+
     if(std::chrono::duration_cast<std::chrono::hours>(
-        std::chrono::system_clock::now() - m_sleeping_at) > std::chrono::hours(12)) {
+        now - m_sleeping_at) > std::chrono::hours(12)) {
             m_sleeping.Set(false);
             ErrorLogger::logInfo("Sleeping Unset");
+    }
+
+    // dim the brightness if its after 9
+    int brightness = 255;
+    time_t tt = std::chrono::system_clock::to_time_t(now);
+    tm local_tm = *localtime(&tt);
+    if(local_tm.tm_hour > 21 || local_tm.tm_hour < 7) {
+        brightness = 50;
     }
     
     if (!m_sleeping.Get()) { 
 
         int num_retrys = 3;
         for(int i = 0; i < num_retrys; ++i){
-            if(trySetLightState(true)){
+            if(trySetLightState(true, brightness)){
                 return;
             }
         }
