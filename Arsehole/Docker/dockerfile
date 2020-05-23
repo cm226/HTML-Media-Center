@@ -17,6 +17,8 @@ RUN apt install -y --fix-missing \
     git-core \
     libcurl4-openssl-dev
 
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
      && apt-get -y install nodejs
 

@@ -31,7 +31,8 @@ class LightingController : public Plugin {
         );
 
         bool trySetLightState(
-            bool state
+            bool state,
+            int brightness = 255
         );
 
         void setupSchedule();

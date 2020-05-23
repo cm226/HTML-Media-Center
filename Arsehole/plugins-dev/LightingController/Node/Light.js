@@ -27,16 +27,20 @@ class Light {
 
         this.device.on('data', data => {
 
-            if(data.dps['1'] != this.targetState){
+            console.log(data);
+            if(data.dps['1'] != this.targetState.state ||
+            data.dps['3'] != this.targetState.brightness){
               this.device.set({
-                  dps : 1,
-                  set: this.targetState
-              });
+                  multiple : true,
+                  data : {
+                  "1" : true,
+                  "3": this.targetState.brightness
+              }});
 
-            } else {
+             } else {
                 this.device.disconnect();
                 this.status.state = data.dps['1'];
-            }
+             }
         });
 
         

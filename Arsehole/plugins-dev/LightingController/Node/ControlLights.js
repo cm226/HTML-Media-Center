@@ -4,12 +4,28 @@ function parseArgs(){
   let args = process.argv.slice(2);
 
   let parsed = {};
-  switch (args[0]){
+  let arg_index = 0;
+  while (arg_index < args.length){
+    switch (args[arg_index]){
 
-    case 'state' : 
-      parsed.state = args[1] == 'on' ? true : false;
-    break;
+      case 'state' : 
+        parsed.state = args[arg_index+1] == 'on' ? true : false;
+        arg_index++;
+      break;
+      case 'brightness' :
+        parsed.brightness = parseInt(args[arg_index+1]);
+        
+        if(parsed.brightness === NaN ||
+          parsed.brightness < 0 ||
+          parsed.brightness > 255){
+            console.log("Failed to convert brighness to value, enter between 0 - 255");
+            process.exit(1);
+        } 
+        arg_index++; 
+      break;
+    }
   }
+  
 
   return parsed;
 
@@ -34,11 +50,11 @@ let light2 = new Light({
 });
 
 let light1Promice = new Promise((resolve, reject)=>{
-  light1.SendState(parsedArgs.state,resolve);
+  light1.SendState(parsedArgs,resolve);
 });
 
 let light2Promice = new Promise((resolve, reject)=>{
-  light2.SendState(parsedArgs.state,resolve);
+  light2.SendState(parsedArgs,resolve);
 });
 
 
