@@ -1,4 +1,4 @@
 
 cd ../Arsehole/Docker
 
-sudo docker run -p 8442:8442 -v ~/mdbdata/Arsehole:/var/lib/mysql media
+sudo docker run -p 8442:8442 -v ~/mdbdata/Arsehole:/var/lib/mysql -v /etc/localtime:/etc/localtime:ro media
