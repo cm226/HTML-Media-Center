@@ -10,7 +10,7 @@ function parseArgs(){
 
       case 'state' : 
         parsed.state = args[arg_index+1] == 'on' ? true : false;
-        arg_index++;
+        arg_index = arg_index+2;
       break;
       case 'brightness' :
         parsed.brightness = parseInt(args[arg_index+1]);
@@ -21,7 +21,11 @@ function parseArgs(){
             console.log("Failed to convert brighness to value, enter between 0 - 255");
             process.exit(1);
         } 
-        arg_index++; 
+        arg_index = arg_index+2;
+      break;
+      default :
+        console.log("unknown arg" + args[arg_index]);
+        process.exit(1);
       break;
     }
   }
@@ -33,9 +37,7 @@ function parseArgs(){
 
 const Light = require('./Light.js');
 
-
 const parsedArgs = parseArgs();
-
 
 let light1 = new Light({
   ip : '192.168.1.83',
