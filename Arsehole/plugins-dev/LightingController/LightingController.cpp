@@ -173,11 +173,11 @@ bool LightingController::trySetLightState(
 
     std::string cmd = "(cd "+m_lighting_dir+" && node ControlLights.js state ";
     if(state){
-        cmd += "on)";
+        cmd += "on";
     } else {
-        cmd += "off)";
+        cmd += "off";
     }
-    cmd += " brightness " + std::to_string(brightness);
+    cmd += " brightness " + std::to_string(brightness) + ")";
 
     std::string output = this->coreMod->getTaskList()->RunSystemCommand(
         cmd,
@@ -268,6 +268,11 @@ bool LightingController::parseNodeOutput(
                  + std::string(light2["error"].GetString()));
             return false;
             
+        }
+
+        if(!light1.HasMember("state") || !light2.HasMember("state")){
+            ErrorLogger::logError("node output didnt have state element" + output);
+            return false;
         }
 
         m_last_light_state.Set(light1["state"].GetBool() || light2["state"].GetBool());

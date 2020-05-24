@@ -32,7 +32,7 @@ class Light {
               this.device.set({
                   multiple : true,
                   data : {
-                  "1" : true,
+                  "1" : this.targetState.state,
                   "3": this.targetState.brightness
               }});
 
