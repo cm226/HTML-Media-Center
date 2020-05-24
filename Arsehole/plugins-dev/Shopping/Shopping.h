@@ -46,6 +46,11 @@ private:
 		bool allow_unset
 	);
 
+
+	void AddMeal(
+		std::shared_ptr<IHTTPUrlRouter::IConnection> connection
+	);
+
 };
 
 DLLHELL_API Plugin* makePlugin(CoreModules* framework)

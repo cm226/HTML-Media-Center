@@ -88,6 +88,14 @@ ShoppingPlugin::ShoppingPlugin(
             this->getExtras(connection);  
     });
 
+    router->MapURLRequest(
+        "/plugins/ShoppingList/AddMeal",
+        [&](
+            std::shared_ptr<IHTTPUrlRouter::IConnection> connection
+        ){
+            connection 
+    });
+
 
 }
 
@@ -377,6 +385,35 @@ std::string ShoppingPlugin::resultsToString(
     results_json<<"}";
 
     return results_json.str();
+
+}
+
+void ShoppingPlugin::AddMeal(
+    std::shared_ptr<IHTTPUrlRouter::IConnection> connection
+){
+    auto meal_data = connection->RequestBody();
+
+    // parse JSON with property tree
+    namespace pt = boost::property_tree;
+
+    // Create a root
+    pt::ptree root;
+
+    std::stringstream meal_data_json(meal_data);
+    // Load the json file in this ptree
+    pt::read_json(meal_data_json, root);
+
+    std::string meal_name = root.get<std::string>("ingred");
+
+    std::vector<std::string> aldi_ingreds = 
+        root.get<std::vector<std::string>>("aldi");
+    
+    std::vector<std::string> sains_ingreds = 
+        root.get<std::vector<std::string>>("sains");
+
+    
+
+
 
 }
 

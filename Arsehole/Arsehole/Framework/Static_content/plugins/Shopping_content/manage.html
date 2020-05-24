@@ -1,0 +1,88 @@
+<!doctype html>
+
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Manage List-Chan</title>
+	<meta name="description" content="Manage Shopping List">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1"/>
+ 
+	<link rel="stylesheet" href="css/jquery-ui.min.css">
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+<div class="form-group">
+    <input type="text" name="meal-name" id="meal_name" placeholder="name"/>
+</div>
+
+<h3>Aldi</h3>
+<ul id="aldi-ingred-list"></ul>
+
+<div class="form-group">
+    <input type="text" name="meal-name" id="aldi-ingred_name" placeholder="ingred"/>
+</div>
+
+
+<h3>Sainsbows</h3>
+<ul id="sains-ingred-list"></ul>
+
+<div class="form-group">
+    <input type="text" name="meal-name" id="sains-ingred_name" placeholder="ingred"/>
+</div>
+
+<button id="submit_bttn" onclick="submit()">Submit</button>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
+<script>
+
+    function submit(){
+        let name = $("#submit_bttn").val();
+        
+        let aldi_ingreds = [];
+        $("#aldi-ingred-list").children().each((i, li)=>{
+            aldi_ingreds.push(li.innerHTML);
+        });
+        
+        let sains_ingreds = [];
+        $("#sains-ingred-list").children().each((i, li)=>{
+            sains_ingreds.push(li.innerHTML);
+        });
+        
+        
+        $.post("/plugins/ShoppingList/AddMeal",
+        "{  \"name\" : \""+name+"\",\
+            \"aldi\" : " + JSON.stringify(aldi_ingreds) + ",\
+            \"sains\" : "+JSON.stringify(sains_ingreds)+ "\
+        }").done(
+        function(data){
+            if(data !== 0){
+                window.alert("that meal didnt add correctly.... cba imp reason");
+            }
+        });
+    
+    }
+
+    $("#aldi-ingred_name").keyup(function(event) {
+        if (event.keyCode === 13) {
+            $("#aldi-ingred-list").append("<li>"+$("#aldi-ingred_name").val() + "</li >");
+            $("#aldi-ingred_name").val("");
+        }
+    });
+
+    $("#sains-ingred_name").keyup(function(event) {
+        if (event.keyCode === 13) {
+            $("#sains-ingred-list").append("<li>"+$("#sains-ingred_name").val() + "</li >");
+            $("#sains-ingred_name").val("");
+        }
+    });
+
+</script>
+
+
+</body>

@@ -104,7 +104,7 @@ void HTTPServer::HandleRequest(
 
 
         connection->set_headers(headers);
-        connection->write("Sorry bro couldent find that resource ");
+        connection->write("Im very sorry my good Man/Lady/other but i could not find that thing");
     } else {
         
         std::string ext = requested_file_source.ext();
