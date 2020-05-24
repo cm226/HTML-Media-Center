@@ -27,7 +27,6 @@ class Light {
 
         this.device.on('data', data => {
 
-            console.log(data);
             if(data.dps['1'] != this.targetState.state ||
             data.dps['3'] != this.targetState.brightness){
               this.device.set({
