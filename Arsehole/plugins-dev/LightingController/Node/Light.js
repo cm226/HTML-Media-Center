@@ -38,7 +38,8 @@ class Light {
                       '3' : this.targetState.brightness
                    }}).then(()=>{this.device.disconnect();});
             } else {
-                this.device.set({dps : 1, set : false});
+                this.device.set({dps : 1, set : false})
+                    .then(()=>{this.device.disconnect();});
             }
             
 
