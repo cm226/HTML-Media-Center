@@ -36,10 +36,16 @@ class Light {
                     data: {
                       '1': this.targetState.state,
                       '3' : this.targetState.brightness
-                   }}).then(()=>{this.device.disconnect();});
+                   }}).then(()=>{
+                       this.status.state = this.targetState.state;
+                       this.device.disconnect();
+                    });
             } else {
                 this.device.set({dps : 1, set : false})
-                    .then(()=>{this.device.disconnect();});
+                    .then(()=>{
+                        this.status.state = this.targetState.state;
+                        this.device.disconnect();
+                    });
             }
             
 
