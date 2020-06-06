@@ -42,7 +42,7 @@
 <script>
 
     function submit(){
-        let name = $("#submit_bttn").val();
+        let name = $("#meal_name").val();
         
         let aldi_ingreds = [];
         $("#aldi-ingred-list").children().each((i, li)=>{
@@ -61,7 +61,7 @@
             \"sains\" : "+JSON.stringify(sains_ingreds)+ "\
         }").done(
         function(data){
-            if(data !== 0){
+            if(data.Trim() !== "OK"){
                 window.alert("that meal didnt add correctly.... cba imp reason");
             }
         });

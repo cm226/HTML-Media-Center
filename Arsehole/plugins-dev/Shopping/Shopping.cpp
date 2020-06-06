@@ -93,7 +93,7 @@ ShoppingPlugin::ShoppingPlugin(
         [&](
             std::shared_ptr<IHTTPUrlRouter::IConnection> connection
         ){
-            connection 
+            AddMeal(connection);
     });
 
 
@@ -403,18 +403,76 @@ void ShoppingPlugin::AddMeal(
     // Load the json file in this ptree
     pt::read_json(meal_data_json, root);
 
-    std::string meal_name = root.get<std::string>("ingred");
+    std::string meal_name = root.get<std::string>("name");
 
-    std::vector<std::string> aldi_ingreds = 
-        root.get<std::vector<std::string>>("aldi");
+    auto aldi = root.get_child("aldi");
+    std::vector<std::string> aldi_ingreds;
+    for(auto iter = aldi.begin(); iter != aldi.end(); iter++) {
+        aldi_ingreds.push_back(iter->second.get_value<std::string>());
+    }
+
+    auto sains = root.get_child("sains");
+    std::vector<std::string> sains_ingreds;
+    for(auto iter = sains.begin(); iter != sains.end(); iter++) {
+        sains_ingreds.push_back(iter->second.get_value<std::string>());
+    }
+
+    ResultWrapper result_wrapper;
+    auto abort_if_Failed = [&](bool val){
+        if(!val){
+            DatabaseTables::NoBullshitQuery rollback_query("ROLLBACK");
+            this->coreMod->getDatabaseConnection()->runQuery(
+                &rollback_query, 
+                result_wrapper);
+
+            connection->Write("Query Failure");
+        }
+        return val;
+    };
+
+    DatabaseTables::NoBullshitQuery start_transaction_query("START TRANSACTION");
+    DatabaseTables::NoBullshitQuery insert_meal_query("INSERT INTO Meals VALUES(null, \""+meal_name+"\",0)");
+    this->coreMod->getDatabaseConnection()->runQuery(
+        &start_transaction_query, 
+        result_wrapper);
+
+    bool suceeded = abort_if_Failed(this->coreMod->getDatabaseConnection()->runQuery(
+        &insert_meal_query, 
+        result_wrapper));
+    if(!suceeded) return;
+
+    for(auto ingred : aldi_ingreds){
+        DatabaseTables::NoBullshitQuery insert_ingred_querys(
+            "INSERT INTO Ingredients VALUES(null, \""+ingred+"\", \"Aldi\", \
+            (SELECT id FROM Meals WHERE meal_name = '"+meal_name+"') ,0);"
+        );
+        suceeded = abort_if_Failed(this->coreMod->getDatabaseConnection()->runQuery(
+            &insert_ingred_querys, 
+            result_wrapper));
+        if(!suceeded) return;
+
+    }
+
+    for(auto ingred : sains_ingreds){
+        DatabaseTables::NoBullshitQuery insert_ingred_querys(
+            "INSERT INTO Ingredients VALUES(null, \""+ingred+"\", \"Sainsbury\", \
+            (SELECT id FROM Meals WHERE meal_name = '"+meal_name+"') ,0);"
+        );
+        suceeded = abort_if_Failed(this->coreMod->getDatabaseConnection()->runQuery(
+            &insert_ingred_querys, 
+            result_wrapper));
+        if(!suceeded) return;
+
+    }
     
-    std::vector<std::string> sains_ingreds = 
-        root.get<std::vector<std::string>>("sains");
-
+    // we got this far so commit the transaction
+    DatabaseTables::NoBullshitQuery commit_query("COMMIT");
+    this->coreMod->getDatabaseConnection()->runQuery(
+        &commit_query, 
+        result_wrapper);
     
-
-
-
+    
+    connection->Write("OK");
 }
 
 void ShoppingPlugin::handleRequest(
