@@ -5,6 +5,8 @@
 
 #include "../../ArseholeCoreModules/CoreModules/Comms/HTTPServer/IHTTPUrlRouter.h"
 
+#include <boost/property_tree/ptree.hpp>
+
 
 class ShoppingPlugin 
     : 
@@ -49,6 +51,22 @@ private:
 
 	void AddMeal(
 		std::shared_ptr<IHTTPUrlRouter::IConnection> connection
+	);
+
+	void GetIngredsFromJSON(
+    	std::shared_ptr<std::vector<std::string>> sains_ingreds,
+    	std::shared_ptr<std::vector<std::string>> aldi_ingreds,
+    	boost::property_tree::ptree root
+	);
+
+	bool InsertAllIngredsFromJson(
+    	std::shared_ptr<std::vector<std::string>> sains_ingreds,
+    	std::shared_ptr<std::vector<std::string>> aldi_ingreds,
+    std::string meal_name
+	);
+
+	void EditMeal(
+    	std::shared_ptr<IHTTPUrlRouter::IConnection> connection
 	);
 
 };
