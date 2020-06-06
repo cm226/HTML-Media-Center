@@ -120,13 +120,13 @@ LightingController::LightingController(CoreModules* cm):
 
 void LightingController::bedroomMotion(){
     SunsetTimes s;
-    if(s.IsSunDown()){
+    std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
+    time_t tt = std::chrono::system_clock::to_time_t(now);
+    tm local_tm = *localtime(&tt);
+
+    if(s.IsSunDown() || local_tm.tm_hour >= 21){
         turnOnLight("bedroom");
         
-        std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
-        time_t tt = std::chrono::system_clock::to_time_t(now);
-        tm local_tm = *localtime(&tt);
-
         if( !m_sleeping.Get() && 
                 (local_tm.tm_hour < 21 &&
                  local_tm.tm_hour > 7
@@ -169,6 +169,13 @@ bool LightingController::trySetLightState(
 ){
     std::lock_guard<std::mutex> guard(m_node_mutex);
 
+
+    if(m_last_light_state.Get() == state){
+        ErrorLogger::logError("Attempted to set light to: " + std::to_string(state) + 
+        " but was already in that state");
+        return true;
+    }
+
     bool exit_code = 0;
 
     std::string cmd = "(cd "+m_lighting_dir+" && node ControlLights.js state ";
@@ -210,7 +217,7 @@ void LightingController::turnOnLight(
     int brightness = 255;
     time_t tt = std::chrono::system_clock::to_time_t(now);
     tm local_tm = *localtime(&tt);
-    if(local_tm.tm_hour > 21 || local_tm.tm_hour < 7) {
+    if(local_tm.tm_hour >= 21 || local_tm.tm_hour <= 7) {
         brightness = 50;
     }
     
