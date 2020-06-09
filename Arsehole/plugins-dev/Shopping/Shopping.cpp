@@ -539,8 +539,6 @@ void ShoppingPlugin::AddMeal(
         return val;
     };
 
-
-
     DatabaseTables::NoBullshitQuery insert_meal_query("INSERT INTO Meals VALUES(null, \""+meal_name+"\",0)");
 
     bool suceeded = abort_if_Failed(this->coreMod->getDatabaseConnection()->runQuery(

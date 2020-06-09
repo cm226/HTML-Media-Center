@@ -1,6 +1,11 @@
 #include "HTTPUrlRouter.h"
 #include "../../config.h"
 
+#include <iostream>
+#include <iomanip>
+#include <ctime>
+#include <sstream>
+
 HTTPUrlRouter::Connection::Connection(
     std::string request_body,
     std::map<std::string, std::string> query_params
@@ -54,6 +59,20 @@ HTTPUrlRouter::HTTPUrlRouter(
 		std::shared_ptr<IHTTPUrlRouter::IConnection> connection 
     ){
         connection->Write(Config::GetInstance()->Version());
+    });
+
+    MapURLRequest("/serverTime",[&](
+		std::shared_ptr<IHTTPUrlRouter::IConnection> connection 
+    ){
+        auto t = std::time(nullptr);
+        auto tm = *std::localtime(&t);
+
+        std::ostringstream oss;
+
+        oss << std::put_time(&tm, "%Y-%m-%dT%H:%M:%SZ");
+
+        connection->Write(oss.str());
+
     });
 
     

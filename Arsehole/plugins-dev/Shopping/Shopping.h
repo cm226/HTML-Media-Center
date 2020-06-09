@@ -62,7 +62,7 @@ private:
 	bool InsertAllIngredsFromJson(
     	std::shared_ptr<std::vector<std::string>> sains_ingreds,
     	std::shared_ptr<std::vector<std::string>> aldi_ingreds,
-    std::string meal_name
+    	std::string meal_name
 	);
 
 	void EditMeal(
