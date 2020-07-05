@@ -47,17 +47,22 @@ public:
 		ResultWrapper& result_list
 	);
 	bool isConnected();
+	
+	void startMysqlServer();
+	void stopMysqlServer();
 
 private: 
 	bool ConnectInternal(
 		std::shared_ptr<MYSQL> mysql_con
 	);
 
-	void startMysqlServer();
+	bool IsSeriviceIsRunning();
+
 
 private:
 
 	std::shared_ptr<TaskList> m_task_list;
+	bool m_service_running;
 
 };
 
