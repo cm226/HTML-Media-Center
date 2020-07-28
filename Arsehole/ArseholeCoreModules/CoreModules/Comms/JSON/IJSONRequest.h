@@ -10,7 +10,7 @@ namespace CommsNS {
 		IJSONRequest() {};
 		virtual ~IJSONRequest() {};
 
-		virtual void requestURL(std::string& url) = 0;
+		virtual void requestURL(const std::string& url) = 0;
 		virtual bool makeRequest(std::string& reply) =0;
 
 	};

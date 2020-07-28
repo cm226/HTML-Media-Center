@@ -4,6 +4,7 @@
 #include "../../Arsehole/Framework/Plugin/Plugin.h"
 
 #include "../../ArseholeCoreModules/CoreModules/Comms/HTTPServer/IHTTPUrlRouter.h"
+#include "IngredPopulator.h"
 
 
 class ShoppingPlugin 
@@ -45,6 +46,9 @@ private:
   	  	const std::vector<std::string>& selected_meals,
 		bool allow_unset
 	);
+
+private:
+	IngredPopulator m_ingred_populator;
 
 };
 

@@ -296,8 +296,59 @@ $( document ).ready(function() {
 
     $.get("/plugins/ShoppingList",{},list_handler)
     .error(error_handler);
-
-    
-        
-
 });
+
+function RunMealSearch(){
+
+    let meal = $("#meal-name").val();        
+    $.ajax(
+        {
+            url: "/plugins/ShoppingList/SearchRecipies?m=${meal}",
+             success: function(json){
+
+                results = JSON.parse(json);
+
+                results.forEach(result=>{
+                    let container = document.createElement("div");
+                    let caption = document.createElement("p");
+                    let thumb = document.createElement("img");
+                    thumb.setAttribute("src", result.thumb_url);
+                    caption.innerHTML = result.title;
+
+                    container.setAttribute("onClick", `FetchIngredients('${result.url}')`);
+                    
+                    container.append(thumb);
+                    container.append(caption);
+
+                    $("#searchResults").append(container);
+                });
+                
+            }
+        }
+    );
+}
+
+function FetchIngredients(url){
+
+    let selected = this;
+    $.ajax(
+        {
+            url: `/plugins/ShoppingList/GetIngredients?m=${url}`,
+             success: function(json){
+
+                results = JSON.parse(json);
+
+                let list = document.createElement("ul");
+
+                results.ingredients.forEach(ingredient=>{
+                    let listel = document.createElement("li");
+                    listel.innerHTML = `${ingredient.name} - (${ingredient.measure}, ${ingredient.amount})`; 
+                    list.append(listel);
+
+                    selected.appendChild(list);
+                });
+                
+            }
+        }
+    );
+}

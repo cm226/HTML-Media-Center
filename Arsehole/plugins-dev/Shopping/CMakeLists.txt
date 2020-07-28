@@ -13,6 +13,7 @@ include_directories(${Boost_INCLUDE_DIR})
 
 set(SRCS 
 Shopping.cpp
+IngredPopulator.cpp
 )
 
 link_directories(../../bin)

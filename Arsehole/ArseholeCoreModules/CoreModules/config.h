@@ -21,6 +21,8 @@ public:
     std::string Version(){return m_version;}
 
     std::string MetOfficeAPIKey(){return m_metoffice_API_key;}
+    std::string GoogleSearchKey(){return m_google_search_key;}
+    std::string GoogleSearchEngine(){return m_google_search_engine;}
 
 private:
     Config();
@@ -35,6 +37,8 @@ private:
     std::string m_dbPassword;
     std::string m_version;
     std::string m_metoffice_API_key;
+    std::string m_google_search_key;
+    std::string m_google_search_engine;
 
     bool m_live;
 

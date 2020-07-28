@@ -22,7 +22,7 @@ public:
 	JSONCURLRequest(CurlManager& manager);
 	virtual ~JSONCURLRequest();
 
-	void requestURL(std::string& url);
+	void requestURL(const std::string& url);
 	bool makeRequest(std::string& reply);
 
 };

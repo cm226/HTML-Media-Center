@@ -1,0 +1,28 @@
+<!doctype html>
+
+<lable>meal name</lable><input type="text" id="meal-name"/>
+<button onclick="RunMealSearch()"></button>
+
+<div id="div1"></div>
+
+<script>
+
+    function RunMealSearch(){
+
+        let meal = $("#meal-name").val();        
+        $.ajax(
+            {
+                url: "/plugins/ShoppingList/SearchRecipies?m=${meal}",
+                 success: function(result){
+                    $("#div1").html(result);
+                }
+            }
+        );
+    
+    }
+
+</script>
+
+<script src="Shopping_content/js/jquery.min.js"></script>
+<script src="Shopping_content/js/jquery-ui.min.js"></script>
+<script src="Shopping_content/js/jquery.mobile-1.4.5.min.js"></script>

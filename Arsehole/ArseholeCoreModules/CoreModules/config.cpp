@@ -41,6 +41,9 @@ bool Config::Initialise(std::string configLocation){
 
         m_metoffice_API_key = pt.get<std::string>("weather.metOfficeKey");
 
+        m_google_search_key = pt.get<std::string>("google.key");
+        m_google_search_engine = pt.get<std::string>("google.searchEngine");
+
     } catch(std::exception& e){
         ErrorLogger::logError(std::string("Failed to read config file :") 
         + e.what());

@@ -21,7 +21,7 @@ JSONCURLRequest::~JSONCURLRequest()
 }
 
 
-void JSONCURLRequest::requestURL(std::string& url)
+void JSONCURLRequest::requestURL(const std::string& url)
 {
 	 this->url = url;
 }

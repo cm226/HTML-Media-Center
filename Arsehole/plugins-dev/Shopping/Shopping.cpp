@@ -88,6 +88,8 @@ ShoppingPlugin::ShoppingPlugin(
             this->getExtras(connection);  
     });
 
+    m_ingred_populator.Initialise(router, cm->getTaskList(), comms);
+
 
 }
 

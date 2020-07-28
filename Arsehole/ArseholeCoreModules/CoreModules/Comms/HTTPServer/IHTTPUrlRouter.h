@@ -6,6 +6,7 @@
 #include <string>
 #include <functional>
 #include <string>
+#include <map>
 
 class IHTTPUrlRouter
 {

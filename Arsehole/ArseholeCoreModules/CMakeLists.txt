@@ -53,6 +53,7 @@ CoreModules/Comms/Broadcaster.cpp
 CoreModules/Comms/IPGetter.cpp
 CoreModules/Comms/GetLanIPLinux.cpp
 CoreModules/Comms/CURL/CurlManager.cpp
+CoreModules/Comms/GoogleSearch/GoogleSearch.cpp
 CoreModules/Comms/Transever/ITranseverConnection.cpp
 CoreModules/Comms/Transever/ArseholeTranseverConnection.cpp
 CoreModules/Comms/Transever/ITranseverConnectionFactory.cpp
