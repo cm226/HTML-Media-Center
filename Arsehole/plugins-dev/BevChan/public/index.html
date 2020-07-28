@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Is ma beer ready?</title>
+        <script src="/moment/moment.js"></script>
+        <script src="/chart.js/dist/Chart.js"></script>
+        <script src="/js/ajax.js"></script>
+        <link rel="stylesheet" href="/css/stylesheet.css">
+    </head>
+    <body>
+        <div class="img">
+            <img src="/img/logo.png"/>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="myChart"></canvas>
+
+            <div class="extra">
+                <p>Alcohol percentage is: <span id="alcoholPercentage"></span></p>
+            </div>
+        </div>
+
+    </body>
+    <footer>
+        <script>
+            let dataPromise = gimmeData();
+            var ctx = document.getElementById('myChart');
+
+            dataPromise.then((readings) => {
+                readings = JSON.parse(readings);
+
+                document.getElementById('alcoholPercentage').innerHTML = readings.data.alcoholPercentage;
+                
+                var myLineChart = new Chart(ctx, {
+                    data: {
+                        datasets: [{
+                            borderColor: "#ff0000",
+                            data: readings.data.temperature,
+                            fill: false,
+                            label: "How hot am I?",
+                            yAxisID: "y-axis-temp",
+                        },
+                        {
+                            borderColor: "#000",
+                            data: readings.data.gravity,
+                            fill: false,
+                            label: "How drunk am I?",
+                            yAxisID: "y-axis-gravity",
+                        }],
+                    },
+                    options: {
+                        scales: {
+                            xAxes: [{
+                                display: true,
+                                gridLines: {
+                                    display: false,
+                                },
+                                time: {
+                                    displayFormats: {
+                                        hour: 'D/M hA'
+                                    },
+                                    unit: 'hour',
+                                    unitStepSize: 8,
+                                },
+                                type: 'time',
+                            }],
+                            yAxes: [{
+                                display: true,
+                                gridLines: {
+                                    display: false,
+                                },
+                                id: "y-axis-temp",
+                                position: "left",
+                                type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                            }, {
+                                display: true,
+                                id: "y-axis-gravity",
+                                position: "right",
+                                type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                            }],
+                        }
+                    },
+                    type: 'line'
+                });
+            })
+        </script>
+    </footer>
+</html>

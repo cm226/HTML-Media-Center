@@ -1,0 +1,15 @@
+body {
+    margin: 0 20%;
+    padding-bottom: 30px;
+}
+
+.img {
+    text-align: center;
+    padding-bottom: 2rem;
+}
+
+.chart-container{
+    position: relative;
+    height:20vh;
+    width:60vw;
+}
