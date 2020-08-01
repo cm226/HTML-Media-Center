@@ -102,3 +102,5 @@ Arsehole/SSL_certificate/server\.crt
 Arsehole/Docker/server\.pem
 
 Arsehole/Docker/server\.pem
+
+Arsehole/plugins-dev/BevChan/node_modules/
