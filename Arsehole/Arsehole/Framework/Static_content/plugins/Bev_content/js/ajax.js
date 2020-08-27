@@ -11,7 +11,7 @@ function gimmeData(){
             reject("No ajax");
         };
 
-        xhttp.open("GET", "/data", true);
+        xhttp.open("GET", "/plugins/Bev/Check", true);
         xhttp.send();
     })
 

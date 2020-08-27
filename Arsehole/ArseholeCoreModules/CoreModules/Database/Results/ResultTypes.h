@@ -34,6 +34,10 @@ public:
         return m_results.end();
     }
 
+    auto size(){
+        return m_results.size();
+    }
+
 
 private:
     std::vector<std::shared_ptr<T>> m_results;
