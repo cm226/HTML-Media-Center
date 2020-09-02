@@ -34,6 +34,7 @@ namespace CommsNS {
 	public:  //events
 
 		boost::signals2::signal<void ()> sig_shutdown;
+		boost::signals2::signal<void ()> sig_server_running;
 
 	};
 }

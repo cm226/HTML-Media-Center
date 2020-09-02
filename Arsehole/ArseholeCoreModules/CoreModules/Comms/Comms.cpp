@@ -76,6 +76,9 @@ void Comms::doHTTP()
                 std::make_shared<boost::network::utils::thread_pool>(2))
             .context(ctx));
 
+        // signal that the server is up now
+        sig_server_running();
+
         // this call blocks
         m_server->run();
 

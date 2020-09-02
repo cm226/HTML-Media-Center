@@ -7,16 +7,51 @@
         
         <link rel="stylesheet" href="plugins/Shopping_content/css/jquery-ui.min.css">
         <link rel="stylesheet" href="plugins/Shopping_content/css/jquery.mobile-1.4.5.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap" rel="stylesheet">
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1"/>
 
     </head>
 
+    <div id="time" class="center"></div>
     <div id="loadedPlugins" ></div>
     <div id="version"></div>
     
     
     <script>
+
+        let pageLoad = new Date();
+        let serverTime; // time we connected to the server
+
+        function startTime() {
+        
+            let delta = new Date() - pageLoad;
+            let newServerTime = new Date();
+            newServerTime.setTime(serverTime + delta);
+
+            var h = newServerTime.getHours();
+            var m = newServerTime.getMinutes();
+            var s = newServerTime.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('time').innerHTML =
+            h + ":" + m + ":" + s;
+            var t = setTimeout(startTime, 500);
+        }
+
+        function checkTime(i) {
+            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+            return i;
+        }
+
+        let updateTime = function(){
+            if (this.readyState == 4 && this.status == 200) {
+                let server_time_str = this.responseText;
+                serverTime = Date.parse(server_time_str.trim());
+                startTime();
+            }
+        }
+
     
         let displayPlugins = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -41,6 +76,12 @@
         version_xhttp.onreadystatechange = displayVersion;
         version_xhttp.open("GET", "getVersion", true);
         version_xhttp.send();
+
+        var version_xhttp = new XMLHttpRequest();
+        version_xhttp.onreadystatechange = updateTime;
+        version_xhttp.open("GET", "serverTime", true);
+        version_xhttp.send();
+
 
     
     

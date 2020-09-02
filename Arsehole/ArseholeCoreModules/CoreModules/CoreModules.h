@@ -34,6 +34,7 @@ public:
 	virtual ~CoreModules();
 
 	DatabaseTables::Database* getDatabaseConnection();
+	DatabaseTables::Database* getDatabaseWithoutConnect();
 	CommsNS::IComms* getComms();
 	MediaStreamer& getMediaStreamer();
 	std::shared_ptr<TaskList> getTaskList();

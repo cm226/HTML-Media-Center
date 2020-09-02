@@ -52,14 +52,25 @@ CoreModules::~CoreModules()
 
 }
 
-
-DatabaseTables::Database* CoreModules::getDatabaseConnection()
-{
+DatabaseTables::Database* CoreModules::getDatabaseWithoutConnect(){
+	
 	if(this->members->databasecon == NULL)
 	{
 		this->members->databasecon = new DatabaseTables::Database(
 			this->members->taskList
 		);
+	}
+
+	return this->members->databasecon;
+}
+
+
+DatabaseTables::Database* CoreModules::getDatabaseConnection()
+{
+	getDatabaseWithoutConnect();
+
+	if(!this->members->databasecon->isConnected()){
+		
 		auto config = Config::GetInstance();
 		this->members->databasecon->Connect(
 			config->DBUser(),
@@ -68,7 +79,7 @@ DatabaseTables::Database* CoreModules::getDatabaseConnection()
 			 "localhost"
 		);
 	}
-
+	
 	return this->members->databasecon;
 }
 

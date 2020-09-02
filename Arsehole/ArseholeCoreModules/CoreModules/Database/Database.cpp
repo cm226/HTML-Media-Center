@@ -16,7 +16,8 @@
 namespace DatabaseTables {
 
 Database::Database(std::shared_ptr<TaskList> tl)
-	: m_task_list(tl) {
+	: m_task_list(tl),
+	  m_service_running(false) {
 
 }
 
@@ -46,6 +47,13 @@ bool Database::ConnectInternal(
 	return true;
 
 
+}
+
+bool Database::IsSeriviceIsRunning(){
+
+	bool ret_code;
+	auto output = m_task_list->RunSystemCommand("service mysql status", ret_code);
+	return ret_code == 0;
 }
 
 bool Database::Connect(
@@ -176,13 +184,39 @@ bool Database::isConnected()
 
 void Database::startMysqlServer() {
 
+	if(IsSeriviceIsRunning()){
+		ErrorLogger::logInfo("MySql service already running");
+		return;
+	}
+
 	ErrorLogger::logInfo("Attempting to start my sql server");
 
 	bool ret_code;
 	auto output = m_task_list->RunSystemCommand("service mysql start ", ret_code);
 
+	m_service_running = true;
 	if(!ret_code){
 		ErrorLogger::logError("Failed to start the sql server" + output);
+		m_service_running = false;
+	}
+	
+	return;
+}
+
+void Database::stopMysqlServer() {
+
+	if(!IsSeriviceIsRunning()){
+		ErrorLogger::logInfo("MySql service was not running, will not stop");
+		return; 
+	}
+
+	ErrorLogger::logInfo("Attempting to stop my sql server");
+
+	bool ret_code;
+	auto output = m_task_list->RunSystemCommand("service mysql stop ", ret_code);
+
+	if(!ret_code){
+		ErrorLogger::logError("Failed to stop the sql server" + output);
 	}
 	
 	return;

@@ -30,6 +30,7 @@ CoreModules/Database/Querys/Descriptor/Descriptor.cpp
 CoreModules/Database/Querys/Descriptor/Limit.cpp
 CoreModules/Database/Querys/Query.cpp
 CoreModules/Database/Querys/NoBullshitQuery.cpp
+CoreModules/Database/Querys/ScopedTransaction.cpp
 CoreModules/Database/ResultWrapper.cpp
 CoreModules/Database/Database.cpp
 CoreModules/Database/Tables/DatabaseTable.cpp
