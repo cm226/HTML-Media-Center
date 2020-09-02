@@ -17,7 +17,8 @@ namespace DatabaseTables {
 
 Database::Database(std::shared_ptr<TaskList> tl)
 	: m_task_list(tl),
-	  m_service_running(false) {
+	  m_service_running(false),
+	  connected(false) {
 
 }
 
