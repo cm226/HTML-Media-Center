@@ -1,0 +1,56 @@
+html head+body .ui-btn.ui-btn-b {
+    background: #fff;
+    color: #000;
+    text-shadow: 0 0 0;
+    border: 0;
+
+}
+
+.logo{
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 30px;
+    display:block;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: block;
+    overflow: auto;
+}
+
+.add-ingredient {
+    margin-top: 20px;
+}
+
+input {
+    padding: 10px;
+}
+
+.container{
+    margin: 0 20%;
+    padding-bottom: 30px;
+}
+
+.li-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete-btn{
+    color: red;
+    cursor: pointer;
+}
+
+.submit-btn {
+    background: green;
+    border-radius: 5px;
+    border: 1px solid green;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: forestgreen;
+}

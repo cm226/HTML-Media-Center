@@ -52,8 +52,8 @@ bool Database::ConnectInternal(
 bool Database::IsSeriviceIsRunning(){
 
 	bool ret_code;
-	auto output = m_task_list->RunSystemCommand("systemctl is-active --quiet mysql", ret_code);
-	return ret_code;
+	auto output = m_task_list->RunSystemCommand("service mysql status", ret_code);
+	return ret_code == 0;
 }
 
 bool Database::Connect(
