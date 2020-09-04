@@ -62,19 +62,17 @@ void ArseholeFramework::process()
             this->cModules->getDatabaseConnection(),
             this->cModules->getComms()->Router().get()
         );
+
+        this->cModules->getTaskList()->StartTasks();
+        this->cModules->getScheduler()->Start();
+
+        this->pluginLoader = new Loader("/home/Arsehole");
+
+        ErrorLogger::logInfo("Loading Modules");
+        this->loadStartupPlugins();
+        ErrorLogger::logInfo("Modules Loaded");
     });
 
-    
-
-    this->pluginLoader = new Loader("/home/Arsehole");
-
-    ErrorLogger::logInfo("Loading Modules");
-    this->loadStartupPlugins();
-    ErrorLogger::logInfo("Modules Loaded");
-
-    this->cModules->getTaskList()->StartTasks();
-    this->cModules->getScheduler()->Start();
-    
     processCommandLoop();
 
     {
