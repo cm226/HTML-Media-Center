@@ -87,6 +87,11 @@ void HTTPServer::HandleRequest(
         destination = "index.html";
     }
 
+    // while switching to react this is temp
+    if(destination == "/app/build/Shopping.html"){
+        destination = "/app/build/index.html";
+    }
+
     std::string requested_resource = 
         m_static_content + destination;
 

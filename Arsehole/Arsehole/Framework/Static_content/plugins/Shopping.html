@@ -14,7 +14,7 @@
 </head>
 
 <body>
-	<div data-role="page" data-url="/plugins/Shopping" tabindex="0" class="ui-page ui-page-theme-a ui-page-active" style="">
+	<div data-role="page" data-url="/plugins/Shopping" tabindex="0" class="ui-page ui-page-theme-a ui-page-active" style=""> 
 		<div id="top-status" class="status">Working offline</div>
 		<img src="Shopping_content/logo.png" alt="Shopping List" class="logo" />	
 
@@ -38,22 +38,8 @@
 				</table>
 			</div>
 			<hr>
-			<h3>Aldi</h3>
-			<div class="form-group">
-				<input type="text" name="meal-list" id="aldi_extras" placeholder="extras"/>
-			</div>
-			<div class="aldi-ingredients"> 
-				<ul id="aldi_list">
-				</ul>
-			</div>
-			<hr>
-			<h3>Sainsbo</h3>
-			<div class="form-group">
-				<input type="text" name="meal-list" id="sainsbo_extras" placeholder="extras"/>
-			</div>
-			<div class="sainsbo-ingredients">
-					<ul id="sainsbury_list"></ul>
-			</div>
+			<editable-list id="aldi_list" listName="Aldi" placeholder="Extras"></editable-list>
+			<editable-list id="sains_list" listName="Sainsburys" placeholder="Extras"></editable-list>
 		</div>
 		<button id="clearAllBtn" onclick="onClearAll()">Clear All</button>
 		<button id="ManageBtn" onclick="window.location.href = 'Shopping_content\\manage.html'">Manage</button>
@@ -79,5 +65,6 @@
 	<script src="Shopping_content/js/jquery.mobile-1.4.5.min.js"></script>
 	<script src="Shopping_content/js/idb.js"></script>
 	<script src="Shopping_content/js/script.js"></script>
+	<script type="module" src="/dist/main.js"></script>
 </body>
 </html>
