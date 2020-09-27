@@ -9,7 +9,7 @@ function Time() {
   const store = React.useContext(homeContext)
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       store.serverTimeStore.UpdateServerTime()
     }, 1000);
   });

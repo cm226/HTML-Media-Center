@@ -12,8 +12,7 @@ class RootURLStore{
 
     @action setRootURL(url : string){
         
-        this.rootURL = 'https://localhost:8442/'
-        
+        this.rootURL = 'https://127.0.0.1:8442/'
     }
 
 }

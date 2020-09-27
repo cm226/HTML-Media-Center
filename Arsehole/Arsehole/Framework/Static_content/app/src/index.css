@@ -12,8 +12,13 @@ code {
     monospace;
 }
 
-#pluginContent button{
+button{
   width:100%;
   margin-top : 1em;
   font-size: 20px;
+  font-variant: all-small-caps;
+}
+
+html{
+  background-color: #f9f9f9;
 }

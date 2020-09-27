@@ -6,7 +6,6 @@ import RootURLStore from './stores/RootURLStore'
 import VersionStore from './stores/VersionStore'
 import {homeContext} from './contexts/homeContext'
 import './App.css';
-import { strict } from 'assert';
 import ServerTimeStore from './stores/serverTimeStore';
 import Version from './components/Version'
 import Shopping from './components/Shopping/Shopping'
@@ -14,8 +13,7 @@ import Shopping from './components/Shopping/Shopping'
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 const stores = {

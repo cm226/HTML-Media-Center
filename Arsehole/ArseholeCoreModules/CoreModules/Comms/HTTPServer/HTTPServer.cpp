@@ -105,7 +105,7 @@ void HTTPServer::HandleRequest(
     if(!requested_file_source.GetData(file_data)){
 
         connection->set_status(server::connection::not_found);
-        headers= { {"Content-Type", "text/html"}, };
+        headers= { {"Content-Type", "text/html"}, {"Access-Control-Allow-Headers", "*"}};
 
 
         connection->set_headers(headers);
