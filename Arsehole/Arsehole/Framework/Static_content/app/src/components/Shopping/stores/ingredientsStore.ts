@@ -4,12 +4,14 @@ import {Dispatcher} from '../../../Dispatcher'
 export interface IingredMeal{
     ingredID : number,
     ingred : string,
-    meal : string
+    meal : string,
+    checked : boolean
 };
 
 interface IlistViewType {
     key : number, 
-    value : string
+    value : string,
+    checked : boolean
 }
 
 
@@ -61,6 +63,15 @@ export class IngredientsStore{
         dis.addListener("UnSelectMeal", (meal : any)=>{
             this.deleteAllFromMeal(meal.v);
         });
+
+        dis.addListener("ClearAll", ()=>{
+            this.clearAll();
+        });
+
+        dis.addListener(storeName+"_CheckIngred", (ingred : {key : number, check : boolean})=>{
+            this.checkIngredient(ingred.key, ingred.check);
+        });
+        
     }
 
     findIngredFromID(ingredID : number, meal : string){
@@ -74,7 +85,11 @@ export class IngredientsStore{
         return undefined;
     }
 
-
+    @action checkIngredient(key : number, check : boolean){
+        
+        let ingred = this.ingredients.get(key);
+        if(ingred) ingred.checked = check;
+    }
 
     @action delete(key : number){
         this.ingredients.delete(key);
@@ -83,16 +98,22 @@ export class IngredientsStore{
     @action addExtra(extra : string, meal: string){
         
         this._nextKey += 1;
-        this.ingredients.set(this._nextKey, {ingred : extra, ingredID : 999, meal : meal});
+        this.ingredients.set(this._nextKey, {ingred : extra, ingredID : 999, meal : meal, checked : false});
     }
 
     @action addAll(ingreds : {name:string, id:number}[], meal: string){
         
         ingreds.forEach((ingred)=>{
             this._nextKey += 1;
-            this.ingredients.set(this._nextKey, {ingred : ingred.name, ingredID : ingred.id, meal : meal});
+            this.ingredients.set(this._nextKey, 
+                {ingred : ingred.name, ingredID : ingred.id, meal : meal, checked : false}
+            );
         });
         
+    }
+
+    @action clearAll(){
+        this.ingredients.clear();
     }
 
     @action deleteAllFromMeal(meal : string){
@@ -112,7 +133,12 @@ export class IngredientsStore{
     @computed get listView(){
         let view :IlistViewType[] = [];
         this.ingredients.forEach((v, k)=>{
-            view.push({key:k, value:`${v.ingred}, (${v.meal})`});
+            view.push(
+                {   
+                    key:k,
+                    value:`${v.ingred}, (${v.meal})`,
+                    checked : v.checked
+                });
         })
         return view;
     }

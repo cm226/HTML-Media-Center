@@ -8,8 +8,9 @@ function Version() {
         const store = React.useContext(homeContext)
 
         const style: CSS.Properties = {
-            position : 'absolute',
-            bottom : 0
+            position: "fixed",
+            bottom: 0,
+            width: "100%"
           }
 
         return (

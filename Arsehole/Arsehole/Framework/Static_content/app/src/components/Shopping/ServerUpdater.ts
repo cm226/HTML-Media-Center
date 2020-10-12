@@ -6,6 +6,14 @@ import RootURLStore from '../../stores/RootURLStore'
 
 import {observe} from 'mobx'
 
+interface IExtras {
+    extras:
+        {
+            store : string,
+            ingred: string
+        }[]
+};
+
 class ServerUpdater{
 
     private meal : SelectedMeal; 
@@ -22,6 +30,10 @@ class ServerUpdater{
         urlStore : RootURLStore
     ){
         this.urlStore = urlStore;
+        this.meal = meal ;
+        this.aldiIngrd = aldiIngrd;
+        this.sainsIngred = sainsIngred;
+
         fetch(urlStore.rootURL + 'plugins/ShoppingList').then((res)=>{
             res.json().then((json : object)=>{
 
@@ -71,14 +83,21 @@ class ServerUpdater{
             })
         });
 
-        this.meal = meal ;
-        this.aldiIngrd = aldiIngrd;
-        this.sainsIngred = sainsIngred;
-        
+        fetch(urlStore.rootURL + 'plugins/ShoppingList/GetExtras').then((res)=>{
+            res.json().then((json : IExtras)=>{
+                json.extras.forEach((val)=>{
+                    if(val.store==='Sainsbury'){
+                        this.sainsIngred.addExtra(val.ingred, 'extra');
+                    } else {
+                        this.aldiIngrd.addExtra(val.ingred, 'extra');
+                    }
+                });
+            });
+        });
 
     }
 
-    private updateServer(){
+    private updateSelected(){
         let state : any = {};
         this.meal.allMeals.forEach((meal)=>{
 
@@ -124,6 +143,40 @@ class ServerUpdater{
             },
             body: JSON.stringify(state) // body data type must match "Content-Type" header
           });
+    }
+
+    private updateExtras(){
+        let extras : IExtras = {
+            extras : []
+        };
+
+        this.aldiIngrd.ingredients.forEach((val)=>{
+            if(val.meal === 'extra'){
+                extras.extras.push({store : 'Aldi', ingred : val.ingred});
+            }
+        });
+
+        this.sainsIngred.ingredients.forEach((val)=>{
+            if(val.meal === 'extra'){
+                extras.extras.push({store : 'Sainsbury', ingred : val.ingred});
+            }
+        });
+
+        fetch('/plugins/ShoppingList/UpdateExtras', {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(extras) // body data type must match "Content-Type" header
+          });
+
+
+    }
+
+    private updateServer(){
+        this.updateSelected();
+        this.updateExtras();
     }
 
 }

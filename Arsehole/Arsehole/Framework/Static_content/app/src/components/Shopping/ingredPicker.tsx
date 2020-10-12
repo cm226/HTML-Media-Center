@@ -1,14 +1,20 @@
 import React from 'react';
 import {observer} from 'mobx-react'
 import { ShoppingContext } from './context'
-import {ListWithDelete, IListView} from './ListWithDelete'
+import {ListWithDelete, IListViewType} from './ListWithDelete'
 
 import * as CSS from 'csstype';
+import { Dispatcher } from '../../Dispatcher';
 
+interface IListView{
+    listView : IListViewType[]
+}
 
 interface IngredProps{
     store : IListView
     storeName : string
+    dispatcher : Dispatcher
+    filter? : boolean
 };
 
 function IngredPicker(props : IngredProps) {
@@ -21,13 +27,25 @@ function IngredPicker(props : IngredProps) {
             fontSize: "1em",
             paddingLeft:"1em"
           };
-          let context = React.useContext(ShoppingContext);
-        return (
-            <div>
-                <input style={inputStyle} onFocus={(e)=>{e.currentTarget.style.outline = "none";}} 
+          let context = React.useContext(ShoppingContext);  
+
+          let listView : IListViewType[] = [...props.store.listView];
+          if(props.filter){
+            listView  = [];
+            props.store.listView.forEach((el, i)=>{
+                if(!el.checked){
+                    listView.push(el);
+                }
+              })
+          }
+
+        function makeInput(){
+            if(props.filter)return;
+
+            return <input style={inputStyle} onFocus={(e)=>{e.currentTarget.style.outline = "none";}} 
                     onKeyDown={(e)=>{
                     if(e.keyCode === 13){
-                        context.dispacher.dispatch(props.storeName+"_addExtraIngred",{
+                        context.dispacher.dispatch(props.storeName+"_addingred",{
                             meal : 'extra',
                             ingred : e.currentTarget.value
                         } );
@@ -35,11 +53,18 @@ function IngredPicker(props : IngredProps) {
                     }
                 }}
                 placeholder="extra"></input>
-                <ListWithDelete store={props.store} onDel={
+        }
+
+        return (
+            <div>
+                {makeInput()}
+                <ListWithDelete listView={listView} onDel={
                     (k)=>{
                         context.dispacher.dispatch(props.storeName+"_delIngred", k)
-                    }
-                }/>
+                    }}
+                    onCheck={(k, checked)=>{
+                        context.dispacher.dispatch(props.storeName+"_CheckIngred", {key : k, check : checked});
+                    }}/>
             </div>
         );
     }   

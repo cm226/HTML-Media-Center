@@ -1,25 +1,22 @@
 #!/bin/bash
+#https://medium.com/@tbusser/creating-a-browser-trusted-self-signed-ssl-certificate-2709ce43fd15
 
-# create private key
-openssl genrsa -out server.pem 2048
+openssl genrsa -des3 -out rootCA.key 2048
+openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024  -out rootCA.pem
 
-#create signing request
-openssl req -new -key server.pem -out server.csr -config openssl.cnf
+openssl req -new -nodes -out server.csr -newkey rsa:2048 -keyout server.key
+openssl x509 -req -in server.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out server.crt -days 500 -sha256 -extfile v3.ext
 
-# sign certificate signing request
-openssl x509 -req -days 3650 -in server.csr -signkey server.pem -out server.crt -extensions v3_req -extfile openssl.cnf
+openssl pkcs12 -inkey server.key -in server.crt -export -out server.pfx
 
-#Export the Certificate in pfx format:
-openssl pkcs12 -export -in server.crt -inkey server.pem -out server.pfx
-
-# to install the certificate
-certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n craig -i server.crt
+## Make sure you make the SANs as IP rther than DNS for ip addresses
+# chrome does give you a cert error in dev tools!
 
 #convert to der for android(maybe)
 #openssl x509 -inform PEM -outform DER -in CA.crt -out CA.der.crt
 
 cp server.crt ../bin/cert.pem 
-cp server.pem ../bin/key.pem
+cp server.key ../bin/key.pem
 
 cp server.crt ../Docker/server.crt
-cp server.pem ../Docker/server.pem
+cp server.key ../Docker/server.pem

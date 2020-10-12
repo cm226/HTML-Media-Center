@@ -3,22 +3,39 @@ import {observer} from 'mobx-react'
 
 import * as CSS from 'csstype'
 
-interface ListViewType{
+export interface IListViewType{
     key : number, 
-    value : string
+    value : string,
+    checked : boolean
 }
 
-export interface IListView{
-    listView : ListViewType[],
-}
 
 interface ListProps{
-    store : IListView,
+    listView : IListViewType[],
     onDel : (id : number )=>void
+    onCheck? : (id : number, checked : boolean)=>void
 }
 
 @observer
 export class ListWithDelete extends React.Component<ListProps>{
+
+    makeCheckbox(checked : boolean, key : number){
+        
+        if(!this.props.onCheck)return;
+        const checkboxStyle : CSS.Properties = {
+            height : "22px",
+            width : "22px"
+        }
+
+        return <input style={checkboxStyle}
+        type="checkbox"
+        id="cbox"
+        defaultChecked={checked} 
+        onChange={(e : any)=>{
+            if(this.props.onCheck)
+                this.props.onCheck(key, e.target.checked) 
+        }} />;
+    }
 
     render(){
         const imgStyle : CSS.Properties ={
@@ -47,12 +64,14 @@ export class ListWithDelete extends React.Component<ListProps>{
             paddingBottom : "20px"
         }
 
+        
+
         return (
             <table style={tableStyle}>
                 <tbody style={tableBodyStyle}>
-                {this.props.store.listView.map((el)=>
+                {this.props.listView.map((el)=>
                     <tr key={el.key}>
-                        <td><input type="checkbox" id="cbox" /></td>
+                        <td>{this.makeCheckbox(el.checked, el.key)}</td>
                         <td>{el.value}</td>
                         <td>
                             <button style={buttonStyle} onClick={()=>{this.props.onDel(el.key)}}>

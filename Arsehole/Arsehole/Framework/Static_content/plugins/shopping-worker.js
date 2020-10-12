@@ -7,14 +7,9 @@ const RUNTIME = 'runtime';
 
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
-  'Shopping.html',
-  'Shopping_content/js/script.js',
-  'Shopping_content/js/jquery.min.js',
-  'Shopping_content/js/jquery-ui.min.js',
-  'Shopping_content/js/jquery.mobile-1.4.5.min.js',
-  'Shopping_content/css/styles.css',
-  'Shopping_content/css/jquery-ui.min.css',
-  'Shopping_content/css/jquery.mobile-1.4.5.min.css'
+  '/app/build/Shopping.html',
+  '/app/build/static/js/2.95171797.chunk.js',
+  '/app/build/static/js/main.9d6aef26.chunk.js'
 ];
 
 var lastSelected = {}; 
@@ -298,6 +293,7 @@ var doGetExtras = function(event){
 self.addEventListener('fetch', event => {
   // Skip cross-origin requests, like those for Google Analytics.
 
+  console.log("got fetch");
   // handle specific requests
   if(event.request.url.includes("UpdateSelected")){ event.respondWith(doUpdateServerState(event)); return; }
 

@@ -9,10 +9,10 @@ function MealPicker() {
         return (
             <div>
                 <div>
-                    <button onClick={()=>store.fullMealList.Display(true)}>All Meals</button>
+                    <button onClick={()=>store.dispacher.dispatch('ShowMealList', true)}>All Meals</button>
                 </div>
                 
-                <ListWithDelete store={store.selectedMeals} onDel={
+                <ListWithDelete listView={store.selectedMeals.listView} onDel={
                     (k)=>{store.dispacher.dispatch("UnSelectMeal",{k : k, v : store.selectedMeals.listView[k].value})}
                 }/>
             </div>

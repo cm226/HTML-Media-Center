@@ -4,7 +4,8 @@ import {Dispatcher} from '../../../Dispatcher'
 
 interface IlistViewType {
     key : number, 
-    value : string
+    value : string,
+    checked : boolean
 }
 
 class SelectedMeals{
@@ -27,6 +28,9 @@ class SelectedMeals{
         dis.addListener("MealsLoaded", (all : string[])=>{
             this.allMeals = all;
         });
+        dis.addListener("ClearAll", (all : string[])=>{
+            this.meals = [];
+        });
         
     }
 
@@ -46,7 +50,7 @@ class SelectedMeals{
     @computed get listView(){
         let view :IlistViewType[] = [];
         this.meals.forEach((v, i)=>{
-            view.push({key:i, value : v })
+            view.push({key:i, value : v , checked : false})
         })
         return view;
     }
