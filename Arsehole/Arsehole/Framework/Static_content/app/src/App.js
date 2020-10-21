@@ -25,6 +25,16 @@ const stores = {
 
 stores.urlStore.setRootURL()
 
+// install our service worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register(stores.urlStore.rootURL +'shopping-worker.js',
+   {scope : './'});
+}
+
+navigator.serviceWorker.ready.then(function(swRegistration) {
+  return swRegistration.sync.register('sync');
+});
+
 function App() {
   useEffect(() => {
     stores.loadedPluginStore.updatePlugins(

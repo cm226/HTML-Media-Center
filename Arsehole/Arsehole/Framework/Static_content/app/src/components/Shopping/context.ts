@@ -5,7 +5,7 @@ import {Dispatcher} from '../../Dispatcher'
 import SelectedMeal from './stores/selectedMeals'
 import IngredientsStore from './stores/ingredientsStore'
 import DisplayedViewStore from './stores/DisplayedViewStore'
-import WorkerStatusStore from './stores/WorkerStatusStore'
+import {WorkerStatusStore} from './stores/WorkerStatusStore'
 import FilterViewStore from './stores/FilterViewStore'
 
 const selectedMeals = new SelectedMeal();

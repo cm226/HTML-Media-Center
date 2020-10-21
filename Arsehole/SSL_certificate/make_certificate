@@ -1,22 +1,17 @@
 #!/bin/bash
 #https://medium.com/@tbusser/creating-a-browser-trusted-self-signed-ssl-certificate-2709ce43fd15
 
-openssl genrsa -des3 -out rootCA.key 2048
-openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024  -out rootCA.pem
+# For some reason you have to install "test.crt" on android, it dosnt seem to wasnt to use the rootCA duno why. 
 
-openssl req -new -nodes -out server.csr -newkey rsa:2048 -keyout server.key
-openssl x509 -req -in server.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out server.crt -days 500 -sha256 -extfile v3.ext
+openssl req -new -newkey rsa:2048 -days 3650 -nodes -x509 -subj "/C=US/ST=Oklahoma/L=Stillwater/O=My Company/OU=Engineering" -keyout ca.key -out ca.crt
+openssl genrsa -out "test.key" 2048
 
-openssl pkcs12 -inkey server.key -in server.crt -export -out server.pfx
+openssl req -new -key test.key -out test.csr -config openssl.cnf
+openssl x509 -req -days 3650 -in test.csr -CA ca.crt -CAkey ca.key -CAcreateserial -extensions v3_req -extfile openssl.cnf -out test.crt
+openssl x509 -inform PEM -outform DER -in test.crt -out test.der.crt
 
-## Make sure you make the SANs as IP rther than DNS for ip addresses
-# chrome does give you a cert error in dev tools!
+cp test.crt ../bin/cert.pem 
+cp test.key ../bin/key.pem
 
-#convert to der for android(maybe)
-#openssl x509 -inform PEM -outform DER -in CA.crt -out CA.der.crt
-
-cp server.crt ../bin/cert.pem 
-cp server.key ../bin/key.pem
-
-cp server.crt ../Docker/server.crt
-cp server.key ../Docker/server.pem
+cp test.crt ../Docker/server.crt
+cp test.key ../Docker/server.pem

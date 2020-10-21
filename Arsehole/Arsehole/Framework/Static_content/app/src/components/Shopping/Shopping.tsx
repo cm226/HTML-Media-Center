@@ -19,6 +19,14 @@ function Shopping() {
         const store = React.useContext(ShoppingContext);
 
         React.useEffect(() => {
+            
+            navigator.serviceWorker.addEventListener('message', function(event){
+                if(event.data === "connected"){
+                    store.dispacher.dispatch("ServiceWorkerCallback",  true);
+                }
+                
+            });
+
             updater = new ServerUpdater(
                 store.selectedMeals,
                 store.aldiIngreds,
@@ -26,22 +34,6 @@ function Shopping() {
                 store.dispacher,
                 home.urlStore
             );
-
-            // install our service worker
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register(home.urlStore.rootURL +'/plugins/shopping-worker.js');
-
-                navigator.serviceWorker.addEventListener('message', function(event){
-                    if(event.data === "connected"){
-                        store.dispacher.dispatch("ServiceWorkerCallback", {connected : true});
-                    }
-                    
-                });
-            }
-
-            navigator.serviceWorker.ready.then(function(swRegistration) {
-                return swRegistration.sync.register('sync');
-            });
 
          }, [store.selectedMeals,
             store.aldiIngreds,
@@ -53,20 +45,22 @@ function Shopping() {
         let content;
         if(store.displayedView.displayed === views.Main){
 
-            content = <div style={{"width" :"70%", "margin" : "auto"}}>
-                <img src={home.urlStore.rootURL +"plugins/Shopping_content/logo.png"} alt="Shopping List" />
-                <MealPicker />
-                <hr />
-                <h2>Aldi</h2>
-                <IngredPicker dispatcher={store.dispacher} store={store.aldiIngreds} storeName="aldi" filter={store.filter.filtered}/>
-                <hr />
-                <h2>Sainsburys</h2>
-                <IngredPicker dispatcher={store.dispacher} store={store.sainsIngred} storeName="sains" filter={store.filter.filtered}/>
-                <hr />
-                <button onClick={()=>store.dispacher.dispatch('ClearAll', {})}>Clear All</button>
-                <button onClick={()=>store.dispacher.dispatch('ShowManage', true)}>Manage</button>
-                <button onClick={()=>store.dispacher.dispatch('Filter', !store.filter.filtered)}>{store.filter.filtered?'Un-Shop Mode' : 'Shop Mode'}</button>
+            content = <div>
                 <WrokerStatus statusStore={store.workerStatus} />
+                <img src={home.urlStore.rootURL +"plugins/Shopping_content/logo.png"} alt="Shopping List" />
+                <div style={{"width" :"70%", "margin" : "auto"}}>
+                    <MealPicker />
+                    <hr />
+                    <h2>Aldi</h2>
+                    <IngredPicker dispatcher={store.dispacher} store={store.aldiIngreds} storeName="aldi" filter={store.filter.filtered}/>
+                    <hr />
+                    <h2>Sainsburys</h2>
+                    <IngredPicker dispatcher={store.dispacher} store={store.sainsIngred} storeName="sains" filter={store.filter.filtered}/>
+                    <hr />
+                    <button onClick={()=>store.dispacher.dispatch('ClearAll', {})}>Clear All</button>
+                    <button onClick={()=>store.dispacher.dispatch('ShowManage', true)}>Manage</button>
+                    <button onClick={()=>store.dispacher.dispatch('Filter', !store.filter.filtered)}>{store.filter.filtered?'Un-Shop Mode' : 'Shop Mode'}</button>
+                </div>
             </div>
         } else if (store.displayedView.displayed === views.FullMealList){
             content = <FullMealList />

@@ -69,7 +69,7 @@ int main(void) try {
   // Initialize SSL context
   std::shared_ptr<boost::asio::ssl::context> ctx =
       std::make_shared<boost::asio::ssl::context>(
-          boost::asio::ssl::context::sslv23);
+          boost::asio::ssl::context::tlsv12);
   ctx->set_options(boost::asio::ssl::context::default_workarounds |
                    boost::asio::ssl::context::no_sslv2 |
                    boost::asio::ssl::context::single_dh_use);

@@ -7,6 +7,8 @@
 #include "../../Files/Files.h"
 #include "../../../../ErrorLogger/Errors/ErrorLogger.h"
 
+#include <boost/filesystem.hpp>
+
 
 typedef boost::network::http::server<HTTPServer> server;
 
@@ -84,7 +86,7 @@ void HTTPServer::HandleRequest(
 
     // we dont have a handler so check if its a static resource
     if(destination == "/"){
-        destination = "index.html";
+        destination = "/app/build/index.html";
     }
 
     // while switching to react this is temp
@@ -95,11 +97,15 @@ void HTTPServer::HandleRequest(
     std::string requested_resource = 
         m_static_content + destination;
 
-
+    // small hack while transitioning to React app
+    if(!boost::filesystem::exists(requested_resource)){
+        requested_resource = m_static_content + "/app/build/" + destination;
+    }
 
     TxtFileSource requested_file_source(requested_resource, "html");
     std::string file_data;
     std::map<std::string, std::string> headers;
+
 
 
     if(!requested_file_source.GetData(file_data)){

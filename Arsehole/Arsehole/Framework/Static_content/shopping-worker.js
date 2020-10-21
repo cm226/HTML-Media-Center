@@ -8,13 +8,15 @@ const RUNTIME = 'runtime';
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
   '/app/build/Shopping.html',
-  '/app/build/static/js/2.95171797.chunk.js',
-  '/app/build/static/js/main.9d6aef26.chunk.js'
+  '/app/build/static/js/2.chunk.js',
+  '/app/build/static/js/main.chunk.js',
+  '/app/build/static/js/bundle.js',
+  '/app/build/static/css/main.chunk.css'
 ];
 
 var lastSelected = {}; 
 
-self.importScripts('Shopping_content/js/idb.js');
+self.importScripts('plugins/Shopping_content/js/idb.js');
 
 // The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', event => {

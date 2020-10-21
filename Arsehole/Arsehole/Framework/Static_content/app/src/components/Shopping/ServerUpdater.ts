@@ -53,7 +53,7 @@ class ServerUpdater{
 
                     value.ingreds.forEach((ingred : any)=>{
                         let sel = ingred.selected === "1" ? true : false;
-                        if(ingred.store==='Aldi'){
+                        if(ingred.store.toUpperCase()==='Aldi'.toUpperCase()){
                             aldiIngred.push({name : ingred.ingred, id : ingred.id, sel : sel});
                         } else{
                             sainsIngreds.push({name : ingred.ingred, id : ingred.id, sel : sel});

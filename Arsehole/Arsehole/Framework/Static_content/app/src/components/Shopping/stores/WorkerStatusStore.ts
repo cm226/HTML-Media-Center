@@ -2,18 +2,18 @@ import {observable, action} from 'mobx'
 import {Dispatcher} from '../../../Dispatcher'
 
 
-enum Status{
-    CONNECTED,
+export enum Status{
+    CONNECTED = 1,
     OFFLINE
 }
 
-class WorkerStatusStore{
+export class WorkerStatusStore{
 
     @observable status : Status ;
 
 
     constructor(){
-        this.status = Status.CONNECTED;
+        this.status = Status.OFFLINE;
     }
 
 
@@ -29,5 +29,3 @@ class WorkerStatusStore{
 
 
 }
-
-export default WorkerStatusStore;
