@@ -47,6 +47,8 @@ public:
 		ResultWrapper& result_list
 	);
 	bool isConnected();
+
+	std::string sanitizeString(std::string str);
 	
 	void startMysqlServer();
 	void stopMysqlServer();

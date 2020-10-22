@@ -242,14 +242,17 @@ void ShoppingPlugin::processExtras(
 
     std::vector<std::string> extras;
     for(auto iter = extras_node.begin(); iter != extras_node.end(); iter++){
-        extras.push_back("(null,'"+
-            iter->second.get<std::string>("ingred") + "','" +
-            iter->second.get<std::string>("store") + "')");
-    }
 
-    std::string all_extras = boost::algorithm::join(extras, ",");
-    DatabaseTables::NoBullshitQuery selected_query(
-        "INSERT INTO Extras VALUES "+all_extras );       
+        std::string ingred = 
+            this->coreMod->getDatabaseConnection()->sanitizeString(
+                iter->second.get<std::string>("ingred"));
+
+        std::string store =
+            this->coreMod->getDatabaseConnection()->sanitizeString(
+                iter->second.get<std::string>("store"));
+ 
+        extras.push_back("(null,'"+ ingred + "','" + store + "')");
+    }
 
     DatabaseTables::NoBullshitQuery delete_query(
         "DELETE FROM Extras");       
@@ -258,6 +261,14 @@ void ShoppingPlugin::processExtras(
     this->coreMod->getDatabaseConnection()->runQuery(
         &delete_query, 
         result_wrapper);
+
+    if(extras.size() == 0){
+        return;
+    }
+
+    std::string all_extras = boost::algorithm::join(extras, ",");
+    DatabaseTables::NoBullshitQuery selected_query(
+        "INSERT INTO Extras VALUES "+all_extras );       
         
     this->coreMod->getDatabaseConnection()->runQuery(
         &selected_query, 

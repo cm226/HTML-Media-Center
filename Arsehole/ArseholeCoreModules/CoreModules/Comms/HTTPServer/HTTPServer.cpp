@@ -123,7 +123,9 @@ void HTTPServer::HandleRequest(
             headers= { {"Content-Type", "text/css"}, };
         } else if(ext.compare(".js") == 0) {
             headers= { {"Content-Type", "application/javascript"}, };
-        } else {
+        } else if(ext.compare(".ico") == 0){
+            headers= { {"Content-Type", "image/x-icon"}, };
+        }else {
             headers= { {"Content-Type", "text/html"}, };
         }
         connection->set_status(server::connection::ok);
