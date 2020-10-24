@@ -65,33 +65,24 @@ bool LogEntryParser::readLastNEntrys(std::vector<std::string>& logEntrys, unsign
 
 	if(this->logFile.is_open() && this->logFile.good())
 	{
-		this->logFile.seekg(-1,this->logFile.end);
-		this->logFile.read(&c,1);
-		for(int numEntrys = 0; numEntrys < n; numEntrys ++)
-		{
-			while(c != '\n' && (int)this->logFile.tellg() > 0)
-			{
-				offsetFromEnd++;
-				this->logFile.seekg(-offsetFromEnd,this->logFile.end);
-				this->logFile.read(&c,1);
+		char c;
+		this->logFile.seekg(0, std::ios::end);
+		std::streampos size = this->logFile.tellg();
+		std::vector<char> buffer;
+		std::size_t lineCounter = 0;
+		for(int i=1;i<=size;i++){
+			this->logFile.seekg(-i,std::ios::end);
+			this->logFile.get(c);
+			if(c=='\n'){
+				lineCounter++;
+				logEntrys.push_back(std::string(buffer.rbegin(), buffer.rend()));
+				buffer.clear();
+				continue;
 			}
-			c = 0;
+			if(lineCounter == n) break;
+			buffer.push_back(c);
 		}
-		char* last10Entrys = new char[offsetFromEnd];
 
-		this->logFile.clear();
-		this->logFile.seekg(-(offsetFromEnd-1), this->logFile.end);
-		this->logFile.read(last10Entrys,offsetFromEnd-1);
-
-		// my patients ran out w/e
-		last10Entrys[offsetFromEnd-1] = '\0';
-		last10Entrys[offsetFromEnd-2] = '\0';
-		last10Entrys[offsetFromEnd-3] = '\0';
-
-		std::string tmp10Entrys(last10Entrys);
-		boost::split( logEntrys, tmp10Entrys, boost::is_any_of("\n"), boost::token_compress_off );
-
-		delete[] last10Entrys;
 		return true;
 		
 	}
