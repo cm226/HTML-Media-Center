@@ -58,10 +58,10 @@ function App() {
           <Route path="/">
             <Time/>
             <Plugins/>
+            <Version />
           </Route>
     </Switch>
     </Router>
-     <Version />
     </div>
     </homeContext.Provider>
   );
