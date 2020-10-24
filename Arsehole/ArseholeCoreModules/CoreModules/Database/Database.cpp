@@ -237,10 +237,13 @@ std::string Database::sanitizeString(std::string str) {
 
     std::string to(str.size()*2+1, '\0');
 
-    if(mysql_real_escape_string(mysql_conn.get(),&to[0], str.data(), str.size()) == -1){
+    std::size_t string_len = mysql_real_escape_string(mysql_conn.get(),&to[0], str.data(), str.size());
+    if(string_len  == -1){
         ErrorLogger::logError(std::string("Failed to samitise sql string") + mysql_error(mysql_conn.get()));
+        return str;
     }
 
+    to.resize(string_len);
     return to;
 }
 
