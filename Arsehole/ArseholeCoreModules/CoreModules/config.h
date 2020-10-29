@@ -6,6 +6,8 @@ class Config{
 
 public:
     static bool ReadConfig(std::string configFile);
+    bool WriteConfig();
+
     static std::shared_ptr<Config> GetInstance();
 
     std::string Host() {return m_host;}
@@ -15,12 +17,16 @@ public:
     std::string WorkingFiles(){return m_workingFiles;}
 
     std::string DBName(){return m_dbName;}
+    void DBName(std::string name){m_dbName = name;}
     std::string DBUser(){return m_dbUser;}
+    void DBUser(std::string user){m_dbUser = user;}
     std::string DBPw(){return m_dbPassword;}
+    void DBPw(std::string pw){ m_dbPassword = pw;}
     
     std::string Version(){return m_version;}
 
     std::string MetOfficeAPIKey(){return m_metoffice_API_key;}
+    void MetOfficeAPIKey(std::string key){m_metoffice_API_key = key;}
 
 private:
     Config();
@@ -39,5 +45,6 @@ private:
     bool m_live;
 
     static std::shared_ptr<Config> m_instance;
+    std::string m_config_loc;
 
 };

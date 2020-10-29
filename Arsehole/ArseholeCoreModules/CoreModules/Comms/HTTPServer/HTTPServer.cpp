@@ -90,7 +90,8 @@ void HTTPServer::HandleRequest(
     }
 
     // while switching to react this is temp
-    if(destination == "/app/build/Shopping.html"){
+    if(destination == "/app/build/Shopping.html" ||
+    destination == "/app/build/config.html"){
         destination = "/app/build/index.html";
     }
 

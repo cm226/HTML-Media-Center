@@ -9,6 +9,7 @@ import './App.css';
 import ServerTimeStore from './stores/serverTimeStore';
 import Version from './components/Version'
 import Shopping from './components/Shopping/Shopping'
+import Editor from './components/ConfigEditor/Components/Editor'
 
 import {
   BrowserRouter as Router,
@@ -54,6 +55,9 @@ function App() {
     <Switch>
           <Route path="/app/build/Shopping.html">
             <Shopping />
+          </Route>
+          <Route path="/app/build/config.html">
+            <Editor/>
           </Route>
           <Route path="/">
             <Time/>

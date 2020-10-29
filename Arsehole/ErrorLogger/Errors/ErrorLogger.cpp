@@ -34,15 +34,6 @@ void ErrorLogger::logError(std::string message)
 	std::string formatedLogentry = ErrorLogger::buildFormatedErrEntry(message);
 	writeLogEntry(formatedLogentry);
 	
-	#ifdef _WINDOWS
-	#ifndef _NOINCLUDESTACKWALKER
-	if(LOG_STACK_TRACE_ERR)
-	{
-		MyStackWalker msw;
-		msw.ShowCallstack();
-	}
-	#endif
-	#endif
 }
 
 void ErrorLogger::logWarn(std::string message)
@@ -50,16 +41,6 @@ void ErrorLogger::logWarn(std::string message)
 	if(!LOG_WARN) return;
 	std::string formatedLogentry = ErrorLogger::buildFormatedWarnEntry(message);
 	writeLogEntry(formatedLogentry);
-
-	#ifdef _WINDOWS
-	#ifndef _NOINCLUDESTACKWALKER
-	if(LOG_STACK_TRACE_WARN)
-	{
-		MyStackWalker msw;
-		msw.ShowCallstack();
-	}
-	#endif
-	#endif
 }
 
 void ErrorLogger::logInfo(std::string message)
@@ -68,16 +49,6 @@ void ErrorLogger::logInfo(std::string message)
 	
 	std::string formatedLogentry = ErrorLogger::buildFormatedInfoEntry(message);
 	writeLogEntry(formatedLogentry);
-
-	#ifdef _WINDOWS
-	#ifndef _NOINCLUDESTACKWALKER
-	if(LOG_STACK_TRACE_INFO)
-	{
-		MyStackWalker msw;
-		msw.ShowCallstack();
-	}
-	#endif
-	#endif
 }
 
 void ErrorLogger::writeLogEntry(std::string entry)
@@ -92,7 +63,7 @@ void ErrorLogger::appendToLogFile(std::string message)
 	ofstream logFile;
 	logFile.open((
 		Config::GetInstance()->LogLocation()+
-		std::string("\\log.log")).c_str(), fstream::out | fstream::app);
+		std::string("/log.log")).c_str(), fstream::out | fstream::app);
 	if(logFile.is_open())
 	{
 		logFile << message;
