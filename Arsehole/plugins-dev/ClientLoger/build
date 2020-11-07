@@ -11,4 +11,4 @@ else
 fi
 
 cmake -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0 -DCMAKE_BUILD_TYPE=$config -DCMAKE_INSTALL_PREFIX=/home/Arsehole CMakeLists.txt
-make install
+make -j8 install

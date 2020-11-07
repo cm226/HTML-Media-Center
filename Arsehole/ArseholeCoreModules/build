@@ -10,5 +10,5 @@ else
       echo "Building $config"
 fi
 
-cmake -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0 -DCMAKE_BUILD_TYPE=$config -DCMAKE_INSTALL_PREFIX=../ CMakeLists.txt
-make install
+cmake -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0 -DCMAKE_BUILD_TYPE=$config -DCMAKE_INSTALL_PREFIX=../ --parallel 8 CMakeLists.txt
+make -j8 install
