@@ -122,6 +122,9 @@ RUN if [ "$build_type" = "Release" ] ; then cd /home/craig/Programming/Arsehole/
      && git pull origin master \
      && ./BuildAll.sh $build_type; fi
 
+RUN cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/Arsehole/Framework/Static_content/app \
+    && npm install \
+    && npm run build
 
 # setup mysql db
 # carefull with this there is annoyingness here, since we map the db files to an extrnal volme when we run 
@@ -137,8 +140,8 @@ RUN /usr/bin/mysqld_safe & mysql_install_db \
      && mysql ArseholeDB < /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ArseholeCoreModules/CoreModules/Sensors/db.sql
 
 
-COPY server.crt /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/cert.pem
-COPY server.pem /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/key.pem
+COPY test.crt /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/cert.pem
+COPY test.key /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/key.pem
 COPY maybeRunBootstrap /
 
 ENV build_type_env Release
