@@ -9,6 +9,7 @@ import './App.css';
 import ServerTimeStore from './stores/serverTimeStore';
 import Version from './components/Version'
 import Shopping from './components/Shopping/Shopping'
+import Invest from './components/Invest/Invest'
 import Editor from './components/ConfigEditor/Components/Editor'
 
 import {
@@ -58,6 +59,9 @@ function App() {
           </Route>
           <Route path="/app/build/config.html">
             <Editor/>
+          </Route>
+          <Route path="/app/build/Invest.html">
+            <Invest />
           </Route>
           <Route path="/">
             <Time/>

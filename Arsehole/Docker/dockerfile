@@ -4,9 +4,7 @@ ARG build_type=Release
 
 EXPOSE 8442
 
-RUN apt-get update
-
-RUN apt install -y --fix-missing \
+RUN apt-get update && apt install -y --fix-missing \
     xz-utils \
     build-essential \
     curl \

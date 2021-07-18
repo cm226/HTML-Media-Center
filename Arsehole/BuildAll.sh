@@ -18,6 +18,8 @@ cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/ArseholeCoreModul
 && ./build $1 \
 && cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/plugins-dev/ConfigEditor \
 && ./build $1 \
+&& cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/plugins-dev/InvestTrack \
+&& ./build $1 \
 && cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/Arsehole/Framework/Static_content/app \
 && npm run build \
 
