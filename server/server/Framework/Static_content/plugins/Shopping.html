@@ -1,0 +1,70 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>List-chan</title>
+	<meta name="description" content="Shopping List">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1"/>
+ 
+	<link rel="stylesheet" href="Shopping_content/css/jquery-ui.min.css">
+	<link rel="stylesheet" href="Shopping_content/css/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="Shopping_content/css/styles.css">
+</head>
+
+<body>
+	<div data-role="page" data-url="/plugins/Shopping" tabindex="0" class="ui-page ui-page-theme-a ui-page-active" style=""> 
+		<div id="top-status" class="status">Working offline</div>
+		<img src="Shopping_content/logo.png" alt="Shopping List" class="logo" />	
+
+		<div class="container">
+		<div class="form-group">
+			<div id="mealSelectionContainer">
+				<div id="filerList">
+					<input type="text" name="meal-list" id="meal-list" placeholder="Meals"/>		
+				</div>
+				<div id="openAll">
+						<a href="#dialogPage" data-rel="dialog"><button>...</button></a>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="list-container clear">
+			<h3>Weekly Food</h3>
+			<div class="meal-choice">
+				<table id="meals">
+				</table>
+			</div>
+			<hr>
+			<editable-list id="aldi_list" listName="Aldi" placeholder="Extras"></editable-list>
+			<editable-list id="sains_list" listName="Sainsburys" placeholder="Extras"></editable-list>
+		</div>
+		<button id="clearAllBtn" onclick="onClearAll()">Clear All</button>
+		<button id="ManageBtn" onclick="window.location.href = 'Shopping_content\\manage.html'">Manage</button>
+		</div>
+		
+		
+		<div id="bottom-status" class="status">Working offline</div>
+	</div>
+
+	<div data-role="page" id="dialogPage">
+		<div data-role="header">
+				<h2>Meals</h2>
+				<a href="#" class="ui-btn-right ui-corner-all" data-rel="back">X</a>
+		</div>
+		<div role="main" class="ui-content">
+			<ul id="fullMealList" data-role="listview">
+			</ul>
+		</div>
+	</div>
+
+  <script src="Shopping_content/js/jquery.min.js"></script>
+	<script src="Shopping_content/js/jquery-ui.min.js"></script>
+	<script src="Shopping_content/js/jquery.mobile-1.4.5.min.js"></script>
+	<script src="Shopping_content/js/idb.js"></script>
+	<script src="Shopping_content/js/script.js"></script>
+	<script type="module" src="/dist/main.js"></script>
+</body>
+</html>

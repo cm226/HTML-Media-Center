@@ -1,6 +1,6 @@
 -- MySQL dump 10.16  Distrib 10.1.41-MariaDB, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: ArseholeDB
+-- Host: localhost    Database: ServerDB
 -- ------------------------------------------------------
 -- Server version	10.1.41-MariaDB-0ubuntu0.18.04.1
 
@@ -16,12 +16,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `ArseholeDB`
+-- Current Database: `ServerDB`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `ArseholeDB` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `ServerDB` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
-USE `ArseholeDB`;
+USE `ServerDB`;
 
 --
 -- Table structure for table `Extras`

@@ -8,14 +8,14 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/Arsehole", 
+            "program": "/home/craig/Programming/Server/HTML-Media-Center/Server/bin/Server", 
             "args": [],
             "stopAtEntry": false,
-            "cwd": "/home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin",
+            "cwd": "/home/craig/Programming/Server/HTML-Media-Center/Server/bin",
             "environment": [
                 {
                     "name": "LD_LIBRARY_PATH",
-                    "value": "/home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin" 
+                    "value": "/home/craig/Programming/Server/HTML-Media-Center/Server/bin" 
                 }
             ],
             "externalConsole": true,
@@ -32,15 +32,15 @@
             "name": "(gdb) Remote Launch Laptop",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/craig/Programming/HTML-Media-Center/Arsehole/bin/Arsehole",
+            "program": "/home/craig/Programming/HTML-Media-Center/Server/bin/Server",
             "miDebuggerServerAddress": "localhost:9091",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "/home/craig/Programming/HTML-Media-Center/Arsehole/bin",
+            "cwd": "/home/craig/Programming/HTML-Media-Center/Server/bin",
             "environment": [
                 {
                     "name": "LD_LIBRARY_PATH",
-                    "value": "/home/craig/Programming/HTML-Media-Center/Arsehole/bin"
+                    "value": "/home/craig/Programming/HTML-Media-Center/Server/bin"
                 }
             ],
             "externalConsole": true,
@@ -62,15 +62,15 @@
             "name": "(gdb) Remote Launch Desktop",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin/Arsehole",
+            "program": "/home/craig/Programming/Server/HTML-Media-Center/Server/bin/Server",
             "miDebuggerServerAddress": "localhost:9091",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "/home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/bin",
+            "cwd": "/home/craig/Programming/Server/HTML-Media-Center/Server/bin",
             "environment": [
                 {
                     "name": "LD_LIBRARY_PATH",
-                    "value": "/home/craig/Programming/HTML-Media-Center/Arsehole/bin"
+                    "value": "/home/craig/Programming/HTML-Media-Center/Server/bin"
                 }
             ],
             "externalConsole": true,

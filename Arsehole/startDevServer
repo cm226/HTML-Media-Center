@@ -1,4 +1,0 @@
-#!/bin/bash
-
-cd /home/craig/Programming/Arsehole/HTML-Media-Center/Arsehole/Arsehole/Framework/Static_content/app
-npm start

@@ -52,53 +52,53 @@ public/css/Mobile/images/*
 
 .DS_Store
 
-Arsehole/ArseholeCoreModules/CoreModules/Errors/StackWalker/*
-Arsehole/logs/*
-Arsehole/log/*
-Arsehole/Plugins/*
+Server/ServerCoreModules/CoreModules/Errors/StackWalker/*
+Server/logs/*
+Server/log/*
+Server/Plugins/*
 
-Arsehole/bin/libcppnetlib-client-connections\.so\.0
+Server/bin/libcppnetlib-client-connections\.so\.0
 
-Arsehole/bin/libcppnetlib-client-connections\.so\.0\.13\.0
+Server/bin/libcppnetlib-client-connections\.so\.0\.13\.0
 
-Arsehole/bin/libcppnetlib-server-parsers\.so\.0
+Server/bin/libcppnetlib-server-parsers\.so\.0
 
-Arsehole/bin/libcppnetlib-server-parsers\.so\.0\.13\.0
+Server/bin/libcppnetlib-server-parsers\.so\.0\.13\.0
 
-Arsehole/bin/libcppnetlib-uri\.so\.0
+Server/bin/libcppnetlib-uri\.so\.0
 
-Arsehole/bin/libcppnetlib-uri\.so\.0\.13\.0
+Server/bin/libcppnetlib-uri\.so\.0\.13\.0
 
-Arsehole/test/\.vscode/launch\.json
+Server/test/\.vscode/launch\.json
 
-Arsehole/test/bin/dh2048\.pem
+Server/test/bin/dh2048\.pem
 
-Arsehole/test/bin/Server
+Server/test/bin/Server
 
-Arsehole/test/bin/server\.pem
+Server/test/bin/server\.pem
 
-Arsehole/test/Server
+Server/test/Server
 
-Arsehole/ArseholeCoreModules/CMakeCache\.txt
+Server/ServerCoreModules/CMakeCache\.txt
 
-Arsehole/plugins-dev/Shopping/CMakeCache\.txt
+Server/plugins-dev/Shopping/CMakeCache\.txt
 
-Arsehole/bin/
+Server/bin/
 
-Arsehole/Arsehole/Arsehole
+Server/Server/Server
 
-Arsehole/Arsehole/Arsehole
+Server/Server/Server
 
-Arsehole/SSL_certificate/server\.csr
+Server/SSL_certificate/server\.csr
 
-Arsehole/Docker/server\.crt
+Server/Docker/server\.crt
 
-Arsehole/SSL_certificate/server\.pfx
+Server/SSL_certificate/server\.pfx
 
-Arsehole/SSL_certificate/server\.pem
+Server/SSL_certificate/server\.pem
 
-Arsehole/SSL_certificate/server\.crt
+Server/SSL_certificate/server\.crt
 
-Arsehole/Docker/server\.pem
+Server/Docker/server\.pem
 
-Arsehole/Docker/server\.pem
+Server/Docker/server\.pem
