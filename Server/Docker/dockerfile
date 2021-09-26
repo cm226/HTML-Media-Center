@@ -75,9 +75,11 @@ RUN cd /openssl-1.0.2l \
 RUN cd cmake-3.13.2/ \
     && ./bootstrap \
     && make -j4 \
-    && make install 
+    && make install
 
-RUN mkdir -p /home/craig/Programming/Server \
+RUN mkdir -p /home/craig/Programming/Server3
+
+RUN mkdir -p /home/craig/Programming/Server \ 
     && cd /home/craig/Programming/Server/ \
     && git clone https://github.com/cm226/HTML-Media-Center.git \
     && cd HTML-Media-Center \
