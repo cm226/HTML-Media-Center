@@ -77,7 +77,7 @@ RUN cd cmake-3.13.2/ \
     && make -j4 \
     && make install
 
-RUN mkdir -p /home/craig/Programming/Server3
+RUN mkdir -p /home/craig/Programming/Server4
 
 RUN mkdir -p /home/craig/Programming/Server \ 
     && cd /home/craig/Programming/Server/ \
