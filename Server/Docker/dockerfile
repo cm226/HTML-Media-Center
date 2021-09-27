@@ -77,8 +77,6 @@ RUN cd cmake-3.13.2/ \
     && make -j4 \
     && make install
 
-RUN mkdir -p /home/craig/Programming/Server4
-
 RUN mkdir -p /home/craig/Programming/Server \ 
     && cd /home/craig/Programming/Server/ \
     && git clone https://github.com/cm226/HTML-Media-Center.git \
@@ -148,9 +146,12 @@ COPY maybeRunBootstrap /
 
 ENV build_type_env Release
 # start the server
+RUN chmod +x ./maybeRunBootstrap
 CMD ["bash", "-c" ,"./maybeRunBootstrap $build_type_env"]
 # build and run from inside docker folder with 
 # sudo docker build -t media .
 # sudo docker build --build-arg build_type=Debug -t media .
 # sudo docker run -p 8442:8442 -v ~/mdbdata/Server:/var/lib/mysql -ti --restart unless-stopped media
 # sudo docker run -p 8442:8442 -p 9091:9091 -v ~/mdbdata/Server:/var/lib/mysql -v /home/craig/Programming/HTML-Media-Center:/home/craig/Programming/Server/HTML-Media-Center --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --env build_type_env=Debug -ti media then run cmd above 
+
+# sudo docker run -p 8442:8442 -p 9091:9091 -v ~/mdbdata/Server:/var/lib/mysql -v /home/craig/CloudStation/Code/HTML-Media-Center:/home/craig/Programming/Server/HTML-Media-Center --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --env build_type_env=Debug -ti media
