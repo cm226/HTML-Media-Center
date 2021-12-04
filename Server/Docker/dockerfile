@@ -140,8 +140,8 @@ RUN /usr/bin/mysqld_safe & mysql_install_db \
      && mysql ServerDB < /home/craig/Programming/Server/HTML-Media-Center/Server/ServerCoreModules/CoreModules/Sensors/db.sql
 
 
-#COPY test.crt /home/craig/Programming/Server/HTML-Media-Center/Server/bin/cert.pem
-#COPY test.key /home/craig/Programming/Server/HTML-Media-Center/Server/bin/key.pem
+COPY test.crt /home/craig/Programming/Server/HTML-Media-Center/Server/bin/cert.pem
+COPY test.key /home/craig/Programming/Server/HTML-Media-Center/Server/bin/key.pem
 COPY maybeRunBootstrap /
 
 ENV build_type_env Release
