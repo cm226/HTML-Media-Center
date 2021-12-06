@@ -97,7 +97,7 @@ RUN cd cmake-3.13.2/ \
     && make -j4 \
     && make install
 
-COPY buildBoost.sh /
+COPY ./Util/buildBoost.sh /
 RUN /buildBoost.sh $build_type
 
 RUN mkdir /home/craig/Programming/cpp-net-build \
@@ -151,7 +151,10 @@ RUN cd /home/craig/Programming/Server/HTML-Media-Center/Server/Server/Framework/
 COPY test.crt /home/craig/Programming/Server/HTML-Media-Center/Server/bin/cert.pem
 COPY test.key /home/craig/Programming/Server/HTML-Media-Center/Server/bin/key.pem
 
-CMD ["bash", "-c" ,"cd /home/craig/Programming/Server/HTML-Media-Center"]
+ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/craig/Programming/Server/HTML-Media-Center/Server/bin"
+# For convenient debugging, rather drop bash in the dir directly but dont know if possible...
+RUN ln -s /home/craig/Programming/Server/HTML-Media-Center/Server/ /src
+CMD ["/bin/bash", "-c" ,"cd /home/craig/Programming/Server/HTML-Media-Center"]
 
 # run from inside docker folder with, build scripts in same dir
 # sudo docker run -p 8442:8442 -p 9091:9091 -v ~/mdbdata/Server:/var/lib/mysql -v /home/craig/Programming/HTML-Media-Center:/home/craig/Programming/Server/HTML-Media-Center --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --env build_type_env=Debug -ti media 
@@ -186,6 +189,9 @@ ENV build_type_env Release
 # start the server
 COPY startServer.sh /
 RUN chmod +x ./startServer.sh
-CMD ["bash", "-c" ,"/startServer.sh $build_type_env"]
+
+ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/craig/Programming/Server/HTML-Media-Center/Server/bin;"
+WORKDIR '/home/craig/Programming/Server/HTML-Media-Center/Server/bin'
+CMD /home/craig/Programming/Server/HTML-Media-Center/Server/bin/Server
 
 ## sudo docker run -p 8442:8442 -v ~/mdbdata/Server:/var/lib/mysql -ti --restart unless-stopped media

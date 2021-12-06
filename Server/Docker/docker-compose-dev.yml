@@ -1,0 +1,22 @@
+version: "3.9" 
+services:
+  media_dev:
+    environment:
+      - build_type=Release
+    ports:
+      - 8442:8442
+    image: localhost:5000/media_dev
+    build:
+      context: .
+      dockerfile: dockerfile
+      args:
+        - build_type=Debug
+      target: Develop
+    volumes:
+      - ~/mdbdata/Server:/var/lib/mysql
+      - /home/craig/Programming/Arsehole/HTML-Media-Center/:/home/craig/Programming/Server/HTML-Media-Center
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    entrypoint: bash
