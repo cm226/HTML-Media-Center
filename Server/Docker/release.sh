@@ -6,7 +6,7 @@ if [ ! -f "test.crt" ] || [ ! -f "test.key" ]; then
 fi
 
 read -p "Enter your Registry to push to [192.168.1.85]: " registry
-registry=${name:-192.168.1.85}
+registry=${registry:-192.168.1.85}
 echo $registry
 
 sudo docker build --build-arg build_type=Release -t $registry:5000/media .

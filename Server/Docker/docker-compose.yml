@@ -12,7 +12,7 @@ services:
     environment:
       - build_type=Release
     ports:
-      - "8442:8442"
+      - 8442:8442
     image: localhost:5000/media
     volumes:
       - ~/mdbdata/Server:/var/lib/mysql
