@@ -50,6 +50,8 @@ private:
 
 	void processCommandLoop();
 
+	void signalHandler( int signum );
+
 
 };
 

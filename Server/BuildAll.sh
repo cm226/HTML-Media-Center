@@ -6,8 +6,6 @@ cd /home/craig/Programming/Server/HTML-Media-Center/Server/ServerCoreModules/ \
 && ./build $1 \
 && cd /home/craig/Programming/Server/HTML-Media-Center/Server/plugins-dev/Shopping \
 && ./build $1 \
-&& cd /home/craig/Programming/Server/HTML-Media-Center/Server/plugins-dev/AutoUpdater \
-&& ./build $1 \
 && cd /home/craig/Programming/Server/HTML-Media-Center/Server/plugins-dev/ClientLoger \
 && ./build $1 \
 && cd /home/craig/Programming/Server/HTML-Media-Center/Server/plugins-dev/LogViewer \

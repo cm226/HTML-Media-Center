@@ -1,0 +1,25 @@
+version: "3.9" 
+services:
+  registry:
+    restart: always
+    image: registry:2
+    ports:
+      - 5000:5000
+    volumes:
+      - /home/craig/docker_registry:/var/lib/registry
+  media:
+    restart: always
+    environment:
+      - build_type=Release
+    ports:
+      - "8442:8442"
+    image: localhost:5000/media
+    volumes:
+      - ~/mdbdata/Server:/var/lib/mysql
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_POLL_INTERVAL=3600
+      - WATCHTOWER_CLEANUP=true

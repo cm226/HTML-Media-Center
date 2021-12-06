@@ -1,5 +1,6 @@
 #include "FrameWork.h"
 
+#include <csignal>
 #include <stdio.h>
 #include <thread>
 #include <boost/filesystem.hpp>
@@ -10,6 +11,7 @@
 #include <list>
 #include <chrono>
 #include <future>
+#include <functional>
 
 #include <sys/select.h>
 
@@ -17,12 +19,24 @@
 
 #include "../../ServerCoreModules/CoreModules/TaskList/Schedual.h"
 
-#ifdef _WINDOWS
-#include <Windows.h>
-#endif
+
+// Handle SIGTERM from c++ code instead ///
+std::function<void(int)> sighandler = NULL;
+extern "C" {
+    void signal_handler(int i);
+}
+void signal_handler(int i){
+    sighandler(i);
+    return;
+}
+//////////////////////////////////////////
 
 ServerFramework::ServerFramework()
 {
+    sighandler = std::bind(&ServerFramework::signalHandler, this, std::placeholders::_1);
+    std::signal(SIGINT, signal_handler);  
+    std::signal(SIGTERM, signal_handler);  
+
     Config::ReadConfig("config.ini");
 
     cModules = std::make_shared<CoreModules>();
@@ -50,6 +64,14 @@ ServerFramework::ServerFramework()
 ServerFramework::~ServerFramework()
 {
     delete this->pluginLoader;
+}
+
+void ServerFramework::signalHandler( int signum ) {
+   std::cout << "Interrupt signal (" << signum << ") received.\n";
+
+   std::unique_lock<std::mutex> lk(m_shutdown_mutext);
+   this->shuttingDown = true;
+   m_shutdown_cv.notify_one();
 }
 
 void ServerFramework::process()

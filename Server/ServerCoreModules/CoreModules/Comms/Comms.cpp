@@ -77,7 +77,7 @@ void Comms::doHTTP()
         
         boost::network::http::server<HTTPServer>::options options(handler);
         m_server = std::make_shared<boost::network::http::server<HTTPServer>>(
-            options.address(Config::GetInstance()->Host())
+            options.address("0.0.0.0")
             .port("8442")
             .io_service(m_io_service)
             .reuse_address(true)

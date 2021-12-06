@@ -1,6 +1,4 @@
-FROM ubuntu:18.04
-
-ARG build_type=Release
+FROM ubuntu:18.04 AS base
 
 EXPOSE 8442
 
@@ -8,13 +6,11 @@ RUN apt-get update
 
 RUN apt install -y --fix-missing \
     xz-utils \
-    build-essential \
     curl \
     wget \
     software-properties-common \
     libbz2-1.0 libbz2-dev libbz2-ocaml libbz2-ocaml-dev \
     mariadb-server \
-    git-core \
     libcurl4-openssl-dev
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -22,7 +18,37 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
      && apt-get -y install nodejs
 
+RUN wget https://www.openssl.org/source/openssl-1.0.2l.tar.gz \
+    && tar -xzvf openssl-1.0.2l.tar.gz \
+    && rm openssl-1.0.2l.tar.gz
+
+
+# setup mysql db
+# carefull with this there is annoyingness here, since we map the db files to an extrnal volme when we run 
+# the container loading these scripts doesn't do anything unless you dont mount that volume.. 
+## so if you want to set up the external volume for the first time, mount the extrnal volme (see run docker) and
+## load these scripts manually with an interactive terminal, this is only required for first tiom setup tho. 
+# yea it sucks, find a better pattern
+
+RUN /usr/bin/mysqld_safe & mysql_install_db && sleep 5s
+
+################################################
+# Developer + build Env
+################################################
+
+FROM base AS Develop
+
+ARG build_type=Release
+
+RUN apt install -y --fix-missing \
+    git-core \
+    build-essential
+
 RUN apt install -y gdb gdbserver
+
+RUN wget https://cmake.org/files/v3.13/cmake-3.13.2.tar.gz \
+    && tar -xzvf cmake-3.13.2.tar.gz \
+    && rm cmake-3.13.2.tar.gz
 
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
     && apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main" \
@@ -31,20 +57,11 @@ RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
     && ln -s /usr/bin/clang-6.0 /usr/bin/clang \
     && ln -s /usr/bin/clang++-6.0 /usr/bin/clang++
 
-RUN wget https://www.openssl.org/source/openssl-1.0.2l.tar.gz \
-    && tar -xzvf openssl-1.0.2l.tar.gz \
-    && rm openssl-1.0.2l.tar.gz
-
 RUN mkdir -p /home/craig/Programming/ \
     && cd /home/craig/Programming/ \
     && wget http://sourceforge.net/projects/boost/files/boost/1.58.0/boost_1_58_0.tar.gz \
     && tar xfz boost_1_58_0.tar.gz \
     && rm boost_1_58_0.tar.gz 
-
-RUN wget https://cmake.org/files/v3.13/cmake-3.13.2.tar.gz \
-    && tar -xzvf cmake-3.13.2.tar.gz \
-    && rm cmake-3.13.2.tar.gz
-    
 
 RUN mkdir -p /home/craig/Programming/MySql \
     && cd /home/craig/Programming/MySql \
@@ -64,6 +81,9 @@ RUN mkdir -p /home/craig/Programming/rapidJSON \
      && git clone https://github.com/Tencent/rapidjson.git . \
      && git checkout tags/v1.1.0
 
+
+################################################
+## Start Building deps
 ################################################
 
 RUN cd /openssl-1.0.2l \
@@ -77,14 +97,8 @@ RUN cd cmake-3.13.2/ \
     && make -j4 \
     && make install
 
-RUN mkdir -p /home/craig/Programming/Server \ 
-    && cd /home/craig/Programming/Server/ \
-    && git clone https://github.com/cm226/HTML-Media-Center.git \
-    && cd HTML-Media-Center \
-    && git checkout origin/master \
-    && mkdir /home/craig/Programming/Server/HTML-Media-Center/Server/bin
-
-RUN ./home/craig/Programming/Server/HTML-Media-Center/Server/Docker/buildBoost.sh $build_type
+COPY buildBoost.sh /
+RUN /buildBoost.sh $build_type
 
 RUN mkdir /home/craig/Programming/cpp-net-build \
     && cd /home/craig/Programming/cpp-net-build \
@@ -104,6 +118,14 @@ RUN cd /home/craig/Programming/cpp-net-build \
      -DCMAKE_EXE_LINKER_FLAGS="-lstdc++" \
     ../cpp_netlib/cpp-netlib-0.13.0-rc1 \
     && make
+
+RUN mkdir -p /home/craig/Programming/Server \ 
+    && cd /home/craig/Programming/Server/ \
+    && git clone https://github.com/cm226/HTML-Media-Center.git \
+    && cd HTML-Media-Center \
+    && git checkout origin/master \
+    && mkdir /home/craig/Programming/Server/HTML-Media-Center/Server/bin
+
 
 RUN cd /home/craig/Programming/Server/HTML-Media-Center/Server/plugins-dev/LightingController/Node \
      && npm install codetheweb/tuyapi
@@ -126,32 +148,44 @@ RUN cd /home/craig/Programming/Server/HTML-Media-Center/Server/Server/Framework/
     && npm install \
     && npm run build
 
-# setup mysql db
-# carefull with this there is annoyingness here, since we map the db files to an extrnal volme when we run 
-# the container loading these scripts doesn't do anything unless you dont mount that volume.. 
-## so if you want to set up the external volume for the first time, mount the extrnal volme (see run docker) and
-## load these scripts manually with an interactive terminal, this is only required for first tiom setup tho. 
-# it sucks 
+COPY test.crt /home/craig/Programming/Server/HTML-Media-Center/Server/bin/cert.pem
+COPY test.key /home/craig/Programming/Server/HTML-Media-Center/Server/bin/key.pem
 
-RUN /usr/bin/mysqld_safe & mysql_install_db \
-     && sleep 5s \
+CMD ["bash", "-c" ,"cd /home/craig/Programming/Server/HTML-Media-Center"]
+
+# run from inside docker folder with, build scripts in same dir
+# sudo docker run -p 8442:8442 -p 9091:9091 -v ~/mdbdata/Server:/var/lib/mysql -v /home/craig/Programming/HTML-Media-Center:/home/craig/Programming/Server/HTML-Media-Center --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --env build_type_env=Debug -ti media 
+# sudo docker run -p 8442:8442 -p 9091:9091 -v ~/mdbdata/Server:/var/lib/mysql -v /home/craig/CloudStation/Code/HTML-Media-Center:/home/craig/Programming/Server/HTML-Media-Center --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --env build_type_env=Debug -ti media
+
+################################################
+# Production Image
+################################################
+
+FROM base AS Production
+
+# OTS Libs
+COPY --from=Develop usr/lib/libboost* usr/lib/
+
+# App Bin
+COPY --from=Develop /home/Server/* /home/Server/
+COPY --from=Develop /home/craig/Programming/Server/HTML-Media-Center/Server/bin /home/craig/Programming/Server/HTML-Media-Center/Server/bin
+COPY --from=Develop /home/craig/Programming/Server/HTML-Media-Center/Server/Server/Framework/Static_content/ /home/craig/Programming/Server/HTML-Media-Center/Server/Server/Framework/Static_content/
+
+
+# SQL scripts
+COPY --from=Develop /home/craig/Programming/Server/HTML-Media-Center/db/Database.sql /home/craig/Programming/Server/HTML-Media-Center/db/Database.sql
+COPY --from=Develop /home/craig/Programming/Server/HTML-Media-Center/Server/plugins-dev/Shopping/db.sql /home/craig/Programming/Server/HTML-Media-Center/Server/plugins-dev/Shopping/db.sql
+COPY --from=Develop /home/craig/Programming/Server/HTML-Media-Center/Server/ServerCoreModules/CoreModules/Sensors/db.sql /home/craig/Programming/Server/HTML-Media-Center/Server/ServerCoreModules/CoreModules/Sensors/db.sql
+
+RUN service mysql start \
      && mysql < /home/craig/Programming/Server/HTML-Media-Center/db/Database.sql \
      && mysql ServerDB < /home/craig/Programming/Server/HTML-Media-Center/Server/plugins-dev/Shopping/db.sql \
      && mysql ServerDB < /home/craig/Programming/Server/HTML-Media-Center/Server/ServerCoreModules/CoreModules/Sensors/db.sql
 
-
-COPY test.crt /home/craig/Programming/Server/HTML-Media-Center/Server/bin/cert.pem
-COPY test.key /home/craig/Programming/Server/HTML-Media-Center/Server/bin/key.pem
-COPY maybeRunBootstrap /
-
 ENV build_type_env Release
 # start the server
-RUN chmod +x ./maybeRunBootstrap
-CMD ["bash", "-c" ,"./maybeRunBootstrap $build_type_env"]
-# build and run from inside docker folder with 
-# sudo docker build -t media .
-# sudo docker build --build-arg build_type=Debug -t media .
-# sudo docker run -p 8442:8442 -v ~/mdbdata/Server:/var/lib/mysql -ti --restart unless-stopped media
-# sudo docker run -p 8442:8442 -p 9091:9091 -v ~/mdbdata/Server:/var/lib/mysql -v /home/craig/Programming/HTML-Media-Center:/home/craig/Programming/Server/HTML-Media-Center --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --env build_type_env=Debug -ti media then run cmd above 
+COPY startServer.sh /
+RUN chmod +x ./startServer.sh
+CMD ["bash", "-c" ,"/startServer.sh $build_type_env"]
 
-# sudo docker run -p 8442:8442 -p 9091:9091 -v ~/mdbdata/Server:/var/lib/mysql -v /home/craig/CloudStation/Code/HTML-Media-Center:/home/craig/Programming/Server/HTML-Media-Center --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --env build_type_env=Debug -ti media
+## sudo docker run -p 8442:8442 -v ~/mdbdata/Server:/var/lib/mysql -ti --restart unless-stopped media
