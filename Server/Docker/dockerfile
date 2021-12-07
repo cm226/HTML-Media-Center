@@ -139,7 +139,8 @@ RUN  cp /home/craig/Programming/Server/HTML-Media-Center/Server/ServerCoreModule
      && sed -i 's/<dbpw>/pw/g' /home/craig/Programming/Server/HTML-Media-Center/Server/bin/config.ini
 
 # Stamp version number
-RUN sed -i "s/Version=.*/Version=$(git rev-parse HEAD)/g" /home/craig/Programming/Server/HTML-Media-Center/Server/bin/config.ini
+RUN cd /home/craig/Programming/Server/HTML-Media-Center/Server/ \
+    && sed -i "s/Version=.*/Version=$(git rev-parse HEAD)/g" /home/craig/Programming/Server/HTML-Media-Center/Server/bin/config.ini
 
 RUN if [ "$build_type" = "Release" ] ; then cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/Server/HTML-Media-Center/Server/bin ;fi
 
