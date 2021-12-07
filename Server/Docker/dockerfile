@@ -39,7 +39,6 @@ RUN /usr/bin/mysqld_safe & mysql_install_db && sleep 5s
 FROM base AS Develop
 
 ARG build_type=Release
-ARG buildCommit=origin/master
 
 RUN apt install -y --fix-missing \
     git-core \
@@ -120,6 +119,7 @@ RUN cd /home/craig/Programming/cpp-net-build \
     ../cpp_netlib/cpp-netlib-0.13.0-rc1 \
     && make
 
+ARG buildCommit=origin/master
 RUN mkdir -p /home/craig/Programming/Server \ 
     && cd /home/craig/Programming/Server/ \
     && git clone https://github.com/cm226/HTML-Media-Center.git \
@@ -138,6 +138,8 @@ RUN  cp /home/craig/Programming/Server/HTML-Media-Center/Server/ServerCoreModule
      && sed -i 's/<dbname>/ServerDB/g' /home/craig/Programming/Server/HTML-Media-Center/Server/bin/config.ini \
      && sed -i 's/<dbpw>/pw/g' /home/craig/Programming/Server/HTML-Media-Center/Server/bin/config.ini
 
+# Stamp version number
+RUN sed -i "s/Version=.*/Version=$(git rev-parse HEAD)/g" /home/craig/Programming/Server/HTML-Media-Center/Server/bin/config.ini
 
 RUN if [ "$build_type" = "Release" ] ; then cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/Server/HTML-Media-Center/Server/bin ;fi
 
@@ -156,10 +158,6 @@ ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/craig/Programming/Server/HTML-Media-
 # For convenient debugging, rather drop bash in the dir directly but dont know if possible...
 RUN ln -s /home/craig/Programming/Server/HTML-Media-Center/Server/ /src
 CMD ["/bin/bash", "-c" ,"cd /home/craig/Programming/Server/HTML-Media-Center"]
-
-# run from inside docker folder with, build scripts in same dir
-# sudo docker run -p 8442:8442 -p 9091:9091 -v ~/mdbdata/Server:/var/lib/mysql -v /home/craig/Programming/HTML-Media-Center:/home/craig/Programming/Server/HTML-Media-Center --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --env build_type_env=Debug -ti media 
-# sudo docker run -p 8442:8442 -p 9091:9091 -v ~/mdbdata/Server:/var/lib/mysql -v /home/craig/CloudStation/Code/HTML-Media-Center:/home/craig/Programming/Server/HTML-Media-Center --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --env build_type_env=Debug -ti media
 
 ################################################
 # Production Image
@@ -192,5 +190,3 @@ ENV build_type_env Release
 ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/craig/Programming/Server/HTML-Media-Center/Server/bin;"
 WORKDIR '/home/craig/Programming/Server/HTML-Media-Center/Server/bin'
 CMD /home/craig/Programming/Server/HTML-Media-Center/Server/bin/Server
-
-## sudo docker run -p 8442:8442 -v ~/mdbdata/Server:/var/lib/mysql -ti --restart unless-stopped media
