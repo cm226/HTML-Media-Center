@@ -39,6 +39,7 @@ RUN /usr/bin/mysqld_safe & mysql_install_db && sleep 5s
 FROM base AS Develop
 
 ARG build_type=Release
+ARG buildCommit=origin/master
 
 RUN apt install -y --fix-missing \
     git-core \
@@ -123,7 +124,7 @@ RUN mkdir -p /home/craig/Programming/Server \
     && cd /home/craig/Programming/Server/ \
     && git clone https://github.com/cm226/HTML-Media-Center.git \
     && cd HTML-Media-Center \
-    && git checkout origin/master \
+    && git checkout $buildCommit \
     && mkdir /home/craig/Programming/Server/HTML-Media-Center/Server/bin
 
 
@@ -173,6 +174,7 @@ COPY --from=Develop usr/lib/libboost* usr/lib/
 COPY --from=Develop /home/Server/* /home/Server/
 COPY --from=Develop /home/craig/Programming/Server/HTML-Media-Center/Server/bin /home/craig/Programming/Server/HTML-Media-Center/Server/bin
 COPY --from=Develop /home/craig/Programming/Server/HTML-Media-Center/Server/Server/Framework/Static_content/ /home/craig/Programming/Server/HTML-Media-Center/Server/Server/Framework/Static_content/
+COPY --from=Develop /home/craig/Programming/Server/HTML-Media-Center/Server/plugins-dev/LightingController/Node /home/craig/Programming/Server/HTML-Media-Center/Server/plugins-dev/LightingController/Node
 
 
 # SQL scripts
@@ -187,9 +189,6 @@ RUN service mysql start \
 
 ENV build_type_env Release
 # start the server
-COPY startServer.sh /
-RUN chmod +x ./startServer.sh
-
 ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/craig/Programming/Server/HTML-Media-Center/Server/bin;"
 WORKDIR '/home/craig/Programming/Server/HTML-Media-Center/Server/bin'
 CMD /home/craig/Programming/Server/HTML-Media-Center/Server/bin/Server

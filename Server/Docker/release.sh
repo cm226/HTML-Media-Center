@@ -9,7 +9,11 @@ read -p "Enter your Registry to push to [192.168.1.85]: " registry
 registry=${registry:-192.168.1.85}
 echo $registry
 
-sudo docker build --build-arg build_type=Release -t $registry:5000/media .
+read -p "Enter the commit hash to use [origin/master]: " commit
+commit=${commit:-origin/master}
+echo $commit
+
+sudo docker build --build-arg build_type=Release --build-arg buildCommit=$commit -t $registry:5000/media .
 
 # If this command fails make sure you have added the repository as insecure 
 
