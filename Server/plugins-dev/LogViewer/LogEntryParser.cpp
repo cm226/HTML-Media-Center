@@ -19,15 +19,7 @@ LogEntryParser::~LogEntryParser(void)
 
 bool LogEntryParser::setLogFileLocation(std::string logFile)
 {
-	this->fileLocation = "";
-
-	if ( !boost::filesystem::exists(logFile) )
-		return false;
-
 	this->fileLocation = logFile;
-
-	
-
 	return true;
 }
 
@@ -45,6 +37,9 @@ bool LogEntryParser::getParsedEntries(
 	std::vector<model::LogEntry>& list,
 	std::size_t n
 ) {
+	if ( !boost::filesystem::exists(this->fileLocation) )
+		return false;
+
 	openLogFile();
 
 	std::vector<std::string> lastNLogEntrys;

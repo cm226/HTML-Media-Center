@@ -9,7 +9,7 @@ LogViewerPlugin::LogViewerPlugin(CoreModules* cm): Plugin(cm), name("LogViewer")
 {
 	this->logParser.setLogFileLocation(
 		Config::GetInstance()->LogLocation()+
-		std::string("\\log.log"));
+		std::string("/log.log"));
 
 	auto comms = cm->getComms();
     auto router = comms->Router();
