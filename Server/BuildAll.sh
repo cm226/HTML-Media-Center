@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Building Config $1"
+
 cd /home/craig/Programming/Server/HTML-Media-Center/Server/ServerCoreModules/ \
 && ./build $1 \
 && cd /home/craig/Programming/Server/HTML-Media-Center/Server/Server \
