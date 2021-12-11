@@ -62,15 +62,15 @@
             "name": "(gdb) Remote Launch Desktop",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/craig/Programming/Server/HTML-Media-Center/Server/bin/Server",
+            "program": "${workspaceFolder}/Server/bin/Server",
             "miDebuggerServerAddress": "localhost:9091",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "/home/craig/Programming/Server/HTML-Media-Center/Server/bin",
+            "cwd": "${workspaceFolder}/Server/bin",
             "environment": [
                 {
                     "name": "LD_LIBRARY_PATH",
-                    "value": "/home/craig/Programming/HTML-Media-Center/Server/bin"
+                    "value": "${workspaceFolder}/Server/bin"
                 }
             ],
             "externalConsole": true,
