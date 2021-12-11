@@ -10,7 +10,6 @@ public:
 
     static std::shared_ptr<Config> GetInstance();
 
-    std::string Host() {return m_host;}
     bool Live(){return m_live;}
     std::string LogLocation(){return m_logLocation;}
     std::string TempLoc(){return m_tempLoc;}
@@ -32,7 +31,6 @@ private:
     Config();
     bool Initialise(std::string);
 
-    std::string m_host;
     std::string m_logLocation;
     std::string m_tempLoc;
     std::string m_workingFiles;

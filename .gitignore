@@ -99,6 +99,6 @@ Server/SSL_certificate/server\.pem
 
 Server/SSL_certificate/server\.crt
 
-Server/Docker/server\.pem
+Server/Docker/*.crt
 
-Server/Docker/server\.pem
+Server/Docker/*.key

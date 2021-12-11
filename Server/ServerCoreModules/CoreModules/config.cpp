@@ -9,7 +9,6 @@ std::shared_ptr<Config> Config::m_instance = nullptr;
 Config::Config(){
     
     // initialise the default config
-    m_host = "localhost";
     m_logLocation = ".";
     m_tempLoc = ".";
     m_workingFiles = ".";
@@ -25,8 +24,6 @@ bool Config::Initialise(std::string configLocation){
         boost::property_tree::ptree pt;
         boost::property_tree::ini_parser::read_ini(configLocation, pt);
         
-        m_host = pt.get<std::string>("urls.hostIP");
-
         m_live = pt.get<bool>("stuff.live");
         m_logLocation = pt.get<std::string>("stuff.logLocation");
         m_tempLoc = pt.get<std::string>("stuff.tempLoc");
@@ -62,8 +59,6 @@ bool Config::WriteConfig(){
     try{
         boost::property_tree::ptree pt;
         
-
-        pt.put("urls.hostIP", m_host);
 
         pt.put("stuff.live", m_live);
         pt.put("stuff.logLocation", m_logLocation);
