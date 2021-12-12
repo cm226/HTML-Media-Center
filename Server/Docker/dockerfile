@@ -144,14 +144,11 @@ RUN cd /home/craig/Programming/Server/HTML-Media-Center/Server/ \
 
 RUN if [ "$build_type" = "Release" ] ; then cp /home/craig/Programming/cpp-net-build/libs/network/src/libcppnetlib-* /home/craig/Programming/Server/HTML-Media-Center/Server/bin ;fi
 
-RUN if [ "$build_type" = "Release" ] ; then cd /home/craig/Programming/Server/HTML-Media-Center/Server/ \
-     && git pull origin master; fi
-
 RUN if [ "$build_type" = "Release" ] ; then cd /home/craig/Programming/Server/HTML-Media-Center/Server/Server/Framework/Static_content/app \
     && npm install \
     && npm run build\
     && cd /home/craig/Programming/Server/HTML-Media-Center/Server/ \
-    && /BuildAll.sh $build_type; fi
+    && ./BuildAll.sh $build_type; fi
 
 COPY test.crt /home/craig/Programming/Server/HTML-Media-Center/Server/bin/cert.pem
 COPY test.key /home/craig/Programming/Server/HTML-Media-Center/Server/bin/key.pem
