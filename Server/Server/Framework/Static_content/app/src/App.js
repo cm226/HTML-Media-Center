@@ -10,6 +10,7 @@ import ServerTimeStore from './stores/serverTimeStore';
 import Version from './components/Version'
 import Shopping from './components/Shopping/Shopping'
 import Editor from './components/ConfigEditor/Components/Editor'
+import LogViewer from './components/LogViewer/LogViewer'
 
 import {
   BrowserRouter as Router,
@@ -58,6 +59,9 @@ function App() {
           </Route>
           <Route path="/app/build/config.html">
             <Editor/>
+          </Route>
+          <Route path="/app/build/LogViewer.html">
+            <LogViewer />
           </Route>
           <Route path="/">
             <Time/>
