@@ -102,3 +102,5 @@ Server/SSL_certificate/server\.crt
 Server/Docker/*.crt
 
 Server/Docker/*.key
+
+**/node_modules/*

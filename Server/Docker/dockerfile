@@ -22,6 +22,8 @@ RUN wget https://www.openssl.org/source/openssl-1.0.2l.tar.gz \
     && tar -xzvf openssl-1.0.2l.tar.gz \
     && rm openssl-1.0.2l.tar.gz
 
+RUN npm install -g npm@8.3.0
+
 
 # setup mysql db
 # carefull with this there is annoyingness here, since we map the db files to an extrnal volme when we run 
