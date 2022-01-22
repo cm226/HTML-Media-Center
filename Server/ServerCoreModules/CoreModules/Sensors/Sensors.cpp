@@ -52,8 +52,11 @@ void Sensors::LoadSensorsFromDB(
     >(result_wrapper);  
 
     for(auto& sensor : results){
-        m_sensors[sensor->Value()] 
-            = std::make_shared<MotionSensor>(sensor->Value(), router);
+        if(m_sensors.find(sensor->Value()) == m_sensors.end()){
+            m_sensors[sensor->Value()] 
+                = std::make_shared<MotionSensor>(sensor->Value(), router);
+        }
+        
     }    
 
 

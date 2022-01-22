@@ -52,6 +52,7 @@ public/css/Mobile/images/*
 
 .DS_Store
 
+Server/Docker/mariadb/*
 Server/ServerCoreModules/CoreModules/Errors/StackWalker/*
 Server/logs/*
 Server/log/*

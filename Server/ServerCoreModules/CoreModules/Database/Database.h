@@ -49,17 +49,11 @@ public:
 	bool isConnected();
 
 	std::string sanitizeString(std::string str);
-	
-	void startMysqlServer();
-	void stopMysqlServer();
 
 private: 
 	bool ConnectInternal(
 		std::shared_ptr<MYSQL> mysql_con
 	);
-
-	bool IsSeriviceIsRunning();
-
 
 private:
 

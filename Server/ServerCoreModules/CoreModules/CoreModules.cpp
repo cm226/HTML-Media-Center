@@ -76,7 +76,7 @@ DatabaseTables::Database* CoreModules::getDatabaseConnection()
 			config->DBUser(),
 			 config->DBPw(),
 			 config->DBName(),
-			 "localhost"
+			 "db"
 		);
 	}
 	

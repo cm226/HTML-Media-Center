@@ -87,6 +87,13 @@ void HTTPUrlRouter::MapURLRequest(
 
 }
 
+void HTTPUrlRouter::UnMapURLRequest(
+    std::string url,
+    URLHandle handler
+) {
+    m_handler_map.erase(url);
+}
+
 void HTTPUrlRouter::RegisterWidgit(
     std::string widgit
 ){

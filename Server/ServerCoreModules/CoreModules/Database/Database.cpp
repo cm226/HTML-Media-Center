@@ -31,12 +31,12 @@ bool Database::ConnectInternal(
 ){
     if (!mysql_real_connect(
             mysql_con.get(),
-            "127.0.0.1",
+            "db",
             m_userName.c_str(),
             m_password.c_str(), 
             m_DatabaseName.c_str(),
-            0,
-            "/tmp/mysql.sock", 0)) {
+            3808,
+            NULL, 0)) {
 
             ErrorLogger::logError(
                 std::string("Failed to connect to database with error :") +
@@ -48,13 +48,6 @@ bool Database::ConnectInternal(
     return true;
 
 
-}
-
-bool Database::IsSeriviceIsRunning(){
-
-    bool ret_code;
-    auto output = m_task_list->RunSystemCommand("service mysql status", ret_code);
-    return ret_code == 0;
 }
 
 bool Database::Connect(
@@ -75,8 +68,6 @@ bool Database::Connect(
     m_password = password;
     m_DatabaseName = DatabaseName;
     m_hostName = hostName;
-
-    startMysqlServer();
 
     if(ConnectInternal(mysql_conn)) {
         this->connected = true;
@@ -181,46 +172,6 @@ bool Database::runQuery(
 bool Database::isConnected()
 {
     return this->connected;
-}
-
-void Database::startMysqlServer() {
-
-    if(IsSeriviceIsRunning()){
-        ErrorLogger::logInfo("MySql service already running");
-        return;
-    }
-
-    ErrorLogger::logInfo("Attempting to start my sql server");
-
-    bool ret_code;
-    auto output = m_task_list->RunSystemCommand("service mysql start ", ret_code);
-
-    m_service_running = true;
-    if(!ret_code){
-        ErrorLogger::logError("Failed to start the sql server" + output);
-        m_service_running = false;
-    }
-    
-    return;
-}
-
-void Database::stopMysqlServer() {
-
-    if(!IsSeriviceIsRunning()){
-        ErrorLogger::logInfo("MySql service was not running, will not stop");
-        return; 
-    }
-
-    ErrorLogger::logInfo("Attempting to stop my sql server");
-
-    bool ret_code;
-    auto output = m_task_list->RunSystemCommand("service mysql stop ", ret_code);
-
-    if(!ret_code){
-        ErrorLogger::logError("Failed to stop the sql server" + output);
-    }
-    
-    return;
 }
 
 std::string Database::sanitizeString(std::string str) {

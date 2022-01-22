@@ -44,9 +44,6 @@ ServerFramework::ServerFramework()
     ErrorLogger::logInfo("Server initalising...");
     this->shuttingDown = false;
 
-    // make sure mysql is stopped before we try start our webserver
-    this->cModules->getDatabaseWithoutConnect()->stopMysqlServer();
-
     this->cModules->getComms()->messagesubject()->onDiagnosticMessageReceved.connect(this, &ServerFramework::processDiagnosticMessage);
 
     this->cModules->getComms()->sig_shutdown.connect([this](){

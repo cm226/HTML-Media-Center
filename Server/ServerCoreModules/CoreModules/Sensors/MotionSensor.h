@@ -12,6 +12,8 @@ class MotionSensor{
             IHTTPUrlRouter* router
         );
 
+        ~MotionSensor();
+
     public:
 
         void Motion(std::function<void ()> handler);
@@ -21,5 +23,7 @@ class MotionSensor{
         std::vector<std::function<void ()>> m_sig_motion;
         std::string m_name;
 
+        IHTTPUrlRouter::URLHandle m_url_handler;
+        IHTTPUrlRouter* m_router;
 
 };

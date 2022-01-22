@@ -19,6 +19,8 @@ class HTTPUrlRouter :
         HTTPUrlRouter(std::string static_content);
 
         void MapURLRequest(std::string url, URLHandle handler);
+        void UnMapURLRequest(std::string url, URLHandle handler);
+        
         void RegisterWidgit(std::string widgit);
 
         bool HasHandler(const std::string& url);
