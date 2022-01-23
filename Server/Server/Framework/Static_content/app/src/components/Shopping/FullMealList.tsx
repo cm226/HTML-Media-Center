@@ -1,4 +1,5 @@
 import React from 'react';
+import { runInAction } from 'mobx'
 import {observer} from 'mobx-react'
 import { ShoppingContext } from './context'
 
@@ -29,7 +30,10 @@ function FullMealList() {
                         (meal, index)=> <li key={index} onClick={
                             (e)=>{
                                 e.currentTarget.style.backgroundColor = "#bfbfbf";
-                                store.dispacher.dispatch('SelectMeal', meal);
+                                runInAction(()=>{
+                                    store.dispacher.dispatch('SelectMeal', meal);
+                                })
+                                
                                 window.setTimeout(()=>{
                                     store.dispacher.dispatch('ShowMealList', false)
                                 }, 50);

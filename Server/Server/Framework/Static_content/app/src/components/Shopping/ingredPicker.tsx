@@ -12,7 +12,6 @@ interface IListView{
 
 interface IngredProps{
     store : IListView
-    storeName : string
     dispatcher : Dispatcher
     filter? : boolean
 };
@@ -45,7 +44,7 @@ function IngredPicker(props : IngredProps) {
             return <input style={inputStyle} onFocus={(e)=>{e.currentTarget.style.outline = "none";}} 
                     onKeyDown={(e)=>{
                     if(e.keyCode === 13){
-                        context.dispacher.dispatch(props.storeName+"_addingred",{
+                        context.dispacher.dispatch("addingred",{
                             meal : 'extra',
                             ingred : e.currentTarget.value
                         } );
@@ -60,10 +59,10 @@ function IngredPicker(props : IngredProps) {
                 {makeInput()}
                 <ListWithDelete listView={listView} onDel={
                     (k)=>{
-                        context.dispacher.dispatch(props.storeName+"_delIngred", k)
+                        context.dispacher.dispatch("delIngred", k)
                     }}
                     onCheck={(k, checked)=>{
-                        context.dispacher.dispatch(props.storeName+"_CheckIngred", {key : k, check : checked});
+                        context.dispacher.dispatch("CheckIngred", {key : k, check : checked});
                     }}/>
             </div>
         );

@@ -8,7 +8,6 @@ import IngredientsStore from './stores/ingredientsStore'
 import * as CSS from 'csstype'
 
 const sainsIngred = new IngredientsStore();
-const aldiIngred = new IngredientsStore();
 
 
 function Manage() {
@@ -16,8 +15,7 @@ function Manage() {
         const inputEl = React.useRef<HTMLInputElement>(null);
 
         React.useEffect(()=>{
-            sainsIngred.register(store.dispacher,"manage_sains");
-            aldiIngred.register(store.dispacher, "manage_aldi");
+            sainsIngred.register(store.dispacher);
             // eslint-disable-next-line
         },[])
 
@@ -37,11 +35,9 @@ function Manage() {
                 <h2>Name</h2>
                 <input ref={inputEl} style={inputStyle} onFocus={(e)=>{e.currentTarget.style.outline = "none";}} 
                 placeholder="extra"></input>
-                <h2>Aldi</h2>
-                <IngredPicker store={aldiIngred} dispatcher={store.dispacher} storeName="manage_aldi"/>
                 <hr />
                 <h2>Sainsburys</h2>
-                <IngredPicker store={sainsIngred} dispatcher={store.dispacher} storeName="manage_sains"/>
+                <IngredPicker store={sainsIngred} dispatcher={store.dispacher}/>
                 <button onClick={()=>{
 
                     let mealObj : {
@@ -53,9 +49,6 @@ function Manage() {
                         aldi : [],
                         sains : []
                     };
-                    aldiIngred.ingredients.forEach((ingred)=>{
-                        mealObj.aldi.push(ingred.ingred);
-                    });
                     sainsIngred.ingredients.forEach((ingred)=>{
                         mealObj.sains.push(ingred.ingred);
                     });

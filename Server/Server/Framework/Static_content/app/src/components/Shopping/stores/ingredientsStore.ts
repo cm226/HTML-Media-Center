@@ -18,7 +18,7 @@ interface IlistViewType {
 export class IngredientsStore{
 
     @observable ingredients : Map<number, IingredMeal>;
-
+    @observable ingredUpdatded : number;
 
     private mealIngredMap : Map<string, {name:string, id:number}[]>;
     private _nextKey : number;
@@ -26,11 +26,12 @@ export class IngredientsStore{
     constructor(){
         this.ingredients = new Map<number, IingredMeal>();
         this._nextKey = 0;
+        this.ingredUpdatded = 0
         
         this.mealIngredMap = new Map<string, {name:string, id:number}[]>();
     }
 
-    register(dis : Dispatcher, storeName : string){
+    register(dis : Dispatcher){
         dis.addListener("SelectMeal", (meal : any)=>{
             let ingreds = this.mealIngredMap.get(meal);
             if(ingreds){
@@ -38,15 +39,15 @@ export class IngredientsStore{
             }
         });
 
-        dis.addListener(storeName+"_delIngred", (k:number)=>{
+        dis.addListener("delIngred", (k:number)=>{
             this.delete(k);
         })
 
-        dis.addListener(storeName+"_addingred", (k : any)=>{
+        dis.addListener("addingred", (k : any)=>{
             this.addExtra(k.ingred, k.meal);
         });
 
-        dis.addListener(storeName+"_ingredsLoaded", (ingreds : Map<string, {name:string, id:number, sel : boolean}[]>)=>{
+        dis.addListener("ingredsLoaded", (ingreds : Map<string, {name:string, id:number, sel : boolean}[]>)=>{
             
             ingreds.forEach((ingreds, meal)=>{
                 let selectedIngreds :{name:string, id:number}[] = [];
@@ -68,7 +69,7 @@ export class IngredientsStore{
             this.clearAll();
         });
 
-        dis.addListener(storeName+"_CheckIngred", (ingred : {key : number, check : boolean})=>{
+        dis.addListener("CheckIngred", (ingred : {key : number, check : boolean})=>{
             this.checkIngredient(ingred.key, ingred.check);
         });
         
@@ -103,12 +104,13 @@ export class IngredientsStore{
 
     @action addAll(ingreds : {name:string, id:number}[], meal: string){
         
-        ingreds.forEach((ingred)=>{
+        this.ingredUpdatded += 1
+        for(const ingred of ingreds){
             this._nextKey += 1;
             this.ingredients.set(this._nextKey, 
                 {ingred : ingred.name, ingredID : ingred.id, meal : meal, checked : false}
             );
-        });
+        };
         
     }
 

@@ -29,14 +29,12 @@ function Shopping() {
 
             updater = new ServerUpdater(
                 store.selectedMeals,
-                store.aldiIngreds,
                 store.sainsIngred,
                 store.dispacher,
                 home.urlStore
             );
 
          }, [store.selectedMeals,
-            store.aldiIngreds,
             store.sainsIngred,
             store.dispacher,
             store.workerStatus,
@@ -51,11 +49,8 @@ function Shopping() {
                 <div style={{"width" :"70%", "margin" : "auto"}}>
                     <MealPicker />
                     <hr />
-                    <h2>Aldi</h2>
-                    <IngredPicker dispatcher={store.dispacher} store={store.aldiIngreds} storeName="aldi" filter={store.filter.filtered}/>
-                    <hr />
                     <h2>Sainsburys</h2>
-                    <IngredPicker dispatcher={store.dispacher} store={store.sainsIngred} storeName="sains" filter={store.filter.filtered}/>
+                    <IngredPicker dispatcher={store.dispacher} store={store.sainsIngred} filter={store.filter.filtered}/>
                     <hr />
                     <button onClick={()=>store.dispacher.dispatch('ClearAll', {})}>Clear All</button>
                     <button onClick={()=>store.dispacher.dispatch('ShowManage', true)}>Manage</button>

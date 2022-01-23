@@ -4,7 +4,7 @@ import {Dispatcher} from '../../Dispatcher'
 
 import RootURLStore from '../../stores/RootURLStore'
 
-import {observe} from 'mobx'
+import {autorun} from 'mobx'
 
 interface IExtras {
     extras:
@@ -17,33 +17,26 @@ interface IExtras {
 class ServerUpdater{
 
     private meal : SelectedMeal; 
-    private aldiIngrd : IngredientsStore;
-    private sainsIngred : IngredientsStore;
-    private urlStore : RootURLStore;
+    private ingredStore : IngredientsStore;
 
 
     constructor(
         meal : SelectedMeal, 
-        aldiIngrd : IngredientsStore,
-        sainsIngred : IngredientsStore,
+        ingredStore : IngredientsStore,
         dispacher : Dispatcher,
         urlStore : RootURLStore
     ){
-        this.urlStore = urlStore;
         this.meal = meal ;
-        this.aldiIngrd = aldiIngrd;
-        this.sainsIngred = sainsIngred;
+        this.ingredStore = ingredStore;
 
         fetch(urlStore.rootURL + 'plugins/ShoppingList').then((res)=>{
             res.json().then((json : object)=>{
 
                 let meals :string[] = [];
-                let aldiMap = new Map<string, {name : string, id : number}[]>();
                 let sainsmap = new Map<string, {name : string, id : number}[]>();
 
                 let selectedMeals : string[] = [];
                 for (const [meal, value] of Object.entries(json)) {
-                    let aldiIngred : {name : string, id : number, sel : boolean}[] = [];
                     let sainsIngreds : {name : string, id : number, sel : boolean}[] = [];
                     meals.push(meal);
 
@@ -53,16 +46,8 @@ class ServerUpdater{
 
                     value.ingreds.forEach((ingred : any)=>{
                         let sel = ingred.selected === "1" ? true : false;
-                        if(ingred.store.toUpperCase()==='Aldi'.toUpperCase()){
-                            aldiIngred.push({name : ingred.ingred, id : ingred.id, sel : sel});
-                        } else{
-                            sainsIngreds.push({name : ingred.ingred, id : ingred.id, sel : sel});
-                        }
+                        sainsIngreds.push({name : ingred.ingred, id : ingred.id, sel : sel});
                     });
-                    
-                    if(aldiIngred.length !== 0){
-                        aldiMap.set(meal, aldiIngred);
-                    }
 
                     if(sainsIngreds.length !== 0){
                         sainsmap.set(meal, sainsIngreds);
@@ -74,23 +59,18 @@ class ServerUpdater{
                     dispacher.dispatch("SelectMeal", selected);
                 });
 
-                dispacher.dispatch("aldi_ingredsLoaded",aldiMap);
-                dispacher.dispatch("sains_ingredsLoaded",sainsmap);
+                dispacher.dispatch("ingredsLoaded",sainsmap);
 
-                observe(meal.meals, ()=>{this.updateServer()});
-                observe(aldiIngrd.ingredients, ()=>{this.updateServer()});
-                observe(sainsIngred.ingredients, ()=>{this.updateServer()});
+                autorun(() => {
+                    this.updateServer()
+                })
             })
         });
 
         fetch(urlStore.rootURL + 'plugins/ShoppingList/GetExtras').then((res)=>{
             res.json().then((json : IExtras)=>{
                 json.extras.forEach((val)=>{
-                    if(val.store==='Sainsbury'){
-                        this.sainsIngred.addExtra(val.ingred, 'extra');
-                    } else {
-                        this.aldiIngrd.addExtra(val.ingred, 'extra');
-                    }
+                    this.ingredStore.addExtra(val.ingred, 'extra');
                 });
             });
         });
@@ -109,18 +89,7 @@ class ServerUpdater{
                 mealState.selected = "1";
             }
 
-            this.aldiIngrd.ingredients.forEach((val)=>{
-                if(val.meal !== 'extra' && val.meal === meal){
-                    mealState.ingreds.push({
-                        id : val.ingredID,
-                        ingred : val.ingred,
-                        store : 'aldi',
-                        selected : "1"
-                    })
-                }
-            })
-
-            this.sainsIngred.ingredients.forEach((val)=>{
+            this.ingredStore.ingredients.forEach((val)=>{
                 if(val.meal !== 'extra' && val.meal === meal){
                     mealState.ingreds.push({
                         id : val.ingredID,
@@ -150,13 +119,7 @@ class ServerUpdater{
             extras : []
         };
 
-        this.aldiIngrd.ingredients.forEach((val)=>{
-            if(val.meal === 'extra'){
-                extras.extras.push({store : 'Aldi', ingred : val.ingred});
-            }
-        });
-
-        this.sainsIngred.ingredients.forEach((val)=>{
+        this.ingredStore.ingredients.forEach((val)=>{
             if(val.meal === 'extra'){
                 extras.extras.push({store : 'Sainsbury', ingred : val.ingred});
             }

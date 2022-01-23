@@ -3,6 +3,7 @@
 #include "../../ServerCoreModules/CoreModules/Database/Results/ResultTypes.h"
 #include "../../ServerCoreModules/CoreModules/Database/Querys/ScopedTransaction.h"
 
+#define BOOST_SPIRIT_THREADSAFE
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/algorithm/string/join.hpp>
