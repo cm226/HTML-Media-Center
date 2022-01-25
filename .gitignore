@@ -23,7 +23,6 @@ public/css/Mobile/images/*
 
 *.o
 *.pyc
-*.png
 *.jpg
 *.bmp
 *.suo

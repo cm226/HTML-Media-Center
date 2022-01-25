@@ -45,7 +45,7 @@ function Shopping() {
 
             content = <div>
                 <WrokerStatus statusStore={store.workerStatus} />
-                <img src={home.urlStore.rootURL +"plugins/Shopping_content/logo.png"} alt="Shopping List" />
+                <img src={"/assets/shopping/logo.png"} alt="Shopping List" />
                 <div style={{"width" :"70%", "margin" : "auto"}}>
                     <MealPicker />
                     <hr />

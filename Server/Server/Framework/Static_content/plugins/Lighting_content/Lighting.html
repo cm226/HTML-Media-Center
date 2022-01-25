@@ -102,13 +102,13 @@
                     div.append("<h2 class='center-text'>"+light.name+"</h2>");
                     if(light.state == "0"){
         
-                        div.append("<img class='center' src='off.png'>");
+                        div.append("<img class='center' src='/assets/lighting/off.png'>");
                         div.append("<button class='ui-button ui-widget ui-corner-all center' onClick='TurnOnLight(\""+
                             light.name+"\")'> on </button>");
                         
         
                     } if(light.state == "1"){
-                        div.append("<img class='center' src='on.png'>");
+                        div.append("<img class='center' src='/assets/lighting/on.png'>");
                         div.append("<button class='ui-button ui-widget ui-corner-all center' onClick='TurnOffLight(\""+
                             light.name+"\")'> off </button>");
                     }
