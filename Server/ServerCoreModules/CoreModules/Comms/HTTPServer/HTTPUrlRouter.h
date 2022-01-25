@@ -33,7 +33,7 @@ class HTTPUrlRouter :
 
     private:
         std::map<std::string, URLHandle> m_handler_map;
-        std::vector<std::shared_ptr<File>> m_widgits;
+        std::map<std::string, std::shared_ptr<File>> m_widgits;
         std::string m_static_content;
 
         class Connection : 

@@ -45,7 +45,7 @@ HTTPUrlRouter::HTTPUrlRouter(
     ){
         for(auto widgit : m_widgits){
             std::string widgit_str;
-            if(widgit->ToString(widgit_str)){
+            if(widgit.second->ToString(widgit_str)){
                 connection->Write(
                     "<div class=\"widgit\">" +
                         widgit_str + 
@@ -101,7 +101,7 @@ void HTTPUrlRouter::RegisterWidgit(
         std::make_shared<TxtFileSource>(Directory(m_static_content + widgit), "widgit","html")
     );
 
-    m_widgits.push_back(file);
+    m_widgits[widgit] = file;
 }
 
 bool HTTPUrlRouter::HasHandler(
