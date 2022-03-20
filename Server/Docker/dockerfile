@@ -162,7 +162,7 @@ COPY --from=Develop /home/craig/Programming/Server/HTML-Media-Center/Server/bin 
 COPY --from=Develop /home/craig/Programming/Server/HTML-Media-Center/Server/Server/Framework/Static_content/ /home/craig/Programming/Server/HTML-Media-Center/Server/Server/Framework/Static_content/
 COPY --from=Develop /home/craig/Programming/Server/HTML-Media-Center/Server/plugins-dev/LightingController/Node /home/craig/Programming/Server/HTML-Media-Center/Server/plugins-dev/LightingController/Node
 
-RUN apt-get install libssl1.0.0 libssl-dev
+RUN apt-get update && apt-get install libssl1.0.0 libssl-dev -y --fix-missing
 
 
 ENV build_type_env Release

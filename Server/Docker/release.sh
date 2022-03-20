@@ -16,7 +16,6 @@ echo $commit
 sudo docker build --build-arg build_type=Release --build-arg buildCommit=$commit -t $registry:5000/media .
 
 
---target Develop
 # If this command fails make sure you have added the repository as insecure 
 
 # Create or edit /etc/docker/daemon.json and make sure it has the following:

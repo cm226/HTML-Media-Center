@@ -75,7 +75,7 @@ export class ListWithDelete extends React.Component<ListProps>{
                         <td>{el.value}</td>
                         <td>
                             <button style={buttonStyle} onClick={()=>{this.props.onDel(el.key)}}>
-                                <img alt="" style={imgStyle} src="https://image.flaticon.com/icons/png/128/579/579006.png" />
+                                <img alt="" style={imgStyle} src="/assets/shopping/red-cross-icon.png" />
                             </button>
                         </td>
                         
