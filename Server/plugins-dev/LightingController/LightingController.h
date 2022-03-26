@@ -25,14 +25,9 @@ class LightingController : public Plugin {
             std::string name
         );
 
-        bool parseNodeOutput(
-            std::string output,
-            bool expected_state
-        );
-
         bool trySetLightState(
             bool state,
-            int brightness = 255
+            int brightness = 100
         );
 
         void setupSchedule();
@@ -49,4 +44,6 @@ class LightingController : public Plugin {
 
         // only have 1 node command in flight at once
         std::mutex m_node_mutex;
+
+        const std::string m_lights[2] = {"192.168.1.137", "192.168.1.197"};
 };

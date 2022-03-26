@@ -31,7 +31,7 @@ LightingController::LightingController(CoreModules* cm):
                 std::shared_ptr<IHTTPUrlRouter::IConnection> connection
         ){
             if(!m_sleeping.Get()){
-               connection->Write("0"); 
+               connection->Write("0");
                return;
             }
 
@@ -178,26 +178,29 @@ bool LightingController::trySetLightState(
 
     bool exit_code = 0;
 
-    std::string cmd = "(cd "+m_lighting_dir+" && node ControlLights.js state ";
-    if(state){
-        cmd += "on";
-    } else {
-        cmd += "off";
-    }
-    cmd += " brightness " + std::to_string(brightness) + ")";
+    for(auto& light : this->m_lights){
 
-    std::string output = this->coreMod->getTaskList()->RunSystemCommand(
-        cmd,
-        exit_code
-    );
-    
-    if(!exit_code){
-        ErrorLogger::logError("Failed to turn light on got exit code: " + std::to_string(exit_code));
-    } else {
-        return parseNodeOutput(output, state);
+        std::string cmd = "curl http://"+light+"/cm?cmnd=Backlog%20POWER%20";
+        if(state){
+            cmd += "ON";
+            cmd += "%3BWHITE%20" + std::to_string(brightness);
+        } else {
+            cmd += "OFF";
+        }
+
+        std::string output = this->coreMod->getTaskList()->RunSystemCommand(
+            cmd,
+            exit_code
+        );
+        
+        if(!exit_code ){
+            ErrorLogger::logError("Failed to turn light on got exit code: " + std::to_string(exit_code));
+        } else{
+            m_last_light_state.Set(state);
+        }
     }
 
-    return false;
+    return true;
 
 }
 
@@ -214,11 +217,11 @@ void LightingController::turnOnLight(
     }
 
     // dim the brightness if its after 9
-    int brightness = 255;
+    int brightness = 100;
     time_t tt = std::chrono::system_clock::to_time_t(now);
     tm local_tm = *localtime(&tt);
     if(local_tm.tm_hour >= 21 || local_tm.tm_hour <= 7) {
-        brightness = 50;
+        brightness = 40;
     }
     
     if (!m_sleeping.Get()) { 
@@ -248,50 +251,6 @@ void LightingController::turnOffLight(
     }
 
     ErrorLogger::logWarn("Failed to set light state off after all retrys");
-}
-
-bool LightingController::parseNodeOutput(
-    std::string output,
-    bool expected_state
-){
-    
-    try{
-        rapidjson::Document d;
-        d.Parse(output.c_str());
-
-        if(!d.IsObject()){
-            throw std::runtime_error("document is not obejct");
-        }
-
-        if(!d.HasMember("light1") || !d.HasMember("light2")){
-            throw std::runtime_error("object dosnt have all lights");
-        }
-        rapidjson::Value& light1 = d["light1"];
-        rapidjson::Value& light2 = d["light2"];
-
-        if(light1.HasMember("error") || light2.HasMember("error")){
-            ErrorLogger::logError("Failed to set light state, got error : "
-                 + std::string(light1["error"].GetString())
-                 + std::string(light2["error"].GetString()));
-            return false;
-            
-        }
-
-        if(!light1.HasMember("state") || !light2.HasMember("state")){
-            ErrorLogger::logError("node output didnt have state element" + output);
-            return false;
-        }
-
-        m_last_light_state.Set(light1["state"].GetBool() || light2["state"].GetBool());
-
-        return  expected_state == light1["state"].GetBool() &&
-                expected_state == light2["state"].GetBool();
-
-    } catch(std::exception& e){
-        ErrorLogger::logError("Failed to parse node output" + output + "got : "+ e.what());
-    }
-
-    return false;
 }
 
 void LightingController::setupSchedule(
