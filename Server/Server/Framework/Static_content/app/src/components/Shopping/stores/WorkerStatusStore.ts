@@ -1,4 +1,4 @@
-import {observable, action} from 'mobx' 
+import { makeObservable, observable, action } from "mobx"
 import {Dispatcher} from '../../../Dispatcher'
 
 
@@ -9,10 +9,14 @@ export enum Status{
 
 export class WorkerStatusStore{
 
-    @observable status : Status ;
+    status : Status ;
 
 
     constructor(){
+        makeObservable(this, {
+            status: observable,
+            SetStatus: action
+        })
         this.status = Status.OFFLINE;
     }
 
@@ -23,7 +27,7 @@ export class WorkerStatusStore{
         });
     }
 
-    @action SetStatus(status : Status){
+    SetStatus(status : Status){
         this.status = status ;
     }
 

@@ -10,8 +10,6 @@ LightingController::LightingController(CoreModules* cm):
     m_sleeping("Sleeping state change",false),
     m_last_light_state("Light state change",false) {
 
-        m_lighting_dir = "/home/craig/Programming/Server/HTML-Media-Center/Server/plugins-dev/LightingController/Node";
-
         auto comms = cm->getComms();
         auto router = comms->Router();
 

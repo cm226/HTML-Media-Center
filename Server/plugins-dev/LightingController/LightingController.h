@@ -36,7 +36,6 @@ class LightingController : public Plugin {
         LoggerModel<bool> m_sleeping;
         std::chrono::time_point<std::chrono::system_clock> m_sleeping_at;
         LoggerModel<bool> m_last_light_state;
-        std::string m_lighting_dir;
         std::shared_ptr<WeekdaySchedual> m_schedual;
         
         // lights turn off after 5 min of no motion

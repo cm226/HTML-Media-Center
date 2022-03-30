@@ -1,4 +1,4 @@
-import {observable, action} from 'mobx' 
+import { makeObservable, observable, action } from "mobx"
 import {Dispatcher} from '../../../Dispatcher'
 
 export enum views {
@@ -9,10 +9,15 @@ export enum views {
 
 class DisplayedViewStore{
 
-    @observable displayed : views;
+    displayed : views;
 
 
     constructor(){
+        makeObservable(this, {
+            displayed: observable,
+            SetMealList: action,
+            SetManage: action
+        })
         this.displayed = views.Main;
     }
 
@@ -27,7 +32,7 @@ class DisplayedViewStore{
         });
     }
 
-    @action SetMealList(state : boolean){
+    SetMealList(state : boolean){
         if(state){
             this.displayed = views.FullMealList ;
         } else {
@@ -35,7 +40,7 @@ class DisplayedViewStore{
         }
     }
 
-    @action SetManage(state : boolean){
+    SetManage(state : boolean){
         if(state){
             this.displayed = views.Manage ;
         } else {

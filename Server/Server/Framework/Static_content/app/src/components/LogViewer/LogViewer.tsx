@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {observer} from 'mobx-react'
 import { Button, Table, Tag } from 'antd';
 import 'antd/dist/antd.css'
@@ -23,7 +23,7 @@ const columns = [
             let color = 'grey'
             if (sev === 'Warning') {
               color = 'yellow'
-            } else if(sev == 'Error') {
+            } else if(sev === 'Error') {
                 color = 'red'
             }
             return (

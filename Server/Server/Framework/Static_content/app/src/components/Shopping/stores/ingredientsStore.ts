@@ -1,4 +1,4 @@
-import {observable, action, computed} from 'mobx'
+import { makeObservable, observable, action, computed } from "mobx"
 import {Dispatcher} from '../../../Dispatcher'
 
 export interface IingredMeal{
@@ -17,13 +17,25 @@ interface IlistViewType {
 
 export class IngredientsStore{
 
-    @observable ingredients : Map<number, IingredMeal>;
-    @observable ingredUpdatded : number;
+    ingredients : Map<number, IingredMeal>;
+    ingredUpdatded : number;
 
     private mealIngredMap : Map<string, {name:string, id:number}[]>;
     private _nextKey : number;
 
-    constructor(){
+    constructor() {
+        makeObservable(this, {
+            ingredients: observable,
+            ingredUpdatded: observable,
+            checkIngredient: action,
+            delete: action,
+            addExtra: action,
+            addAll: action,
+            clearAll: action,
+            deleteAllFromMeal: action,
+            listView: computed
+
+        })
         this.ingredients = new Map<number, IingredMeal>();
         this._nextKey = 0;
         this.ingredUpdatded = 0
@@ -86,23 +98,23 @@ export class IngredientsStore{
         return undefined;
     }
 
-    @action checkIngredient(key : number, check : boolean){
+    checkIngredient(key : number, check : boolean){
         
         let ingred = this.ingredients.get(key);
         if(ingred) ingred.checked = check;
     }
 
-    @action delete(key : number){
+    delete(key : number){
         this.ingredients.delete(key);
     }
 
-    @action addExtra(extra : string, meal: string){
+    addExtra(extra : string, meal: string){
         
         this._nextKey += 1;
         this.ingredients.set(this._nextKey, {ingred : extra, ingredID : 999, meal : meal, checked : false});
     }
 
-    @action addAll(ingreds : {name:string, id:number}[], meal: string){
+    addAll(ingreds : {name:string, id:number}[], meal: string){
         
         this.ingredUpdatded += 1
         for(const ingred of ingreds){
@@ -114,11 +126,11 @@ export class IngredientsStore{
         
     }
 
-    @action clearAll(){
+    clearAll(){
         this.ingredients.clear();
     }
 
-    @action deleteAllFromMeal(meal : string){
+    deleteAllFromMeal(meal : string){
 
         let removed : number[] = [];
         this.ingredients.forEach((v : IingredMeal, k : number)=>{
@@ -132,7 +144,7 @@ export class IngredientsStore{
         });
     }
 
-    @computed get listView(){
+    get listView(){
         let view :IlistViewType[] = [];
         this.ingredients.forEach((v, k)=>{
             view.push(

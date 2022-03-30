@@ -7,6 +7,8 @@ import * as CSS from 'csstype';
 function Plugins() {
         const store = React.useContext(homeContext)
 
+        console.log("rendering plugins "+ store.loadedPluginStore.plugins)
+
         const contentstyle: CSS.Properties = {
             width : '100%'
         }

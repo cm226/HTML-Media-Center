@@ -1,16 +1,19 @@
-import {observable, action} from 'mobx'
-
+import { makeObservable, observable, action } from "mobx"
 
 class VersionStore{
 
-    @observable version : string;
+    version : string;
 
 
     constructor(){
+        makeObservable(this, {
+            version: observable,
+            getVerion: action
+        })
         this.version = 'undefined';
     }
 
-    @action getVerion(root_url : string){
+    getVerion(root_url : string){
         
         fetch(root_url + 'getVersion').then(req=>{
             req.text().then(text=>{

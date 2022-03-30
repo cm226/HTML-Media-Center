@@ -11,6 +11,8 @@ import Version from './components/Version'
 import Shopping from './components/Shopping/Shopping'
 import Editor from './components/ConfigEditor/Components/Editor'
 import LogViewer from './components/LogViewer/LogViewer'
+import Lighting from './components/Lighting/Lighting'
+import { StyledEngineProvider } from '@mui/material/styles';
 
 import {
   BrowserRouter as Router,
@@ -50,6 +52,7 @@ function App() {
     )
   });
   return (
+    <StyledEngineProvider injectFirst>
     <homeContext.Provider value={stores}>
     <div className="App">
     <Router>
@@ -63,6 +66,9 @@ function App() {
           <Route path="/app/build/LogViewer.html">
             <LogViewer />
           </Route>
+          <Route path="/app/build/Lighting.html">
+            <Lighting />
+          </Route>
           <Route path="/">
             <Time/>
             <Plugins/>
@@ -72,6 +78,7 @@ function App() {
     </Router>
     </div>
     </homeContext.Provider>
+    </StyledEngineProvider>
   );
 }
 

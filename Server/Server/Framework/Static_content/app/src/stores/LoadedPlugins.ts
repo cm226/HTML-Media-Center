@@ -1,16 +1,20 @@
-import {observable, action} from 'mobx'
+import { makeObservable, observable, action } from "mobx"
 
 
 class LoadedPlugins{
 
-    @observable plugins : string;
-
+    plugins : string;
 
     constructor(){
+        makeObservable(this, {
+            plugins: observable,
+            updatePlugins: action
+        })
+
         this.plugins = '';
     }
 
-    @action updatePlugins(root_url : string){
+    updatePlugins(root_url : string){
         
         fetch(root_url + 'pluginWigits').then(req=>{
             req.text().then(text=>{

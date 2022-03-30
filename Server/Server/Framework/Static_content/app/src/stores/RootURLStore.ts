@@ -1,16 +1,20 @@
-import {observable, action} from 'mobx'
+import { makeObservable, observable, action } from "mobx"
 
 
 class RootURLStore{
 
-    @observable rootURL : string;
+    rootURL : string;
 
 
     constructor(){
+        makeObservable(this, {
+            rootURL: observable,
+            setRootURL: action
+        })
         this.rootURL = '';
     }
 
-    @action setRootURL(url : string){
+    setRootURL(url : string){
         
         this.rootURL = '/'
     }

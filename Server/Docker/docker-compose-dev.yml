@@ -12,6 +12,8 @@ services:
       - ./db:/docker-entrypoint-initdb.d
       - ./mariadb:/var/lib/mysql
   media_dev:
+    stdin_open: true
+    tty: true
     environment:
       - build_type=Release
     ports:

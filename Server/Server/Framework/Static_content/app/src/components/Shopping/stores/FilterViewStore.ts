@@ -1,12 +1,16 @@
-import {observable, action} from 'mobx' 
+import { makeObservable, observable, action } from "mobx"
 import {Dispatcher} from '../../../Dispatcher'
 
 class FilterViewStore{
 
-    @observable filtered : boolean;
+    filtered : boolean;
 
 
     constructor(){
+        makeObservable(this, {
+            filtered: observable,
+            SetFiltered: action
+        })
         this.filtered = false;
     }
 
@@ -17,7 +21,7 @@ class FilterViewStore{
         });
     }
 
-    @action SetFiltered(state : boolean){
+    SetFiltered(state : boolean){
         this.filtered = state;
     }
 

@@ -1,25 +1,28 @@
-import {observable, action} from 'mobx' 
-import {Dispatcher} from '../../../Dispatcher'
+import { makeObservable, observable, action } from "mobx"
 
 
 class ConfigStore{
 
-    @observable
     public DBName : string;
-
-    @observable
     public DBUser : string;
-
-    @observable
     public DBPW : string;
-
-    @observable
     public MetOfficeKey : string;
-
-    @observable
     public changed : boolean;
 
     constructor(){
+
+        makeObservable(this, {
+            DBName: observable,
+            DBUser: observable,
+            DBPW: observable,
+            MetOfficeKey: observable,
+            changed: observable,
+            SetDBName: action,
+            SetDBUser: action,
+            SetDBPW: action,
+            SetMetofficeKey: action,
+            CommitConfig: action
+        })
 
         this.DBName = "";
         this.DBUser = "";
@@ -37,31 +40,26 @@ class ConfigStore{
         })
     }
 
-    @action
     SetDBName(name : string){
         this.DBName = name;
         this.changed = true;
     }
 
-    @action
     SetDBUser (user : string){
         this.DBUser = user;
         this.changed = true;
     }
 
-    @action
     SetDBPW(pw : string){
         this.DBPW = pw;
         this.changed = true;
     }
 
-    @action
     SetMetofficeKey(key : string){
         this.MetOfficeKey = key;
         this.changed = true;
     }
 
-    @action
     CommitConfig(){
         fetch("/plugins/ConfigEditor/set", {
             method : 'post',
