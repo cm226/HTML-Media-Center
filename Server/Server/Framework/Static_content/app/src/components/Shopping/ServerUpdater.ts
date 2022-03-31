@@ -61,8 +61,10 @@ class ServerUpdater{
 
                 dispacher.dispatch("ingredsLoaded",sainsmap);
 
+                let init = true; // flag for first time running autorun
                 autorun(() => {
-                    this.updateServer()
+                    this.updateServer(init)
+                    init = false;
                 })
             })
         });
@@ -77,7 +79,7 @@ class ServerUpdater{
 
     }
 
-    private updateSelected(){
+    private updateSelected(init : boolean){
         let state : any = {};
         this.meal.allMeals.forEach((meal)=>{
 
@@ -104,6 +106,8 @@ class ServerUpdater{
 
         });
 
+        if(init) return;
+
         fetch('/plugins/ShoppingList/UpdateSelected', {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
@@ -114,7 +118,7 @@ class ServerUpdater{
           });
     }
 
-    private updateExtras(){
+    private updateExtras(init : boolean){
         let extras : IExtras = {
             extras : []
         };
@@ -124,6 +128,8 @@ class ServerUpdater{
                 extras.extras.push({store : 'Sainsbury', ingred : val.ingred});
             }
         });
+
+        if(init) return;
 
         fetch('/plugins/ShoppingList/UpdateExtras', {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -137,9 +143,9 @@ class ServerUpdater{
 
     }
 
-    private updateServer(){
-        this.updateSelected();
-        this.updateExtras();
+    private updateServer(init : boolean){
+        this.updateSelected(init);
+        this.updateExtras(init);
     }
 
 }
