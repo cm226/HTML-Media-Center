@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/date_time/gregorian/gregorian.hpp>
@@ -75,6 +76,7 @@ void ErrorLogger::appendToLogFile(std::string message)
 
 std::string ErrorLogger::buildFormatedErrEntry(std::string message)
 {
+	std::replace( message.begin(), message.end(), '\n',' '); // no newlines allowed, the screw up processing
 	std::stringstream formatedMessage;
 	formatedMessage << ErrorLogger::buildDateString() << ", "<<"ERR, \""<<message<<"\""<< std::endl;
 	return formatedMessage.str();
@@ -82,6 +84,7 @@ std::string ErrorLogger::buildFormatedErrEntry(std::string message)
 
 std::string ErrorLogger::buildFormatedWarnEntry(std::string message)
 {
+	std::replace( message.begin(), message.end(), '\n',' '); // no newlines allowed, the screw up processing
 	std::stringstream formatedMessage;
 	formatedMessage << ErrorLogger::buildDateString() << ", "<<"WARN, \""<<message<<"\""<< std::endl;
 	return formatedMessage.str();
@@ -89,6 +92,7 @@ std::string ErrorLogger::buildFormatedWarnEntry(std::string message)
 
 std::string ErrorLogger::buildFormatedInfoEntry(std::string message)
 {
+	std::replace( message.begin(), message.end(), '\n',' '); // no newlines allowed, the screw up processing
 	std::stringstream formatedMessage;
 	formatedMessage << ErrorLogger::buildDateString() << ", "<<"INFO, \""<<message<<"\""<< std::endl;
 	return formatedMessage.str();

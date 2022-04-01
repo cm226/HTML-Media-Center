@@ -178,16 +178,18 @@ bool LightingController::trySetLightState(
 
     for(auto& light : this->m_lights){
 
-        std::string cmd = "curl http://"+light+"/cm?cmnd=Backlog%20POWER%20";
+        std::stringstream cmd;
+        cmd << "curl http://"<<light<<"/cm?cmnd=Backlog%20";
+
         if(state){
-            cmd += "ON";
-            cmd += "%3BWHITE%20" + std::to_string(brightness);
+            cmd << "WHITE%20" <<std::to_string(brightness);
+            cmd << "%3BPOWER%20ON";
         } else {
-            cmd += "OFF";
+            cmd << "POWER%20OFF";
         }
 
         std::string output = this->coreMod->getTaskList()->RunSystemCommand(
-            cmd,
+            cmd.str(),
             exit_code
         );
         

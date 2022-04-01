@@ -65,7 +65,7 @@ bool LogEntryParser::readLastNEntrys(std::vector<std::string>& logEntrys, unsign
 		std::streampos size = this->logFile.tellg();
 		std::vector<char> buffer;
 		std::size_t lineCounter = 0;
-		for(int i=1;i<=size;i++){
+		for(int i=2;i<=size;i++){ // start at 2, because the last character is always newline and we read forwards(kinda ugly but im feeling lazy)
 			this->logFile.seekg(-i,std::ios::end);
 			this->logFile.get(c);
 			if(c=='\n'){
