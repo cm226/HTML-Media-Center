@@ -21,7 +21,7 @@ interface LightProps {
 }
 
 const Light = observer(function (props : LightProps){
-    return <div style={{"width" :"70%", "margin" : "auto"}}>
+    return <div style={{"margin" : "auto"}}>
         <CardHeader title={props.light.name}/>
         <img src={"/assets/lighting/" + (props.light.state === '0'?'off.png':'on.png')}/>
     </div>
@@ -32,23 +32,25 @@ function Lighting() {
         root: {
             display: 'flex',
             flexDirection: 'column',
+            alignItems: 'center',
             width : '100%',
             height: '100%'
         },
         stack: {
-            flexGrow : '1'
-        },
-        footer: {
-            background : 'black',
+            flexGrow : '1',
+            margin: 'auto'
         },
         form: {
-            margin: 'auto',
-            height: '50px'
+            marginTop:'50px',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            height: '50px',
+            borderTop: 'solid 1px grey',
+            width: '70%'
         }
     };
     return (
         <div style={classes.root as React.CSSProperties}>
-            <h2>Lighting</h2>
             <Stack style={classes.stack} >
                 {store.lights.map((light)=>{
                 return <Card sx={{ minWidth: 150, maxWidth: 200 }}>
@@ -60,11 +62,12 @@ function Lighting() {
                 </Card>
                 })}
             </Stack>
-            <div style={classes.footer}> 
-                <div style={classes.form} >
+            <div style={classes.form} >
+                <div style={{margin:'auto', width:'fit-content'}}>
+                    <span>Sleeping: </span>
                     <Switch 
                         checkedIcon={<NightlightIcon />}
-                        icon={<WbSunnyIcon/>}
+                        icon={<WbSunnyIcon style={{color: 'black'}}/>}
                         checked={store.sleeping}
                         onChange={(event, checked)=>{store.setSleeping(checked)}}
                     />

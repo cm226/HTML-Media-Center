@@ -18,7 +18,7 @@ function PluginIconWrapper(props : IProps) {
 
     let icon = <LightbulbIcon style={largeIcon} />
 
-    if(props.pluginName === 'Listu Chan'){
+    if(props.pluginName === 'Listu-chan'){
         icon = <LocalGroceryStoreIcon style={largeIcon}/>
     }
     return icon;

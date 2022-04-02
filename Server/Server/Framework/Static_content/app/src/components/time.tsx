@@ -23,8 +23,8 @@ function Time() {
 
   return (
     <div style={style}>
-      {store.serverTimeStore.serverTime.getHours().toString().padStart(2,'0')} :
-      {store.serverTimeStore.serverTime.getMinutes().toString().padStart(2,'0')} : 
+      {store.serverTimeStore.serverTime.getHours().toString().padStart(2,'0')}:
+      {store.serverTimeStore.serverTime.getMinutes().toString().padStart(2,'0')}: 
       {store.serverTimeStore.serverTime.getSeconds().toString().padStart(2,'0')} 
     </div>
   );
