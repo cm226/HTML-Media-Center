@@ -14,8 +14,6 @@ LogViewerPlugin::LogViewerPlugin(CoreModules* cm): Plugin(cm), name("LogViewer")
 	auto comms = cm->getComms();
     auto router = comms->Router();
 
-	router->RegisterWidgit("plugins/LogViewer_content");
-
     router->MapURLRequest(
         "/plugins/LogViewer/Entries",
         [&](

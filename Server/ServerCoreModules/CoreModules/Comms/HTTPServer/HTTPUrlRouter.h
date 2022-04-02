@@ -22,6 +22,7 @@ class HTTPUrlRouter :
         void UnMapURLRequest(std::string url, URLHandle handler);
         
         void RegisterWidgit(std::string widgit);
+        void RegisterPluginPage(std::string name, std::string url);
 
         bool HasHandler(const std::string& url);
         void Route(
@@ -34,6 +35,7 @@ class HTTPUrlRouter :
     private:
         std::map<std::string, URLHandle> m_handler_map;
         std::map<std::string, std::shared_ptr<File>> m_widgits;
+        std::map<std::string, std::string> m_plugins;
         std::string m_static_content;
 
         class Connection : 

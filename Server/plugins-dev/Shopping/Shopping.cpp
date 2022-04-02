@@ -28,7 +28,7 @@ ShoppingPlugin::ShoppingPlugin(
     auto comms = cm->getComms();
     auto router = comms->Router();
 
-    router->RegisterWidgit("plugins/Shopping_content");
+    router->RegisterPluginPage("Listu Chan", "plugins/Shopping_content");
 
     auto db = cm->getDatabaseConnection();
 

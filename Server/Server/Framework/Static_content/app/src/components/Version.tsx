@@ -8,9 +8,7 @@ function Version() {
         const store = React.useContext(homeContext)
 
         const style: CSS.Properties = {
-            position: "fixed",
-            bottom: 0,
-            width: "100%"
+            textAlign : 'center'
           }
 
         return (

@@ -26,5 +26,6 @@ class IHTTPUrlRouter
         virtual void MapURLRequest(std::string url, URLHandle handler) = 0;
         virtual void UnMapURLRequest(std::string url, URLHandle handler) = 0;
         virtual void RegisterWidgit(std::string widgit) = 0;
+        virtual void RegisterPluginPage(std::string name, std::string url) = 0;
 
 };

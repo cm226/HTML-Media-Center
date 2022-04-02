@@ -13,7 +13,7 @@ LightingController::LightingController(CoreModules* cm):
         auto comms = cm->getComms();
         auto router = comms->Router();
 
-        router->RegisterWidgit("plugins/Lighting_content");
+        router->RegisterPluginPage("Shiny Chan","plugins/Lighting_content");
 
         router->MapURLRequest(
             "/plugins/Lighting/AllLights",

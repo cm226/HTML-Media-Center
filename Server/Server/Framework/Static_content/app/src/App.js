@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-import Time from './components/time'
 import Plugins from './components/Plugins'
+import AppHeaderContent from './components/AppHeaderContent'
 import loadedPluginStore from './stores/LoadedPlugins'
 import RootURLStore from './stores/RootURLStore'
 import VersionStore from './stores/VersionStore'
@@ -19,6 +19,9 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+
+import { Layout } from 'antd';
+const { Header, Footer, Content } = Layout;
 
 const stores = {
   urlStore : new RootURLStore(),
@@ -54,29 +57,31 @@ function App() {
   return (
     <StyledEngineProvider injectFirst>
     <homeContext.Provider value={stores}>
-    <div className="App">
     <Router>
-    <Switch>
-          <Route path="/app/build/Shopping.html">
-            <Shopping />
-          </Route>
-          <Route path="/app/build/config.html">
-            <Editor/>
-          </Route>
-          <Route path="/app/build/LogViewer.html">
-            <LogViewer />
-          </Route>
-          <Route path="/app/build/Lighting.html">
-            <Lighting />
-          </Route>
-          <Route path="/">
-            <Time/>
-            <Plugins/>
-            <Version />
-          </Route>
-    </Switch>
+    <Layout style={{minHeight:"100vh"}}>
+    <Header style={{backgroundColor: "#262626"}}><AppHeaderContent /></Header>
+    <Content>
+        <Switch>
+              <Route path="/plugins/Shopping_content">
+                <Shopping />
+              </Route>
+              <Route path="/plugins/ConfigEditor_content">
+                <Editor/>
+              </Route>
+              <Route path="/plugins/LogViewer_content">
+                <LogViewer />
+              </Route>
+              <Route path="/plugins/Lighting_content">
+                <Lighting />
+              </Route>
+              <Route path="/">
+                <Plugins/>
+              </Route>
+          </Switch>
+    </Content>
+    <Footer><Version /></Footer>
+    </Layout>
     </Router>
-    </div>
     </homeContext.Provider>
     </StyledEngineProvider>
   );

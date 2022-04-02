@@ -20,26 +20,23 @@ ConfigEditor::ConfigEditor(
 {
     auto comms = cm->getComms();
     auto router = comms->Router();
-    
-    router->RegisterWidgit("plugins/ConfigEditor_content");
 
-        router->MapURLRequest(
-        "/plugins/ConfigEditor/get",
-        [&](
-            std::shared_ptr<IHTTPUrlRouter::IConnection> connection
-        ){
-            Comms::JSON::ToJsonHelper jsonHelper;
-            auto jsonStr = jsonHelper.ToJson(
-                {"DBName", "DBPW", "DBUser", "MetOfficeKey"},
-                Config::GetInstance()->DBName(),
-                Config::GetInstance()->DBPw(),
-                Config::GetInstance()->DBUser(),
-                Config::GetInstance()->MetOfficeAPIKey()
-            );
+    router->MapURLRequest(
+    "/plugins/ConfigEditor/get",
+    [&](
+        std::shared_ptr<IHTTPUrlRouter::IConnection> connection
+    ){
+        Comms::JSON::ToJsonHelper jsonHelper;
+        auto jsonStr = jsonHelper.ToJson(
+            {"DBName", "DBPW", "DBUser", "MetOfficeKey"},
+            Config::GetInstance()->DBName(),
+            Config::GetInstance()->DBPw(),
+            Config::GetInstance()->DBUser(),
+            Config::GetInstance()->MetOfficeAPIKey()
+        );
 
-            connection->Write(jsonStr);
-        }
-    ); 
+        connection->Write(jsonStr);
+    }); 
 
     router->MapURLRequest(
         "/plugins/ConfigEditor/set",

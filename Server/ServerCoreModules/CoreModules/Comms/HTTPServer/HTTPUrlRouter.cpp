@@ -1,10 +1,13 @@
 #include "HTTPUrlRouter.h"
 #include "../../config.h"
+#include "../JSON/ToJsonHelper.h"
 
+#include <boost/algorithm/string/join.hpp>
 #include <iostream>
 #include <iomanip>
 #include <ctime>
 #include <sstream>
+
 
 HTTPUrlRouter::Connection::Connection(
     std::string request_body,
@@ -39,6 +42,21 @@ HTTPUrlRouter::HTTPUrlRouter(
     std::string static_content   
 ){
     m_static_content = static_content;
+
+    MapURLRequest("/plugins",[&](
+		std::shared_ptr<IHTTPUrlRouter::IConnection> connection 
+    ){
+        Comms::JSON::ToJsonHelper jsonHelper;
+        std::vector<std::string> plugins;
+        for(auto plugin : m_plugins) {
+            plugins.push_back(jsonHelper.ToJson(
+                {"name", "url"},
+                plugin.first,
+                plugin.second
+            ));
+        }
+        connection->Write("["+boost::algorithm::join(plugins, ",")+"]");
+    });
 
     MapURLRequest("/pluginWigits",[&](
 		std::shared_ptr<IHTTPUrlRouter::IConnection> connection 
@@ -102,6 +120,13 @@ void HTTPUrlRouter::RegisterWidgit(
     );
 
     m_widgits[widgit] = file;
+}
+
+void HTTPUrlRouter::RegisterPluginPage(
+    std::string name,
+    std::string url
+) {
+    m_plugins[name] = url;
 }
 
 bool HTTPUrlRouter::HasHandler(

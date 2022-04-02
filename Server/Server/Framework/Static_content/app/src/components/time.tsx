@@ -15,6 +15,7 @@ function Time() {
   });
 
   const style: CSS.Properties = {
+    color :'white',
     fontFamily : 'Roboto, sans-serif',
     fontSize : '40px',
     fontWeight : 1000
