@@ -11,6 +11,7 @@ class LightingStore{
     public sleeping: boolean = false;
     public hoursUntillNotSleeping : number = 0;
     public loading : boolean = false
+    public brightness : number = 100
 
     constructor(){
         makeObservable(this, {
@@ -18,9 +19,11 @@ class LightingStore{
             loading: observable,
             sleeping : observable,
             hoursUntillNotSleeping : observable,
+            brightness : observable,
             GetLights: action,
             setSleeping :action,
-            ToggleLight : action
+            ToggleLight : action,
+            setBrightness : action
         })
         this.lights = [];
         this.GetLights()
@@ -64,6 +67,19 @@ class LightingStore{
                 })
             })
         })
+    }
+
+    setBrightness(brightness : number){
+        fetch(`/plugins/Lighting/SetBrightness?brightness=${brightness}`, {
+            method: 'GET'
+        }).then((resp)=>resp.json().then((json)=>{
+            brightness = json.brightness
+            for(const light of this.lights){
+                if (light.name === json.name) {
+                    light.state = json.state;
+                }
+            }
+        }));
     }
 }
 

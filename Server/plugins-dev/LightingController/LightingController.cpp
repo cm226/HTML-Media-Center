@@ -3,12 +3,14 @@
 #include "../../ServerCoreModules/CoreModules/TaskList/WeekdaySchedual.h"
 
 #include "rapidjson/document.h"
+#include "../../ServerCoreModules/CoreModules/Comms/JSON/ToJsonHelper.h"
 
 
 LightingController::LightingController(CoreModules* cm):
     Plugin(cm),
-    m_sleeping("Sleeping state change",false),
-    m_last_light_state("Light state change",false) {
+    m_sleeping(LoggerModel<bool>("Sleeping state change",false), 12),
+    m_last_light_state("Light state change",false),
+    m_last_brightness_state(LoggerModel<int>("Brightness state change", 100), 12) {
 
         auto comms = cm->getComms();
         auto router = comms->Router();
@@ -28,17 +30,11 @@ LightingController::LightingController(CoreModules* cm):
             [&](
                 std::shared_ptr<IHTTPUrlRouter::IConnection> connection
         ){
-            if(!m_sleeping.Get()){
+            if(!m_sleeping.get().Get()){
                connection->Write("0");
                return;
             }
-
-            auto hours_since_sleeping = std::chrono::duration_cast<std::chrono::hours>(
-                std::chrono::system_clock::now() - m_sleeping_at);
-
-            connection->Write(std::to_string(
-                    12 - hours_since_sleeping.count()
-            ));
+            connection->Write(std::to_string(m_sleeping.hoursUntilExpire()));
 
         });
 
@@ -55,9 +51,9 @@ LightingController::LightingController(CoreModules* cm):
             }
             auto light = params["name"];
 
-            turnOnLight(light);
+            turnOnLight(light, m_last_brightness_state.get().Get());
 
-            connection->Write("{\"name\" : \"Bedroom\", \"state\" : \""+std::to_string(m_last_light_state.Get())+"\"}");
+            connection->Write(statusToJson());
         });
 
         router->MapURLRequest(
@@ -69,7 +65,7 @@ LightingController::LightingController(CoreModules* cm):
             auto light = params["name"];
             turnOffLight(light);
 
-            connection->Write("{\"name\" : \"Bedroom\", \"state\" : \""+std::to_string(m_last_light_state.Get())+"\"}");
+            connection->Write(statusToJson());
             
         });
 
@@ -78,31 +74,36 @@ LightingController::LightingController(CoreModules* cm):
             [&](
                 std::shared_ptr<IHTTPUrlRouter::IConnection> connection
         ){
+            auto model = m_sleeping.get();
             if(connection->RequestBody() == "true"){
-                m_sleeping_at = std::chrono::system_clock::now();
-                m_sleeping.Set(true);
+                model.Set(true);
+                m_sleeping.set(model);
                 turnOffLight("Bedroom");
             } else {
-                m_sleeping.Set(false);
-                
+                model.Set(false);
+                m_sleeping.set(model);
                 ErrorLogger::logInfo("Sleeping Un-Set");
             }
-            
-
-            // turn off motion sensing untill morning. 
-            // auto req = cm->getComms()->createJSONRequest();
-
-            // SunsetTimes sunset;
-            // auto sunset = sunset.nextSunSet();
-            // req->requestURL("http://192.168.1.xx/?sleep="+std::to_string(sunset));
-            // std::string reply;
-            // if(!req->makeRequest(reply)){
-            //     ErrorLogger::logInfo("Failed to talk to otion sensor to turn off");
-            // }
-
-
         });
 
+        router->MapURLRequest(
+            "/plugins/Lighting/SetBrightness",
+            [&](
+                std::shared_ptr<IHTTPUrlRouter::IConnection> connection
+        ){
+            auto params = connection->RequestParams();
+            std::string s_brightness = params["brightness"];
+            int brightness = 0;
+            try{
+                brightness = std::stoi(s_brightness);
+            } catch(std::invalid_argument e){
+                ErrorLogger::logError("Invalid brightness value : "+s_brightness);
+                return;
+            }
+            
+            turnOnLight("bedroom", brightness);
+            connection->Write(statusToJson());
+        });
 
         auto motion = cm->getSensors().GetSensorByName("bedroom");
         if(motion != nullptr){
@@ -116,6 +117,16 @@ LightingController::LightingController(CoreModules* cm):
 
 }
 
+std::string LightingController::statusToJson(){
+    Comms::JSON::ToJsonHelper jsonHelper;
+    return jsonHelper.ToJson(
+        {"name", "state", "brightness"},
+        "Bedroom",
+        m_last_light_state.Get(),
+        m_last_brightness_state.get().Get()
+    );
+}
+
 void LightingController::bedroomMotion(){
     SunsetTimes s;
     std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
@@ -123,9 +134,9 @@ void LightingController::bedroomMotion(){
     tm local_tm = *localtime(&tt);
 
     if(s.IsSunDown() || local_tm.tm_hour >= 21){
-        turnOnLight("bedroom");
+        turnOnLight("bedroom", m_last_brightness_state.get().Get());
         
-        if( !m_sleeping.Get() && 
+        if( !m_sleeping.get().Get() && 
                 (local_tm.tm_hour < 21 &&
                  local_tm.tm_hour > 7
                 )
@@ -168,8 +179,8 @@ bool LightingController::trySetLightState(
     std::lock_guard<std::mutex> guard(m_node_mutex);
 
 
-    if(m_last_light_state.Get() == state){
-        ErrorLogger::logError("Attempted to set light to: " + std::to_string(state) + 
+    if(m_last_light_state.Get() == state && m_last_brightness_state.get().Get() == brightness){
+        ErrorLogger::logError("Attempted to set light to: " + std::to_string(state) + ", "+std::to_string(state)+
         " but was already in that state");
         return true;
     }
@@ -197,6 +208,10 @@ bool LightingController::trySetLightState(
             ErrorLogger::logError("Failed to turn light on got exit code: " + std::to_string(exit_code));
         } else{
             m_last_light_state.Set(state);
+
+            auto model = m_last_brightness_state.get();
+            model.Set(brightness);
+            m_last_brightness_state.set(model); // restarts timer
         }
     }
 
@@ -205,26 +220,20 @@ bool LightingController::trySetLightState(
 }
 
 void LightingController::turnOnLight(
-    std::string name
+    std::string name,
+    int brightness
 ){  
-
-    std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
-
-    if(std::chrono::duration_cast<std::chrono::hours>(
-        now - m_sleeping_at) > std::chrono::hours(12)) {
-            m_sleeping.Set(false);
-            ErrorLogger::logInfo("Sleeping Unset");
-    }
-
-    // dim the brightness if its after 9
-    int brightness = 100;
-    time_t tt = std::chrono::system_clock::to_time_t(now);
-    tm local_tm = *localtime(&tt);
-    if(local_tm.tm_hour >= 21 || local_tm.tm_hour <= 7) {
-        brightness = 40;
+    // dim the brightness if its after 9 if its not been set by the app
+    if(m_last_brightness_state.isExpired()) {
+        auto now = std::chrono::system_clock::now();
+        time_t tt = std::chrono::system_clock::to_time_t(now);
+        tm local_tm = *localtime(&tt);
+        if(local_tm.tm_hour >= 21 || local_tm.tm_hour <= 7) {
+            brightness = 40;
+        }
     }
     
-    if (!m_sleeping.Get()) { 
+    if (!m_sleeping.get().Get()) { 
 
         int num_retrys = 3;
         for(int i = 0; i < num_retrys; ++i){
@@ -261,7 +270,7 @@ void LightingController::setupSchedule(
     m_schedual->Initialse(17, 0, [&](){
         SunsetTimes s;
         if(s.IsSunDown()){
-            turnOnLight("bedroom");
+            turnOnLight("bedroom", m_last_brightness_state.get().Get());
         }
     });
 }

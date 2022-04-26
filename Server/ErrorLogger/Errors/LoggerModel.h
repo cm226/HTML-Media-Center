@@ -26,7 +26,7 @@ public:
         }
     }
 
-    T Get(){
+    const T& Get() const{
         return m_value;
     }
 

@@ -62,6 +62,11 @@ private:
         return s;
     }
 
+    std::string ToString(const char* s){
+        return std::string(s);
+    }
+
+
     template<typename T>
     std::string ToString(T s){
         return std::to_string(s);

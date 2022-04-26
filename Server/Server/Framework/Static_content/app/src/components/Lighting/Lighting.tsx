@@ -6,10 +6,9 @@ import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader/CardHeader'
 import Switch from '@mui/material/Switch';
 import { CardActionArea } from '@mui/material';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import Slider from '@mui/material/Slider';
 
 import LightingStore, {light} from './LightingStore';
 
@@ -49,6 +48,10 @@ function Lighting() {
             width: '70%'
         }
     };
+
+    const handleBrightnessChange = ()=>{
+        
+    }
     return (
         <div style={classes.root as React.CSSProperties}>
             <Stack style={classes.stack} >
@@ -64,6 +67,14 @@ function Lighting() {
             </Stack>
             <div style={classes.form} >
                 <div style={{margin:'auto', width:'fit-content'}}>
+                    <span>Brightness: </span>
+                    <Slider
+                        defaultValue={100}
+                        onChangeCommitted={(event, value)=>{
+                            //@ts-ignore
+                            store.setBrightness(parseInt(value));
+                        }}
+                    />
                     <span>Sleeping: </span>
                     <Switch 
                         checkedIcon={<NightlightIcon />}

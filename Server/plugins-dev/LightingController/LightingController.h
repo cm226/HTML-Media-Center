@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ExpiringModel.h"
+
 #include "../../ServerCoreModules/CoreModules/CoreModules.h"
 #include "../../Server/Framework/Plugin/Plugin.h"
 #include "../../ErrorLogger/Errors/LoggerModel.h"
@@ -19,7 +21,8 @@ class LightingController : public Plugin {
     private:
         void bedroomMotion();
         void turnOnLight(
-            std::string name
+            std::string name,
+            int brightness
         );
         void turnOffLight(
             std::string name
@@ -32,10 +35,13 @@ class LightingController : public Plugin {
 
         void setupSchedule();
 
+        std::string statusToJson();
+
     private:
-        LoggerModel<bool> m_sleeping;
-        std::chrono::time_point<std::chrono::system_clock> m_sleeping_at;
         LoggerModel<bool> m_last_light_state;
+        ExpiringModel<LoggerModel<int>> m_last_brightness_state;
+        ExpiringModel<LoggerModel<bool>> m_sleeping;
+
         std::shared_ptr<WeekdaySchedual> m_schedual;
         
         // lights turn off after 5 min of no motion
