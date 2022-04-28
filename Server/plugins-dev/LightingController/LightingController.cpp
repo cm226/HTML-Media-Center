@@ -174,8 +174,8 @@ void LightingController::bedroomMotion(){
 
 bool LightingController::trySetLightState(
     bool state,
-    int brightness
-){
+    int brightness){
+
     std::lock_guard<std::mutex> guard(m_node_mutex);
 
 
@@ -254,7 +254,7 @@ void LightingController::turnOffLight(
 ){
     int num_retrys = 3;
     for(int i = 0; i < num_retrys; ++i){
-        if(trySetLightState(false)){
+        if(trySetLightState(false, m_last_brightness_state.get().Get())){
             return;
         }
     }
