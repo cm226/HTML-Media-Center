@@ -89,16 +89,15 @@ void HTTPServer::HandleRequest(
         destination = "/app/build/index.html";
     }
 
-    // while switching to react this is temp
-    if(destination == "/app/build/Shopping.html" ||
-    destination == "/app/build/config.html" ||
-    destination == "/app/build/LogViewer.html" || 
-    destination == "/app/build/Lighting.html"){
+    // all pages should be client side routed
+    auto posExt = destination.find_last_of('.');
+    if(posExt == std::string::npos || destination.find(".html") != std::string::npos){
         destination = "/app/build/index.html";
     }
-
+    
     std::string requested_resource = 
         m_static_content + destination;
+
 
     // small hack while transitioning to React app
     if(!boost::filesystem::exists(requested_resource)){
