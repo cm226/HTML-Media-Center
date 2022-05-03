@@ -44,7 +44,7 @@ function IngredPicker(props : IngredProps) {
             return <input style={inputStyle} onFocus={(e)=>{e.currentTarget.style.outline = "none";}} 
                     onKeyDown={(e)=>{
                     if(e.keyCode === 13){
-                        context.dispacher.dispatch("addingred",{
+                        props.dispatcher.dispatch("addingred",{
                             meal : 'extra',
                             ingred : e.currentTarget.value
                         } );
@@ -59,10 +59,10 @@ function IngredPicker(props : IngredProps) {
                 {makeInput()}
                 <ListWithDelete listView={listView} onDel={
                     (k)=>{
-                        context.dispacher.dispatch("delIngred", k)
+                        props.dispatcher.dispatch("delIngred", k)
                     }}
                     onCheck={(k, checked)=>{
-                        context.dispacher.dispatch("CheckIngred", {key : k, check : checked});
+                        props.dispatcher.dispatch("CheckIngred", {key : k, check : checked});
                     }}/>
             </div>
         );

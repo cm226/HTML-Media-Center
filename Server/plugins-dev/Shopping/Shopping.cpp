@@ -551,19 +551,51 @@ void ShoppingPlugin::AddMeal(
         return val;
     };
 
-    DatabaseTables::NoBullshitQuery insert_meal_query("INSERT INTO Meals VALUES(null, \""+meal_name+"\",0)");
-
+    // Check if that meal already exists and 
+    DatabaseTables::NoBullshitQuery meal_exists_query("SELECT 1 FROM Meals WHERE meal_name = \""+meal_name+"\"");
     bool suceeded = abort_if_Failed(this->coreMod->getDatabaseConnection()->runQuery(
-        &insert_meal_query, 
+        &meal_exists_query, 
         result_wrapper));
-    if(!suceeded) return;
+    if(!suceeded) {
+        connection->Write("FAIL");
+        return;
+    }
 
+    if(result_wrapper.next()){
+        // meal already exists, we we are editing, clear meal
+        DatabaseTables::NoBullshitQuery delete_all_ingreds(
+            "DELETE FROM Ingredients WHERE meal_id = (SELECT id FROM Meals WHERE meal_name = '"+meal_name+"')"
+        );
+        suceeded = abort_if_Failed(this->coreMod->getDatabaseConnection()->runQuery(
+            &delete_all_ingreds, 
+            result_wrapper));
+        if(!suceeded) {
+            connection->Write("FAIL");
+            return;
+        }
+    } else {
+        // meal dosnt exist so add it
+        DatabaseTables::NoBullshitQuery insert_meal_query("INSERT INTO Meals VALUES(null, \""+meal_name+"\",0)");
+        ResultWrapper insertResults;
+        suceeded = abort_if_Failed(this->coreMod->getDatabaseConnection()->runQuery(
+            &insert_meal_query, 
+            insertResults));
+        if(!suceeded) {
+            connection->Write("FAIL");
+            return;
+        }
+    }
+
+    
     suceeded = abort_if_Failed(InsertAllIngredsFromJson(
         sains_ingreds,
         aldi_ingreds, 
         meal_name));
 
-    if(!suceeded) return;
+    if(!suceeded) {
+        connection->Write("FAIL");
+        return;
+    }
     
     connection->Write("OK");
 }

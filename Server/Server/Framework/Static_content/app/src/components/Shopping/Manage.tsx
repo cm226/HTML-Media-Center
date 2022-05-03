@@ -6,17 +6,17 @@ import IngredPicker from './ingredPicker'
 import IngredientsStore from './stores/ingredientsStore'
 
 import * as CSS from 'csstype'
+import { Dispatcher } from '../../Dispatcher'
 
 const sainsIngred = new IngredientsStore();
-
+const dispacher = new Dispatcher();
 
 function Manage() {
         const store = React.useContext(ShoppingContext);
         const inputEl = React.useRef<HTMLInputElement>(null);
 
         React.useEffect(()=>{
-            sainsIngred.register(store.dispacher);
-            // eslint-disable-next-line
+            sainsIngred.register(dispacher);
         },[])
 
         const inputStyle : CSS.Properties ={
@@ -37,7 +37,7 @@ function Manage() {
                 placeholder="extra"></input>
                 <hr />
                 <h2>Sainsburys</h2>
-                <IngredPicker store={sainsIngred} dispatcher={store.dispacher}/>
+                <IngredPicker store={sainsIngred} dispatcher={dispacher}/>
                 <button onClick={()=>{
 
                     let mealObj : {
@@ -61,10 +61,15 @@ function Manage() {
                           'Content-Type': 'application/json'
                         },
                         body: JSON.stringify(mealObj) // body data type must match "Content-Type" header
-                      });
-                    
-
-
+                      }).then((res)=>res.text().then(
+                          (text)=>{
+                            if(text.trim() === "OK"){
+                                alert("Meal Added successfully, refresh to see new meals")
+                            } else{
+                                alert("Failed to insert meal, see error console.")
+                            }
+                          })
+                    );
                 }}>Add</button>
             </div>
         );
