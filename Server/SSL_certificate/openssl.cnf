@@ -21,15 +21,16 @@ ST = Oklahoma
 L  = Stillwater
 O  = My Company
 OU = Engineering
-CN = test.com
+CN = localhost
 
 # Allow client and server auth. You may want to only allow server auth.
 # Link to SAN names.
 
 [v3_req]
-basicConstraints     = CA:TRUE
+basicConstraints     = CA:FALSE
+authorityKeyIdentifier = keyid:always, issuer:always
 subjectKeyIdentifier = hash
-keyUsage             = digitalSignature, keyEncipherment
+keyUsage             = digitalSignature, nonRepudiation
 extendedKeyUsage     = clientAuth, serverAuth
 subjectAltName       = @alt_names
 

@@ -1,14 +1,12 @@
 import React from 'react';
 import {observer} from 'mobx-react'
 import { ShoppingContext } from './context'
-import {ListWithDelete, IListViewType} from './ListWithDelete'
+import {ListWithDelete} from './ListWithDelete'
 
 import * as CSS from 'csstype';
 import { Dispatcher } from '../../Dispatcher';
-
-interface IListView{
-    listView : IListViewType[]
-}
+import { IListView, IListViewType } from './types/listView';
+import { checkIngredMsg } from './types/dispatchMessages/CheckIngred';
 
 interface IngredProps{
     store : IListView
@@ -28,14 +26,13 @@ function IngredPicker(props : IngredProps) {
           };
           let context = React.useContext(ShoppingContext);  
 
-          let listView : IListViewType[] = [...props.store.listView];
+          let ingredView : IListViewType[] = [...props.store.listView];
+          let extrasView : IListViewType[] = [...context.extras.listView];
+
           if(props.filter){
-            listView  = [];
-            props.store.listView.forEach((el, i)=>{
-                if(!el.checked){
-                    listView.push(el);
-                }
-              })
+            const checkedStore = context.checkedIngredStore;
+            ingredView = ingredView.filter((el)=>!checkedStore.checked.get(el.id))
+            extrasView = extrasView.filter((el)=>!checkedStore.checked.get(el.id))
           }
 
         function makeInput(){
@@ -44,10 +41,7 @@ function IngredPicker(props : IngredProps) {
             return <input style={inputStyle} onFocus={(e)=>{e.currentTarget.style.outline = "none";}} 
                     onKeyDown={(e)=>{
                     if(e.keyCode === 13){
-                        props.dispatcher.dispatch("addingred",{
-                            meal : 'extra',
-                            ingred : e.currentTarget.value
-                        } );
+                        props.dispatcher.dispatch("AddExtra",e.currentTarget.value);
                         e.currentTarget.value = ""
                     }
                 }}
@@ -57,13 +51,24 @@ function IngredPicker(props : IngredProps) {
         return (
             <div>
                 {makeInput()}
-                <ListWithDelete listView={listView} onDel={
+                <ListWithDelete listView={ingredView} onDel={
                     (k)=>{
-                        props.dispatcher.dispatch("delIngred", k)
+                        props.dispatcher.dispatch("RemoveIngred", k)
+                    }}
+                    onCheck={(k, checked)=>{
+                        const msg : checkIngredMsg = {key : k, check : checked};
+                        props.dispatcher.dispatch("CheckIngred", msg);
+                    }}
+                    checkedMap={context.checkedIngredStore.checked} />
+                <ListWithDelete listView={extrasView} onDel={
+                    (k)=>{
+                        console.log("event dispatched");
+                        props.dispatcher.dispatch("RemoveExtra", k)
                     }}
                     onCheck={(k, checked)=>{
                         props.dispatcher.dispatch("CheckIngred", {key : k, check : checked});
-                    }}/>
+                    }}
+                    checkedMap={context.checkedIngredStore.checked}/>
             </div>
         );
     }   

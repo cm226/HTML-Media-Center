@@ -28,7 +28,7 @@ function onClearAll(){
     displaySelected();
 }
 
-function selectMeal(mealName){
+function AddMeal(mealName){
     _server_state[mealName].selected = "1";
     $.each(_server_state[mealName].ingreds, (index, ingred)=>{
         ingred.selected = "1"
@@ -123,7 +123,7 @@ function displaySelected(){
 
     $(".fullMealListSelectBttn").on("tap", (event)=>{
 
-        selectMeal(event.target.innerText);
+        AddMeal(event.target.innerText);
         
         SendStateToServer();
 
@@ -279,7 +279,7 @@ $( document ).ready(function() {
             source: Object.keys(_server_state),
             select: function (event, ui) {
 
-                selectMeal(ui.item.value);
+                AddMeal(ui.item.value);
 
                 SendStateToServer();
 

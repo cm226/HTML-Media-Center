@@ -207,16 +207,16 @@ void ShoppingPlugin::processSelectedMessages(
 
     for(auto iter = root.begin(); iter != root.end(); iter++)
     {
-        auto selected = iter->second.get<std::string>("selected");
+        auto selected = iter->second.get<bool>("selected");
         
-        if(selected.compare("1") ==0 ){
+        if(selected){
             selected_meals.push_back("'"+iter->first+"'");
         }
 
         auto ingredients = iter->second.get_child("ingreds");
         for(auto iter2 = ingredients.begin(); iter2 != ingredients.end(); iter2++){
-            auto selected = iter2->second.get<std::string>("selected");
-            if(selected.compare("1") == 0){
+            auto selected = iter2->second.get<bool>("selected");
+            if(selected){
                 selected_ingredient_ids.push_back("'"+iter2->second.get<std::string>("id")+"'");
             }
         }
@@ -291,6 +291,7 @@ void ShoppingPlugin::getExtras(
 
     auto results = Results<
         ResultRow<
+            Column<std::string, ingred_id_col>,
             Column<std::string, ingred_name_col>,
             Column<std::string, ingred_store_col>
         >>(result_wrapper);   
@@ -300,16 +301,18 @@ void ShoppingPlugin::getExtras(
     results_json << "{\"extras\":[";
 
     bool first = true;
-    for (auto& row : results){
+    for (auto& row : results) {
 
-        auto ingredient = std::get<0>(row->Row()).Value();
-        auto store = std::get<1>(row->Row()).Value();
+        auto id = std::get<0>(row->Row()).Value();
+        auto ingredient = std::get<1>(row->Row()).Value();
+        auto store = std::get<2>(row->Row()).Value();
 
         if(!first){
             results_json << ",";    
         }
         first = false;
         results_json << "{";
+        results_json << "\"id\":"<<id<<",";
         results_json << "\"store\":\""<<store<<"\",";
         results_json << "\"ingred\":\""<<ingredient<<"\"";
         results_json << "}";
@@ -390,7 +393,7 @@ std::string ShoppingPlugin::resultsToString(
             << "\"ingred\": \"" << ingred_values[i].Value() << "\","
             << "\"store\" : \"" << store_values[i].Value() << "\","
             << "\"id\" : \"" << ingred_ids[i].Value() << "\","
-            << "\"selected\" : \"" << selected_values[i].Value() << "\""
+            << "\"selected\" : " << selected_values[i].Value() << ""
             << "}";
         }
         results_json<<"]}";

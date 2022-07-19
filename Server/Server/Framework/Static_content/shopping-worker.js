@@ -169,6 +169,8 @@ var doGetServerState = function(event){
     // store the responce from the server incase we need to use it
     serverState.json().then((json)=>{
       StoreSelectedItems(json);
+    }).catch((error)=>{
+      console.error("failed to parse server state "+error.toString())
     });
 
     // inform the client that we are connected to the server

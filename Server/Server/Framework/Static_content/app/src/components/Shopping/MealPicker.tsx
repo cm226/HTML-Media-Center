@@ -3,6 +3,7 @@ import { runInAction } from 'mobx'
 import {observer} from 'mobx-react'
 import { ShoppingContext } from './context'
 import {ListWithDelete} from './ListWithDelete'
+import { SelectedMealListView } from './views/SelectedMealListView';
 
 
 function MealPicker() {
@@ -13,13 +14,14 @@ function MealPicker() {
                     <button onClick={()=>store.dispacher.dispatch('ShowMealList', true)}>All Meals</button>
                 </div>
                 
-                <ListWithDelete listView={store.selectedMeals.listView} onDel={
-                    (k)=>{
+                <ListWithDelete listView={new SelectedMealListView(store.sainsIngred).listView} onDel={
+                    (name)=>{
                         runInAction(()=>{
-                            store.dispacher.dispatch("UnSelectMeal",{k : k, v : store.selectedMeals.listView[k].value})
+                            store.dispacher.dispatch("RemoveMeal",name)
                         })
                     }
-                }/>
+                }
+                checkedMap={new Map()}/>
             </div>
         );
     }   

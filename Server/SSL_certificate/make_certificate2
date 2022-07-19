@@ -1,0 +1,17 @@
+openssl genrsa -des3 -out rootCA.key 2048
+openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 730 -out rootCA.pem
+openssl x509 -in rootCA.pem -text -noout
+
+openssl genrsa -out tls.key 2048
+openssl req -new -key tls.key -out tls.csr
+
+openssl x509 -req \
+    -in tls.csr \
+    -CA rootCA.pem \
+    -CAkey rootCA.key \
+    -CAcreateserial \
+    -out tls.crt \
+    -days 730 \
+    -sha256 \
+    -extensions v3_req\
+    -extfile openssl.cnf

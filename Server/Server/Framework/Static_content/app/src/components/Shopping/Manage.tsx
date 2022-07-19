@@ -49,8 +49,8 @@ function Manage() {
                         aldi : [],
                         sains : []
                     };
-                    sainsIngred.ingredients.forEach((ingred)=>{
-                        mealObj.sains.push(ingred.ingred);
+                    sainsIngred.selectedIngredients.forEach((ingred)=>{
+                        mealObj.sains.push(ingred.name);
                     });
                     mealObj.name = inputEl.current?.value;
 
@@ -70,7 +70,7 @@ function Manage() {
                             }
                           })
                     );
-                }}>Add</button>
+                }}>Finish</button>
             </div>
         );
     }   

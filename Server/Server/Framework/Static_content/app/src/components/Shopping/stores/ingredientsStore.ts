@@ -1,163 +1,124 @@
 import { makeObservable, observable, action, computed } from "mobx"
-import {Dispatcher} from '../../../Dispatcher'
+import { produce } from "immer";
+import { Dispatcher } from '../../../Dispatcher'
+import { IListView } from "../types/listView";
+import { mealList } from "../types/meal";
 
-export interface IingredMeal{
-    ingredID : number,
-    ingred : string,
-    meal : string,
-    checked : boolean
-};
-
-interface IlistViewType {
-    key : number, 
-    value : string,
-    checked : boolean
+interface SelectedIngred {
+    id : string,
+    name : string, 
+    meal : string
 }
 
 
-export class IngredientsStore{
+export class IngredientsStore implements IListView{
 
-    ingredients : Map<number, IingredMeal>;
-    ingredUpdatded : number;
-
-    private mealIngredMap : Map<string, {name:string, id:number}[]>;
-    private _nextKey : number;
+    public _model : mealList = {};
 
     constructor() {
         makeObservable(this, {
-            ingredients: observable,
-            ingredUpdatded: observable,
-            checkIngredient: action,
-            delete: action,
-            addExtra: action,
-            addAll: action,
-            clearAll: action,
+            selectedIngredients: computed,
+            _model : observable,
+            removeIngredients: action,
+            removeIngredient: action,
+            addAllInMeal: action,
             deleteAllFromMeal: action,
-            listView: computed
+            clearAll: action
+        });
+    }
+    get listView (){
+        return this.selectedIngredients;
+    }
 
-        })
-        this.ingredients = new Map<number, IingredMeal>();
-        this._nextKey = 0;
-        this.ingredUpdatded = 0
-        
-        this.mealIngredMap = new Map<string, {name:string, id:number}[]>();
+    toJson() { 
+
+        // mobX needs to see us access these.....
+        for(const meal in this._model){
+            const m = this._model[meal];
+            const s = m.selected;
+            for(const ingred of m.ingreds){
+                const s2 = ingred.selected;
+            }
+        }
+        return this._model;
+    }
+
+    get selectedIngredients () {
+        const selectedIngreds : SelectedIngred[] = [];
+        for (const meal in this._model) {
+            const ingreds = this._model[meal]
+            for(const ingredient of ingreds.ingreds) {
+                if(ingredient.selected)
+                    selectedIngreds.push({id : ingredient.id, name : ingredient.ingred, meal : meal});
+            }
+
+        }
+        return selectedIngreds;
     }
 
     register(dis : Dispatcher){
-        dis.addListener("SelectMeal", (meal : any)=>{
-            let ingreds = this.mealIngredMap.get(meal);
-            if(ingreds){
-                this.addAll(ingreds, meal);
-            }
+        dis.addListener("AddMeal", (meal : string)=>{
+            this.addAllInMeal(meal);
         });
 
-        dis.addListener("delIngred", (k:number)=>{
-            this.delete(k);
+        dis.addListener("RemoveMeal", (meal : string)=>{
+            this.deleteAllFromMeal(meal);
+        });
+
+        dis.addListener("RemoveIngred", (ingredientID:string)=>{
+            this.removeIngredient(ingredientID);
         })
 
-        dis.addListener("addingred", (k : any)=>{
-            this.addExtra(k.ingred, k.meal);
-        });
-
-        dis.addListener("ingredsLoaded", (ingreds : Map<string, {name:string, id:number, sel : boolean}[]>)=>{
-            
-            ingreds.forEach((ingreds, meal)=>{
-                let selectedIngreds :{name:string, id:number}[] = [];
-                ingreds.forEach((ingred)=>{
-                    if(ingred.sel){
-                        selectedIngreds.push({name : ingred.name, id : ingred.id});
-                    }
-                });
-                this.addAll(selectedIngreds, meal);
-            });
-            this.mealIngredMap = ingreds;
-        });
-
-        dis.addListener("UnSelectMeal", (meal : any)=>{
-            this.deleteAllFromMeal(meal.v);
+        dis.addListener("ingredsLoaded", (ingreds : mealList)=>{
+            this._model = ingreds;
         });
 
         dis.addListener("ClearAll", ()=>{
             this.clearAll();
         });
-
-        dis.addListener("CheckIngred", (ingred : {key : number, check : boolean})=>{
-            this.checkIngredient(ingred.key, ingred.check);
-        });
         
     }
 
-    findIngredFromID(ingredID : number, meal : string){
-        let mealIngreds = this.mealIngredMap.get(meal);
-        if(mealIngreds){
-            let ingred = mealIngreds.find(ingred=>ingred.id===ingredID);
-            if(ingred){
-                return ingred.name
-            }
+    removeIngredients(keys : string[]) {
+        for(const key of keys){
+            this.removeIngredient(key);
         }
-        return undefined;
     }
 
-    checkIngredient(key : number, check : boolean){
-        
-        let ingred = this.ingredients.get(key);
-        if(ingred) ingred.checked = check;
+    removeIngredient(key : string){
+        this._model = produce(this._model, recipe =>{
+            const findIngred = (id : string) =>{
+                for(const meal in recipe){
+                    const ingreds = recipe[meal];
+                    for(const ingred of ingreds.ingreds){
+                        if(ingred.id === id) return ingred;
+                    }
+                }
+                return null;
+            }
+            const ingred = findIngred(key);
+            if(ingred !== null)
+                ingred.selected = false;
+        });
     }
 
-    delete(key : number){
-        this.ingredients.delete(key);
+    addAllInMeal(mealName: string){
+        let meal = this._model[mealName];
+        meal.selected = true;
+        meal.ingreds.forEach((ingred)=>ingred.selected = true);
     }
 
-    addExtra(extra : string, meal: string){
-        
-        this._nextKey += 1;
-        this.ingredients.set(this._nextKey, {ingred : extra, ingredID : 999, meal : meal, checked : false});
-    }
-
-    addAll(ingreds : {name:string, id:number}[], meal: string){
-        
-        this.ingredUpdatded += 1
-        for(const ingred of ingreds){
-            this._nextKey += 1;
-            this.ingredients.set(this._nextKey, 
-                {ingred : ingred.name, ingredID : ingred.id, meal : meal, checked : false}
-            );
-        };
-        
+    deleteAllFromMeal(mealName : string) {
+        let meal = this._model[mealName];
+        meal.selected = false;
+        meal.ingreds.forEach((ingred)=>ingred.selected = false);
     }
 
     clearAll(){
-        this.ingredients.clear();
+        for (const mealName in this._model){
+            this.deleteAllFromMeal(mealName);
+        }
     }
-
-    deleteAllFromMeal(meal : string){
-
-        let removed : number[] = [];
-        this.ingredients.forEach((v : IingredMeal, k : number)=>{
-            if(v.meal === meal){
-                removed.push(k);
-            }
-        });
-
-        removed.forEach((n)=>{
-            this.ingredients.delete(n)
-        });
-    }
-
-    get listView(){
-        let view :IlistViewType[] = [];
-        this.ingredients.forEach((v, k)=>{
-            view.push(
-                {   
-                    key:k,
-                    value:`${v.ingred}, (${v.meal})`,
-                    checked : v.checked
-                });
-        })
-        return view;
-    }
-
-
 }
 
 export default IngredientsStore;

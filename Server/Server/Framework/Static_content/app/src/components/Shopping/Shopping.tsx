@@ -1,4 +1,5 @@
 import React from 'react';
+import {setAutoFreeze} from 'immer'
 import {observer} from 'mobx-react'
 import { ShoppingContext } from './context'
 import MealPicker from './MealPicker'
@@ -14,6 +15,7 @@ import {views} from './stores/DisplayedViewStore';
 
 let updater : ServerUpdater; // eslint-disable-line @typescript-eslint/no-unused-vars
 
+setAutoFreeze(false);
 function Shopping() {
         const home = React.useContext(homeContext);
         const store = React.useContext(ShoppingContext);
@@ -28,13 +30,13 @@ function Shopping() {
             });
 
             updater = new ServerUpdater(
-                store.selectedMeals,
                 store.sainsIngred,
+                store.extras,
                 store.dispacher,
                 home.urlStore
             );
 
-         }, [store.selectedMeals,
+         }, [store.extras,
             store.sainsIngred,
             store.dispacher,
             store.workerStatus,

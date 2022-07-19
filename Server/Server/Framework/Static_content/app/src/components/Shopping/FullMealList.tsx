@@ -26,12 +26,12 @@ function FullMealList() {
             <div style={div_container}>
                 <button onClick={()=>store.dispacher.dispatch('ShowMealList', false)}>Close</button>
                 <ul style={ul_style}>
-                    {store.selectedMeals.allMeals.map(
+                    {Object.keys(store.sainsIngred._model).map(
                         (meal, index)=> <li key={index} onClick={
                             (e)=>{
                                 e.currentTarget.style.backgroundColor = "#bfbfbf";
                                 runInAction(()=>{
-                                    store.dispacher.dispatch('SelectMeal', meal);
+                                    store.dispacher.dispatch('AddMeal', meal);
                                 })
                                 
                                 window.setTimeout(()=>{
